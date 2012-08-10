@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="javascripts/jquery-1.7.2.js"></script>
+</head>
+<body>
+
+<h1>Government Contact Form</h1>
+
+<form name="input" method="post">
+  Name: <input type="text" name="name"><br />
+  Email: <input type="email" name="email"><br />
+  Job Title: <input type="text" name="job_title"><br/>
+  Phone Number: <input type="tel" pattern="^[\s\d]+$" oninvalid="setCustomValidity('number only please')" name="phone_number"><br/>
+  Department:
+  <select name="dep" >
+    <% departments.each do |key, value| %>
+        <option value="<%= value %>"><%= key %></option>
+    <% end %>
+  </select><br/>
+
+
+  <script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        $(".content").hide();
+        $(".content_menu").click(function() {
+            $(this).parent().find(".content").toggle();
+        });
+    });
+
+      function subMenu(isShow, itemId) {
+          if (isShow){
+              document.getElementById(itemId).style.display = 'compact';
+          } else {
+              document.getElementById(itemId).style.display = 'none';
+          }
+      }
+  </script>
+
+  <div class="top_menu">
+    <p class="content_menu" onmouseover="subMenu(true, 'con_sub_menu');" onmouseout="subMenu(false, 'con_sub_menu');">Content Request</p>
+    <ul class="content" id="con_sub_menu" style="display: none;">
+      <li> New Content </li>
+      <li> Amend Content </li>
+      <li> Delete Content </li>
+    </ul>
+  </div>
+
+  <input type="submit" value ="Create">
+</form>
+
+</body>
+</html>
