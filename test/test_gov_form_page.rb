@@ -1,6 +1,6 @@
 require "test/unit"
 require "rack/test"
-require_relative "../src/app/app"
+require_relative "../app/app"
 require "mocha"
 
 class TestGovFormPage < Test::Unit::TestCase

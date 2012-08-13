@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="javascripts/jquery-1.7.2.js"></script>
+</head>
+<body>
+
+<h1>Government Contact Form</h1>
+
+<form name="input" method="post">
+  Name: <input type="text" name="name" required="yes"><br/>
+  Email: <input type="email" name="email" required="yes"><br/>
+  Job Title: <input type="text" name="job_title" required="yes"><br/>
+  Phone Number:
+  <input type="tel" pattern="^[\s\d]+$" oninvalid="setCustomValidity('number only please')" name="phone_number"><br/>
+  Department:
+
+  <select name="dep">
+    <% departments.each do |key, value| %>
+        <option value="<%= value %>"><%= key %></option>
+    <% end %>
+  </select><br/>
+
+
+  <script language="javascript" type="text/javascript">
+
+      function show_correspond_content(isShow, itemId, className) {
+          $(document).ready(function () {
+              $(className).hide();
+          })
+          if (isShow) {
+              document.getElementById(itemId).style.display = 'block';
+
+          } else {
+              document.getElementById(itemId).style.display = 'none';
+          }
+
+      }
+  </script>
+
+  <script>
+      function validate_check(isChecked) {
+          $(document).ready(function () {
+              $(".check_box_not_before").checked = false;
+          })
+          if (isChecked == true) {
+              show_correspond_content(true, 'not_before_date_string', '.date_picker')
+          } else
+              show_correspond_content(false, 'not_before_date_string', '.date_picker');
+      }
+  </script>
+
+
+  <div>
+    <p class="top_menu" id="content_menu" onclick="show_correspond_content(true, 'sub_content_menu', '.sub_menu');">Content
+      Request</p>
+    <ul class="sub_menu" id="sub_content_menu" style="display: none;">
+      <li onclick="show_correspond_content(true, 'new_content_session', '.content')"> New Content</li>
+      <div class="content" id="new_content_session" name="new_con" style="display: none;">
+        URL for new content: <input type="url" name="con_url"><br/>
+        Add the content below: <br/>
+        <textarea required="yes" cols="60" rows="6"></textarea><br/>
+        When should this content be added?
+        <input name="date_picker" id="content_added_data_string" name="content_add_date" type="date"/><br/>
+        Is there a date that this should not be added before?
+        <input class="check_box_not_before" type="checkbox" id="not_before_date_yes" onchange="return validate_check(this.checked)"/>
+        <input name="date_picker" id="not_before_date_string" name="content_add_date" type="date" style="display: none"/><br/>
+        Please add additional comments below:  <br/>
+        <textarea required="no" cols="60" rows="5"></textarea>
+      </div>
+
+      <li onclick="show_correspond_content(true, 'amend_content_session', '.content')"> Amend Content</li>
+      <div class="content" id="amend_content_session" name="amend_content" style="display: none;">
+        Url for content to be amended: <input type="url" required="yes" name="amend_content_url"/> <br/>
+        Copy and paste old content below:<br/>
+        <textarea required="yes" name="old_content_to_amend" cols="60" rows="6"></textarea><br/>
+      </div>
+      <li> Delete Content</li>
+    </ul>
+
+    <p class="top_menu" id="issue_menu" onclick="show_correspond_content(true, 'sub_issue_menu','.sub_menu');">Issue</p>
+    <ul class="sub_menu" id="sub_issue_menu" style="display: none;">
+      <li> New Content</li>
+      <li> Amend Content</li>
+      <li> Delete Content</li>
+    </ul>
+  </div>
+
+  <input type="submit" value="Create">
+</form>
+
+</body>
+</html>
+
