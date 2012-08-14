@@ -1,5 +1,9 @@
 *.gem
 *.rbc
+.idea
+lib/.DS_Store
+lib/public/.DS_Store
+lib/public/javascripts/.DS_Store
 .bundle
 .config
 coverage
