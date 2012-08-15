@@ -9,17 +9,11 @@
 <body>
 
 <h1>Feedback</h1>
-<script type="text/javascript">
-  function  getComments(){
-      var content_comment = [];
-      $(document).ready(function(){
-          var element = $("comment")  ;
-          for(i=0; i<element.length; i++){
-              content_comment[i] = element[i].value
-          }
-      })
-  }
 
+<script type="text/javascript">
+  function disable(){
+      document.getElementById("content").disable();
+  }
 </script>
 
 <form name="input" method="post">
@@ -36,8 +30,8 @@
     <label for="phone">Phone Number</label>
     <input id="phone" name="phone" type="tel">
 
-    <label for="department">Department</label>
-    <select id="department_list">
+    <label for="department_list">Department</label>
+    <select id="department_list" name="department">
       <% departments.each do |key, value| %>
         <option value="<%= value %>"><%= key %></option>
       <% end %>
@@ -46,7 +40,7 @@
 
   <section id="content">
     <label for="target_url">URL on gov.uk</label>
-    <input id="target_url" name="target_url" type="url" >
+    <input id="target_url" name="target_url" type="url" required>
 
     <label for="feedback">Add your feedback</label>
     <textarea id="feedback" rows="6" cols="60" name="new_content"></textarea>
@@ -58,9 +52,9 @@
     <input id="not_added_before"  name="not_added_before" type="date">
 
     <label for="comments">Please add additional comments below:</label>
-    <textarea id="comments" rows="2" cols="60" name="new_content" onchange="getComments()" c></textarea>
+    <textarea id="comments" rows="2" cols="60" name="content_additional"></textarea>
   </section>
-  <input id="create" type="submit" value="Create">
+  <input id="create" type="submit" value="Create" onclick="disable()">
 
 
   <div>

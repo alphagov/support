@@ -14,7 +14,7 @@ class App < Sinatra::Base
   end
 
   post '/feedback' do
-    #ZendeskHelper.rise_Zendesk_request(params[:name], params[:email], params[:dep], params[:job_title], params[:phone_number])
+    ZendeskHelper.rise_Zendesk_request(params[:name], params[:email], params[:department], params[:job_title], params[:phone_number], params[:target_url], params[:new_content], params[:content_additional])
     puts params
     redirect '/acknowledge'
   end
