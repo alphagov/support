@@ -22,12 +22,16 @@ class App < Sinatra::Base
     erb :amend, :locals => {:departments => departments}
   end
 
+  get '/delete' do
+    departments = ZendeskHelper.get_departments
+    erb :delete, :locals => {:departments => departments}
+  end
+
   post '/new' do
     comment = params[:target_url] + "\n\n" + params[:new_content] + "\n\n" + params[:content_additional]
     subject = "New Content"
     tag = "new_content"
     ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job_title], params[:phone_number], params[:content_added_date],params[:not_added_before], comment)
-    puts params, comment, subject, tag
     redirect '/acknowledge'
   end
 
@@ -36,7 +40,14 @@ class App < Sinatra::Base
     subject = "Amend Content"
     tag = "amend_content"
     ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job_title], params[:phone_number], params[:content_added_date],params[:not_added_before], comment)
-    puts params, comment, subject, tag
+    redirect '/acknowledge'
+  end
+
+  post '/delete' do
+    comment = params[:target_url] + "\n\n" + params[:additional]
+    subject = "Delete Content"
+    tag = "delete_content"
+    ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job_title], params[:phone_number], params[:need_by],"", comment)
     redirect '/acknowledge'
   end
 end
