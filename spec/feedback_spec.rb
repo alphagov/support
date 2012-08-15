@@ -12,7 +12,10 @@ class FeedbackSpec < Test::Unit::TestCase
   end
 
   def test_page_contain_required_fields
-    get '/feedback'
+    #When
+    get '/new'
+
+    #Then
     assert last_response.body.include?( 'Name')
     assert last_response.body.include?('Email')
     assert last_response.body.include?('Job Title')
@@ -21,9 +24,13 @@ class FeedbackSpec < Test::Unit::TestCase
   end
 
   def test_departments_list_shown_on_page
+    #Given
     ZendeskHelper.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
 
-    get '/feedback'
+    #When
+    get '/new'
+
+    #Then
     assert last_response.ok?
     assert last_response.body.include?("key1")
   end
