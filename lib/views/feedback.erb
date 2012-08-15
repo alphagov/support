@@ -2,19 +2,12 @@
 <html xmlns="http://www.w3.org/1999/html">
 <head>
   <link rel="stylesheet" type="text/css" href="/stylesheets/gov_feedback.css"/>
-  <link rel="shortcut icon" href="#" />
   <script type="text/javascript" src="javascripts/jquery-1.7.2.js"></script>
   <script type="text/javascript" src="javascripts/gov_feedback.js"></script>
 </head>
 <body>
 
 <h1>Feedback</h1>
-
-<script type="text/javascript">
-  function disable(){
-      document.getElementById("content").disable();
-  }
-</script>
 
 <form name="input" method="post">
   <section id="author">
@@ -37,6 +30,7 @@
       <% end %>
     </select>
   </section>
+
 
   <section id="content">
     <label for="target_url">URL on gov.uk</label>
@@ -63,7 +57,7 @@
     <ul class="sub_menu" id="sub_content_menu" style="display: none;">
       <li onclick="show_correspond_content(true, 'new_content_session', '.content')"> New Content</li>
       <div class="content" id="new_content_session" name="new_con" style="display: none;">
-        URL for new content: <input type="url"> </input><br/>
+        URL for new content: <input type="url"> <br/>
         Add the content below: <br/>
         <textarea cols="60" rows="6"></textarea><br/>
         When should this content be added?

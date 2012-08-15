@@ -13,14 +13,14 @@ class ZendeskHelper
     departments_hash
   end
 
-  def self.rise_Zendesk_request(name, email, dep, job, phone, url, new_content, additional_content)
+  def self.raise_zendesk_request(subject, tag, name, email, dep, job, phone, added_date, not_before_date, comment)
     @client.ticket.create(
-        :subject => "Test Ticket",
+        :subject => subject,
         :description => "testing for email",
         :priority => "normal",
         :requester => {"locale_id" => 1, "name" => name, "email" => email},
-        :fields => [{"id" => "21494928", "value" => dep}, {"id" => "21487987", "value" => job}, {"id" => "21471291", "value" => phone}],
-        :comment => {:value => url + "\n" + new_content + "\n" + additional_content},
-        :tags => ["new-content-item"])
+        :fields => [{"id" => "21494928", "value" => dep}, {"id" => "21487987", "value" => job}, {"id" => "21471291", "value" => phone}, {"id" => "21485833", "value" => added_date}, {"id" => "21502036", "value" => not_before_date}],
+        :comment => {:value => comment},
+        :tags => [tag])
   end
 end

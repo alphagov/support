@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/gov_feedback.css"/>
+</head>
+
+<body>
+
+<h1>New Content</h1>
+
+<form name="input" method="post">
+  <section id="author">
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" required>
+
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" required>
+
+    <label for="job">Job Title</label>
+    <input id="job" name="job" type="text">
+
+    <label for="phone">Phone Number</label>
+    <input id="phone" name="phone" type="tel">
+
+    <label for="department_list">Department</label>
+    <select id="department_list" name="department" required>
+      <% departments.each do |key, value| %>
+          <option value="<%= value %>"><%= key %></option>
+      <% end %>
+    </select>
+  </section>
+
+  <section id="content">
+    <label for="target_url">URL on gov.uk</label>
+    <input id="target_url" name="target_url" type="url" required>
+
+    <label for="feedback">Add your feedback</label>
+    <textarea id="feedback" rows="6" cols="60" name="new_content" required></textarea>
+
+    <label for="content_added_on">When should this content be added?</label>
+    <input id="content_added_on" name="content_added_date" type="date" required>
+
+    <label for="not_added_before">Not to be added before (if required)</label>
+    <input id="not_added_before" name="not_added_before" type="date">
+
+    <label for="comments">Please add additional comments below:</label>
+    <textarea id="comments" rows="2" cols="60" name="content_additional"></textarea>
+  </section>
+  <input id="submit" type="submit" value="Submit">
+
+</form>
+</body>
+</html>
