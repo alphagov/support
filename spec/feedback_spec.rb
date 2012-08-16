@@ -34,15 +34,4 @@ class FeedbackSpec < Test::Unit::TestCase
     assert last_response.ok?
     assert last_response.body.include?("key1")
   end
-
-  def test_after_form_submitted_redirect_to_acknowledge_page
-
-    ZendeskHelper.expects(:raise_zendesk_request).once
-    post '/new'
-    puts last_response.ok?
-    #puts last_response.body
-
-  end
-
-
 end
