@@ -6,6 +6,12 @@
   <% yield_content :head %>
 </head>
 <body>
-  <%=  yield %>
+<header role="banner" class="group" id="global-header">
+  <div class="header-global group">
+    <h1><a href="/" title="Go to the gov.uk homepage">GOV.UK</a></h1>
+  </div>
+</header>
+
+<%=  yield %>
 </body>
 </html>

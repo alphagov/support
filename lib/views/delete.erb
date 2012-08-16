@@ -1,9 +1,12 @@
 <% content_for :head do %>
     <h1>Delete Content</h1>
-<% end  %>
+<% end %>
+
+
+<%= erb :menu %>
 
 <form name="input" method="post">
-<%= erb :author, :locals => {:departments => departments} %>
+  <%= erb :author, :locals => {:departments => departments} %>
 
 
   <section id="content">
@@ -17,6 +20,6 @@
     <textarea id="comments" rows="2" cols="60" name="additional"></textarea>
   </section>
 
-<input id="submit" type="submit" value="Submit">
+  <input id="submit" type="submit" value="Submit">
 
 </form>

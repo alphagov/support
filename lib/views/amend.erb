@@ -1,10 +1,13 @@
 <% content_for :head do %>
     <h1>Amend Content</h1>
-<% end  %>
+<% end %>
+
+
+<%= erb :menu %>
 
 <form name="input" method="post">
 
-<%= erb :author, :locals => {:departments => departments} %>
+  <%= erb :author, :locals => {:departments => departments} %>
 
   <section id="content">
     <label for="target_url">URL for content to be amended:</label>
@@ -16,7 +19,8 @@
     <label for="new_content">The NEW content amending to:</label>
     <textarea id="new_content" rows="6" cols="60" name="new_content" required></textarea>
 
-    <label for="remove_location">If this content should be removed, please provide where it should be removed from:</label>
+    <label for="remove_location">If this content should be removed, please provide where it should be removed
+      from:</label>
     <input id="remove_location" type="text" name="place_to_remove">
 
     <label for="need_by">When should this change be made?</label>
@@ -29,6 +33,6 @@
     <textarea id="comments" rows="2" cols="60" name="additional"></textarea>
   </section>
 
-<input id="submit" type="submit" value="Submit">
+  <input id="submit" type="submit" value="Submit">
 
 </form>
