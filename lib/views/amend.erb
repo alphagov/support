@@ -1,38 +1,52 @@
-<% content_for :head do %>
-    <h1>Amend Content</h1>
-<% end %>
+<div id="wrapper">
+  <section id="framework">
+
+    <div class="inner">
+
+      <header class="page-header group">
+        <hgroup><h1>Amend Content</h1></hgroup>
+      </header>
+
+      <%= erb :menu %>
 
 
-<%= erb :menu %>
+      <div id="form">
 
-<form name="input" method="post">
 
-  <%= erb :author, :locals => {:departments => departments} %>
+        <form name="input" method="post">
 
-  <section id="content">
-    <label for="target_url">URL for content to be amended:</label>
-    <input id="target_url" name="target_url" type="url" required>
+          <%= erb :author, :locals => {:departments => departments} %>
 
-    <label for="old_content">The OLD content to be amended:</label>
-    <textarea id="old_content" rows="6" cols="60" name="old_content" required></textarea>
+          <section id ="content">
+            <label for="target_url">URL for content to be amended:</label>
+            <input id="target_url" name="target_url" type="url" required>
 
-    <label for="new_content">The NEW content amending to:</label>
-    <textarea id="new_content" rows="6" cols="60" name="new_content" required></textarea>
+            <label for="old_content">The OLD content to be amended:</label>
+            <textarea id="old_content" rows="6" cols="60" name="old_content" required></textarea>
 
-    <label for="remove_location">If this content should be removed, please provide where it should be removed
-      from:</label>
-    <input id="remove_location" type="text" name="place_to_remove">
+            <label for="new_content">The NEW content amending to:</label>
+            <textarea id="new_content" rows="6" cols="60" name="new_content" required></textarea>
 
-    <label for="need_by">When should this change be made?</label>
-    <input id="need_by" name="need_by" type="date" required>
+            <label for="remove_location">If this content should be removed, please provide where it should be removed
+              from:</label>
+            <input id="remove_location" type="text" name="place_to_remove">
 
-    <label for="not_added_before">Not to be amended before (if required)</label>
-    <input id="not_added_before" name="not_before" type="date">
+            <label for="need_by">When should this change be made?</label>
+            <input id="need_by" name="need_by" type="date" required>
 
-    <label for="comments">Please add additional comments below:</label>
-    <textarea id="comments" rows="2" cols="60" name="additional"></textarea>
+            <label for="not_added_before">Not to be amended before (if required)</label>
+            <input id="not_added_before" name="not_before" type="date">
+
+            <label for="comments">Please add additional comments below:</label>
+            <textarea id="comments" rows="2" cols="60" name="additional"></textarea>
+          </section>
+          <input id="submit" type="submit" value="Submit">
+
+        </form>
+      </div>
+      <div class="toclear"></div>
+    </div>
   </section>
+</div>
 
-  <input id="submit" type="submit" value="Submit">
-
-</form>
+<%= erb :footer %>
