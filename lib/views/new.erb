@@ -1,11 +1,11 @@
 <div id="wrapper">
   <section id="framework">
 
-    <header class="page-header group">
-      <hgroup><h1>New Content</h1></hgroup>
-    </header>
-
     <div class="inner">
+
+      <header class="page-header group">
+        <hgroup><h1>New Content</h1></hgroup>
+      </header>
 
       <%= erb :menu %>
 
@@ -31,7 +31,7 @@
             <input id="not_added_before" name="not_before" type="date">
 
             <label for="comments">Please add additional comments below:</label>
-            <textarea id="comments" rows="2" cols="60" name="additional"></textarea>
+            <textarea id="comments" rows="10" cols="60" name="additional"></textarea>
           </section>
           <input id="submit" type="submit" value="Submit">
 
@@ -41,3 +41,9 @@
     </div>
   </section>
 </div>
+
+<footer class="group" id="footer">
+  <div class="message">
+    <p>Thanks for the feedback </p>
+  </div>
+</footer>
