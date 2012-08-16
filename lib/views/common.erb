@@ -7,10 +7,10 @@
     <input id="email" name="email" type="email" required>
 
     <label for="job">Job Title</label>
-    <input id="job" name="job" type="text">
+    <input id="job" name="job" type="text" required>
 
     <label for="phone">Phone Number</label>
-    <input id="phone" name="phone" type="tel">
+    <input id="phone" name="phone" pattern="([\d\s]*)" oninvalid="setCustomValidity('Please enter a valid  phone number')" type="tel">
 
     <label for="department_list">Department</label>
     <select id="department_list" name="department" required>
