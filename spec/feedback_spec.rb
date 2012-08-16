@@ -34,4 +34,5 @@ class FeedbackSpec < Test::Unit::TestCase
     assert last_response.ok?
     assert last_response.body.include?("key1")
   end
+
 end
