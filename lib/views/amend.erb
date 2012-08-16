@@ -1,8 +1,10 @@
-<%= erb :header %>
+<% content_for :head do %>
+    <h1>Amend Content</h1>
+<% end  %>
 
-<h1>Amend Content</h1>
+<form name="input" method="post">
 
-<%= erb :common, :locals => {:departments => departments} %>
+<%= erb :author, :locals => {:departments => departments} %>
 
   <section id="content">
     <label for="target_url">URL for content to be amended:</label>
@@ -21,9 +23,12 @@
     <input id="need_by" name="need_by" type="date" required>
 
     <label for="not_added_before">Not to be amended before (if required)</label>
-    <input id="not_added_before" name="not_added_before" type="date">
+    <input id="not_added_before" name="not_before" type="date">
 
     <label for="comments">Please add additional comments below:</label>
     <textarea id="comments" rows="2" cols="60" name="additional"></textarea>
   </section>
-<%= erb :footer %>
+
+<input id="submit" type="submit" value="Submit">
+
+</form>

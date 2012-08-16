@@ -1,7 +1,11 @@
-<html xmlns="http://www.w3.org/1999/html">
-
+<!DOCTYPE html>
+<html>
 <head>
   <link rel="stylesheet" type="text/css" href="/stylesheets/gov_feedback.css"/>
-</head>
 
+  <% yield_content :head %>
+</head>
 <body>
+  <%=  yield %>
+</body>
+</html>

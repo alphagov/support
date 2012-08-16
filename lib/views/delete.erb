@@ -1,8 +1,10 @@
-<%= erb :header %>
+<% content_for :head do %>
+    <h1>Delete Content</h1>
+<% end  %>
 
-<h1>Delete Content</h1>
+<form name="input" method="post">
+<%= erb :author, :locals => {:departments => departments} %>
 
-<%= erb :common, :locals => {:departments => departments} %>
 
   <section id="content">
     <label for="target_url">URL on gov.uk</label>
@@ -12,6 +14,9 @@
     <input id="need_by" name="need_by" type="date" required>
 
     <label for="comments">Please add additional comments below:</label>
-    <textarea id="comments" rows="2" cols="60" name="content_additional"></textarea>
+    <textarea id="comments" rows="2" cols="60" name="additional"></textarea>
   </section>
-<%= erb :footer %>
+
+<input id="submit" type="submit" value="Submit">
+
+</form>
