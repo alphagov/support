@@ -1,4 +1,4 @@
-class ZendeskClient
+class ZendeskHelper
 
   @client = ZendeskAPI::Client.new { |config|
     config.url = "https://govuk.zendesk.com/api/v2/"
@@ -29,12 +29,7 @@ class ZendeskClient
         :tags => [tag])
   end
 
-
-
-  private
-
   def self.remove_space_from_phone_number(number)
     number.gsub(/\s+/, "")
   end
-
 end
