@@ -7,8 +7,8 @@ require_relative "zendesk_client"
 class App < Sinatra::Base
   helpers Sinatra::ContentFor
 
-  get '/feedback' do
-    erb :main
+  get '/' do
+    erb :landing
   end
 
   get '/acknowledge' do

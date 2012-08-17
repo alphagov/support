@@ -214,3 +214,11 @@ header.page-header hgroup h1 {
 .url {
     background-color: #F2F2F2;
 }
+
+
+/*landing*/
+
+.landing {
+    font-size: 2em;
+    line-height: 2em;
+}
