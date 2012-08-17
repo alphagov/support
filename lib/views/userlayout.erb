@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/stylesheets/gov_feedback.css"/>
+
+  <% yield_content :head %>
+</head>
+<body>
+<header role="banner" class="group" id="global-header">
+  <div class="header-global group">
+    <h1><a href="http://gov.uk" title="Go to the gov.uk homepage">GOV.UK</a></h1>
+  </div>
+</header>
+
+
+<div id="wrapper">
+  <section id="framework">
+
+    <div class="inner">
+
+      <header class="page-header group">
+        <hgroup><h1><%= @header %></h1></hgroup>
+      </header>
+
+      <%= erb :menu %>
+
+
+      <div id="form">
+
+
+        <form name="input" method="post">
+
+          <%= erb :author %>
+
+          <%= yield %>
+
+          <input id="submit" type="submit" value="Submit">
+
+        </form>
+      </div>
+      <div class="toclear"></div>
+    </div>
+  </section>
+</div>
+
+<%= erb :footer %>
+
+</body>
+
+
+</html>

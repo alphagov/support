@@ -25,7 +25,7 @@ body {
 }
 
 /* Sections for whole, author and content */
-section#author, section#content {
+section#author, section#content, section#user {
     border-width: 1px;
     border-style: inset;
     padding: 5px;
@@ -96,6 +96,12 @@ label {
     margin-right: 15px;
 }
 
+textarea {
+    font-size: 1.1875em;
+    color: black;
+    background: transparent;
+}
+
 input {
     line-height: 1.5em;
     font-size: 1.1875em;
@@ -104,6 +110,7 @@ input {
     display:block;
     margin-bottom:10px;
     margin-top:5px;
+    width: 200px;
 }
 
 #author select {
@@ -145,7 +152,7 @@ input {
 }
 
 #global-header h1 a {
-    background-image: url(https://d17tffe05zdvwj.cloudfront.net/static/gov.uk_logotype-9cb62efa5a3077edae7aeb8a8e55c790.png);
+    background-image: url(/images/gov.uk_header.png);
     background-position: 0 1px;
     background-repeat: no-repeat;
     float: left;
@@ -196,9 +203,22 @@ header.page-header hgroup h1 {
 }
 
 #footer .message p {
-    background: #F17921;
+    background-color: #F17921;
     color: black;
     float: none;
     width: auto;
     text-align: center;
+}
+
+/* url */
+.url {
+    background-color: #F2F2F2;
+}
+
+
+/*landing*/
+
+.landing {
+    font-size: 2em;
+    line-height: 2em;
 }
