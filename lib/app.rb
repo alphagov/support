@@ -17,6 +17,7 @@ class App < Sinatra::Base
 
   get '/new' do
 <<<<<<< HEAD
+<<<<<<< HEAD
     @departments = ZendeskClient.get_departments
     erb :new
   end
@@ -32,6 +33,13 @@ class App < Sinatra::Base
   end
 
   get '/amend' do
+=======
+    departments = ZendeskHelper.get_departments
+    erb :new, :locals => {:departments => departments}
+  end
+
+  get '/amend' do
+>>>>>>> parent of 5df398b... Created yml file for zendesk
     departments = ZendeskHelper.get_departments
     erb :amend, :locals => {:departments => departments}
   end
@@ -65,6 +73,7 @@ class App < Sinatra::Base
     subject = "Delete Content"
     tag = "delete_content"
     ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], params[:need_by],"", comment)
+<<<<<<< HEAD
     redirect '/acknowledge'
   end
 
@@ -82,6 +91,8 @@ class App < Sinatra::Base
     tag = "new_user"
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
+=======
+>>>>>>> parent of 5df398b... Created yml file for zendesk
     redirect '/acknowledge'
   end
 
