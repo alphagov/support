@@ -14,7 +14,7 @@
 
     <label for="department_list">Department</label>
     <select id="department_list" name="department" required>
-      <% @departments.each do |key, value| %>
+      <% departments.each do |key, value| %>
           <option value="<%= value %>"><%= key %></option>
       <% end %>
     </select>
