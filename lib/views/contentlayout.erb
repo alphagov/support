@@ -12,7 +12,6 @@
   </div>
 </header>
 
-
 <div id="wrapper">
   <section id="framework">
 
@@ -22,18 +21,16 @@
         <hgroup><h1><%= @header %></h1></hgroup>
       </header>
 
-      <%= erb :usermenu %>
+      <%= erb :menu %>
 
 
       <div id="form">
-
 
         <form name="input" method="post">
 
           <%= erb :author %>
 
           <%= yield %>
-
           <input id="submit" type="submit" value="Submit">
 
         </form>

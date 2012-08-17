@@ -16,37 +16,21 @@ class App < Sinatra::Base
   end
 
   get '/new' do
-<<<<<<< HEAD
-<<<<<<< HEAD
     @departments = ZendeskClient.get_departments
-    erb :new
+    @header = "New Content"
+    erb :new, :layout => :contentlayout
   end
 
   get '/amend' do
     @departments = ZendeskClient.get_departments
-    erb :amend
+    @header = "Amend Content"
+    erb :amend, :layout => :contentlayout
   end
 
   get '/delete' do
     @departments = ZendeskClient.get_departments
-    erb :delete
-  end
-
-  get '/amend' do
-=======
-    departments = ZendeskHelper.get_departments
-    erb :new, :locals => {:departments => departments}
-  end
-
-  get '/amend' do
->>>>>>> parent of 5df398b... Created yml file for zendesk
-    departments = ZendeskHelper.get_departments
-    erb :amend, :locals => {:departments => departments}
-  end
-
-  get '/delete' do
-    departments = ZendeskHelper.get_departments
-    erb :delete, :locals => {:departments => departments}
+    @header = "Delete Content"
+    erb :delete, :layout => :contentlayout
   end
 
   post '/new' do
@@ -54,7 +38,7 @@ class App < Sinatra::Base
     comment = url + "\n\n" + params[:new_content] + "\n\n" + params[:additional]
     subject = "New Content"
     tag = "new_content"
-    ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], params[:need_by],params[:not_before], comment)
+    ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],params[:not_before])
     redirect '/acknowledge'
   end
 
@@ -63,7 +47,7 @@ class App < Sinatra::Base
     comment = url + "\n\n" + "[old content]\n" + params[:old_content] + "\n\n" + "[new content]\n"+params[:new_content] + "\n\n" + params[:place_to_remove] + "\n\n" + params[:additional]
     subject = "Amend Content"
     tag = "amend_content"
-    ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], params[:need_by],params[:not_before], comment)
+    ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],params[:not_before])
     redirect '/acknowledge'
   end
 
@@ -72,8 +56,7 @@ class App < Sinatra::Base
     comment = url + "\n\n" + params[:additional]
     subject = "Delete Content"
     tag = "delete_content"
-    ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], params[:need_by],"", comment)
-<<<<<<< HEAD
+    ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],"")
     redirect '/acknowledge'
   end
 
@@ -91,8 +74,6 @@ class App < Sinatra::Base
     tag = "new_user"
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
-=======
->>>>>>> parent of 5df398b... Created yml file for zendesk
     redirect '/acknowledge'
   end
 

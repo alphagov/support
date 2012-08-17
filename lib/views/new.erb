@@ -1,45 +1,16 @@
-<div id="wrapper">
-  <section id="framework">
+<section id="content">
+  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url" name="target_url" type="url" required>
 
-    <div class="inner">
+  <label for="feedback">Add your content</label>
+  <textarea id="feedback" rows="6" cols="50" name="new_content" required></textarea>
 
-      <header class="page-header group">
-        <hgroup><h1>New Content</h1></hgroup>
-      </header>
+  <label for="content_added_on">When should this content be added?</label>
+  <input id="content_added_on" name="need_by" type="date" required>
 
-      <%= erb :menu %>
+  <label for="not_added_before">Not to be added before (if required)</label>
+  <input id="not_added_before" name="not_before" type="date">
 
-
-      <div id="form">
-
-
-        <form name="input" method="post">
-
-          <%= erb :author %>
-
-          <section id="content">
-            <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-            <input id="target_url" name="target_url" type="url" required>
-
-            <label for="feedback">Add your content</label>
-            <textarea id="feedback" rows="6" cols="50" name="new_content" required></textarea>
-
-            <label for="content_added_on">When should this content be added?</label>
-            <input id="content_added_on" name="need_by" type="date" required>
-
-            <label for="not_added_before">Not to be added before (if required)</label>
-            <input id="not_added_before" name="not_before" type="date">
-
-            <label for="comments">Please add additional comments below:</label>
-            <textarea id="comments" rows="10" cols="50" name="additional"></textarea>
-          </section>
-          <input id="submit" type="submit" value="Submit">
-
-        </form>
-      </div>
-      <div class="toclear"></div>
-    </div>
-  </section>
-</div>
-
-<%= erb :footer %>
+  <label for="comments">Please add additional comments below:</label>
+  <textarea id="comments" rows="10" cols="50" name="additional"></textarea>
+</section>
