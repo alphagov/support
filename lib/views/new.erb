@@ -18,10 +18,10 @@
           <%= erb :author, :locals => {:departments => departments} %>
 
           <section id="content">
-            <label for="target_url">URL on gov.uk</label>
+            <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
             <input id="target_url" name="target_url" type="url" required>
 
-            <label for="feedback">Add your feedback</label>
+            <label for="feedback">Add your content</label>
             <textarea id="feedback" rows="6" cols="60" name="new_content" required></textarea>
 
             <label for="content_added_on">When should this content be added?</label>

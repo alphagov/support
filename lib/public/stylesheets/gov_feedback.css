@@ -145,7 +145,7 @@ input {
 }
 
 #global-header h1 a {
-    background-image: url(https://d17tffe05zdvwj.cloudfront.net/static/gov.uk_logotype-9cb62efa5a3077edae7aeb8a8e55c790.png);
+    background-image: url(/images/gov.uk_header.png);
     background-position: 0 1px;
     background-repeat: no-repeat;
     float: left;
@@ -196,9 +196,14 @@ header.page-header hgroup h1 {
 }
 
 #footer .message p {
-    background: #F17921;
+    background-color: #F17921;
     color: black;
     float: none;
     width: auto;
     text-align: center;
+}
+
+/* url */
+.url {
+    background-color: #F2F2F2;
 }
