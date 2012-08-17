@@ -2,7 +2,7 @@ require "rack/test"
 require "test/unit"
 require "mocha"
 require_relative "../lib/app"
-require_relative "../lib/zendesk_helper"
+require_relative "../lib/zendesk_client"
 
 class FeedbackSpec < Test::Unit::TestCase
   include Rack::Test::Methods
@@ -25,7 +25,7 @@ class FeedbackSpec < Test::Unit::TestCase
 
   def test_departments_list_shown_on_page
     #Given
-    ZendeskHelper.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
+    ZendeskClient.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
 
     #When
     get '/new'

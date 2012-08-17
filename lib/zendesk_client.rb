@@ -1,4 +1,4 @@
-class ZendeskHelper
+class ZendeskClient
 
   @client = ZendeskAPI::Client.new { |config|
     config.url = "https://govuk.zendesk.com/api/v2/"

@@ -2,7 +2,7 @@ require 'bundler'
 Bundler.require
 
 require "sinatra/content_for"
-require_relative "zendesk_helper"
+require_relative "zendesk_client"
 
 class App < Sinatra::Base
   helpers Sinatra::ContentFor
@@ -38,7 +38,7 @@ class App < Sinatra::Base
     comment = url + "\n\n" + params[:new_content] + "\n\n" + params[:additional]
     subject = "New Content"
     tag = "new_content"
-    ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],params[:not_before])
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],params[:not_before])
     redirect '/acknowledge'
   end
 
@@ -47,7 +47,7 @@ class App < Sinatra::Base
     comment = url + "\n\n" + "[old content]\n" + params[:old_content] + "\n\n" + "[new content]\n"+params[:new_content] + "\n\n" + params[:place_to_remove] + "\n\n" + params[:additional]
     subject = "Amend Content"
     tag = "amend_content"
-    ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],params[:not_before])
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],params[:not_before])
     redirect '/acknowledge'
   end
 
@@ -56,7 +56,7 @@ class App < Sinatra::Base
     comment = url + "\n\n" + params[:additional]
     subject = "Delete Content"
     tag = "delete_content"
-    ZendeskHelper.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],"")
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],"")
     redirect '/acknowledge'
   end
 
