@@ -25,7 +25,7 @@ body {
 }
 
 /* Sections for whole, author and content */
-section#author, section#content {
+section#author, section#content, section#user {
     border-width: 1px;
     border-style: inset;
     padding: 5px;
@@ -110,6 +110,7 @@ input {
     display:block;
     margin-bottom:10px;
     margin-top:5px;
+    width: 300px;
 }
 
 #author select {

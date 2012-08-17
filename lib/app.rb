@@ -62,7 +62,8 @@ class App < Sinatra::Base
 
   get '/create-user' do
     @departments = ZendeskClient.get_departments
-    erb :user
+    @header = "Create New User"
+    erb :user, :layout => :userlayout
   end
 
   post '/create-user' do
@@ -72,5 +73,34 @@ class App < Sinatra::Base
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
     redirect '/acknowledge'
   end
+
+  get '/delete-user' do
+    @departments = ZendeskClient.get_departments
+    @header = "Delete User"
+    erb :userdelete, :layout => :userlayout
+  end
+
+  post '/delete-user' do
+    subject = "Delete User"
+    tag = "remove_user"
+    comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, params[:not_before])
+    redirect '/acknowledge'
+  end
+
+  get '/reset-password' do
+    @departments = ZendeskClient.get_departments
+    @header = "Reset Password"
+    erb :user, :layout => :userlayout
+  end
+
+  post '/reset-password' do
+    subject = "Reset Password"
+    tag = "password_reset"
+    comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
+    redirect '/acknowledge'
+  end
+
 
 end
