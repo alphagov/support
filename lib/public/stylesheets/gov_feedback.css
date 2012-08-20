@@ -28,7 +28,6 @@ body {
 section#author, section#content, section#user {
     border-width: 1px;
     border-style: inset;
-    padding: 5px;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -94,12 +93,14 @@ label {
     background: transparent;
     float: left;
     margin-right: 15px;
+    padding-left: 5px;
 }
 
 textarea {
     font-size: 1.1875em;
     color: black;
     background: transparent;
+    padding-left: 5px;
 }
 
 input {
@@ -130,6 +131,15 @@ input {
     height: 40px;
 }
 
+/* section header */
+header.section-header {
+    line-height: 2em;
+    background-color: #28A198;
+    color: white;
+    font-size: 1.2em;
+    text-indent: 20px;
+    margin-bottom: 10px;
+}
 
 /* Header */
 #global-header {
