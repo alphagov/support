@@ -1,11 +1,21 @@
+require 'bundler'
+Bundler.require
+
+require "yaml"
+
 class ZendeskClient
 
-  @client = ZendeskAPI::Client.new { |config|
-    config.url = "https://govuk.zendesk.com/api/v2/"
-    config.username = "zd-api-govt@digital.cabinet-office.gov.uk"
-    config.password = "12345"
-  }
+  def self.get_username_password
+    config_details = YAML::load_file(File.open('./config/zendesk.yml'))
+    [config_details["development"]["username"].to_s, config_details["development"]["password"].to_s]
+  end
 
+  @client = ZendeskAPI::Client.new { |config|
+    login_details = self.get_username_password
+    config.url = "https://govuk.zendesk.com/api/v2/"
+    config.username = login_details[0]
+    config.password = login_details[1]
+  }
 
   def self.get_departments
     departments_hash = {"Select Department" => ""}
