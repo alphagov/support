@@ -94,7 +94,7 @@ class App < Sinatra::Base
   get '/reset-password' do
     @departments = ZendeskClient.get_departments
     @header = "Reset Password"
-    erb :user, :layout => :userlayout
+    erb :resetpassword, :layout => :userlayout
   end
 
   post '/reset-password' do
