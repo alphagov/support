@@ -6,7 +6,7 @@ require "yaml"
 class ZendeskClient
 
   def self.get_username_password
-    config_details = YAML.load_file("/Users/yu/support/config/zendesk.yml")
+    config_details = YAML::load_file(File.open('./config/zendesk.yml'))
     [config_details["development"]["username"].to_s, config_details["development"]["password"].to_s]
   end
 
