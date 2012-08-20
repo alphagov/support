@@ -1,11 +1,9 @@
 require 'bundler'
 Bundler.require
 
-require "sinatra/content_for"
 require_relative "zendesk_client"
 
 class App < Sinatra::Base
-  helpers Sinatra::ContentFor
 
   get '/' do
     erb :landing
