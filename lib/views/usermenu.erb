@@ -1,0 +1,16 @@
+<div class="menu">
+  <h2>User Access</h2>
+  <ul>
+    <li><a href="/create-user"><%= erb :highlight, :locals => {:name => "Create New User"} %></a></li>
+    <li><a href="/delete-user"><%= erb :highlight, :locals => {:name => "Delete User"} %></a></li>
+    <li><a href="/reset-password"><%= erb :highlight, :locals => {:name => "Reset Password"} %></a></li>
+  </ul>
+
+  <h2>Other sections</h2>
+  <ul>
+    <li><a href="/new">Content Request</a></li>
+    <li><a href="/emergency">Emergency Publishing</a></li>
+    <li><a href="/campaign">Campaigning</a></li>
+    <li><a href="/tech-issues">Technical Issues</a></li>
+  </ul>
+</div>

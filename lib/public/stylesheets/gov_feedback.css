@@ -61,10 +61,6 @@ ul li a {
     color: black;
 }
 
-ul li a:hover {
-    background-color: #EEE;
-}
-
 ul {
     list-style: none;
     line-height: 1.315789474em;
@@ -75,16 +71,12 @@ ul li {
     margin: 0 -2px 0 -1px;
 }
 
-li.top{
+h2 {
     color: #2E3191;
     border-radius: 2px;
     line-height: 2em;
-}
-
-li.top p{
     font-size: 20px;
 }
-
 
 /* Form styling */
 label {

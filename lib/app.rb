@@ -1,11 +1,9 @@
 require 'bundler'
 Bundler.require
 
-require "sinatra/content_for"
 require_relative "zendesk_client"
 
 class App < Sinatra::Base
-  helpers Sinatra::ContentFor
 
   get '/' do
     erb :landing
@@ -31,6 +29,19 @@ class App < Sinatra::Base
     @departments = ZendeskClient.get_departments
     @header = "Delete Content"
     erb :delete, :layout => :contentlayout
+  end
+
+  get '/emergency' do
+    @header = "Emergency Publishing"
+    erb :workinprogress
+  end
+
+  get '/campaign' do
+    erb :workinprogress
+  end
+
+  get '/techissues' do
+    erb :workinprogress
   end
 
   post '/new' do
