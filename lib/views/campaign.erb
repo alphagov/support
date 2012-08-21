@@ -3,15 +3,10 @@
   <label for="name">Name of the campaign</label>
   <input id="name" name="name" type="text" required>
 
-  <label for="company">Company affiliated with this campaign</label>
-  <input id="company" name="company" type="text">
+  <label for="description">Briefly describe this campaign and the target audience</label>
+  <textarea id="description" rows="10" cols="50" name="description"></textarea>
 
-  <label for="description">Campaign Description</label>
-  <input id="description" name="description" type="text">
-
-  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="target_url" type="text">
-
+  <br/>
 
   <label for="need_by_day">Start Date</label>
 
@@ -70,6 +65,13 @@
   </select>
 
   <br/>
+  <br/>
+
+  <label for="company">Is there a company or group that's affiliated with this campaign</label>
+  <input id="company" name="company" type="text">
+
+  <label for="target_url">If there's a link with further information, please paste it below</label>
+  <input id="target_url" name="target_url" type="text">
 
 
 </section>
