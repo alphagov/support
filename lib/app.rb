@@ -13,9 +13,9 @@ class App < Sinatra::Base
     erb :acknowledge
   end
 
-  get '/new' do
+  get '/add' do
     @departments = ZendeskClient.get_departments
-    @header = "New Content"
+    @header = "Add Content"
     erb :new, :layout => :contentlayout
   end
 
@@ -40,11 +40,11 @@ class App < Sinatra::Base
     erb :workinprogress
   end
 
-  post '/new' do
+  post '/add' do
     url = "http://gov.uk/"+ params[:target_url]
-    comment = url + "\n\n" + params[:new_content] + "\n\n" + params[:additional]
-    subject = "New Content"
-    tag = "new_content"
+    comment = url + "\n\n" + params[:add_content] + "\n\n" + params[:additional]
+    subject = "Add Content"
+    tag = "add_content"
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],params[:not_before])
     redirect '/acknowledge'
   end
