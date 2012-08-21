@@ -1,6 +1,7 @@
 *.gem
 *.rbc
 .idea
+.DS_Store
 lib/.DS_Store
 lib/public/.DS_Store
 lib/public/javascripts/.DS_Store
