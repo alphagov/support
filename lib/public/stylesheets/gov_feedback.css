@@ -116,7 +116,7 @@ input {
 #submit {
     font-size: 1.3162em;
     line-height: 0.8em;
-    background-color: #28A198;
+    background-color: #808080;
     color: white;
     border-radius: 3px;
     width: 100px;
@@ -126,7 +126,7 @@ input {
 /* section header */
 header.section-header {
     line-height: 2em;
-    background-color: #28A198;
+    background-color: #808080;
     color: white;
     font-size: 1.2em;
     text-indent: 20px;

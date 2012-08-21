@@ -15,7 +15,7 @@ class App < Sinatra::Base
 
   get '/new' do
     @departments = ZendeskClient.get_departments
-    @header = "New Content"
+    @header = "Add Content"
     erb :new, :layout => :contentlayout
   end
 
@@ -43,8 +43,8 @@ class App < Sinatra::Base
   post '/new' do
     url = "http://gov.uk/"+ params[:target_url]
     comment = url + "\n\n" + params[:new_content] + "\n\n" + params[:additional]
-    subject = "New Content"
-    tag = "new_content"
+    subject = "Add Content"
+    tag = "add_content"
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],params[:not_before])
     redirect '/acknowledge'
   end
@@ -122,7 +122,7 @@ class App < Sinatra::Base
   end
 
   post '/campaign' do
-    subject = "Campaigns"
+    subject = "Campaign"
     tag = "campaign"
     comment = params[:name] + "\n\n" + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:target_url]
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by], nil)
