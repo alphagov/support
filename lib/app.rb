@@ -36,10 +36,6 @@ class App < Sinatra::Base
     erb :workinprogress
   end
 
-  get '/campaign' do
-    erb :workinprogress
-  end
-
   get '/tech-issues' do
     erb :workinprogress
   end
@@ -116,5 +112,22 @@ class App < Sinatra::Base
     redirect '/acknowledge'
   end
 
+
+#  Campaigns
+
+  get '/campaign' do
+    @departments = ZendeskClient.get_departments
+    @header = "Campaign"
+    erb :campaign, :layout => :campaignslayout
+  end
+
+  post '/campaign' do
+    subject = "Campaigns"
+    tag = "campaign"
+    comment = params[:name] + "\n\n" + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:target_url]
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by], nil)
+    redirect '/acknowledge'
+
+  end
 
 end
