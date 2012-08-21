@@ -18,8 +18,8 @@ class FeedbackSpec < Test::Unit::TestCase
     #Then
     assert last_response.body.include?('Name')
     assert last_response.body.include?('Email')
-    assert last_response.body.include?('Job Title')
-    assert last_response.body.include?('Phone Number')
+    assert last_response.body.include?('Job title')
+    assert last_response.body.include?('Phone number')
     assert last_response.body.include?('Department')
   end
 
