@@ -3,8 +3,7 @@
   <label for="target_url">Where is the content to be deleted? URL on </label><label class="url">http://gov.uk/</label>
   <input id="target_url" name="target_url" type="text" required>
 
-  <label for="need_by">When should this content be deleted?</label>
-  <input id="need_by" name="need_by" type="date" required>
+  <%= erb :date, :locals => {:title => "When should this content be deleted?"}%>
 
   <label for="comments">Please add additional comments below</label>
   <textarea id="comments" rows="10" cols="50" name="additional"></textarea>

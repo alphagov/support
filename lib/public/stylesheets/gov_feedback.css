@@ -86,6 +86,7 @@ label {
     float: left;
     margin-right: 15px;
     padding-left: 5px;
+    display: block;
 }
 
 textarea {
@@ -106,17 +107,19 @@ input {
     width: 200px;
 }
 
-#author select {
+select {
     line-height: 1.5em;
     font-size: 1.1875em;
     color: black;
     background: transparent;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 #submit {
     font-size: 1.3162em;
     line-height: 0.8em;
-    background-color: #28A198;
+    background-color: #808080;
     color: white;
     border-radius: 3px;
     width: 100px;
@@ -126,7 +129,7 @@ input {
 /* section header */
 header.section-header {
     line-height: 2em;
-    background-color: #28A198;
+    background-color: #808080;
     color: white;
     font-size: 1.2em;
     text-indent: 20px;
@@ -224,3 +227,8 @@ header.page-header hgroup h1 {
     font-size: 2em;
     line-height: 2em;
 }
+
+.date{
+    float: left;
+}
+
