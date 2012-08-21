@@ -40,7 +40,7 @@ class App < Sinatra::Base
     erb :workinprogress
   end
 
-  get '/techissues' do
+  get '/tech-issues' do
     erb :workinprogress
   end
 
