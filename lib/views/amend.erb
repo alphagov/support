@@ -12,9 +12,9 @@
   <label for="remove_location">If this content should be moved, please provide the NEW location:</label>
   <input id="remove_location" type="text" name="place_to_remove">
 
-  <%= erb :date, :locals => {:title => "When should this change be made?"}%>
+  <%= erb :date, :locals => {:title => "When should this change be made?", :label => 'need_by'}%>
 
-  <%= erb :date, :locals => {:title => "Not to be amended before (optional):"}%>
+  <%= erb :date, :locals => {:title => "Not to be amended before (optional):", :label => 'not_before'}%>
 
   <label for="comments">Please add additional comments below:</label>
   <textarea id="comments" rows="10" cols="50" name="additional"></textarea>
