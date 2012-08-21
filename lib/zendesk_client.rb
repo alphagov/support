@@ -7,7 +7,7 @@ class ZendeskClient
 
   def self.get_username_password
     config_details = YAML::load_file(File.open('./config/zendesk.yml'))
-    environment = ENV['GOVUK_ENV']
+    environment = ENV['GOVUK_ENV'] || "development"
     [config_details[environment]["username"].to_s, config_details[environment]["password"].to_s]
   end
 
