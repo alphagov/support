@@ -16,7 +16,7 @@ class App < Sinatra::Base
   get '/add-content' do
     @departments = ZendeskClient.get_departments
     @header = "Add Content"
-    erb :new, :layout => :contentlayout
+    erb :add, :layout => :contentlayout
   end
 
   get '/amend-content' do
