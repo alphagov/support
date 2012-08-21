@@ -86,6 +86,7 @@ label {
     float: left;
     margin-right: 15px;
     padding-left: 5px;
+    display: block;
 }
 
 textarea {
@@ -106,11 +107,13 @@ input {
     width: 200px;
 }
 
-#author select {
+select {
     line-height: 1.5em;
     font-size: 1.1875em;
     color: black;
     background: transparent;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 #submit {
@@ -224,3 +227,8 @@ header.page-header hgroup h1 {
     font-size: 2em;
     line-height: 2em;
 }
+
+.date{
+    float: left;
+}
+

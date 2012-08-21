@@ -13,19 +13,19 @@ class App < Sinatra::Base
     erb :acknowledge
   end
 
-  get '/new' do
+  get '/add-content' do
     @departments = ZendeskClient.get_departments
     @header = "Add Content"
     erb :new, :layout => :contentlayout
   end
 
-  get '/amend' do
+  get '/amend-content' do
     @departments = ZendeskClient.get_departments
     @header = "Amend Content"
     erb :amend, :layout => :contentlayout
   end
 
-  get '/delete' do
+  get '/delete-content' do
     @departments = ZendeskClient.get_departments
     @header = "Delete Content"
     erb :delete, :layout => :contentlayout
@@ -40,30 +40,35 @@ class App < Sinatra::Base
     erb :workinprogress
   end
 
-  post '/new' do
+  post '/add-content' do
     url = "http://gov.uk/"+ params[:target_url]
     comment = url + "\n\n" + params[:new_content] + "\n\n" + params[:additional]
     subject = "Add Content"
     tag = "add_content"
-    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],params[:not_before])
+    need_by = params[:need_by_day] + "/"  + params[:need_by_month] + "/" + params[:need_by_year]
+    not_before = params[:not_before_day] + "/"  + params[:not_before_month] + "/" + params[:not_before_year]
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by,not_before)
     redirect '/acknowledge'
   end
 
-  post '/amend' do
+  post '/amend-content' do
     url = "http://gov.uk/"+ params[:target_url]
     comment = url + "\n\n" + "[old content]\n" + params[:old_content] + "\n\n" + "[new content]\n"+params[:new_content] + "\n\n" + params[:place_to_remove] + "\n\n" + params[:additional]
     subject = "Amend Content"
     tag = "amend_content"
-    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],params[:not_before])
+    need_by = params[:need_by_day] + "/"  + params[:need_by_month] + "/" + params[:need_by_year]
+    not_before = params[:not_before_day] + "/"  + params[:not_before_month] + "/" + params[:not_before_year]
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by,not_before)
     redirect '/acknowledge'
   end
 
-  post '/delete' do
+  post '/delete-content' do
     url = "http://gov.uk/"+ params[:target_url]
     comment = url + "\n\n" + params[:additional]
     subject = "Delete Content"
     tag = "delete_content"
-    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by],"")
+    need_by = params[:need_by_day] + "/"  + params[:need_by_month] + "/" + params[:need_by_year]
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment,need_by,"")
     redirect '/acknowledge'
   end
 
@@ -94,7 +99,8 @@ class App < Sinatra::Base
     subject = "Delete User"
     tag = "remove_user"
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
-    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, params[:not_before])
+    not_before = params[:not_before_day] + "/"  + params[:not_before_month] + "/" + params[:not_before_year]
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, not_before)
     redirect '/acknowledge'
   end
 
@@ -125,7 +131,8 @@ class App < Sinatra::Base
     subject = "Campaign"
     tag = "campaign"
     comment = params[:name] + "\n\n" + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:target_url]
-    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, params[:need_by], nil)
+    need_by = params[:need_by_day] + "/"  + params[:need_by_month] + "/" + params[:need_by_year]
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, nil)
     redirect '/acknowledge'
 
   end
