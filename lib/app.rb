@@ -125,7 +125,7 @@ class App < Sinatra::Base
   post '/campaign' do
     subject = "Campaign"
     tag = "campaign"
-    comment = params[:name] + "\n\n" + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:target_url]
+    comment = params[:name] + "\n\n" + params[:erg_number] + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:target_url]
     need_by = params[:need_by_day] + "/"  + params[:need_by_month] + "/" + params[:need_by_year]
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, nil)
     redirect '/acknowledge'
