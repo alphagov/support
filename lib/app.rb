@@ -16,18 +16,21 @@ class App < Sinatra::Base
   get '/add-content' do
     @departments = ZendeskClient.get_departments
     @header = "Add Content"
+    @header_message = :content_add_message
     erb :add, :layout => :contentlayout
   end
 
   get '/amend-content' do
     @departments = ZendeskClient.get_departments
     @header = "Amend Content"
+    @header_message = :content_amend_message
     erb :amend, :layout => :contentlayout
   end
 
   get '/delete-content' do
     @departments = ZendeskClient.get_departments
     @header = "Delete Content"
+    @header_message = :content_delete_message
     erb :delete, :layout => :contentlayout
   end
 
@@ -74,6 +77,7 @@ class App < Sinatra::Base
   get '/create-user' do
     @departments = ZendeskClient.get_departments
     @header = "Create New User"
+    @header_message = :user_create_message
     erb :user, :layout => :userlayout
   end
 
@@ -88,6 +92,7 @@ class App < Sinatra::Base
   get '/delete-user' do
     @departments = ZendeskClient.get_departments
     @header = "Delete User"
+    @header_message = :user_delete_message
     erb :userdelete, :layout => :userlayout
   end
 
@@ -103,6 +108,7 @@ class App < Sinatra::Base
   get '/reset-password' do
     @departments = ZendeskClient.get_departments
     @header = "Reset Password"
+    @header_message = :user_password_reset_message
     erb :resetpassword, :layout => :userlayout
   end
 
@@ -120,6 +126,7 @@ class App < Sinatra::Base
   get '/campaign' do
     @departments = ZendeskClient.get_departments
     @header = "Campaign"
+    @header_message = :campaign_message
     erb :campaign, :layout => :campaignslayout
   end
 
