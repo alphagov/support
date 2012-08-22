@@ -1,20 +1,21 @@
 <section id="content">
-  <header class="section-header">Content Details</header>
+  <header class="section-header">Content details</header>
   <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
   <input id="target_url" name="target_url" type="text" required>
 
-  <label for="old_content">The OLD content to be amended:</label>
+  <label for="old_content">What content needs to be changed?</label>
   <textarea id="old_content" rows="6" cols="50" name="old_content" required></textarea>
 
-  <label for="new_content">The NEW content amending to:</label>
+  <label for="new_content">What should it be changed to?</label>
   <textarea id="new_content" rows="6" cols="50" name="new_content" required></textarea>
 
-  <label for="remove_location">If this content should be moved, please provide the NEW location:</label>
+  <label for="remove_location">Should this content be moved?</label><label class="url">http://gov.uk/</label>
+
   <input id="remove_location" type="text" name="place_to_remove">
 
   <%= erb :date, :locals => {:title => "When should this change be made?", :label => 'need_by'}%>
 
-  <%= erb :date, :locals => {:title => "Not to be amended before (optional):", :label => 'not_before'}%>
+  <%= erb :date, :locals => {:title => "Not to be amended before (optional)", :label => 'not_before'}%>
 
   <label for="comments">Please add additional comments below:</label>
   <textarea id="comments" rows="10" cols="50" name="additional"></textarea>
