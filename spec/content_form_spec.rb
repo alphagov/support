@@ -3,6 +3,8 @@ require "test/unit"
 require "mocha"
 require_relative "../lib/app"
 require_relative "../lib/zendesk_client"
+require_relative "../spec/page_helper"
+
 
 class ContentFormSpec < Test::Unit::TestCase
   include Rack::Test::Methods
@@ -45,10 +47,11 @@ class ContentFormSpec < Test::Unit::TestCase
   end
 
   def  test_zendesk_create_ticket_triggered_by_post_request
+    form_parameters = PageHelper.fill_content_form
     ZendeskClient.expects(:raise_zendesk_request)
 
     #When
-    post '/add-content', fill_content_form()
+    post '/add-content', form_parameters
     follow_redirect!
 
     #Then
@@ -56,21 +59,4 @@ class ContentFormSpec < Test::Unit::TestCase
     assert last_request.url, '/acknowledge'
   end
 
-  def fill_content_form
-    {:target_url => '/temp',
-     :add_content => 'test content to add',
-     :additional => 'additional message',
-     :need_by_day => '30',
-     :need_by_month =>'12',
-     :need_by_year => '2012',
-     :not_before_day => '31',
-     :not_before_month => '12',
-     :not_before_year => '2012',
-     :name => 'tester',
-     :email => 'yu.fu@digital.cabinet-office.gov.uk',
-     :department => 'test department',
-     :job => 'job',
-     :phone => '123456'
-    }
-  end
 end

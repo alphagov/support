@@ -6,10 +6,6 @@ require "yaml"
 class ZendeskClient
 
   def self.get_username_password(config_details)
-    #config_details = YAML::load_file(config_file)
-    puts config_details.class
-    puts config_details["development"]
-    puts config_details["development"]["username"].to_s
     environment = ENV['GOVUK_ENV'] || "development"
     [config_details[environment]["username"].to_s, config_details[environment]["password"].to_s]
   end
