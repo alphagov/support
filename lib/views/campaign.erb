@@ -6,6 +6,9 @@
   <label for="erg_number">ERG reference number</label>
   <input id="erg_number" name="erg_number" type="text">
 
+  <%= erb :date, :locals => {:title => "Start Date", :label => 'need_by'}%>
+  <br/>
+
   <label for="description">Campaign description</label>
   <textarea id="description" rows="6" cols="50" name="description" type="text"></textarea>
 
@@ -17,8 +20,5 @@
 
   <label for="comments">Additional comments</label>
   <textarea id="comments" rows="10" cols="50" name="additional"></textarea>
-
-  <%= erb :date, :locals => {:title => "Start Date", :label => 'need_by'}%>
-  <p></p>
 
 </section>
