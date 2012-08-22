@@ -31,11 +31,6 @@ class App < Sinatra::Base
     erb :delete, :layout => :contentlayout
   end
 
-  get '/emergency' do
-    @header = "Emergency Publishing"
-    erb :workinprogress
-  end
-
   get '/tech-issues' do
     erb :workinprogress
   end
@@ -98,7 +93,7 @@ class App < Sinatra::Base
 
   post '/delete-user' do
     subject = "Delete User"
-    tag = "remove_user"
+    tag = "delete_user"
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
     not_before = params[:not_before_day] + "/"  + params[:not_before_month] + "/" + params[:not_before_year]
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, not_before)
@@ -131,7 +126,7 @@ class App < Sinatra::Base
   post '/campaign' do
     subject = "Campaign"
     tag = "campaign"
-    comment = params[:name] + "\n\n" + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:target_url]
+    comment = params[:name] + "\n\n" + params[:erg_number] + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:target_url]
     need_by = params[:need_by_day] + "/"  + params[:need_by_month] + "/" + params[:need_by_year]
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, nil)
     redirect '/acknowledge'

@@ -1,5 +1,5 @@
 <section id="user">
-  <header class="section-header">Details of the user(s) to be deleted</header>
+  <header class="section-header">User details</header>
   <label for="user_name">Username</label>
   <input id="user_name" name="user_name" type="text" required>
 
@@ -7,7 +7,8 @@
   <input id="email" name="user_email" type="email" required>
 
   <%= erb :date, :locals => {:title => "Not before", :label => 'not_before'}%>
+  <br/>
 
-  <label for="comments">Please add additional comments below:</label>
+  <label for="comments">Additonal comments</label>
   <textarea id="comments" rows="10" cols="50" name="additional"></textarea>
 </section>

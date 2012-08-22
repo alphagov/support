@@ -3,18 +3,22 @@
   <label for="name">Name of the campaign</label>
   <input id="name" name="name" type="text" required>
 
-  <label for="company">Company affiliated with this campaign</label>
-  <input id="company" name="company" type="text">
-
-  <label for="description">Campaign Description</label>
-  <input id="description" name="description" type="text">
-
-  <label for="url_label">URL on </label>
-  <label id="url_label"  for="target_url" class="url">http://gov.uk/</label>
-  <input id="target_url" name="target_url" type="text">
-
+  <label for="erg_number">ERG reference number</label>
+  <input id="erg_number" name="erg_number" type="text">
 
   <%= erb :date, :locals => {:title => "Start Date", :label => 'need_by'}%>
-  <p></p>
+  <br/>
+
+  <label for="description">Campaign description</label>
+  <textarea id="description" rows="6" cols="50" name="description" type="text"></textarea>
+
+  <label for="company">Group or company affiliated with this campaign</label>
+  <input id="company" name="company" type="text">
+
+  <label for="url_label">URL with more information</label>
+  <input id="target_url" name="target_url" type="text">
+
+  <label for="comments">Additional comments</label>
+  <textarea id="comments" rows="10" cols="50" name="additional"></textarea>
 
 </section>
