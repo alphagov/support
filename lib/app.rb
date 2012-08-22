@@ -92,7 +92,7 @@ class App < Sinatra::Base
 
   post '/delete-user' do
     subject = "Delete User"
-    tag = "remove_user"
+    tag = "delete_user"
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
     not_before = params[:not_before_day] + "/"  + params[:not_before_month] + "/" + params[:not_before_year]
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, not_before)
