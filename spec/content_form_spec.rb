@@ -44,18 +44,17 @@ class ContentFormSpec < Test::Unit::TestCase
     assert last_response.body.include?("key1")
   end
 
-  #def  test_zendesk_create_ticket_triggered_by_post_request
-  #  ZendeskClient.expects(:raise_zendesk_request)
-  #
-  #  #When
-  #  post '/add-content', fill_content_form()
-  #
-  #  #Then
-  #  puts last_response.body
-  #  assert last_response.ok?
-  #  puts 'after'
-  #  #assert request.path, '/acknowledge'
-  #end
+  def  test_zendesk_create_ticket_triggered_by_post_request
+    ZendeskClient.expects(:raise_zendesk_request)
+
+    #When
+    post '/add-content', fill_content_form()
+    follow_redirect!
+
+    #Then
+    assert last_response.ok?
+    assert last_request.url, '/acknowledge'
+  end
 
   def fill_content_form
     {:target_url => '/temp',
