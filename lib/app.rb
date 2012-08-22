@@ -47,8 +47,9 @@ class App < Sinatra::Base
     tag = "add_content"
     need_by = params[:need_by_day] + "/"  + params[:need_by_month] + "/" + params[:need_by_year]
     not_before = params[:not_before_day] + "/"  + params[:not_before_month] + "/" + params[:not_before_year]
-    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by,not_before)
+    #ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by,not_before)
     redirect '/acknowledge'
+    puts 'after'
   end
 
   post '/amend-content' do
