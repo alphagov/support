@@ -31,11 +31,6 @@ class App < Sinatra::Base
     erb :delete, :layout => :contentlayout
   end
 
-  get '/emergency' do
-    @header = "Emergency Publishing"
-    erb :workinprogress
-  end
-
   get '/tech-issues' do
     erb :workinprogress
   end
