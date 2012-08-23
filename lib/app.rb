@@ -2,7 +2,6 @@ require 'bundler'
 Bundler.require
 
 require_relative "zendesk_client"
-require_relative "validations"
 
 class App < Sinatra::Base
 
