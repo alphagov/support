@@ -13,10 +13,6 @@ class ContentFormSpec < Test::Unit::TestCase
     App
   end
 
-  #def setup
-  #  @browser ||= Rack::Test::Session.new(Rack::MockSession.new(App))
-  #end
-
   def teardown
     Mocha::Mockery.instance.teardown
     Mocha::Mockery.reset_instance
