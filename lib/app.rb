@@ -148,7 +148,8 @@ class App < Sinatra::Base
   post '/broken-link' do
     subject = "Broken Link"
     tag = "broken_link"
-    comment = params[:target_url] + "\n\n" + params[:additional]
+    url = "http://gov.uk/"+ params[:target_url]
+    comment = url + "\n\n" + params[:additional]
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
     redirect '/acknowledge'
   end
@@ -163,7 +164,8 @@ class App < Sinatra::Base
   post '/publish-tool' do
     subject = "Publishing Tool"
     tag = "publishing_tool"
-    comment = params[:username] + "\n\n" + params[:target_url] + "\n\n" + params[:additional]
+    url = "http://gov.uk/"+ params[:target_url]
+    comment = params[:username] + "\n\n" + url + "\n\n" + params[:additional]
     ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
     redirect '/acknowledge'
   end
