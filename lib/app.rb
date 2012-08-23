@@ -2,6 +2,7 @@ require 'bundler'
 Bundler.require
 
 require_relative "zendesk_client"
+require_relative "validations"
 
 class App < Sinatra::Base
 
@@ -38,7 +39,7 @@ class App < Sinatra::Base
 
   post '/add-content' do
     url = "http://gov.uk/"+ params[:target_url]
-    comment = url + "\n\n" + params[:add_content] + "\n\n" + params[:additional]
+    comment = url + "\n\n" + params[:feedback] + "\n\n" + params[:additional]
     subject = "Add Content"
     tag = "add_content"
     need_by = params[:need_by_day] + "/"  + params[:need_by_month] + "/" + params[:need_by_year]
