@@ -4,5 +4,5 @@ task :default => "spec"
 
 desc "Runs all tests"
 task "spec" do
-  ruby "spec/*.rb"
+  ruby "spec/*spec.rb"
 end
