@@ -38,6 +38,14 @@ section#framework {
     position: relative;
 }
 
+section#message {
+    font-size: 1.1875em;
+    margin: 0 -1em 2em 1em;
+    padding: 1em;
+    font-weight: 400;
+    color: white;
+    background-color: #28A197;
+}
 
 /* Vertical split between menu and content form */
 .menu {
