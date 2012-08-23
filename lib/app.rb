@@ -34,9 +34,7 @@ class App < Sinatra::Base
     erb :delete, :layout => :contentlayout
   end
 
-  get '/tech-issues' do
-    erb :workinprogress
-  end
+
 
   post '/add-content' do
     url = "http://gov.uk/"+ params[:target_url]
@@ -139,4 +137,36 @@ class App < Sinatra::Base
 
   end
 
+  #Tech Issue
+  get '/broken-link' do
+    @departments = ZendeskClient.get_departments
+    @header = "Broken Link"
+    @header_message = :message_broken_link
+    erb :broken_link, :layout => :tech_issue_layout
+  end
+
+  post '/broken-link' do
+    subject = "Broken Link"
+    tag = "broken_link"
+    url = "http://gov.uk/"+ params[:target_url]
+    comment = url + "\n\n" + params[:additional]
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
+    redirect '/acknowledge'
+  end
+
+  get '/publish-tool' do
+    @departments = ZendeskClient.get_departments
+    @header = "Publishing Tool"
+    @header_message = :message_publish_tool
+    erb :publish_tool, :layout => :tech_issue_layout
+  end
+
+  post '/publish-tool' do
+    subject = "Publishing Tool"
+    tag = "publishing_tool"
+    url = "http://gov.uk/"+ params[:target_url]
+    comment = params[:username] + "\n\n" + url + "\n\n" + params[:additional]
+    ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
+    redirect '/acknowledge'
+  end
 end

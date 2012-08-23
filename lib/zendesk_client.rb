@@ -5,14 +5,14 @@ require "yaml"
 
 class ZendeskClient
 
-  def self.get_username_password
-    config_details = YAML::load_file(File.open('./config/zendesk.yml'))
+  def self.get_username_password(config_details)
     environment = ENV['GOVUK_ENV'] || "development"
     [config_details[environment]["username"].to_s, config_details[environment]["password"].to_s]
   end
 
   @client = ZendeskAPI::Client.new { |config|
-    login_details = self.get_username_password
+    file = YAML::load_file(File.open('./config/zendesk.yml'))
+    login_details = self.get_username_password(file)
     config.url = "https://govuk.zendesk.com/api/v2/"
     config.username = login_details[0]
     config.password = login_details[1]
