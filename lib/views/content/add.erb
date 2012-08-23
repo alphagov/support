@@ -4,11 +4,7 @@
   <input id="target_url" name="target_url" type="text" required value=<%= erb :assignvalue, :locals => {:param => @formdata[:target_url]} %>>
 
   <label for="feedback">Add your content</label>
-<<<<<<< HEAD
   <textarea id="feedback" name="add_content" rows="6" cols="50" required value=<%= erb :assignvalue, :locals => {:param => @formdata[:add_content]} %> ></textarea>
-=======
-  <textarea id="feedback" rows="6" cols="50" name="add_content" required></textarea>
->>>>>>> 8bdea6dbced12ae4e063ce5a6a369f001dec4c57
 
   <%= erb :date, :locals => {:title => "When should this content be added?", :label => 'need_by'}%>
 
