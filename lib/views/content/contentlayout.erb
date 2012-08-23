@@ -19,7 +19,8 @@
         <hgroup><h1><%= @header %></h1></hgroup>
       </header>
 
-      <%= erb :techissuemenu %>
+      <%= erb :"content/contentmenu" %>
+
 
       <div id="form">
         <%= erb @header_message %>
@@ -28,7 +29,6 @@
           <%= erb :author %>
 
           <%= yield %>
-
           <input id="submit" type="submit" value="Submit">
 
         </form>

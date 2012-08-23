@@ -38,6 +38,14 @@ section#framework {
     position: relative;
 }
 
+section#message {
+    font-size: 1.1875em;
+    margin: 0 -1em 2em 1em;
+    padding: 1em;
+    font-weight: 400;
+    color: white;
+    background-color: #28A197;
+}
 
 /* Vertical split between menu and content form */
 .menu {
@@ -119,7 +127,7 @@ select {
 #submit {
     font-size: 1.3162em;
     line-height: 0.8em;
-    background-color: #808080;
+    background-color: #28A198;
     color: white;
     border-radius: 3px;
     width: 100px;

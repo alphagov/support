@@ -10,7 +10,6 @@
   </div>
 </header>
 
-
 <div id="wrapper">
   <section id="framework">
 
@@ -20,11 +19,12 @@
         <hgroup><h1><%= @header %></h1></hgroup>
       </header>
 
-      <%= erb :usermenu %>
+      <%= erb :"campaigns/campaignsmenu" %>
 
       <div id="form">
-        <%= erb @header_message %>
+      <%= erb @header_message %>
         <form name="input" method="post">
+
           <%= erb :author %>
 
           <%= yield %>
