@@ -40,8 +40,8 @@ class App < Sinatra::Base
   end
 
   post '/add-content' do
-    url = "http://gov.uk/"+ params[:target_url]
-    comment = url + "\n\n" + params[:feedback] + "\n\n" + params[:additional]
+    url = build_full_url_path(params[:target_url])
+    comment = url + "\n\n" + params[:add_content] + "\n\n" + params[:additional]
     subject = "Add Content"
     tag = "add_content"
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
@@ -62,7 +62,7 @@ class App < Sinatra::Base
   end
 
   post '/amend-content' do
-    url = "http://gov.uk/"+ params[:target_url]
+    url = build_full_url_path(params[:target_url])
     comment = url + "\n\n" + "[old content]\n" + params[:old_content] + "\n\n" + "[new content]\n"+params[:new_content] + "\n\n" + params[:place_to_remove] + "\n\n" + params[:additional]
     subject = "Amend Content"
     tag = "amend_content"
@@ -84,7 +84,7 @@ class App < Sinatra::Base
   end
 
   post '/delete-content' do
-    url = "http://gov.uk/"+ params[:target_url]
+    url = build_full_url_path(params[:target_url])
     comment = url + "\n\n" + params[:additional]
     subject = "Delete Content"
     tag = "delete_content"
@@ -232,7 +232,7 @@ class App < Sinatra::Base
   post '/broken-link' do
     subject = "Broken Link"
     tag = "broken_link"
-    url = "http://gov.uk/"+ params[:target_url]
+    url = build_full_url_path(params[:target_url])
     comment = url + "\n\n" + params[:additional]
 
     @errors = Guard.validationsForBrokenLink(params)
@@ -260,7 +260,7 @@ class App < Sinatra::Base
   post '/publish-tool' do
     subject = "Publishing Tool"
     tag = "publishing_tool"
-    url = "http://gov.uk/"+ params[:target_url]
+    url = build_full_url_path(params[:target_url])
     comment = params[:username] + "\n\n" + url + "\n\n" + params[:additional]
 
     @errors = Guard.validationsForPublishTool(params)
@@ -276,5 +276,9 @@ class App < Sinatra::Base
       erb :"tech-issues/publish_tool", :layout => :"tech-issues/tech_issue_layout"
     end
 
+  end
+
+  def build_full_url_path(partial_path)
+    url = "http://gov.uk/"+ partial_path
   end
 end
