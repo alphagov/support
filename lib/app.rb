@@ -170,7 +170,7 @@ class App < Sinatra::Base
     redirect '/acknowledge'
   end
 
-  def self.build_full_url_path(partial_path)
+  def build_full_url_path(partial_path)
     url = "http://gov.uk/"+ partial_path
   end
 end
