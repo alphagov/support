@@ -11,6 +11,7 @@ class TechnicalIssuesTest < Test::Unit::TestCase
   def app
     App
   end
+
   # Called before every test method runs. Can be used
   # to set up fixture information.
   def setup
