@@ -13,31 +13,31 @@ class App < Sinatra::Base
     erb :acknowledge
   end
 
+
+  # Content routing
   get '/add-content' do
     @departments = ZendeskClient.get_departments
     @header = "Add Content"
-    @header_message = :content_add_message
-    erb :add, :layout => :contentlayout
+    @header_message = :"content/content_add_message"
+    erb :"content/add", :layout => :"content/contentlayout"
   end
 
   get '/amend-content' do
     @departments = ZendeskClient.get_departments
     @header = "Amend Content"
-    @header_message = :content_amend_message
-    erb :amend, :layout => :contentlayout
+    @header_message = :"content/content_amend_message"
+    erb :"content/amend", :layout => :"content/contentlayout"
   end
 
   get '/delete-content' do
     @departments = ZendeskClient.get_departments
     @header = "Delete Content"
-    @header_message = :content_delete_message
-    erb :delete, :layout => :contentlayout
+    @header_message = :"content/content_delete_message"
+    erb :"content/delete", :layout => :"content/contentlayout"
   end
 
-
-
   post '/add-content' do
-    url = build_full_url_path(params[:target_url])
+    url = "http://gov.uk/"+ params[:target_url]
     comment = url + "\n\n" + params[:add_content] + "\n\n" + params[:additional]
     subject = "Add Content"
     tag = "add_content"
@@ -70,12 +70,11 @@ class App < Sinatra::Base
 
 
 #  User access routing
-
   get '/create-user' do
     @departments = ZendeskClient.get_departments
     @header = "Create New User"
-    @header_message = :user_create_message
-    erb :user, :layout => :userlayout
+    @header_message = :"useraccess/user_create_message"
+    erb :"useraccess/user", :layout => :"useraccess/userlayout"
   end
 
   post '/create-user' do
@@ -89,8 +88,8 @@ class App < Sinatra::Base
   get '/delete-user' do
     @departments = ZendeskClient.get_departments
     @header = "Delete User"
-    @header_message = :user_delete_message
-    erb :userdelete, :layout => :userlayout
+    @header_message = :"useraccess/user_delete_message"
+    erb :"useraccess/userdelete", :layout => :"useraccess/userlayout"
   end
 
   post '/delete-user' do
@@ -105,8 +104,8 @@ class App < Sinatra::Base
   get '/reset-password' do
     @departments = ZendeskClient.get_departments
     @header = "Reset Password"
-    @header_message = :user_password_reset_message
-    erb :resetpassword, :layout => :userlayout
+    @header_message = :"useraccess/user_password_reset_message"
+    erb :"useraccess/resetpassword", :layout => :"useraccess/userlayout"
   end
 
   post '/reset-password' do
@@ -118,13 +117,13 @@ class App < Sinatra::Base
   end
 
 
-#  Campaigns
+#  Campaigns routing
 
   get '/campaign' do
     @departments = ZendeskClient.get_departments
     @header = "Campaign"
-    @header_message = :campaign_message
-    erb :campaign, :layout => :campaignslayout
+    @header_message = :"campaigns/campaign_message"
+    erb :"campaigns/campaign", :layout => :"campaigns/campaignslayout"
   end
 
   post '/campaign' do
@@ -137,12 +136,12 @@ class App < Sinatra::Base
 
   end
 
-  #Tech Issue
+  #Tech Issue routing
   get '/broken-link' do
     @departments = ZendeskClient.get_departments
     @header = "Broken Link"
-    @header_message = :message_broken_link
-    erb :broken_link, :layout => :tech_issue_layout
+    @header_message = :"tech-issues/message_broken_link"
+    erb :"tech-issues/broken_link", :layout => :"tech-issues/tech_issue_layout"
   end
 
   post '/broken-link' do
@@ -157,8 +156,8 @@ class App < Sinatra::Base
   get '/publish-tool' do
     @departments = ZendeskClient.get_departments
     @header = "Publishing Tool"
-    @header_message = :message_publish_tool
-    erb :publish_tool, :layout => :tech_issue_layout
+    @header_message = :"tech-issues/message_publish_tool"
+    erb :"tech-issues/publish_tool", :layout => :"tech-issues/tech_issue_layout"
   end
 
   post '/publish-tool' do
