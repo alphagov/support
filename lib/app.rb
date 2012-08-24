@@ -40,15 +40,15 @@ class App < Sinatra::Base
   end
 
   post '/add-content' do
-    url = build_full_url_path(params[:target_url])
+    url = build_full_url_path(params[:url])
     comment = url + "\n\n" + params[:add_content] + "\n\n" + params[:additional]
     subject = "Add Content"
     tag = "add_content"
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
+    params["need_by"] = need_by
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
 
     @errors = Guard.validationsForAddContent(params)
-     
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
       redirect '/acknowledge'
@@ -62,11 +62,12 @@ class App < Sinatra::Base
   end
 
   post '/amend-content' do
-    url = build_full_url_path(params[:target_url])
+    url = build_full_url_path(params[:url])
     comment = url + "\n\n" + "[old content]\n" + params[:old_content] + "\n\n" + "[new content]\n"+params[:new_content] + "\n\n" + params[:place_to_remove] + "\n\n" + params[:additional]
     subject = "Amend Content"
     tag = "amend_content"
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
+    params["need_by"] = need_by
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
 
     @errors = Guard.validationsForAmendContent(params)
@@ -84,11 +85,12 @@ class App < Sinatra::Base
   end
 
   post '/delete-content' do
-    url = build_full_url_path(params[:target_url])
+    url = build_full_url_path(params[:url])
     comment = url + "\n\n" + params[:additional]
     subject = "Delete Content"
     tag = "delete_content"
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
+    params["need_by"] = need_by
 
     @errors = Guard.validationsForDeleteContent(params)
      
@@ -202,8 +204,9 @@ class App < Sinatra::Base
   post '/campaign' do
     subject = "Campaign"
     tag = "campaign"
-    comment = params[:campaign_name] + "\n\n" + params[:erg_number] + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:target_url]
+    comment = params[:campaign_name] + "\n\n" + params[:erg_number] + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:url]
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
+    params["need_by"] = need_by
 
     @errors = Guard.validationsForCampaign(params)
      
@@ -232,7 +235,7 @@ class App < Sinatra::Base
   post '/broken-link' do
     subject = "Broken Link"
     tag = "broken_link"
-    url = build_full_url_path(params[:target_url])
+    url = build_full_url_path(params[:url])
     comment = url + "\n\n" + params[:additional]
 
     @errors = Guard.validationsForBrokenLink(params)
@@ -260,7 +263,7 @@ class App < Sinatra::Base
   post '/publish-tool' do
     subject = "Publishing Tool"
     tag = "publishing_tool"
-    url = build_full_url_path(params[:target_url])
+    url = build_full_url_path(params[:url])
     comment = params[:username] + "\n\n" + url + "\n\n" + params[:additional]
 
     @errors = Guard.validationsForPublishTool(params)

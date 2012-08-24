@@ -1,6 +1,6 @@
 class PageHelper
   def self.fill_content_form
-    {:target_url => 'temp',
+    {:url => '/temp',
      :add_content => 'test content to add',
      :additional => 'additional message',
      :need_by_day => '30',
@@ -10,8 +10,8 @@ class PageHelper
      :not_before_month => '12',
      :not_before_year => '2012',
      :name => 'tester',
-     :email => 'tester@digital.cabinet-office.gov.uk',
-     :department => 'Cabinet Office',
+     :email => 'yu.fu@digital.cabinet-office.gov.uk',
+     :department => 'test department',
      :job => 'job',
      :phone => '123456'
     }
