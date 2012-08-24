@@ -37,7 +37,7 @@ class App < Sinatra::Base
   end
 
   post '/add-content' do
-    url = "http://gov.uk/"+ params[:target_url]
+    url = build_full_url_path(params[:target_url])
     comment = url + "\n\n" + params[:add_content] + "\n\n" + params[:additional]
     subject = "Add Content"
     tag = "add_content"
