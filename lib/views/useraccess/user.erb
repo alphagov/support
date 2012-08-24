@@ -1,3 +1,28 @@
+<script type="text/javascript">
+    function checkMaxUploads() {
+        if ( $$('div.attach_item').size() >= 10 ) {
+            alert('You can attach only 10 files');
+            document.attach_form.reset();
+        } else {
+            submitAttachForm("Uploading...");
+        }
+    }
+    function checkUploadError() {
+        var iFrameBody = $j('#upload_frame').contents().find('body')
+        if (iFrameBody.text().include('Something went wrong')) {
+            $j('#submit-button').val('Submit');
+            $j('#submit-button').prop('disabled', false);
+            $j('#uploading_message').hide();
+            $j('#attach_link').show();
+            $j('#uploads_form').show();
+            document.attach_form.reset();
+            alert("There was an error with the attachment. Please try again or contact our support team if the problem continues.");
+        }
+    }
+</script>
+
+
+
 <section id="user">
   <header class="section-header">User Details</header>
   <label for="user_name">Name</label>
@@ -5,6 +30,30 @@
 
   <label for="email">Email</label>
   <input id="email" name="user_email" type="email" required <%= erb :assignvalue, :locals => {:param => @formdata[:user_email]} %>>
+
+  <div id="uploads_form">
+    <!-- Attach Form -->
+    <form enctype="multipart/form-data" id="attach_form" method="post" name="attach_form" target="upload_frame">
+      <span id="attach_link" class="link">
+      <input id="file-input" name="uploaded_data" onchange="checkMaxUploads();" type="file"/>
+      </span>
+    </form>
+    <!-- Uploading Message -->
+  <span id="uploading_message" style="display: none;">
+    <--img id="uploading_indicator" src="/images/indicator2.gif"/>
+
+    Uploading...
+  </span>
+
+    <!-- Target iFrame -->
+    <iframe id="upload_frame" name="upload_frame" src="about:blank" onload="checkUploadError();"></iframe>
+
+    <!-- Attachment list -->
+    <div id="attachments" class="attach_list">
+      <div id="attachment_clear" class="clear"></div>
+    </div>
+  </div>
+
 
   <label for="comments">Additional comments</label>
   <textarea id="comments" rows="10" cols="50" name="additional" <%= erb :assignvalue, :locals => {:param => @formdata[:additional]} %>></textarea>
