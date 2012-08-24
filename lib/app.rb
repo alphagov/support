@@ -49,6 +49,7 @@ class App < Sinatra::Base
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
 
     @errors = Guard.validationsForAddContent(params)
+    
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
       redirect '/acknowledge'
@@ -69,9 +70,10 @@ class App < Sinatra::Base
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
     params["need_by"] = need_by
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
+    params[not_before] = not_before
 
     @errors = Guard.validationsForAmendContent(params)
-     
+    
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
       redirect '/acknowledge'
@@ -93,7 +95,7 @@ class App < Sinatra::Base
     params["need_by"] = need_by
 
     @errors = Guard.validationsForDeleteContent(params)
-     
+    
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, "")
       redirect '/acknowledge'
@@ -122,7 +124,7 @@ class App < Sinatra::Base
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
 
     @errors = Guard.validationsForUserAccess(params)
-     
+    
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
       redirect '/acknowledge'
@@ -148,9 +150,10 @@ class App < Sinatra::Base
     tag = "delete_user"
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
+    params[not_before] = not_before
 
     @errors = Guard.validationsForUserAccess(params)
-     
+    
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, not_before)
       redirect '/acknowledge'
@@ -177,7 +180,7 @@ class App < Sinatra::Base
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
 
     @errors = Guard.validationsForUserAccess(params)
-     
+    
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
       redirect '/acknowledge'
@@ -209,7 +212,7 @@ class App < Sinatra::Base
     params["need_by"] = need_by
 
     @errors = Guard.validationsForCampaign(params)
-     
+    
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, nil)
       redirect '/acknowledge'
@@ -239,7 +242,7 @@ class App < Sinatra::Base
     comment = url + "\n\n" + params[:additional]
 
     @errors = Guard.validationsForBrokenLink(params)
-     
+
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
       redirect '/acknowledge'
@@ -267,7 +270,7 @@ class App < Sinatra::Base
     comment = params[:username] + "\n\n" + url + "\n\n" + params[:additional]
 
     @errors = Guard.validationsForPublishTool(params)
-     
+    
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
       redirect '/acknowledge'

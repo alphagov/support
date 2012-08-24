@@ -13,9 +13,9 @@
 
   <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
 
-  <%= erb :date, :locals => {:title => "When should this change be made?", :label => 'need_by'}%>
+  <%= erb :date, :locals => {:title => "When should this change be made?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]}%>
 
-  <%= erb :date, :locals => {:title => "Not to be amended before (optional)", :label => 'not_before'}%>
+  <%= erb :date, :locals => {:title => "Not to be amended before (optional)", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]}%>
 
   <label for="comments">Additional comments</label>
   <textarea id="comments" rows="10" cols="50" name="additional" <%= erb :assignvalue, :locals => {:param => @formdata[:additional]} %>></textarea>
