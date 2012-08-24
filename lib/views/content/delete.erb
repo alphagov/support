@@ -3,7 +3,7 @@
   <label for="target_url">Where is the content to be deleted?</label><label class="url">http://gov.uk/</label>
   <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
 
-  <%= erb :date, :locals => {:title => "When should this content be deleted?", :label => 'need_by'}%>
+  <%= erb :date, :locals => {:title => "When should this content be deleted?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]}%>
 
   <label for="comments">Additional comments</label>
   <textarea id="comments" rows="10" cols="50" name="additional" <%= erb :assignvalue, :locals => {:param => @formdata[:additional]} %>></textarea>
