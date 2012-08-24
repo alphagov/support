@@ -40,11 +40,15 @@ section#framework {
 
 section#message {
     font-size: 1.1875em;
-    margin: 0 -1em 2em 1em;
     padding: 1em;
     font-weight: 400;
     color: white;
     background-color: #28A197;
+}
+
+section#errors {
+    background-color: red;
+    color: white;
 }
 
 /* Vertical split between menu and content form */
@@ -60,7 +64,7 @@ section#message {
 
 
 /* For menu items */
-ul li a {
+.menu ul li a {
     border-radius: 2px;
     display: block;
     line-height: 2em;
@@ -69,13 +73,13 @@ ul li a {
     color: black;
 }
 
-ul {
+.menu ul {
     list-style: none;
     line-height: 1.315789474em;
     padding: 0;
 }
 
-ul li {
+.menu ul li {
     margin: 0 -2px 0 -1px;
 }
 

@@ -1,0 +1,9 @@
+<section id="errors" style= "<% if @errors %>  display: block; <%else%> display: none; <% end%>">
+  <% if @errors%>
+    <ul>
+      <% for error in @errors %> <li> <%= error %> </li> <% end %>
+    </ul>
+  <% else %>
+    <p> </p>
+  <% end %>
+</section>
