@@ -3,8 +3,7 @@ class Guard
   #Content validations
   def self.validationsForAddContent(form_data)
     @@errors = []
-    #required = ["name", "email", "job", "department", "url", "add_content", "need_by"]
-    required = ["name", "email", "job", "department", "url", "add_content"]
+    required = ["name", "email", "job", "department", "url", "add_content", "need_by"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
 
     @@errors
@@ -13,8 +12,7 @@ class Guard
 
   def self.validationsForAmendContent(form_data)
     @@errors = []
-    #required = ["name", "email", "job", "department", "url", "old_content", "new_content", "need_by"]
-    required = ["name", "email", "job", "department", "url", "old_content", "new_content"]
+    required = ["name", "email", "job", "department", "url", "old_content", "new_content", "need_by"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
 
     @@errors
@@ -22,8 +20,7 @@ class Guard
 
   def self.validationsForDeleteContent(form_data)
     @@errors = []
-    #required = ["name", "email", "job", "department", "url", "need_by"]
-    required = ["name", "email", "job", "department", "url"]
+    required = ["name", "email", "job", "department", "url", "need_by"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
 
     @@errors
@@ -45,8 +42,7 @@ class Guard
   #Campaign validations
   def self.validationsForCampaign(form_data)
     @@errors = []
-    #required = ["name", "email", "job", "department", "campaign_name", "erg_number", "need_by", "description"]
-    required = ["name", "email", "job", "department", "campaign_name", "erg_number", "description"]
+    required = ["name", "email", "job", "department", "campaign_name", "erg_number", "need_by", "description"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
 
     @@errors

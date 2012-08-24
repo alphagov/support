@@ -1,6 +1,6 @@
 class PageHelper
   def self.fill_content_form
-    {:target_url => '/temp',
+    {:url => '/temp',
      :add_content => 'test content to add',
      :additional => 'additional message',
      :need_by_day => '30',

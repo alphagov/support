@@ -2,16 +2,17 @@
   <section id="author">
     <header class="section-header">Your details</header>
     <label for="name">Name</label>
-    <input id="name" name="name" type="text" required value=<%= erb :assignvalue, :locals => {:param => @formdata[:name]} %> >
+    <input id="name" name="name" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:name]} %> >
 
     <label for="email">Email</label>
-    <input id="email" name="email" type="email" required value=<%= erb :assignvalue, :locals => {:param => @formdata[:email]} %> >
+    <input id="email" name="email" type="email" required <%= erb :assignvalue, :locals => {:param => @formdata[:email]} %> >
 
     <label for="job">Job title</label>
-    <input id="job" name="job" type="text" required value=<%= erb :assignvalue, :locals => {:param => @formdata[:job]} %> >
+    <input id="job" name="job" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:job]} %> >
 
     <label for="phone">Phone number</label>
-    <input id="phone" name="phone" pattern="([\d\s]*)" oninvalid="setCustomValidity('Please enter a valid  phone number')"  type="tel" value=<%= erb :assignvalue, :locals => {:param => @formdata[:phone]} %>>
+    <input id="phone" name="phone" pattern="([\d\s]*)" oninvalid="setCustomValidity('Please enter a valid  phone number')"  type="tel"
+           <%= erb :assignvalue, :locals => {:param => @formdata[:phone]} %>>
 
     <label for="department_list">Department</label>
     <select id="department_list" name="department" required>

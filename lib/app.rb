@@ -45,10 +45,10 @@ class App < Sinatra::Base
     subject = "Add Content"
     tag = "add_content"
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
+    params["need_by"] = need_by
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
 
     @errors = Guard.validationsForAddContent(params)
-     
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
       redirect '/acknowledge'
@@ -67,6 +67,7 @@ class App < Sinatra::Base
     subject = "Amend Content"
     tag = "amend_content"
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
+    params["need_by"] = need_by
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
 
     @errors = Guard.validationsForAmendContent(params)
@@ -89,6 +90,7 @@ class App < Sinatra::Base
     subject = "Delete Content"
     tag = "delete_content"
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
+    params["need_by"] = need_by
 
     @errors = Guard.validationsForDeleteContent(params)
      
@@ -204,6 +206,7 @@ class App < Sinatra::Base
     tag = "campaign"
     comment = params[:campaign_name] + "\n\n" + params[:erg_number] + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:url]
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
+    params["need_by"] = need_by
 
     @errors = Guard.validationsForCampaign(params)
      

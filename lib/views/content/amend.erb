@@ -1,22 +1,22 @@
 <section id="content">
   <header class="section-header">Content details</header>
   <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" required value=<%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
 
   <label for="old_content">What content needs to be changed?</label>
-  <textarea id="old_content" rows="6" cols="50" name="old_content" required value=<%= erb :assignvalue, :locals => {:param => @formdata[:old_content]} %>></textarea>
+  <textarea id="old_content" rows="6" cols="50" name="old_content" required <%= erb :assignvalue, :locals => {:param => @formdata[:old_content]} %>></textarea>
 
   <label for="new_content">What should it be changed to?</label>
-  <textarea id="new_content" rows="6" cols="50" name="new_content" required value=<%= erb :assignvalue, :locals => {:param => @formdata[:new_content]} %>></textarea>
+  <textarea id="new_content" rows="6" cols="50" name="new_content" required <%= erb :assignvalue, :locals => {:param => @formdata[:new_content]} %>></textarea>
 
   <label for="remove_location">Should this content be moved?</label><label class="url">http://gov.uk/</label>
 
-  <input id="remove_location" type="text" name="place_to_remove" value=<%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
+  <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
 
   <%= erb :date, :locals => {:title => "When should this change be made?", :label => 'need_by'}%>
 
   <%= erb :date, :locals => {:title => "Not to be amended before (optional)", :label => 'not_before'}%>
 
   <label for="comments">Additional comments</label>
-  <textarea id="comments" rows="10" cols="50" name="additional" value=<%= erb :assignvalue, :locals => {:param => @formdata[:additional]} %>></textarea>
+  <textarea id="comments" rows="10" cols="50" name="additional" <%= erb :assignvalue, :locals => {:param => @formdata[:additional]} %>></textarea>
 </section>
