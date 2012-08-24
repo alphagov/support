@@ -10,7 +10,7 @@ class PageHelper
      :not_before_month => '12',
      :not_before_year => '2012',
      :name => 'tester',
-     :email => 'yu.fu@digital.cabinet-office.gov.uk',
+     :email => 'tester@digital.cabinet-office.gov.uk',
      :department => 'test department',
      :job => 'job',
      :phone => '123456'
