@@ -2,79 +2,110 @@ class Guard
 
   #Content validations
   def self.validationsForAddContent(form_data)
-    required = ["name", "email", "job", "department", "target_url", "add_content", "need_by"]
-    self.checkRequiredFieldsHaveValues(required, form_data)
-    self.checkPhoneIsValid(form_data[:phone])
-    self.checkEmailIsValid(form_data[:email])
+    @@errors = []
+    #required = ["name", "email", "job", "department", "target_url", "add_content", "need_by"]
+    required = ["name", "email", "job", "department", "target_url", "add_content"]
+    validate(form_data, required, {:phone => form_data[:phone]}, {:email => form_data[:email]})
+
+    @@errors
   end
 
+
   def self.validationsForAmendContent(form_data)
-    required = ["name", "email", "job", "department", "target_url", "old_content", "new_content", "need_by"]
-    self.checkRequiredFieldsHaveValues(required, form_data)
-    self.checkPhoneIsValid(form_data[:phone])
-    self.checkEmailIsValid(form_data[:email])
+    @@errors = []
+    #required = ["name", "email", "job", "department", "target_url", "old_content", "new_content", "need_by"]
+    required = ["name", "email", "job", "department", "target_url", "old_content", "new_content"]
+    validate(form_data, required, {:phone => form_data[:phone]}, {:email => form_data[:email]})
+
+    @@errors
   end
 
   def self.validationsForDeleteContent(form_data)
-    required = ["name", "email", "job", "department", "target_url", "need_by"]
-    self.checkRequiredFieldsHaveValues(required, form_data)
-    self.checkPhoneIsValid(form_data[:phone])
-    self.checkEmailIsValid(form_data[:email])
+    @@errors = []
+    #required = ["name", "email", "job", "department", "target_url", "need_by"]
+    required = ["name", "email", "job", "department", "target_url"]
+    validate(form_data, required, {:phone => form_data[:phone]}, {:email => form_data[:email]})
+
+    @@errors
   end
+
+
 
   #User validations
   def self.validationsForUserAccess(form_data)
+    @@errors = []
     required = ["name", "email", "job", "department", "user_name", "user_email"]
-    self.checkRequiredFieldsHaveValues(required, form_data)
-    self.checkPhoneIsValid(form_data[:phone])
-    self.checkEmailIsValid(form_data[:email])
+    validate(form_data, required, {:phone => form_data[:phone]}, {:email => form_data[:email]})
+
+    @@errors
   end
+
+
 
   #Campaign validations
   def self.validationsForCampaign(form_data)
-    required = ["name", "email", "job", "department", "campaign_name", "erg_number", "need_by", "description"]
-    self.checkRequiredFieldsHaveValues(required, form_data)
-    self.checkPhoneIsValid(form_data[:phone])
-    self.checkEmailIsValid(form_data[:email])
+    @@errors = []
+    #required = ["name", "email", "job", "department", "campaign_name", "erg_number", "need_by", "description"]
+    required = ["name", "email", "job", "department", "campaign_name", "erg_number", "description"]
+    validate(form_data, required, {:phone => form_data[:phone]}, {:email => form_data[:email]})
+
+    @@errors
   end
+
+
 
   #Tech issues
   def self.validationsForBrokenLink(form_data)
+    @@errors = []
     required = ["name", "email", "job", "department", "target_url"]
-    self.checkRequiredFieldsHaveValues(required, form_data)
-    self.checkPhoneIsValid(form_data[:phone])
-    self.checkEmailIsValid(form_data[:email])
+    validate(form_data, required, {:phone => form_data[:phone]}, {:email => form_data[:email]})
+
+    @@errors
   end
 
   def self.validationsForPublishTool(form_data)
+    @@errors = []
     required = ["name", "email", "job", "department", "target_url", "username"]
-    self.checkRequiredFieldsHaveValues(required, form_data)
-    self.checkPhoneIsValid(form_data[:phone])
-    self.checkEmailIsValid(form_data[:email])
+    validate(form_data, required, {:phone => form_data[:phone]}, {:email => form_data[:email]})
+
+    @@errors
   end
 
 
 private
 
+  def self.validate(form_data, required, phone_fields, email_fields)
+    self.checkRequiredFieldsHaveValues(required, form_data)
+    self.checkPhoneIsValid(phone_fields)
+    self.checkEmailIsValid(email_fields)
+  end
+
+
   def self.checkRequiredFieldsHaveValues(required, form_data)
-    errors = []
-    required.each {|field|
+    required.each { |field|
       if form_data[field] && form_data[field].empty?
-        errors << "Please enter #{field}"
+        field = field.capitalize
+        @@errors << "#{field} is required for a valid ticket. Please enter some value."
       end
     }
-
-    errors
   end
 
   def self.checkPhoneIsValid(phone_fields)
-    errors = []
-    errors
+    phone_fields.each do |field_name, field_value|
+      if !(field_value =~ /^[\d|\s]+[\d|\s]*$/)
+        field_name = field_name.capitalize
+        @@errors << "#{field_name} is a phone number field. Please enter only numbers and spaces."
+      end
+    end
   end
 
   def self.checkEmailIsValid(email_fields)
-    errors = []
-    errors
+    email_fields.each  do |field_name, field_value|
+      if !(field_value =~ /[\w\d]+.*@[\w\d]+.*/)
+        field_name = field_name.capitalize
+        @@errors << "#{field_name} is a email field. Please enter valid email like x@y.something."
+      end
+    end
   end
 
 end
