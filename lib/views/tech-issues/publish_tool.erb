@@ -7,5 +7,5 @@
   <input id="username" name="username" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:username]} %> >
 
   <label for="comments">Please describe briefly the problem which encountered</label>
-  <textarea id="comments" rows="10" cols="50" name="additional" <%= erb :assignvalue, :locals => {:param => @formdata[:additional]} %> ></textarea>
+  <textarea id="comments" rows="10" cols="50" name="additional"><%=@formdata[:additional]%></textarea>
 </section>

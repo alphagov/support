@@ -49,7 +49,7 @@ class App < Sinatra::Base
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
 
     @errors = Guard.validationsForAddContent(params)
-    
+    @errors = ["some error"]
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
       redirect '/acknowledge'
@@ -73,7 +73,7 @@ class App < Sinatra::Base
     params[not_before] = not_before
 
     @errors = Guard.validationsForAmendContent(params)
-    
+
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
       redirect '/acknowledge'
@@ -212,7 +212,7 @@ class App < Sinatra::Base
     params["need_by"] = need_by
 
     @errors = Guard.validationsForCampaign(params)
-    
+
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, nil)
       redirect '/acknowledge'
