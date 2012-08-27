@@ -4,13 +4,12 @@
   <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
 
   <label for="old_content">What content needs to be changed?</label>
-  <textarea id="old_content" rows="6" cols="50" name="old_content" required <%= erb :assignvalue, :locals => {:param => @formdata[:old_content]} %>></textarea>
+  <textarea id="old_content" rows="6" cols="50" name="old_content" required><%=@formdata[:old_content]%></textarea>
 
   <label for="new_content">What should it be changed to?</label>
-  <textarea id="new_content" rows="6" cols="50" name="new_content" required <%= erb :assignvalue, :locals => {:param => @formdata[:new_content]} %>></textarea>
+  <textarea id="new_content" rows="6" cols="50" name="new_content" required><%=@formdata[:new_content]%></textarea>
 
   <label for="remove_location">Should this content be moved?</label><label class="url">http://gov.uk/</label>
-
   <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
 
   <%= erb :date, :locals => {:title => "When should this change be made?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]}%>
@@ -18,5 +17,5 @@
   <%= erb :date, :locals => {:title => "Not to be amended before (optional)", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]}%>
 
   <label for="comments">Additional comments</label>
-  <textarea id="comments" rows="10" cols="50" name="additional" <%= erb :assignvalue, :locals => {:param => @formdata[:additional]} %>></textarea>
+  <textarea id="comments" rows="10" cols="50" name="additional"><%=@formdata[:additional]%></textarea>
 </section>

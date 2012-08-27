@@ -10,15 +10,15 @@
   <br/>
 
   <label for="description">Campaign description</label>
-  <textarea id="description" rows="6" cols="50" name="description" type="text" required value=<%= erb :assignvalue, :locals => {:param => @formdata[:description]} %>></textarea>
+  <textarea id="description" rows="6" cols="50" name="description" type="text" required><%=@formdata[:description]%></textarea>
 
   <label for="company">Group or company affiliated with this campaign</label>
   <input id="company" name="company" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:company]} %>>
 
-  <label for="url_label">URL with more information</label>
+  <label for="target_url">URL with more information</label>
   <input id="target_url" name="url" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
 
   <label for="comments">Additional comments</label>
-  <textarea id="comments" rows="10" cols="50" name="additional" <%= erb :assignvalue, :locals => {:param => @formdata[:additional]} %>></textarea>
+  <textarea id="comments" rows="10" cols="50" name="additional"><%=@formdata[:additional]%></textarea>
 
 </section>
