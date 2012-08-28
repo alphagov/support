@@ -17,7 +17,7 @@ class App < Sinatra::Base
   # Content routing
   get '/add-content' do
     @departments = ZendeskClient.get_departments
-    @header = "Add Content"
+    @header = "Add content"
     @header_message = :"content/content_add_message"
     @formdata = {}
     erb :"content/add", :layout => :"content/contentlayout"
@@ -25,7 +25,7 @@ class App < Sinatra::Base
 
   get '/amend-content' do
     @departments = ZendeskClient.get_departments
-    @header = "Amend Content"
+    @header = "Amend content"
     @header_message = :"content/content_amend_message"
     @formdata = {}
     erb :"content/amend", :layout => :"content/contentlayout"
@@ -33,7 +33,7 @@ class App < Sinatra::Base
 
   get '/delete-content' do
     @departments = ZendeskClient.get_departments
-    @header = "Delete Content"
+    @header = "Delete content"
     @header_message = :"content/content_delete_message"
     @formdata = {}
     erb :"content/delete", :layout => :"content/contentlayout"
@@ -55,7 +55,7 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Add Content"
+      @header = "Add content"
       @header_message = :"content/content_add_message"
       @formdata = params
       erb :"content/add", :layout => :"content/contentlayout"
@@ -79,7 +79,7 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Amend Content"
+      @header = "Amend content"
       @header_message = :"content/content_amend_message"
       @formdata = params
       erb :"content/amend", :layout => :"content/contentlayout"
@@ -101,7 +101,7 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Delete Content"
+      @header = "Delete content"
       @header_message = :"content/content_delete_message"
       @formdata = params
       erb :"content/delete", :layout => :"content/contentlayout"
@@ -112,7 +112,7 @@ class App < Sinatra::Base
 #  User access routing
   get '/create-user' do
     @departments = ZendeskClient.get_departments
-    @header = "Create New User"
+    @header = "Create new user"
     @header_message = :"useraccess/user_create_message"
     @formdata = {}
     erb :"useraccess/user", :layout => :"useraccess/userlayout"
@@ -139,7 +139,7 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Create New User"
+      @header = "Create new user"
       @header_message = :"useraccess/user_create_message"
       @formdata = params
       erb :"useraccess/user", :layout => :"useraccess/userlayout"
@@ -148,7 +148,7 @@ class App < Sinatra::Base
 
   get '/delete-user' do
     @departments = ZendeskClient.get_departments
-    @header = "Delete User"
+    @header = "Delete user"
     @header_message = :"useraccess/user_delete_message"
     @formdata = {}
     erb :"useraccess/userdelete", :layout => :"useraccess/userlayout"
@@ -168,7 +168,7 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Delete User"
+      @header = "Delete user"
       @header_message = :"useraccess/user_delete_message"
       @formdata = params
       erb :"useraccess/userdelete", :layout => :"useraccess/userlayout"
@@ -177,7 +177,7 @@ class App < Sinatra::Base
 
   get '/reset-password' do
     @departments = ZendeskClient.get_departments
-    @header = "Reset Password"
+    @header = "Reset password"
     @header_message = :"useraccess/user_password_reset_message"
     @formdata = {}
     erb :"useraccess/resetpassword", :layout => :"useraccess/userlayout"
@@ -195,7 +195,7 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Reset Password"
+      @header = "Reset password"
       @header_message = :"useraccess/user_password_reset_message"
       @formdata = params
       erb :"useraccess/resetpassword", :layout => :"useraccess/userlayout"
@@ -238,7 +238,7 @@ class App < Sinatra::Base
   #Tech Issue routing
   get '/broken-link' do
     @departments = ZendeskClient.get_departments
-    @header = "Broken Link"
+    @header = "Broken link"
     @header_message = :"tech-issues/message_broken_link"
     @formdata = {}
     erb :"tech-issues/broken_link", :layout => :"tech-issues/tech_issue_layout"
@@ -257,7 +257,7 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Broken Link"
+      @header = "Broken link"
       @header_message = :"tech-issues/message_broken_link"
       @formdata = params
       erb :"tech-issues/broken_link", :layout => :"tech-issues/tech_issue_layout"
@@ -266,7 +266,7 @@ class App < Sinatra::Base
 
   get '/publish-tool' do
     @departments = ZendeskClient.get_departments
-    @header = "Publishing Tool"
+    @header = "Publishing tool"
     @header_message = :"tech-issues/message_publish_tool"
     @formdata = {}
     erb :"tech-issues/publish_tool", :layout => :"tech-issues/tech_issue_layout"
@@ -285,7 +285,7 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Publishing Tool"
+      @header = "Publishing tool"
       @header_message = :"tech-issues/message_publish_tool"
       @formdata = params
       erb :"tech-issues/publish_tool", :layout => :"tech-issues/tech_issue_layout"
