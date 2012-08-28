@@ -126,7 +126,16 @@ class App < Sinatra::Base
     @errors = Guard.validationsForUserAccess(params)
     
     if @errors.empty?
-      ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
+
+      tempfile = params[:uploaded_data][:tempfile]
+      filename = params[:uploaded_data][:filename]
+
+      directory = "./files"
+      path = File.join(directory, filename)
+      file = File.open(path, "wb") { |f| f.write(tempfile.read) }
+      file_token = ZendeskClient::UploadFile(path)
+      ticket = ZendeskClient::create_ticket_with_attachment(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil, file_token)
+      File.delete("./files/#{filename}")
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
