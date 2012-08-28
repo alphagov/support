@@ -1,4 +1,4 @@
-<% if @header.downcase.eql?(name.downcase) %>
+<% if @header && @header.downcase.eql?(name.downcase) %>
     <mark style="background-color: #999; color: white;padding: 10px 20px 10px 6px;"><%= name %></mark>
 <% else %> <%= name %>
 <% end %>
