@@ -56,5 +56,5 @@
 
 
   <label for="comments">Additional comments</label>
-  <textarea id="comments" rows="10" cols="50" name="additional" <%= erb :assignvalue, :locals => {:param => @formdata[:additional]} %>></textarea>
+  <textarea id="comments" rows="10" cols="50" name="additional"><%=@formdata[:additional]%></textarea>
 </section>

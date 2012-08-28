@@ -17,7 +17,11 @@
     <label for="department_list">Department</label>
     <select id="department_list" name="department" required>
       <% @departments.each do |key, value| %>
-          <option value="<%= value %>"><%= key %></option>
+          <% if value == @formdata["department"] %>
+            <option selected="selected" value="<%= value %>"><%= key %> </option>
+          <% else %>
+            <option value="<%= value %>"><%= key %> </option>
+          <% end %>
       <% end %>
     </select>
   </section>
