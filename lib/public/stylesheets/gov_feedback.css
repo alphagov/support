@@ -54,12 +54,12 @@ section#errors {
 /* Vertical split between menu and content form */
 .menu {
     float: left;
-    width: 19.3%;
+    width: 18%;
 }
 
 #form {
     float: right;
-    width: 75%;
+    width: 78%;
 }
 
 

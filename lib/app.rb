@@ -15,17 +15,17 @@ class App < Sinatra::Base
   end
 
   # Content routing
-  get '/add-content' do
+  get '/new' do
     @departments = ZendeskClient.get_departments
-    @header = "Add content"
-    @header_message = :"content/content_add_message"
+    @header = "New need"
+    @header_message = :"content/new_need_message"
     @formdata = {}
-    erb :"content/add", :layout => :"content/contentlayout"
+    erb :"content/new", :layout => :"content/contentlayout"
   end
 
   get '/amend-content' do
     @departments = ZendeskClient.get_departments
-    @header = "Amend content"
+    @header = "Content change"
     @header_message = :"content/content_amend_message"
     @formdata = {}
     erb :"content/amend", :layout => :"content/contentlayout"
@@ -39,11 +39,11 @@ class App < Sinatra::Base
     erb :"content/delete", :layout => :"content/contentlayout"
   end
 
-  post '/add-content' do
+  post '/new' do
     url = build_full_url_path(params[:url])
     comment = url + "\n\n" + params[:add_content] + "\n\n" + params[:additional]
-    subject = "Add Content"
-    tag = "add_content"
+    subject = "New need"
+    tag = "new_need"
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
     params["need_by"] = need_by
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
@@ -55,31 +55,31 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Add content"
-      @header_message = :"content/content_add_message"
+      @header = "New need"
+      @header_message = :"content/new_need_message"
       @formdata = params
-      erb :"content/add", :layout => :"content/contentlayout"
+      erb :"content/new", :layout => :"content/contentlayout"
     end
   end
 
   post '/amend-content' do
     url = build_full_url_path(params[:url])
     comment = url + "\n\n" + "[old content]\n" + params[:old_content] + "\n\n" + "[new content]\n"+params[:new_content] + "\n\n" + params[:place_to_remove] + "\n\n" + params[:additional]
-    subject = "Amend Content"
-    tag = "amend_content"
+    subject = "Content change request"
+    tag = "content_change"
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
     params["need_by"] = need_by
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
     params[not_before] = not_before
 
     @errors = Guard.validationsForAmendContent(params)
-
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
+      
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Amend content"
+      @header = "Content change"
       @header_message = :"content/content_amend_message"
       @formdata = params
       erb :"content/amend", :layout => :"content/contentlayout"
@@ -112,7 +112,7 @@ class App < Sinatra::Base
 #  User access routing
   get '/create-user' do
     @departments = ZendeskClient.get_departments
-    @header = "Create new user"
+    @header = "Create New User"
     @header_message = :"useraccess/user_create_message"
     @formdata = {}
     erb :"useraccess/user", :layout => :"useraccess/userlayout"
@@ -146,17 +146,17 @@ class App < Sinatra::Base
     end
   end
 
-  get '/delete-user' do
+  get '/remove-user' do
     @departments = ZendeskClient.get_departments
-    @header = "Delete user"
-    @header_message = :"useraccess/user_delete_message"
+    @header = "Remove user"
+    @header_message = :"useraccess/user_remove_message"
     @formdata = {}
-    erb :"useraccess/userdelete", :layout => :"useraccess/userlayout"
+    erb :"useraccess/userremove", :layout => :"useraccess/userlayout"
   end
 
-  post '/delete-user' do
-    subject = "Delete User"
-    tag = "delete_user"
+  post '/remove-user' do
+    subject = "Remove user"
+    tag = "remove_user"
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
     params[not_before] = not_before
@@ -168,10 +168,10 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Delete user"
-      @header_message = :"useraccess/user_delete_message"
+      @header = "Remove user"
+      @header_message = :"useraccess/user_remove_message"
       @formdata = params
-      erb :"useraccess/userdelete", :layout => :"useraccess/userlayout"
+      erb :"useraccess/userremove", :layout => :"useraccess/userlayout"
     end
   end
 
