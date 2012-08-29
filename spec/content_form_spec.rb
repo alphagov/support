@@ -20,7 +20,7 @@ class ContentFormSpec < Test::Unit::TestCase
 
   def test_page_contain_required_fields
     #When
-    get '/add-content'
+    get '/amend-content'
 
     #Then
     assert last_response.body.include?('Name')
@@ -35,7 +35,7 @@ class ContentFormSpec < Test::Unit::TestCase
     ZendeskClient.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
 
     #When
-    get '/add-content'
+    get '/amend-content'
 
     #Then
     assert last_response.ok?
@@ -47,7 +47,7 @@ class ContentFormSpec < Test::Unit::TestCase
     ZendeskClient.expects(:raise_zendesk_request)
 
     #When
-    post '/add-content', form_parameters
+    post '/amend-content', form_parameters
     follow_redirect!
 
     #Then

@@ -1,7 +1,9 @@
 class PageHelper
   def self.fill_content_form
     {:url => '/temp',
-     :add_content => 'test content to add',
+     :old_content => 'test content to add',
+     :new_content => 'new test content',
+     :place_to_remove => 'http://testurl.com',
      :additional => 'additional message',
      :need_by_day => '30',
      :need_by_month => '12',

@@ -1,16 +1,51 @@
 <section id="content">
   <header class="section-header">Content details</header>
+
+  <label for="add_content">Please paste or attach content to be added below:</label>
+  <textarea id="add_content" name="add_content" rows="6" cols="50" required><%=@formdata[:add_content]%></textarea>
+
+<p>Attach a file [ X }</p>
+
+<p>Where should the content be added?</p>
+  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
   <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
   <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
 
-  <label for="old_content">What content needs to be changed?</label>
+<p>Include additional URLs in the "Additional comments" section below.</p>
+
+  <label for="old_content">To change content, please paste the OLD content below:</label>
   <textarea id="old_content" rows="6" cols="50" name="old_content" required><%=@formdata[:old_content]%></textarea>
 
-  <label for="new_content">What should it be changed to?</label>
+  <label for="new_content">To change content, please paste the NEW content below:</label>
   <textarea id="new_content" rows="6" cols="50" name="new_content" required><%=@formdata[:new_content]%></textarea>
 
-  <label for="remove_location">Should this content be moved?</label><label class="url">http://gov.uk/</label>
+<p>Attach a file [ X }</p>
+
+<p>Where is the OLD content?</p>
+  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+
+<p>Include additional URLs in the "Additional comments" section below.</p>
+
+  <label for="remove_content">To remove content, please paste the content below:</label>
+  <textarea id="remove_content" rows="6" cols="50" name="remove_content" required><%=@formdata[:new_content]%></textarea>
+
+<p>Where is the content to be removed?</p>
+<label for="remove_location">URL on </label><label class="url">http://gov.uk/</label>
   <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
+  <label for="remove_location">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
+  <label for="remove_location">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
+
+<p>Include additional URLs in the "Additional comments" section below.</p>
 
   <%= erb :date, :locals => {:title => "When should this change be made?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]}%>
 
