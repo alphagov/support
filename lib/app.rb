@@ -68,15 +68,18 @@ class App < Sinatra::Base
     comment = url + "\n\n" + "[old content]\n" + params[:old_content] + "\n\n" + "[new content]\n"+params[:new_content] + "\n\n" + params[:place_to_remove] + "\n\n" + params[:additional]
     subject = "Content change request"
     tag = "content_change"
-    need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
+
+    need_by, not_before = build_date(params)
     params["need_by"] = need_by
-    not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
     params[not_before] = not_before
 
     @errors = Guard.validationsForAmendContent(params)
     if @errors.empty?
-      ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
-
+      if params[:uploaded_data] || params[:upload_amend]
+        create_ticket_with_uploaded_file(params, subject, tag, comment, need_by, not_before)
+      else
+        ZendeskClient::raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
+      end
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
@@ -156,13 +159,17 @@ class App < Sinatra::Base
     subject = "Remove user"
     tag = "remove_user"
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
-    not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
+    need_by, not_before = build_date(params)
     params[not_before] = not_before
 
     @errors = Guard.validationsForDeleteUser(params)
 
     if @errors.empty?
-      ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, not_before)
+      if params[:uploaded_data]
+        create_ticket_with_uploaded_file(params, subject, tag, comment, need_by, not_before)
+      else
+        ZendeskClient::raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
+      end
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
