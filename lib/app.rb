@@ -130,7 +130,7 @@ class App < Sinatra::Base
       tempfile = params[:uploaded_data][:tempfile]
       filename = params[:uploaded_data][:filename]
 
-      directory = "./files"
+      directory = "./"
       path = File.join(directory, filename)
       File.open(path, "wb") { |f| f.write(tempfile.read) }
       file_token = ZendeskClient::UploadFile(path)
