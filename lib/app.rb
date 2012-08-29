@@ -132,10 +132,10 @@ class App < Sinatra::Base
 
       directory = "./files"
       path = File.join(directory, filename)
-      file = File.open(path, "wb") { |f| f.write(tempfile.read) }
+      File.open(path, "wb") { |f| f.write(tempfile.read) }
       file_token = ZendeskClient::UploadFile(path)
-      ticket = ZendeskClient::create_ticket_with_attachment(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil, file_token)
-      File.delete("./files/#{filename}")
+      ZendeskClient::create_ticket_with_attachment(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil, file_token)
+      File.delete(path)
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
