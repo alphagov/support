@@ -119,7 +119,7 @@ input {
     width: 300px;
 }
 
-#file-input{
+#file-input, #file-added{
     min-width: 350px;
 }
 

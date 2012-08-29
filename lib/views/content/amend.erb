@@ -2,55 +2,57 @@
   <header class="section-header">Content details</header>
 
   <label for="add_content">Please paste or attach content to be added below:</label>
-  <textarea id="add_content" name="add_content" rows="6" cols="50" required><%=@formdata[:add_content]%></textarea>
+  <textarea id="add_content" name="add_content" rows="6" cols="50" ><%= @formdata[:add_content] %></textarea>
 
-<p>Attach a file [ X }</p>
+  <!-- Attach Form -->
+  <input id="file-added" name="uploaded_data" type="file"/>
 
-<p>Where should the content be added?</p>
+  <p>Where should the content be added?</p>
   <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  <input id="target_url" name="url" type="text"   >
   <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  <input id="target_url" name="url" type="text" >
   <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  <input id="target_url" name="url" type="text" >
 
-<p>Include additional URLs in the "Additional comments" section below.</p>
+  <p>Include additional URLs in the "Additional comments" section below.</p>
 
   <label for="old_content">To change content, please paste the OLD content below:</label>
-  <textarea id="old_content" rows="6" cols="50" name="old_content" required><%=@formdata[:old_content]%></textarea>
+  <textarea id="old_content" rows="6" cols="50" name="old_content" ><%= @formdata[:old_content] %></textarea>
 
   <label for="new_content">To change content, please paste the NEW content below:</label>
-  <textarea id="new_content" rows="6" cols="50" name="new_content" required><%=@formdata[:new_content]%></textarea>
+  <textarea id="new_content" rows="6" cols="50" name="new_content" ><%= @formdata[:new_content] %></textarea>
 
-<p>Attach a file [ X }</p>
+  <!-- Attach Form -->
+  <input id="file-input" name="upload_amend" type="file"/>
 
-<p>Where is the OLD content?</p>
+  <p>Where is the OLD content?</p>
   <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  <input id="target_url" name="url" type="text" >
   <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  <input id="target_url" name="url" type="text" >
   <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  <input id="target_url" name="url" type="text" >
 
-<p>Include additional URLs in the "Additional comments" section below.</p>
+  <p>Include additional URLs in the "Additional comments" section below.</p>
 
   <label for="remove_content">To remove content, please paste the content below:</label>
-  <textarea id="remove_content" rows="6" cols="50" name="remove_content" required><%=@formdata[:new_content]%></textarea>
+  <textarea id="remove_content" rows="6" cols="50" name="remove_content" ><%= @formdata[:new_content] %></textarea>
 
-<p>Where is the content to be removed?</p>
-<label for="remove_location">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
+  <p>Where is the content to be removed?</p>
   <label for="remove_location">URL on </label><label class="url">http://gov.uk/</label>
   <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
   <label for="remove_location">URL on </label><label class="url">http://gov.uk/</label>
   <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
+  <label for="remove_location">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
 
-<p>Include additional URLs in the "Additional comments" section below.</p>
+  <p>Include additional URLs in the "Additional comments" section below.</p>
 
-  <%= erb :date, :locals => {:title => "When should this change be made?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]}%>
+  <%= erb :date, :locals => {:title => "When should this change be made?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]} %>
 
-  <%= erb :date, :locals => {:title => "Not to be amended before (optional)", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]}%>
+  <%= erb :date, :locals => {:title => "Not to be amended before (optional)", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]} %>
 
   <label for="comments">Additional comments</label>
-  <textarea id="comments" rows="10" cols="50" name="additional"><%=@formdata[:additional]%></textarea>
+  <textarea id="comments" rows="10" cols="50" name="additional"><%= @formdata[:additional] %></textarea>
 </section>

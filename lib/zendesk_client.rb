@@ -59,7 +59,7 @@ class ZendeskClient
                     {"id" => "21485833", "value" => need_by_date},
                     {"id" => "21502036", "value" => not_before_date}],
         :tags => [tag],
-        :comment => {:value => comment, :uploads => [file_token]})
+        :comment => {:value => comment, :uploads => file_token})
   end
 
   def self.remove_space_from_phone_number(number)
