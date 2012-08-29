@@ -1,28 +1,3 @@
-<script type="text/javascript">
-    function checkMaxUploads() {
-        if ($$('div.attach_item').size() >= 10) {
-            alert('You can attach only 10 files');
-            document.attach_form.reset();
-        } else {
-            submitAttachForm("Uploading...");
-        }
-    }
-    function checkUploadError() {
-        var iFrameBody = $j('#upload_frame').contents().find('body')
-        if (iFrameBody.text().include('Something went wrong')) {
-            $j('#submit-button').val('Submit');
-            $j('#submit-button').prop('disabled', false);
-            $j('#uploading_message').hide();
-            $j('#attach_link').show();
-            $j('#uploads_form').show();
-            document.attach_form.reset();
-            alert("There was an error with the attachment. Please try again or contact our support team if the problem continues.");
-        }
-    }
-</script>
-
-
-
 <section id="user">
   <header class="section-header">User details</header>
   <label for="user_name">Name</label>

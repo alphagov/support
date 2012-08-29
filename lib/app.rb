@@ -3,6 +3,7 @@ Bundler.require
 
 require_relative "zendesk_client"
 require_relative "validations"
+require_relative "helpers"
 
 class App < Sinatra::Base
 
@@ -75,7 +76,7 @@ class App < Sinatra::Base
     @errors = Guard.validationsForAmendContent(params)
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
-      
+
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
@@ -95,7 +96,7 @@ class App < Sinatra::Base
     params["need_by"] = need_by
 
     @errors = Guard.validationsForDeleteContent(params)
-    
+
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, "")
       redirect '/acknowledge'
@@ -118,24 +119,21 @@ class App < Sinatra::Base
     erb :"useraccess/user", :layout => :"useraccess/userlayout"
   end
 
+
   post '/create-user' do
     subject = "Create New User"
     tag = "new_user"
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
+    need_by, not_before = build_date(params)
 
     @errors = Guard.validationsForUserAccess(params)
-    
+
     if @errors.empty?
-
-      tempfile = params[:uploaded_data][:tempfile]
-      filename = params[:uploaded_data][:filename]
-
-      directory = "./"
-      path = File.join(directory, filename)
-      File.open(path, "wb") { |f| f.write(tempfile.read) }
-      file_token = ZendeskClient::UploadFile(path)
-      ZendeskClient::create_ticket_with_attachment(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil, file_token)
-      File.delete(path)
+      if params[:uploaded_data]
+        create_ticket_with_uploaded_file(params, subject, tag, comment, need_by, not_before)
+      else
+        ZendeskClient::raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
+      end
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
@@ -189,7 +187,7 @@ class App < Sinatra::Base
     comment = params[:user_name] + "\n\n" + params[:user_email]+ "\n\n" + params[:additional]
 
     @errors = Guard.validationsForUserAccess(params)
-    
+
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
       redirect '/acknowledge'
@@ -279,7 +277,7 @@ class App < Sinatra::Base
     comment = params[:username] + "\n\n" + url + "\n\n" + params[:additional]
 
     @errors = Guard.validationsForPublishTool(params)
-    
+
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
       redirect '/acknowledge'
@@ -293,7 +291,5 @@ class App < Sinatra::Base
 
   end
 
-  def build_full_url_path(partial_path)
-    url = "http://gov.uk/"+ partial_path
-  end
+
 end

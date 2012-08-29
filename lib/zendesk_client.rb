@@ -26,9 +26,9 @@ class ZendeskClient
 
   def self.raise_zendesk_request(subject, tag, name, email, dep, job, phone, comment, need_by_date, not_before_date)
     phone = remove_space_from_phone_number(phone)
-    ticket = @client.ticket.create(
+    @client.ticket.create(
         :subject => subject,
-        :description => "testing for email",
+        :description => "Created via Govt API",
         :priority => "normal",
         :requester => {"locale_id" => 1, "name" => name, "email" => email},
         :fields => [{"id" => "21494928", "value" => dep},
@@ -36,28 +36,30 @@ class ZendeskClient
                     {"id" => "21471291", "value" => phone},
                     {"id" => "21485833", "value" => need_by_date},
                     {"id" => "21502036", "value" => not_before_date}],
-        :tags => [tag])
-    if comment
-      ticket.comment= {:value => comment}
-      ticket.save
-    end
+        :tags => [tag],
+        :comment => {:value => comment})
   end
 
-  def self.UploadFile(path)
+  def self.upload_file(path)
 
     upload = ZendeskAPI::Upload.create(@client, :file => File.open(path))
     upload.token
   end
 
   def self.create_ticket_with_attachment(subject, tag, name, email, department, job, phone, comment, need_by_date, not_before_date, file_token)
-    ticket = raise_zendesk_request(subject, tag, name, email, department, job, phone, nil, need_by_date, not_before_date)
-    if(comment)
-    ticket.comment= {:value => comment, :uploads => [file_token]}
-    else
-      ticket.comment= {:value => "uploaded file", uploads => [file_token]}
-    end
-    ticket.save
-    ticket
+    phone = remove_space_from_phone_number(phone)
+    @client.ticket.create(
+        :subject => subject,
+        :description => "Created via Govt API",
+        :priority => "normal",
+        :requester => {"locale_id" => 1, "name" => name, "email" => email},
+        :fields => [{"id" => "21494928", "value" => department},
+                    {"id" => "21487987", "value" => job},
+                    {"id" => "21471291", "value" => phone},
+                    {"id" => "21485833", "value" => need_by_date},
+                    {"id" => "21502036", "value" => not_before_date}],
+        :tags => [tag],
+        :comment => {:value => comment, :uploads => [file_token]})
   end
 
   def self.remove_space_from_phone_number(number)
