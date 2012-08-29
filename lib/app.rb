@@ -18,7 +18,7 @@ class App < Sinatra::Base
   # Content routing
   get '/new' do
     @departments = ZendeskClient.get_departments
-    @header = "New need"
+    @header = "New Need"
     @header_message = :"content/new_need_message"
     @formdata = {}
     erb :"content/new", :layout => :"content/contentlayout"
@@ -26,18 +26,10 @@ class App < Sinatra::Base
 
   get '/amend-content' do
     @departments = ZendeskClient.get_departments
-    @header = "Content change"
+    @header = "Content Change"
     @header_message = :"content/content_amend_message"
     @formdata = {}
     erb :"content/amend", :layout => :"content/contentlayout"
-  end
-
-  get '/delete-content' do
-    @departments = ZendeskClient.get_departments
-    @header = "Delete content"
-    @header_message = :"content/content_delete_message"
-    @formdata = {}
-    erb :"content/delete", :layout => :"content/contentlayout"
   end
 
   post '/new' do
@@ -56,7 +48,7 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "New need"
+      @header = "New Need"
       @header_message = :"content/new_need_message"
       @formdata = params
       erb :"content/new", :layout => :"content/contentlayout"
@@ -83,35 +75,12 @@ class App < Sinatra::Base
       redirect '/acknowledge'
     else
       @departments = ZendeskClient.get_departments
-      @header = "Content change"
+      @header = "Content Change"
       @header_message = :"content/content_amend_message"
       @formdata = params
       erb :"content/amend", :layout => :"content/contentlayout"
     end
   end
-
-  post '/delete-content' do
-    url = build_full_url_path(params[:url])
-    comment = url + "\n\n" + params[:additional]
-    subject = "Delete Content"
-    tag = "delete_content"
-    need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
-    params["need_by"] = need_by
-
-    @errors = Guard.validationsForDeleteContent(params)
-
-    if @errors.empty?
-      ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, "")
-      redirect '/acknowledge'
-    else
-      @departments = ZendeskClient.get_departments
-      @header = "Delete content"
-      @header_message = :"content/content_delete_message"
-      @formdata = params
-      erb :"content/delete", :layout => :"content/contentlayout"
-    end
-  end
-
 
 #  User access routing
   get '/create-user' do
