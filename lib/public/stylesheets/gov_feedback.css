@@ -231,6 +231,25 @@ header.page-header hgroup h1 {
     text-align: center;
 }
 
+#footer .copyright {
+    float: right;
+    text-align: right;
+    width: 50%;
+    margin-right: 3em;
+}
+
+#footer .copyright a {
+    display: block;
+    background-image: url(https://d17tffe05zdvwj.cloudfront.net/static/coat-of-arms-3ebed0fcb9a8615e54c1a5ac079a6226.png);
+    background-position: 100% 0;
+    background-repeat: no-repeat;
+    color: #7F7F7F;
+    margin: 2em 0 2em 0;
+    padding: 1em 4.5em 1em 0;
+    margin-left: 50%;
+    text-decoration: none;
+}
+
 /* url */
 .url {
     background-color: #F2F2F2;
