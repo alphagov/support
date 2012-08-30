@@ -11,7 +11,7 @@
     <input id="job" name="job" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:job]} %> >
 
     <label for="phone">Phone number</label>
-    <input id="phone" name="phone" pattern="([\d\s]*)" oninvalid="setCustomValidity('Please enter a valid  phone number')"  type="tel"
+    <input id="phone" name="phone" pattern="([\d\s]*)" type="tel"
            <%= erb :assignvalue, :locals => {:param => @formdata[:phone]} %>>
 
     <label for="department_list">Department</label>
