@@ -8,14 +8,14 @@
   <input id="file-added" name="uploaded_data" type="file"/>
 
   <p>Where should the content be added?</p>
-  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text"   >
-  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" >
-  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" >
+  <label for="target_url_add1">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url_add1" name="url_add1" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_add1]} %> >
+  <label for="target_url_add2">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url_add2" name="url_add2" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_add2]} %>>
+  <label for="target_url_add3">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url_add3" name="url_add3" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_add3]} %>>
 
-  <p>Include additional URLs in the "Additional comments" section below.</p>
+  <label>Include additional URLs in the "Additional comments" section below.</label>
 
   <label for="old_content">To change content, please paste the OLD content below:</label>
   <textarea id="old_content" rows="6" cols="50" name="old_content" ><%= @formdata[:old_content] %></textarea>
@@ -27,27 +27,27 @@
   <input id="file-input" name="upload_amend" type="file"/>
 
   <p>Where is the OLD content?</p>
-  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" >
-  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" >
-  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url" name="url" type="text" >
+  <label for="target_url_old1">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url_old1" name="url_old1" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_old1]} %>>
+  <label for="target_url_old2">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url_old2" name="url_old2" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_old2]} %>>
+  <label for="target_url_old3">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="target_url_old3" name="url_old3" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_old3]} %>>
 
-  <p>Include additional URLs in the "Additional comments" section below.</p>
+  <label>Include additional URLs in the "Additional comments" section below.</label>
 
   <label for="remove_content">To remove content, please paste the content below:</label>
   <textarea id="remove_content" rows="6" cols="50" name="remove_content" ><%= @formdata[:new_content] %></textarea>
 
   <p>Where is the content to be removed?</p>
-  <label for="remove_location">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
-  <label for="remove_location">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
-  <label for="remove_location">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="remove_location" type="text" name="place_to_remove" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
+  <label for="remove_location1">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="remove_location1" type="text" name="place_to_remove1" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove1]} %>>
+  <label for="remove_location2">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="remove_location2" type="text" name="place_to_remove2" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove2]} %>>
+  <label for="remove_location3">URL on </label><label class="url">http://gov.uk/</label>
+  <input id="remove_location3" type="text" name="place_to_remove3" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
 
-  <p>Include additional URLs in the "Additional comments" section below.</p>
+  <label>Include additional URLs in the "Additional comments" section below.</label>
 
   <%= erb :date, :locals => {:title => "When should this change be made?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]} %>
 

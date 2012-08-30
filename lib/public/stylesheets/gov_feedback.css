@@ -91,14 +91,13 @@ h2 {
 }
 
 /* Form styling */
-label {
+label{
     font-size: 1.1875em;
     color: black;
     background: transparent;
     float: left;
     margin-right: 15px;
     padding-left: 5px;
-    display: block;
 }
 
 textarea {
