@@ -1,9 +1,10 @@
 class Guard
 
   #Content validations
-  def self.validationsForAddContent(form_data)
+  #Content validations
+  def self.validationsForNewNeed(form_data)
     @@errors = []
-    required = ["name", "email", "job", "department", "url", "add_content", "need_by_day", "need_by_month", "need_by_year"]
+    required = ["name", "email", "job", "department", "need_by_day", "need_by_month", "need_by_year"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["not_before_day", "not_before_month", "not_before_year"]])
 
@@ -13,9 +14,9 @@ class Guard
 
   def self.validationsForAmendContent(form_data)
     @@errors = []
-    required = ["name", "email", "job", "department", "url", "old_content", "new_content", "need_by_day", "need_by_month", "need_by_year"]
+    required = ["name", "email", "job", "department"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
-    self.checkOptionalDateFieldsAreComplete(form_data, [["not_before_day", "not_before_month", "not_before_year"]])
+    self.checkOptionalDateFieldsAreComplete(form_data, [["need_by_day", "need_by_month", "need_by_year"],["not_before_day", "not_before_month", "not_before_year"]])
 
     @@errors
   end
