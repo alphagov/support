@@ -1,7 +1,6 @@
 class Guard
 
   #Content validations
-  #Content validations
   def self.validationsForNewNeed(form_data)
     @@errors = []
     required = ["name", "email", "job", "department", "need_by_day", "need_by_month", "need_by_year"]
@@ -78,6 +77,10 @@ class Guard
     @@errors
   end
 
+  #Zendesk validation fail
+  def self.fail_to_create_ticket()
+    @@errors << "Has failed to submit request.  Please ensure all the information has been entered correctly and try to submit it later."
+  end
 
 private
 
@@ -110,7 +113,7 @@ private
     email_fields.each  do |field_name, field_value|
       if field_value && doesFieldHaveValue(field_value) && !(field_value =~ /[\w\d]+.*@[\w\d]+.*/)
         field_name = field_name.capitalize
-        @@errors << "#{field_name} is a email field. Please enter valid email like x@y.something."
+        @@errors << "#{field_name} is an email field. Please enter valid email like x@y.something."
       end
     end
   end
@@ -143,5 +146,6 @@ private
   def self.doesFieldHaveValue(field_value)
     !field_value.empty?
   end
+
 
 end

@@ -41,7 +41,6 @@ class ZendeskClient
   end
 
   def self.upload_file(path)
-
     upload = ZendeskAPI::Upload.create(@client, :file => File.open(path))
     upload.token
   end

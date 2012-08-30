@@ -42,9 +42,11 @@ def build_date(params)
 end
 
 
-def initialize_data(head, head_message_form)
+def load_page(head, head_message_form, template, layout, params)
   @departments = ZendeskClient.get_departments
   @header = head
   @header_message = :"#{head_message_form}"
-  @formdata = {}
+  @formdata = params
+
+  erb :"#{template}", :layout => :"#{layout}"
 end

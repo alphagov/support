@@ -18,8 +18,7 @@ class App < Sinatra::Base
 
   # Content routing
   get '/new' do
-    initialize_data("New Need", "content/new_need_message")
-    erb :"content/new", :layout => :"content/contentlayout"
+    load_page("New Need", "content/new_need_message", "content/new", "content/contentlayout", params)
   end
 
   post '/new' do
@@ -31,19 +30,22 @@ class App < Sinatra::Base
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
 
     @errors = Guard.validationsForNewNeed(params)
+
     if @errors.empty?
-      ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
-      redirect '/acknowledge'
+      ticket = ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
+      if ticket
+        redirect '/acknowledge'
+      else
+        @errors = Guard.fail_to_create_ticket
+        load_page("New Need", "content/new_need_message", "content/new", "content/contentlayout", params)
+      end
     else
-      initialize_data("New Need", "content/new_need_message")
-      @formdata = params
-      erb :"content/new", :layout => :"content/contentlayout"
+      load_page("New Need", "content/new_need_message", "content/new", "content/contentlayout", params)
     end
   end
 
   get '/amend-content' do
-    initialize_data("Content Change", "content/content_amend_message")
-    erb :"content/amend", :layout => :"content/contentlayout"
+    load_page("Content Change", "content/content_amend_message", "content/amend", "content/contentlayout", params)
   end
 
   post '/amend-content' do
@@ -58,7 +60,7 @@ class App < Sinatra::Base
         build_full_url_path(params[:place_to_remove2]) + "\n" +
         build_full_url_path(params[:place_to_remove3]) + "\n" +
 
-    comment = url + "\n\n" + "[old content]\n" + params[:old_content] + "\n\n" + "[new content]\n"+params[:new_content] + "\n\n" + params[:place_to_remove] + "\n\n" + params[:additional]
+        comment = url + "\n\n" + "[old content]\n" + params[:old_content] + "\n\n" + "[new content]\n"+params[:new_content] + "\n\n" + params[:place_to_remove] + "\n\n" + params[:additional]
     subject = "Content change request"
     tag = "content_change"
 
@@ -67,24 +69,27 @@ class App < Sinatra::Base
     params[not_before] = not_before
 
     @errors = Guard.validationsForAmendContent(params)
+
     if @errors.empty?
       if params[:uploaded_data] || params[:upload_amend]
-        create_ticket_with_uploaded_file(params, subject, tag, comment, need_by, not_before)
+        ticket = create_ticket_with_uploaded_file(params, subject, tag, comment, need_by, not_before)
       else
-        ZendeskClient::raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
+        ticket = ZendeskClient::raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
       end
-      redirect '/acknowledge'
+      if ticket
+        redirect '/acknowledge'
+      else
+        @errors = Guard.fail_to_create_ticket
+        load_page("Content Change", "content/content_amend_message", "content/amend", "content/contentlayout", params)
+      end
     else
-      initialize_data("Content Change", "content/content_amend_message")
-      @formdata = params
-      erb :"content/amend", :layout => :"content/contentlayout"
+      load_page("Content Change", "content/content_amend_message", "content/amend", "content/contentlayout", params)
     end
   end
 
 #  User access routing
   get '/create-user' do
-    initialize_data("Create New User", "useraccess/user_create_message")
-    erb :"useraccess/user", :layout => :"useraccess/userlayout"
+    load_page("Create New User", "useraccess/user_create_message", "useraccess/user", "useraccess/userlayout", params)
   end
 
   post '/create-user' do
@@ -94,23 +99,26 @@ class App < Sinatra::Base
     need_by, not_before = build_date(params)
 
     @errors = Guard.validationsForUserAccess(params)
+
     if @errors.empty?
       if params[:uploaded_data]
-        create_ticket_with_uploaded_file(params, subject, tag, comment, need_by, not_before)
+        ticket = create_ticket_with_uploaded_file(params, subject, tag, comment, need_by, not_before)
       else
-        ZendeskClient::raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
+        ticket= ZendeskClient::raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
       end
-      redirect '/acknowledge'
+      if ticket
+        redirect '/acknowledge'
+      else
+        @errors = Guard.fail_to_create_ticket
+        load_page("Create New User", "useraccess/user_create_message", "useraccess/user", "useraccess/userlayout", params)
+      end
     else
-      initialize_data("Create New User", "useraccess/user_create_message")
-      @formdata = params
-      erb :"useraccess/user", :layout => :"useraccess/userlayout"
+      load_page("Create New User", "useraccess/user_create_message", "useraccess/user", "useraccess/userlayout", params)
     end
   end
 
   get '/remove-user' do
-    initialize_data("Remove User", "useraccess/user_remove_message")
-    erb :"useraccess/userremove", :layout => :"useraccess/userlayout"
+    load_page("Remove User", "useraccess/user_remove_message", "useraccess/userremove", "useraccess/userlayout", params)
   end
 
   post '/remove-user' do
@@ -124,21 +132,23 @@ class App < Sinatra::Base
 
     if @errors.empty?
       if params[:uploaded_data]
-        create_ticket_with_uploaded_file(params, subject, tag, comment, need_by, not_before)
+        ticket = create_ticket_with_uploaded_file(params, subject, tag, comment, need_by, not_before)
       else
-        ZendeskClient::raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
+        ticket = ZendeskClient::raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
       end
-      redirect '/acknowledge'
+      if ticket
+        redirect '/acknowledge'
+      else
+        @errors = Guard.fail_to_create_ticket
+        load_page("Remove User", "useraccess/user_remove_message", "useraccess/userremove", "useraccess/userlayout", params)
+      end
     else
-      initialize_data("Remove User", "useraccess/user_remove_message")
-      @formdata = params
-      erb :"useraccess/userremove", :layout => :"useraccess/userlayout"
+      load_page("Remove User", "useraccess/user_remove_message", "useraccess/userremove", "useraccess/userlayout", params)
     end
   end
 
   get '/reset-password' do
-    initialize_data("Reset Password", "useraccess/user_password_reset_message")
-    erb :"useraccess/resetpassword", :layout => :"useraccess/userlayout"
+    load_page("Reset Password", "useraccess/user_password_reset_message", "useraccess/resetpassword", "useraccess/userlayout", params)
   end
 
   post '/reset-password' do
@@ -149,19 +159,20 @@ class App < Sinatra::Base
     @errors = Guard.validationsForUserAccess(params)
 
     if @errors.empty?
-      ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
-      redirect '/acknowledge'
+      ticket = ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
+      if ticket
+        redirect '/acknowledge'
+      else
+        load_page("Reset Password", "useraccess/user_password_reset_message", "useraccess/resetpassword", "useraccess/userlayout", params)
+      end
     else
-      initialize_data("Reset Password", "useraccess/user_password_reset_message")
-      @formdata = params
-      erb :"useraccess/resetpassword", :layout => :"useraccess/userlayout"
+      load_page("Reset Password", "useraccess/user_password_reset_message", "useraccess/resetpassword", "useraccess/userlayout", params)
     end
   end
 
 #  Campaigns routing
   get '/campaign' do
-    initialize_data("Campaign", "campaigns/campaign_message")
-    erb :"campaigns/campaign", :layout => :"campaigns/campaignslayout"
+    load_page("Campaign", "campaigns/campaign_message", "campaigns/campaign", "campaigns/campaignslayout", params)
   end
 
   post '/campaign' do
@@ -173,19 +184,21 @@ class App < Sinatra::Base
 
     @errors = Guard.validationsForCampaign(params)
     if @errors.empty?
-      ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, nil)
-      redirect '/acknowledge'
+      ticket = ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, nil)
+      if ticket
+        redirect '/acknowledge'
+      else
+        @errors = Guard.fail_to_create_ticket
+        load_page("Campaign", "campaigns/campaign_message", "campaigns/campaign", "campaigns/campaignslayout", params)
+      end
     else
-      initialize_data("Campaign", "campaigns/campaign_message")
-      @formdata = params
-      erb :"campaigns/campaign", :layout => :"campaigns/campaignslayout"
+      load_page("Campaign", "campaigns/campaign_message", "campaigns/campaign", "campaigns/campaignslayout", params)
     end
   end
 
   #Tech Issue routing
   get '/broken-link' do
-    initialize_data("Broken Link", "tech-issues/message_broken_link")
-    erb :"tech-issues/broken_link", :layout => :"tech-issues/tech_issue_layout"
+    load_page("Broken Link", "tech-issues/message_broken_link", "tech-issues/broken_link", "tech-issues/tech_issue_layout", params)
   end
 
   post '/broken-link' do
@@ -197,18 +210,19 @@ class App < Sinatra::Base
     @errors = Guard.validationsForBrokenLink(params)
 
     if @errors.empty?
-      ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
-      redirect '/acknowledge'
+      ticket = ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
+      if ticket
+        redirect '/acknowledge'
+      else
+        load_page("Broken Link", "tech-issues/message_broken_link", "tech-issues/broken_link", "tech-issues/tech_issue_layout", params)
+      end
     else
-      initialize_data("Broken Link", "tech-issues/message_broken_link")
-      @formdata = params
-      erb :"tech-issues/broken_link", :layout => :"tech-issues/tech_issue_layout"
+      load_page("Broken Link", "tech-issues/message_broken_link", "tech-issues/broken_link", "tech-issues/tech_issue_layout", params)
     end
   end
 
   get '/publish-tool' do
-    initialize_data("Publishing Tool", "tech-issues/message_publish_tool")
-    erb :"tech-issues/publish_tool", :layout => :"tech-issues/tech_issue_layout"
+    load_page("Publishing Tool", "tech-issues/message_publish_tool", "tech-issues/publish_tool", "tech-issues/tech_issue_layout", params)
   end
 
   post '/publish-tool' do
@@ -220,12 +234,15 @@ class App < Sinatra::Base
     @errors = Guard.validationsForPublishTool(params)
 
     if @errors.empty?
-      ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
-      redirect '/acknowledge'
+      ticket = ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
+      if ticket
+        redirect '/acknowledge'
+      else
+        @errors = Guard.fail_to_create_ticket
+        load_page("Publishing Tool", "tech-issues/message_publish_tool", "tech-issues/publish_tool", "tech-issues/tech_issue_layout", params)
+      end
     else
-      initialize_data("Publishing Tool", "tech-issues/message_publish_tool")
-      @formdata = params
-      erb :"tech-issues/publish_tool", :layout => :"tech-issues/tech_issue_layout"
+      load_page("Publishing Tool", "tech-issues/message_publish_tool", "tech-issues/publish_tool", "tech-issues/tech_issue_layout", params)
     end
   end
 end
