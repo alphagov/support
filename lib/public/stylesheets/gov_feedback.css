@@ -55,11 +55,13 @@ section#errors {
 .menu {
     float: left;
     width: 18%;
+    position: relative;
 }
 
 #form {
     float: right;
     width: 78%;
+    position: relative;
 }
 
 
