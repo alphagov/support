@@ -40,3 +40,11 @@ def build_date(params)
   end
   return need_by, not_before
 end
+
+
+def initialize_data(head, head_message_form)
+  @departments = ZendeskClient.get_departments
+  @header = head
+  @header_message = :"#{head_message_form}"
+  @formdata = {}
+end

@@ -7,6 +7,7 @@ require_relative "helpers"
 
 class App < Sinatra::Base
 
+
   get '/' do
     erb :landing
   end
@@ -17,24 +18,12 @@ class App < Sinatra::Base
 
   # Content routing
   get '/new' do
-    @departments = ZendeskClient.get_departments
-    @header = "New Need"
-    @header_message = :"content/new_need_message"
-    @formdata = {}
+    initialize_data("New Need", "content/new_need_message")
     erb :"content/new", :layout => :"content/contentlayout"
   end
 
-  get '/amend-content' do
-    @departments = ZendeskClient.get_departments
-    @header = "Content Change"
-    @header_message = :"content/content_amend_message"
-    @formdata = {}
-    erb :"content/amend", :layout => :"content/contentlayout"
-  end
-
   post '/new' do
-    url = build_full_url_path(params[:url])
-    comment = url + "\n\n" + params[:add_content] + "\n\n" + params[:additional]
+    comment = params[:additional]
     subject = "New need"
     tag = "new_need"
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
@@ -42,17 +31,19 @@ class App < Sinatra::Base
     not_before = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
 
     @errors = Guard.validationsForAddContent(params)
-
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, not_before)
       redirect '/acknowledge'
     else
-      @departments = ZendeskClient.get_departments
-      @header = "New Need"
-      @header_message = :"content/new_need_message"
+      initialize_data("New Need", "content/new_need_message")
       @formdata = params
       erb :"content/new", :layout => :"content/contentlayout"
     end
+  end
+
+  get '/amend-content' do
+    initialize_data("Content Change", "content/content_amend_message")
+    erb :"content/amend", :layout => :"content/contentlayout"
   end
 
   post '/amend-content' do
@@ -74,9 +65,7 @@ class App < Sinatra::Base
       end
       redirect '/acknowledge'
     else
-      @departments = ZendeskClient.get_departments
-      @header = "Content Change"
-      @header_message = :"content/content_amend_message"
+      initialize_data("Content Change", "content/content_amend_message")
       @formdata = params
       erb :"content/amend", :layout => :"content/contentlayout"
     end
@@ -84,13 +73,9 @@ class App < Sinatra::Base
 
 #  User access routing
   get '/create-user' do
-    @departments = ZendeskClient.get_departments
-    @header = "Create New User"
-    @header_message = :"useraccess/user_create_message"
-    @formdata = {}
+    initialize_data("Create New User", "useraccess/user_create_message")
     erb :"useraccess/user", :layout => :"useraccess/userlayout"
   end
-
 
   post '/create-user' do
     subject = "Create New User"
@@ -99,7 +84,6 @@ class App < Sinatra::Base
     need_by, not_before = build_date(params)
 
     @errors = Guard.validationsForUserAccess(params)
-
     if @errors.empty?
       if params[:uploaded_data]
         create_ticket_with_uploaded_file(params, subject, tag, comment, need_by, not_before)
@@ -108,19 +92,14 @@ class App < Sinatra::Base
       end
       redirect '/acknowledge'
     else
-      @departments = ZendeskClient.get_departments
-      @header = "Create new user"
-      @header_message = :"useraccess/user_create_message"
+      initialize_data("Create New User", "useraccess/user_create_message")
       @formdata = params
       erb :"useraccess/user", :layout => :"useraccess/userlayout"
     end
   end
 
   get '/remove-user' do
-    @departments = ZendeskClient.get_departments
-    @header = "Remove user"
-    @header_message = :"useraccess/user_remove_message"
-    @formdata = {}
+    initialize_data("Remove User", "useraccess/user_remove_message")
     erb :"useraccess/userremove", :layout => :"useraccess/userlayout"
   end
 
@@ -141,19 +120,14 @@ class App < Sinatra::Base
       end
       redirect '/acknowledge'
     else
-      @departments = ZendeskClient.get_departments
-      @header = "Remove user"
-      @header_message = :"useraccess/user_remove_message"
+      initialize_data("Remove User", "useraccess/user_remove_message")
       @formdata = params
       erb :"useraccess/userremove", :layout => :"useraccess/userlayout"
     end
   end
 
   get '/reset-password' do
-    @departments = ZendeskClient.get_departments
-    @header = "Reset password"
-    @header_message = :"useraccess/user_password_reset_message"
-    @formdata = {}
+    initialize_data("Reset Password", "useraccess/user_password_reset_message")
     erb :"useraccess/resetpassword", :layout => :"useraccess/userlayout"
   end
 
@@ -168,22 +142,15 @@ class App < Sinatra::Base
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
       redirect '/acknowledge'
     else
-      @departments = ZendeskClient.get_departments
-      @header = "Reset password"
-      @header_message = :"useraccess/user_password_reset_message"
+      initialize_data("Reset Password", "useraccess/user_password_reset_message")
       @formdata = params
       erb :"useraccess/resetpassword", :layout => :"useraccess/userlayout"
     end
   end
 
-
 #  Campaigns routing
-
   get '/campaign' do
-    @departments = ZendeskClient.get_departments
-    @header = "Campaign"
-    @header_message = :"campaigns/campaign_message"
-    @formdata = {}
+    initialize_data("Campaign", "campaigns/campaign_message")
     erb :"campaigns/campaign", :layout => :"campaigns/campaignslayout"
   end
 
@@ -195,26 +162,19 @@ class App < Sinatra::Base
     params["need_by"] = need_by
 
     @errors = Guard.validationsForCampaign(params)
-
     if @errors.empty?
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, need_by, nil)
       redirect '/acknowledge'
     else
-      @departments = ZendeskClient.get_departments
-      @header = "Campaign"
-      @header_message = :"campaigns/campaign_message"
+      initialize_data("Campaign", "campaigns/campaign_message")
       @formdata = params
       erb :"campaigns/campaign", :layout => :"campaigns/campaignslayout"
     end
-
   end
 
   #Tech Issue routing
   get '/broken-link' do
-    @departments = ZendeskClient.get_departments
-    @header = "Broken link"
-    @header_message = :"tech-issues/message_broken_link"
-    @formdata = {}
+    initialize_data("Broken Link", "tech-issues/message_broken_link")
     erb :"tech-issues/broken_link", :layout => :"tech-issues/tech_issue_layout"
   end
 
@@ -230,19 +190,14 @@ class App < Sinatra::Base
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
       redirect '/acknowledge'
     else
-      @departments = ZendeskClient.get_departments
-      @header = "Broken link"
-      @header_message = :"tech-issues/message_broken_link"
+      initialize_data("Broken Link", "tech-issues/message_broken_link")
       @formdata = params
       erb :"tech-issues/broken_link", :layout => :"tech-issues/tech_issue_layout"
     end
   end
 
   get '/publish-tool' do
-    @departments = ZendeskClient.get_departments
-    @header = "Publishing tool"
-    @header_message = :"tech-issues/message_publish_tool"
-    @formdata = {}
+    initialize_data("Publishing Tool", "tech-issues/message_publish_tool")
     erb :"tech-issues/publish_tool", :layout => :"tech-issues/tech_issue_layout"
   end
 
@@ -258,14 +213,9 @@ class App < Sinatra::Base
       ZendeskClient.raise_zendesk_request(subject, tag, params[:name], params[:email], params[:department], params[:job], params[:phone], comment, nil, nil)
       redirect '/acknowledge'
     else
-      @departments = ZendeskClient.get_departments
-      @header = "Publishing tool"
-      @header_message = :"tech-issues/message_publish_tool"
+      initialize_data("Publishing Tool", "tech-issues/message_publish_tool")
       @formdata = params
       erb :"tech-issues/publish_tool", :layout => :"tech-issues/tech_issue_layout"
     end
-
   end
-
-
 end
