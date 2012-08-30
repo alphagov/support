@@ -47,7 +47,17 @@ class App < Sinatra::Base
   end
 
   post '/amend-content' do
-    url = build_full_url_path(params[:url])
+    url = build_full_url_path(params[:url_add1]) + "\n" +
+        build_full_url_path(params[:url_add2]) + "\n" +
+        build_full_url_path(params[:url_add3]) + "\n" +
+        build_full_url_path(params[:url_add3]) + "\n" +
+        build_full_url_path(params[:url_old1]) + "\n" +
+        build_full_url_path(params[:url_old2]) + "\n" +
+        build_full_url_path(params[:url_old3]) + "\n" +
+        build_full_url_path(params[:place_to_remove1]) + "\n" +
+        build_full_url_path(params[:place_to_remove2]) + "\n" +
+        build_full_url_path(params[:place_to_remove3]) + "\n" +
+
     comment = url + "\n\n" + "[old content]\n" + params[:old_content] + "\n\n" + "[new content]\n"+params[:new_content] + "\n\n" + params[:place_to_remove] + "\n\n" + params[:additional]
     subject = "Content change request"
     tag = "content_change"

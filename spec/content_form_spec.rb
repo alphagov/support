@@ -47,7 +47,7 @@ class ContentFormSpec < Test::Unit::TestCase
     ZendeskClient.expects(:raise_zendesk_request)
 
     #When
-    post '/amend-content', form_parameters
+    post '/new', form_parameters
     follow_redirect!
 
     #Then
