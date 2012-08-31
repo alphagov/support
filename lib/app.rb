@@ -49,28 +49,23 @@ class App < Sinatra::Base
   end
 
   post '/amend-content' do
+    url_add_array = [params[:url_add1], params[:url_add2], params[:url_add3]]
+    url_old_array = [params[:url_old1], params[:url_old2], params[:url_add3]]
+    url_remove_array = [params[:place_to_remove1], params[:place_to_remove2], params[:place_to_remove3]]
     url_add = url_old = url_remove = ""
-    if params[:url_add1] || params[:url_add2] || params[:url_add3]
-      url_add = "\n\n [the url(s) for add content] \n" + build_full_url_path(params[:url_add1]) + "\n" +
-          build_full_url_path(params[:url_add2]) + "\n" +
-          build_full_url_path(params[:url_add3]) + "\n"
+    url_add_array.each{|au| url_add += au.empty?? au : build_full_url_path(au) + "\n"}
+    url_old_array.each{|ou| url_old += ou.empty?? ou : build_full_url_path(ou) + "\n"}
+    url_remove_array.each{|ru| url_remove += ru.empty?? ru : build_full_url_path(ru) + "\n"}
 
-    end
+    comment = (params[:add_content].empty?? "" : "[added content]\n" + params[:add_content] + "\n\n") +
+        (url_add.empty?? "" : "[url(s) for adding content]\n" +url_add +"\n\n") +
+        (params[:old_content].empty?? "" : "[old content]\n" + params[:old_content] + "\n\n") +
+        (url_old.empty?? "" :"[url(s) for old content]\n" + url_old + "\n\n" )+
+        (params[:new_content].empty?? "" : "[new content]\n"+ params[:new_content] + "\n\n") +
+        (params[:remove_content].empty?? "" : "[remove content]\n"+ params[:remove_content] + "\n\n") +
+        (url_remove.empty?? "" : "[url(s) for removing content]\n" + url_remove + "\n\n") +
+        (params[:additional].empty?? "" : "[additional]\n" + params[:additional])
 
-    if params[:url_old1] || params[:url_old2] || params[:url_old3]
-      url_old = "\n\n [the url(s) for old content] \n" + build_full_url_path(params[:url_old1]) + "\n" +
-          build_full_url_path(params[:url_old2]) + "\n" +
-          build_full_url_path(params[:url_old3]) + "\n"
-    end
-
-    if params[:place_to_remove1] || params[:place_to_remove2] || params[:place_to_remove3]
-
-      url_remove = "\n\n [the url(s) for remove the content] \n"+ build_full_url_path(params[:place_to_remove1]) + "\n" +
-          build_full_url_path(params[:place_to_remove2]) + "\n" +
-          build_full_url_path(params[:place_to_remove3]) + "\n"
-    end
-
-    comment = "[added content]\n" + params[:add_content] + url_add +"\n\n" + "[old content]\n" + params[:old_content] + url_old + "\n\n" + "[new content]\n"+ params[:new_content] + "\n\n" + "[remove content]\n"+ params[:remove_content] + url_remove + "\n\n" + params[:additional]
     subject = "Content change request"
     tag = "content_change"
 
@@ -188,7 +183,7 @@ class App < Sinatra::Base
   post '/campaign' do
     subject = "Campaign"
     tag = "campaign"
-    comment = params[:campaign_name] + "\n\n" + params[:erg_number] + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:url]
+    comment = params[:campaign_name] + "\n\n" + params[:erg_number] + "\n\n" + params[:company] + "\n\n" + params[:description] + "\n\n" + params[:url]
     need_by = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
     params["need_by"] = need_by
 
