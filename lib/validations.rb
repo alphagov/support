@@ -111,7 +111,7 @@ private
 
   def self.checkEmailIsValid(email_fields)
     email_fields.each  do |field_name, field_value|
-      if field_value && doesFieldHaveValue(field_value) && !(field_value =~ /[\w\d]+.@[\w\d]+.\.[\w\d]+./)
+      if field_value && doesFieldHaveValue(field_value) && !(field_value =~ /[\w\d]+.*@[\w\d]+.*\.[\w\d]+.*/)
         field_name = field_name.capitalize
         @@errors << "#{field_name} is an email field. Please enter valid email like x@y.something."
       end
