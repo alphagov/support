@@ -2,6 +2,7 @@ require 'bundler'
 Bundler.require
 
 require "yaml"
+require_relative "zendesk_ticket"
 
 class ZendeskClient
 
@@ -24,20 +25,27 @@ class ZendeskClient
     departments_hash
   end
 
-  def self.raise_zendesk_request(subject, tag, name, email, dep, job, phone, comment, need_by_date, not_before_date)
-    phone = remove_space_from_phone_number(phone)
-    @client.ticket.create(
-        :subject => subject,
-        :description => "Created via Govt API",
-        :priority => "normal",
-        :requester => {"locale_id" => 1, "name" => name, "email" => email},
-        :fields => [{"id" => "21494928", "value" => dep},
-                    {"id" => "21487987", "value" => job},
-                    {"id" => "21471291", "value" => phone},
-                    {"id" => "21485833", "value" => need_by_date},
-                    {"id" => "21502036", "value" => not_before_date}],
-        :tags => [tag],
-        :comment => {:value => comment})
+  def self.raise_zendesk_request(params, from_route)
+    ticket_to_raise = ZendeskTicket.new(params, from_route)
+
+    p ticket_to_raise
+
+    if ticket_to_raise.has_attachments
+      create_ticket_with_attachment(ticket_to_raise)
+    else
+      @client.ticket.create(
+          :subject => ticket_to_raise.subject,
+          :description => "Created via Govt API",
+          :priority => "normal",
+          :requester => {"locale_id" => 1, "name" => ticket_to_raise.name, "email" => ticket_to_raise.email},
+          :fields => [{"id" => "21494928", "value" => ticket_to_raise.department},
+                      {"id" => "21487987", "value" => ticket_to_raise.job},
+                      {"id" => "21471291", "value" => ticket_to_raise.phone},
+                      {"id" => "21485833", "value" => ticket_to_raise.need_by_date},
+                      {"id" => "21502036", "value" => ticket_to_raise.not_before_date}],
+          :tags => [ticket_to_raise.tag],
+          :comment => {:value => ticket_to_raise.comment})
+    end
   end
 
   def self.upload_file(path)
@@ -45,20 +53,19 @@ class ZendeskClient
     upload.token
   end
 
-  def self.create_ticket_with_attachment(subject, tag, name, email, department, job, phone, comment, need_by_date, not_before_date, file_token)
-    phone = remove_space_from_phone_number(phone)
+  def self.create_ticket_with_attachment(ticket_to_raise)
     @client.ticket.create(
-        :subject => subject,
+        :subject => ticket_to_raise.subject,
         :description => "Created via Govt API",
         :priority => "normal",
-        :requester => {"locale_id" => 1, "name" => name, "email" => email},
-        :fields => [{"id" => "21494928", "value" => department},
-                    {"id" => "21487987", "value" => job},
-                    {"id" => "21471291", "value" => phone},
-                    {"id" => "21485833", "value" => need_by_date},
-                    {"id" => "21502036", "value" => not_before_date}],
-        :tags => [tag],
-        :comment => {:value => comment, :uploads => file_token})
+        :requester => {"locale_id" => 1, "name" => ticket_to_raise.name, "email" => ticket_to_raise.email},
+        :fields => [{"id" => "21494928", "value" => ticket_to_raise.department},
+                    {"id" => "21487987", "value" => ticket_to_raise.job},
+                    {"id" => "21471291", "value" => ticket_to_raise.phone},
+                    {"id" => "21485833", "value" => ticket_to_raise.need_by_date},
+                    {"id" => "21502036", "value" => ticket_to_raise.not_before_date}],
+        :tags => [ticket_to_raise.tag],
+        :comment => {:value => ticket_to_raise.comment, :uploads => ticket_to_raise.file_token})
   end
 
   def self.remove_space_from_phone_number(number)
