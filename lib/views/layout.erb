@@ -4,13 +4,11 @@
   <%= erb :header %>
 </head>
 <body>
-<header role="banner" class="group" id="global-header">
-  <div class="header-global group">
-    <h1><a href="http://gov.uk" title="Go to the gov.uk homepage">GOV.UK</a></h1>
-  </div>
-</header>
-
-<%=  yield %>
+<div id="wrapper" class="wrapper">
+  <section id="framework">
+    <%= yield %>
+  </section>
+</div>
 </body>
 
 
