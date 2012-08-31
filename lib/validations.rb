@@ -1,5 +1,7 @@
 class Guard
 
+  MAX_UPLOAD_FILE_SIZE_IN_BYTE = 20971520 #20MB
+
   #Content validations
   def self.validationsForNewNeed(form_data)
     @@errors = []
@@ -15,10 +17,18 @@ class Guard
     @@errors = []
     required = ["name", "email", "job", "department"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
-    self.checkOptionalDateFieldsAreComplete(form_data, [["need_by_day", "need_by_month", "need_by_year"],["not_before_day", "not_before_month", "not_before_year"]])
+    self.checkOptionalDateFieldsAreComplete(form_data, [["need_by_day", "need_by_month", "need_by_year"], ["not_before_day", "not_before_month", "not_before_year"]])
 
+    if form_data[:uploaded_data]
+        validate_upload_file(form_data[:uploaded_data])
+    end
+
+    if form_data[:upload_amend]
+      validate_upload_file(form_data[:upload_amend])
+    end
     @@errors
   end
+
 
   def self.validationsForDeleteContent(form_data)
     @@errors = []
@@ -27,7 +37,6 @@ class Guard
 
     @@errors
   end
-
 
 
   #User validations
@@ -59,7 +68,6 @@ class Guard
   end
 
 
-
   #Tech issues
   def self.validationsForBrokenLink(form_data)
     @@errors = []
@@ -82,7 +90,8 @@ class Guard
     @@errors << "Has failed to submit request.  Please ensure all the information has been entered correctly and try to submit it later."
   end
 
-private
+
+  private
 
   def self.validate(form_data, required, phone_fields, email_fields)
     self.checkRequiredFieldsHaveValues(required, form_data)
@@ -110,7 +119,7 @@ private
   end
 
   def self.checkEmailIsValid(email_fields)
-    email_fields.each  do |field_name, field_value|
+    email_fields.each do |field_name, field_value|
       if field_value && doesFieldHaveValue(field_value) && !(field_value =~ /[\w\d]+.*@[\w\d]+.*\.[\w\d]+.*/)
         field_name = field_name.capitalize
         @@errors << "#{field_name} is an email field. Please enter valid email like x@y.something."
@@ -147,5 +156,10 @@ private
     !field_value.empty?
   end
 
+  def self.validate_upload_file(upload_file)
+    if upload_file[:tempfile].size  > MAX_UPLOAD_FILE_SIZE_IN_BYTE
+      @@errors << "The attached file, #{upload_file[:filename]}, is bigger than 20MB size limitation."
+    end
+  end
 
 end
