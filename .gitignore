@@ -21,3 +21,7 @@ tmp
 .yardoc
 _yardoc
 doc/
+
+# temp ignored for avoiding problems caused by slimmer
+Gemfile
+config.ru
