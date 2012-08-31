@@ -99,6 +99,7 @@ textarea {
     color: black;
     background: transparent;
     margin-left: 5px;
+    margin-bottom: 0.2em;
 }
 
 section#author input, section#content input, section#user input {
