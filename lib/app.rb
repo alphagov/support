@@ -40,7 +40,7 @@ class App < Sinatra::Base
     @layout = "content/contentlayout"
 
     @errors = Guard.validationsForAmendContent(params)
-    on_post(params, "amend")
+    on_post(params, "amend-content")
   end
 
 #  User access routing

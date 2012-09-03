@@ -10,13 +10,11 @@ class Guard
     required = ["name", "email", "job", "department", "need_by_day", "need_by_month", "need_by_year"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["not_before_day", "not_before_month", "not_before_year"]])
-    self.validate_date_in_valid_range("need_by_day", "need_by_month", "need_by_year", form_data)
+    self.validate_date_valid_and_greater_than_today("need_by_day", "need_by_month", "need_by_year", form_data, "Content can only be added after today.")
     self.validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
 
     @@errors
   end
-
-
 
   def self.validationsForAmendContent(form_data)
     @@errors = []
@@ -24,11 +22,12 @@ class Guard
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["need_by_day", "need_by_month", "need_by_year"], ["not_before_day", "not_before_month", "not_before_year"]])
 
-    self.validate_date_in_valid_range("need_by_day", "need_by_month", "need_by_year", form_data)
+    self.validate_date_valid_and_greater_than_today("need_by_day", "need_by_month", "need_by_year", form_data, "Changes can only be made after today.")
+
     self.validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
 
     if form_data[:uploaded_data]
-        validate_upload_file(form_data[:uploaded_data])
+      validate_upload_file(form_data[:uploaded_data])
     end
 
     if form_data[:upload_amend]
@@ -62,11 +61,10 @@ class Guard
     @@errors = []
     required = ["name", "email", "job", "department", "campaign_name", "erg_number", "need_by_day", "need_by_month", "need_by_year", "description"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
-    self.validate_date_in_valid_range("need_by_day", "need_by_month", "need_by_year", form_data)
+    self.validate_date_valid_and_greater_than_today("need_by_day", "need_by_month", "need_by_year", form_data, "Campaign start date can only be after today.")
 
     @@errors
   end
-
 
   #Tech issues
   def self.validationsForBrokenLink(form_data)
@@ -120,7 +118,7 @@ class Guard
 
   def self.checkEmailIsValid(email_fields)
     email_fields.each do |field_name, field_value|
-      if field_value && doesFieldHaveValue(field_value) && !(field_value =~ /[\w\d]+.*@[\w\d]+.*\.[\w\d]+.*/)
+      if field_value && doesFieldHaveValue(field_value) && !(field_value =~ /[\w\d]+.*@[\w\d]+[.^@]*\.[\w\d]+[.^@]*/)
         field_name = field_name.capitalize
         @@errors << "#{field_name} is an email field. Please enter valid email like x@y.something."
       end
@@ -157,7 +155,7 @@ class Guard
   end
 
   def self.validate_upload_file(upload_file)
-    if upload_file[:tempfile].size  > MAX_UPLOAD_FILE_SIZE_IN_BYTE
+    if upload_file[:tempfile].size > MAX_UPLOAD_FILE_SIZE_IN_BYTE
       @@errors << "The attached file, #{upload_file[:filename]}, is bigger than 20MB size limitation."
     end
   end
@@ -167,6 +165,19 @@ class Guard
       date_to_validate = form_data[day] + "-" + form_data[month] + "-" + form_data[year]
       begin
         Date.parse(date_to_validate)
+      rescue
+        @@errors << "#{date_to_validate} is invalid. Please enter existing date."
+      end
+    end
+  end
+
+  def self.validate_date_valid_and_greater_than_today(day, month, year, form_data, message)
+    if !form_data[day].empty? && !form_data[month].empty? && !form_data[year].empty?
+      date_to_validate = form_data[day] + "-" + form_data[month] + "-" + form_data[year]
+      begin
+        if Date.parse(date_to_validate) < Date.today
+          @@errors << message
+        end
       rescue
         @@errors << "#{date_to_validate} is invalid. Please enter existing date."
       end
