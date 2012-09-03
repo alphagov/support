@@ -20,8 +20,8 @@ class App < Sinatra::Base
   end
 
   post '/new' do
-    @head = "New Need"
-    @head_message_form = "content/new_need_message"
+    @header = "New Need"
+    @header_message = :"content/new_need_message"
     @template = "content/new"
     @layout = "content/contentlayout"
 
@@ -34,8 +34,8 @@ class App < Sinatra::Base
   end
 
   post '/amend-content' do
-    @head = "Content Change"
-    @head_message_form = "content/content_amend_message"
+    @header = "Content Change"
+    @header_message = :"content/content_amend_message"
     @template = "content/amend"
     @layout = "content/contentlayout"
 
@@ -49,8 +49,8 @@ class App < Sinatra::Base
   end
 
   post '/create-user' do
-    @head = "Create New User"
-    @head_message_form = "useraccess/user_create_message"
+    @header = "Create New User"
+    @header_message = :"useraccess/user_create_message"
     @template = "useraccess/user"
     @layout = "useraccess/userlayout"
 
@@ -63,8 +63,8 @@ class App < Sinatra::Base
   end
 
   post '/remove-user' do
-    @head = "Remove User"
-    @head_message_form = "useraccess/user_remove_message"
+    @header = "Remove User"
+    @header_message = :"useraccess/user_remove_message"
     @template = "useraccess/userremove"
     @layout = "useraccess/userlayout"
 
@@ -77,8 +77,8 @@ class App < Sinatra::Base
   end
 
   post '/reset-password' do
-    @head = "Reset Password"
-    @head_message_form = "useraccess/user_password_reset_message"
+    @header = "Reset Password"
+    @header_message = :"useraccess/user_password_reset_message"
     @template = "useraccess/resetpassword"
     @layout = "useraccess/userlayout"
 
@@ -92,8 +92,8 @@ class App < Sinatra::Base
   end
 
   post '/campaign' do
-    @head = "Reset Password"
-    @head_message_form = "campaigns/campaign_message"
+    @header = "Reset Password"
+    @header_message = :"campaigns/campaign_message"
     @template = "campaigns/campaign"
     @layout = "campaigns/campaignslayout"
 
@@ -107,8 +107,8 @@ class App < Sinatra::Base
   end
 
   post '/broken-link' do
-    @head = "Broken Link"
-    @head_message_form = "tech-issues/message_broken_link"
+    @header = "Broken Link"
+    @header_message = :"tech-issues/message_broken_link"
     @template = "tech-issues/broken_link"
     @layout = "tech-issues/tech_issue_layout"
 
@@ -121,8 +121,8 @@ class App < Sinatra::Base
   end
 
   post '/publish-tool' do
-    @head = "Publishing Tool"
-    @head_message_form = "tech-issues/message_publish_tool"
+    @header = "Publishing Tool"
+    @header_message = :"tech-issues/message_publish_tool"
     @template = "tech-issues/publish_tool"
     @layout = "tech-issues/tech_issue_layout"
 
