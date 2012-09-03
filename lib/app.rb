@@ -107,6 +107,7 @@ class App < Sinatra::Base
   end
 
   post '/broken-link' do
+    params[:user_agent] = @request.user_agent
     @header = "Broken Link"
     @header_message = :"tech-issues/message_broken_link"
     @template = "tech-issues/broken_link"
@@ -121,6 +122,7 @@ class App < Sinatra::Base
   end
 
   post '/publish-tool' do
+    params[:user_agent] = @request.user_agent
     @header = "Publishing Tool"
     @header_message = :"tech-issues/message_publish_tool"
     @template = "tech-issues/publish_tool"

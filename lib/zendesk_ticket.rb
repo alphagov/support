@@ -10,8 +10,8 @@ class ZendeskTicket
                   "remove-user" => [:user_name, :user_email, :additional],
                   "reset-password" => [:user_name, :user_email, :additional],
                   "campaign" => [:campaign_name, :erg_number, :company, :description, :url, :additional],
-                  "broken-link" => [:url, :additional],
-                  "publish-tool" => [:username, :url, :additional]
+                  "broken-link" => [:url, :user_agent, :additional],
+                  "publish-tool" => [:username, :url, :user_agent, :additional]
   }
 
   @@in_subject = {"new" => "New Need",
