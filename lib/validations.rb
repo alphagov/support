@@ -1,3 +1,5 @@
+require "date"
+
 class Guard
 
   MAX_UPLOAD_FILE_SIZE_IN_BYTE = 20971520 #20MB
@@ -8,8 +10,21 @@ class Guard
     required = ["name", "email", "job", "department", "need_by_day", "need_by_month", "need_by_year"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["not_before_day", "not_before_month", "not_before_year"]])
+    self.validate_date_in_valid_range("need_by_day", "need_by_month", "need_by_year", form_data)
+    self.validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
 
     @@errors
+  end
+
+  def self.validate_date_in_valid_range(day, month, year, form_data)
+    if !form_data[day].empty? && !form_data[month].empty? && !form_data[year].empty?
+      date_to_validate = form_data[day] + "-" + form_data[month] + "-" + form_data[year]
+      begin
+        Date.parse(date_to_validate)
+      rescue
+        @@errors << "#{date_to_validate} is invalid. Please enter existing date."
+      end
+    end
   end
 
 
