@@ -109,7 +109,7 @@ class Guard
 
   def self.checkRequiredFieldsHaveValues(required, form_data)
     required.each { |field|
-      if form_data[field] && form_data[field].empty?
+      if form_data[field] && form_data[field].strip.empty?
         field = field.capitalize.gsub(/_/, " ")
         @@errors << "#{field} is required for a valid ticket. Please enter some value."
       end
@@ -160,7 +160,7 @@ class Guard
   end
 
   def self.doesFieldHaveValue(field_value)
-    !field_value.empty?
+    !field_value.strip.empty?
   end
 
   def self.validate_upload_file(upload_file)
