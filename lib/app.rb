@@ -3,10 +3,8 @@ Bundler.require
 
 require_relative "zendesk_client"
 require_relative "validations"
-require_relative "helpers"
 
 class App < Sinatra::Base
-
 
   get '/' do
     erb :landing
@@ -18,163 +16,144 @@ class App < Sinatra::Base
 
   # Content routing
   get '/new' do
-    load_page("New Need", "content/new_need_message", "content/new", "content/contentlayout", params)
+    on_get("New Need", "content/new_need_message", "content/new", "content/contentlayout")
   end
 
   post '/new' do
-    @errors = Guard.validationsForNewNeed(params)
+    @head = "New Need"
+    @head_message_form = "content/new_need_message"
+    @template = "content/new"
+    @layout = "content/contentlayout"
 
-    if @errors.empty?
-      ticket = ZendeskClient.raise_zendesk_request(params, "new")
-      if ticket
-        redirect '/acknowledge'
-      else
-        @errors = Guard.fail_to_create_ticket
-        load_page("New Need", "content/new_need_message", "content/new", "content/contentlayout", params)
-      end
-    else
-      load_page("New Need", "content/new_need_message", "content/new", "content/contentlayout", params)
-    end
+    @errors = Guard.validationsForNewNeed(params)
+    on_post(params, "new")
   end
 
   get '/amend-content' do
-    load_page("Content Change", "content/content_amend_message", "content/amend", "content/contentlayout", params)
+    on_get("Content Change", "content/content_amend_message", "content/amend", "content/contentlayout")
   end
 
   post '/amend-content' do
-    @errors = Guard.validationsForAmendContent(params)
+    @head = "Content Change"
+    @head_message_form = "content/content_amend_message"
+    @template = "content/amend"
+    @layout = "content/contentlayout"
 
-    if @errors.empty?
-      ticket = ZendeskClient::raise_zendesk_request(params, "amend-content")
-      if ticket
-        redirect '/acknowledge'
-      else
-        @errors = Guard.fail_to_create_ticket
-        load_page("Content Change", "content/content_amend_message", "content/amend", "content/contentlayout", params)
-      end
-    else
-      load_page("Content Change", "content/content_amend_message", "content/amend", "content/contentlayout", params)
-    end
+    @errors = Guard.validationsForAmendContent(params)
+    on_post(params, "amend")
   end
 
 #  User access routing
   get '/create-user' do
-    load_page("Create New User", "useraccess/user_create_message", "useraccess/user", "useraccess/userlayout", params)
+    on_get("Create New User", "useraccess/user_create_message", "useraccess/user", "useraccess/userlayout")
   end
 
   post '/create-user' do
-    @errors = Guard.validationsForUserAccess(params)
+    @head = "Create New User"
+    @head_message_form = "useraccess/user_create_message"
+    @template = "useraccess/user"
+    @layout = "useraccess/userlayout"
 
-    if @errors.empty?
-      ticket= ZendeskClient::raise_zendesk_request(params, "create-user")
-      if ticket
-        redirect '/acknowledge'
-      else
-        @errors = Guard.fail_to_create_ticket
-        load_page("Create New User", "useraccess/user_create_message", "useraccess/user", "useraccess/userlayout", params)
-      end
-    else
-      load_page("Create New User", "useraccess/user_create_message", "useraccess/user", "useraccess/userlayout", params)
-    end
+    @errors = Guard.validationsForUserAccess(params)
+    on_post(params, "create-user")
   end
 
   get '/remove-user' do
-    load_page("Remove User", "useraccess/user_remove_message", "useraccess/userremove", "useraccess/userlayout", params)
+    on_get("Remove User", "useraccess/user_remove_message", "useraccess/userremove", "useraccess/userlayout")
   end
 
   post '/remove-user' do
-    @errors = Guard.validationsForDeleteUser(params)
+    @head = "Remove User"
+    @head_message_form = "useraccess/user_remove_message"
+    @template = "useraccess/userremove"
+    @layout = "useraccess/userlayout"
 
-    if @errors.empty?
-        ticket = ZendeskClient::raise_zendesk_request(params, "remove-user")
-      if ticket
-        redirect '/acknowledge'
-      else
-        @errors = Guard.fail_to_create_ticket
-        load_page("Remove User", "useraccess/user_remove_message", "useraccess/userremove", "useraccess/userlayout", params)
-      end
-    else
-      load_page("Remove User", "useraccess/user_remove_message", "useraccess/userremove", "useraccess/userlayout", params)
-    end
+    @errors = Guard.validationsForDeleteUser(params)
+    on_post(params, "remove-user")
   end
 
   get '/reset-password' do
-    load_page("Reset Password", "useraccess/user_password_reset_message", "useraccess/resetpassword", "useraccess/userlayout", params)
+    on_get("Reset Password", "useraccess/user_password_reset_message", "useraccess/resetpassword", "useraccess/userlayout")
   end
 
   post '/reset-password' do
-    @errors = Guard.validationsForUserAccess(params)
+    @head = "Reset Password"
+    @head_message_form = "useraccess/user_password_reset_message"
+    @template = "useraccess/resetpassword"
+    @layout = "useraccess/userlayout"
 
-    if @errors.empty?
-      ticket = ZendeskClient.raise_zendesk_request(params, "reset-password")
-      if ticket
-        redirect '/acknowledge'
-      else
-        load_page("Reset Password", "useraccess/user_password_reset_message", "useraccess/resetpassword", "useraccess/userlayout", params)
-      end
-    else
-      load_page("Reset Password", "useraccess/user_password_reset_message", "useraccess/resetpassword", "useraccess/userlayout", params)
-    end
+    @errors = Guard.validationsForUserAccess(params)
+    on_post(params, "reset-password")
   end
 
 #  Campaigns routing
   get '/campaign' do
-    load_page("Campaign", "campaigns/campaign_message", "campaigns/campaign", "campaigns/campaignslayout", params)
+    on_get("Campaign", "campaigns/campaign_message", "campaigns/campaign", "campaigns/campaignslayout")
   end
 
   post '/campaign' do
-    @errors = Guard.validationsForCampaign(params)
+    @head = "Reset Password"
+    @head_message_form = "campaigns/campaign_message"
+    @template = "campaigns/campaign"
+    @layout = "campaigns/campaignslayout"
 
-    if @errors.empty?
-      ticket = ZendeskClient.raise_zendesk_request(params, "campaign")
-      if ticket
-        redirect '/acknowledge'
-      else
-        @errors = Guard.fail_to_create_ticket
-        load_page("Campaign", "campaigns/campaign_message", "campaigns/campaign", "campaigns/campaignslayout", params)
-      end
-    else
-      load_page("Campaign", "campaigns/campaign_message", "campaigns/campaign", "campaigns/campaignslayout", params)
-    end
+    @errors = Guard.validationsForCampaign(params)
+    on_post(params, "campaign")
   end
 
   #Tech Issue routing
   get '/broken-link' do
-    load_page("Broken Link", "tech-issues/message_broken_link", "tech-issues/broken_link", "tech-issues/tech_issue_layout", params)
+    on_get("Broken Link", "tech-issues/message_broken_link", "tech-issues/broken_link", "tech-issues/tech_issue_layout")
   end
 
   post '/broken-link' do
-    @errors = Guard.validationsForBrokenLink(params)
+    @head = "Broken Link"
+    @head_message_form = "tech-issues/message_broken_link"
+    @template = "tech-issues/broken_link"
+    @layout = "tech-issues/tech_issue_layout"
 
-    if @errors.empty?
-      ticket = ZendeskClient.raise_zendesk_request(params, "broken-link")
-      if ticket
-        redirect '/acknowledge'
-      else
-        load_page("Broken Link", "tech-issues/message_broken_link", "tech-issues/broken_link", "tech-issues/tech_issue_layout", params)
-      end
-    else
-      load_page("Broken Link", "tech-issues/message_broken_link", "tech-issues/broken_link", "tech-issues/tech_issue_layout", params)
-    end
+    @errors = Guard.validationsForBrokenLink(params)
+    on_post(params, "broken-link")
   end
 
   get '/publish-tool' do
-    load_page("Publishing Tool", "tech-issues/message_publish_tool", "tech-issues/publish_tool", "tech-issues/tech_issue_layout", params)
+    on_get("Publishing Tool", "tech-issues/message_publish_tool", "tech-issues/publish_tool", "tech-issues/tech_issue_layout")
   end
 
   post '/publish-tool' do
+    @head = "Publishing Tool"
+    @head_message_form = "tech-issues/message_publish_tool"
+    @template = "tech-issues/publish_tool"
+    @layout = "tech-issues/tech_issue_layout"
+
     @errors = Guard.validationsForPublishTool(params)
+    on_post(params, "publish-tool")
+  end
+
+  def on_get(head, head_message_form, template, layout)
+    @departments = ZendeskClient.get_departments
+    @header = head
+    @header_message = :"#{head_message_form}"
+    @formdata = {}
+
+    erb :"#{template}", :layout => :"#{layout}"
+  end
+
+  def on_post(params, route)
+    @departments = ZendeskClient.get_departments
+    @formdata = params
 
     if @errors.empty?
-      ticket = ZendeskClient.raise_zendesk_request(params, "publish-tool")
+      ticket = ZendeskClient.raise_zendesk_request(params, route)
       if ticket
         redirect '/acknowledge'
       else
         @errors = Guard.fail_to_create_ticket
-        load_page("Publishing Tool", "tech-issues/message_publish_tool", "tech-issues/publish_tool", "tech-issues/tech_issue_layout", params)
+        erb :"#{@template}", :layout => :"#{@layout}"
       end
     else
-      load_page("Publishing Tool", "tech-issues/message_publish_tool", "tech-issues/publish_tool", "tech-issues/tech_issue_layout", params)
+      erb :"#{@template}", :layout => :"#{@layout}"
     end
   end
+
 end

@@ -16,16 +16,6 @@ class Guard
     @@errors
   end
 
-  def self.validate_date_in_valid_range(day, month, year, form_data)
-    if !form_data[day].empty? && !form_data[month].empty? && !form_data[year].empty?
-      date_to_validate = form_data[day] + "-" + form_data[month] + "-" + form_data[year]
-      begin
-        Date.parse(date_to_validate)
-      rescue
-        @@errors << "#{date_to_validate} is invalid. Please enter existing date."
-      end
-    end
-  end
 
 
   def self.validationsForAmendContent(form_data)
@@ -33,6 +23,9 @@ class Guard
     required = ["name", "email", "job", "department"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["need_by_day", "need_by_month", "need_by_year"], ["not_before_day", "not_before_month", "not_before_year"]])
+
+    self.validate_date_in_valid_range("need_by_day", "need_by_month", "need_by_year", form_data)
+    self.validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
 
     if form_data[:uploaded_data]
         validate_upload_file(form_data[:uploaded_data])
@@ -43,16 +36,6 @@ class Guard
     end
     @@errors
   end
-
-
-  def self.validationsForDeleteContent(form_data)
-    @@errors = []
-    required = ["name", "email", "job", "department", "url", "need_by_day", "need_by_month", "need_by_year"]
-    validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
-
-    @@errors
-  end
-
 
   #User validations
   def self.validationsForUserAccess(form_data)
@@ -68,6 +51,7 @@ class Guard
     required = ["name", "email", "job", "department", "user_name", "user_email"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["not_before_day", "not_before_month", "not_before_year"]])
+    self.validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
 
     @@errors
   end
@@ -78,6 +62,7 @@ class Guard
     @@errors = []
     required = ["name", "email", "job", "department", "campaign_name", "erg_number", "need_by_day", "need_by_month", "need_by_year", "description"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
+    self.validate_date_in_valid_range("need_by_day", "need_by_month", "need_by_year", form_data)
 
     @@errors
   end
@@ -177,4 +162,14 @@ class Guard
     end
   end
 
+  def self.validate_date_in_valid_range(day, month, year, form_data)
+    if !form_data[day].empty? && !form_data[month].empty? && !form_data[year].empty?
+      date_to_validate = form_data[day] + "-" + form_data[month] + "-" + form_data[year]
+      begin
+        Date.parse(date_to_validate)
+      rescue
+        @@errors << "#{date_to_validate} is invalid. Please enter existing date."
+      end
+    end
+  end
 end
