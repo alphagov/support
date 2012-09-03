@@ -23,5 +23,6 @@ _yardoc
 doc/
 
 # temp ignored for avoiding problems caused by slimmer
-# Gemfile
+Gemfile
+config.ru
 
