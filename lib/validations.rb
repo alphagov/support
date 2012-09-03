@@ -10,8 +10,12 @@ class Guard
     required = ["name", "email", "job", "department", "need_by_day", "need_by_month", "need_by_year"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["not_before_day", "not_before_month", "not_before_year"]])
-    self.validate_date_valid_and_greater_than_today("need_by_day", "need_by_month", "need_by_year", form_data, "Content can only be added after today.")
-    self.validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
+
+    need_by = validate_date_in_valid_range("need_by_day", "need_by_month", "need_by_year", form_data)
+    not_before = validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
+
+    self.validate_date_is_equal_or_greater_than_today(need_by, "Content can only be added after today.")
+    self.validate_not_before_date_is_equal_or_greater_than_need_by(not_before, need_by, "Not before date should be the same or later than the date which content is required to be added on.")
 
     @@errors
   end
@@ -22,9 +26,11 @@ class Guard
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["need_by_day", "need_by_month", "need_by_year"], ["not_before_day", "not_before_month", "not_before_year"]])
 
-    self.validate_date_valid_and_greater_than_today("need_by_day", "need_by_month", "need_by_year", form_data, "Changes can only be made after today.")
+    need_by = validate_date_in_valid_range("need_by_day", "need_by_month", "need_by_year", form_data)
+    not_before = validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
 
-    self.validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
+    self.validate_date_is_equal_or_greater_than_today(need_by, "Changes can only be made after today.")
+    self.validate_not_before_date_is_equal_or_greater_than_need_by(not_before, need_by, "Not before date should be the same or later than the date which the changes are required to be made on.")
 
     if form_data[:uploaded_data]
       validate_upload_file(form_data[:uploaded_data])
@@ -50,7 +56,8 @@ class Guard
     required = ["name", "email", "job", "department", "user_name", "user_email"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["not_before_day", "not_before_month", "not_before_year"]])
-    self.validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
+    not_before = validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
+    self.validate_date_is_equal_or_greater_than_today(not_before, "Not before date should be the same or later than today.")
 
     @@errors
   end
@@ -61,7 +68,9 @@ class Guard
     @@errors = []
     required = ["name", "email", "job", "department", "campaign_name", "erg_number", "need_by_day", "need_by_month", "need_by_year", "description"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
-    self.validate_date_valid_and_greater_than_today("need_by_day", "need_by_month", "need_by_year", form_data, "Campaign start date can only be after today.")
+
+    need_by = validate_date_in_valid_range("need_by_day", "need_by_month", "need_by_year", form_data)
+    self.validate_date_is_equal_or_greater_than_today(need_by, "Campaign start date can only be after today.")
 
     @@errors
   end
@@ -167,20 +176,20 @@ class Guard
         Date.parse(date_to_validate)
       rescue
         @@errors << "#{date_to_validate} is invalid. Please enter existing date."
+        return nil
       end
     end
   end
 
-  def self.validate_date_valid_and_greater_than_today(day, month, year, form_data, message)
-    if !form_data[day].empty? && !form_data[month].empty? && !form_data[year].empty?
-      date_to_validate = form_data[day] + "-" + form_data[month] + "-" + form_data[year]
-      begin
-        if Date.parse(date_to_validate) < Date.today
-          @@errors << message
-        end
-      rescue
-        @@errors << "#{date_to_validate} is invalid. Please enter existing date."
-      end
+  def self.validate_date_is_equal_or_greater_than_today(date, message)
+    if date && date < Date.today
+      @@errors << message
+    end
+  end
+
+  def self.validate_not_before_date_is_equal_or_greater_than_need_by(not_before, need_by, message)
+    if not_before && need_by && not_before < need_by
+      @@errors << message
     end
   end
 end
