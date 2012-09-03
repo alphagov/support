@@ -28,8 +28,6 @@ class ZendeskClient
   def self.raise_zendesk_request(params, from_route)
     ticket_to_raise = ZendeskTicket.new(params, from_route)
 
-    p ticket_to_raise
-
     if ticket_to_raise.has_attachments
       create_ticket_with_attachment(ticket_to_raise)
     else

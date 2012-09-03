@@ -4,7 +4,7 @@ gem "sinatra"
 gem "zendesk_api"
 gem "rake"
 gem "unicorn"
-#gem 'slimmer', '1.2.4'
+gem 'slimmer', '1.2.4'
 
 
 group :test do
