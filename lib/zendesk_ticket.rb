@@ -85,19 +85,19 @@ class ZendeskTicket
       when "publish-tool" then
         format_comment_for_tech_issues(from_route, params)
       else
-        @@in_comments[from_route].map { |comment_param| params[comment_param] }.join("\n\n")
+        @@in_comments[from_route].map { |comment_param| "[" + comment_param.to_s.capitalize + "]\n"  + params[comment_param] }.join("\n\n")
     end
   end
 
   def format_comment_for_tech_issues(from_route, params)
     all_comments = @@in_comments[from_route].map do |comment_param|
-                                                  p "THE CPARSM #{comment_param.class}"
-                                                  p "url" === comment_param
+                                                  comment = "[" + comment_param.to_s.capitalize + "]\n"
                                                   if :url == comment_param
-                                                    build_full_url_path(params[:url])
+                                                    comment += build_full_url_path(params[:url])
                                                   else
-                                                    params[comment_param]
+                                                    comment += params[comment_param]
                                                   end
+                                                  comment
                                                 end
     all_comments.join("\n\n")
   end
@@ -147,6 +147,7 @@ class ZendeskTicket
       tempfile = params[:uploaded_data][:tempfile]
       filename = params[:uploaded_data][:filename]
       @file_token  << upload_file_to_create_file_token(tempfile, filename)
+
     end
 
     if "amend-content" == from_route
