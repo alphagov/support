@@ -1,10 +1,6 @@
 <section id="content">
-  <header class="section-header">Content Details</header>
+  <header class="section-header">New need details</header>
 
-  <%= erb :date, :locals => {:title => "When should this content be added?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]}%>
-
-  <%= erb :date, :locals => {:title => "Not to be added before (if required)", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]}%>
-
-  <label for="comments">Additional Comments</label>
+  <label for="comments">Additional comments</label>
   <textarea id="comments" rows="10" cols="50" name="additional"><%=@formdata[:additional]%></textarea>
 </section>
