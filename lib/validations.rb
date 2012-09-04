@@ -45,7 +45,11 @@ class Guard
   #User validations
   def self.validationsForUserAccess(form_data)
     @@errors = []
-    required = ["name", "email", "job", "department", "user_name", "user_email"]
+    if form_data[:uploaded_data]
+      required = ["name", "email", "job", "department"]
+    else
+      required = ["name", "email", "job", "department", "user_name", "user_email"]
+    end
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
 
     @@errors
@@ -53,9 +57,16 @@ class Guard
 
   def self.validationsForDeleteUser(form_data)
     @@errors = []
-    required = ["name", "email", "job", "department", "user_name", "user_email"]
+
+    if form_data[:uploaded_data]
+      required = ["name", "email", "job", "department"]
+    else
+      required = ["name", "email", "job", "department", "user_name", "user_email"]
+    end
+
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["not_before_day", "not_before_month", "not_before_year"]])
+
     not_before = validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
     self.validate_date_is_equal_or_greater_than_today(not_before, "Not before date should be the same or later than today.")
 
