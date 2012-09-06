@@ -11,17 +11,22 @@ class ZendeskClient
     [config_details[environment]["username"].to_s, config_details[environment]["password"].to_s]
   end
 
-  @client = ZendeskAPI::Client.new { |config|
-    file = YAML::load_file(File.open('./config/zendesk.yml'))
-    login_details = self.get_username_password(file)
-    config.url = "https://govuk.zendesk.com/api/v2/"
-    config.username = login_details[0]
-    config.password = login_details[1]
-  }
+  def self.zendesk_client
+    @client ||= ZendeskAPI::Client.new { |config|
+      file = YAML::load_file(File.open('./config/zendesk.yml'))
+      login_details = self.get_username_password(file)
+      config.url = "https://govuk.zendesk.com/api/v2/"
+      config.username = login_details[0]
+      config.password = login_details[1]
+    }
+
+
+    @client
+  end
 
   def self.get_departments
     departments_hash = {"Select Department" => ""}
-    @client.ticket_fields.find(:id => '21494928').custom_field_options.each { |tf| departments_hash[tf.name] = tf.value }
+    self.zendesk_client.ticket_fields.find(:id => '21494928').custom_field_options.each { |tf| departments_hash[tf.name] = tf.value }
     departments_hash
   end
 
@@ -31,7 +36,7 @@ class ZendeskClient
     if ticket_to_raise.has_attachments
       create_ticket_with_attachment(ticket_to_raise)
     else
-      @client.ticket.create(
+      self.zendesk_client.ticket.create(
           :subject => ticket_to_raise.subject,
           :description => "Created via Govt API",
           :priority => "normal",
@@ -47,12 +52,12 @@ class ZendeskClient
   end
 
   def self.upload_file(path)
-    upload = ZendeskAPI::Upload.create(@client, :file => File.open(path))
+    upload = ZendeskAPI::Upload.create(self.zendesk_client, :file => File.open(path))
     upload.token
   end
 
   def self.create_ticket_with_attachment(ticket_to_raise)
-    @client.ticket.create(
+    self.zendesk_client.ticket.create(
         :subject => ticket_to_raise.subject,
         :description => "Created via Govt API",
         :priority => "normal",

@@ -11,8 +11,7 @@
   <input id="file-input" name="uploaded_data" type="file"/>
 
   <%= erb :date, :locals => {:title => "Not before", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]}%>
-  <br/>
-
+  <div style="clear:both;"></div>
   <label for="comments">Additional comments</label>
   <textarea id="comments" rows="10" cols="50" name="additional"><%=@formdata[:additional]%></textarea>
 </section>
