@@ -1,26 +1,35 @@
 <section id="author">
   <header class="section-header">Your details</header>
-  <label for="name">Name</label>
-  <input id="name" name="name" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:name]} %> >
+  <fieldset>
+    <div>
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:name]} %> >
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required <%= erb :assignvalue, :locals => {:param => @formdata[:email]} %> >
+    </div>
+    <div>
+      <label for="job">Job title</label>
+      <input id="job" name="job" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:job]} %> >
+    </div>
+    <div>
+      <label for="phone">Phone number</label>
+      <input id="phone" name="phone" pattern="([\d\s]*)" type="tel"
+             <%= erb :assignvalue, :locals => {:param => @formdata[:phone]} %>>
+    </div>
+    <div>
+      <label for="department_list">Department</label>
+      <select id="department_list" name="department" required>
+        <% @departments.each do |key, value| %>
+          <% if value == @formdata["department"] %>
+            <option selected="selected" value="<%= value %>"><%= key %> </option>
+          <% else %>
+            <option value="<%= value %>"><%= key %> </option>
+          <% end %>
+        <% end %>
+      </select>
+    </div>
+  </fieldset>
 
-  <label for="email">Email</label>
-  <input id="email" name="email" type="email" required <%= erb :assignvalue, :locals => {:param => @formdata[:email]} %> >
-
-  <label for="job">Job title</label>
-  <input id="job" name="job" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:job]} %> >
-
-  <label for="phone">Phone number</label>
-  <input id="phone" name="phone" pattern="([\d\s]*)" type="tel"
-         <%= erb :assignvalue, :locals => {:param => @formdata[:phone]} %>>
-
-  <label for="department_list">Department</label>
-  <select id="department_list" name="department" required>
-    <% @departments.each do |key, value| %>
-      <% if value == @formdata["department"] %>
-        <option selected="selected" value="<%= value %>"><%= key %> </option>
-      <% else %>
-        <option value="<%= value %>"><%= key %> </option>
-      <% end %>
-    <% end %>
-  </select>
 </section>
