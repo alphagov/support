@@ -7,15 +7,8 @@ class Guard
   #Content validations
   def self.validationsForNewNeed(form_data)
     @@errors = []
-    required = ["name", "email", "job", "department", "need_by_day", "need_by_month", "need_by_year"]
+    required = ["name", "email", "job", "department"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
-    self.checkOptionalDateFieldsAreComplete(form_data, [["not_before_day", "not_before_month", "not_before_year"]])
-
-    need_by = validate_date_in_valid_range("need_by_day", "need_by_month", "need_by_year", form_data)
-    not_before = validate_date_in_valid_range("not_before_day", "not_before_month", "not_before_year", form_data)
-
-    self.validate_date_is_equal_or_greater_than_today(need_by, "Content can only be added after today.")
-    self.validate_not_before_date_is_equal_or_greater_than_need_by(not_before, need_by, "Not before date should be the same or later than the date which content is required to be added on.")
 
     @@errors
   end
