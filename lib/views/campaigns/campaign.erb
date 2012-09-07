@@ -8,7 +8,7 @@
     <input id="erg_number" name="erg_number" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:erg_number]} %>>
   </div>
 
-  <%= erb :date, :locals => {:title => "Start Date", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]} %>
+  <%= erb :date, :locals => {:title => "Start Date", :label => 'start', :day => @formdata[:start_day], :month => @formdata[:start_month], :year => @formdata[:start_year]} %>
 
   <div class="comments">
     <label for="description">Campaign description</label>
