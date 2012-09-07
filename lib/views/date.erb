@@ -2,7 +2,9 @@
   <fieldset>
     <legend
       <% if title.length > 10 %>
-        class = "long"
+        class = "long date"
+      <% else %>
+        class = "date"
       <% end %>
       >
       <%= title %>
