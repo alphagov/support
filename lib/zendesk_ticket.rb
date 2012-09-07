@@ -5,7 +5,7 @@ class ZendeskTicket
 
   attr_reader :name, :email, :department, :job, :phone, :comment, :subject, :tag, :need_by_date, :not_before_date, :file_token
   @@in_comments = {"new" => [:additional],
-                  "amend-content" => [:url_add1, :url_add2, :url_add3, :url_old1, :url_old2, :url_old3, :place_to_remove1, :place_to_remove2, :place_to_remove3],
+                  "amend-content" => [:url_add1, :url_old1, :place_to_remove1],
                   "create-user" => [:user_name, :user_email, :additional],
                   "remove-user" => [:user_name, :user_email, :additional],
                   "reset-password" => [:user_name, :user_email, :additional],
@@ -103,9 +103,9 @@ class ZendeskTicket
   end
 
   def format_comment_for_amend_content(params)
-    url_add_array = [params[:url_add1], params[:url_add2], params[:url_add3]]
-    url_old_array = [params[:url_old1], params[:url_old2], params[:url_add3]]
-    url_remove_array = [params[:place_to_remove1], params[:place_to_remove2], params[:place_to_remove3]]
+    url_add_array = [params[:url_add1]]
+    url_old_array = [params[:url_old1]]
+    url_remove_array = [params[:place_to_remove1]]
     url_add = url_old = url_remove = ""
     url_add_array.each{|au| url_add += au.empty?? au : build_full_url_path(au) + "\n"}
     url_old_array.each{|ou| url_old += ou.empty?? ou : build_full_url_path(ou) + "\n"}
@@ -143,7 +143,7 @@ class ZendeskTicket
 
   def check_for_attachments(from_route, params)
     @file_token = []
-    if params[:uploaded_data]
+    if doesFieldHaveValue(params[:uploaded_data])
       tempfile = params[:uploaded_data][:tempfile]
       filename = params[:uploaded_data][:filename]
       @file_token  << upload_file_to_create_file_token(tempfile, filename)
@@ -151,7 +151,7 @@ class ZendeskTicket
     end
 
     if "amend-content" == from_route
-      if params[:upload_amend]
+      if doesFieldHaveValue(params[:upload_amend])
         tempfile = params[:upload_amend][:tempfile]
         filename = params[:upload_amend][:filename]
         @file_token << upload_file_to_create_file_token(tempfile, filename)
@@ -159,6 +159,9 @@ class ZendeskTicket
     end
   end
 
+  def doesFieldHaveValue(field_value)
+    field_value && !field_value.strip.empty?
+  end
 
 end
 
