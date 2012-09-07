@@ -1,6 +1,6 @@
 <section id="content">
   <header class="section-header">Publishing Tool</header>
-  <label for="target_url">URL on </label><label class="url">http://gov.uk/</label>
+  <label for="target_url" class="url_label">URL on </label><label class="url">http://gov.uk/</label>
   <input id="target_url" name="url" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %> >
 
   <label for="username">Username</label>

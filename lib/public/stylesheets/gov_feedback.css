@@ -1,4 +1,3 @@
-
 /* Main div */
 #wrapper {
     background-color: #F2F2F2;
@@ -56,7 +55,6 @@ section#errors {
     position: relative;
 }
 
-
 /* For menu items */
 .menu ul li a {
     border-radius: 2px;
@@ -102,10 +100,13 @@ label, legend.date {
     width: 20%;
 }
 
-
 label.info {
     font-size: 1em;
     color: #a9a9a9;
+}
+
+label.url_label {
+    width: auto;
 }
 
 legend.top-legend {
@@ -113,6 +114,11 @@ legend.top-legend {
     width: auto;
     font-size: 1.2em;
     margin-bottom: 10px;
+}
+
+legend.amend {
+    width: 100%;
+    color: #2E3191;
 }
 
 fieldset {
@@ -137,9 +143,9 @@ section#author input, section#content input, section#user input {
     font-size: 1.1875em;
     color: black;
     background: transparent;
-    display:block;
-    margin-bottom:10px;
-    margin-top:5px;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 5px;
     width: 15em;
     padding: 0em;
 }
@@ -159,7 +165,7 @@ div.upload {
     border-bottom: 1px solid #BBB;
 }
 
-div.upload label, div.comments label{
+div.upload label, div.comments label {
     width: 100%;
 }
 
@@ -222,7 +228,6 @@ header.content-header hgroup h1 {
     background-color: #F2F2F2;
 }
 
-
 /*landing*/
 
 .landing {
@@ -239,10 +244,12 @@ header.content-header hgroup h1 {
 body {
     background-color: #f2f2f2;
 }
+
 nav.header-context {
     display: none;
     visibility: hidden;
 }
+
 .search-help {
     display: none;
     visibility: hidden;
