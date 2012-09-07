@@ -92,7 +92,7 @@ h2 {
 }
 
 /* Form styling */
-label {
+label, legend.date {
     font-size: 1.1875em;
     color: black;
     background: transparent;
@@ -101,6 +101,7 @@ label {
     padding-left: 5px;
     width: 20%;
 }
+
 
 label.info {
     font-size: 1em;
