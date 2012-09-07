@@ -61,10 +61,13 @@ section#errors {
 .menu ul li a {
     border-radius: 2px;
     display: block;
-    line-height: 2em;
     padding: 4px 2px 2px 6px;
     text-decoration: none;
     color: black;
+}
+
+li a:hover {
+    background-color: #EEE;
 }
 
 .menu ul {
