@@ -92,6 +92,7 @@ label{
     float: left;
     margin-right: 15px;
     padding-left: 5px;
+    width: 20%;
 }
 
 textarea {
@@ -100,6 +101,7 @@ textarea {
     background: transparent;
     margin-left: 5px;
     margin-bottom: 0.2em;
+    width: 90%;
 }
 
 section#author input, section#content input, section#user input {
@@ -118,17 +120,36 @@ input[type="text"], input[type="email"], input[type="tel"] {
     border: 1px solid #BBB;
 }
 
-#file-input, #file-added{
+#file-input, #file-added {
     min-width: 350px;
     margin-left: 0.3em;
 }
+
+div.upload {
+    padding-bottom: 0.3em;
+    border-bottom: 1px solid #BBB;
+}
+
+div.upload label{
+    width: 100%;
+}
+
+div.comments label {
+    width: 100%;
+}
+
+label.long {
+    width: auto;
+}
+
 
 select {
     line-height: 1.5em;
     font-size: 1.1875em;
     color: black;
     background: transparent;
-    margin: 0.3em;
+    margin-right: 0.3em;
+    margin-bottom: 0.3em;
 }
 
 #submit {
@@ -182,10 +203,6 @@ header.content-header hgroup h1 {
 .landing {
     font-size: 2em;
     line-height: 2em;
-}
-
-.date{
-    float: left;
 }
 
 /* slimmer hacks */

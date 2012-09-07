@@ -3,22 +3,33 @@
   <label for="name">Campaign title</label>
   <input id="name" name="campaign_name" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:name]} %>>
 
-  <label for="erg_number">ERG reference number</label>
-  <input id="erg_number" name="erg_number" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:erg_number]} %>>
+  <div>
+    <label class="long" for="erg_number">ERG reference number</label>
+    <input id="erg_number" name="erg_number" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:erg_number]} %>>
+  </div>
 
-  <%= erb :date, :locals => {:title => "Start Date", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]}%>
-  <br/>
+  <%= erb :date, :locals => {:title => "Start Date", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]} %>
 
-  <label for="description">Campaign description</label>
-  <textarea id="description" rows="6" cols="50" name="description" type="text" required><%=@formdata[:description]%></textarea>
+  <div class="comments">
+    <label for="description">Campaign description</label>
+    <textarea id="description" rows="6" cols="50" name="description" type="text" required><%= @formdata[:description] %></textarea>
+  </div>
 
-  <label for="company">Group or company affiliated with this campaign</label>
-  <input id="company" name="company" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:company]} %>>
+  <div>
+    <label class="long" for="company">Group or company affiliated with this campaign</label>
+    <input id="company" name="company" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:company]} %>>
+  </div>
 
-  <label for="target_url">URL with more information</label>
-  <input id="target_url" name="url" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  <div>
+    <label class="long" for="target_url">URL with more information</label>
+    <input id="target_url" name="url" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %>>
+  </div>
 
-  <label for="comments">Additional comments</label>
-  <textarea id="comments" rows="10" cols="50" name="additional"><%=@formdata[:additional]%></textarea>
+  <fieldset>
+    <div class="comments">
+      <label for="comments">Additional comments</label>
+      <textarea id="comments" rows="10" cols="50" name="additional"><%= @formdata[:additional] %></textarea>
+    </div>
+  </fieldset>
 
 </section>
