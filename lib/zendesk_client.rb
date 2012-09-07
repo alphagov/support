@@ -20,7 +20,6 @@ class ZendeskClient
       config.password = login_details[1]
     }
 
-
     @client
   end
 
