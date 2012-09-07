@@ -1,17 +1,7 @@
 <section id="user">
   <header class="section-header">User details</header>
 
-  <fieldset>
-    <div class="upload">
-      <label for="file-input">Do you want to upload a file? (20MB limit)</label>
-      <input id="file-input" name="uploaded_data" type="file"/>
-    </div>
-  </fieldset>
-
-  <fieldset>
-    <label style="height:50px;">Alternatively</label>
-  </fieldset>
-
+  <%= erb :upload, :locals =>  {"id" => "file-input", "name" => "uploaded_data"}%>
   <label for="user_name">Name</label>
   <input id="user_name" name="user_name" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:user_name]} %>>
 

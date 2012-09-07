@@ -1,53 +1,66 @@
 <section id="content">
   <header class="section-header">Content details</header>
 
-  <label class="long" for="add_content">Please paste or attach content to be added below:</label>
-  <textarea id="add_content" name="add_content" rows="6" cols="50" ><%= @formdata[:add_content] %></textarea>
+  <fieldset>
+    <legend class="top-legend amend">Add new content</legend>
 
-  <!-- Attach Form -->
-  <input id="file-added" name="uploaded_data" type="file"/>
+    <%= erb :upload, :locals =>{"id" => "file-added", "name" => "uploaded_data"}%>
 
-  <p>Where should the content be added?</p>
-  <label for="target_url_add1">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url_add1" name="url_add1" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_add1]} %> >
-  <label for="target_url_add2">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url_add2" name="url_add2" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_add2]} %>>
-  <label for="target_url_add3">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url_add3" name="url_add3" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_add3]} %>>
+    <fieldset>
+      <legend class="top-legend">Where should the content be added?</legend>
 
-  <label class="long">Include additional URLs in the "Additional comments" section below.</label>
+      <label for="target_url_add1">URL on </label><label class="url">http://gov.uk/</label>
+      <input id="target_url_add1" name="url_add1" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_add1]} %> >
 
-  <label class="long" for="old_content">To change content, please paste the OLD content below:</label>
-  <textarea id="old_content" rows="6" cols="50" name="old_content" ><%= @formdata[:old_content] %></textarea>
+      <label class="long info">Include additional URLs in the "Additional comments" section below.</label>
 
-  <label class="long" for="new_content">To change content, please paste the NEW content below:</label>
-  <textarea id="new_content" rows="6" cols="50" name="new_content" ><%= @formdata[:new_content] %></textarea>
+      <label class="long" for="add_content">Please paste or attach content to be added below:</label>
+      <textarea id="add_content" name="add_content" rows="6" cols="50" ><%= @formdata[:add_content] %></textarea>
 
-  <!-- Attach Form -->
-  <input id="file-input" name="upload_amend" type="file"/>
+    </fieldset>
 
-  <p>Where is the OLD content?</p>
-  <label for="target_url_old1">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url_old1" name="url_old1" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_old1]} %>>
-  <label for="target_url_old2">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url_old2" name="url_old2" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_old2]} %>>
-  <label for="target_url_old3">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="target_url_old3" name="url_old3" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_old3]} %>>
+  </fieldset>
 
-  <label class="long">Include additional URLs in the "Additional comments" section below.</label>
+  <fieldset>
+    <legend class="top-legend amend">Change content</legend>
 
-  <label class="long" for="remove_content">To remove content, please paste the content below:</label>
-  <textarea id="remove_content" rows="6" cols="50" name="remove_content" ><%= @formdata[:new_content] %></textarea>
+    <%= erb :upload, :locals =>{"id" => "file-input", "name" => "upload_amend"} %>
 
-  <p>Where is the content to be removed?</p>
-  <label for="remove_location1">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="remove_location1" type="text" name="place_to_remove1" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove1]} %>>
-  <label for="remove_location2">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="remove_location2" type="text" name="place_to_remove2" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove2]} %>>
-  <label for="remove_location3">URL on </label><label class="url">http://gov.uk/</label>
-  <input id="remove_location3" type="text" name="place_to_remove3" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove]} %>>
+    <fieldset>
+      <legend class="top-legend">Where is the OLD content?</legend>
 
-  <label class="long">Include additional URLs in the "Additional comments" section below.</label>
+      <label for="target_url_old1">URL on </label><label class="url">http://gov.uk/</label>
+      <input id="target_url_old1" name="url_old1" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url_old1]} %>>
+
+      <label class="long info">Include additional URLs in the "Additional comments" section below.</label>
+
+      <label class="long" for="old_content">To change content, please paste the OLD content below:</label>
+      <textarea id="old_content" rows="6" cols="50" name="old_content" ><%= @formdata[:old_content] %></textarea>
+
+      <label class="long" for="new_content">To change content, please paste the NEW content below:</label>
+      <textarea id="new_content" rows="6" cols="50" name="new_content" ><%= @formdata[:new_content] %></textarea>
+
+    </fieldset>
+
+  </fieldset>
+
+  <fieldset>
+    <legend class="top-legend amend">Remove content</legend>
+
+    <fieldset>
+      <legend class="top-legend">Where is the content to be removed?</legend>
+
+      <label for="remove_location1">URL on </label><label class="url">http://gov.uk/</label>
+      <input id="remove_location1" type="text" name="place_to_remove1" <%= erb :assignvalue, :locals => {:param => @formdata[:place_to_remove1]} %>>
+
+      <label class="long info">Include additional URLs in the "Additional comments" section below.</label>
+
+      <label class="long" for="remove_content">To remove content, please paste the content below:</label>
+      <textarea id="remove_content" rows="6" cols="50" name="remove_content" ><%= @formdata[:new_content] %></textarea>
+
+    </fieldset>
+
+  </fieldset>
 
   <div style="clear:both;"></div>
 
@@ -61,4 +74,6 @@
       <textarea id="comments" rows="10" cols="50" name="additional"><%= @formdata[:additional] %></textarea>
     </div>
   </fieldset>
+
+
 </section>

@@ -25,11 +25,11 @@ class Guard
     self.validate_date_is_equal_or_greater_than_today(need_by, "Changes can only be made after today.")
     self.validate_not_before_date_is_equal_or_greater_than_need_by(not_before, need_by, "Not before date should be the same or later than the date which the changes are required to be made on.")
 
-    if form_data[:uploaded_data]
+    if self.doesFieldHaveValue(form_data[:uploaded_data])
       validate_upload_file(form_data[:uploaded_data])
     end
 
-    if form_data[:upload_amend]
+    if doesFieldHaveValue(form_data[:upload_amend])
       validate_upload_file(form_data[:upload_amend])
     end
     @@errors
@@ -164,7 +164,7 @@ class Guard
   end
 
   def self.doesFieldHaveValue(field_value)
-    !field_value.strip.empty?
+    field_value && !field_value.strip.empty?
   end
 
   def self.validate_upload_file(upload_file)
