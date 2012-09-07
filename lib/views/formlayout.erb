@@ -3,6 +3,7 @@
 <head>
   <%= erb :header %>
 </head>
+
 <body>
 <div id="wrapper">
   <section id="framework">
@@ -13,10 +14,12 @@
         <hgroup><h1><%= @header %></h1></hgroup>
       </header>
 
-      <%= erb :menu %>
+      <div role="complementary">
+        <%= erb :menu %>
+      </div>
 
-      <div id="form">
-      <%= erb @header_message %>
+      <div id="form" role="main">
+        <%= erb @header_message %>
         <%= erb :errors %>
         <form name="input" method="post">
 
