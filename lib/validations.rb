@@ -70,10 +70,10 @@ class Guard
   #Campaign validations
   def self.validationsForCampaign(form_data)
     @@errors = []
-    required = ["name", "email", "job", "department", "campaign_name", "erg_number", "need_by_day", "need_by_month", "need_by_year", "description"]
+    required = ["name", "email", "job", "department", "campaign_name", "erg_number", "start_day", "start_month", "start_year", "description"]
     validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
 
-    need_by = validate_date_in_valid_range("need_by_day", "need_by_month", "need_by_year", form_data)
+    need_by = validate_date_in_valid_range("start_day", "start_month", "start_year", form_data)
     self.validate_date_is_equal_or_greater_than_today(need_by, "Campaign start date can only be after today.")
 
     @@errors
