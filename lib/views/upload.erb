@@ -3,6 +3,7 @@
     <label for="<%= id %>">Do you want to upload a file? (20MB limit)</label>
     <br/>
     <input id="<%= id %>" name="<%= name %>" type="file"/>
+    <%= erb :errors, :locals => {"key" => name} %>
   </div>
 </fieldset>
 

@@ -51,7 +51,7 @@ class App < Sinatra::Base
     @header_message = :"useraccess/user_create_message"
     @template = "useraccess/user"
 
-    @errors = Guard.validationsForUserAccess(params)
+    @errors = Guard.validationsForCreateUser(params)
     on_post(params, "create-user")
   end
 
@@ -77,7 +77,7 @@ class App < Sinatra::Base
     @header_message = :"useraccess/user_password_reset_message"
     @template = "useraccess/resetpassword"
 
-    @errors = Guard.validationsForUserAccess(params)
+    @errors = Guard.validationsForResetPassword(params)
     on_post(params, "reset-password")
   end
 

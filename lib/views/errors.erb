@@ -1,9 +1,5 @@
-<section id="errors" style= "<% if @errors %>  display: block; <%else%> display: none; <% end%>">
-  <% if @errors%>
-    <ul>
-      <% for error in @errors %> <li> <%= error %> </li> <% end %>
-    </ul>
-  <% else %>
-    <p> </p>
-  <% end %>
-</section>
+<span class="errors" style= "<% if @errors && @errors[key] %>  display: block; <%else%> display: none; visibility: hidden; <% end%>">
+  <% if @errors %>
+    <em> <%= @errors[key] %> </em>
+   <% end %>
+</span>

@@ -37,9 +37,8 @@ section#message {
     background-color: #28A197;
 }
 
-section#errors {
-    background-color: red;
-    color: white;
+span.errors {
+    color: red;
 }
 
 /* Vertical split between menu and content form */
@@ -136,6 +135,10 @@ textarea {
     margin-bottom: 0.2em;
     width: 90%;
     border: 1px solid #BBB;
+}
+
+fieldset em {
+    font-size: 14px;
 }
 
 section#author input, section#content input, section#user input {

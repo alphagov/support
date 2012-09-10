@@ -143,7 +143,7 @@ class ZendeskTicket
 
   def check_for_attachments(from_route, params)
     @file_token = []
-    if doesFieldHaveValue(params[:uploaded_data])
+    if doesFieldHaveValue(params[:uploaded_data][:filename])
       tempfile = params[:uploaded_data][:tempfile]
       filename = params[:uploaded_data][:filename]
       @file_token  << upload_file_to_create_file_token(tempfile, filename)

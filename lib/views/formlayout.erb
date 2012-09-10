@@ -20,8 +20,7 @@
 
       <div id="form" role="main">
         <%= erb @header_message %>
-        <%= erb :errors %>
-        <form name="input" method="post">
+        <form name="input" method="post" enctype="multipart/form-data">
 
           <%= erb :author %>
 
