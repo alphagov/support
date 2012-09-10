@@ -1,4 +1,4 @@
-<section id="content">
+<section id="campaign">
   <header class="section-header">Campaign</header>
   <label for="name">Campaign title</label>
   <input id="name" name="campaign_name" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:name]} %>>
@@ -22,6 +22,8 @@
     <label class="long" for="company">Group or company affiliated with this campaign</label>
     <input id="company" name="company" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:company]} %>>
   </div>
+
+  <div style="clear:both;"></div>
 
   <div>
     <label class="long" for="target_url">URL with more information</label>

@@ -5,33 +5,33 @@ class ZendeskTicket
 
   attr_reader :name, :email, :department, :job, :phone, :comment, :subject, :tag, :need_by_date, :not_before_date, :file_token
   @@in_comments = {"new" => [:additional],
-                  "amend-content" => [:url_add1, :url_old1, :place_to_remove1],
-                  "create-user" => [:user_name, :user_email, :additional],
-                  "remove-user" => [:user_name, :user_email, :additional],
-                  "reset-password" => [:user_name, :user_email, :additional],
-                  "campaign" => [:campaign_name, :erg_number, :company, :description, :url, :additional],
-                  "broken-link" => [:url, :user_agent, :additional],
-                  "publish-tool" => [:username, :url, :user_agent, :additional]
+                   "amend-content" => [:url1, :url2, :url3],
+                   "create-user" => [:user_name, :user_email, :additional],
+                   "remove-user" => [:user_name, :user_email, :additional],
+                   "reset-password" => [:user_name, :user_email, :additional],
+                   "campaign" => [:campaign_name, :erg_number, :company, :description, :url, :additional],
+                   "broken-link" => [:url, :user_agent, :additional],
+                   "publish-tool" => [:username, :url, :user_agent, :additional]
   }
 
   @@in_subject = {"new" => "New Need",
-                 "amend-content" => "Content change request",
-                 "create-user" => "Create new user",
-                 "remove-user" => "Remove user",
-                 "reset-password" => "Reset Password",
-                 "campaign" => "Campaign",
-                 "broken-link" => "Broken Link",
-                 "publish-tool" => "Publishing Tool"
+                  "amend-content" => "Content change request",
+                  "create-user" => "Create new user",
+                  "remove-user" => "Remove user",
+                  "reset-password" => "Reset Password",
+                  "campaign" => "Campaign",
+                  "broken-link" => "Broken Link",
+                  "publish-tool" => "Publishing Tool"
   }
 
   @@in_tag = {"new" => "new_need",
-             "amend-content" => "content_change",
-             "create-user" => "new_user",
-             "remove-user" => "remove_user",
-             "reset-password" => "password_reset",
-             "campaign" => "campaign",
-             "broken-link" => "broken_link",
-             "publish-tool" => "publishing_tool"
+              "amend-content" => "content_amend",
+              "create-user" => "new_user",
+              "remove-user" => "remove_user",
+              "reset-password" => "password_reset",
+              "campaign" => "campaign",
+              "broken-link" => "broken_link",
+              "publish-tool" => "publishing_tool"
   }
 
   def initialize(params, from_route)
@@ -57,7 +57,7 @@ class ZendeskTicket
       @not_before_date = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
     end
 
-    check_for_attachments(from_route, params)
+    check_for_attachments(params)
   end
 
 
@@ -85,42 +85,37 @@ class ZendeskTicket
       when "publish-tool" then
         format_comment_for_tech_issues(from_route, params)
       else
-        @@in_comments[from_route].map { |comment_param| "[" + comment_param.to_s.capitalize + "]\n"  + params[comment_param] }.join("\n\n")
+        @@in_comments[from_route].map { |comment_param| "[" + comment_param.to_s.capitalize + "]\n" + params[comment_param] }.join("\n\n")
     end
   end
 
   def format_comment_for_tech_issues(from_route, params)
     all_comments = @@in_comments[from_route].map do |comment_param|
-                                                  comment = "[" + comment_param.to_s.capitalize + "]\n"
-                                                  if :url == comment_param
-                                                    comment += build_full_url_path(params[:url])
-                                                  else
-                                                    comment += params[comment_param]
-                                                  end
-                                                  comment
-                                                end
+      comment = "[" + comment_param.to_s.capitalize + "]\n"
+      if :url == comment_param
+        comment += build_full_url_path(params[:url])
+      else
+        comment += params[comment_param]
+      end
+      comment
+    end
     all_comments.join("\n\n")
   end
 
   def format_comment_for_amend_content(params)
-    url_add_array = [params[:url_add1]]
-    url_old_array = [params[:url_old1]]
-    url_remove_array = [params[:place_to_remove1]]
-    url_add = url_old = url_remove = ""
-    url_add_array.each{|au| url_add += au.empty?? au : build_full_url_path(au) + "\n"}
-    url_old_array.each{|ou| url_old += ou.empty?? ou : build_full_url_path(ou) + "\n"}
-    url_remove_array.each{|ru| url_remove += ru.empty?? ru : build_full_url_path(ru) + "\n"}
+    comments_sections = {"[URl(s) of content to be changed]" => [build_full_url_path(params[:url1]), build_full_url_path(params[:url2]), build_full_url_path(params[:url3])],
+              "[Details of what should be added, amended or removed]" => [params[:add_content]],
+              "[Additional Comments]" => [params[:additional]]
+    }
 
-    comment = (params[:add_content].empty?? "" : "[added content]\n" + params[:add_content] + "\n\n") +
-        (url_add.empty?? "" : "[url(s) for adding content]\n" +url_add +"\n\n") +
-        (params[:old_content].empty?? "" : "[old content]\n" + params[:old_content] + "\n\n") +
-        (url_old.empty?? "" :"[url(s) for old content]\n" + url_old + "\n\n" )+
-        (params[:new_content].empty?? "" : "[new content]\n"+ params[:new_content] + "\n\n") +
-        (params[:remove_content].empty?? "" : "[remove content]\n"+ params[:remove_content] + "\n\n") +
-        (url_remove.empty?? "" : "[url(s) for removing content]\n" + url_remove + "\n\n") +
-        (params[:additional].empty?? "" : "[additional]\n" + params[:additional])
+    comments = comments_sections.map do |key, value|
+      allvalues = value.join("\n")
+      if !allvalues.chomp.strip.empty?
+        key+"\n"+allvalues.chomp.strip
+      end
+    end
 
-    comment
+    comments.join("\n\n")
   end
 
   def remove_space_from_phone_number(number)
@@ -128,7 +123,11 @@ class ZendeskTicket
   end
 
   def build_full_url_path(partial_path)
-    "http://gov.uk/"+ partial_path
+    if partial_path && !partial_path.empty?
+      "http://gov.uk/"+ partial_path
+    else
+      partial_path
+    end
   end
 
 #  attachments
@@ -141,21 +140,12 @@ class ZendeskTicket
     file_token
   end
 
-  def check_for_attachments(from_route, params)
+  def check_for_attachments(params)
     @file_token = []
-    if doesFieldHaveValue(params[:uploaded_data][:filename])
+    if params[:uploaded_data] && doesFieldHaveValue(params[:uploaded_data][:filename])
       tempfile = params[:uploaded_data][:tempfile]
       filename = params[:uploaded_data][:filename]
-      @file_token  << upload_file_to_create_file_token(tempfile, filename)
-
-    end
-
-    if "amend-content" == from_route
-      if doesFieldHaveValue(params[:upload_amend])
-        tempfile = params[:upload_amend][:tempfile]
-        filename = params[:upload_amend][:filename]
-        @file_token << upload_file_to_create_file_token(tempfile, filename)
-      end
+      @file_token << upload_file_to_create_file_token(tempfile, filename)
     end
   end
 

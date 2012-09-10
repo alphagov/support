@@ -1,6 +1,6 @@
 <section id="content">
   <header class="section-header">Publishing Tool</header>
-  <label for="target_url" class="url_label">URL on </label><label class="url">http://gov.uk/</label>
+  <label for="target_url">URL on <span style="background-color: #F2F2F2;">gov.uk</span> </label>
   <input id="target_url" name="url" type="text" required aria-required="true" <%= erb :assignvalue, :locals => {:param => @formdata[:url]} %> >
   <%= erb :errors, :locals => {"key" => "Url"} %>
 

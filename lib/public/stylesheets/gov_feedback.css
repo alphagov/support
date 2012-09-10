@@ -16,7 +16,7 @@
 }
 
 /* Sections for whole, author and content */
-section#author, section#content, section#user {
+section#author, section#content, section#campaign, section#user {
     border-width: 1px;
     border-style: inset;
     margin-top: 20px;
@@ -39,7 +39,9 @@ section#message {
 
 span.errors {
     color: red;
+    padding-left: 5px;
 }
+
 
 /* Vertical split between menu and content form */
 .menu {
@@ -95,8 +97,17 @@ label, legend.date {
     background: transparent;
     float: left;
     margin-right: 15px;
+    margin-bottom: 5px;
     padding-left: 5px;
     width: 20%;
+}
+
+div.upload label, div.comments label {
+    width: 100%;
+}
+
+label.long, legend.long {
+    width: auto;
 }
 
 label.info {
@@ -104,8 +115,8 @@ label.info {
     color: #a9a9a9;
 }
 
-label.url_label {
-    width: auto;
+section#campaign label, section#campaign legend.date {
+    width: 30%;
 }
 
 legend.top-legend {
@@ -137,18 +148,19 @@ textarea {
     border: 1px solid #BBB;
 }
 
-fieldset em {
+span em {
     font-size: 14px;
+    margin-bottom: 0.3em;
 }
 
-section#author input, section#content input, section#user input {
+section#author input, section#content input, section#campaign input, section#user input {
     line-height: 1.5em;
     font-size: 1.1875em;
     color: black;
     background: transparent;
     display: block;
     margin-bottom: 10px;
-    margin-top: 5px;
+    margin-top: 5px;;
     width: 15em;
     padding: 0em;
 }
@@ -168,13 +180,6 @@ div.upload {
     border-bottom: 1px solid #BBB;
 }
 
-div.upload label, div.comments label {
-    width: 100%;
-}
-
-label.long, legend.long {
-    width: auto;
-}
 
 select {
     line-height: 1.5em;
@@ -182,7 +187,10 @@ select {
     color: black;
     background: transparent;
     margin-right: 0.3em;
-    margin-bottom: 0.3em;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    padding: 0;
     border: 1px solid #BBB;
 }
 
