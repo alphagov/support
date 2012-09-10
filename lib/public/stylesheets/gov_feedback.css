@@ -39,7 +39,9 @@ section#message {
 
 span.errors {
     color: red;
+    padding-left: 5px;
 }
+
 
 /* Vertical split between menu and content form */
 .menu {
