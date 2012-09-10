@@ -3,15 +3,15 @@
   <fieldset>
     <div>
       <label for="name">Name</label>
-      <input id="name" name="name" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:name]} %> >
+      <input id="name" name="name" type="text" required aria-required="true" <%= erb :assignvalue, :locals => {:param => @formdata[:name]} %> >
     </div>
     <div>
       <label for="email">Email</label>
-      <input id="email" name="email" type="email" required <%= erb :assignvalue, :locals => {:param => @formdata[:email]} %> >
+      <input id="email" name="email" type="email" required aria-required="true" <%= erb :assignvalue, :locals => {:param => @formdata[:email]} %> >
     </div>
     <div>
       <label for="job">Job title</label>
-      <input id="job" name="job" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:job]} %> >
+      <input id="job" name="job" type="text" required aria-required="true" <%= erb :assignvalue, :locals => {:param => @formdata[:job]} %> >
     </div>
     <div>
       <label for="phone">Phone number</label>
@@ -20,7 +20,7 @@
     </div>
     <div>
       <label for="department_list">Department</label>
-      <select id="department_list" name="department" required>
+      <select id="department_list" name="department" required aria-required="true">
         <% @departments.each do |key, value| %>
           <% if value == @formdata["department"] %>
             <option selected="selected" value="<%= value %>"><%= key %> </option>
