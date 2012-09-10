@@ -5,14 +5,14 @@
 
   <div>
     <label class="long" for="erg_number">ERG reference number</label>
-    <input id="erg_number" name="erg_number" type="text" required <%= erb :assignvalue, :locals => {:param => @formdata[:erg_number]} %>>
+    <input id="erg_number" name="erg_number" type="text" required aria-required="true" <%= erb :assignvalue, :locals => {:param => @formdata[:erg_number]} %>>
   </div>
 
   <%= erb :date, :locals => {:title => "Start Date", :label => 'start', :day => @formdata[:start_day], :month => @formdata[:start_month], :year => @formdata[:start_year]} %>
 
   <div class="comments">
     <label for="description">Campaign description</label>
-    <textarea id="description" rows="6" cols="50" name="description" type="text" required><%= @formdata[:description] %></textarea>
+    <textarea id="description" rows="6" cols="50" name="description" type="text" required aria-required="true" ><%= @formdata[:description] %></textarea>
   </div>
 
   <div>
