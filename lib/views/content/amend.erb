@@ -2,24 +2,19 @@
   <header class="section-header">Content details</header>
 
   <fieldset>
-    <legend class="top-legend amend">Add new content</legend>
+    <legend class="top-legend">URL(s) of content to be changed</legend>
 
-    <fieldset>
-      <legend class="top-legend">URL(s) of content to be changed</legend>
+    <label for="target_url1" style="background-color: #F2F2F2;">gov.uk</label>
+    <input id="target_url1" name="url1" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url1]} %> >
+    <label for="target_url2" style="background-color: #F2F2F2;">gov.uk</label>
+    <input id="target_url2" name="url2" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url2]} %> >
+    <label for="target_url3" style="background-color: #F2F2F2;">gov.uk</label>
+    <input id="target_url3" name="url3" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url3]} %> >
 
-      <label for="target_url1" style="background-color: #F2F2F2;">gov.uk</label>
-      <input id="target_url1" name="url1" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url1]} %> >
-      <label for="target_url2" style="background-color: #F2F2F2;">gov.uk</label>
-      <input id="target_url2" name="url2" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url2]} %> >
-      <label for="target_url3" style="background-color: #F2F2F2;">gov.uk</label>
-      <input id="target_url3" name="url3" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:url3]} %> >
+    <label class="long info">Include additional URLs in the "Additional comments" section below.</label>
 
-      <label class="long info">Include additional URLs in the "Additional comments" section below.</label>
-
-      <label class="long" for="add_content">Detail of what should be added, amended, or removed:</label>
-      <textarea id="add_content" name="add_content" rows="6" cols="50"><%= @formdata[:add_content] %></textarea>
-
-    </fieldset>
+    <label class="long" for="add_content">Detail of what should be added, amended, or removed:</label>
+    <textarea id="add_content" name="add_content" rows="6" cols="50"><%= @formdata[:add_content] %></textarea>
 
   </fieldset>
 
