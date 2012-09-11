@@ -1,0 +1,42 @@
+<section id="author">
+  <header class="section-header">Your details</header>
+  <fieldset>
+    <div>
+      <label for="name">Name</label>
+      <div class="input_and_error">
+        <input id="name" name="name" type="text" required aria-required="true" <%= erb :assignvalue, :locals => {:param => @formdata[:name]} %> >
+        <%= erb :errors, :locals => {"key" => "Name"} %>
+      </div>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" required aria-required="true" <%= erb :assignvalue, :locals => {:param => @formdata[:email]} %> >
+      <%= erb :errors, :locals => {"key" => "Email"} %>
+    </div>
+    <div>
+      <label for="job">Job title</label>
+      <input id="job" name="job" type="text" required aria-required="true" <%= erb :assignvalue, :locals => {:param => @formdata[:job]} %> >
+      <%= erb :errors, :locals => {"key" => "Job"} %>
+    </div>
+    <div>
+      <label for="phone">Phone number</label>
+      <input id="phone" name="phone" pattern="([\d\s]*)" type="tel"
+             <%= erb :assignvalue, :locals => {:param => @formdata[:phone]} %>>
+      <%= erb :errors, :locals => {"key" => "Phone"} %>
+    </div>
+    <div>
+      <label for="department_list">Department</label>
+      <select id="department_list" name="department" required aria-required="true">
+        <% @departments.each do |key, value| %>
+          <% if value == @formdata["department"] %>
+            <option selected="selected" value="<%= value %>"><%= key %> </option>
+          <% else %>
+            <option value="<%= value %>"><%= key %> </option>
+          <% end %>
+        <% end %>
+      </select>
+      <%= erb :errors, :locals => {"key" => "Department"} %>
+    </div>
+  </fieldset>
+
+</section>
