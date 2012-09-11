@@ -26,4 +26,5 @@ doc/
 Gemfile
 Gemfile.lock
 config.ru
+config/zendesk.yml
 
