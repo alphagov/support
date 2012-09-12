@@ -1,0 +1,30 @@
+*.gem
+*.rbc
+.idea
+.DS_Store
+lib/.DS_Store
+lib/public/.DS_Store
+lib/public/javascripts/.DS_Store
+.bundle
+.config
+coverage
+InstalledFiles
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+
+# YARD artifacts
+.yardoc
+_yardoc
+doc/
+
+# temp ignored for avoiding problems caused by slimmer
+Gemfile
+Gemfile.lock
+config.ru
+config/zendesk.yml
+

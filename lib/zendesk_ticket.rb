@@ -31,7 +31,7 @@ class ZendeskTicket
               "reset-password" => "password_reset",
               "campaign" => "campaign",
               "broken-link" => "broken_link",
-              "publish-tool" => "publishing_tool"
+              "publish-tool" => "publishing_tool_tech"
   }
 
   def initialize(params, from_route)
@@ -85,27 +85,45 @@ class ZendeskTicket
       when "publish-tool" then
         format_comment_for_tech_issues(from_route, params)
       else
-        @@in_comments[from_route].map { |comment_param| "[" + comment_param.to_s.capitalize + "]\n" + params[comment_param] }.join("\n\n")
+        comment = @@in_comments[from_route].map do |comment_param|
+          if params[comment_param] && !params[comment_param].empty?
+            "[" + comment_param.to_s.capitalize + "]\n" + params[comment_param]
+          end
+        end
+
+        if !comment.join().empty?
+          comment.join("\n\n")
+        else
+          comment.join
+        end
     end
   end
 
   def format_comment_for_tech_issues(from_route, params)
     all_comments = @@in_comments[from_route].map do |comment_param|
-      comment = "[" + comment_param.to_s.capitalize + "]\n"
-      if :url == comment_param
-        comment += build_full_url_path(params[:url])
-      else
-        comment += params[comment_param]
+      comment = ""
+      if params[comment_param] && !params[comment_param].empty?
+        comment = "[" + comment_param.to_s.capitalize + "]\n"
+        if :url == comment_param
+          comment += build_full_url_path(params[:url])
+        else
+          comment += params[comment_param]
+        end
       end
       comment
     end
-    all_comments.join("\n\n")
+
+    if !all_comments.join.empty?
+      all_comments.join("\n\n")
+    else
+      all_comments.join
+    end
   end
 
   def format_comment_for_amend_content(params)
     comments_sections = {"[URl(s) of content to be changed]" => [build_full_url_path(params[:url1]), build_full_url_path(params[:url2]), build_full_url_path(params[:url3])],
-              "[Details of what should be added, amended or removed]" => [params[:add_content]],
-              "[Additional Comments]" => [params[:additional]]
+                         "[Details of what should be added, amended or removed]" => [params[:add_content]],
+                         "[Additional Comments]" => [params[:additional]]
     }
 
     comments = comments_sections.map do |key, value|
@@ -146,6 +164,10 @@ class ZendeskTicket
       tempfile = params[:uploaded_data][:tempfile]
       filename = params[:uploaded_data][:filename]
       @file_token << upload_file_to_create_file_token(tempfile, filename)
+    end
+
+    if !@file_token.empty? && @comment.empty?
+      @comment = "[Attachment(s)]"
     end
   end
 

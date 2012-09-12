@@ -8,7 +8,7 @@ class Guard
   def self.validationsForNewNeed(form_data)
     @@errors = {}
     required = ["name", "email", "job", "department"]
-    validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
+    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
 
     @@errors
   end
@@ -16,7 +16,7 @@ class Guard
   def self.validationsForAmendContent(form_data)
     @@errors = {}
     required = ["name", "email", "job", "department"]
-    validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
+    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["Need by", "need_by_day", "need_by_month", "need_by_year"], ["Not before", "not_before_day", "not_before_month", "not_before_year"]])
 
     need_by = validate_date_in_valid_range("Need by", "need_by_day", "need_by_month", "need_by_year", form_data)
@@ -39,7 +39,7 @@ class Guard
     else
       required = ["name", "email", "job", "department", "user_name", "user_email"]
     end
-    validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
+    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
 
     if form_data[:uploaded_data] && self.doesFieldHaveValue(form_data[:uploaded_data][:filename])
       validate_upload_file("uploaded_data", form_data[:uploaded_data])
@@ -51,7 +51,7 @@ class Guard
   def self.validationsForResetPassword(form_data)
     @@errors = {}
     required = ["name", "email", "job", "department", "user_name", "user_email"]
-    validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
+    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
 
     @@errors
   end
@@ -65,7 +65,7 @@ class Guard
       required = ["name", "email", "job", "department", "user_name", "user_email"]
     end
 
-    validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
+    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["Not before", "not_before_day", "not_before_month", "not_before_year"]])
 
     not_before = validate_date_in_valid_range("Not_before", "not_before_day", "not_before_month", "not_before_year", form_data)
@@ -83,7 +83,7 @@ class Guard
   def self.validationsForCampaign(form_data)
     @@errors = {}
     required = ["name", "email", "job", "department", "campaign_name", "erg_number", "description"]
-    validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
+    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
 
     self.checkOptionalDateFieldsAreComplete(form_data, [["Start date", "start_day", "start_month", "start_year"]])
 
@@ -97,7 +97,7 @@ class Guard
   def self.validationsForBrokenLink(form_data)
     @@errors = {}
     required = ["name", "email", "job", "department", "url"]
-    validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
+    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
 
     @@errors
   end
@@ -105,7 +105,7 @@ class Guard
   def self.validationsForPublishTool(form_data)
     @@errors = {}
     required = ["name", "email", "job", "department", "url", "username"]
-    validate(form_data, required, {:phone => form_data["phone"]}, {:email => form_data["email"]})
+    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
 
     @@errors
   end
