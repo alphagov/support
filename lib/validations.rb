@@ -200,7 +200,7 @@ class Guard
 
   def self.validate_not_before_date_is_equal_or_greater_than_need_by(not_before, need_by, message)
     if not_before && need_by && not_before < need_by
-      @@errors["Not_before"] = message
+      @@errors["Not before"] = message
     end
   end
 end
