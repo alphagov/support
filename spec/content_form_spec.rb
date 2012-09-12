@@ -48,7 +48,7 @@ class ContentFormSpec < Test::Unit::TestCase
     ZendeskClient.expects(:raise_zendesk_request).returns("fake ticket")
 
     #When
-    post '/new', form_parameters
+    post '/create-user', form_parameters
     follow_redirect!
 
     #Then
