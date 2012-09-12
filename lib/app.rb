@@ -19,19 +19,6 @@ class App < Sinatra::Base
   end
 
   # Content routing
-  get '/new' do
-    on_get("New Need", "content/new_need_message", "content/new")
-  end
-
-  post '/new' do
-    @header = "New Need"
-    @header_message = :"content/new_need_message"
-    @template = "content/new"
-
-    @errors = Guard.validationsForNewNeed(params)
-    on_post(params, "new")
-  end
-
   get '/amend-content' do
     on_get("Content Change", "content/content_amend_message", "content/amend")
   end
