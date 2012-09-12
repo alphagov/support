@@ -110,12 +110,6 @@ class Guard
     @@errors
   end
 
-  #Zendesk validation fail
-  def self.fail_to_create_ticket()
-    @@errors["zendesk"] = "Has failed to submit request. Please ensure all the information has been entered correctly and try to submit it later."
-  end
-
-
   private
 
   def self.validate(form_data, required, phone_fields, email_fields)
