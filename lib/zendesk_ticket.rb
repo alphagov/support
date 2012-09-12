@@ -4,8 +4,7 @@ Bundler.require
 class ZendeskTicket
 
   attr_reader :name, :email, :department, :job, :phone, :comment, :subject, :tag, :need_by_date, :not_before_date, :file_token
-  @@in_comments = {"new" => [:additional],
-                   "amend-content" => [:url1, :url2, :url3],
+  @@in_comments = {"amend-content" => [:url1, :url2, :url3],
                    "create-user" => [:user_name, :user_email, :additional],
                    "remove-user" => [:user_name, :user_email, :additional],
                    "reset-password" => [:user_name, :user_email, :additional],
@@ -14,8 +13,7 @@ class ZendeskTicket
                    "publish-tool" => [:username, :url, :user_agent, :additional]
   }
 
-  @@in_subject = {"new" => "New Need",
-                  "amend-content" => "Content change request",
+  @@in_subject = {"amend-content" => "Content change request",
                   "create-user" => "Create new user",
                   "remove-user" => "Remove user",
                   "reset-password" => "Reset Password",
@@ -24,8 +22,7 @@ class ZendeskTicket
                   "publish-tool" => "Publishing Tool"
   }
 
-  @@in_tag = {"new" => "new_need",
-              "amend-content" => "content_amend",
+  @@in_tag = {"amend-content" => "content_amend",
               "create-user" => "new_user",
               "remove-user" => "remove_user",
               "reset-password" => "password_reset",

@@ -1,5 +1,6 @@
 require "rubygems"
 
+
 task :default => "spec"
 
 desc "Runs all tests"

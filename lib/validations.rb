@@ -5,14 +5,6 @@ class Guard
   MAX_UPLOAD_FILE_SIZE_IN_BYTE = 20971520 #20MB
 
   #Content validations
-  def self.validationsForNewNeed(form_data)
-    @@errors = {}
-    required = ["name", "email", "job", "department"]
-    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
-
-    @@errors
-  end
-
   def self.validationsForAmendContent(form_data)
     @@errors = {}
     required = ["name", "email", "job", "department"]
