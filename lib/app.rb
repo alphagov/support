@@ -14,6 +14,10 @@ class App < Sinatra::Base
     erb :acknowledge
   end
 
+  get '/failed-submission' do
+    erb :fail
+  end
+
   # Content routing
   get '/new' do
     on_get("New Need", "content/new_need_message", "content/new")
@@ -142,8 +146,7 @@ class App < Sinatra::Base
       if ticket
         redirect '/acknowledge'
       else
-        @errors = Guard.fail_to_create_ticket
-        erb :"#{@template}", :layout => :formlayout
+        redirect '/failed-submission'
       end
     else
       erb :"#{@template}", :layout => :formlayout
