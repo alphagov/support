@@ -13,6 +13,10 @@ class ContentFormSpec < Test::Unit::TestCase
     App
   end
 
+  def setup
+    ZendeskClient.expects(:get_client)
+  end
+
   def teardown
     Mocha::Mockery.instance.teardown
     Mocha::Mockery.reset_instance
@@ -53,6 +57,7 @@ class ContentFormSpec < Test::Unit::TestCase
 
     #When
     post '/create-user', form_parameters
+    ZendeskClient.expects(:get_client)
     follow_redirect!
 
     #Then
