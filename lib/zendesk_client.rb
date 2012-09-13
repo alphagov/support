@@ -8,7 +8,7 @@ require_relative "zendesk_error"
 class ZendeskClient
 
   def self.get_client
-    client = ZendeskAPI::Client.new { |config|
+    @client ||= ZendeskAPI::Client.new { |config|
       file = YAML::load_file(File.open('./config/zendesk.yml'))
       login_details = self.get_username_password(file)
       config.url = "https://govuk.zendesk.com/api/v2/"
@@ -16,9 +16,7 @@ class ZendeskClient
       config.password = login_details[1]
     }
 
-    client.insert_callback do |env|
-      puts env
-      puts "Status is #{env[:status]}"
+    @client.insert_callback do |env|
       if env[:body]["user"]
         if env[:body]["id"].nil?
           raise ZendeskError.new("Authentication Error")
@@ -31,7 +29,7 @@ class ZendeskClient
       end
     end
 
-    client
+    @client
   end
 
   private
