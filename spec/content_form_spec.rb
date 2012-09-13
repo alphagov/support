@@ -48,6 +48,7 @@ class ContentFormSpec < Test::Unit::TestCase
   def  test_zendesk_create_ticket_triggered_by_post_request
     form_parameters = PageHelper.fill_content_form
     ZendeskRequest.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
+    Guard.expects(:validationsForCreateUser).returns({});
     ZendeskRequest.expects(:raise_zendesk_request).returns("fake ticket")
 
     #When
