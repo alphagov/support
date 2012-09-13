@@ -24,7 +24,7 @@
     <div class="upload">
       <label for="file-added">Supporting documentation (optional)</label>
       <br/>
-      <input id="file-added" name="uploaded_data" type="file" accept="text/plain, application/pdf, .xls, .xlsx"/>
+      <input id="file-added" name="uploaded_data" type="file" accept="text/*, application/pdf, .xls, .xlsx"/>
       <%= erb :errors, :locals => {"key" => "uploaded_data"} %>
     </div>
   </fieldset>
