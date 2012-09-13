@@ -17,8 +17,6 @@ class ZendeskClient
     }
 
     client.insert_callback do |env|
-      puts env
-      puts "Status is #{env[:status]}"
       if env[:body]["user"]
         if env[:body]["id"].nil?
           raise ZendeskError.new("Authentication Error")
