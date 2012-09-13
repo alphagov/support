@@ -13,14 +13,14 @@ class ZendeskClient
       login_details = self.get_username_password(file)
       config.url = "https://govuk.zendesk.com/api/v2/"
       config.username = login_details[0]
-      #config.password = login_details[1]
-      config.password = "ser"
+      config.password = login_details[1]
+      #config.password = "ser"
     }
 
     client.insert_callback do |env|
       puts env
       if env[:body]["error"]
-        raise ZendeskError.new(env[:body]["details"].values)
+        raise ZendeskError.new(env[:body].to_json)
       end
       if env[:body]["user"]
         if env[:body]["id"].nil?

@@ -138,7 +138,6 @@ class App < Sinatra::Base
   end
 
   def on_get(head, head_message_form, template)
-    #@departments = ZendeskClient.get_departments
     @header = head
     @header_message = :"#{head_message_form}"
     @formdata = {}

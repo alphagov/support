@@ -8,9 +8,9 @@ class ZendeskRequest
 
   def self.get_departments(client)
     departments_hash = {"Select Department" => ""}
-    if client && client.current_user && client.current_user.id
+    #if client && client.current_user && client.current_user.id
       client.ticket_fields.find(:id => '21494928').custom_field_options.each { |tf| departments_hash[tf.name] = tf.value }
-    end
+    #end
     departments_hash
   end
 
