@@ -14,20 +14,19 @@ class ZendeskClient
       config.url = "https://govuk.zendesk.com/api/v2/"
       config.username = login_details[0]
       config.password = login_details[1]
-      #config.password = "ser"
     }
 
     client.insert_callback do |env|
       puts env
-      if env[:body]["error"]
-        raise ZendeskError.new(env[:body]["details"].values)
-      end
+      puts "Status is #{env[:status]}"
       if env[:body]["user"]
         if env[:body]["id"].nil?
           raise ZendeskError.new("Authentication Error")
         end
       end
-      if "401 Unauthorized" == env[:status]
+      status_401 = env[:status].to_s.start_with? "401"
+      too_many_login_attempts = env[:body].to_s.start_with? "Too many failed login attempts"
+      if status_401 || too_many_login_attempts
         raise ZendeskError.new("Authentication Error")
       end
     end

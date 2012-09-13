@@ -16,7 +16,6 @@ class App < Sinatra::Base
 
   before do
     @client = settings.client
-    @departments = ZendeskRequest.get_departments(@client)
   end
 
   get '/' do
@@ -129,7 +128,7 @@ class App < Sinatra::Base
   end
 
   def on_get(head, head_message_form, template)
-    #@departments = ZendeskClient.get_departments
+    @departments = ZendeskRequest.get_departments(@client)
     @header = head
     @header_message = :"#{head_message_form}"
     @formdata = {}
@@ -138,6 +137,7 @@ class App < Sinatra::Base
   end
 
   def on_post(params, route)
+    @departments = ZendeskRequest.get_departments(@client)
     @formdata = params
 
     if @errors.empty?
@@ -158,11 +158,7 @@ class App < Sinatra::Base
   end
 
   error ZendeskError do
-    @error_msg = "And error IS: " + env['sinatra.error'].message
-    erb :error_page
+    redirect '/failed-submission'
   end
 
-  get '/error' do
-    big.problem!
-  end
 end
