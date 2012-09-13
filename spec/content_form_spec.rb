@@ -2,7 +2,7 @@ require "rack/test"
 require "test/unit"
 require "mocha"
 require_relative "../lib/app"
-require_relative "../lib/zendesk_client"
+require_relative "../lib/zendesk_request"
 require_relative "../spec/page_helper"
 
 
@@ -19,6 +19,9 @@ class ContentFormSpec < Test::Unit::TestCase
   end
 
   def test_page_contain_required_fields
+    #Given
+    ZendeskRequest.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
+
     #When
     get '/amend-content'
 
@@ -32,7 +35,7 @@ class ContentFormSpec < Test::Unit::TestCase
 
   def test_departments_list_shown_on_page
     #Given
-    ZendeskClient.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
+    ZendeskRequest.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
 
     #When
     get '/amend-content'
@@ -44,8 +47,8 @@ class ContentFormSpec < Test::Unit::TestCase
 
   def  test_zendesk_create_ticket_triggered_by_post_request
     form_parameters = PageHelper.fill_content_form
-    ZendeskClient.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
-    ZendeskClient.expects(:raise_zendesk_request).returns("fake ticket")
+    ZendeskRequest.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
+    ZendeskRequest.expects(:raise_zendesk_request).returns("fake ticket")
 
     #When
     post '/create-user', form_parameters

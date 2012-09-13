@@ -13,8 +13,8 @@ class ZendeskClient
       login_details = self.get_username_password(file)
       config.url = "https://govuk.zendesk.com/api/v2/"
       config.username = login_details[0]
-      #config.password = login_details[1]
-      config.password = "ser"
+      config.password = login_details[1]
+      #config.password = "ser"
     }
 
     client.insert_callback do |env|
