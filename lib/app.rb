@@ -11,11 +11,10 @@ class App < Sinatra::Base
   configure do
     disable :show_exceptions
     disable :raise_errors
-    set :client, ZendeskClient.get_client
   end
 
   before do
-    @client = settings.client
+    @client = ZendeskClient.get_client
   end
 
   get '/' do
