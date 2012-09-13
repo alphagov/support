@@ -144,7 +144,7 @@ textarea {
     background: transparent;
     margin-left: 5px;
     margin-bottom: 0.2em;
-    width: 90%;
+    max-width: 700px;
     border: 1px solid #BBB;
 }
 
@@ -162,7 +162,7 @@ section#author input, section#content input, section#campaign input, section#use
     margin-bottom: 10px;
     margin-top: 5px;;
     width: 15em;
-    padding: 0em;
+    padding: 0;
 }
 
 input[type="text"], input[type="email"], input[type="tel"] {
@@ -189,7 +189,7 @@ select {
     margin-right: 0.3em;
     margin-top: 5px;
     margin-bottom: 10px;
-    margin-left: 0px;
+    margin-left: 0;
     padding: 0;
     border: 1px solid #BBB;
 }

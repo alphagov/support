@@ -2,9 +2,21 @@ require 'bundler'
 Bundler.require
 
 require_relative "zendesk_client"
+require_relative "zendesk_request"
+require_relative "zendesk_error"
 require_relative "validations"
 
 class App < Sinatra::Base
+
+  configure do
+    disable :show_exceptions
+    disable :raise_errors
+    enable :logging
+  end
+
+  before do
+    @client = ZendeskClient.get_client(logger)
+  end
 
   get '/' do
     erb :landing
@@ -116,7 +128,7 @@ class App < Sinatra::Base
   end
 
   def on_get(head, head_message_form, template)
-    @departments = ZendeskClient.get_departments
+    @departments = ZendeskRequest.get_departments(@client)
     @header = head
     @header_message = :"#{head_message_form}"
     @formdata = {}
@@ -125,11 +137,11 @@ class App < Sinatra::Base
   end
 
   def on_post(params, route)
-    @departments = ZendeskClient.get_departments
+    @departments = ZendeskRequest.get_departments(@client)
     @formdata = params
 
     if @errors.empty?
-      ticket = ZendeskClient.raise_zendesk_request(params, route)
+      ticket = ZendeskRequest.raise_zendesk_request(@client, params, route)
       if ticket
         redirect '/acknowledge'
       else
@@ -138,6 +150,15 @@ class App < Sinatra::Base
     else
       erb :"#{@template}", :layout => :formlayout
     end
+  end
+
+  error do
+    @error_msg = "And error IS: #{request.env['sinatra.error']}"
+    erb :error_page
+  end
+
+  error ZendeskError do
+    redirect '/failed-submission'
   end
 
 end

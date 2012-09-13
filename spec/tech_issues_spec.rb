@@ -4,6 +4,7 @@ require "mocha"
 require_relative "../lib/app"
 require_relative "../lib/zendesk_client"
 require_relative "../spec/page_helper"
+require_relative "../lib/validations"
 
 class TechnicalIssuesTest < Test::Unit::TestCase
   include Rack::Test::Methods
@@ -15,7 +16,7 @@ class TechnicalIssuesTest < Test::Unit::TestCase
   # Called before every test method runs. Can be used
   # to set up fixture information.
   def setup
-    # Do nothing
+    ZendeskRequest.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
   end
 
   # Called after every test method runs. Can be used to tear
@@ -33,7 +34,8 @@ class TechnicalIssuesTest < Test::Unit::TestCase
 
   def test_create_zendesk_ticket_triggered_by_post_request
     filled_details = PageHelper.fill_content_form
-    ZendeskClient.expects(:raise_zendesk_request)
+    Guard.expects(:validationsForBrokenLink).returns({})
+    ZendeskRequest.expects(:raise_zendesk_request)
 
     post '/broken-link', filled_details
   end
@@ -47,7 +49,8 @@ class TechnicalIssuesTest < Test::Unit::TestCase
 
   def test_redirect_to_acknowledge_page_after_post_request
     filled_details = PageHelper.fill_content_form
-    ZendeskClient.expects(:raise_zendesk_request)
+    Guard.expects(:validationsForBrokenLink).returns({})
+    ZendeskRequest.expects(:raise_zendesk_request).returns("fake ticket")
 
     post '/broken-link', filled_details
     follow_redirect!
