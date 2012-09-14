@@ -16,7 +16,9 @@ class App < Sinatra::Base
   end
 
   before do
-    @client = ZendeskClient.get_client(logger)
+    if '/acknowledge' != env["REQUEST_PATH"]
+      @client = ZendeskClient.get_client(logger)
+    end
   end
 
   get '/' do
