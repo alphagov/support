@@ -17,10 +17,6 @@ class App < Sinatra::Base
 
   before do
     @client = ZendeskClient.get_client(logger)
-
-    #if @client.current_user["id"].nil?
-    #  raise ZendeskError.new("Authentication error", "Check logs for details")
-    #end
   end
 
   get '/' do
@@ -29,10 +25,6 @@ class App < Sinatra::Base
 
   get '/acknowledge' do
     erb :acknowledge
-  end
-
-  get '/failed-submission' do
-    erb :fail
   end
 
   #Content routing
@@ -89,7 +81,7 @@ class App < Sinatra::Base
     on_post(params, "reset-password")
   end
 
-#  Campaigns routing
+  #Campaigns routing
   get '/campaign' do
     on_get("Campaign", "campaigns/campaign_message", "campaigns/campaign")
   end
@@ -151,7 +143,7 @@ class App < Sinatra::Base
         redirect '/acknowledge'
       else
         ExceptionMailer.deliver_exception_notification(env['sinatra.error'])
-        redirect '/failed-submission'
+        500
       end
     else
       erb :"#{@template}", :layout => :formlayout
@@ -160,15 +152,14 @@ class App < Sinatra::Base
 
   error do
     ExceptionMailer.deliver_exception_notification(env['sinatra.error'])
-    @error_msg = request.env['sinatra.error']
-    erb :error_page
+    500
   end
 
   error ZendeskError do
     exception_message = format_exception_message(env['sinatra.error'].message, env['sinatra.error'].details_from_zendesk)
     ExceptionMailer.deliver_exception_notification(exception_message)
 
-    redirect "/failed-submission"
+    401
   end
 
   def format_exception_message(message, details)
