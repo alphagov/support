@@ -130,7 +130,12 @@ class ZendeskTicket
       end
     end
 
-    comments.join("\n\n")
+    if !comments.join.empty?
+      comments.join("\n\n")
+    else
+      comments.join
+    end
+
   end
 
   def remove_space_from_phone_number(number)

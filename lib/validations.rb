@@ -4,6 +4,11 @@ class Guard
 
   MAX_UPLOAD_FILE_SIZE_IN_BYTE = 20971520 #20MB
 
+  @valid_file_type = {
+      "text" => /.*/,
+      "application" => /-officedocument|pdf/
+  }
+
   #Content validations
   def self.validationsForAmendContent(form_data)
     @@errors = {}
@@ -167,7 +172,7 @@ class Guard
   end
 
   def self.validate_upload_file(field_name, upload_file)
-    if upload_file[:tempfile].size > MAX_UPLOAD_FILE_SIZE_IN_BYTE
+    if validate_file_type(field_name, upload_file[:type]) && upload_file[:tempfile].size > MAX_UPLOAD_FILE_SIZE_IN_BYTE
       @@errors[field_name] = "The attached file, #{upload_file[:filename]}, is bigger than 20MB size limitation."
     end
   end
@@ -194,5 +199,18 @@ class Guard
     if not_before && need_by && not_before < need_by
       @@errors["Not before"] = message
     end
+  end
+
+  def self.validate_file_type(field_name, file_type)
+    @@errors ||= {}
+    valid = false
+    type = file_type.split("/")
+
+    if @valid_file_type[type[0]] && (type[1] =~ @valid_file_type[type[0]])
+      valid = true
+    else
+      @@errors[field_name] = "Only text, word and pdf file allowed."
+    end
+    valid
   end
 end
