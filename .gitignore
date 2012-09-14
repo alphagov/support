@@ -27,4 +27,4 @@ Gemfile
 Gemfile.lock
 config.ru
 config/zendesk.yml
-
+config/mailer.yml
