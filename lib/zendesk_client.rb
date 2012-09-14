@@ -29,6 +29,10 @@ class ZendeskClient
       if status_401 || too_many_login_attempts
         raise ZendeskError.new("Authentication Error", env)
       end
+
+      if env[:body]["error"]
+        raise ZendeskError.new("Error creating ticket", env)
+      end
     end
 
     @client

@@ -142,7 +142,7 @@ class App < Sinatra::Base
       if ticket
         redirect '/acknowledge'
       else
-        ExceptionMailer.deliver_exception_notification(env['sinatra.error'])
+        ExceptionMailer.deliver_exception_notification(format_exception_message("There has been a problem", env['sinatra.error']))
         500
       end
     else
@@ -151,7 +151,7 @@ class App < Sinatra::Base
   end
 
   error do
-    ExceptionMailer.deliver_exception_notification(env['sinatra.error'])
+    ExceptionMailer.deliver_exception_notification(format_exception_message("There has been a problem", env['sinatra.error']))
     500
   end
 
