@@ -21,13 +21,13 @@ class ZendeskClient
       logger.info env
       if env[:body]["user"]
         if env[:body]["id"].nil?
-          raise ZendeskError.new("Authentication Error")
+          raise ZendeskError.new("Authentication Error", env)
         end
       end
       status_401 = env[:status].to_s.start_with? "401"
       too_many_login_attempts = env[:body].to_s.start_with? "Too many failed login attempts"
       if status_401 || too_many_login_attempts
-        raise ZendeskError.new("Authentication Error")
+        raise ZendeskError.new("Authentication Error", env)
       end
     end
 

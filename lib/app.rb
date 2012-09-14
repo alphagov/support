@@ -5,6 +5,7 @@ require_relative "zendesk_client"
 require_relative "zendesk_request"
 require_relative "zendesk_error"
 require_relative "validations"
+require_relative "exception_mailer"
 
 class App < Sinatra::Base
 
@@ -16,6 +17,10 @@ class App < Sinatra::Base
 
   before do
     @client = ZendeskClient.get_client(logger)
+
+    #if @client.current_user["id"].nil?
+    #  raise ZendeskError.new("Authentication error", "Check logs for details")
+    #end
   end
 
   get '/' do
@@ -30,7 +35,7 @@ class App < Sinatra::Base
     erb :fail
   end
 
-  # Content routing
+  #Content routing
   get '/amend-content' do
     on_get("Content Change", "content/content_amend_message", "content/amend")
   end
@@ -44,7 +49,7 @@ class App < Sinatra::Base
     on_post(params, "amend-content")
   end
 
-#  User access routing
+  #User access routing
   get '/create-user' do
     on_get("Create New User", "useraccess/user_create_message", "useraccess/user")
   end
@@ -145,6 +150,7 @@ class App < Sinatra::Base
       if ticket
         redirect '/acknowledge'
       else
+        ExceptionMailer.deliver_exception_notification(env['sinatra.error'])
         redirect '/failed-submission'
       end
     else
@@ -153,12 +159,30 @@ class App < Sinatra::Base
   end
 
   error do
-    @error_msg = "And error IS: #{request.env['sinatra.error']}"
+    ExceptionMailer.deliver_exception_notification(env['sinatra.error'])
+    @error_msg = request.env['sinatra.error']
     erb :error_page
   end
 
   error ZendeskError do
-    redirect '/failed-submission'
+    exception_message = format_exception_message(env['sinatra.error'].message, env['sinatra.error'].details_from_zendesk)
+    ExceptionMailer.deliver_exception_notification(exception_message)
+
+    redirect "/failed-submission"
+  end
+
+  def format_exception_message(message, details)
+    time = Time.now
+    message = <<-EOF
+          At #{time}
+          Error
+          #{message}
+
+          Zendesk responded with:
+          #{details}
+    EOF
+
+    message
   end
 
 end
