@@ -13,7 +13,7 @@ class ExceptionMailer
           :enable_starttls_auto => true
       }
       from 'Winston Smith-Churchill <winston@alphagov.co.uk>'
-      to 'govuk-exceptions@digital.cabinet-office.gov.uk'
+      to mailer_file[environment]["mailid"].to_s
       subject "Zendesk MI5-minesweeper has blown"
       body message
     end
