@@ -26,7 +26,7 @@
     </div>
     <div>
       <label for="department_list">Department</label>
-      <select id="department_list" name="department" required aria-required="true">
+      <select id="department_list" name="department">
         <% @departments.each do |key, value| %>
           <% if value == @formdata["department"] %>
             <option selected="selected" value="<%= value %>"><%= key %> </option>
@@ -36,6 +36,11 @@
         <% end %>
       </select>
       <%= erb :errors, :locals => {"key" => "Department"} %>
+    </div>
+
+    <div>
+      <label class="long" for="other_department">Please specify the department if you didn't find the department in the list above</label>
+      <input id="other_department" name="other_department">
     </div>
   </fieldset>
 
