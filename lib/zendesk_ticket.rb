@@ -7,7 +7,6 @@ class ZendeskTicket
   @@in_comments = {"amend-content" => [:url1, :url2, :url3],
                    "create-user" => [:user_name, :user_email, :additional],
                    "remove-user" => [:user_name, :user_email, :additional],
-                   "reset-password" => [:user_name, :user_email, :additional],
                    "campaign" => [:campaign_name, :erg_number, :company, :description, :url, :additional],
                    "broken-link" => [:url, :user_agent, :additional],
                    "publish-tool" => [:username, :url, :user_agent, :additional]
@@ -16,7 +15,6 @@ class ZendeskTicket
   @@in_subject = {"amend-content" => "Content change request",
                   "create-user" => "Create new user",
                   "remove-user" => "Remove user",
-                  "reset-password" => "Reset Password",
                   "campaign" => "Campaign",
                   "broken-link" => "Broken Link",
                   "publish-tool" => "Publishing Tool"
@@ -25,7 +23,6 @@ class ZendeskTicket
   @@in_tag = {"amend-content" => "content_amend",
               "create-user" => "new_user",
               "remove-user" => "remove_user",
-              "reset-password" => "password_reset",
               "campaign" => "campaign",
               "broken-link" => "broken_link",
               "publish-tool" => "publishing_tool_tech"

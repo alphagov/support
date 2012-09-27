@@ -45,14 +45,6 @@ class Guard
     @@errors
   end
 
-  def self.validationsForResetPassword(form_data)
-    @@errors = {}
-    required = ["name", "email", "job", "department", "user_name", "user_email"]
-    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
-
-    @@errors
-  end
-
   def self.validationsForDeleteUser(form_data)
     @@errors = {}
 
