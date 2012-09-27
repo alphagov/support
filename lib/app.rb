@@ -70,26 +70,13 @@ class App < Sinatra::Base
     on_post(params, "remove-user")
   end
 
-  get '/reset-password' do
-    on_get("Reset Password", "useraccess/user_password_reset_message", "useraccess/resetpassword")
-  end
-
-  post '/reset-password' do
-    @header = "Reset Password"
-    @header_message = :"useraccess/user_password_reset_message"
-    @template = "useraccess/resetpassword"
-
-    @errors = Guard.validationsForResetPassword(params)
-    on_post(params, "reset-password")
-  end
-
   #Campaigns routing
   get '/campaign' do
     on_get("Campaign", "campaigns/campaign_message", "campaigns/campaign")
   end
 
   post '/campaign' do
-    @header = "Reset Password"
+    @header = "Campaign"
     @header_message = :"campaigns/campaign_message"
     @template = "campaigns/campaign"
 
