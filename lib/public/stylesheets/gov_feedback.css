@@ -176,10 +176,13 @@ input[type="text"], input[type="email"], input[type="tel"] {
 }
 
 div.upload {
+    padding-top: 0.3em;
     padding-bottom: 0.3em;
-    border-bottom: 1px solid #BBB;
 }
 
+div.line {
+    border-bottom: 1px solid #BBB;
+}
 
 select {
     line-height: 1.5em;
