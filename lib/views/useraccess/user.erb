@@ -1,9 +1,6 @@
 <section id="user">
   <header class="section-header">User details</header>
 
-  <%= erb :upload, :locals => {"id" => "file-input", "name" => "uploaded_data"}%>
-
-
   <label for="user_name">Name</label>
   <input id="user_name" name="user_name" type="text" <%= erb :assignvalue, :locals => {:param => @formdata[:user_name]} %>>
   <%= erb :errors, :locals => {"key" => "User name"} %>
@@ -19,4 +16,7 @@
       <textarea id="comments" rows="10" cols="50" name="additional"><%= @formdata[:additional] %></textarea>
     </div>
   </fieldset>
+
+  <%= erb :upload, :locals => {"id" => "file-input", "name" => "uploaded_data", "uploadmessage" => "If you have multiple users to be added, you can upload a file here"}%>
+
 </section>

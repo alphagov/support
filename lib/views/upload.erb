@@ -1,12 +1,14 @@
 <fieldset>
+  <fieldset>
+    <label style="height:20px;">Alternatively</label>
+  </fieldset>
+
+  <div class="line"></div>
+
   <div class="upload">
-    <label for="<%= id %>">Do you want to upload a file? (20MB limit)</label>
+    <label for="<%= id %>"><%= uploadmessage %> (20MB limit) </label>
     <br/>
     <input id="<%= id %>" name="<%= name %>" type="file" accept="text/*, application/pdf, .xls, .xlsx"/>
     <%= erb :errors, :locals => {"key" => name} %>
   </div>
-</fieldset>
-
-<fieldset>
-  <label style="height:50px;">Alternatively</label>
 </fieldset>
