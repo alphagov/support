@@ -47,6 +47,10 @@ class ZendeskTicket
       @need_by_date = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
     end
 
+    if has_value(params[:start_day])
+      @need_by_date = params[:start_day] + "/" + params[:start_month] + "/" + params[:start_year]
+    end
+
     if has_value(params[:not_before_day])
       @not_before_date = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
     end
