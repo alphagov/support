@@ -4,12 +4,12 @@ Bundler.require
 class ZendeskTicket
 
   attr_reader :name, :email, :department, :job, :phone, :comment, :subject, :tag, :need_by_date, :not_before_date, :file_token
-  @@in_comments = {"amend-content" => [:url1, :url2, :url3],
-                   "create-user" => [:user_name, :user_email, :additional],
-                   "remove-user" => [:user_name, :user_email, :additional],
-                   "campaign" => [:campaign_name, :erg_number, :company, :description, :url, :additional],
-                   "broken-link" => [:url, :user_agent, :additional],
-                   "publish-tool" => [:username, :url, :user_agent, :additional]
+  @@in_comments = {"amend-content" => [:other_department, :url1, :url2, :url3],
+                   "create-user" => [:other_department, :user_name, :user_email, :additional],
+                   "remove-user" => [:other_department, :user_name, :user_email, :additional],
+                   "campaign" => [:other_department, :campaign_name, :erg_number, :company, :description, :url, :additional],
+                   "broken-link" => [:other_department, :url, :user_agent, :additional],
+                   "publish-tool" => [:other_department, :username, :url, :user_agent, :additional]
   }
 
   @@in_subject = {"amend-content" => "Content change request",
@@ -33,6 +33,7 @@ class ZendeskTicket
     @name = params[:name]
     @email = params[:email]
     @department = params[:department]
+
     @job = params[:job]
     if has_value(params[:phone])
       @phone = remove_space_from_phone_number(params[:phone])

@@ -148,6 +148,10 @@ textarea {
     border: 1px solid #BBB;
 }
 
+input#other_department {
+    margin-left: 5px;
+}
+
 span em {
     font-size: 14px;
     margin-bottom: 0.3em;

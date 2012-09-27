@@ -12,7 +12,7 @@ class Guard
   #Content validations
   def self.validationsForAmendContent(form_data)
     @@errors = {}
-    required = ["name", "email", "job", "department"]
+    required = ["name", "email", "job"]
     validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["Need by", "need_by_day", "need_by_month", "need_by_year"], ["Not before", "not_before_day", "not_before_month", "not_before_year"]])
 
@@ -32,9 +32,9 @@ class Guard
   def self.validationsForCreateUser(form_data)
     @@errors = {}
     if form_data[:uploaded_data] && self.doesFieldHaveValue(form_data[:uploaded_data][:filename])
-      required = ["name", "email", "job", "department"]
+      required = ["name", "email", "job"]
     else
-      required = ["name", "email", "job", "department", "user_name", "user_email"]
+      required = ["name", "email", "job", "user_name", "user_email"]
     end
     validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
 
@@ -49,9 +49,9 @@ class Guard
     @@errors = {}
 
     if form_data[:uploaded_data] && self.doesFieldHaveValue(form_data[:uploaded_data][:filename])
-      required = ["name", "email", "job", "department"]
+      required = ["name", "email", "job"]
     else
-      required = ["name", "email", "job", "department", "user_name", "user_email"]
+      required = ["name", "email", "job", "user_name", "user_email"]
     end
 
     validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
@@ -71,7 +71,7 @@ class Guard
   #Campaign validations
   def self.validationsForCampaign(form_data)
     @@errors = {}
-    required = ["name", "email", "job", "department", "campaign_name", "erg_number", "description"]
+    required = ["name", "email", "job", "campaign_name", "erg_number", "description"]
     validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
 
     self.checkOptionalDateFieldsAreComplete(form_data, [["Start date", "start_day", "start_month", "start_year"]])
@@ -85,7 +85,7 @@ class Guard
   #Tech issues
   def self.validationsForBrokenLink(form_data)
     @@errors = {}
-    required = ["name", "email", "job", "department", "url"]
+    required = ["name", "email", "job", "url"]
     validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
 
     @@errors
@@ -93,7 +93,7 @@ class Guard
 
   def self.validationsForPublishTool(form_data)
     @@errors = {}
-    required = ["name", "email", "job", "department", "url", "username"]
+    required = ["name", "email", "job", "url", "username"]
     validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
 
     @@errors
@@ -103,6 +103,7 @@ class Guard
 
   def self.validate(form_data, required, phone_fields, email_fields)
     self.checkRequiredFieldsHaveValues(required, form_data)
+    self.validate_department_or_other_is_entered(form_data)
     self.checkPhoneIsValid(phone_fields)
     self.checkEmailIsValid(email_fields)
   end
@@ -156,7 +157,6 @@ class Guard
         @@errors[arrayofday_month_year[0]] = "#{fields_in_error_message} not entered. Please enter complete date."
       end
     end
-
   end
 
   def self.doesFieldHaveValue(field_value)
@@ -190,6 +190,19 @@ class Guard
   def self.validate_not_before_date_is_equal_or_greater_than_need_by(not_before, need_by, message)
     if not_before && need_by && not_before < need_by
       @@errors["Not before"] = message
+    end
+  end
+
+  def self.validate_department_or_other_is_entered(form_data)
+    other_department_is_required = form_data[:department].empty? || form_data[:department] == "other_department"
+
+    if other_department_is_required &&
+        (form_data[:other_department] && form_data[:other_department].strip.empty?)
+      @@errors["Department"] = "Department information is required for a valid request."
+    end
+
+    if not other_department_is_required
+      form_data[:other_department] = ""
     end
   end
 
