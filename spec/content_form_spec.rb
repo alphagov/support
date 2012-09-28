@@ -24,7 +24,7 @@ class ContentFormSpec < Test::Unit::TestCase
 
   def test_page_contain_required_fields
     #Given
-    ZendeskRequest.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
+    ZendeskRequest.expects(:get_organisations).returns([{"key1" => "value1"}, {"key2" => "value2"}])
 
     #When
     get '/amend-content'
@@ -34,12 +34,12 @@ class ContentFormSpec < Test::Unit::TestCase
     assert last_response.body.include?('Email')
     assert last_response.body.include?('Job title')
     assert last_response.body.include?('Phone number')
-    assert last_response.body.include?('Department')
+    assert last_response.body.include?('Organisation')
   end
 
-  def test_departments_list_shown_on_page
+  def test_organisations_list_shown_on_page
     #Given
-    ZendeskRequest.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
+    ZendeskRequest.expects(:get_organisations).returns([{"key1" => "value1"}, {"key2" => "value2"}])
 
     #When
     get '/amend-content'
@@ -51,7 +51,7 @@ class ContentFormSpec < Test::Unit::TestCase
 
   def  test_zendesk_create_ticket_triggered_by_post_request
     form_parameters = PageHelper.fill_content_form
-    ZendeskRequest.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
+    ZendeskRequest.expects(:get_organisations).returns([{"key1" => "value1"}, {"key2" => "value2"}])
     Guard.expects(:validationsForCreateUser).returns({});
     ZendeskRequest.expects(:raise_zendesk_request).returns("fake ticket")
 

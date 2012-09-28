@@ -103,7 +103,7 @@ class Guard
 
   def self.validate(form_data, required, phone_fields, email_fields)
     self.checkRequiredFieldsHaveValues(required, form_data)
-    self.validate_department_or_other_is_entered(form_data)
+    self.validate_organisation_or_other_is_entered(form_data)
     self.checkPhoneIsValid(phone_fields)
     self.checkEmailIsValid(email_fields)
   end
@@ -193,16 +193,16 @@ class Guard
     end
   end
 
-  def self.validate_department_or_other_is_entered(form_data)
-    other_department_is_required = form_data[:department].empty? || form_data[:department] == "other_department"
+  def self.validate_organisation_or_other_is_entered(form_data)
+    other_organisation_is_required = form_data[:organisation].empty? || form_data[:organisation] == "other_organisation"
 
-    if other_department_is_required &&
-        (form_data[:other_department] && form_data[:other_department].strip.empty?)
-      @@errors["Department"] = "Department information is required for a valid request."
+    if other_organisation_is_required &&
+        (form_data[:other_organisation] && form_data[:other_organisation].strip.empty?)
+      @@errors["Organisation"] = "Organisation information is required for a valid request."
     end
 
-    if not other_department_is_required
-      form_data[:other_department] = ""
+    if not other_organisation_is_required
+      form_data[:other_organisation] = ""
     end
   end
 

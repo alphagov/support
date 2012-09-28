@@ -114,7 +114,7 @@ class App < Sinatra::Base
   end
 
   def on_get(head, head_message_form, template)
-    @departments = ZendeskRequest.get_departments(@client)
+    @organisations = ZendeskRequest.get_organisations(@client)
     @header = head
     @header_message = :"#{head_message_form}"
     @formdata = {}
@@ -123,7 +123,7 @@ class App < Sinatra::Base
   end
 
   def on_post(params, route)
-    @departments = ZendeskRequest.get_departments(@client)
+    @organisations = ZendeskRequest.get_organisations(@client)
     @formdata = params
 
     if @errors.empty?

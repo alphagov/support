@@ -3,13 +3,13 @@ Bundler.require
 
 class ZendeskTicket
 
-  attr_reader :name, :email, :department, :job, :phone, :comment, :subject, :tag, :need_by_date, :not_before_date, :file_token
-  @@in_comments = {"amend-content" => [:other_department, :url1, :url2, :url3],
-                   "create-user" => [:other_department, :user_name, :user_email, :additional],
-                   "remove-user" => [:other_department, :user_name, :user_email, :additional],
-                   "campaign" => [:other_department, :campaign_name, :erg_number, :company, :description, :url, :additional],
-                   "broken-link" => [:other_department, :url, :user_agent, :additional],
-                   "publish-tool" => [:other_department, :username, :url, :user_agent, :additional]
+  attr_reader :name, :email, :organisation, :job, :phone, :comment, :subject, :tag, :need_by_date, :not_before_date, :file_token
+  @@in_comments = {"amend-content" => [:other_organisation, :url1, :url2, :url3],
+                   "create-user" => [:other_organisation, :user_name, :user_email, :additional],
+                   "remove-user" => [:other_organisation, :user_name, :user_email, :additional],
+                   "campaign" => [:other_organisation, :campaign_name, :erg_number, :company, :description, :url, :additional],
+                   "broken-link" => [:other_organisation, :url, :user_agent, :additional],
+                   "publish-tool" => [:other_organisation, :username, :url, :user_agent, :additional]
   }
 
   @@in_subject = {"amend-content" => "Content change request",
@@ -32,7 +32,7 @@ class ZendeskTicket
     #author information
     @name = params[:name]
     @email = params[:email]
-    @department = params[:department]
+    @organisation = params[:organisation]
 
     @job = params[:job]
     if has_value(params[:phone])
@@ -86,7 +86,7 @@ class ZendeskTicket
       else
         comment = @@in_comments[from_route].map do |comment_param|
           if params[comment_param] && !params[comment_param].empty?
-            "[" + comment_param.to_s.capitalize + "]\n" + params[comment_param]
+            "[" + comment_param.to_s.capitalize.gsub(/_/, " ") + "]\n" + params[comment_param]
           end
         end
 
@@ -102,7 +102,7 @@ class ZendeskTicket
     all_comments = @@in_comments[from_route].map do |comment_param|
       comment = ""
       if params[comment_param] && !params[comment_param].empty?
-        comment = "[" + comment_param.to_s.capitalize + "]\n"
+        comment = "[" + comment_param.to_s.capitalize.gsub(/_/, " ") + "]\n"
         if :url == comment_param
           comment += build_full_url_path(params[:url])
         else
