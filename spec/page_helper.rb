@@ -11,7 +11,7 @@ class PageHelper
      :not_before_year => '2012',
      :name => 'tester',
      :email => 'tester@digital.cabinet-office.gov.uk',
-     :department => 'test department',
+     :organisation => 'test organisation',
      :job => 'job',
      :phone => '123456'
     }

@@ -16,7 +16,7 @@ class TechnicalIssuesTest < Test::Unit::TestCase
   # Called before every test method runs. Can be used
   # to set up fixture information.
   def setup
-    ZendeskRequest.expects(:get_departments).returns([{"key1" => "value1"}, {"key2" => "value2"}])
+    ZendeskRequest.expects(:get_organisations).returns([{"key1" => "value1"}, {"key2" => "value2"}])
   end
 
   # Called after every test method runs. Can be used to tear

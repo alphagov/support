@@ -6,12 +6,12 @@ require_relative "zendesk_ticket"
 
 class ZendeskRequest
 
-  def self.get_departments(client)
-    departments_hash = {"Select Department" => ""}
+  def self.get_organisations(client)
+    organisations_hash = {"Select Organisation" => ""}
     #if client && client.current_user && client.current_user.id
-    client.ticket_fields.find(:id => '21494928').custom_field_options.each { |tf| departments_hash[tf.name] = tf.value }
+    client.ticket_fields.find(:id => '21494928').custom_field_options.each { |tf| organisations_hash[tf.name] = tf.value }
     #end
-    departments_hash
+    organisations_hash
   end
 
   def self.raise_zendesk_request(client, params, from_route)
@@ -25,7 +25,7 @@ class ZendeskRequest
           :description => "Created via Govt API",
           :priority => "normal",
           :requester => {"locale_id" => 1, "name" => ticket_to_raise.name, "email" => ticket_to_raise.email},
-          :fields => [{"id" => "21494928", "value" => ticket_to_raise.department},
+          :fields => [{"id" => "21494928", "value" => ticket_to_raise.organisation},
                       {"id" => "21487987", "value" => ticket_to_raise.job},
                       {"id" => "21471291", "value" => ticket_to_raise.phone},
                       {"id" => "21485833", "value" => ticket_to_raise.need_by_date},
@@ -41,7 +41,7 @@ class ZendeskRequest
         :description => "Created via Govt API",
         :priority => "normal",
         :requester => {"locale_id" => 1, "name" => ticket_to_raise.name, "email" => ticket_to_raise.email},
-        :fields => [{"id" => "21494928", "value" => ticket_to_raise.department},
+        :fields => [{"id" => "21494928", "value" => ticket_to_raise.organisation},
                     {"id" => "21487987", "value" => ticket_to_raise.job},
                     {"id" => "21471291", "value" => ticket_to_raise.phone},
                     {"id" => "21485833", "value" => ticket_to_raise.need_by_date},
