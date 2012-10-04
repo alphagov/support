@@ -85,18 +85,18 @@ class App < Sinatra::Base
   end
 
   #Tech Issue routing
-  get '/broken-link' do
-    on_get("Broken Link", "tech-issues/message_broken_link", "tech-issues/broken_link")
+  get '/general' do
+    on_get("General", "tech-issues/message_general", "tech-issues/general")
   end
 
-  post '/broken-link' do
+  post '/general' do
     params[:user_agent] = @request.user_agent
-    @header = "Broken Link"
-    @header_message = :"tech-issues/message_broken_link"
-    @template = "tech-issues/broken_link"
+    @header = "General"
+    @header_message = :"tech-issues/message_general"
+    @template = "tech-issues/general"
 
-    @errors = Guard.validationsForBrokenLink(params)
-    on_post(params, "broken-link")
+    @errors = Guard.validationsForGeneralIssues(params)
+    on_post(params, "general")
   end
 
   get '/publish-tool' do

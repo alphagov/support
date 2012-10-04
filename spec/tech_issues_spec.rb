@@ -27,17 +27,17 @@ class TechnicalIssuesTest < Test::Unit::TestCase
   end
 
   def test_get_request
-    get '/broken-link'
+    get '/general'
     assert last_response.ok?
-    assert last_response.body.include?("Broken Link")
+    assert last_response.body.include?("General")
   end
 
   def test_create_zendesk_ticket_triggered_by_post_request
     filled_details = PageHelper.fill_content_form
-    Guard.expects(:validationsForBrokenLink).returns({})
+    Guard.expects(:validationsForGeneralIssues).returns({})
     ZendeskRequest.expects(:raise_zendesk_request)
 
-    post '/broken-link', filled_details
+    post '/general', filled_details
   end
 
   def test_get_request_for_publishing_tool
@@ -49,10 +49,10 @@ class TechnicalIssuesTest < Test::Unit::TestCase
 
   def test_redirect_to_acknowledge_page_after_post_request
     filled_details = PageHelper.fill_content_form
-    Guard.expects(:validationsForBrokenLink).returns({})
+    Guard.expects(:validationsForGeneralIssues).returns({})
     ZendeskRequest.expects(:raise_zendesk_request).returns("fake ticket")
 
-    post '/broken-link', filled_details
+    post '/general', filled_details
     follow_redirect!
 
     assert last_response.ok?
