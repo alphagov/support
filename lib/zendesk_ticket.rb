@@ -8,7 +8,7 @@ class ZendeskTicket
                    "create-user" => [:other_organisation, :user_name, :user_email, :additional],
                    "remove-user" => [:other_organisation, :user_name, :user_email, :additional],
                    "campaign" => [:other_organisation, :campaign_name, :erg_number, :company, :description, :url, :additional],
-                   "broken-link" => [:other_organisation, :url, :user_agent, :additional],
+                   "general" => [:other_organisation, :url, :user_agent, :additional],
                    "publish-tool" => [:other_organisation, :username, :url, :user_agent, :additional]
   }
 
@@ -16,7 +16,7 @@ class ZendeskTicket
                   "create-user" => "Create new user",
                   "remove-user" => "Remove user",
                   "campaign" => "Campaign",
-                  "broken-link" => "Broken Link",
+                  "general" => "Govt Agency General Issue",
                   "publish-tool" => "Publishing Tool"
   }
 
@@ -24,7 +24,7 @@ class ZendeskTicket
               "create-user" => "new_user",
               "remove-user" => "remove_user",
               "campaign" => "campaign",
-              "broken-link" => "broken_link",
+              "general" => "govt_agency_general",
               "publish-tool" => "publishing_tool_tech"
   }
 
@@ -79,7 +79,7 @@ class ZendeskTicket
     case from_route
       when "amend-content" then
         format_comment_for_amend_content(params)
-      when "broken-link" then
+      when "general" then
         format_comment_for_tech_issues(from_route, params)
       when "publish-tool" then
         format_comment_for_tech_issues(from_route, params)

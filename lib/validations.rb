@@ -83,7 +83,7 @@ class Guard
   end
 
   #Tech issues
-  def self.validationsForBrokenLink(form_data)
+  def self.validationsForGeneralIssues(form_data)
     @@errors = {}
     required = ["name", "email", "job", "url"]
     validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
