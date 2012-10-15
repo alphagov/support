@@ -4,6 +4,10 @@
     display: block;
 }
 
+body {
+    font-family: Helvetica, sans-serif;
+}
+
 /* White Content */
 #framework {
     background-color: white;
@@ -221,10 +225,16 @@ header.section-header {
     margin-bottom: 10px;
 }
 
+section#hint {
+    line-height: 1em;
+    background-color: #f0f0f0;
+    font-size: 1.2em;
+    padding: 1em;
+}
+
 header.content-header hgroup h1 {
     background-repeat: no-repeat;
     color: black;
-    font-family: "NTA", "Helvetica Neue", Arial, Helvetica, sans-serif;
     font-size: 2em;
     font-weight: 400;
     letter-spacing: 0;
@@ -237,7 +247,7 @@ header.content-header hgroup h1 {
 }
 
 #wrapper header h1 {
-    margin: 0 0 0 1.572727273em;
+    margin: 0 0 0 1.73em;
     margin-top: 20px;
 }
 
