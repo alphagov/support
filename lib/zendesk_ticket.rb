@@ -56,14 +56,7 @@ class ZendeskTicket
       @not_before_date = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
     end
 
-    check_for_attachments(client, params)
   end
-
-
-  def has_attachments
-    @file_token.length > 0
-  end
-
 
   private
 
@@ -152,33 +145,6 @@ class ZendeskTicket
     end
   end
 
-#  attachments
-  def upload_file_to_create_file_token(client, tempfile, filename)
-    directory = "./tmp"
-    path = File.join(directory, filename)
-    File.open(path, "wb") { |f| f.write(tempfile.read) }
-    file_token = upload_file(client, path)
-    File.delete(path)
-    file_token
-  end
-
-  def upload_file(client, path)
-    upload = ZendeskAPI::Upload.create(client, :file => File.open(path))
-    upload.token
-  end
-
-  def check_for_attachments(client, params)
-    @file_token = []
-    if params[:uploaded_data] && doesFieldHaveValue(params[:uploaded_data][:filename])
-      tempfile = params[:uploaded_data][:tempfile]
-      filename = params[:uploaded_data][:filename]
-      @file_token << upload_file_to_create_file_token(client, tempfile, filename)
-    end
-
-    if !@file_token.empty? && @comment.empty?
-      @comment = "[Attachment(s)]"
-    end
-  end
 
   def doesFieldHaveValue(field_value)
     field_value && !field_value.strip.empty?
