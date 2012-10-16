@@ -174,16 +174,4 @@ class Guard
     end
   end
 
-  def self.validate_file_type(field_name, file_type)
-    @@errors ||= {}
-    valid = false
-    type = file_type.split("/")
-
-    if @valid_file_type[type[0]] && (type[1] =~ @valid_file_type[type[0]])
-      valid = true
-    else
-      @@errors[field_name] = "Only text, word and pdf file allowed."
-    end
-    valid
-  end
 end
