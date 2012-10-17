@@ -169,4 +169,67 @@ class SupportControllerTest < ActionController::TestCase
       assert_redirected_to "/acknowledge"
     end
   end
+
+  context "GET remove_user" do
+    setup do
+      stub_zendesk_organisation_list
+    end
+
+    should "render the form" do
+      get :remove_user
+      assert_select "h1", /Remove User/i
+    end
+
+    should "use ZenDesk to populate the organisation dropdown" do
+      get :remove_user
+      assert_select "select#organisation_list option", "Advocate General for Scotland"
+    end
+  end
+
+  context "POST remove_user" do
+    setup do
+      stub_zendesk_organisation_list
+    end
+
+    should "reject invalid requests" do
+      params = {
+        "name"=>"Testing", 
+        "email"=>"testing@digital.cabinet-office.gov.uk", 
+        "job"=>"This is just a test", 
+        "phone"=>"", 
+        "organisation"=>"", # this has to be filled in
+        "other_organisation"=>"", 
+        "user_name"=>"testing", 
+        "user_email"=>"ignore-me@foo.com", 
+        "not_before_day"=>"", 
+        "not_before_month"=>"", 
+        "not_before_year"=>"", 
+        "additional"=>""
+      }
+      post :remove_user, params
+      assert_response 200 # should actually be an error status, but let's worry about that later
+      assert_template "useraccess/user"
+      assert_select ".errors", /Organisation information is required/
+    end
+
+    should "submit it to ZenDesk" do
+      params = {
+        "name"=>"Testing", 
+        "email"=>"testing@digital.cabinet-office.gov.uk", 
+        "job"=>"This is just a test", 
+        "phone"=>"", 
+        "organisation"=>"cabinet_office", 
+        "other_organisation"=>"", 
+        "user_name"=>"testing", 
+        "user_email"=>"ignore-me@foo.com", 
+        "not_before_day"=>"", 
+        "not_before_month"=>"", 
+        "not_before_year"=>"", 
+        "additional"=>""
+      }
+      ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
+      post :remove_user, params
+      assert_redirected_to "/acknowledge"
+    end
+  end
 end
