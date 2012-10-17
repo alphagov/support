@@ -1,4 +1,4 @@
-<span class="errors" style= "<% if @errors && @errors[key] %>  display: block; <%else%> display: none; visibility: hidden; <% end%>">
+<span class="errors" style= "<% if errors && errors[key] %>  display: block; <%else%> display: none; visibility: hidden; <% end%>">
   <% if @errors %>
     <em> <%= @errors[key] %> </em>
    <% end %>

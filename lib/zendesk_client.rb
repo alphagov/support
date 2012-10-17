@@ -1,3 +1,5 @@
+require "zendesk_error"
+
 class ZendeskClient
 
   def self.get_client(logger)

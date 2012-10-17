@@ -5,7 +5,7 @@
       <label for="name">Name</label>
       <div class="input_and_error">
         <input id="name" name="name" type="text" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:name]} %> >
-        <%= render "errors", {"key" => "Name"} %>
+        <%= render "errors", {key: "Name", errors: @errors} %>
       </div>
     </div>
     <div>
