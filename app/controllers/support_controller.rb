@@ -16,6 +16,10 @@ class SupportController < ApplicationController
     end
   end
 
+  def landing
+    render :landing, :layout => "layout"
+  end
+
   private
 
   def on_get(head, head_message_form, template)
