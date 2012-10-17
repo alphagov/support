@@ -3,6 +3,7 @@ Support::Application.routes.draw do
   match "create-user" => "support#create_user"
   match "remove-user" => "support#remove_user"
   match "campaign" => "support#campaign"
+  match "general" => "support#general"
   match "acknowledge" => "support#acknowledge"
   root :to => 'support#landing'
 end

@@ -56,6 +56,20 @@ class SupportController < ApplicationController
     end
   end
 
+  def general
+    if request.method == "GET"
+      on_get("General", "tech-issues/message_general", "tech-issues/general")
+    elsif request.method == "POST"
+      params[:user_agent] = request.user_agent
+      @header = "General"
+      @header_message = "tech-issues/message_general"
+      @template = "tech-issues/general"
+
+      @errors = Guard.validationsForGeneralIssues(params)
+      on_post(params, "general")
+    end
+  end
+
   def landing
     render :landing, :layout => "layout"
   end
