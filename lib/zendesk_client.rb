@@ -36,7 +36,8 @@ class ZendeskClient
   private
 
   def self.get_username_password(config_details)
-    environment = ENV['GOVUK_ENV'] || "development"
+    # GOVUK_ENV should be preview/production/staging. Fall back if we are in dev (or test)
+    environment = ENV['GOVUK_ENV'] || Rails.env
     [config_details[environment]["username"].to_s, config_details[environment]["password"].to_s]
   end
 end
