@@ -30,6 +30,19 @@ class SupportController < ApplicationController
     end
   end
 
+  def remove_user
+    if request.method == "GET"
+      on_get("Remove User", "useraccess/user_remove_message", "useraccess/userremove")
+    elsif request.method == "POST"
+      @header = "Remove User"
+      @header_message = "useraccess/user_remove_message"
+      @template = "useraccess/userremove"
+
+      @errors = Guard.validationsForDeleteUser(params)
+      on_post(params, "remove-user")
+    end
+  end
+
   def landing
     render :landing, :layout => "layout"
   end

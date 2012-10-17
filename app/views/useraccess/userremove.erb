@@ -2,15 +2,15 @@
   <header class="section-header">User details</header>
 
   <label for="user_name">Username</label>
-  <input id="user_name" name="user_name" type="text"  <%= erb :assignvalue, :locals => {:param => @formdata[:user_name]} %>>
-  <%= erb :errors, :locals => {errors: @errors, key: "User name"} %>
+  <input id="user_name" name="user_name" type="text"  <%= render "assignvalue", {:param => @formdata[:user_name]} %>>
+  <%= render "errors", {errors: @errors, key: "User name"} %>
 
   <label for="email">Email</label>
-  <input id="email" name="user_email" type="email"  <%= erb :assignvalue, :locals => {:param => @formdata[:user_email]} %>>
-  <%= erb :errors, :locals => {errors: @errors, key: "User email"} %>
+  <input id="email" name="user_email" type="email"  <%= render "assignvalue", {:param => @formdata[:user_email]} %>>
+  <%= render "errors", {errors: @errors, key: "User email"} %>
 
-  <%= erb :date, :locals => {:title => "Not before", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]}%>
-  <%= erb :errors, :locals => {errors: @errors, key: "Not before"} %>
+  <%= render "date", {:title => "Not before", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]}%>
+  <%= render "errors", {errors: @errors, key: "Not before"} %>
   <div style="clear:both;"></div>
 
   <fieldset>
@@ -20,6 +20,6 @@
     </div>
   </fieldset>
 
-  <%= erb :upload, :locals => {"id" => "file-input", "name" => "uploaded_data", "uploadmessage" => "If you have multiple users to be removed, you can upload a file here"}%>
+  <%= render "upload", {"id" => "file-input", "name" => "uploaded_data", "uploadmessage" => "If you have multiple users to be removed, you can upload a file here"}%>
 
 </section>
