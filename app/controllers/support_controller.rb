@@ -70,6 +70,20 @@ class SupportController < ApplicationController
     end
   end
 
+  def publish_tool
+    if request.method == "GET"
+      on_get("Publishing Tool", "tech-issues/message_publish_tool", "tech-issues/publish_tool")
+    elsif request.method == "POST"
+      params[:user_agent] = request.user_agent
+      @header = "Publishing Tool"
+      @header_message = "tech-issues/message_publish_tool"
+      @template = "tech-issues/publish_tool"
+
+      @errors = Guard.validationsForPublishTool(params)
+      on_post(params, "publish-tool")
+    end
+  end
+
   def landing
     render :landing, :layout => "layout"
   end
