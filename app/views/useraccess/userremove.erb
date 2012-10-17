@@ -1,0 +1,25 @@
+<section id="user">
+  <header class="section-header">User details</header>
+
+  <label for="user_name">Username</label>
+  <input id="user_name" name="user_name" type="text"  <%= erb :assignvalue, :locals => {:param => @formdata[:user_name]} %>>
+  <%= erb :errors, :locals => {"key" => "User name"} %>
+
+  <label for="email">Email</label>
+  <input id="email" name="user_email" type="email"  <%= erb :assignvalue, :locals => {:param => @formdata[:user_email]} %>>
+  <%= erb :errors, :locals => {"key" => "User email"} %>
+
+  <%= erb :date, :locals => {:title => "Not before", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]}%>
+  <%= erb :errors, :locals => {"key" => "Not before"} %>
+  <div style="clear:both;"></div>
+
+  <fieldset>
+    <div class="comments">
+      <label for="comments">Additional comments</label>
+      <textarea id="comments" rows="10" cols="50" name="additional"><%= @formdata[:additional] %></textarea>
+    </div>
+  </fieldset>
+
+  <%= erb :upload, :locals => {"id" => "file-input", "name" => "uploaded_data", "uploadmessage" => "If you have multiple users to be removed, you can upload a file here"}%>
+
+</section>

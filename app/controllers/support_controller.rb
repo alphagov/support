@@ -16,6 +16,13 @@ class SupportController < ApplicationController
     end
   end
 
+  def create_user
+    if request.method == "GET"
+      on_get("Create New User", "useraccess/user_create_message", "useraccess/user")
+    elsif request.method == "POST"
+    end
+  end
+
   def landing
     render :landing, :layout => "layout"
   end
