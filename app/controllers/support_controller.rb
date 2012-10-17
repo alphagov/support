@@ -43,6 +43,19 @@ class SupportController < ApplicationController
     end
   end
 
+  def campaign
+    if request.method == "GET"
+      on_get("Campaign", "campaigns/campaign_message", "campaigns/campaign")
+    elsif request.method == "POST"
+      @header = "Campaign"
+      @header_message = "campaigns/campaign_message"
+      @template = "campaigns/campaign"
+
+      @errors = Guard.validationsForCampaign(params)
+      on_post(params, "campaign")
+    end
+  end
+
   def landing
     render :landing, :layout => "layout"
   end
