@@ -11,18 +11,18 @@
     <div>
       <label for="email">Email</label>
       <input id="email" name="email" type="email" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:email]} %> >
-      <%= render "errors", {"key" => "Email"} %>
+      <%= render "errors", {key: "Email", errors: @errors} %>
     </div>
     <div>
       <label for="job">Job title</label>
       <input id="job" name="job" type="text" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:job]} %> >
-      <%= render "errors", {"key" => "Job"} %>
+      <%= render "errors", {key: "Job", errors: @errors} %>
     </div>
     <div>
       <label for="phone">Phone number</label>
       <input id="phone" name="phone" pattern="([\d\s]*)" type="tel"
              <%= render "assignvalue", {:param => @formdata[:phone]} %>>
-      <%= render "errors", {"key" => "Phone"} %>
+      <%= render "errors", {key: "Phone", errors: @errors} %>
     </div>
     <div>
       <label for="organisation_list">Organisation</label>
@@ -35,7 +35,7 @@
           <% end %>
         <% end %>
       </select>
-      <%= render "errors", {"key" => "Organisation"} %>
+      <%= render "errors", {key: "Organisation", errors: @errors} %>
     </div>
 
     <div>
