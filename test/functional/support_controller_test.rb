@@ -1,7 +1,7 @@
 require_relative "../test_helper"
 
 class SupportControllerTest < ActionController::TestCase
-  def stub_zendesk
+  def stub_zendesk_organisation_list
     url = %r{https://.*@govuk.zendesk.com/api/v2/ticket_fields/21494928}
     body = {
       "ticket_field" => {
@@ -43,16 +43,15 @@ class SupportControllerTest < ActionController::TestCase
 
   context "GET amend_content" do
     setup do
-      stub_zendesk
+      stub_zendesk_organisation_list
     end
 
     should "render the form" do
       get :amend_content
       assert_select "h1", /Content Change/i
-      
     end
 
-    should "using ZenDesk to populate the organisation dropdown" do
+    should "use ZenDesk to populate the organisation dropdown" do
       get :amend_content
       assert_select "select#organisation_list option", "Advocate General for Scotland"
     end
@@ -60,7 +59,7 @@ class SupportControllerTest < ActionController::TestCase
 
   context "POST amend_content" do
     setup do
-      stub_zendesk
+      stub_zendesk_organisation_list
     end
 
     should "reject invalid change requests" do
@@ -110,6 +109,63 @@ class SupportControllerTest < ActionController::TestCase
       }
       ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
       post :amend_content, params
+      assert_redirected_to "/acknowledge"
+    end
+  end
+
+  context "GET create_user" do
+    setup do
+      stub_zendesk_organisation_list
+    end
+
+    should "render the form" do
+      get :create_user
+      assert_select "h1", /Create New User/i
+    end
+
+    should "use ZenDesk to populate the organisation dropdown" do
+      get :create_user
+      assert_select "select#organisation_list option", "Advocate General for Scotland"
+    end
+  end
+
+  context "POST create_user" do
+    setup do
+      stub_zendesk_organisation_list
+    end
+
+    should "reject invalid requests" do
+      params = {
+        "name"=>"Testing", 
+        "email"=>"testing@digital.cabinet-office.gov.uk", 
+        "job"=>"dev", 
+        "phone"=>"", 
+        "organisation"=>"", # organisation must be set
+        "other_organisation"=>"", 
+        "user_name"=>"", 
+        "user_email"=>"", 
+        "additional"=>""
+      }
+      post :create_user, params
+      assert_response 200 # should actually be an error status, but let's worry about that later
+      assert_template "useraccess/user"
+      assert_select ".errors", /Organisation information is required/
+    end
+
+    should "submit it to ZenDesk" do
+      params = {
+        "name"=>"Testing", 
+        "email"=>"testing@digital.cabinet-office.gov.uk", 
+        "job"=>"dev", 
+        "phone"=>"", 
+        "organisation"=>"cabinet_office",
+        "other_organisation"=>"", 
+        "user_name"=>"subject", 
+        "user_email"=>"subject@digital.cabinet-office.gov.uk", 
+        "additional"=>""
+      }
+      ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
+      post :create_user, params
       assert_redirected_to "/acknowledge"
     end
   end
