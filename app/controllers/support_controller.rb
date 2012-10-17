@@ -3,6 +3,7 @@ require "zendesk_client"
 require "guard"
 
 class SupportController < ApplicationController
+
   def amend_content
     if request.method == "GET"
       on_get("Content Change", "content/content_amend_message", "content/amend")
