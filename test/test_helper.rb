@@ -2,6 +2,11 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+require 'webmock/minitest'
+
 class ActiveSupport::TestCase
-  # Add more helper methods to be used by all tests here...
+  def setup
+    super
+    WebMock.disable_net_connect!
+  end
 end

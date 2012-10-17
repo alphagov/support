@@ -24,6 +24,7 @@ gem 'zendesk_api'
 
 group :test do
   gem "shoulda-context", "~> 1.0.1"
+  gem "webmock", "1.8.11"
 end
 
 # To use ActiveModel has_secure_password
