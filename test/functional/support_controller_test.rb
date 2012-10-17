@@ -128,4 +128,45 @@ class SupportControllerTest < ActionController::TestCase
       assert_select "select#organisation_list option", "Advocate General for Scotland"
     end
   end
+
+  context "POST create_user" do
+    setup do
+      stub_zendesk_organisation_list
+    end
+
+    should "reject invalid requests" do
+      params = {
+        "name"=>"Testing", 
+        "email"=>"testing@digital.cabinet-office.gov.uk", 
+        "job"=>"dev", 
+        "phone"=>"", 
+        "organisation"=>"", # organisation must be set
+        "other_organisation"=>"", 
+        "user_name"=>"", 
+        "user_email"=>"", 
+        "additional"=>""
+      }
+      post :create_user, params
+      assert_response 200 # should actually be an error status, but let's worry about that later
+      assert_template "useraccess/user"
+      assert_select ".errors", /Organisation information is required/
+    end
+
+    should "submit it to ZenDesk" do
+      params = {
+        "name"=>"Testing", 
+        "email"=>"testing@digital.cabinet-office.gov.uk", 
+        "job"=>"dev", 
+        "phone"=>"", 
+        "organisation"=>"cabinet_office",
+        "other_organisation"=>"", 
+        "user_name"=>"subject", 
+        "user_email"=>"subject@digital.cabinet-office.gov.uk", 
+        "additional"=>""
+      }
+      ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
+      post :create_user, params
+      assert_redirected_to "/acknowledge"
+    end
+  end
 end
