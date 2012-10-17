@@ -21,6 +21,12 @@ class SupportController < ApplicationController
     if request.method == "GET"
       on_get("Create New User", "useraccess/user_create_message", "useraccess/user")
     elsif request.method == "POST"
+      @header = "Create New User"
+      @header_message = "useraccess/user_create_message"
+      @template = "useraccess/user"
+
+      @errors = Guard.validationsForCreateUser(params)
+      on_post(params, "create-user")
     end
   end
 

@@ -9,6 +9,6 @@
     <label for="<%= id %>"><%= uploadmessage %> (20MB limit) </label>
     <br/>
     <input id="<%= id %>" name="<%= name %>" type="file" accept="text/*, application/pdf, .xls, .xlsx"/>
-    <%= render "errors", {"key" => name} %>
+    <%= render "errors", {errors: @errors, key: name} %>
   </div>
 </fieldset>
