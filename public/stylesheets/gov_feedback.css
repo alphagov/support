@@ -1,0 +1,284 @@
+/* Main div */
+#wrapper {
+    background-color: #F2F2F2;
+    display: block;
+}
+
+body {
+    font-family: Helvetica, sans-serif;
+}
+
+/* White Content */
+#framework {
+    background-color: white;
+    padding: 1em 2.5em 1em 2.5em;
+}
+
+/* hack to increase height of wrapper div*/
+.toclear {
+    clear: both;
+}
+
+/* Sections for whole, author and content */
+section#author, section#content, section#campaign, section#user {
+    border-width: 1px;
+    border-style: inset;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+section#framework {
+    margin: 0 auto;
+    max-width: 960px;
+    position: relative;
+}
+
+section#message {
+    font-size: 1.1875em;
+    padding: 1em;
+    font-weight: 400;
+    color: white;
+    background-color: #28A197;
+}
+
+span.errors {
+    color: red;
+    padding-left: 5px;
+}
+
+
+/* Vertical split between menu and content form */
+.menu {
+    float: left;
+    width: 18%;
+    position: relative;
+}
+
+#form {
+    float: right;
+    width: 78%;
+    position: relative;
+}
+
+/* For menu items */
+.menu ul li a {
+    border-radius: 2px;
+    display: block;
+    padding: 4px 2px 2px 6px;
+    text-decoration: none;
+    color: black;
+}
+
+li a:hover {
+    background-color: #EEE;
+}
+
+.menu ul {
+    list-style: none;
+    line-height: 1.315789474em;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.menu ul li {
+    margin: 0 -2px 0 -1px;
+}
+
+h2 {
+    color: #2E3191;
+    border-radius: 2px;
+    line-height: 2em;
+    font-size: 20px;
+    margin-bottom: 0;
+    margin-top: 15px;
+}
+
+/* Form styling */
+label, legend.date {
+    font-size: 1.1875em;
+    color: black;
+    background: transparent;
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    width: 20%;
+}
+
+div.upload label, div.comments label {
+    width: 100%;
+}
+
+label.long, legend.long {
+    width: auto;
+}
+
+label.info {
+    font-size: 1em;
+    color: #a9a9a9;
+}
+
+section#campaign label, section#campaign legend.date {
+    width: 30%;
+}
+
+legend.top-legend {
+    display: block;
+    width: auto;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+legend.amend {
+    width: 100%;
+    color: #2E3191;
+}
+
+fieldset {
+    clear: both;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+textarea {
+    font-size: 1.1875em;
+    color: black;
+    background: transparent;
+    margin-left: 5px;
+    margin-bottom: 0.2em;
+    max-width: 700px;
+    border: 1px solid #BBB;
+}
+
+input#other_organisation {
+    margin-left: 5px;
+}
+
+span em {
+    font-size: 14px;
+    margin-bottom: 0.3em;
+}
+
+section#author input, section#content input, section#campaign input, section#user input {
+    line-height: 1.5em;
+    font-size: 1.1875em;
+    color: black;
+    background: transparent;
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 5px;;
+    width: 15em;
+    padding: 0;
+}
+
+input[type="text"], input[type="email"], input[type="tel"] {
+    border: 1px solid #BBB;
+}
+
+#file-input, #file-added {
+    min-width: 350px;
+    margin-left: 0.3em;
+    border: 1px, solid, #BBB;
+}
+
+div.upload {
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
+
+div.line {
+    border-bottom: 1px solid #BBB;
+}
+
+select {
+    line-height: 1.5em;
+    font-size: 1.1875em;
+    color: black;
+    background: transparent;
+    margin-right: 0.3em;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-left: 0;
+    padding: 0;
+    border: 1px solid #BBB;
+}
+
+#submit {
+    font-size: 1.3162em;
+    line-height: 0.8em;
+    background-color: #28A198;
+    color: white;
+    border-radius: 3px;
+    width: 100px;
+    height: 40px;
+}
+
+/* section header */
+header.section-header {
+    line-height: 2em;
+    background-color: #808080;
+    color: white;
+    font-size: 1.2em;
+    text-indent: 20px;
+    margin-bottom: 10px;
+}
+
+section#hint {
+    line-height: 1em;
+    background-color: #f0f0f0;
+    font-size: 1.2em;
+    padding: 1em;
+}
+
+header.content-header hgroup h1 {
+    background-repeat: no-repeat;
+    color: black;
+    font-size: 2em;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.041666667em;
+    padding: 0.3em 1.5em 0.35em 1.65em;
+}
+
+#wrapper header hgroup {
+    padding: 1em 2.5em 1em 6.25em;
+}
+
+#wrapper header h1 {
+    margin: 0 0 0 1.73em;
+    margin-top: 20px;
+}
+
+/* url */
+.url {
+    background-color: #F2F2F2;
+}
+
+/*landing*/
+
+.landing {
+    font-size: 2em;
+    line-height: 2em;
+}
+
+.visuallyhidden {
+    display: none;
+    visibility: hidden;
+}
+
+/* slimmer hacks */
+body {
+    background-color: #f2f2f2;
+}
+
+nav.header-context {
+    display: none;
+    visibility: hidden;
+}
+
+.search-help {
+    display: none;
+    visibility: hidden;
+}
