@@ -20,6 +20,10 @@ class SupportController < ApplicationController
     render :landing, :layout => "layout"
   end
 
+  def acknowledge
+    render :acknowledge, :layout => "layout"
+  end
+
   private
 
   def on_get(head, head_message_form, template)
@@ -40,7 +44,7 @@ class SupportController < ApplicationController
     if @errors.empty?
       ticket = ZendeskRequest.raise_zendesk_request(@client, params, route)
       if ticket
-        redirect '/acknowledge'
+        redirect_to '/acknowledge'
       else
         500
       end
