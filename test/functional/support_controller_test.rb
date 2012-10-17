@@ -58,8 +58,59 @@ class SupportControllerTest < ActionController::TestCase
     end
   end
 
-  # context "POST amend_content" do
-  #   should "" do
-  #   end
-  # end
+  context "POST amend_content" do
+    setup do
+      stub_zendesk
+    end
+
+    should "reject invalid change requests" do
+      params = {
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"Dev",
+        "organisation"=>"", # this has to be set
+        "other_organisation"=>"",
+        "url1"=>"",
+        "url2"=>"",
+        "url3"=>"",
+        "add_content"=>"",
+        "need_by_day"=>"",
+        "need_by_month"=>"",
+        "need_by_year"=>"",
+        "not_before_day"=>"",
+        "not_before_month"=>"",
+        "not_before_year"=>"",
+        "additional"=>""
+      }
+      post :amend_content, params
+      assert_response 200 # should actually be an error status, but let's worry about that later
+      assert_template "amend"
+      assert_select ".errors", /Organisation information is required/
+    end
+
+    should "submit it to ZenDesk" do
+      params = {
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"Dev",
+        "phone"=>"",
+        "organisation"=>"cabinet_office",
+        "other_organisation"=>"",
+        "url1"=>"",
+        "url2"=>"",
+        "url3"=>"",
+        "add_content"=>"",
+        "need_by_day"=>"",
+        "need_by_month"=>"",
+        "need_by_year"=>"",
+        "not_before_day"=>"",
+        "not_before_month"=>"",
+        "not_before_year"=>"",
+        "additional"=>""
+      }
+      ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
+      post :amend_content, params
+      assert_redirected_to "/acknowledge"
+    end
+  end
 end
