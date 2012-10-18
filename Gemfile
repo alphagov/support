@@ -8,7 +8,9 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'gds-sso', '2.1.0'
 gem 'jquery-rails'
+gem 'plek', '0.5.0'
 gem 'zendesk_api'
 
 group :test do
