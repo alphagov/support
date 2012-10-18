@@ -16,3 +16,5 @@ group :test do
   gem "shoulda-context", "~> 1.0.1"
   gem "webmock", "1.8.11"
 end
+
+gem 'unicorn', '4.3.1'
