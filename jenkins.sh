@@ -13,6 +13,6 @@ for d in images javascripts templates stylesheets; do
   ln -s ../../Static/public/$d public/
 done
 
-bundle exec rake ci:setup:testunit test
+bundle exec rake test
 RESULT=$?
 exit $RESULT

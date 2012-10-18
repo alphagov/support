@@ -1,0 +1,8 @@
+development:
+  url: "https://govuk.zendesk.com/api/v2"
+  username: "not-a-real-account@digital.cabinet-office.gov.uk/token"
+  password: "not-a-real-password"
+test:
+  url: "https://govuk.zendesk.com/api/v2"
+  username: "not-a-real-account@digital.cabinet-office.gov.uk/token"
+  password: "not-a-real-password"
