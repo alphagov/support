@@ -9,6 +9,8 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'aws-ses', require: 'aws/ses'
+gem 'exception_notification', '~> 2.4.1', require: 'exception_notifier'
 gem 'gds-sso', '2.1.0'
 gem 'jquery-rails'
 gem 'plek', '0.5.0'
