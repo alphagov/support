@@ -1,30 +1,34 @@
 require_relative "../test_helper"
 
 class SupportControllerTest < ActionController::TestCase
+  setup do
+    login_as_stub_user
+  end
+
   def stub_zendesk_organisation_list
     url = %r{https://.*@govuk.zendesk.com/api/v2/ticket_fields/21494928}
     body = {
       "ticket_field" => {
-        "url" => "https://govuk.zendesk.com/api/v2/ticket_fields/21494928.json", 
-        "id"=>21494928, 
-        "type"=>"tagger", 
-        "title"=>"Department", 
-        "description"=>"", 
-        "position"=>9999, 
-        "active"=>true, 
-        "required"=>false, 
-        "collapsed_for_agents"=>false, 
-        "regexp_for_validation"=>nil, 
-        "title_in_portal"=>"Department", 
-        "visible_in_portal"=>false, 
-        "editable_in_portal"=>false, 
-        "required_in_portal"=>false, 
-        "tag"=>nil, 
-        "created_at"=>"2012-08-07 08:06:33 UTC", 
-        "updated_at"=>"2012-08-07 08:06:33 UTC", 
+        "url" => "https://govuk.zendesk.com/api/v2/ticket_fields/21494928.json",
+        "id"=>21494928,
+        "type"=>"tagger",
+        "title"=>"Department",
+        "description"=>"",
+        "position"=>9999,
+        "active"=>true,
+        "required"=>false,
+        "collapsed_for_agents"=>false,
+        "regexp_for_validation"=>nil,
+        "title_in_portal"=>"Department",
+        "visible_in_portal"=>false,
+        "editable_in_portal"=>false,
+        "required_in_portal"=>false,
+        "tag"=>nil,
+        "created_at"=>"2012-08-07 08:06:33 UTC",
+        "updated_at"=>"2012-08-07 08:06:33 UTC",
         "custom_field_options"=>[
-          {"name"=>"Advocate General for Scotland", "value"=>"advocate_general_for_scotland"}, 
-          {"name"=>"Attorney General's Office", "value"=>"attorney_generals_office"}, 
+          {"name"=>"Advocate General for Scotland", "value"=>"advocate_general_for_scotland"},
+          {"name"=>"Attorney General's Office", "value"=>"attorney_generals_office"},
           {"name"=>"Cabinet Office", "value"=>"cabinet_office"}
         ]
       }
@@ -136,14 +140,14 @@ class SupportControllerTest < ActionController::TestCase
 
     should "reject invalid requests" do
       params = {
-        "name"=>"Testing", 
-        "email"=>"testing@digital.cabinet-office.gov.uk", 
-        "job"=>"dev", 
-        "phone"=>"", 
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"dev",
+        "phone"=>"",
         "organisation"=>"", # organisation must be set
-        "other_organisation"=>"", 
-        "user_name"=>"", 
-        "user_email"=>"", 
+        "other_organisation"=>"",
+        "user_name"=>"",
+        "user_email"=>"",
         "additional"=>""
       }
       post :create_user, params
@@ -154,14 +158,14 @@ class SupportControllerTest < ActionController::TestCase
 
     should "submit it to ZenDesk" do
       params = {
-        "name"=>"Testing", 
-        "email"=>"testing@digital.cabinet-office.gov.uk", 
-        "job"=>"dev", 
-        "phone"=>"", 
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"dev",
+        "phone"=>"",
         "organisation"=>"cabinet_office",
-        "other_organisation"=>"", 
-        "user_name"=>"subject", 
-        "user_email"=>"subject@digital.cabinet-office.gov.uk", 
+        "other_organisation"=>"",
+        "user_name"=>"subject",
+        "user_email"=>"subject@digital.cabinet-office.gov.uk",
         "additional"=>""
       }
       ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
@@ -193,17 +197,17 @@ class SupportControllerTest < ActionController::TestCase
 
     should "reject invalid requests" do
       params = {
-        "name"=>"Testing", 
-        "email"=>"testing@digital.cabinet-office.gov.uk", 
-        "job"=>"This is just a test", 
-        "phone"=>"", 
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"This is just a test",
+        "phone"=>"",
         "organisation"=>"", # this has to be filled in
-        "other_organisation"=>"", 
-        "user_name"=>"testing", 
-        "user_email"=>"ignore-me@foo.com", 
-        "not_before_day"=>"", 
-        "not_before_month"=>"", 
-        "not_before_year"=>"", 
+        "other_organisation"=>"",
+        "user_name"=>"testing",
+        "user_email"=>"ignore-me@foo.com",
+        "not_before_day"=>"",
+        "not_before_month"=>"",
+        "not_before_year"=>"",
         "additional"=>""
       }
       post :remove_user, params
@@ -214,17 +218,17 @@ class SupportControllerTest < ActionController::TestCase
 
     should "submit it to ZenDesk" do
       params = {
-        "name"=>"Testing", 
-        "email"=>"testing@digital.cabinet-office.gov.uk", 
-        "job"=>"This is just a test", 
-        "phone"=>"", 
-        "organisation"=>"cabinet_office", 
-        "other_organisation"=>"", 
-        "user_name"=>"testing", 
-        "user_email"=>"ignore-me@foo.com", 
-        "not_before_day"=>"", 
-        "not_before_month"=>"", 
-        "not_before_year"=>"", 
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"This is just a test",
+        "phone"=>"",
+        "organisation"=>"cabinet_office",
+        "other_organisation"=>"",
+        "user_name"=>"testing",
+        "user_email"=>"ignore-me@foo.com",
+        "not_before_day"=>"",
+        "not_before_month"=>"",
+        "not_before_year"=>"",
         "additional"=>""
       }
       ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
@@ -256,20 +260,20 @@ class SupportControllerTest < ActionController::TestCase
 
     should "reject invalid requests" do
       params = {
-        "name"=>"Testing", 
-        "email"=>"testing@digital.cabinet-office.gov.uk", 
-        "job"=>"doo", 
-        "phone"=>"", 
-        "organisation"=>"", 
-        "other_organisation"=>"", 
-        "campaign_name"=>"Testing", 
-        "erg_number"=>"1234", 
-        "start_day"=>"", 
-        "start_month"=>"", 
-        "start_year"=>"", 
-        "description"=>"Testing", 
-        "company"=>"", 
-        "url"=>"", 
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"doo",
+        "phone"=>"",
+        "organisation"=>"",
+        "other_organisation"=>"",
+        "campaign_name"=>"Testing",
+        "erg_number"=>"1234",
+        "start_day"=>"",
+        "start_month"=>"",
+        "start_year"=>"",
+        "description"=>"Testing",
+        "company"=>"",
+        "url"=>"",
         "additional"=>""
       }
       post :campaign, params
@@ -280,20 +284,20 @@ class SupportControllerTest < ActionController::TestCase
 
     should "submit it to ZenDesk" do
       params = {
-        "name"=>"Testing", 
-        "email"=>"testing@digital.cabinet-office.gov.uk", 
-        "job"=>"doo", 
-        "phone"=>"", 
-        "organisation"=>"cabinet_office", 
-        "other_organisation"=>"", 
-        "campaign_name"=>"Testing", 
-        "erg_number"=>"1234", 
-        "start_day"=>"", 
-        "start_month"=>"", 
-        "start_year"=>"", 
-        "description"=>"Testing", 
-        "company"=>"", 
-        "url"=>"", 
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"doo",
+        "phone"=>"",
+        "organisation"=>"cabinet_office",
+        "other_organisation"=>"",
+        "campaign_name"=>"Testing",
+        "erg_number"=>"1234",
+        "start_day"=>"",
+        "start_month"=>"",
+        "start_year"=>"",
+        "description"=>"Testing",
+        "company"=>"",
+        "url"=>"",
         "additional"=>""
       }
       ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
@@ -301,7 +305,7 @@ class SupportControllerTest < ActionController::TestCase
       assert_redirected_to "/acknowledge"
     end
   end
-  
+
   context "GET general" do
     setup do
       stub_zendesk_organisation_list
@@ -325,13 +329,13 @@ class SupportControllerTest < ActionController::TestCase
 
     should "reject invalid requests" do
       params = {
-        "name"=>"Testing", 
-        "email"=>"testing@digital.cabinet-office.gov.uk", 
-        "job"=>"dev", 
-        "phone"=>"", 
-        "organisation"=>"", 
-        "other_organisation"=>"", 
-        "url"=>"testing", 
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"dev",
+        "phone"=>"",
+        "organisation"=>"",
+        "other_organisation"=>"",
+        "url"=>"testing",
         "additional"=>""
       }
       post :general, params
@@ -342,13 +346,13 @@ class SupportControllerTest < ActionController::TestCase
 
     should "submit it to ZenDesk" do
       params = {
-        "name"=>"Testing", 
-        "email"=>"testing@digital.cabinet-office.gov.uk", 
-        "job"=>"dev", 
-        "phone"=>"", 
-        "organisation"=>"cabinet_office", 
-        "other_organisation"=>"", 
-        "url"=>"testing", 
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"dev",
+        "phone"=>"",
+        "organisation"=>"cabinet_office",
+        "other_organisation"=>"",
+        "url"=>"testing",
         "additional"=>""
       }
       ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
@@ -380,13 +384,13 @@ class SupportControllerTest < ActionController::TestCase
 
     should "reject invalid requests" do
       params = {
-        "name"=>"Testing", 
-        "email"=>"testing@digital.cabinet-office.gov.uk", 
-        "job"=>"dev", 
-        "phone"=>"", 
-        "organisation"=>"", 
-        "other_organisation"=>"", 
-        "url"=>"testing", 
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"dev",
+        "phone"=>"",
+        "organisation"=>"",
+        "other_organisation"=>"",
+        "url"=>"testing",
         "additional"=>""
       }
       post :publish_tool, params
@@ -397,13 +401,13 @@ class SupportControllerTest < ActionController::TestCase
 
     should "submit it to ZenDesk" do
       params = {
-        "name"=>"Testing", 
-        "email"=>"testing@digital.cabinet-office.gov.uk", 
-        "job"=>"dev", 
-        "phone"=>"", 
-        "organisation"=>"cabinet_office", 
-        "other_organisation"=>"", 
-        "url"=>"testing", 
+        "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"dev",
+        "phone"=>"",
+        "organisation"=>"cabinet_office",
+        "other_organisation"=>"",
+        "url"=>"testing",
         "additional"=>""
       }
       ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")

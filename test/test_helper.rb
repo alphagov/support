@@ -11,4 +11,12 @@ class ActiveSupport::TestCase
     super
     WebMock.disable_net_connect!
   end
+
+  def login_as_stub_user
+    @user = stub("stub user",
+                  name: "Stubby McStubby", remotely_signed_out?: false)
+    request.env['warden'] = stub(:authenticate! => true, :authenticated? => true, :user => @user)
+  end
 end
+
+
