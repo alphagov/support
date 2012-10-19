@@ -106,10 +106,6 @@ label, legend.date {
     width: 20%;
 }
 
-div.upload label, div.comments label {
-    width: 100%;
-}
-
 label.long, legend.long {
     width: auto;
 }
@@ -175,17 +171,6 @@ section#author input, section#content input, section#campaign input, section#use
 
 input[type="text"], input[type="email"], input[type="tel"] {
     border: 1px solid #BBB;
-}
-
-#file-input, #file-added {
-    min-width: 350px;
-    margin-left: 0.3em;
-    border: 1px, solid, #BBB;
-}
-
-div.upload {
-    padding-top: 0.3em;
-    padding-bottom: 0.3em;
 }
 
 div.line {

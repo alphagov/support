@@ -2,13 +2,6 @@ require "date"
 
 class Guard
 
-  MAX_UPLOAD_FILE_SIZE_IN_BYTE = 20971520 #20MB
-
-  @valid_file_type = {
-      "text" => /.*/,
-      "application" => /-officedocument|pdf/
-  }
-
   #Content validations
   def self.validationsForAmendContent(form_data)
     @@errors = {}
@@ -22,25 +15,14 @@ class Guard
     self.validate_date_is_equal_or_greater_than_today("Need by", need_by, "Changes can only be made after today.")
     self.validate_not_before_date_is_equal_or_greater_than_need_by(not_before, need_by, "Not before date should be the same or later than the date which the changes are required to be made on.")
 
-    if form_data[:uploaded_data] && self.doesFieldHaveValue(form_data[:uploaded_data][:filename])
-      validate_upload_file("uploaded_data", form_data[:uploaded_data])
-    end
     @@errors
   end
 
   #User validations
   def self.validationsForCreateUser(form_data)
     @@errors = {}
-    if form_data[:uploaded_data] && self.doesFieldHaveValue(form_data[:uploaded_data][:filename])
-      required = ["name", "email", "job"]
-    else
-      required = ["name", "email", "job", "user_name", "user_email"]
-    end
+    required = ["name", "email", "job", "user_name", "user_email"]
     validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
-
-    if form_data[:uploaded_data] && self.doesFieldHaveValue(form_data[:uploaded_data][:filename])
-      validate_upload_file("uploaded_data", form_data[:uploaded_data])
-    end
 
     @@errors
   end
@@ -48,21 +30,13 @@ class Guard
   def self.validationsForDeleteUser(form_data)
     @@errors = {}
 
-    if form_data[:uploaded_data] && self.doesFieldHaveValue(form_data[:uploaded_data][:filename])
-      required = ["name", "email", "job"]
-    else
-      required = ["name", "email", "job", "user_name", "user_email"]
-    end
+    required = ["name", "email", "job", "user_name", "user_email"]
 
     validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
     self.checkOptionalDateFieldsAreComplete(form_data, [["Not before", "not_before_day", "not_before_month", "not_before_year"]])
 
     not_before = validate_date_in_valid_range("Not_before", "not_before_day", "not_before_month", "not_before_year", form_data)
     self.validate_date_is_equal_or_greater_than_today("Not before", not_before, "Not before date should be the same or later than today.")
-
-    if form_data[:uploaded_data] && self.doesFieldHaveValue(form_data[:uploaded_data][:filename])
-      validate_upload_file("uploaded_data", form_data[:uploaded_data])
-    end
 
     @@errors
   end
@@ -163,12 +137,6 @@ class Guard
     field_value && !field_value.strip.empty?
   end
 
-  def self.validate_upload_file(field_name, upload_file)
-    if validate_file_type(field_name, upload_file[:type]) && upload_file[:tempfile].size > MAX_UPLOAD_FILE_SIZE_IN_BYTE
-      @@errors[field_name] = "The attached file, #{upload_file[:filename]}, is bigger than 20MB size limitation."
-    end
-  end
-
   def self.validate_date_in_valid_range(date_field_name, day, month, year, form_data)
     if !form_data[day].empty? && !form_data[month].empty? && !form_data[year].empty?
       date_to_validate = form_data[day] + "-" + form_data[month] + "-" + form_data[year]
@@ -204,18 +172,5 @@ class Guard
     if not other_organisation_is_required
       form_data[:other_organisation] = ""
     end
-  end
-
-  def self.validate_file_type(field_name, file_type)
-    @@errors ||= {}
-    valid = false
-    type = file_type.split("/")
-
-    if @valid_file_type[type[0]] && (type[1] =~ @valid_file_type[type[0]])
-      valid = true
-    else
-      @@errors[field_name] = "Only text, word and pdf file allowed."
-    end
-    valid
   end
 end
