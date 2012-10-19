@@ -20,15 +20,6 @@
 
   <div style="clear:both;"></div>
 
-  <fieldset>
-    <div class="upload">
-      <label for="file-added">Supporting documentation (optional)</label>
-      <br/>
-      <input id="file-added" name="uploaded_data" type="file" accept="text/*, application/pdf, .xls, .xlsx"/>
-      <%= render "errors", {errors: @errors, key: "uploaded_data"} %>
-    </div>
-  </fieldset>
-
   <%= render "date", {:title => "When should this change be made?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]} %>
   <%= render "errors", {errors: @errors, key: "Need by"} %>
 
