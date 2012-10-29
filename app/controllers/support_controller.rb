@@ -84,6 +84,8 @@ class SupportController < ApplicationController
   end
 
   def landing
+    @header = "Welcome to Gov UK Support"
+    @page_title = "Home"
     render :landing, :layout => "application"
   end
 
@@ -97,6 +99,7 @@ class SupportController < ApplicationController
     @client = ZendeskClient.get_client(logger)
     @organisations = ZendeskRequest.get_organisations(@client)
     @header = head
+    @page_title = head
     @header_message = head_message_form
     @formdata = {}
 
