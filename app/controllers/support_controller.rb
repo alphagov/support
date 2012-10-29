@@ -88,7 +88,7 @@ class SupportController < ApplicationController
   end
 
   def acknowledge
-    render :acknowledge, :layout => "layout"
+    render :acknowledge, :layout => "application"
   end
 
   private
