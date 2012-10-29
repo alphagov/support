@@ -84,7 +84,7 @@ class SupportController < ApplicationController
   end
 
   def landing
-    render :landing, :layout => "layout"
+    render :landing, :layout => "application"
   end
 
   def acknowledge

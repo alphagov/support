@@ -20,10 +20,6 @@
           <nav role="navigation" class="nav-collapse">
             <ul class="nav">
               <%= nav_link 'Home', root_path %>
-              <%= nav_link 'Content request', root_path %>
-              <%= nav_link 'User Access', root_path %>
-              <%= nav_link 'Campaigns', root_path %>
-              <%= nav_link 'Other Issues', root_path %>
             </ul>
           </nav>
         <% end %>
@@ -32,7 +28,44 @@
   </header>
 
   <section class="container-fluid" role="main">
-    <%= yield %>
+    <div class="row-fluid">
+      <div class="span12">
+
+        <div class="page-header">
+          <h1>Welcome To GovUK Support</h1>
+        </div>
+
+        <div class="row-fluid">
+          <div class="span2">
+            <div class="well sidebar-nav">
+              <ul class="nav nav-list">
+                <li class="nav-header">Content request</li>
+                <li><a href="/amend-content"><%= render "highlight", {:name => "Content change"} %></a></li>
+              </ul>
+              <ul class="nav nav-list">
+                <li class="nav-header">User Access</li>
+                <li><a href="/create-user"><%= render "highlight", {:name => "Create new user"} %></a></li>
+                <li><a href="/remove-user"><%= render "highlight", {:name => "Remove user"} %></a></li>
+              </ul>
+              <ul class="nav nav-list">
+                <li class="nav-header">Campaigns</li>
+                <li><a href="/campaign"><%= render "highlight", {:name => "Campaign"} %></a></li>
+              </ul>
+              <ul class="nav nav-list">
+                <li class="nav-header">Other Issues</li>
+                <li><a href="/create-user"><%= render "highlight", {:name => "Create new user"} %></a></li>
+                <li><a href="/remove-user"><%= render "highlight", {:name => "Remove user"} %></a></li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class="span10">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </div>
     <hr>
     <footer>
       <p>&copy; GDS. <span class="pull-right">Support release: <%= CURRENT_RELEASE_SHA %></span> </p>
