@@ -40,21 +40,21 @@
             <div class="well sidebar-nav">
               <ul class="nav nav-list">
                 <li class="nav-header">Content request</li>
-                <li><a href="/amend-content"><%= render "highlight", {:name => "Content change"} %></a></li>
+                <%= nav_link 'Content change', '/amend-content' %>
               </ul>
               <ul class="nav nav-list">
                 <li class="nav-header">User Access</li>
-                <li><a href="/create-user"><%= render "highlight", {:name => "Create new user"} %></a></li>
-                <li><a href="/remove-user"><%= render "highlight", {:name => "Remove user"} %></a></li>
+                <%= nav_link 'Create new user', '/create-user' %>
+                <%= nav_link 'Remove user', '/remove-user' %>
               </ul>
               <ul class="nav nav-list">
                 <li class="nav-header">Campaigns</li>
-                <li><a href="/campaign"><%= render "highlight", {:name => "Campaign"} %></a></li>
+                <%= nav_link 'Campaign', '/campaign' %>
               </ul>
               <ul class="nav nav-list">
                 <li class="nav-header">Other Issues</li>
-                <li><a href="/create-user"><%= render "highlight", {:name => "Create new user"} %></a></li>
-                <li><a href="/remove-user"><%= render "highlight", {:name => "Remove user"} %></a></li>
+                <%= nav_link 'General', '/general' %>
+                <%= nav_link 'Publishing tool', '/publish-tool' %>
               </ul>
             </div>
 
