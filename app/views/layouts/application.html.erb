@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Support</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <title><%= yield :page_title %> | GOV.UK Support</title>
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application.css' %>
+  <%= yield :extra_headers %>
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <%= javascript_include_tag "html5" %>
+  <![endif]-->
+  <%= javascript_include_tag "application" %>
 </head>
 <body>
+  <header class="navbar navbar-fixed-top" role="banner">
+    <div class="navbar-inner">
+      <div class="container-fluid">
+        <%= link_to 'GOV.UK Support', root_path, :class => "brand" %>
+        <% if user_signed_in? %>
+          <nav role="navigation" class="nav-collapse">
+            <ul class="nav">
+              <%= nav_link 'Home', root_path %>
+              <%= nav_link 'Content request', root_path %>
+              <%= nav_link 'User Access', root_path %>
+              <%= nav_link 'Campaigns', root_path %>
+              <%= nav_link 'Other Issues', root_path %>
+            </ul>
+          </nav>
+        <% end %>
+      </div>
+    </div>
+  </header>
 
-<%= yield %>
+  <section class="container-fluid" role="main">
+    <%= yield %>
+    <hr>
+    <footer>
+      <p>&copy; GDS. <span class="pull-right">Support release: <%= CURRENT_RELEASE_SHA %></span> </p>
+    </footer>
+  </section>
+
+  <%= yield :extra_javascript %>
 
 </body>
 </html>
