@@ -1,32 +1,20 @@
-<section id="author">
-  <header class="section-header">Your details</header>
   <fieldset>
-    <div>
+    <legend class="small">Your details</legend>
       <label for="name">Name</label>
-      <div class="input_and_error">
-        <input id="name" name="name" type="text" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:name]} %> >
-        <%= render "errors", {key: "Name", errors: @errors} %>
-      </div>
-    </div>
-    <div>
+      <input id="name" name="name" type="text" class="span6" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:name]} %> >
+      <%= render "errors", {key: "Name", errors: @errors} %>
       <label for="email">Email</label>
-      <input id="email" name="email" type="email" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:email]} %> >
+      <input id="email" name="email" type="email" class="span6" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:email]} %> >
       <%= render "errors", {key: "Email", errors: @errors} %>
-    </div>
-    <div>
       <label for="job">Job title</label>
-      <input id="job" name="job" type="text" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:job]} %> >
+      <input id="job" name="job" type="text" class="span6" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:job]} %> >
       <%= render "errors", {key: "Job", errors: @errors} %>
-    </div>
-    <div>
       <label for="phone">Phone number</label>
-      <input id="phone" name="phone" pattern="([\d\s]*)" type="tel"
+      <input class="span6" id="phone" name="phone" pattern="([\d\s]*)" type="tel"
              <%= render "assignvalue", {:param => @formdata[:phone]} %>>
       <%= render "errors", {key: "Phone", errors: @errors} %>
-    </div>
-    <div>
       <label for="organisation_list">Organisation</label>
-      <select id="organisation_list" name="organisation">
+      <select id="organisation_list" class="span6" name="organisation">
         <% @organisations.each do |key, value| %>
           <% if value == @formdata["organisation"] %>
             <option selected="selected" value="<%= value %>"><%= key %> </option>
@@ -36,12 +24,7 @@
         <% end %>
       </select>
       <%= render "errors", {key: "Organisation", errors: @errors} %>
-    </div>
 
-    <div>
       <label class="long" for="other_organisation">Please specify the organisation if you didn't find it in the list above</label>
-      <input id="other_organisation" name="other_organisation">
-    </div>
+      <input class="span6" id="other_organisation" name="other_organisation" type="text">
   </fieldset>
-
-</section>
