@@ -16,13 +16,6 @@
     <div class="navbar-inner">
       <div class="container-fluid">
         <%= link_to 'GOV.UK Support', root_path, :class => "brand" %>
-        <% if user_signed_in? %>
-          <nav role="navigation" class="nav-collapse">
-            <ul class="nav">
-              <%= nav_link 'Home', root_path %>
-            </ul>
-          </nav>
-        <% end %>
       </div>
     </div>
   </header>
