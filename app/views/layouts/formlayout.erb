@@ -20,15 +20,14 @@
 
       <div id="form" role="main">
         <%= render @header_message %>
-        <form name="input" method="post" enctype="multipart/form-data">
+        <%= form_tag "" do %>
 
           <%= render "author" %>
 
           <%= yield %>
 
           <input id="submit" type="submit" value="Submit">
-
-        </form>
+        <% end %>
       </div>
       <div class="toclear"></div>
     </div>
