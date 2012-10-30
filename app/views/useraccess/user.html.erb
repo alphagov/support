@@ -1,30 +1,29 @@
 <%= content_for :page_title, @page_title %>
 <%= content_for :header, "Create a new user account for the publishing tool" %>
 
-<%= form_tag('/create-user', :method => :post) do %>
-  <%= render "author" %>
+<div class="well">
+  <%= form_tag('/create-user', :method => :post) do %>
+    <%= render "author" %>
 
-  <section id="user">
-    <header class="section-header">User details</header>
+      <header class="section-header">User details</header>
 
-    <label for="user_name">Name</label>
-    <input id="user_name" name="user_name" type="text" <%= render "assignvalue", {:param => @formdata[:user_name]} %>>
-    <%= render "errors", {errors: @errors, key: "User name"} %>
+      <label for="user_name">Name</label>
+      <input id="user_name" name="user_name" class="span6" type="text" <%= render "assignvalue", {:param => @formdata[:user_name]} %>>
+      <%= render "errors", {errors: @errors, key: "User name"} %>
 
-    <label for="email">Email</label>
-    <input id="email" name="user_email" type="email" <%= render "assignvalue", {:param => @formdata[:user_email]} %>>
-    <%= render "errors", {errors: @errors, key: "User email"} %>
+      <label for="email">Email</label>
+      <input id="email" name="user_email" class="span6" type="email" <%= render "assignvalue", {:param => @formdata[:user_email]} %>>
+      <%= render "errors", {errors: @errors, key: "User email"} %>
 
+      <fieldset>
+        <div class="comments">
+          <label for="comments">Additional comments</label>
+          <label class="long info">Please specify if the request is for Publisher or for Inside Government.</label>
+          <label class="long info">If it is for Inside Government, specify either 'Editor' or 'Writer'.</label>
+          <textarea id="comments" rows="6" cols="50" class="span6" name="additional"><%= @formdata[:additional] %></textarea>
+        </div>
+      </fieldset>
 
-    <fieldset>
-      <div class="comments">
-        <label for="comments">Additional comments</label>
-        <label class="long info">Please specify if the request is for Publisher or for Inside Government.</label>
-        <label class="long info">If it is for Inside Government, specify either 'Editor' or 'Writer'.</label>
-        <textarea id="comments" rows="10" cols="50" name="additional"><%= @formdata[:additional] %></textarea>
-      </div>
-    </fieldset>
-
-  </section>
-  <input class="btn btn-success" name="commit" type="submit" value="Submit">
-<% end %>
+    <input class="btn btn-success" name="commit" type="submit" value="Submit">
+  <% end %>
+</div>
