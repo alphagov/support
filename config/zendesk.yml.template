@@ -1,3 +1,8 @@
+# Copy this file to "zendesk.yml" and overwrite the development username and password
+# with the production values in alphagov-deployment.
+#
+# It is very important that we don't commit (publish) production credentials to Git(Hub).
+#
 development:
   url: "https://govuk.zendesk.com/api/v2"
   username: "not-a-real-account@digital.cabinet-office.gov.uk/token"
