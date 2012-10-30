@@ -1,0 +1,26 @@
+<%= content_for :page_title, @page_title %>
+<%= content_for :header, "Request GDS support for the publishing tool" %>
+
+<%= form_tag('/publish-tool', :method => :post) do %>
+
+  <%= render "author" %>
+
+  <section id="content">
+    <header class="section-header">Publishing Tool</header>
+    <label for="target_url">URL on <span style="background-color: #F2F2F2;">gov.uk</span> </label>
+    <input id="target_url" name="url" type="text" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:url]} %> >
+    <%= render "errors", {errors: @errors, key: "Url"} %>
+
+    <label for="username">Username</label>
+    <input id="username" name="username" type="text" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:username]} %> >
+    <%= render "errors", {errors: @errors, key: "Username"} %>
+
+    <fieldset>
+      <div class="comments">
+        <label for="comments">Please describe briefly the problem which was encountered</label>
+        <textarea id="comments" rows="10" cols="50" name="additional"><%= @formdata[:additional] %></textarea>
+      </div>
+    </fieldset>
+  </section>
+  <input class="btn btn-success" name="commit" type="submit" value="Submit">
+<% end %>
