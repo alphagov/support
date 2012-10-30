@@ -84,7 +84,7 @@ class SupportController < ApplicationController
   end
 
   def landing
-    @header = "Welcome to Gov UK Support"
+    @header = "Welcome to GOV UK Support"
     @page_title = "Home"
     render :landing, :layout => "application"
   end
