@@ -1,7 +1,7 @@
 <%= content_for :page_title, @page_title %>
 <%= content_for :header, "Request to remove user access to the publishing tool" %>
 
-<%= form_tag('/amend-content', :method => :post) do %>
+<%= form_tag('/remove-user', :method => :post) do %>
 
   <%= render "author" %>
 
