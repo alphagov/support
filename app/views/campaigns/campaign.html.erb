@@ -1,0 +1,48 @@
+<%= content_for :page_title, @page_title %>
+<%= content_for :header, "Request GDS support for a campaign" %>
+
+<%= form_tag('/campaign', :method => :post) do %>
+  <%= render "author" %>
+
+  <section id="campaign">
+    <header class="section-header">Campaign</header>
+    <label for="name">Campaign title</label>
+    <input id="name" name="campaign_name" type="text" required <%= render "assignvalue", {:param => @formdata[:name]} %>>
+
+    <div>
+      <label class="long" for="erg_number">ERG reference number</label>
+      <input id="erg_number" name="erg_number" type="text" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:erg_number]} %>>
+      <%= render "errors", {errors: @errors, key: "Erg number"} %>
+    </div>
+
+    <%= render "date", {:title => "Start Date", :label => 'start', :day => @formdata[:start_day], :month => @formdata[:start_month], :year => @formdata[:start_year]} %>
+    <%= render "errors", {errors: @errors, key: "Start date"} %>
+
+    <div class="comments">
+      <label for="description">Campaign description</label>
+      <textarea id="description" rows="6" cols="50" name="description" type="text" required aria-required="true" ><%= @formdata[:description] %></textarea>
+      <%= render "errors", {errors: @errors, key: "Description"} %>
+    </div>
+
+    <div>
+      <label class="long" for="company">Group or company affiliated with this campaign</label>
+      <input id="company" name="company" type="text" <%= render "assignvalue", {:param => @formdata[:company]} %>>
+    </div>
+
+    <div style="clear:both;"></div>
+
+    <div>
+      <label class="long" for="target_url">URL with more information</label>
+      <input id="target_url" name="url" type="text" <%= render "assignvalue", {:param => @formdata[:url]} %>>
+    </div>
+
+    <fieldset>
+      <div class="comments">
+        <label for="comments">Additional comments</label>
+        <textarea id="comments" rows="10" cols="50" name="additional"><%= @formdata[:additional] %></textarea>
+      </div>
+    </fieldset>
+
+  </section>
+  <input class="btn btn-success" name="commit" type="submit" value="Submit">
+<% end %>
