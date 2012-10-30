@@ -1,51 +1,48 @@
 <%= content_for :page_title, @page_title %>
-<%= content_for :header, @header %>
+<%= content_for :header, "Request a change to existing GOVUK content" %>
 
-<div class="alert alert-info">
-  <section id="message">
-     <p>Request a change to existing GOVUK content.</p>
-  </section>
-
-  <section id="hint">
-    <p>If requesting an urgent content amend request, please follow up your submission of the form with a phone call to 07827 992603.</p>
-    <p>An urgent content amend request should only be made if the public or the government is facing immediate and significant financial, legal or physical risk.</p>
-  </section>
+<div class="alert alert-warning">
+  <p>If requesting an urgent content amend request, please follow up your submission of the form with a phone call to 07827 992603.</p>
+  <p>An urgent content amend request should only be made if the public or the government is facing immediate and significant financial, legal or physical risk.</p>
 </div>
 
-<section id="content">
-  <header class="section-header">Content details</header>
+<%= form_tag('/amend-content', :method => :post) do %>
 
-  <fieldset>
-    <legend class="top-legend">URL(s) of content to be changed</legend>
+  <%= render "author" %>
 
-    <label for="target_url1" style="background-color: #F2F2F2;">gov.uk</label>
-    <input id="target_url1" name="url1" type="text" <%= render "assignvalue", {:param => @formdata[:url1]} %> >
-    <label for="target_url2" style="background-color: #F2F2F2;">gov.uk</label>
-    <input id="target_url2" name="url2" type="text" <%= render "assignvalue", {:param => @formdata[:url2]} %> >
-    <label for="target_url3" style="background-color: #F2F2F2;">gov.uk</label>
-    <input id="target_url3" name="url3" type="text" <%= render "assignvalue", {:param => @formdata[:url3]} %> >
+  <section id="content">
+    <header class="section-header">Content details</header>
 
-    <label class="long info">Include additional URLs in the "Additional comments" section below.</label>
+    <fieldset>
+      <legend class="top-legend">URL(s) of content to be changed</legend>
 
-    <label class="long" for="add_content">Detail of what should be added, amended, or removed:</label>
-    <textarea id="add_content" name="add_content" rows="6" cols="50"><%= @formdata[:add_content] %></textarea>
+      <label for="target_url1" style="background-color: #F2F2F2;">gov.uk</label>
+      <input id="target_url1" name="url1" type="text" <%= render "assignvalue", {:param => @formdata[:url1]} %> >
+      <label for="target_url2" style="background-color: #F2F2F2;">gov.uk</label>
+      <input id="target_url2" name="url2" type="text" <%= render "assignvalue", {:param => @formdata[:url2]} %> >
+      <label for="target_url3" style="background-color: #F2F2F2;">gov.uk</label>
+      <input id="target_url3" name="url3" type="text" <%= render "assignvalue", {:param => @formdata[:url3]} %> >
 
-  </fieldset>
+      <label class="long info">Include additional URLs in the "Additional comments" section below.</label>
 
-  <div style="clear:both;"></div>
+      <label class="long" for="add_content">Detail of what should be added, amended, or removed:</label>
+      <textarea id="add_content" name="add_content" rows="6" cols="50"><%= @formdata[:add_content] %></textarea>
 
-  <%= render "date", {:title => "When should this change be made?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]} %>
-  <%= render "errors", {errors: @errors, key: "Need by"} %>
+    </fieldset>
 
-  <%= render "date", {:title => "Not to be amended before (optional)", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]} %>
-  <%= render "errors", {errors: @errors, key: "Not before"} %>
+    <%= render "date", {:title => "When should this change be made?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]} %>
+    <%= render "errors", {errors: @errors, key: "Need by"} %>
 
-  <fieldset>
-    <div class="comments">
-      <label for="comments">Additional comments</label>
-      <textarea id="comments" rows="10" cols="50" name="additional"><%= @formdata[:additional] %></textarea>
-    </div>
-  </fieldset>
+    <%= render "date", {:title => "Not to be amended before (optional)", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]} %>
+    <%= render "errors", {errors: @errors, key: "Not before"} %>
 
+    <fieldset>
+      <div class="comments">
+        <label for="comments">Additional comments</label>
+        <textarea id="comments" rows="10" cols="50" name="additional"><%= @formdata[:additional] %></textarea>
+      </div>
+    </fieldset>
 
-</section>
+  </section>
+  <input class="btn btn-success" name="commit" type="submit" value="Submit">
+<% end %>
