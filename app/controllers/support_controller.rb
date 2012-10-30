@@ -103,7 +103,7 @@ class SupportController < ApplicationController
     @header_message = head_message_form
     @formdata = {}
 
-    render :"#{template}", :layout => "formlayout"
+    render :"#{template}", :layout => "application"
   end
 
   def on_post(params, route)
