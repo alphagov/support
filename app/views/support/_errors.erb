@@ -1,5 +1,7 @@
-<span class="errors" style= "<% if errors && errors[key] %>  display: block; <%else%> display: none; visibility: hidden; <% end%>">
-  <% if @errors %>
-    <em> <%= @errors[key] %> </em>
-   <% end %>
-</span>
+<% if errors && errors[key] %>
+  <span class="help-inline">
+    <% if @errors %>
+      <%= @errors[key] %>
+     <% end %>
+  </span>
+<% end %>
