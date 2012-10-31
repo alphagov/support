@@ -119,7 +119,7 @@ class SupportController < ApplicationController
         500
       end
     else
-      render :"#{@template}", :layout => "formlayout"
+      render :"#{@template}", :layout => "application"
     end
   end
 end
