@@ -82,16 +82,24 @@ class SupportController < ApplicationController
   private
 
   def on_get(template)
-    @client = ZendeskClient.get_client(logger)
-    @organisations = ZendeskRequest.get_organisations(@client)
-    @formdata = {}
+    begin
+      @client = ZendeskClient.get_client(logger)
+      @organisations = ZendeskRequest.get_organisations(@client)
+    rescue ZendeskError
+      return render :"zendesk_connection_error", :layout => "application"
+    end
 
+    @formdata = {}
     render :"#{template}", :layout => "application"
   end
 
   def on_post(params, route)
-    @client = ZendeskClient.get_client(logger)
-    @organisations = ZendeskRequest.get_organisations(@client)
+    begin
+      @client = ZendeskClient.get_client(logger)
+      @organisations = ZendeskRequest.get_organisations(@client)
+    rescue ZendeskError
+      return render :"zendesk_error", :layout => "application"
+    end
     @formdata = params
 
     if @errors.empty?
@@ -99,7 +107,7 @@ class SupportController < ApplicationController
       if ticket
         redirect_to '/acknowledge'
       else
-        500
+        return render :"zendesk_error", :layout => "application"
       end
     else
       render :"#{@template}", :layout => "application"
