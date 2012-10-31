@@ -41,7 +41,7 @@ class SupportControllerTest < ActionController::TestCase
   context "GET landing" do
     should "render the homepage" do
       get :landing
-      assert_select "h1", /Welcome to GovUK Support/i
+      assert_select "h1", /Welcome to GOV UK Support/i
     end
   end
 
@@ -52,7 +52,7 @@ class SupportControllerTest < ActionController::TestCase
 
     should "render the form" do
       get :amend_content
-      assert_select "h1", /Content Change/i
+      assert_select "h1", /Request a change to existing GOVUK content/i
     end
 
     should "use ZenDesk to populate the organisation dropdown" do
@@ -124,7 +124,7 @@ class SupportControllerTest < ActionController::TestCase
 
     should "render the form" do
       get :create_user
-      assert_select "h1", /Create New User/i
+      assert_select "h1", /Create a new user account for the publishing tool/i
     end
 
     should "use ZenDesk to populate the organisation dropdown" do
@@ -313,7 +313,7 @@ class SupportControllerTest < ActionController::TestCase
 
     should "render the form" do
       get :general
-      assert_select "h1", /General/i
+      assert_select "h1", /Report a problem, request GDS support, or to make a suggestion/i
     end
 
     should "use ZenDesk to populate the organisation dropdown" do
