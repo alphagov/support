@@ -5,9 +5,8 @@ require "guard"
 class SupportController < ApplicationController
   def amend_content
     if request.method == "GET"
-      on_get("Content Change", "content/amend")
+      on_get("content/amend")
     elsif request.method == "POST"
-      @header = "Content Change"
       @template = "content/amend"
 
       @errors = Guard.validationsForAmendContent(params)
@@ -17,9 +16,8 @@ class SupportController < ApplicationController
 
   def create_user
     if request.method == "GET"
-      on_get("Create New User", "useraccess/user")
+      on_get("useraccess/user")
     elsif request.method == "POST"
-      @header = "Create New User"
       @template = "useraccess/user"
 
       @errors = Guard.validationsForCreateUser(params)
@@ -29,9 +27,8 @@ class SupportController < ApplicationController
 
   def remove_user
     if request.method == "GET"
-      on_get("Remove User", "useraccess/userremove")
+      on_get("useraccess/userremove")
     elsif request.method == "POST"
-      @header = "Remove User"
       @template = "useraccess/userremove"
 
       @errors = Guard.validationsForDeleteUser(params)
@@ -41,9 +38,8 @@ class SupportController < ApplicationController
 
   def campaign
     if request.method == "GET"
-      on_get("Campaign", "campaigns/campaign")
+      on_get("campaigns/campaign")
     elsif request.method == "POST"
-      @header = "Campaign"
       @template = "campaigns/campaign"
 
       @errors = Guard.validationsForCampaign(params)
@@ -53,10 +49,9 @@ class SupportController < ApplicationController
 
   def general
     if request.method == "GET"
-      on_get("General", "tech-issues/general")
+      on_get("tech-issues/general")
     elsif request.method == "POST"
       params[:user_agent] = request.user_agent
-      @header = "General"
       @template = "tech-issues/general"
 
       @errors = Guard.validationsForGeneralIssues(params)
@@ -66,10 +61,9 @@ class SupportController < ApplicationController
 
   def publish_tool
     if request.method == "GET"
-      on_get("Publishing Tool", "tech-issues/publish_tool")
+      on_get("tech-issues/publish_tool")
     elsif request.method == "POST"
       params[:user_agent] = request.user_agent
-      @header = "Publishing Tool"
       @template = "tech-issues/publish_tool"
 
       @errors = Guard.validationsForPublishTool(params)
@@ -78,8 +72,6 @@ class SupportController < ApplicationController
   end
 
   def landing
-    @header = "Welcome to GOV UK Support"
-    @page_title = "Home"
     render :landing, :layout => "application"
   end
 
@@ -89,11 +81,9 @@ class SupportController < ApplicationController
 
   private
 
-  def on_get(head, template)
+  def on_get(template)
     @client = ZendeskClient.get_client(logger)
     @organisations = ZendeskRequest.get_organisations(@client)
-    @header = head
-    @page_title = head
     @formdata = {}
 
     render :"#{template}", :layout => "application"
