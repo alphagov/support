@@ -1,6 +1,6 @@
 <div class="form-inline">
   <fieldset>
-    <legend class="small"
+    <legend
       <% if title.length > 10 %>
         class = "long date"
       <% else %>
@@ -26,7 +26,7 @@
     </select>
 
     <label class="visuallyhidden" for="<%= label %>_month">Month</label>
-    <select id="<%= label %>_month" name="<%= label %>_month" class="input-small">
+    <select id="<%= label %>_month" name="<%= label %>_month" class="input-medium">
       <% months = {1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December"} %>
       <% if month %>
         <option value=""></option>

@@ -15,22 +15,22 @@
       <legend>URL(s) of content to be changed</legend>
 
       <div class="input-prepend">
-        <span class="add-on">www.gov.uk/</span>
-          <input class="span6" id="target_url1" name="url1" type="text" <%= render "assignvalue", {:param => @formdata[:url1]} %> >
+        <span class="add-on">gov.uk/</span>
+          <input class="span6 " id="target_url1" name="url1" type="text" <%= render "assignvalue", {:param => @formdata[:url1]} %> >
         </span>
       </div>
       <div class="input-prepend">
-        <span class="add-on">www.gov.uk/</span>
+        <span class="add-on">gov.uk/</span>
           <input class="span6" id="target_url2" name="url2" type="text" <%= render "assignvalue", {:param => @formdata[:url2]} %> >
         </span>
       </div>
       <div class="input-prepend">
-        <span class="add-on">www.gov.uk/</span>
+        <span class="add-on">gov.uk/</span>
           <input class="span6" id="target_url3" name="url3" type="text" <%= render "assignvalue", {:param => @formdata[:url3]} %> >
         </span>
       </div>
       <div class="comments">
-        <label class="long" for="add_content">Details of what should be added, amended, or removed:</label>
+        <label for="add_content">Details of what should be added, amended, or removed:</label>
         <textarea class="span6" id="add_content" name="add_content" rows="6" cols="70"><%= @formdata[:add_content] %></textarea>
         </div>
 
