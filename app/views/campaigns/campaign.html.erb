@@ -7,11 +7,11 @@
 
     <section id="campaign">
       <header class="section-header">Campaign</header>
-      <label for="name">Campaign title</label>
+      <label for="name">Campaign title (required)</label>
       <input id="name" name="campaign_name" type="text" class="span6" required <%= render "assignvalue", {:param => @formdata[:name]} %>>
 
       <div>
-        <label class="long" for="erg_number">ERG reference number</label>
+        <label class="long" for="erg_number">ERG reference number (required)</label>
         <input id="erg_number" name="erg_number" type="text" class="span6" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:erg_number]} %>>
         <%= render "errors", {errors: @errors, key: "Erg number"} %>
       </div>
@@ -20,7 +20,7 @@
       <%= render "errors", {errors: @errors, key: "Start date"} %>
 
       <div class="comments">
-        <label for="description">Campaign description</label>
+        <label for="description">Campaign description (required)</label>
         <textarea id="description" rows="6" cols="50" class="span6" name="description" type="text" required aria-required="true" ><%= @formdata[:description] %></textarea>
         <%= render "errors", {errors: @errors, key: "Description"} %>
       </div>

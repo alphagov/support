@@ -17,7 +17,7 @@
           <textarea id="comments" rows="6" cols="50" class="span6" name="additional"><%= @formdata[:additional] %></textarea>
         </div>
         <label for="target_url" class="long">URL (if applicable)</label>
-        <input id="target_url" name="url" type="text" class="span6" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:url]} %>>
+        <input id="target_url" name="url" type="text" class="span6" <%= render "assignvalue", {:param => @formdata[:url]} %>>
         <%= render "errors", {errors: @errors, key: "Url"} %>
 
       </fieldset>

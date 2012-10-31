@@ -1,12 +1,12 @@
   <fieldset>
     <legend class="small">Your details</legend>
-      <label for="name">Name</label>
+      <label for="name">Name (required)</label>
       <input id="name" name="name" type="text" class="span6" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:name]} %> >
       <%= render "errors", {key: "Name", errors: @errors} %>
-      <label for="email">Email</label>
+      <label for="email">Email (required)</label>
       <input id="email" name="email" type="email" class="span6" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:email]} %> >
       <%= render "errors", {key: "Email", errors: @errors} %>
-      <label for="job">Job title</label>
+      <label for="job">Job title (required)</label>
       <input id="job" name="job" type="text" class="span6" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:job]} %> >
       <%= render "errors", {key: "Job", errors: @errors} %>
       <label for="phone">Phone number</label>
