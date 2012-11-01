@@ -64,5 +64,8 @@ module Support
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    config.assets.prefix = '/assets'
+
+    config.assets.precompile += %W(html5.js)
   end
 end

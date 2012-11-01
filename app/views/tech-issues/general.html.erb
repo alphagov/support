@@ -1,0 +1,26 @@
+<%= content_for :page_title, "General" %>
+<%= content_for :header, "Report a problem, request GDS support, or to make a suggestion." %>
+
+<div class="alert alert-warning">
+  <p>To raise critical issues with Directgov-branded tools and transactions, please call Graham Francis on 07798 926978.</p>
+</div>
+
+<div class="well">
+  <%= form_tag('/general', :method => :post) do %>
+
+    <%= render "author" %>
+
+      <fieldset>
+        <legend>Details of your problem, request or suggestion</legend>
+        <div class="comments">
+          <label for="comments">Details</label>
+          <textarea id="comments" rows="6" cols="50" class="span6" name="additional"><%= @formdata[:additional] %></textarea>
+        </div>
+        <label for="target_url" class="long">URL (if applicable)</label>
+        <input id="target_url" name="url" type="text" class="span6" <%= render "assignvalue", {:param => @formdata[:url]} %>>
+        <%= render "errors", {errors: @errors, key: "Url"} %>
+
+      </fieldset>
+    <input class="btn btn-success" name="commit" type="submit" value="Submit">
+  <% end %>
+</div>

@@ -41,7 +41,7 @@ class SupportControllerTest < ActionController::TestCase
   context "GET landing" do
     should "render the homepage" do
       get :landing
-      assert_select "h1", /Welcome to GovUK Support/i
+      assert_select "h1", /Welcome to GOV.UK Support/i
     end
   end
 
@@ -52,7 +52,7 @@ class SupportControllerTest < ActionController::TestCase
 
     should "render the form" do
       get :amend_content
-      assert_select "h1", /Content Change/i
+      assert_select "h1", /Request a change to existing GOV.UK content/i
     end
 
     should "use ZenDesk to populate the organisation dropdown" do
@@ -88,7 +88,7 @@ class SupportControllerTest < ActionController::TestCase
       post :amend_content, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "amend"
-      assert_select ".errors", /Organisation information is required/
+      assert_select ".help-block", /Organisation information is required/
     end
 
     should "submit it to ZenDesk" do
@@ -124,7 +124,7 @@ class SupportControllerTest < ActionController::TestCase
 
     should "render the form" do
       get :create_user
-      assert_select "h1", /Create New User/i
+      assert_select "h1", /Create a new user account for the publishing tool/i
     end
 
     should "use ZenDesk to populate the organisation dropdown" do
@@ -153,7 +153,7 @@ class SupportControllerTest < ActionController::TestCase
       post :create_user, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "useraccess/user"
-      assert_select ".errors", /Organisation information is required/
+      assert_select ".help-block", /Organisation information is required/
     end
 
     should "submit it to ZenDesk" do
@@ -213,7 +213,7 @@ class SupportControllerTest < ActionController::TestCase
       post :remove_user, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "useraccess/user"
-      assert_select ".errors", /Organisation information is required/
+      assert_select ".help-block", /Organisation information is required/
     end
 
     should "submit it to ZenDesk" do
@@ -279,7 +279,7 @@ class SupportControllerTest < ActionController::TestCase
       post :campaign, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "campaigns/campaign"
-      assert_select ".errors", /Organisation information is required/
+      assert_select ".help-block", /Organisation information is required/
     end
 
     should "submit it to ZenDesk" do
@@ -313,7 +313,7 @@ class SupportControllerTest < ActionController::TestCase
 
     should "render the form" do
       get :general
-      assert_select "h1", /General/i
+      assert_select "h1", /Report a problem, request GDS support, or to make a suggestion/i
     end
 
     should "use ZenDesk to populate the organisation dropdown" do
@@ -341,7 +341,7 @@ class SupportControllerTest < ActionController::TestCase
       post :general, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "tech-issues/general"
-      assert_select ".errors", /Organisation information is required/
+      assert_select ".help-block", /Organisation information is required/
     end
 
     should "submit it to ZenDesk" do
@@ -396,7 +396,7 @@ class SupportControllerTest < ActionController::TestCase
       post :publish_tool, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "tech-issues/publish_tool"
-      assert_select ".errors", /Organisation information is required/
+      assert_select ".help-block", /Organisation information is required/
     end
 
     should "submit it to ZenDesk" do

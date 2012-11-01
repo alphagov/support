@@ -5,10 +5,8 @@ require "guard"
 class SupportController < ApplicationController
   def amend_content
     if request.method == "GET"
-      on_get("Content Change", "content/content_amend_message", "content/amend")
+      on_get("content/amend")
     elsif request.method == "POST"
-      @header = "Content Change"
-      @header_message = "content/content_amend_message"
       @template = "content/amend"
 
       @errors = Guard.validationsForAmendContent(params)
@@ -18,10 +16,8 @@ class SupportController < ApplicationController
 
   def create_user
     if request.method == "GET"
-      on_get("Create New User", "useraccess/user_create_message", "useraccess/user")
+      on_get("useraccess/user")
     elsif request.method == "POST"
-      @header = "Create New User"
-      @header_message = "useraccess/user_create_message"
       @template = "useraccess/user"
 
       @errors = Guard.validationsForCreateUser(params)
@@ -31,10 +27,8 @@ class SupportController < ApplicationController
 
   def remove_user
     if request.method == "GET"
-      on_get("Remove User", "useraccess/user_remove_message", "useraccess/userremove")
+      on_get("useraccess/userremove")
     elsif request.method == "POST"
-      @header = "Remove User"
-      @header_message = "useraccess/user_remove_message"
       @template = "useraccess/userremove"
 
       @errors = Guard.validationsForDeleteUser(params)
@@ -44,10 +38,8 @@ class SupportController < ApplicationController
 
   def campaign
     if request.method == "GET"
-      on_get("Campaign", "campaigns/campaign_message", "campaigns/campaign")
+      on_get("campaigns/campaign")
     elsif request.method == "POST"
-      @header = "Campaign"
-      @header_message = "campaigns/campaign_message"
       @template = "campaigns/campaign"
 
       @errors = Guard.validationsForCampaign(params)
@@ -57,11 +49,9 @@ class SupportController < ApplicationController
 
   def general
     if request.method == "GET"
-      on_get("General", "tech-issues/message_general", "tech-issues/general")
+      on_get("tech-issues/general")
     elsif request.method == "POST"
       params[:user_agent] = request.user_agent
-      @header = "General"
-      @header_message = "tech-issues/message_general"
       @template = "tech-issues/general"
 
       @errors = Guard.validationsForGeneralIssues(params)
@@ -71,11 +61,9 @@ class SupportController < ApplicationController
 
   def publish_tool
     if request.method == "GET"
-      on_get("Publishing Tool", "tech-issues/message_publish_tool", "tech-issues/publish_tool")
+      on_get("tech-issues/publish_tool")
     elsif request.method == "POST"
       params[:user_agent] = request.user_agent
-      @header = "Publishing Tool"
-      @header_message = "tech-issues/message_publish_tool"
       @template = "tech-issues/publish_tool"
 
       @errors = Guard.validationsForPublishTool(params)
@@ -84,28 +72,34 @@ class SupportController < ApplicationController
   end
 
   def landing
-    render :landing, :layout => "layout"
+    render :landing, :layout => "application"
   end
 
   def acknowledge
-    render :acknowledge, :layout => "layout"
+    render :acknowledge, :layout => "application"
   end
 
   private
 
-  def on_get(head, head_message_form, template)
-    @client = ZendeskClient.get_client(logger)
-    @organisations = ZendeskRequest.get_organisations(@client)
-    @header = head
-    @header_message = head_message_form
-    @formdata = {}
+  def on_get(template)
+    begin
+      @client = ZendeskClient.get_client(logger)
+      @organisations = ZendeskRequest.get_organisations(@client)
+    rescue ZendeskError
+      return render :"zendesk_connection_error", :layout => "application"
+    end
 
-    render :"#{template}", :layout => "formlayout"
+    @formdata = {}
+    render :"#{template}", :layout => "application"
   end
 
   def on_post(params, route)
-    @client = ZendeskClient.get_client(logger)
-    @organisations = ZendeskRequest.get_organisations(@client)
+    begin
+      @client = ZendeskClient.get_client(logger)
+      @organisations = ZendeskRequest.get_organisations(@client)
+    rescue ZendeskError
+      return render :"zendesk_error", :layout => "application"
+    end
     @formdata = params
 
     if @errors.empty?
@@ -113,10 +107,10 @@ class SupportController < ApplicationController
       if ticket
         redirect_to '/acknowledge'
       else
-        500
+        return render :"zendesk_error", :layout => "application"
       end
     else
-      render :"#{@template}", :layout => "formlayout"
+      render :"#{@template}", :layout => "application"
     end
   end
 end
