@@ -1,7 +1,9 @@
 <% if errors && errors[key] %>
-  <span class="help-inline">
+  <div class="control-group error">
     <% if @errors %>
-      <%= @errors[key] %>
+      <span class="help-block">
+        <%= @errors[key] %>
+      </span>
      <% end %>
-  </span>
+  </div>
 <% end %>
