@@ -59,7 +59,7 @@ class Guard
   #Tech issues
   def self.validationsForGeneralIssues(form_data)
     @@errors = {}
-    required = ["name", "email", "job", "url"]
+    required = ["name", "email", "job"]
     validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
 
     @@errors
