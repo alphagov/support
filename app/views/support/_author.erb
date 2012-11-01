@@ -20,7 +20,7 @@
       <input class="span6" id="phone" name="phone" pattern="([\d\s]*)" type="tel" <%= render "assignvalue", {:param => @formdata[:phone]} %> >
       <%= render "errors", {key: "Phone", errors: @errors} %>
 
-      <label for="organisation_list">Organisation</label>
+      <label for="organisation_list">Organisation (required)</label>
       <select id="organisation_list" class="span6" name="organisation">
         <% @organisations.each do |key, value| %>
           <% if value == @formdata["organisation"] %>
