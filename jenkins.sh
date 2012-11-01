@@ -13,6 +13,11 @@ for d in images javascripts templates stylesheets; do
   ln -s ../../Static/public/$d public/
 done
 
+# Delete any old zendesk.yml
+rm config/zendesk.yml
+# Copy in the template, which will work for test mode
+cp config/zendesk.yml.template config/zendesk.yml
+
 bundle exec rake test
 RESULT=$?
 exit $RESULT
