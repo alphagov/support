@@ -1,10 +1,11 @@
 <%= content_for :page_title, "Content change" %>
 <%= content_for :header, "Request a change to existing GOV.UK content" %>
 
-<div class="alert alert-info alert-block">
-  <p>If requesting an urgent content amend request, please follow up your submission of the form with a phone call to 07827 992603.</p>
-  <p>An urgent content amend request should only be made if the public or the government is facing immediate and significant financial, legal or physical risk.</p>
-</div>
+  <div class="alert alert-info alert-block">
+    <p>You'll get an automated response to confirm we've received your request. Your request will then be reviewed within 2 working days.</p>
+    <p>If we receive multiple requests for the same content area this may affect how soon we review them.</p>
+    <p>Only factual changes will be made. Please don't rewrite the text.</p>
+  </div>
 
 <div class="well">
 <%= form_tag(content_change_request_url, :method => :post) do %>
@@ -42,6 +43,11 @@
         <textarea class="span6" id="comments" rows="6" cols="70" name="additional"><%= @formdata[:additional] %></textarea>
       </div>
     </fieldset>
+
+  <div class="alert alert-info alert-block">
+    <p>If this request is urgent, please fill in this form then call 07827 992603 to let us know.</p>
+    <p>It's ONLY urgent when the public or the government is facing immediate and significant financial, legal or physical risk.</p>
+  </div>
 
   <input class="btn btn-success" name="commit" type="submit" value="Submit">
 <% end %>
