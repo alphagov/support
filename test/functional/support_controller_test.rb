@@ -124,7 +124,7 @@ class SupportControllerTest < ActionController::TestCase
 
     should "render the form" do
       get :create_user
-      assert_select "h1", /Create a new user account for the publishing tool/i
+      assert_select "h1", /Create a new user account/i
     end
 
     should "use ZenDesk to populate the organisation dropdown" do
