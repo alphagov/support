@@ -1,17 +1,6 @@
 require "guard"
 
 class SupportController < ApplicationController
-  def amend_content
-    if request.method == "GET"
-      on_get("content/amend")
-    elsif request.method == "POST"
-      @template = "content/amend"
-
-      @errors = Guard.validationsForAmendContent(params)
-      on_post(params, "amend-content")
-    end
-  end
-
   def create_user
     if request.method == "GET"
       on_get("useraccess/user")
