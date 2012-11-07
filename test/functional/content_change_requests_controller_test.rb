@@ -7,6 +7,26 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
     login_as_stub_user
   end
 
+  VALID_CONTENT_CHANGE_REQUEST_PARAMS = {
+    "name"=>"Testing",
+    "email"=>"testing@digital.cabinet-office.gov.uk",
+    "job"=>"Dev",
+    "phone"=>"",
+    "organisation"=>"cabinet_office",
+    "other_organisation"=>"",
+    "url1"=>"",
+    "url2"=>"",
+    "url3"=>"",
+    "add_content"=>"",
+    "need_by_day"=>"",
+    "need_by_month"=>"",
+    "need_by_year"=>"",
+    "not_before_day"=>"",
+    "not_before_month"=>"",
+    "not_before_year"=>"",
+    "additional"=>""
+  }
+
   context "GET amend_content" do
     setup do
       stub_zendesk_organisation_list
@@ -29,24 +49,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
     end
 
     should "reject invalid change requests" do
-      params = {
-        "name"=>"Testing",
-        "email"=>"testing@digital.cabinet-office.gov.uk",
-        "job"=>"Dev",
-        "organisation"=>"", # this has to be set
-        "other_organisation"=>"",
-        "url1"=>"",
-        "url2"=>"",
-        "url3"=>"",
-        "add_content"=>"",
-        "need_by_day"=>"",
-        "need_by_month"=>"",
-        "need_by_year"=>"",
-        "not_before_day"=>"",
-        "not_before_month"=>"",
-        "not_before_year"=>"",
-        "additional"=>""
-      }
+      params = VALID_CONTENT_CHANGE_REQUEST_PARAMS.merge("organisation" => "")
       post :create, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "new"
@@ -54,25 +57,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
     end
 
     should "submit it to ZenDesk" do
-      params = {
-        "name"=>"Testing",
-        "email"=>"testing@digital.cabinet-office.gov.uk",
-        "job"=>"Dev",
-        "phone"=>"",
-        "organisation"=>"cabinet_office",
-        "other_organisation"=>"",
-        "url1"=>"",
-        "url2"=>"",
-        "url3"=>"",
-        "add_content"=>"",
-        "need_by_day"=>"",
-        "need_by_month"=>"",
-        "need_by_year"=>"",
-        "not_before_day"=>"",
-        "not_before_month"=>"",
-        "not_before_year"=>"",
-        "additional"=>""
-      }
+      params = VALID_CONTENT_CHANGE_REQUEST_PARAMS
       ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
       post :create, params
       assert_redirected_to "/acknowledge"
