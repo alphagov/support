@@ -4,21 +4,21 @@
     <div class="control-group">
 
       <label for="name">Name (required)</label>
-      <input id="name" name="name" type="text" class="span6" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:name]} %> >
-      <%= render "errors", {key: "Name", errors: @errors} %>
+      <input id="name" name="name" type="text" class="span6" required aria-required="true" <%= render "support/assignvalue", {:param => @formdata[:name]} %> >
+      <%= render "support/errors", {key: "Name", errors: @errors} %>
     </div>
 
       <label for="email">Email (required)</label>
-      <input id="email" name="email" type="email" class="span6" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:email]} %> >
-      <%= render "errors", {key: "Email", errors: @errors} %>
+      <input id="email" name="email" type="email" class="span6" required aria-required="true" <%= render "support/assignvalue", {:param => @formdata[:email]} %> >
+      <%= render "support/errors", {key: "Email", errors: @errors} %>
 
       <label for="job">Job title (required)</label>
-      <input id="job" name="job" type="text" class="span6" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:job]} %> >
-      <%= render "errors", {key: "Job", errors: @errors} %>
+      <input id="job" name="job" type="text" class="span6" required aria-required="true" <%= render "support/assignvalue", {:param => @formdata[:job]} %> >
+      <%= render "support/errors", {key: "Job", errors: @errors} %>
 
       <label for="phone">Phone number</label>
-      <input class="span6" id="phone" name="phone" pattern="([\d\s]*)" type="tel" <%= render "assignvalue", {:param => @formdata[:phone]} %> >
-      <%= render "errors", {key: "Phone", errors: @errors} %>
+      <input class="span6" id="phone" name="phone" pattern="([\d\s]*)" type="tel" <%= render "support/assignvalue", {:param => @formdata[:phone]} %> >
+      <%= render "support/errors", {key: "Phone", errors: @errors} %>
 
       <label for="organisation_list">Organisation (required)</label>
       <select id="organisation_list" class="span6" name="organisation">
@@ -30,7 +30,7 @@
           <% end %>
         <% end %>
       </select>
-      <%= render "errors", {key: "Organisation", errors: @errors} %>
+      <%= render "support/errors", {key: "Organisation", errors: @errors} %>
 
       <label for="other_organisation">Please specify the organisation if you didn&rsquo;t find it in the list above</label>
       <input class="span6" id="other_organisation" name="other_organisation" type="text">

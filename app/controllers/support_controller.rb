@@ -1,5 +1,3 @@
-require "zendesk_request"
-require "zendesk_client"
 require "guard"
 
 class SupportController < ApplicationController
@@ -77,40 +75,5 @@ class SupportController < ApplicationController
 
   def acknowledge
     render :acknowledge, :layout => "application"
-  end
-
-  private
-
-  def on_get(template)
-    begin
-      @client = ZendeskClient.get_client(logger)
-      @organisations = ZendeskRequest.get_organisations(@client)
-    rescue ZendeskError
-      return render :"zendesk_connection_error", :layout => "application"
-    end
-
-    @formdata = {}
-    render :"#{template}", :layout => "application"
-  end
-
-  def on_post(params, route)
-    begin
-      @client = ZendeskClient.get_client(logger)
-      @organisations = ZendeskRequest.get_organisations(@client)
-    rescue ZendeskError
-      return render :"zendesk_error", :layout => "application"
-    end
-    @formdata = params
-
-    if @errors.empty?
-      ticket = ZendeskRequest.raise_zendesk_request(@client, params, route)
-      if ticket
-        redirect_to '/acknowledge'
-      else
-        return render :"zendesk_error", :layout => "application"
-      end
-    else
-      render :"#{@template}", :layout => "application"
-    end
   end
 end
