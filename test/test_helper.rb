@@ -5,7 +5,6 @@ require 'rails/test_help'
 require 'mocha_standalone'
 require 'webmock/minitest'
 
-
 class ActiveSupport::TestCase
   def setup
     super
