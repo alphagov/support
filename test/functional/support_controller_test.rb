@@ -2,9 +2,12 @@ require_relative "../test_helper"
 
 class SupportControllerTest < ActionController::TestCase
   include ZenDeskOrganisationListHelper
+  include TestData
 
   setup do
     login_as_stub_user
+    @zendesk_api = ZenDeskAPIClientDouble.new
+    ZendeskClient.stubs(:get_client).returns(@zendesk_api)
   end
 
   context "GET landing" do
@@ -31,22 +34,8 @@ class SupportControllerTest < ActionController::TestCase
   end
 
   context "POST create_user" do
-    setup do
-      stub_zendesk_organisation_list
-    end
-
     should "reject invalid requests" do
-      params = {
-        "name"=>"Testing",
-        "email"=>"testing@digital.cabinet-office.gov.uk",
-        "job"=>"dev",
-        "phone"=>"",
-        "organisation"=>"", # organisation must be set
-        "other_organisation"=>"",
-        "user_name"=>"",
-        "user_email"=>"",
-        "additional"=>""
-      }
+      params = valid_create_new_user_request_params.merge("organisation" => "")
       post :create_user, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "useraccess/user"
@@ -54,19 +43,11 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "submit it to ZenDesk" do
-      params = {
-        "name"=>"Testing",
-        "email"=>"testing@digital.cabinet-office.gov.uk",
-        "job"=>"dev",
-        "phone"=>"",
-        "organisation"=>"cabinet_office",
-        "other_organisation"=>"",
-        "user_name"=>"subject",
-        "user_email"=>"subject@digital.cabinet-office.gov.uk",
-        "additional"=>""
-      }
-      ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
+      params = valid_create_new_user_request_params
+
       post :create_user, params
+
+      assert_equal ['new_user'], @zendesk_api.ticket.options[:tags]
       assert_redirected_to "/acknowledge"
     end
   end
@@ -93,20 +74,7 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "reject invalid requests" do
-      params = {
-        "name"=>"Testing",
-        "email"=>"testing@digital.cabinet-office.gov.uk",
-        "job"=>"This is just a test",
-        "phone"=>"",
-        "organisation"=>"", # this has to be filled in
-        "other_organisation"=>"",
-        "user_name"=>"testing",
-        "user_email"=>"ignore-me@foo.com",
-        "not_before_day"=>"",
-        "not_before_month"=>"",
-        "not_before_year"=>"",
-        "additional"=>""
-      }
+      params = valid_remove_user_request_params.merge("organisation" => "")
       post :remove_user, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "useraccess/user"
@@ -114,22 +82,11 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "submit it to ZenDesk" do
-      params = {
-        "name"=>"Testing",
-        "email"=>"testing@digital.cabinet-office.gov.uk",
-        "job"=>"This is just a test",
-        "phone"=>"",
-        "organisation"=>"cabinet_office",
-        "other_organisation"=>"",
-        "user_name"=>"testing",
-        "user_email"=>"ignore-me@foo.com",
-        "not_before_day"=>"",
-        "not_before_month"=>"",
-        "not_before_year"=>"",
-        "additional"=>""
-      }
-      ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
+      params = valid_remove_user_request_params
+
       post :remove_user, params
+
+      assert_equal ['remove_user'], @zendesk_api.ticket.options[:tags]
       assert_redirected_to "/acknowledge"
     end
   end
@@ -156,23 +113,7 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "reject invalid requests" do
-      params = {
-        "name"=>"Testing",
-        "email"=>"testing@digital.cabinet-office.gov.uk",
-        "job"=>"doo",
-        "phone"=>"",
-        "organisation"=>"",
-        "other_organisation"=>"",
-        "campaign_name"=>"Testing",
-        "erg_number"=>"1234",
-        "start_day"=>"",
-        "start_month"=>"",
-        "start_year"=>"",
-        "description"=>"Testing",
-        "company"=>"",
-        "url"=>"",
-        "additional"=>""
-      }
+      params = valid_campaign_request_params.merge("organisation" => "")
       post :campaign, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "campaigns/campaign"
@@ -180,25 +121,11 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "submit it to ZenDesk" do
-      params = {
-        "name"=>"Testing",
-        "email"=>"testing@digital.cabinet-office.gov.uk",
-        "job"=>"doo",
-        "phone"=>"",
-        "organisation"=>"cabinet_office",
-        "other_organisation"=>"",
-        "campaign_name"=>"Testing",
-        "erg_number"=>"1234",
-        "start_day"=>"",
-        "start_month"=>"",
-        "start_year"=>"",
-        "description"=>"Testing",
-        "company"=>"",
-        "url"=>"",
-        "additional"=>""
-      }
-      ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
+      params = valid_campaign_request_params
+
       post :campaign, params
+
+      assert_equal ['campaign'], @zendesk_api.ticket.options[:tags]
       assert_redirected_to "/acknowledge"
     end
   end
@@ -225,16 +152,7 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "reject invalid requests" do
-      params = {
-        "name"=>"Testing",
-        "email"=>"testing@digital.cabinet-office.gov.uk",
-        "job"=>"dev",
-        "phone"=>"",
-        "organisation"=>"",
-        "other_organisation"=>"",
-        "url"=>"testing",
-        "additional"=>""
-      }
+      params = valid_general_request_params.merge("organisation" => "")
       post :general, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "tech-issues/general"
@@ -242,18 +160,11 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "submit it to ZenDesk" do
-      params = {
-        "name"=>"Testing",
-        "email"=>"testing@digital.cabinet-office.gov.uk",
-        "job"=>"dev",
-        "phone"=>"",
-        "organisation"=>"cabinet_office",
-        "other_organisation"=>"",
-        "url"=>"testing",
-        "additional"=>""
-      }
-      ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
+      params = valid_general_request_params
+
       post :general, params
+
+      assert_equal ['govt_agency_general'], @zendesk_api.ticket.options[:tags]
       assert_redirected_to "/acknowledge"
     end
   end

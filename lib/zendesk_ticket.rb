@@ -1,6 +1,6 @@
 class ZendeskTicket
 
-  attr_reader :name, :email, :organisation, :job, :phone, :comment, :subject, :tag, :need_by_date, :not_before_date
+  attr_reader :name, :email, :organisation, :job, :phone, :comment, :subject, :need_by_date, :not_before_date
   @@in_comments = {"amend-content" => [:other_organisation, :url1, :url2, :url3],
                    "create-user" => [:other_organisation, :user_name, :user_email, :additional],
                    "remove-user" => [:other_organisation, :user_name, :user_email, :additional],
@@ -25,7 +25,10 @@ class ZendeskTicket
               "publish-tool" => "publishing_tool_tech"
   }
 
-  def initialize(client, params, from_route)
+  def initialize(params, from_route)
+    @params = params
+    @from_route = from_route
+
     #author information
     @name = params[:name]
     @email = params[:email]
@@ -39,7 +42,6 @@ class ZendeskTicket
     #ticket information
     @comment = format_comment(from_route, params)
     @subject = @@in_subject[from_route]
-    @tag = @@in_tag[from_route]
 
     if has_value(params[:need_by_day])
       @need_by_date = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
@@ -52,6 +54,11 @@ class ZendeskTicket
     if has_value(params[:not_before_day])
       @not_before_date = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
     end
+  end
+
+  def tags
+    inside_government_tag = @params[:inside_government] == "yes" ? ["inside_government"] : []
+    [@@in_tag[@from_route]] + inside_government_tag
   end
 
   private

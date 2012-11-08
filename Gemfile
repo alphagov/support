@@ -20,7 +20,7 @@ gem 'less-rails-bootstrap'
 
 group :test do
   gem "mocha", "0.12.6", require: false
-  gem "shoulda-context", "~> 1.0.1"
+  gem "shoulda", "~> 3.3.2"
   gem "webmock", "1.8.11"
 end
 

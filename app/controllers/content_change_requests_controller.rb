@@ -1,3 +1,5 @@
+require 'guard'
+
 class ContentChangeRequestsController < ApplicationController
   def new
     @formdata = {}
