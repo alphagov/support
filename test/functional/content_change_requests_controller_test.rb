@@ -1,3 +1,4 @@
+require 'ostruct'
 require_relative "../test_helper"
 
 class ContentChangeRequestsControllerTest < ActionController::TestCase
@@ -5,6 +6,8 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
 
   setup do
     login_as_stub_user
+    @zendesk_api = ZenDeskAPIClientDouble.new
+    ZendeskClient.stubs(:get_client).returns(@zendesk_api)
   end
 
   VALID_CONTENT_CHANGE_REQUEST_PARAMS = {
@@ -44,10 +47,6 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
   end
 
   context "POST amend_content" do
-    setup do
-      stub_zendesk_organisation_list
-    end
-
     should "reject invalid change requests" do
       params = VALID_CONTENT_CHANGE_REQUEST_PARAMS.merge("organisation" => "")
       post :create, params
@@ -58,8 +57,10 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
 
     should "submit it to ZenDesk" do
       params = VALID_CONTENT_CHANGE_REQUEST_PARAMS
-      ZendeskRequest.expects(:raise_zendesk_request).returns("not a null")
       post :create, params
+
+      assert_equal ['content_amend'], @zendesk_api.ticket.options[:tags]
+
       assert_redirected_to "/acknowledge"
     end
   end
