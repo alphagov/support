@@ -2,9 +2,20 @@
 <%= content_for :header, "Request a change to existing GOV.UK content" %>
 
 <div class="alert alert-info alert-block">
-  <p>You'll get an automated response to confirm we've received your request. Your request will then be reviewed within 2 working days.</p>
-  <p>If we receive multiple requests for the same content area this may affect how soon we review them.</p>
-  <p>Only factual changes will be made. Please don't rewrite the text.</p>
+  <p>You'll get an automated response to confirm we've received your request. We'll then review your request within 2 working days.</p>
+  <p>When filling out this form...</p>
+  <p>Please do:</p>
+  <ul>
+    <li>explain the problem – what speciﬁcally needs to be addressed and why?</li>
+    <li>focus on the facts not the presentation</li>
+    <li>focus on what the user needs to know to complete a specific task, rather than the policy background</li>
+    <li>combine changes to one item into one ticket where possible</li>
+  </ul>
+  <p>Please don't:</p>
+  <ul>
+    <li>cut-and-paste long email chains</li>
+    <li>re-write the content</li>
+  </ul>
 </div>
 
 <div class="well">
@@ -32,28 +43,27 @@
       <input class="span6 input-block-level" id="target_url3" name="url3" type="text" placeholder="http://www.gov.uk/" <%= render "support/assignvalue", {:param => @formdata[:url3]} %> >
 
       <div class="comments">
-        <label for="add_content">Details of what should be added, amended, or removed:</label>
+        <label for="add_content">Details of the requested change:</label>
         <textarea class="span6" id="add_content" name="add_content" rows="6" cols="70"><%= @formdata[:add_content] %></textarea>
       </div>
 
     </fieldset>
 
-    <%= render "support/date", {:title => "When should this change be published?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]} %>
+    <%= render "support/date", {:title => "MUST be published by (optional)", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]} %>
     <%= render "support/errors", {errors: @errors, key: "Need by"} %>
 
-    <%= render "support/date", {:title => "Not to be amended before (optional)", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]} %>
+    <%= render "support/date", {:title => "MUST NOT be published BEFORE (optional)", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]} %>
     <%= render "support/errors", {errors: @errors, key: "Not before"} %>
 
     <fieldset>
       <div class="comments">
-        <label for="comments">Additional comments:</label>
-        <textarea class="span6" id="comments" rows="6" cols="70" name="additional"><%= @formdata[:additional] %></textarea>
+        <label for="comments">Reason for the above dates (optional):</label>
+        <textarea class="span6" id="comments" rows="3" cols="70" name="additional"><%= @formdata[:additional] %></textarea>
       </div>
     </fieldset>
 
     <div class="alert alert-info alert-block">
-      <p>If this request is urgent, please fill in this form then call 07827 992603 to let us know.</p>
-      <p>It's ONLY urgent when the public or the government is facing immediate and significant financial, legal or physical risk.</p>
+      <p>If your request is urgent, please fill in this form then call 07827 992603 to let us know. (It's ONLY urgent when the public or the government is facing immediate and significant financial, legal or physical risk.)</p>
     </div>
 
     <input class="btn btn-success" name="commit" type="submit" value="Submit">
