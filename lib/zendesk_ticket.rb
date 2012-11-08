@@ -25,7 +25,7 @@ class ZendeskTicket
               "publish-tool" => "publishing_tool_tech"
   }
 
-  def initialize(client, params, from_route)
+  def initialize(params, from_route)
     #author information
     @name = params[:name]
     @email = params[:email]

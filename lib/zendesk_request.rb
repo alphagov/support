@@ -11,7 +11,7 @@ class ZendeskRequest
   end
 
   def self.raise_zendesk_request(client, params, from_route)
-    ticket_to_raise = ZendeskTicket.new(client, params, from_route)
+    ticket_to_raise = ZendeskTicket.new(params, from_route)
     client.ticket.create(
         :subject => ticket_to_raise.subject,
         :description => "Created via Govt API",
