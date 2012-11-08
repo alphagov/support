@@ -5,6 +5,7 @@ require 'rails/test_help'
 require 'mocha_standalone'
 require 'webmock/minitest'
 
+require_relative 'test_data'
 
 class ActiveSupport::TestCase
   def setup
@@ -53,3 +54,35 @@ module ZenDeskOrganisationListHelper
       to_return(:status => 200, :body => body.to_json, :headers => {"Content-Type" => "application/json"})
   end
 end
+
+class ZenDeskAPITicketDouble
+  attr_reader :options
+
+  def create(options)
+    @options = options
+  end
+end
+
+class ZenDeskAPIClientDouble
+  attr_reader :ticket
+
+  def initialize
+    @ticket = ZenDeskAPITicketDouble.new
+  end
+
+  def ticket_fields
+    self
+  end
+
+  def find(some_criteria)
+    self
+  end
+
+  def custom_field_options
+    [ {"name"=>"Advocate General for Scotland", "value"=>"advocate_general_for_scotland"},
+      {"name"=>"Attorney General's Office", "value"=>"attorney_generals_office"},
+      {"name"=>"Cabinet Office", "value"=>"cabinet_office"}
+    ].collect {|params| OpenStruct.new(params)}
+  end
+end
+
