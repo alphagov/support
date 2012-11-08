@@ -10,26 +10,6 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
     ZendeskClient.stubs(:get_client).returns(@zendesk_api)
   end
 
-  VALID_CONTENT_CHANGE_REQUEST_PARAMS = {
-    "name"=>"Testing",
-    "email"=>"testing@digital.cabinet-office.gov.uk",
-    "job"=>"Dev",
-    "phone"=>"",
-    "organisation"=>"cabinet_office",
-    "other_organisation"=>"",
-    "url1"=>"",
-    "url2"=>"",
-    "url3"=>"",
-    "add_content"=>"",
-    "need_by_day"=>"",
-    "need_by_month"=>"",
-    "need_by_year"=>"",
-    "not_before_day"=>"",
-    "not_before_month"=>"",
-    "not_before_year"=>"",
-    "additional"=>""
-  }
-
   context "GET amend_content" do
     setup do
       stub_zendesk_organisation_list
