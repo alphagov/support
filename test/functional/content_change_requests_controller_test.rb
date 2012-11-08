@@ -3,6 +3,7 @@ require_relative "../test_helper"
 
 class ContentChangeRequestsControllerTest < ActionController::TestCase
   include ZenDeskOrganisationListHelper
+  include TestData
 
   setup do
     login_as_stub_user
@@ -28,7 +29,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
 
   context "a submitted content change request" do
     should "reject invalid change requests" do
-      params = VALID_CONTENT_CHANGE_REQUEST_PARAMS.merge("organisation" => "")
+      params = valid_content_change_request_params.merge("organisation" => "")
       post :create, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "new"
@@ -36,7 +37,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
     end
 
     should "submit it to ZenDesk" do
-      params = VALID_CONTENT_CHANGE_REQUEST_PARAMS
+      params = valid_content_change_request_params
       post :create, params
 
       assert_equal ['content_amend'], @zendesk_api.ticket.options[:tags]
@@ -46,7 +47,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
 
     context "concerning Inside Government" do
       should "submit it to ZenDesk" do
-        params = VALID_CONTENT_CHANGE_REQUEST_PARAMS.merge("inside_government" => "yes")
+        params = valid_content_change_request_params.merge("inside_government" => "yes")
 
         post :create, params
 

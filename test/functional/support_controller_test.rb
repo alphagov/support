@@ -2,6 +2,7 @@ require_relative "../test_helper"
 
 class SupportControllerTest < ActionController::TestCase
   include ZenDeskOrganisationListHelper
+  include TestData
 
   setup do
     login_as_stub_user
@@ -34,7 +35,7 @@ class SupportControllerTest < ActionController::TestCase
 
   context "POST create_user" do
     should "reject invalid requests" do
-      params = VALID_CREATE_NEW_USER_REQUEST_PARAMS.merge("organisation" => "")
+      params = valid_create_new_user_request_params.merge("organisation" => "")
       post :create_user, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "useraccess/user"
@@ -42,7 +43,7 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "submit it to ZenDesk" do
-      params = VALID_CREATE_NEW_USER_REQUEST_PARAMS
+      params = valid_create_new_user_request_params
 
       post :create_user, params
 
@@ -73,7 +74,7 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "reject invalid requests" do
-      params = VALID_REMOVE_USER_REQUEST_PARAMS.merge("organisation" => "")
+      params = valid_remove_user_request_params.merge("organisation" => "")
       post :remove_user, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "useraccess/user"
@@ -81,7 +82,7 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "submit it to ZenDesk" do
-      params = VALID_REMOVE_USER_REQUEST_PARAMS
+      params = valid_remove_user_request_params
 
       post :remove_user, params
 
@@ -112,7 +113,7 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "reject invalid requests" do
-      params = VALID_CAMPAIGN_REQUEST_PARAMS.merge("organisation" => "")
+      params = valid_campaign_request_params.merge("organisation" => "")
       post :campaign, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "campaigns/campaign"
@@ -120,7 +121,7 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "submit it to ZenDesk" do
-      params = VALID_CAMPAIGN_REQUEST_PARAMS
+      params = valid_campaign_request_params
 
       post :campaign, params
 
@@ -151,7 +152,7 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "reject invalid requests" do
-      params = VALID_GENERAL_REQUEST_PARAMS.merge("organisation" => "")
+      params = valid_general_request_params.merge("organisation" => "")
       post :general, params
       assert_response 200 # should actually be an error status, but let's worry about that later
       assert_template "tech-issues/general"
@@ -159,7 +160,7 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "submit it to ZenDesk" do
-      params = VALID_GENERAL_REQUEST_PARAMS
+      params = valid_general_request_params
 
       post :general, params
 
