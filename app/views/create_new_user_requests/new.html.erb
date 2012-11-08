@@ -2,18 +2,18 @@
 <%= content_for :header, "Create a new user account" %>
 
 <div class="well">
-  <%= form_tag('/create-user', :method => :post) do %>
-    <%= render "author" %>
+  <%= form_tag(create_new_user_request_url, :method => :post) do %>
+    <%= render "support/author" %>
 
       <header class="section-header">User details</header>
 
       <label for="user_name">Name (required)</label>
-      <input id="user_name" name="user_name" class="span6" type="text" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:user_name]} %>>
-      <%= render "errors", {errors: @errors, key: "User name"} %>
+      <input id="user_name" name="user_name" class="span6" type="text" required aria-required="true" <%= render "support/assignvalue", {:param => @formdata[:user_name]} %>>
+      <%= render "support/errors", {errors: @errors, key: "User name"} %>
 
       <label for="email">Email (required)</label>
-      <input id="email" name="user_email" class="span6" type="email" required aria-required="true" <%= render "assignvalue", {:param => @formdata[:user_email]} %>>
-      <%= render "errors", {errors: @errors, key: "User email"} %>
+      <input id="email" name="user_email" class="span6" type="email" required aria-required="true" <%= render "support/assignvalue", {:param => @formdata[:user_email]} %>>
+      <%= render "support/errors", {errors: @errors, key: "User email"} %>
 
       <fieldset>
         <div class="comments">
