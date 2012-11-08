@@ -22,7 +22,7 @@ class ZendeskRequest
                     {"id" => "21471291", "value" => ticket_to_raise.phone},
                     {"id" => "21485833", "value" => ticket_to_raise.need_by_date},
                     {"id" => "21502036", "value" => ticket_to_raise.not_before_date}],
-        :tags => [ticket_to_raise.tag],
+        :tags => ticket_to_raise.tags,
         :comment => {:value => ticket_to_raise.comment})
   end
 end

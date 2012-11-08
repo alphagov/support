@@ -56,8 +56,9 @@ class ZendeskTicket
     end
   end
 
-  def tag
-    @@in_tag[@from_route]
+  def tags
+    inside_government_tag = @params[:inside_government] == "yes" ? ["inside_government"] : []
+    [@@in_tag[@from_route]] + inside_government_tag
   end
 
   private

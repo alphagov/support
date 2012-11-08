@@ -12,6 +12,14 @@
     <%= render "support/author" %>
 
     <fieldset>
+      <label for="inside_government">Does this request concern Inside Government?</label>
+      <select id="inside_government" name="inside_government">
+        <option selected="selected" value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </fieldset>
+
+    <fieldset>
       <legend>URL(s) affected</legend>
 
       <label class="visuallyhidden" for="target_url1">URL 1</label>

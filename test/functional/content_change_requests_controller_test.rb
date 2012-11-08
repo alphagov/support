@@ -10,7 +10,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
     ZendeskClient.stubs(:get_client).returns(@zendesk_api)
   end
 
-  context "GET amend_content" do
+  context "a new content change request" do
     setup do
       stub_zendesk_organisation_list
     end
@@ -26,7 +26,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
     end
   end
 
-  context "POST amend_content" do
+  context "a submitted content change request" do
     should "reject invalid change requests" do
       params = VALID_CONTENT_CHANGE_REQUEST_PARAMS.merge("organisation" => "")
       post :create, params
@@ -42,6 +42,18 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
       assert_equal ['content_amend'], @zendesk_api.ticket.options[:tags]
 
       assert_redirected_to "/acknowledge"
+    end
+
+    context "concerning Inside Government" do
+      should "submit it to ZenDesk" do
+        params = VALID_CONTENT_CHANGE_REQUEST_PARAMS.merge("inside_government" => "yes")
+
+        post :create, params
+
+        assert_equal ['content_amend', 'inside_government'], @zendesk_api.ticket.options[:tags]
+
+        assert_redirected_to "/acknowledge"
+      end
     end
   end
 end

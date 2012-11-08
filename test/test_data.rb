@@ -5,6 +5,7 @@ VALID_CONTENT_CHANGE_REQUEST_PARAMS = {
   "phone"=>"",
   "organisation"=>"cabinet_office",
   "other_organisation"=>"",
+  "inside_government" => "no",
   "url1"=>"",
   "url2"=>"",
   "url3"=>"",
