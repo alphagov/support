@@ -7,21 +7,21 @@
 </div>
 
 <div class="well">
-<%= form_tag('/amend-content', :method => :post) do %>
+<%= form_tag(content_change_request_url, :method => :post) do %>
 
-  <%= render "author" %>
+  <%= render "support/author" %>
 
     <fieldset>
       <legend>URL(s) of content to be changed</legend>
 
       <label class="visuallyhidden" for="target_url1">URL 1</label>
-      <input class="span6 input-block-level" id="target_url1" name="url1" type="text" placeholder="http://www.gov.uk/" <%= render "assignvalue", {:param => @formdata[:url1]} %> >
+      <input class="span6 input-block-level" id="target_url1" name="url1" type="text" placeholder="http://www.gov.uk/" <%= render "support/assignvalue", {:param => @formdata[:url1]} %> >
 
       <label class="visuallyhidden" for="target_url2">URL 2</label>
-      <input class="span6 input-block-level" id="target_url2" name="url2" type="text" placeholder="http://www.gov.uk/" <%= render "assignvalue", {:param => @formdata[:url2]} %> >
+      <input class="span6 input-block-level" id="target_url2" name="url2" type="text" placeholder="http://www.gov.uk/" <%= render "support/assignvalue", {:param => @formdata[:url2]} %> >
 
       <label class="visuallyhidden" for="target_url3">URL 3</label>
-      <input class="span6 input-block-level" id="target_url3" name="url3" type="text" placeholder="http://www.gov.uk/" <%= render "assignvalue", {:param => @formdata[:url3]} %> >
+      <input class="span6 input-block-level" id="target_url3" name="url3" type="text" placeholder="http://www.gov.uk/" <%= render "support/assignvalue", {:param => @formdata[:url3]} %> >
 
       <div class="comments">
         <label for="add_content">Details of what should be added, amended, or removed:</label>
@@ -30,11 +30,11 @@
 
     </fieldset>
 
-    <%= render "date", {:title => "When should this change be published?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]} %>
-    <%= render "errors", {errors: @errors, key: "Need by"} %>
+    <%= render "support/date", {:title => "When should this change be published?", :label => 'need_by', :day => @formdata[:need_by_day], :month => @formdata[:need_by_month], :year => @formdata[:need_by_year]} %>
+    <%= render "support/errors", {errors: @errors, key: "Need by"} %>
 
-    <%= render "date", {:title => "Not to be amended before (optional)", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]} %>
-    <%= render "errors", {errors: @errors, key: "Not before"} %>
+    <%= render "support/date", {:title => "Not to be amended before (optional)", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]} %>
+    <%= render "support/errors", {errors: @errors, key: "Not before"} %>
 
     <fieldset>
       <div class="comments">
