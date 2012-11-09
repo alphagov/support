@@ -22,13 +22,7 @@
   <%= form_tag(content_change_request_url, :method => :post) do %>
     <%= render "support/author" %>
 
-    <fieldset>
-      <label for="inside_government">Does this affect Inside Government?</label>
-      <select id="inside_government" name="inside_government">
-        <option selected="selected" value="no">No</option>
-        <option value="yes">Yes</option>
-      </select>
-    </fieldset>
+    <%= render "support/inside_government" %>
 
     <fieldset>
       <legend>URL(s) affected</legend>
