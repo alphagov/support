@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
         return render :"support/zendesk_error", :layout => "application"
       end
     else
-      render :"#{@template}", :layout => "application"
+      render :"#{@template}", :layout => "application", :status => 400
     end
   end
 

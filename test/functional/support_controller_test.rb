@@ -41,7 +41,7 @@ class SupportControllerTest < ActionController::TestCase
     should "reject invalid requests" do
       params = valid_campaign_request_params.merge("organisation" => "")
       post :campaign, params
-      assert_response 200 # should actually be an error status, but let's worry about that later
+      assert_response 400
       assert_template "campaigns/campaign"
       assert_select ".help-block", /Organisation information is required/
     end
@@ -80,7 +80,7 @@ class SupportControllerTest < ActionController::TestCase
     should "reject invalid requests" do
       params = valid_general_request_params.merge("organisation" => "")
       post :general, params
-      assert_response 200 # should actually be an error status, but let's worry about that later
+      assert_response 400
       assert_template "tech-issues/general"
       assert_select ".help-block", /Organisation information is required/
     end
@@ -128,7 +128,7 @@ class SupportControllerTest < ActionController::TestCase
         "additional"=>""
       }
       post :publish_tool, params
-      assert_response 200 # should actually be an error status, but let's worry about that later
+      assert_response 400
       assert_template "tech-issues/publish_tool"
       assert_select ".help-block", /Organisation information is required/
     end
