@@ -56,45 +56,6 @@ class SupportControllerTest < ActionController::TestCase
     end
   end
 
-  context "GET general" do
-    setup do
-      stub_zendesk_organisation_list
-    end
-
-    should "render the form" do
-      get :general
-      assert_select "h1", /Report a problem, request GDS support, or to make a suggestion/i
-    end
-
-    should "use ZenDesk to populate the organisation dropdown" do
-      get :general
-      assert_select "select#organisation_list option", "Advocate General for Scotland"
-    end
-  end
-
-  context "POST general" do
-    setup do
-      stub_zendesk_organisation_list
-    end
-
-    should "reject invalid requests" do
-      params = valid_general_request_params.merge("organisation" => "")
-      post :general, params
-      assert_response 400
-      assert_template "tech-issues/general"
-      assert_select ".help-block", /Organisation information is required/
-    end
-
-    should "submit it to ZenDesk" do
-      params = valid_general_request_params
-
-      post :general, params
-
-      assert_equal ['govt_agency_general'], @zendesk_api.ticket.options[:tags]
-      assert_redirected_to "/acknowledge"
-    end
-  end
-
   context "GET publish_tool" do
     setup do
       stub_zendesk_organisation_list

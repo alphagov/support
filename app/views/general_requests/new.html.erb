@@ -6,9 +6,9 @@
 </div>
 
 <div class="well">
-  <%= form_tag('/general', :method => :post) do %>
+  <%= form_tag(new_general_request_path) do %>
 
-    <%= render "author" %>
+    <%= render "support/author" %>
 
       <fieldset>
         <legend>Details of your problem, request or suggestion</legend>
@@ -17,8 +17,8 @@
           <textarea id="comments" rows="6" cols="50" class="span6" name="additional"><%= @formdata[:additional] %></textarea>
         </div>
         <label for="target_url" class="long">URL (if applicable)</label>
-        <input id="target_url" name="url" type="text" class="span6" <%= render "assignvalue", {:param => @formdata[:url]} %>>
-        <%= render "errors", {errors: @errors, key: "Url"} %>
+        <input id="target_url" name="url" type="text" class="span6" <%= render "support/assignvalue", {:param => @formdata[:url]} %>>
+        <%= render "support/errors", {errors: @errors, key: "Url"} %>
 
       </fieldset>
     <input class="btn btn-success" name="commit" type="submit" value="Submit">
