@@ -45,12 +45,12 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
     end
 
     context "concerning Inside Government" do
-      should "submit it to ZenDesk" do
+      should "tag the ticket with an inside_government tag" do
         params = valid_content_change_request_params.merge("inside_government" => "yes")
 
         post :create, params
 
-        assert_equal ['content_amend', 'inside_government'], @zendesk_api.ticket.options[:tags]
+        assert_include @zendesk_api.ticket.options[:tags], 'inside_government'
 
         assert_redirected_to "/acknowledge"
       end
