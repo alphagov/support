@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
       @client = ZendeskClient.get_client(logger)
       @organisations = ZendeskRequest.get_organisations(@client)
     rescue ZendeskError
-      return render :"support/zendesk_connection_error", :layout => "application"
+      return render :"support/zendesk_error",  :locals => {:error_string => "zendesk_error_upon_new_form"}
     end
 
     @formdata = {}
@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
       @client = ZendeskClient.get_client(logger)
       @organisations = ZendeskRequest.get_organisations(@client)
     rescue ZendeskError
-      return render :"support/zendesk_error", :layout => "application"
+      return render :"support/zendesk_error", :locals => {:error_string => "zendesk_error_upon_submit"}
     end
     @formdata = params
 
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       if ticket
         redirect_to '/acknowledge'
       else
-        return render :"support/zendesk_error", :layout => "application"
+        return render :"support/zendesk_error", :locals => {:error_string => "zendesk_error_upon_submit"}
       end
     else
       render :"#{@template}", :layout => "application", :status => 400
@@ -48,7 +48,7 @@ class ApplicationController < ActionController::Base
       @client = ZendeskClient.get_client(logger)
       @organisations = ZendeskRequest.get_organisations(@client)
     rescue ZendeskError
-      return render :"support/zendesk_connection_error", :layout => "application"
+      return render :"support/zendesk_error",  :locals => {:error_string => "zendesk_error_upon_new_form"}
     end
   end
 end
