@@ -1,6 +1,6 @@
 class ZendeskTicket
 
-  attr_reader :name, :email, :organisation, :job, :phone, :comment, :subject, :need_by_date, :not_before_date
+  attr_reader :phone, :comment, :subject
   @@in_comments = {"amend-content" => [:other_organisation, :url1, :url2, :url3],
                    "create-user" => [:other_organisation, :user_name, :user_email, :additional],
                    "remove-user" => [:other_organisation, :user_name, :user_email, :additional],
@@ -28,31 +28,41 @@ class ZendeskTicket
   def initialize(params, from_route)
     @params = params
     @from_route = from_route
+  end
 
-    #author information
-    @name = params[:name]
-    @email = params[:email]
-    @organisation = params[:organisation]
+  [:name, :email, :organisation, :job].each do |attr|
+    define_method attr, lambda { @params[attr] }
+  end
 
-    @job = params[:job]
-    if has_value(params[:phone])
-      @phone = remove_space_from_phone_number(params[:phone])
+  def phone
+    if has_value(@params[:phone])
+      remove_space_from_phone_number(@params[:phone])
+    else
+      nil
     end
+  end
 
-    #ticket information
-    @comment = format_comment(from_route, params)
-    @subject = @@in_subject[from_route]
+  def comment
+    format_comment(@from_route, @params)
+  end
 
-    if has_value(params[:need_by_day])
-      @need_by_date = params[:need_by_day] + "/" + params[:need_by_month] + "/" + params[:need_by_year]
+  def subject
+    @@in_subject[@from_route]
+  end
+
+  def not_before_date
+    if has_value(@params[:not_before_day])
+      @params[:not_before_day] + "/" + @params[:not_before_month] + "/" + @params[:not_before_year]
+    else
+      nil
     end
+  end
 
-    if has_value(params[:start_day])
-      @need_by_date = params[:start_day] + "/" + params[:start_month] + "/" + params[:start_year]
-    end
-
-    if has_value(params[:not_before_day])
-      @not_before_date = params[:not_before_day] + "/" + params[:not_before_month] + "/" + params[:not_before_year]
+  def need_by_date
+    if has_value(@params[:need_by_day])
+      @params[:need_by_day] + "/" + @params[:need_by_month] + "/" + @params[:need_by_year]
+    else
+      nil
     end
   end
 
@@ -64,11 +74,7 @@ class ZendeskTicket
   private
 
   def has_value(param)
-    if param
-      !param.strip.empty?
-    else
-      false
-    end
+    not param.nil? and not param.strip.empty?
   end
 
   def format_comment(from_route, params)
