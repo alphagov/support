@@ -45,7 +45,7 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
     end
 
     context "concerning Inside Government" do
-      should "submit it to ZenDesk" do
+      should "tag the ticket with an inside_government tag" do
         params = valid_create_new_user_request_params.merge("inside_government" => "yes")
 
         post :create, params
