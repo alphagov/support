@@ -50,7 +50,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
 
         post :create, params
 
-        assert_include @zendesk_api.ticket.options[:tags], 'inside_government'
+        assert_includes @zendesk_api.ticket.options[:tags], 'inside_government'
 
         assert_redirected_to "/acknowledge"
       end
