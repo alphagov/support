@@ -27,10 +27,6 @@ class RemoveUserRequestsControllerTest < ActionController::TestCase
   end
 
   context "submitted remove user request" do
-    setup do
-      stub_zendesk_organisation_list
-    end
-
     should "reject invalid requests" do
       params = valid_remove_user_request_params.merge("organisation" => "")
       post :create, params
@@ -46,6 +42,18 @@ class RemoveUserRequestsControllerTest < ActionController::TestCase
 
       assert_equal ['remove_user'], @zendesk_api.ticket.options[:tags]
       assert_redirected_to "/acknowledge"
+    end
+
+    context "concerning Inside Government" do
+      should "tag the ticket with an inside_government tag" do
+        params = valid_remove_user_request_params.merge("inside_government" => "yes")
+
+        post :create, params
+
+        assert_include @zendesk_api.ticket.options[:tags], 'inside_government'
+
+        assert_redirected_to "/acknowledge"
+      end
     end
   end
 end
