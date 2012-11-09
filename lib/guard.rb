@@ -166,7 +166,7 @@ class Guard
 
     if other_organisation_is_required &&
         (form_data[:other_organisation] && form_data[:other_organisation].strip.empty?)
-      @@errors["Organisation"] = "Organisation information is required for a valid request."
+      @@errors["organisation"] = "Organisation information is required for a valid request."
     end
 
     if not other_organisation_is_required

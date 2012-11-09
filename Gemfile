@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'plek', '0.5.0'
 gem 'zendesk_api'
 gem 'less-rails-bootstrap'
+gem 'active_attr'
 
 group :test do
   gem "mocha", "0.12.6", require: false

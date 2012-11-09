@@ -6,7 +6,7 @@
 </div>
 
 <div class="well">
-  <%= form_tag(new_general_request_path) do %>
+  <%= form_for @request, :url => { :action => "create" } do %>
 
     <%= render "support/author" %>
 
