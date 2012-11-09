@@ -2,7 +2,7 @@
 <%= content_for :header, "Create a new user account" %>
 
 <div class="well">
-  <%= form_tag(create_new_user_request_url, :method => :post) do %>
+  <%= form_tag(create_new_user_request_path) do %>
     <%= render "support/author" %>
     <%= render "support/inside_government" %>
 
