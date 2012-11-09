@@ -5,6 +5,7 @@ require 'rails/test_help'
 require 'mocha_standalone'
 require 'webmock/minitest'
 
+require 'ostruct'
 require_relative 'test_data'
 
 class ActiveSupport::TestCase

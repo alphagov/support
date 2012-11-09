@@ -1,17 +1,6 @@
 require "guard"
 
 class SupportController < ApplicationController
-  def create_user
-    if request.method == "GET"
-      on_get("useraccess/user")
-    elsif request.method == "POST"
-      @template = "useraccess/user"
-
-      @errors = Guard.validationsForCreateUser(params)
-      on_post(params, "create-user")
-    end
-  end
-
   def remove_user
     if request.method == "GET"
       on_get("useraccess/userremove")
