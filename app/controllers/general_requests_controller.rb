@@ -3,7 +3,6 @@ require 'general_request_zendesk_ticket'
 class GeneralRequestsController <  ApplicationController
   def new
     @request = GeneralRequest.new
-    @formdata = {}
     prepopulate_organisation_list
   end
 
