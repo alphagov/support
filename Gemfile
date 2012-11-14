@@ -16,8 +16,8 @@ gem 'gds-sso', '2.1.0'
 gem 'jquery-rails'
 gem 'plek', '0.5.0'
 gem 'zendesk_api'
-gem 'less-rails-bootstrap'
 gem 'active_attr'
+gem 'formtastic-bootstrap'
 
 group :test do
   gem "mocha", "0.12.6", require: false
