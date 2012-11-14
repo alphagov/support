@@ -184,11 +184,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_attr
+  active_attr (= 0.6.0)
   aws-ses
   coffee-rails (~> 3.2.1)
   exception_notification (~> 2.4.1)
-  formtastic-bootstrap
+  formtastic-bootstrap (= 2.0.0)
   gds-sso (= 2.1.0)
   jquery-rails
   mocha (= 0.12.6)
@@ -200,4 +200,4 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   unicorn (= 4.3.1)
   webmock (= 1.8.11)
-  zendesk_api
+  zendesk_api (= 0.1.2)
