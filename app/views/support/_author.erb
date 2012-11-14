@@ -22,7 +22,7 @@
 
       <label for="organisation_list">Organisation (required)</label>
       <select id="organisation_list" class="span6" name="organisation">
-        <% @organisations.each do |key, value| %>
+        <% @organisations.merge("Select Organisation" => "").each do |key, value| %>
           <% if value == @formdata["organisation"] %>
             <option selected="selected" value="<%= value %>"><%= key %> </option>
           <% else %>

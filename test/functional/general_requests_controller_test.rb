@@ -22,7 +22,7 @@ class GeneralRequestsControllerTest < ActionController::TestCase
 
     should "use ZenDesk to populate the organisation dropdown" do
       get :new
-      assert_select "select#organisation_list option", "Advocate General for Scotland"
+      assert_select "select#general_request_organisation option", "Advocate General for Scotland"
     end
   end
 
@@ -32,11 +32,11 @@ class GeneralRequestsControllerTest < ActionController::TestCase
     end
 
     should "reject invalid requests" do
-      params = valid_general_request_params.merge("organisation" => "")
+      params = valid_general_request_params.tap {|p| p["general_request"].merge!("organisation" => "")}
       post :create, params
       assert_response 400
       assert_template :new
-      assert_select ".help-block", /Organisation information is required/
+      assert_select ".help-inline", /information is required/
     end
 
     should "submit it to ZenDesk" do

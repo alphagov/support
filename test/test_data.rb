@@ -66,13 +66,15 @@ module TestData
   end
 
   def valid_general_request_params
-    { "name"=>"Testing",
-      "email"=>"testing@digital.cabinet-office.gov.uk",
-      "job"=>"dev",
-      "phone"=>"",
-      "organisation"=>"cabinet_office",
-      "other_organisation"=>"",
-      "url"=>"testing",
-      "additional"=>"" }
+    {"general_request" => 
+      { "name"=>"Testing",
+        "email"=>"testing@digital.cabinet-office.gov.uk",
+        "job"=>"dev",
+        "phone"=>"",
+        "organisation"=>"cabinet_office",
+        "other_organisation"=>"",
+        "url"=>"testing",
+        "additional"=>"" }
+    }
   end
 end

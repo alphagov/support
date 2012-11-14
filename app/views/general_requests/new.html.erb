@@ -8,18 +8,13 @@
 <div class="well">
   <%= semantic_form_for @request, :url => { :action => "create" }, :html => { :novalidate => false} do |f| %>
 
-    <%= render "support/author" %>
+    <%= render :partial => "support/originator", :locals => {:f => f} %>
 
-    <fieldset>
-      <legend>Details of your problem, request or suggestion</legend>
-      <div class="comments">
-        <label for="comments">Details</label>
-        <textarea id="comments" rows="6" cols="50" class="span6" name="additional"><%= @formdata[:additional] %></textarea>
-      </div>
-      <label for="target_url" class="long">URL (if applicable)</label>
-      <input id="target_url" name="url" type="text" class="span6" <%= render "support/assignvalue", {:param => @formdata[:url]} %>>
-      <%= render "support/errors", {errors: @errors, key: "Url"} %>
-    </fieldset>
+    <%= f.inputs "Details of your problem, request or suggestion" do %>
+      <%= f.input :additional, :as => :text, :label => "Details", :input_html => {:class => "span6", :rows => 6, :cols => 50 } %>
+
+      <%= f.input :url, :label => "URL (if applicable)", :input_html => {:class => "span6"} %>
+    <% end %>
 
     <%= f.action :submit, :label => "Submit", :button_html => {:class => "btn btn-success"} %>
   <% end %>

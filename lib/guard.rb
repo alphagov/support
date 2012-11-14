@@ -56,15 +56,6 @@ class Guard
     @@errors
   end
 
-  #Tech issues
-  def self.validationsForGeneralIssues(form_data)
-    @@errors = {}
-    required = ["name", "email", "job"]
-    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
-
-    @@errors
-  end
-
   def self.validationsForPublishTool(form_data)
     @@errors = {}
     required = ["name", "email", "job", "url", "username"]

@@ -3,10 +3,8 @@ require_relative "zendesk_ticket"
 class ZendeskRequest
 
   def self.get_organisations(client)
-    organisations_hash = {"Select Organisation" => ""}
-    #if client && client.current_user && client.current_user.id
+    organisations_hash = {}
     client.ticket_fields.find(:id => '21494928').custom_field_options.each { |tf| organisations_hash[tf.name] = tf.value }
-    #end
     organisations_hash
   end
 
