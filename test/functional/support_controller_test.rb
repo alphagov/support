@@ -41,7 +41,7 @@ class SupportControllerTest < ActionController::TestCase
     should "reject invalid requests" do
       params = valid_campaign_request_params.merge("organisation" => "")
       post :campaign, params
-      assert_response 200 # should actually be an error status, but let's worry about that later
+      assert_response 400
       assert_template "campaigns/campaign"
       assert_select ".help-block", /Organisation information is required/
     end
@@ -52,45 +52,6 @@ class SupportControllerTest < ActionController::TestCase
       post :campaign, params
 
       assert_equal ['campaign'], @zendesk_api.ticket.options[:tags]
-      assert_redirected_to "/acknowledge"
-    end
-  end
-
-  context "GET general" do
-    setup do
-      stub_zendesk_organisation_list
-    end
-
-    should "render the form" do
-      get :general
-      assert_select "h1", /Report a problem, request GDS support, or to make a suggestion/i
-    end
-
-    should "use ZenDesk to populate the organisation dropdown" do
-      get :general
-      assert_select "select#organisation_list option", "Advocate General for Scotland"
-    end
-  end
-
-  context "POST general" do
-    setup do
-      stub_zendesk_organisation_list
-    end
-
-    should "reject invalid requests" do
-      params = valid_general_request_params.merge("organisation" => "")
-      post :general, params
-      assert_response 200 # should actually be an error status, but let's worry about that later
-      assert_template "tech-issues/general"
-      assert_select ".help-block", /Organisation information is required/
-    end
-
-    should "submit it to ZenDesk" do
-      params = valid_general_request_params
-
-      post :general, params
-
-      assert_equal ['govt_agency_general'], @zendesk_api.ticket.options[:tags]
       assert_redirected_to "/acknowledge"
     end
   end
@@ -128,7 +89,7 @@ class SupportControllerTest < ActionController::TestCase
         "additional"=>""
       }
       post :publish_tool, params
-      assert_response 200 # should actually be an error status, but let's worry about that later
+      assert_response 400
       assert_template "tech-issues/publish_tool"
       assert_select ".help-block", /Organisation information is required/
     end

@@ -69,9 +69,15 @@ class ZenDeskAPIClientDouble
 
   def initialize
     @ticket = ZenDeskAPITicketDouble.new
+    @should_raise_error = false
+  end
+
+  def should_raise_error
+    @should_raise_error = true
   end
 
   def ticket_fields
+    raise ZendeskError.new("zendesk is down", nil) if @should_raise_error
     self
   end
 

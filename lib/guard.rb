@@ -56,15 +56,6 @@ class Guard
     @@errors
   end
 
-  #Tech issues
-  def self.validationsForGeneralIssues(form_data)
-    @@errors = {}
-    required = ["name", "email", "job"]
-    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
-
-    @@errors
-  end
-
   def self.validationsForPublishTool(form_data)
     @@errors = {}
     required = ["name", "email", "job", "url", "username"]
@@ -166,7 +157,7 @@ class Guard
 
     if other_organisation_is_required &&
         (form_data[:other_organisation] && form_data[:other_organisation].strip.empty?)
-      @@errors["Organisation"] = "Organisation information is required for a valid request."
+      @@errors["organisation"] = "Organisation information is required for a valid request."
     end
 
     if not other_organisation_is_required

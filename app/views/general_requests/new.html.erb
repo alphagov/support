@@ -1,0 +1,21 @@
+<%= content_for :page_title, "General" %>
+<%= content_for :header, "Report a problem, request GDS support, or to make a suggestion." %>
+
+<div class="alert alert-warning">
+  <p>To raise critical issues with Directgov-branded tools and transactions, please call Graham Francis on 07798 926978.</p>
+</div>
+
+<div class="well">
+  <%= semantic_form_for @request, :url => { :action => "create" }, :html => { :novalidate => false} do |f| %>
+
+    <%= render :partial => "support/originator", :locals => {:f => f} %>
+
+    <%= f.inputs "Details of your problem, request or suggestion" do %>
+      <%= f.input :additional, :as => :text, :label => "Details", :input_html => {:class => "span6", :rows => 6, :cols => 50 } %>
+
+      <%= f.input :url, :label => "URL (if applicable)", :input_html => {:class => "span6"} %>
+    <% end %>
+
+    <%= f.action :submit, :label => "Submit", :button_html => {:class => "btn btn-success"} %>
+  <% end %>
+</div>
