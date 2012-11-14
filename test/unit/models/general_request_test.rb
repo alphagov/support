@@ -21,6 +21,8 @@ class GeneralRequestTest < Test::Unit::TestCase
 
   should "not allow a blank other_organisation if the organisation=other_organisation" do
     other_organisation_not_set = {"organisation" => "other_organisation", "other_organisation" => ""}
-    assert !GeneralRequest.new(valid_general_request_params.merge(other_organisation_not_set)).valid?
+    request = GeneralRequest.new(valid_general_request_params["general_request"].merge(other_organisation_not_set))
+    assert !request.valid?
+    assert_not_empty request.errors[:other_organisation]
   end
 end
