@@ -1,3 +1,5 @@
+require 'general_request_zendesk_ticket'
+
 class GeneralRequestsController <  ApplicationController
   def new
     @request = GeneralRequest.new
@@ -6,8 +8,7 @@ class GeneralRequestsController <  ApplicationController
   end
 
   def create
-    # what's this for??
-    # params[:user_agent] = request.user_agent
+    params[:user_agent] = request.user_agent
 
     @request = GeneralRequest.new(params)
 
@@ -15,7 +16,7 @@ class GeneralRequestsController <  ApplicationController
     @formdata = @request.attributes
 
     if @request.valid?
-      ticket = ZendeskRequest.raise_zendesk_request(@client, @formdata, "general")
+      ticket = ZendeskRequest.raise_ticket(@client, GeneralRequestZendeskTicket.new(@formdata))
       if ticket
         redirect_to acknowledge_path
       else

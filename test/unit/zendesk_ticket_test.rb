@@ -48,7 +48,6 @@ class ZendeskTicketTest < Test::Unit::TestCase
       assert_equal "Create new user", new_ticket("create-user").subject
       assert_equal "Remove user", new_ticket("remove-user").subject
       assert_equal "Campaign", new_ticket("campaign").subject
-      assert_equal "Govt Agency General Issue", new_ticket("general").subject
       assert_equal "Publishing Tool", new_ticket("publish-tool").subject
     end
 
