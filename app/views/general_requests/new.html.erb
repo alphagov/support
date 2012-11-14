@@ -10,17 +10,17 @@
 
     <%= render "support/author" %>
 
-      <fieldset>
-        <legend>Details of your problem, request or suggestion</legend>
-        <div class="comments">
-          <label for="comments">Details</label>
-          <textarea id="comments" rows="6" cols="50" class="span6" name="additional"><%= @formdata[:additional] %></textarea>
-        </div>
-        <label for="target_url" class="long">URL (if applicable)</label>
-        <input id="target_url" name="url" type="text" class="span6" <%= render "support/assignvalue", {:param => @formdata[:url]} %>>
-        <%= render "support/errors", {errors: @errors, key: "Url"} %>
+    <fieldset>
+      <legend>Details of your problem, request or suggestion</legend>
+      <div class="comments">
+        <label for="comments">Details</label>
+        <textarea id="comments" rows="6" cols="50" class="span6" name="additional"><%= @formdata[:additional] %></textarea>
+      </div>
+      <label for="target_url" class="long">URL (if applicable)</label>
+      <input id="target_url" name="url" type="text" class="span6" <%= render "support/assignvalue", {:param => @formdata[:url]} %>>
+      <%= render "support/errors", {errors: @errors, key: "Url"} %>
 
-      </fieldset>
+    </fieldset>
     <input class="btn btn-success" name="commit" type="submit" value="Submit">
   <% end %>
 </div>
