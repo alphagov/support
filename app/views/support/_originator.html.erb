@@ -1,0 +1,8 @@
+<%= f.inputs "Your details" do %>
+  <%= f.input :name, :label => "Name", :required => true, :input_html => {:"aria-required" => true, :class => "span6"} %>
+  <%= f.input :email, :label => "Email", :as => :email, :required => true, :input_html => {:"aria-required" => true, :class => "span6"} %>
+  <%= f.input :job, :label => "Job title", :required => true, :input_html => {:"aria-required" => true, :class => "span6"} %>
+  <%= f.input :phone, :label => "Phone number", :as => :phone, :input_html => {:"aria-required" => true, :class => "span6"} %>
+  <%= f.input :organisation, :label => "Organisation", :as => :select, :collection => @organisations, :include_blank => "Select Organisation", :input_html => {:"aria-required" => true, :class => "span6"} %>
+  <%= f.input :other_organisation, :label => "Please specify the organisation if you didn't find it in the list above", :input_html => {:"aria-required" => true, :class => "span6"} %>
+<% end %>

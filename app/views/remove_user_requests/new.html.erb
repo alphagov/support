@@ -2,7 +2,7 @@
 <%= content_for :header, "Request to remove user access" %>
 
 <div class="well">
-  <%= form_tag(remove_user_request_url, :method => :post) do %>
+  <%= form_tag(remove_user_request_path) do %>
     <%= render "support/author" %>
     <%= render "support/inside_government" %>
 

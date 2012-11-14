@@ -30,7 +30,7 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
     should "reject invalid requests" do
       params = valid_create_new_user_request_params.merge("organisation" => "")
       post :create, params
-      assert_response 200 # should actually be an error status, but let's worry about that later
+      assert_response 400
       assert_template "new"
       assert_select ".help-block", /Organisation information is required/
     end
