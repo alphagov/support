@@ -9,6 +9,7 @@ class GeneralRequest
   attribute :other_organisation
   attribute :url
   attribute :additional
+  attribute :user_agent
 
   validates_presence_of :name, :email, :job
   validates_presence_of :organisation, :message => "information is required for a valid request."

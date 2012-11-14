@@ -1,8 +1,8 @@
 require 'zendesk_ticket'
 
 class GeneralRequestZendeskTicket < ZendeskTicket
-  def initialize(params)
-    super(params, nil)
+  def initialize(request)
+    super(request, nil)
   end
 
   def subject
@@ -16,12 +16,12 @@ class GeneralRequestZendeskTicket < ZendeskTicket
   def comment
     all_comments = fields_in_comments.map do |comment_param|
       comment = ""
-      if @params[comment_param] && !@params[comment_param].empty?
+      if @request.send(comment_param) && !@request.send(comment_param).empty?
         comment = "[" + comment_param.to_s.capitalize.gsub(/_/, " ") + "]\n"
         if :url == comment_param
-          comment += build_full_url_path(@params[:url])
+          comment += build_full_url_path(@request.url)
         else
-          comment += @params[comment_param]
+          comment += @request.send(comment_param)
         end
       end
       comment

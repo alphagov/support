@@ -47,5 +47,14 @@ class GeneralRequestsControllerTest < ActionController::TestCase
       assert_equal ['govt_agency_general'], @zendesk_api.ticket.options[:tags]
       assert_redirected_to "/acknowledge"
     end
+
+    should "add the user agent to the ticket in the comments" do
+      request.user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2)"
+      params = valid_general_request_params
+
+      post :create, params
+
+      assert_includes @zendesk_api.ticket.options[:comment][:value], "Mozilla/5.0"
+    end
   end
 end
