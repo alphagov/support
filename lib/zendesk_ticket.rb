@@ -81,8 +81,9 @@ class ZendeskTicket
     end
   end
     
-  def has_value(param)
-    @request.respond_to?(param) and not @request.send(param).nil? and not @request.send(param).strip.empty?
+  def has_value(param, target = nil)
+    target ||= @request
+    target.respond_to?(param) and not target.send(param).nil? and not target.send(param).strip.empty?
   end
 
   def format_comment(from_route, request)

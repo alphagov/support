@@ -1,8 +1,13 @@
 require 'zendesk_ticket'
+require 'forwardable'
+require 'comment_snippet'
 
 class GeneralRequestZendeskTicket < ZendeskTicket
+  def_delegators :@requester, :name, :email, :organisation, :job
+
   def initialize(request)
     super(request, nil)
+    @requester = request.requester
   end
 
   def subject
@@ -13,29 +18,25 @@ class GeneralRequestZendeskTicket < ZendeskTicket
     "govt_agency_general"
   end
 
+  # the following method will be pushed down to the superclass as soon as everything is converted to ActiveModel
   def comment
-    all_comments = fields_in_comments.map do |comment_param|
-      comment = ""
-      if @request.send(comment_param) && !@request.send(comment_param).empty?
-        comment = "[" + comment_param.to_s.capitalize.gsub(/_/, " ") + "]\n"
-        if :url == comment_param
-          comment += build_full_url_path(@request.url)
-        else
-          comment += @request.send(comment_param)
-        end
-      end
-      comment
-    end
+    applicable_snippets = comment_snippets.select(&:applies?)
+    applicable_snippets.collect(&:to_s).join("\n\n")
+  end
 
-    if !all_comments.join.empty?
-      all_comments.join("\n\n")
+  def phone
+    if @request.requester.phone?
+      remove_space_from_phone_number(@requester.phone)
     else
-      all_comments.join
+      nil
     end
   end
 
   protected
-  def fields_in_comments
-    [:other_organisation, :url, :user_agent, :additional]
+  def comment_snippets
+    [ CommentSnippet.new(@request.requester, :other_organisation),
+      CommentSnippet.new(@request, :url),
+      CommentSnippet.new(@request, :user_agent),
+      CommentSnippet.new(@request, :additional) ]
   end
 end

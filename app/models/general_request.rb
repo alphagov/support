@@ -1,18 +1,16 @@
+require 'requester'
+
 class GeneralRequest
   include ActiveAttr::Model
 
-  attribute :name
-  attribute :email
-  attribute :job
-  attribute :phone
-  attribute :organisation
-  attribute :other_organisation
+  attribute :requester, :type       => Requester,
+                        :typecaster => lambda { |params| Requester.new(params) }
   attribute :url
   attribute :additional
   attribute :user_agent
 
-  validates_presence_of :name, :email, :job
-  validates_presence_of :organisation, :message => "information is required for a valid request."
-  validates :email, :format => {:with => /^[\w\d]+[^@]*@[\w\d]+[^@]*\.[\w\d]+[^@]*$/}
-  validates_presence_of :other_organisation, :if => Proc.new {|request| request.organisation == "other_organisation"}
+  validates_presence_of :requester
+  validate do |request|
+    errors[:base] << "Requester details are either not complete or invalid." if not request.requester.nil? and not request.requester.valid?
+  end
 end
