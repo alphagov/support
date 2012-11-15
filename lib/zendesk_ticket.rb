@@ -1,4 +1,8 @@
+require 'forwardable'
+
 class ZendeskTicket
+  extend Forwardable
+
   @@in_comments = {"amend-content" => [:other_organisation, :url1, :url2, :url3],
                    "create-user" => [:other_organisation, :user_name, :user_email, :additional],
                    "remove-user" => [:other_organisation, :user_name, :user_email, :additional],
@@ -20,25 +24,23 @@ class ZendeskTicket
               "publish-tool" => "publishing_tool_tech"
   }
 
-  def initialize(params, from_route)
-    @params = params
+  def initialize(request, from_route)
+    @request = request
     @from_route = from_route
   end
 
-  [:name, :email, :organisation, :job].each do |attr|
-    define_method attr, lambda { @params[attr] }
-  end
+  def_delegators :@request, :name, :email, :organisation, :job
 
   def phone
-    if has_value(@params[:phone])
-      remove_space_from_phone_number(@params[:phone])
+    if has_value(:phone)
+      remove_space_from_phone_number(@request.phone)
     else
       nil
     end
   end
 
   def comment
-    format_comment(@from_route, @params)
+    format_comment(@from_route, @request)
   end
 
   def subject
@@ -46,16 +48,16 @@ class ZendeskTicket
   end
 
   def not_before_date
-    if has_value(@params[:not_before_day])
-      @params[:not_before_day] + "/" + @params[:not_before_month] + "/" + @params[:not_before_year]
+    if has_value(:not_before_day)
+      @request.not_before_day + "/" + @request.not_before_month + "/" + @request.not_before_year
     else
       nil
     end
   end
 
   def need_by_date
-    if has_value(@params[:need_by_day])
-      @params[:need_by_day] + "/" + @params[:need_by_month] + "/" + @params[:need_by_year]
+    if has_value(:need_by_day)
+      @request.need_by_day + "/" + @request.need_by_month + "/" + @request.need_by_year
     else
       nil
     end
@@ -66,26 +68,34 @@ class ZendeskTicket
   end
 
   def tags
-    inside_government_tag = @params[:inside_government] == "yes" ? ["inside_government"] : []
     [request_specific_tag] + inside_government_tag
   end
 
   private
 
-  def has_value(param)
-    not param.nil? and not param.strip.empty?
+  def inside_government_tag
+    if has_value(:inside_government) and @request.inside_government == "yes"
+      ["inside_government"]
+    else
+      []
+    end
+  end
+    
+  def has_value(param, target = nil)
+    target ||= @request
+    target.respond_to?(param) and not target.send(param).nil? and not target.send(param).strip.empty?
   end
 
-  def format_comment(from_route, params)
+  def format_comment(from_route, request)
     case from_route
       when "amend-content" then
-        format_comment_for_amend_content(params)
+        format_comment_for_amend_content(request)
       when "publish-tool" then
-        format_comment_for_tech_issues(from_route, params)
+        format_comment_for_tech_issues(from_route, request)
       else
         comment = @@in_comments[from_route].map do |comment_param|
-          if params[comment_param] && !params[comment_param].empty?
-            "[" + comment_param.to_s.capitalize.gsub(/_/, " ") + "]\n" + params[comment_param]
+          if request.send(comment_param) && !request.send(comment_param).empty?
+            "[" + comment_param.to_s.capitalize.gsub(/_/, " ") + "]\n" + request.send(comment_param)
           end
         end
 
@@ -97,15 +107,15 @@ class ZendeskTicket
     end
   end
 
-  def format_comment_for_tech_issues(from_route, params)
+  def format_comment_for_tech_issues(from_route, request)
     all_comments = @@in_comments[from_route].map do |comment_param|
       comment = ""
-      if params[comment_param] && !params[comment_param].empty?
+      if request.send(comment_param) && !request.send(comment_param).empty?
         comment = "[" + comment_param.to_s.capitalize.gsub(/_/, " ") + "]\n"
         if :url == comment_param
-          comment += build_full_url_path(params[:url])
+          comment += build_full_url_path(request.url)
         else
-          comment += params[comment_param]
+          comment += request.send(comment_param)
         end
       end
       comment
@@ -118,10 +128,10 @@ class ZendeskTicket
     end
   end
 
-  def format_comment_for_amend_content(params)
-    comments_sections = {"[URl(s) of content to be changed]" => [build_full_url_path(params[:url1]), build_full_url_path(params[:url2]), build_full_url_path(params[:url3])],
-                         "[Details of what should be added, amended or removed]" => [params[:add_content]],
-                         "[Additional Comments]" => [params[:additional]]
+  def format_comment_for_amend_content(request)
+    comments_sections = {"[URl(s) of content to be changed]" => [build_full_url_path(request.url1), build_full_url_path(request.url2), build_full_url_path(request.url3)],
+                         "[Details of what should be added, amended or removed]" => [request.add_content],
+                         "[Additional Comments]" => [request.additional]
     }
 
     comments = comments_sections.map do |key, value|

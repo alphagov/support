@@ -1,4 +1,5 @@
 require_relative "zendesk_ticket"
+require 'ostruct'
 
 class ZendeskRequest
 
@@ -9,7 +10,7 @@ class ZendeskRequest
   end
 
   def self.raise_zendesk_request(client, params, from_route)
-    raise_ticket(client, ZendeskTicket.new(params, from_route))
+    raise_ticket(client, ZendeskTicket.new(OpenStruct.new(params), from_route))
   end
 
   def self.raise_ticket(client, ticket_to_raise)

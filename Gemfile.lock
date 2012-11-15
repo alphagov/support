@@ -15,9 +15,6 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.1.3)
-    active_attr (0.6.0)
-      activemodel (>= 3.0.2, < 4.1)
-      activesupport (>= 3.0.2, < 4.1)
     activemodel (3.2.8)
       activesupport (= 3.2.8)
       builder (~> 3.0.0)
@@ -26,6 +23,8 @@ GEM
       activesupport (= 3.2.8)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-nulldb-adapter (0.2.3)
+      activerecord (>= 2.0.0)
     activeresource (3.2.8)
       activemodel (= 3.2.8)
       activesupport (= 3.2.8)
@@ -184,7 +183,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_attr (= 0.6.0)
+  activerecord-nulldb-adapter (= 0.2.3)
   aws-ses
   coffee-rails (~> 3.2.1)
   exception_notification (~> 2.4.1)
