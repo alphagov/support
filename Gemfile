@@ -16,7 +16,7 @@ gem 'gds-sso', '2.1.0'
 gem 'jquery-rails'
 gem 'plek', '0.5.0'
 gem 'zendesk_api', '0.1.2'
-gem 'active_attr', '0.6.0'
+gem 'activerecord-nulldb-adapter', '0.2.3'
 gem 'formtastic-bootstrap', '2.0.0'
 
 group :test do

@@ -2,7 +2,7 @@ require 'general_request_zendesk_ticket'
 
 class GeneralRequestsController <  ApplicationController
   def new
-    @request = GeneralRequest.new
+    @request = GeneralRequest.new(:requester => Requester.new)
     prepopulate_organisation_list
   end
 

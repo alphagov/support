@@ -1,0 +1,8 @@
+development:
+  adapter: nulldb
+
+test:
+  adapter: nulldb
+
+production:
+  adapter: nulldb
