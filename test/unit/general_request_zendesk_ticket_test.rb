@@ -5,7 +5,7 @@ require 'ostruct'
 
 class GeneralRequestZendeskTicketTest < Test::Unit::TestCase
   def ticket_with(opts)
-    GeneralRequestZendeskTicket.new(GeneralRequest.new(opts.merge(:requester => {})))
+    GeneralRequestZendeskTicket.new(GeneralRequest.new(opts.merge(:requester_attributes => {})))
   end
 
   def ticket

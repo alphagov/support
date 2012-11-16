@@ -67,7 +67,7 @@ module TestData
 
   def valid_general_request_params
     {"general_request" => 
-      { "requester" => valid_requester_params,
+      { "requester_attributes" => valid_requester_params,
         "url"=>"testing",
         "additional"=>"" }
     }

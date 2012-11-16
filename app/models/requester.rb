@@ -1,12 +1,7 @@
-class Requester
-  include ActiveAttr::Model
+require 'tableless_model'
 
-  attribute :name
-  attribute :email
-  attribute :job
-  attribute :phone
-  attribute :organisation
-  attribute :other_organisation
+class Requester < TablelessModel
+  attr_accessor :name, :email, :job, :phone, :organisation, :other_organisation
 
   validates_presence_of :name, :email, :job
   validates_presence_of :organisation, :message => "information is required for a valid request."

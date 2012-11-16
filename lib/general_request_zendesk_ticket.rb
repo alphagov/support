@@ -25,7 +25,7 @@ class GeneralRequestZendeskTicket < ZendeskTicket
   end
 
   def phone
-    if @request.requester.phone?
+    if has_value(:phone, @request)
       remove_space_from_phone_number(@requester.phone)
     else
       nil
