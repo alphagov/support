@@ -1,7 +1,7 @@
 require "test_helper"
 
 class SupportControllerTest < ActionController::TestCase
-  include ZenDeskOrganisationListHelper
+  include ZendeskOrganisationListHelper
   include TestData
 
   setup do
@@ -51,7 +51,7 @@ class SupportControllerTest < ActionController::TestCase
 
       post :campaign, params
 
-      assert_equal ['campaign'], @zendesk_api.ticket.options[:tags]
+      assert_equal ['campaign'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
     end
   end

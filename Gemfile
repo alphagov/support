@@ -22,6 +22,9 @@ group :test do
   gem "mocha", "0.12.6", require: false
   gem "shoulda", "~> 3.3.2"
   gem "webmock", "1.8.11"
+  gem 'capybara', '1.1.2'
+  gem 'poltergeist', '0.7.0'
+  gem 'cucumber-rails', '1.3.0', :require => false
 end
 
 gem 'unicorn', '4.3.1'

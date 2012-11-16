@@ -11,7 +11,7 @@ class CommentSnippet
   end
 
   def applies?
-    @data_provider.send("#{@field_name}") && !@data_provider.send("#{@field_name}").nil?
+    @data_provider.respond_to?(@field_name) && !field_value.nil? && !field_value.empty?
   end
 
   def field_value

@@ -1,7 +1,7 @@
 require "test_helper"
 
 class CreateNewUserRequestsControllerTest < ActionController::TestCase
-  include ZenDeskOrganisationListHelper
+  include ZendeskOrganisationListHelper
   include TestData
 
   setup do
@@ -40,7 +40,7 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
 
       post :create, params
 
-      assert_equal ['new_user'], @zendesk_api.ticket.options[:tags]
+      assert_equal ['new_user'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
     end
 
@@ -50,7 +50,7 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
 
         post :create, params
 
-        assert_includes @zendesk_api.ticket.options[:tags], 'inside_government'
+        assert_includes @zendesk_api.ticket.tags, 'inside_government'
 
         assert_redirected_to "/acknowledge"
       end

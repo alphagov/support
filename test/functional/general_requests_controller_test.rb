@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class GeneralRequestsControllerTest < ActionController::TestCase
-  include ZenDeskOrganisationListHelper
+  include ZendeskOrganisationListHelper
   include TestData
 
   setup do
@@ -46,7 +46,7 @@ class GeneralRequestsControllerTest < ActionController::TestCase
 
       post :create, params
 
-      assert_equal ['govt_agency_general'], @zendesk_api.ticket.options[:tags]
+      assert_equal ['govt_agency_general'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
     end
 
@@ -56,7 +56,7 @@ class GeneralRequestsControllerTest < ActionController::TestCase
 
       post :create, params
 
-      assert_includes @zendesk_api.ticket.options[:comment][:value], "Mozilla/5.0"
+      assert_includes @zendesk_api.ticket.comment, "Mozilla/5.0"
     end
   end
 end
