@@ -8,6 +8,20 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery
 
+  def new
+    @request = new_request
+    prepopulate_organisation_list
+  end
+
+  def create
+    @request = parse_request_from_params
+    if @request.valid?
+      raise_ticket(zendesk_ticket_class.new(@request))
+    else
+      render :new, :status => 400
+    end
+  end
+
   private
 
   def on_get(template)

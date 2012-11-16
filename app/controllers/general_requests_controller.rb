@@ -1,20 +1,18 @@
 require 'general_request_zendesk_ticket'
 
 class GeneralRequestsController <  ApplicationController
-  def new
-    @request = GeneralRequest.new(:requester => Requester.new)
-    prepopulate_organisation_list
+
+  def new_request
+    GeneralRequest.new(:requester => Requester.new)
   end
 
-  def create
-    request = GeneralRequest.new(params[:general_request])
-    request.user_agent = request.user_agent
-    ticket = GeneralRequestZendeskTicket.new(request)
+  def zendesk_ticket_class
+    GeneralRequestZendeskTicket
+  end
 
-    if request.valid?
-      raise_ticket(ticket)
-    else
-      render :new, :status => 400
-    end
+  def parse_request_from_params
+    user_request = GeneralRequest.new(params[:general_request])
+    user_request.user_agent = request.user_agent
+    user_request
   end
 end
