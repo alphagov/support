@@ -33,9 +33,29 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def raise_ticket(ticket)
+    load_client
+
+    ticket = ZendeskRequest.raise_ticket(@client, ticket)
+
+    if ticket
+      redirect_to acknowledge_path
+    else
+      return render "support/zendesk_error", :locals => {:error_string => "zendesk_error_upon_submit"}
+    end
+  end
+
   def load_client_and_organisations(error_string)
+    load_client
+    load_organisations(error_string)
+  end
+
+  def load_client
+    @client = ZendeskClient.get_client(logger)
+  end
+
+  def load_organisations(error_string)
     begin
-      @client = ZendeskClient.get_client(logger)
       @organisations = ZendeskRequest.get_organisations(@client)
     rescue ZendeskError
       return render :"support/zendesk_error", :locals => {:error_string => error_string}
@@ -43,11 +63,6 @@ class ApplicationController < ActionController::Base
   end
 
   def prepopulate_organisation_list
-    begin
-      @client = ZendeskClient.get_client(logger)
-      @organisations = ZendeskRequest.get_organisations(@client)
-    rescue ZendeskError
-      return render :"support/zendesk_error",  :locals => {:error_string => "zendesk_error_upon_new_form"}
-    end
+    load_client_and_organisations("zendesk_error_upon_new_form")
   end
 end

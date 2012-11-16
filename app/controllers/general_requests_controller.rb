@@ -7,18 +7,12 @@ class GeneralRequestsController <  ApplicationController
   end
 
   def create
-    @request = GeneralRequest.new(params[:general_request])
-    @request.user_agent = request.user_agent
+    request = GeneralRequest.new(params[:general_request])
+    request.user_agent = request.user_agent
+    ticket = GeneralRequestZendeskTicket.new(request)
 
-    load_client_and_organisations("zendesk_error_upon_submit")
-
-    if @request.valid?
-      ticket = ZendeskRequest.raise_ticket(@client, GeneralRequestZendeskTicket.new(@request))
-      if ticket
-        redirect_to acknowledge_path
-      else
-        return render "support/zendesk_error", :locals => {:error_string => "zendesk_error_upon_submit"}
-      end
+    if request.valid?
+      raise_ticket(ticket)
     else
       render :new, :status => 400
     end
