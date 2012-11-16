@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class RemoveUserRequestsControllerTest < ActionController::TestCase
-  include ZenDeskOrganisationListHelper
+  include ZendeskOrganisationListHelper
   include TestData
 
   setup do
@@ -40,7 +40,7 @@ class RemoveUserRequestsControllerTest < ActionController::TestCase
 
       post :create, params
 
-      assert_equal ['remove_user'], @zendesk_api.ticket.options[:tags]
+      assert_equal ['remove_user'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
     end
 
@@ -50,7 +50,7 @@ class RemoveUserRequestsControllerTest < ActionController::TestCase
 
         post :create, params
 
-        assert_includes @zendesk_api.ticket.options[:tags], 'inside_government'
+        assert_includes @zendesk_api.ticket.tags, 'inside_government'
 
         assert_redirected_to "/acknowledge"
       end

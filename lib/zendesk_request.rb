@@ -1,6 +1,14 @@
 require_relative "zendesk_ticket"
+require 'ostruct'
 
 class ZendeskRequest
+  def self.field_ids
+    { organisation:    "21494928",
+      job:             "21487987",
+      phone:           "21471291",
+      need_by_date:    "21485833",
+      not_before_date: "21502036" }
+  end
 
   def self.get_organisations(client)
     organisations_hash = {}
@@ -9,7 +17,7 @@ class ZendeskRequest
   end
 
   def self.raise_zendesk_request(client, params, from_route)
-    raise_ticket(client, ZendeskTicket.new(params, from_route))
+    raise_ticket(client, ZendeskTicket.new(OpenStruct.new(params), from_route))
   end
 
   def self.raise_ticket(client, ticket_to_raise)
@@ -18,11 +26,11 @@ class ZendeskRequest
       :description => "Created via Govt API",
       :priority => "normal",
       :requester => {"locale_id" => 1, "name" => ticket_to_raise.name, "email" => ticket_to_raise.email},
-      :fields => [{"id" => "21494928", "value" => ticket_to_raise.organisation},
-                  {"id" => "21487987", "value" => ticket_to_raise.job},
-                  {"id" => "21471291", "value" => ticket_to_raise.phone},
-                  {"id" => "21485833", "value" => ticket_to_raise.need_by_date},
-                  {"id" => "21502036", "value" => ticket_to_raise.not_before_date}],
+      :fields => [{"id" => ZendeskRequest.field_ids[:organisation],    "value" => ticket_to_raise.organisation},
+                  {"id" => ZendeskRequest.field_ids[:job],             "value" => ticket_to_raise.job},
+                  {"id" => ZendeskRequest.field_ids[:phone],           "value" => ticket_to_raise.phone},
+                  {"id" => ZendeskRequest.field_ids[:need_by_date],    "value" => ticket_to_raise.need_by_date},
+                  {"id" => ZendeskRequest.field_ids[:not_before_date], "value" => ticket_to_raise.not_before_date}],
       :tags => ticket_to_raise.tags,
       :comment => {:value => ticket_to_raise.comment})
   end

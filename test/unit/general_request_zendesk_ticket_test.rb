@@ -1,10 +1,11 @@
 require 'test/unit'
 require 'shoulda/context'
 require 'general_request_zendesk_ticket'
+require 'ostruct'
 
 class GeneralRequestZendeskTicketTest < Test::Unit::TestCase
   def ticket_with(opts)
-    GeneralRequestZendeskTicket.new(opts)
+    GeneralRequestZendeskTicket.new(GeneralRequest.new(opts.merge(:requester_attributes => {})))
   end
 
   def ticket

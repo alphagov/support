@@ -1,7 +1,7 @@
 require "test_helper"
 
 class ContentChangeRequestsControllerTest < ActionController::TestCase
-  include ZenDeskOrganisationListHelper
+  include ZendeskOrganisationListHelper
   include TestData
 
   setup do
@@ -42,7 +42,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
       params = valid_content_change_request_params
       post :create, params
 
-      assert_equal ['content_amend'], @zendesk_api.ticket.options[:tags]
+      assert_equal ['content_amend'], @zendesk_api.ticket.tags
 
       assert_redirected_to "/acknowledge"
     end
@@ -53,7 +53,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
 
         post :create, params
 
-        assert_includes @zendesk_api.ticket.options[:tags], 'inside_government'
+        assert_includes @zendesk_api.ticket.tags, 'inside_government'
 
         assert_redirected_to "/acknowledge"
       end

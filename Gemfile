@@ -16,13 +16,15 @@ gem 'gds-sso', '2.1.0'
 gem 'jquery-rails'
 gem 'plek', '0.5.0'
 gem 'zendesk_api', '0.1.2'
-gem 'active_attr', '0.6.0'
 gem 'formtastic-bootstrap', '2.0.0'
 
 group :test do
   gem "mocha", "0.12.6", require: false
   gem "shoulda", "~> 3.3.2"
   gem "webmock", "1.8.11"
+  gem 'capybara', '1.1.2'
+  gem 'poltergeist', '0.7.0'
+  gem 'cucumber-rails', '1.3.0', :require => false
 end
 
 gem 'unicorn', '4.3.1'
