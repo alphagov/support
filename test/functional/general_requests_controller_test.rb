@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class GeneralRequestsControllerTest < ActionController::TestCase
-  include ZenDeskOrganisationListHelper
+  include ZendeskOrganisationListHelper
   include TestData
 
   setup do
@@ -22,7 +22,7 @@ class GeneralRequestsControllerTest < ActionController::TestCase
 
     should "use ZenDesk to populate the organisation dropdown" do
       get :new
-      assert_select "select#general_request_organisation option", "Advocate General for Scotland"
+      assert_select "select#general_request_requester_attributes_organisation option", "Advocate General for Scotland"
     end
   end
 
@@ -32,8 +32,10 @@ class GeneralRequestsControllerTest < ActionController::TestCase
     end
 
     should "reject invalid requests" do
-      params = valid_general_request_params.tap {|p| p["general_request"].merge!("organisation" => "")}
+      params = valid_general_request_params.tap {|p| p["general_request"]["requester_attributes"].merge!("organisation" => "")}
+
       post :create, params
+
       assert_response 400
       assert_template :new
       assert_select ".help-inline", /information is required/
@@ -44,8 +46,17 @@ class GeneralRequestsControllerTest < ActionController::TestCase
 
       post :create, params
 
-      assert_equal ['govt_agency_general'], @zendesk_api.ticket.options[:tags]
+      assert_equal ['govt_agency_general'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
+    end
+
+    should "add the user agent to the ticket in the comments" do
+      request.user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2)"
+      params = valid_general_request_params
+
+      post :create, params
+
+      assert_includes @zendesk_api.ticket.comment, "Mozilla/5.0"
     end
   end
 end

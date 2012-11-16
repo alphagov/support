@@ -1,17 +1,17 @@
-class GeneralRequest
-  include ActiveAttr::Model
+require 'tableless_model'
+require 'requester'
 
-  attribute :name
-  attribute :email
-  attribute :job
-  attribute :phone
-  attribute :organisation
-  attribute :other_organisation
-  attribute :url
-  attribute :additional
+class GeneralRequest < TablelessModel
+  attr_accessor :requester, :url, :additional, :user_agent
 
-  validates_presence_of :name, :email, :job
-  validates_presence_of :organisation, :message => "information is required for a valid request."
-  validates :email, :format => {:with => /^[\w\d]+[^@]*@[\w\d]+[^@]*\.[\w\d]+[^@]*$/}
-  validates_presence_of :other_organisation, :if => Proc.new {|request| request.organisation == "other_organisation"}
+  validates_presence_of :requester
+  validate do |request|
+    if request.requester and not request.requester.valid?
+      errors[:base] << "Requester details are either not complete or invalid."
+    end
+  end
+
+  def requester_attributes=(attr)
+    self.requester = Requester.new(attr)
+  end
 end
