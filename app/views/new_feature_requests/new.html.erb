@@ -1,10 +1,6 @@
 <%= content_for :page_title, "New feature/need" %>
 <%= content_for :header, "Request a new feature/need" %>
 
-<div class="alert alert-warning">
-  <p>Copy goes here.</p>
-</div>
-
 <div class="well">
   <%= semantic_form_for @request, :url => { :action => "create" }, :html => { :novalidate => false } do |f| %>
 
