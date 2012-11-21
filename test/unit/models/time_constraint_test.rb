@@ -27,4 +27,11 @@ class TimeConstraintTest < Test::Unit::TestCase
     assert !constraint.valid?
     assert constraint.errors[:not_before_date].size > 0
   end
+
+  should "allow the 'not before' and 'needed by' dates to be blank, in which case the values are nil" do
+    constraint = TimeConstraint.new(:not_before_date => "", :needed_by_date  => "")
+    assert constraint.valid?
+    assert_nil constraint.not_before_date
+    assert_nil constraint.needed_by_date
+  end
 end
