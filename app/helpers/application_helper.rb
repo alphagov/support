@@ -13,4 +13,8 @@ module ApplicationHelper
       end
     end
   end
+
+  def date_string(date)
+    date.nil? ? "" : date.strftime('%d-%m-%Y')
+  end
 end
