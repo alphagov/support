@@ -12,6 +12,8 @@
 
       <%= f.input :url_of_example, :label => "Can you provide a link to an example of this feature?", :input_html => {:class => "span6", :placeholder => "http://www.example.com/"} %>
 
+      <%= f.input :inside_government, :as => :select, :label => "Does this affect Inside Government?", :collection => [["No", "no"], ["Yes", "yes"]], :include_blank => false %>
+
     <% end %>
 
     <%= render :partial => "support/time_constraint", :locals => {:f => f} %>    
