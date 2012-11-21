@@ -12,4 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require_tree .
+
+$(document).ready(function() {
+  $('input[calendar-enabled=true]').datepicker({minDate: 0, dateFormat: 'dd-mm-yy'});
+});

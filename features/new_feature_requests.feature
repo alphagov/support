@@ -11,7 +11,7 @@ Feature: New feature requests
   Scenario: successful request
     When the user submits the following new feature request:
       | User need          | URL of example         | Needed by date | Not before date | Reason            |
-      | Information on XYZ | http://www.example.com | 2012-12-31     | 2012-12-01      | Legal requirement |
+      | Information on XYZ | http://www.example.com | 31-12-2012     | 01-12-2012      | Legal requirement |
 
     Then the following ticket is raised in ZenDesk:
       | Subject             | Requester email      | Requester name | Phone | Job title | Organisation   |

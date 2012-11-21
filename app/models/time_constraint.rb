@@ -33,13 +33,13 @@ class TimeConstraint < TablelessModel
 
   def not_before_date_is_a_date
     if not is_a_valid_date?(:not_before_date)
-      errors.add(:not_before_date, "is not a valid date (must be in the format yyyy-mm-dd)")
+      errors.add(:not_before_date, "is not a valid date (must be in the format dd-mm-yyyy)")
     end
   end
 
   def needed_by_date_is_a_date
     if not is_a_valid_date?(:needed_by_date)
-      errors.add(:needed_by_date, "is not a valid date (must be in the format yyyy-mm-dd)")
+      errors.add(:needed_by_date, "is not a valid date (must be in the format dd-mm-yyyy)")
     end
   end
 
@@ -62,7 +62,7 @@ class TimeConstraint < TablelessModel
   def as_date(field_name)
     begin
       value = instance_variable_get("@#{field_name}")
-      Date.strptime(value, '%Y-%m-%d')
+      Date.strptime(value, '%d-%m-%Y')
     rescue Exception
       nil
     end

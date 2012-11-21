@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TimeConstraintTest < Test::Unit::TestCase
   def self.as_str(date)
-    date.strftime("%Y-%m-%d")
+    date.strftime("%d-%m-%Y")
   end
 
   def as_str(date)
