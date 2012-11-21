@@ -1,4 +1,5 @@
 require 'forwardable'
+require 'date'
 
 class ZendeskTicket
   extend Forwardable
@@ -32,15 +33,30 @@ class ZendeskTicket
   def_delegators :@request, :name, :email, :organisation, :job
 
   def phone
-    if has_value(:phone)
-      remove_space_from_phone_number(@request.phone)
+    # TODO: solve this horrible mess when the refactor is done
+    if instance_variable_defined?("@requester")
+      if has_value(:phone, @requester)
+        remove_space_from_phone_number(@requester.phone)
+      else
+        nil
+      end
     else
-      nil
+      if has_value(:phone)
+        remove_space_from_phone_number(@request.phone)
+      else
+        nil
+      end
     end
   end
 
   def comment
-    format_comment(@from_route, @request)
+    if respond_to?(:comment_snippets)
+      applicable_snippets = comment_snippets.select(&:applies?)
+      applicable_snippets.collect(&:to_s).join("\n\n")
+    else
+      # TODO: remove this when the refactor is complete
+      format_comment(@from_route, @request)
+    end
   end
 
   def subject
@@ -48,15 +64,21 @@ class ZendeskTicket
   end
 
   def not_before_date
-    if has_value(:not_before_day)
+    # TODO sort this mess out
+    if has_value(:time_constraint) and has_value(:not_before_date, @request.time_constraint)
+      @request.time_constraint.not_before_date.strftime('%d-%m-%Y')
+    elsif has_value(:not_before_day)
       @request.not_before_day + "/" + @request.not_before_month + "/" + @request.not_before_year
     else
       nil
     end
   end
 
-  def need_by_date
-    if has_value(:need_by_day)
+  def needed_by_date
+    # TODO sort this mess out
+    if has_value(:time_constraint) and has_value(:needed_by_date, @request.time_constraint)
+      @request.time_constraint.needed_by_date.strftime('%d-%m-%Y')
+    elsif has_value(:need_by_day)
       @request.need_by_day + "/" + @request.need_by_month + "/" + @request.need_by_year
     else
       nil
@@ -83,7 +105,7 @@ class ZendeskTicket
     
   def has_value(param, target = nil)
     target ||= @request
-    target.respond_to?(param) and not target.send(param).nil? and not target.send(param).strip.empty?
+    target.respond_to?(param) and not target.send(param).nil? and not target.send(param).to_s.strip.empty?
   end
 
   def format_comment(from_route, request)

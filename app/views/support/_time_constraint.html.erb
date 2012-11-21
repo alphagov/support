@@ -1,0 +1,5 @@
+<%= f.semantic_fields_for :time_constraint, :label => "Are there any time constraints (optinal)" do |r| %>
+  <%= r.input :needed_by_date, :label => "MUST be published by", :required => false, :input_html => {:type => 'date', :placeholder => "YYYY-MM-DD"} %>
+  <%= r.input :not_before_date, :label => "MUST NOT be published BEFORE", :required => false, :input_html => {:type => 'date', :placeholder => "YYYY-MM-DD"} %>
+  <%= r.input :time_constraint_reason, :as => :text, :label => "Reason for the above dates", :required => false, :input_html => {:class => "span6", :rows => 6, :cols => 50 } %>
+<% end %>
