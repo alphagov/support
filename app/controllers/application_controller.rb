@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
     if @request.valid?
       raise_ticket(zendesk_ticket_class.new(@request))
     else
+      prepopulate_organisation_list
       render :new, :status => 400
     end
   end
