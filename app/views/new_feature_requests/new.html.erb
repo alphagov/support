@@ -10,7 +10,7 @@
 
     <%= render :partial => "support/requester", :locals => {:f => f} %>
 
-    <%= f.input :user_need, :as => :text, :label => "What is the user need/feature request?", :input_html => {:class => "span6", :rows => 6, :cols => 50 } %>
+    <%= f.input :user_need, :as => :text, :required => :true, :label => "What is the user need/feature request?", :input_html => {:"aria-required" => true, :class => "span6", :rows => 6, :cols => 50 } %>
 
     <%= f.input :url_of_example, :label => "Can you provide a link to an example of this feature?", :input_html => {:class => "span6", :placeholder => "http://www.example.com/"} %>
 

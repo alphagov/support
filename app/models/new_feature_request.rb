@@ -7,4 +7,5 @@ class NewFeatureRequest < TablelessModel
   include WithTimeConstraint
 
   attr_accessor :user_need, :url_of_example
+  validates_presence_of :user_need
 end
