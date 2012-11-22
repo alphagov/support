@@ -56,7 +56,6 @@ class ZendeskTicketTest < Test::Unit::TestCase
     end
 
     should "set the subject according to request type" do
-      assert_equal "Create new user", new_ticket({}, "create-user").subject
       assert_equal "Remove user", new_ticket({}, "remove-user").subject
       assert_equal "Campaign", new_ticket({}, "campaign").subject
       assert_equal "Publishing Tool", new_ticket({}, "publish-tool").subject

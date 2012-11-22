@@ -5,20 +5,17 @@ require 'active_support'
 class ZendeskTicket
   extend Forwardable
 
-  @@in_comments = {"create-user" => [:other_organisation, :user_name, :user_email, :additional],
-                   "remove-user" => [:other_organisation, :user_name, :user_email, :additional],
+  @@in_comments = {"remove-user" => [:other_organisation, :user_name, :user_email, :additional],
                    "campaign" => [:other_organisation, :campaign_name, :erg_number, :company, :description, :url, :additional],
                    "publish-tool" => [:other_organisation, :username, :url, :user_agent, :additional]
   }
 
-  @@in_subject = {"create-user" => "Create new user",
-                  "remove-user" => "Remove user",
+  @@in_subject = {"remove-user" => "Remove user",
                   "campaign" => "Campaign",
                   "publish-tool" => "Publishing Tool"
   }
 
-  @@in_tag = {"create-user" => "new_user",
-              "remove-user" => "remove_user",
+  @@in_tag = {"remove-user" => "remove_user",
               "campaign" => "campaign",
               "publish-tool" => "publishing_tool_tech"
   }
