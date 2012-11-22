@@ -1,17 +1,8 @@
 require 'tableless_model'
-require 'requester'
+require 'with_requester'
 
 class GeneralRequest < TablelessModel
-  attr_accessor :requester, :url, :additional, :user_agent
+  include WithRequester
 
-  validates_presence_of :requester
-  validate do |request|
-    if request.requester and not request.requester.valid?
-      errors[:base] << "Requester details are either not complete or invalid."
-    end
-  end
-
-  def requester_attributes=(attr)
-    self.requester = Requester.new(attr)
-  end
+  attr_accessor :url, :additional, :user_agent
 end

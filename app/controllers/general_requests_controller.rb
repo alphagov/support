@@ -1,26 +1,18 @@
 require 'general_request_zendesk_ticket'
 
-class GeneralRequestsController <  ApplicationController
-  def new
-    @request = GeneralRequest.new(:requester => Requester.new)
-    prepopulate_organisation_list
+class GeneralRequestsController <  RequestsController
+
+  def new_request
+    GeneralRequest.new(:requester => Requester.new)
   end
 
-  def create
-    @request = GeneralRequest.new(params[:general_request])
-    @request.user_agent = request.user_agent
+  def zendesk_ticket_class
+    GeneralRequestZendeskTicket
+  end
 
-    load_client_and_organisations("zendesk_error_upon_submit")
-
-    if @request.valid?
-      ticket = ZendeskRequest.raise_ticket(@client, GeneralRequestZendeskTicket.new(@request))
-      if ticket
-        redirect_to acknowledge_path
-      else
-        return render "support/zendesk_error", :locals => {:error_string => "zendesk_error_upon_submit"}
-      end
-    else
-      render :new, :status => 400
-    end
+  def parse_request_from_params
+    user_request = GeneralRequest.new(params[:general_request])
+    user_request.user_agent = request.user_agent
+    user_request
   end
 end

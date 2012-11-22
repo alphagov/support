@@ -6,7 +6,7 @@ class ZendeskRequest
     { organisation:    "21494928",
       job:             "21487987",
       phone:           "21471291",
-      need_by_date:    "21485833",
+      needed_by_date:  "21485833",
       not_before_date: "21502036" }
   end
 
@@ -29,7 +29,7 @@ class ZendeskRequest
       :fields => [{"id" => ZendeskRequest.field_ids[:organisation],    "value" => ticket_to_raise.organisation},
                   {"id" => ZendeskRequest.field_ids[:job],             "value" => ticket_to_raise.job},
                   {"id" => ZendeskRequest.field_ids[:phone],           "value" => ticket_to_raise.phone},
-                  {"id" => ZendeskRequest.field_ids[:need_by_date],    "value" => ticket_to_raise.need_by_date},
+                  {"id" => ZendeskRequest.field_ids[:needed_by_date],  "value" => ticket_to_raise.needed_by_date},
                   {"id" => ZendeskRequest.field_ids[:not_before_date], "value" => ticket_to_raise.not_before_date}],
       :tags => ticket_to_raise.tags,
       :comment => {:value => ticket_to_raise.comment})

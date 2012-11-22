@@ -1,6 +1,6 @@
 require 'guard'
 
-class ContentChangeRequestsController < ApplicationController
+class ContentChangeRequestsController < RequestsController
   def new
     @formdata = {}
     prepopulate_organisation_list

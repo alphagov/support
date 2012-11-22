@@ -1,6 +1,6 @@
 require "guard"
 
-class SupportController < ApplicationController
+class SupportController < RequestsController
   def remove_user
     if request.method == "GET"
       on_get("useraccess/userremove")
