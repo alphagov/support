@@ -18,6 +18,7 @@ gem 'jquery-ui-rails', '2.0.2'
 gem 'plek', '0.5.0'
 gem 'zendesk_api', '0.1.2'
 gem 'formtastic-bootstrap', '2.0.0'
+gem 'validates_timeliness', '3.0.14'
 
 group :test do
   gem "mocha", "0.12.6", require: false

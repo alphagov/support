@@ -48,13 +48,13 @@ class ZendeskTicketTest < Test::Unit::TestCase
     end
 
     context "with time constraints" do
-      should "format the need_by_date as dd-mm-yyyy" do
-        time_constraint = OpenStruct.new(needed_by_date: Date.new(2001,2,3))
+      should "pass the need_by_date through" do
+        time_constraint = OpenStruct.new(needed_by_date: "03-02-2001")
         assert_equal "03-02-2001", new_ticket(time_constraint: time_constraint).needed_by_date
       end
 
-      should "format the not_before_date as dd-mm-yyyy" do
-        time_constraint = OpenStruct.new(not_before_date: Date.new(2001,2,3))
+      should "pass the not_before_date through" do
+        time_constraint = OpenStruct.new(not_before_date: "03-02-2001")
         assert_equal "03-02-2001", new_ticket(time_constraint: time_constraint).not_before_date
       end
     end

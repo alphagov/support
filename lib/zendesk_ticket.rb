@@ -66,7 +66,7 @@ class ZendeskTicket
   def not_before_date
     # TODO sort this mess out
     if has_value?(:time_constraint) and has_value?(:not_before_date, @request.time_constraint)
-      @request.time_constraint.not_before_date.strftime('%d-%m-%Y')
+      @request.time_constraint.not_before_date
     elsif has_value?(:not_before_day)
       @request.not_before_day + "/" + @request.not_before_month + "/" + @request.not_before_year
     else
@@ -77,7 +77,7 @@ class ZendeskTicket
   def needed_by_date
     # TODO sort this mess out
     if has_value?(:time_constraint) and has_value?(:needed_by_date, @request.time_constraint)
-      @request.time_constraint.needed_by_date.strftime('%d-%m-%Y')
+      @request.time_constraint.needed_by_date
     elsif has_value?(:need_by_day)
       @request.need_by_day + "/" + @request.need_by_month + "/" + @request.need_by_year
     else
