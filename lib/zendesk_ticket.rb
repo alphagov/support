@@ -1,5 +1,6 @@
 require 'forwardable'
 require 'date'
+require 'active_support'
 
 class ZendeskTicket
   extend Forwardable
@@ -105,7 +106,7 @@ class ZendeskTicket
     
   def has_value?(param, target = nil)
     target ||= @request
-    target.respond_to?(param) and not target.send(param).nil? and not target.send(param).to_s.strip.empty?
+    target.respond_to?(param) and not target.send(param).blank?
   end
 
   def format_comment(from_route, request)
