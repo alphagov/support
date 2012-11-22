@@ -12,10 +12,6 @@ class ZendeskTicketTest < Test::Unit::TestCase
 
   include TestData
   context "content change request" do
-    should "set the tags correctly for content change requests" do
-      assert_equal ['content_amend'], new_ticket({}, 'amend-content').tags
-    end
-
     should "set the tags correctly for valid inside govt tickets" do
       assert_includes new_ticket(:inside_government => "yes").tags, 'inside_government'
     end
@@ -60,7 +56,6 @@ class ZendeskTicketTest < Test::Unit::TestCase
     end
 
     should "set the subject according to request type" do
-      assert_equal "Content change request", new_ticket({}, "amend-content").subject
       assert_equal "Create new user", new_ticket({}, "create-user").subject
       assert_equal "Remove user", new_ticket({}, "remove-user").subject
       assert_equal "Campaign", new_ticket({}, "campaign").subject

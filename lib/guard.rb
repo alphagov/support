@@ -2,22 +2,6 @@ require "date"
 
 class Guard
 
-  #Content validations
-  def self.validationsForAmendContent(form_data)
-    @@errors = {}
-    required = ["name", "email", "job"]
-    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
-    self.checkOptionalDateFieldsAreComplete(form_data, [["Need by", "need_by_day", "need_by_month", "need_by_year"], ["Not before", "not_before_day", "not_before_month", "not_before_year"]])
-
-    need_by = validate_date_in_valid_range("Need by", "need_by_day", "need_by_month", "need_by_year", form_data)
-    not_before = validate_date_in_valid_range("Not before", "not_before_day", "not_before_month", "not_before_year", form_data)
-
-    self.validate_date_is_equal_or_greater_than_today("Need by", need_by, "Changes can only be made after today.")
-    self.validate_not_before_date_is_equal_or_greater_than_need_by(not_before, need_by, "Not before date should be the same or later than the date which the changes are required to be made on.")
-
-    @@errors
-  end
-
   #User validations
   def self.validationsForCreateUser(form_data)
     @@errors = {}
