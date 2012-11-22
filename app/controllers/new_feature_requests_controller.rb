@@ -1,6 +1,6 @@
 require 'new_feature_request_zendesk_ticket'
 
-class NewFeatureRequestsController < ApplicationController
+class NewFeatureRequestsController < RequestsController
   def new_request
     NewFeatureRequest.new(:requester => Requester.new, :time_constraint => TimeConstraint.new)
   end
