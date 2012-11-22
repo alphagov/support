@@ -51,3 +51,23 @@ When /^the user submits the following new feature request:$/ do |request_details
   step "the user fills out the time constraints"
   step "the user submits the request successfully"
 end
+
+When /^the user submits the following content change request:$/ do |request_details_table|
+  @request_details = request_details_table.hashes.first
+
+  visit '/'
+
+  click_on "Content change"
+
+  assert page.has_content?("Request a change")
+
+  step "the user fills out their details"
+
+  fill_in "Details of the requested change", :with => @request_details["Details of change"]
+  fill_in "URL 1", :with => @request_details["URL 1"]
+  fill_in "URL 2", :with => @request_details["URL 2"]
+  fill_in "URL 3", :with => @request_details["URL 3"]
+
+  step "the user fills out the time constraints"
+  step "the user submits the request successfully"
+end

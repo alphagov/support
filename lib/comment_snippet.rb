@@ -1,25 +1,48 @@
 require 'active_support/inflector'
 
 class CommentSnippet
-  def initialize(data_provider, field_name)
-    @data_provider = data_provider
-    @field_name = field_name
+  def initialize(options)
+    @options = options
   end
 
   def to_s
-    pretty_field_name + field_value
+    comment_label + comment_body
   end
 
   def applies?
-    @data_provider.respond_to?(@field_name) && !field_value.nil? && !field_value.empty?
-  end
-
-  def field_value
-    @data_provider.send(@field_name)
+    !applicable_fields.empty?
   end
 
   protected
+  def comment_label
+    "[#{label_text}]\n"
+  end
+
+  def label_text
+    @options[:label] || pretty_field_name
+  end
+
   def pretty_field_name
-    "[#{@field_name.to_s.humanize}]\n"
+    @options[:field].to_s.humanize
+  end
+
+  def field_names
+    @options[:fields] || [@options[:field]]
+  end
+
+  def comment_body
+    applicable_fields.collect { |field_name| value_of(field_name) }.join("\n")
+  end
+
+  def applicable_fields
+    field_names.select { |field_name| field_name_applies?(field_name) }
+  end
+
+  def value_of(field_name)
+    @options[:on].send(field_name)
+  end
+
+  def field_name_applies?(field_name)
+    @options[:on].respond_to?(field_name) && !value_of(field_name).nil? && !value_of(field_name).empty?
   end
 end

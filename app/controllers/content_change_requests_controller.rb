@@ -1,15 +1,15 @@
-require 'guard'
+require 'content_change_request_zendesk_ticket'
 
-class ContentChangeRequestsController < RequestsController
-  def new
-    @formdata = {}
-    prepopulate_organisation_list
+class ContentChangeRequestsController < RequestController
+  def new_request
+    ContentChangeRequest.new(:requester => Requester.new, :time_constraint => TimeConstraint.new)
   end
 
-  def create
-    @template = "content_change_requests/new"
+  def zendesk_ticket_class
+    ContentChangeRequestZendeskTicket
+  end
 
-    @errors = Guard.validationsForAmendContent(params)
-    on_post(params, "amend-content")
+  def parse_request_from_params
+    ContentChangeRequest.new(params[:content_change_request])
   end
 end

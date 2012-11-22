@@ -1,23 +1,11 @@
 module TestData
   def valid_content_change_request_params
-    { "name"=>"Testing",
-      "email"=>"testing@digital.cabinet-office.gov.uk",
-      "job"=>"Dev",
-      "phone"=>"",
-      "organisation"=>"cabinet_office",
-      "other_organisation"=>"",
-      "inside_government" => "no",
-      "url1"=>"",
-      "url2"=>"",
-      "url3"=>"",
-      "add_content"=>"",
-      "need_by_day"=>"",
-      "need_by_month"=>"",
-      "need_by_year"=>"",
-      "not_before_day"=>"",
-      "not_before_month"=>"",
-      "not_before_year"=>"",
-      "additional"=>"" }
+    {"content_change_request" => 
+      { "requester_attributes"       => valid_requester_params,
+        "time_constraint_attributes" => valid_time_constraint_params,
+        "url1"                       => "http://www.gov.uk",
+        "details_of_change"          => "Content is wrong"}
+    }
   end
 
   def valid_create_new_user_request_params
@@ -80,6 +68,13 @@ module TestData
       "phone"=>"",
       "organisation"=>"cabinet_office",
       "other_organisation"=>"",
+    }
+  end
+
+  def valid_time_constraint_params
+    { "needed_by_date" => "01-01-2013",
+      "not_before_date" => "01-12-2012",
+      "time_constraint_reason" => "Legal requirement"
     }
   end
 end
