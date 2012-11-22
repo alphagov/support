@@ -32,4 +32,8 @@ class TimeConstraintTest < Test::Unit::TestCase
     assert !constraint.valid?
     assert constraint.errors[:not_before_date].size > 0
   end
+
+  should "allow a blank not_before_date if the needed_by_date is set" do
+    assert TimeConstraint.new(:needed_by_date => as_str(Date.tomorrow)).valid?
+  end
 end
