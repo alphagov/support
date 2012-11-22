@@ -71,3 +71,23 @@ When /^the user submits the following content change request:$/ do |request_deta
   step "the user fills out the time constraints"
   step "the user submits the request successfully"
 end
+
+When /^the user submits the following create user request:$/ do |request_details_table|
+  @request_details = request_details_table.hashes.first
+
+  visit '/'
+
+  click_on "Create new user"
+
+  assert page.has_content?("Create a new user account")
+
+  step "the user fills out their details"
+
+  within("#user_details") do
+    fill_in "Name", :with => @request_details["User's name"]
+    fill_in "Email", :with => @request_details["User's email"]
+    fill_in "Additional comments (specify editor or writer as required for Inside Government)", :with => @request_details["Additional comments"]
+  end
+
+  step "the user submits the request successfully"
+end

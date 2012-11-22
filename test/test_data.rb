@@ -9,15 +9,13 @@ module TestData
   end
 
   def valid_create_new_user_request_params
-    { "name"=>"Testing",
-      "email"=>"testing@digital.cabinet-office.gov.uk",
-      "job"=>"dev",
-      "phone"=>"",
-      "organisation"=>"cabinet_office",
-      "other_organisation"=>"",
-      "user_name"=>"subject",
-      "user_email"=>"subject@digital.cabinet-office.gov.uk",
-      "additional"=>"" }
+    { "create_new_user_request" =>
+      { "requester_attributes" => valid_requester_params,
+        "user_name"=>"subject",
+        "user_email"=>"subject@digital.cabinet-office.gov.uk",
+        "inside_government" => "no",
+        "additional_comments"=>"" }
+    }
   end
 
   def valid_remove_user_request_params
