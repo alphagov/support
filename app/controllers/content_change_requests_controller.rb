@@ -1,6 +1,6 @@
 require 'content_change_request_zendesk_ticket'
 
-class ContentChangeRequestsController < RequestController
+class ContentChangeRequestsController < RequestsController
   def new_request
     ContentChangeRequest.new(:requester => Requester.new, :time_constraint => TimeConstraint.new)
   end
