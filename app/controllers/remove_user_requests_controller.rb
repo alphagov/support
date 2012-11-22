@@ -1,6 +1,6 @@
 require 'guard'
 
-class RemoveUserRequestsController < ApplicationController
+class RemoveUserRequestsController < RequestsController
   def new
     @formdata = {}
     prepopulate_organisation_list

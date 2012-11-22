@@ -1,4 +1,4 @@
-class CreateNewUserRequestsController < ApplicationController
+class CreateNewUserRequestsController < RequestsController
   def new
     @formdata = {}
     prepopulate_organisation_list

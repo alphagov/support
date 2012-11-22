@@ -1,0 +1,23 @@
+<%= content_for :page_title, "New feature/need" %>
+<%= content_for :header, "Request a new feature/need" %>
+
+<div class="well">
+  <%= semantic_form_for @request, :url => { :action => "create" }, :html => { :novalidate => false } do |f| %>
+
+    <%= render :partial => "support/requester", :locals => {:f => f} %>
+
+    <%= f.inputs :name => "Details of the new feature/need" do %>
+
+      <%= f.input :user_need, :as => :text, :required => :true, :label => "What is the user need/feature request?", :input_html => {:"aria-required" => true, :class => "span6", :rows => 6, :cols => 50 } %>
+
+      <%= f.input :url_of_example, :label => "Can you provide a link to an example of this feature?", :input_html => {:class => "span6", :placeholder => "http://www.example.com/"} %>
+
+      <%= f.input :inside_government, :as => :select, :label => "Does this affect Inside Government?", :collection => [["No", "no"], ["Yes", "yes"]], :include_blank => false %>
+
+    <% end %>
+
+    <%= render :partial => "support/time_constraint", :locals => {:f => f} %>    
+
+    <%= f.action :submit, :label => "Submit", :button_html => {:class => "btn btn-success"} %>
+  <% end %>
+</div>

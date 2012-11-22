@@ -1,8 +1,10 @@
-<%= f.semantic_fields_for :requester, :label => "Your details" do |r| %>
-  <%= r.input :name, :label => "Name", :required => true, :input_html => {:"aria-required" => true, :class => "span6"} %>
-  <%= r.input :email, :label => "Email", :as => :email, :required => true, :input_html => {:"aria-required" => true, :class => "span6"} %>
-  <%= r.input :job, :label => "Job title", :required => true, :input_html => {:"aria-required" => true, :class => "span6"} %>
-  <%= r.input :phone, :label => "Phone number", :as => :phone, :input_html => {:"aria-required" => true, :class => "span6"} %>
-  <%= r.input :organisation, :label => "Organisation", :as => :select, :collection => @organisations, :include_blank => "Select Organisation", :input_html => {:"aria-required" => true, :class => "span6"} %>
-  <%= r.input :other_organisation, :label => "Please specify the organisation if you didn't find it in the list above", :input_html => {:class => "span6"} %>
+<%= f.semantic_fields_for :requester do |r| %>
+  <%= r.inputs :name => "Your details" do %>
+    <%= r.input :name, :label => "Name", :required => true, :input_html => {:"aria-required" => true, :class => "span6"} %>
+    <%= r.input :email, :label => "Email", :as => :email, :required => true, :input_html => {:"aria-required" => true, :class => "span6"} %>
+    <%= r.input :job, :label => "Job title", :required => true, :input_html => {:"aria-required" => true, :class => "span6"} %>
+    <%= r.input :phone, :label => "Phone number", :as => :phone, :input_html => {:"aria-required" => true, :class => "span6"} %>
+    <%= r.input :organisation, :label => "Organisation", :as => :select, :collection => @organisations, :include_blank => "Select Organisation", :input_html => {:"aria-required" => true, :class => "span6"} %>
+    <%= r.input :other_organisation, :label => "Please specify the organisation if you didn't find it in the list above", :input_html => {:class => "span6"} %>
+  <% end %>
 <% end %>

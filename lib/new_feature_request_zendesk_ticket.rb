@@ -2,18 +2,21 @@ require 'zendesk_ticket'
 require 'forwardable'
 require 'comment_snippet'
 
-class GeneralRequestZendeskTicket < ZendeskTicket
+class NewFeatureRequestZendeskTicket < ZendeskTicket
+  attr_reader :time_constraint
+
   def initialize(request)
     super(request, nil)
     @requester = request.requester
+    @time_constraint = request.time_constraint
   end
 
   def subject
-    "Govt Agency General Issue"
+    "New Feature Request"
   end
 
   def request_specific_tag
-    "govt_agency_general"
+    "new_feature_request"
   end
 
   # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel
@@ -22,8 +25,8 @@ class GeneralRequestZendeskTicket < ZendeskTicket
   protected
   def comment_snippets
     [ CommentSnippet.new(@request.requester, :other_organisation),
-      CommentSnippet.new(@request, :url),
-      CommentSnippet.new(@request, :user_agent),
-      CommentSnippet.new(@request, :additional) ]
+      CommentSnippet.new(@request, :user_need),
+      CommentSnippet.new(@request, :url_of_example),
+      CommentSnippet.new(@request.time_constraint, :time_constraint_reason) ]
   end
 end
