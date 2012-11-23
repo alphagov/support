@@ -45,6 +45,10 @@ When /^the user submits the following new feature request:$/ do |request_details
 
   step "the user fills out their details"
 
+  within "#request-context" do
+    choose @request_details["Context"]
+  end
+
   fill_in "What is the user need/feature request?", :with => @request_details['User need']
   fill_in "Can you provide a link to an example of this feature?", :with => @request_details['URL of example']
 
