@@ -80,6 +80,10 @@ class ZendeskTicket
     end
   end
 
+  def inside_government_tag_if_needed
+    @request.inside_government_related? ? ["inside_government"] : []
+  end
+
   def tags
     [@@in_tag[@from_route]]
   end

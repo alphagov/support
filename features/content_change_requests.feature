@@ -23,7 +23,7 @@ Feature: Content change requests
     And the comment on the ticket is:
       """
       [Which part of GOV.UK is this about?]
-      mainstream
+      Mainstream GOV.UK
 
       [URl(s) of content to be changed]
       http://gov.uk/X

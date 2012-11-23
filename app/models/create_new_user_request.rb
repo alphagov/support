@@ -1,10 +1,10 @@
 require 'tableless_model'
 require 'with_requester'
-require 'with_inside_government'
+require 'with_tool_role_choice'
 
 class CreateNewUserRequest < TablelessModel
   include WithRequester
-  include WithInsideGovernment
+  include WithToolRoleChoice
 
   attr_accessor :user_name, :user_email, :additional_comments
   validates_presence_of :user_name, :user_email

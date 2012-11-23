@@ -20,4 +20,8 @@ class TestModelWithRequestContextTest < Test::Unit::TestCase
     assert !TestModelWithRequestContext.new(:request_context => "mainstream").inside_government_related?
     assert !TestModelWithRequestContext.new(:request_context => "other").inside_government_related?
   end
+
+  should "also define the formatted version" do
+    assert "Inside Government", TestModelWithRequestContext.new(:request_context => "inside_government").formatted_request_context
+  end
 end

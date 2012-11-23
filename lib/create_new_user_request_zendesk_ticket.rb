@@ -13,7 +13,7 @@ class CreateNewUserRequestZendeskTicket < ZendeskTicket
   end
 
   def tags
-    ["new_user"]
+    ["new_user"] + inside_government_tag_if_needed
   end
 
   # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel
@@ -21,9 +21,13 @@ class CreateNewUserRequestZendeskTicket < ZendeskTicket
 
   protected
   def comment_snippets
-    [ CommentSnippet.new(on: @request.requester, field: :other_organisation),
+    [ 
+      CommentSnippet.new(on: @request, field: :formatted_tool_role,
+                                       label: "Tool/Role"),
+      CommentSnippet.new(on: @request.requester, field: :other_organisation),
       CommentSnippet.new(on: @request, field: :user_name),
       CommentSnippet.new(on: @request, field: :user_email),
-      CommentSnippet.new(on: @request, field: :additional_comments) ]
+      CommentSnippet.new(on: @request, field: :additional_comments)
+    ]
   end
 end

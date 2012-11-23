@@ -23,7 +23,7 @@ Feature: New feature requests
     And the comment on the ticket is:
       """
       [Which part of GOV.UK is this about?]
-      inside_government
+      Inside Government
 
       [User need]
       Information on XYZ

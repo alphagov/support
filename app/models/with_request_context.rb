@@ -9,6 +9,10 @@ module WithRequestContext
     }
   end
 
+  def formatted_request_context
+    Hash[request_context_options].key(request_context)
+  end
+
   def inside_government_related?
     %w{inside_government detailed_guidance}.include?(request_context)
   end

@@ -14,7 +14,7 @@ module TestData
       { "requester_attributes" => valid_requester_params,
         "user_name"=>"subject",
         "user_email"=>"subject@digital.cabinet-office.gov.uk",
-        "inside_government" => "no",
+        "tool_role" => "govt_form",
         "additional_comments"=>"" }
     }
   end

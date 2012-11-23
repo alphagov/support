@@ -15,7 +15,7 @@ class NewFeatureRequestZendeskTicket < ZendeskTicket
   end
 
   def tags
-    ["new_feature_request"] + (@request.inside_government_related? ? ["inside_government"] : [])
+    ["new_feature_request"] + inside_government_tag_if_needed
   end
 
   # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel
@@ -24,7 +24,7 @@ class NewFeatureRequestZendeskTicket < ZendeskTicket
   protected
   def comment_snippets
     [ 
-      CommentSnippet.new(on: @request,                 field: :request_context,
+      CommentSnippet.new(on: @request,                 field: :formatted_request_context,
                                                        label: "Which part of GOV.UK is this about?"),
       CommentSnippet.new(on: @request.requester,       field: :other_organisation),
       CommentSnippet.new(on: @request,                 field: :user_need),

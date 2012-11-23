@@ -91,10 +91,14 @@ When /^the user submits the following create user request:$/ do |request_details
 
   step "the user fills out their details"
 
+  within "#tool-role-choice" do
+    choose @request_details["Tool/Role"]
+  end
+
   within("#user_details") do
     fill_in "Name", :with => @request_details["User's name"]
     fill_in "Email", :with => @request_details["User's email"]
-    fill_in "Additional comments (specify editor or writer as required for Inside Government)", :with => @request_details["Additional comments"]
+    fill_in "Additional comments", :with => @request_details["Additional comments"]
   end
 
   step "the user submits the request successfully"
