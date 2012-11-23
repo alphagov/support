@@ -1,23 +1,6 @@
 require "date"
 
 class Guard
-
-  #User validations
-  def self.validationsForDeleteUser(form_data)
-    @@errors = {}
-
-    required = ["name", "email", "job", "user_name", "user_email"]
-
-    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
-    self.checkOptionalDateFieldsAreComplete(form_data, [["Not before", "not_before_day", "not_before_month", "not_before_year"]])
-
-    not_before = validate_date_in_valid_range("Not_before", "not_before_day", "not_before_month", "not_before_year", form_data)
-    self.validate_date_is_equal_or_greater_than_today("Not before", not_before, "Not before date should be the same or later than today.")
-
-    @@errors
-  end
-
-
   #Campaign validations
   def self.validationsForCampaign(form_data)
     @@errors = {}

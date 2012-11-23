@@ -1,17 +1,6 @@
 require "guard"
 
 class SupportController < RequestsController
-  def remove_user
-    if request.method == "GET"
-      on_get("useraccess/userremove")
-    elsif request.method == "POST"
-      @template = "useraccess/userremove"
-
-      @errors = Guard.validationsForDeleteUser(params)
-      on_post(params, "remove-user")
-    end
-  end
-
   def campaign
     if request.method == "GET"
       on_get("campaigns/campaign")
