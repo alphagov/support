@@ -1,0 +1,6 @@
+<%= f.inputs :name => "URL(s) affected" do %>
+  <%= f.input :url1, :label => "URL 1", :input_html => {:class => "span6", :placeholder => "http://www.gov.uk/"} %>
+  <%= f.input :url2, :label => "URL 2", :input_html => {:class => "span6", :placeholder => "http://www.gov.uk/"} %>
+  <%= f.input :url3, :label => "URL 3", :input_html => {:class => "span6", :placeholder => "http://www.gov.uk/"} %>
+  <%= f.input :details_of_change, :as => :text, :label => "Details of the requested change", :required => :true, :input_html => {:class => "span6", :rows => 6, :cols => 50, :"aria-required" => true } %>
+<% end %>

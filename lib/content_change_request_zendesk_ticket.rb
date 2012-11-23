@@ -2,7 +2,7 @@ require 'zendesk_ticket'
 require 'forwardable'
 require 'comment_snippet'
 
-class NewFeatureRequestZendeskTicket < ZendeskTicket
+class ContentChangeRequestZendeskTicket < ZendeskTicket
   attr_reader :time_constraint
 
   def initialize(request)
@@ -11,11 +11,11 @@ class NewFeatureRequestZendeskTicket < ZendeskTicket
   end
 
   def subject
-    "New Feature Request"
+    "Content change request"
   end
 
   def request_specific_tag
-    "new_feature_request"
+    "content_amend"
   end
 
   # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel
@@ -24,8 +24,10 @@ class NewFeatureRequestZendeskTicket < ZendeskTicket
   protected
   def comment_snippets
     [ CommentSnippet.new(on: @request.requester,       field: :other_organisation),
-      CommentSnippet.new(on: @request,                 field: :user_need),
-      CommentSnippet.new(on: @request,                 field: :url_of_example),
+      CommentSnippet.new(on: @request,                 fields: [:url1, :url2, :url3],
+                                                       label: "URl(s) of content to be changed"),
+      CommentSnippet.new(on: @request,                 field: :details_of_change,
+                                                       label: "Details of what should be added, amended or removed"),
       CommentSnippet.new(on: @request.time_constraint, field: :time_constraint_reason) ]
   end
 end

@@ -2,18 +2,18 @@ require 'zendesk_ticket'
 require 'forwardable'
 require 'comment_snippet'
 
-class GeneralRequestZendeskTicket < ZendeskTicket
+class CreateNewUserRequestZendeskTicket < ZendeskTicket
   def initialize(request)
     super(request, nil)
     @requester = request.requester
   end
 
   def subject
-    "Govt Agency General Issue"
+    "Create new user"
   end
 
   def request_specific_tag
-    "govt_agency_general"
+    "new_user"
   end
 
   # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel
@@ -22,8 +22,8 @@ class GeneralRequestZendeskTicket < ZendeskTicket
   protected
   def comment_snippets
     [ CommentSnippet.new(on: @request.requester, field: :other_organisation),
-      CommentSnippet.new(on: @request, field: :url),
-      CommentSnippet.new(on: @request, field: :user_agent),
-      CommentSnippet.new(on: @request, field: :additional) ]
+      CommentSnippet.new(on: @request, field: :user_name),
+      CommentSnippet.new(on: @request, field: :user_email),
+      CommentSnippet.new(on: @request, field: :additional_comments) ]
   end
 end

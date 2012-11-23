@@ -18,7 +18,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
 
     should "use ZenDesk to populate the organisation dropdown" do
       get :new
-      assert_select "select#organisation_list option", "Advocate General for Scotland"
+      assert_select "select#content_change_request_requester_attributes_organisation option", "Advocate General for Scotland"
     end
 
     should "inform the user if ZenDesk is unreachable" do
@@ -31,11 +31,11 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
 
   context "a submitted content change request" do
     should "reject invalid change requests" do
-      params = valid_content_change_request_params.merge("organisation" => "")
+      params = valid_content_change_request_params.tap {|p| p["content_change_request"]["requester_attributes"].merge!("organisation" => "")}
       post :create, params
       assert_response 400
       assert_template "new"
-      assert_select ".help-block", /Organisation information is required/
+      assert_select ".help-inline", /information is required/
     end
 
     should "submit it to ZenDesk" do
@@ -49,7 +49,7 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
 
     context "concerning Inside Government" do
       should "tag the ticket with an inside_government tag" do
-        params = valid_content_change_request_params.merge("inside_government" => "yes")
+        params = valid_content_change_request_params.tap {|p| p["content_change_request"].merge!("inside_government" => "yes")}
 
         post :create, params
 

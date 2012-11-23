@@ -10,11 +10,7 @@
 
     <%= render :partial => "support/requester", :locals => {:f => f} %>
 
-    <%= f.inputs "Details of your problem, request or suggestion" do %>
-      <%= f.input :additional, :as => :text, :label => "Details", :input_html => {:class => "span6", :rows => 6, :cols => 50 } %>
-
-      <%= f.input :url, :label => "URL (if applicable)", :input_html => {:class => "span6"} %>
-    <% end %>
+    <%= render :partial => "request_details", :locals => {:f => f} %>
 
     <%= f.action :submit, :label => "Submit", :button_html => {:class => "btn btn-success"} %>
   <% end %>
