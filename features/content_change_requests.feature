@@ -11,14 +11,14 @@ Feature: Content change requests
   Scenario: successful Mainstream content change request 
     When the user submits the following content change request:
       | Context           | Details of change | URL 1           | URL 2           | Needed by date | Not before date | Reason  |
-      | Mainstream GOV.UK | Out of date XX YY | http://gov.uk/X | http://gov.uk/Y | 31-12-2012     | 01-12-2012      | New law |
+      | Mainstream GOV.UK | Out of date XX YY | http://gov.uk/X | http://gov.uk/Y | 31-12-2020     | 01-12-2020      | New law |
 
     Then the following ticket is raised in ZenDesk:
       | Subject                | Requester email      | Requester name | Phone | Job title | Organisation   |
       | Content change request | john.smith@email.com | John Smith     | 12345 | Developer | cabinet_office |
     And the time constraints on the ticket are:
       | Need by date | Not before date |
-      | 31-12-2012   | 01-12-2012      |
+      | 31-12-2020   | 01-12-2020      |
     And the ticket is tagged with "content_amend"
     And the comment on the ticket is:
       """

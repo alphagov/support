@@ -2,33 +2,12 @@
 <%= content_for :header, "Request to remove user access" %>
 
 <div class="well">
-  <%= form_tag(remove_user_request_path) do %>
-    <%= render "support/author" %>
-    <%= render "support/inside_government" %>
+  <%= semantic_form_for @request, :url => { :action => "create" }, :html => { :novalidate => false} do |f| %>
 
-    <section id="user">
-      <header class="section-header">User details</header>
+    <%= render :partial => "support/requester", :locals => {:f => f} %>
 
-      <label for="user_name">Username</label>
-      <input id="user_name" name="user_name" type="text" class="span6" <%= render "support/assignvalue", {:param => @formdata[:user_name]} %>>
-      <%= render "support/errors", {errors: @errors, key: "User name"} %>
+    <%= render :partial => "request_details", :locals => {:f => f} %>
 
-      <label for="email">Email</label>
-      <input id="email" name="user_email" type="email" class="span6" <%= render "support/assignvalue", {:param => @formdata[:user_email]} %>>
-      <%= render "support/errors", {errors: @errors, key: "User email"} %>
-
-      <%= render "support/date", {:title => "Not before", :label => 'not_before', :day => @formdata[:not_before_day], :month => @formdata[:not_before_month], :year => @formdata[:not_before_year]}%>
-      <%= render "support/errors", {errors: @errors, key: "Not before"} %>
-      <div style="clear:both;"></div>
-
-      <fieldset>
-        <div class="comments">
-          <label for="comments">Additional comments</label>
-          <textarea id="comments" class="span6" rows="6" cols="50" name="additional"><%= @formdata[:additional] %></textarea>
-        </div>
-      </fieldset>
-
-    </section>
-    <input class="btn btn-success" name="commit" type="submit" value="Submit">
+    <%= f.action :submit, :label => "Submit", :button_html => {:class => "btn btn-success"} %>
   <% end %>
 </div>
