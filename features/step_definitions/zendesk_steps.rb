@@ -2,12 +2,12 @@ Then /^the following ticket is raised in ZenDesk:$/ do |ticket_properties_table|
   expected_ticket_props = ticket_properties_table.hashes.first
   @raised_ticket = @zendesk_api.ticket
 
-  assert_equal expected_ticket_props["Subject"],         @raised_ticket.subject
-  assert_equal expected_ticket_props["Requester email"], @raised_ticket.email
-  assert_equal expected_ticket_props["Requester name"],  @raised_ticket.name
-  assert_equal expected_ticket_props["Job title"],       @raised_ticket.job
-  assert_equal expected_ticket_props["Organisation"],    @raised_ticket.organisation
-  assert_equal expected_ticket_props["Phone"],           @raised_ticket.phone
+  assert_equal expected_ticket_props["Subject"],         @raised_ticket.subject if expected_ticket_props["Subject"]
+  assert_equal expected_ticket_props["Requester email"], @raised_ticket.email if expected_ticket_props["Requester email"]
+  assert_equal expected_ticket_props["Requester name"],  @raised_ticket.name if expected_ticket_props["Requester name"]
+  assert_equal expected_ticket_props["Job title"],       @raised_ticket.job if expected_ticket_props["Job title"]
+  assert_equal expected_ticket_props["Organisation"],    @raised_ticket.organisation if expected_ticket_props["Organisation"]
+  assert_equal expected_ticket_props["Phone"],           @raised_ticket.phone if expected_ticket_props["Phone"]
 end
 
 Then /^the ticket is tagged with "(.*?)"$/ do |expected_tags|

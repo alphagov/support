@@ -12,8 +12,8 @@ class CreateNewUserRequestZendeskTicket < ZendeskTicket
     "Create new user"
   end
 
-  def request_specific_tag
-    "new_user"
+  def tags
+    ["new_user"]
   end
 
   # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel

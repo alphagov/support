@@ -63,6 +63,10 @@ When /^the user submits the following content change request:$/ do |request_deta
 
   step "the user fills out their details"
 
+  within "#request-context" do
+    choose @request_details["Context"]
+  end
+
   fill_in "Details of the requested change", :with => @request_details["Details of change"]
   fill_in "URL 1", :with => @request_details["URL 1"]
   fill_in "URL 2", :with => @request_details["URL 2"]

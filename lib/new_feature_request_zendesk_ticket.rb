@@ -14,8 +14,8 @@ class NewFeatureRequestZendeskTicket < ZendeskTicket
     "New Feature Request"
   end
 
-  def request_specific_tag
-    "new_feature_request"
+  def tags
+    ["new_feature_request"]
   end
 
   # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel

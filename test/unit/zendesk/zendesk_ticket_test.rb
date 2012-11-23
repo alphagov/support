@@ -12,10 +12,6 @@ class ZendeskTicketTest < Test::Unit::TestCase
 
   include TestData
   context "content change request" do
-    should "set the tags correctly for valid inside govt tickets" do
-      assert_includes new_ticket(:inside_government => "yes").tags, 'inside_government'
-    end
-
     should "set the requester details correctly" do
       ticket = new_ticket(
         :name => "John Smith",

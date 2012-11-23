@@ -4,7 +4,8 @@ module TestData
       { "requester_attributes"       => valid_requester_params,
         "time_constraint_attributes" => valid_time_constraint_params,
         "url1"                       => "https://www.gov.uk",
-        "details_of_change"          => "Content is wrong"}
+        "details_of_change"          => "Content is wrong",
+        "request_context"            => "mainstream" }
     }
   end
 

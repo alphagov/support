@@ -80,12 +80,8 @@ class ZendeskTicket
     end
   end
 
-  def request_specific_tag
-    @@in_tag[@from_route]
-  end
-
   def tags
-    [request_specific_tag] + inside_government_tag
+    [@@in_tag[@from_route]]
   end
 
   private

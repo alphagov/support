@@ -14,8 +14,8 @@ class ContentChangeRequestZendeskTicket < ZendeskTicket
     "Content change request"
   end
 
-  def request_specific_tag
-    "content_amend"
+  def tags
+    ["content_amend"] + (@request.inside_government_related? ? ["inside_government"] : [])
   end
 
   # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel
@@ -23,11 +23,14 @@ class ContentChangeRequestZendeskTicket < ZendeskTicket
 
   protected
   def comment_snippets
-    [ CommentSnippet.new(on: @request.requester,       field: :other_organisation),
+    [ CommentSnippet.new(on: @request,                 field: :request_context,
+                                                       label: "Which part of GOV.UK is this about?"),
+      CommentSnippet.new(on: @request.requester,       field: :other_organisation),
       CommentSnippet.new(on: @request,                 fields: [:url1, :url2, :url3],
                                                        label: "URl(s) of content to be changed"),
       CommentSnippet.new(on: @request,                 field: :details_of_change,
                                                        label: "Details of what should be added, amended or removed"),
-      CommentSnippet.new(on: @request.time_constraint, field: :time_constraint_reason) ]
+      CommentSnippet.new(on: @request.time_constraint, field: :time_constraint_reason)
+    ]
   end
 end
