@@ -53,7 +53,6 @@ class ZendeskTicketTest < Test::Unit::TestCase
 
     should "set the subject according to request type" do
       assert_equal "Campaign", new_ticket({}, "campaign").subject
-      assert_equal "Publishing Tool", new_ticket({}, "publish-tool").subject
     end
 
     should "remove spaces from the tel number" do

@@ -15,14 +15,6 @@ class Guard
     @@errors
   end
 
-  def self.validationsForPublishTool(form_data)
-    @@errors = {}
-    required = ["name", "email", "job", "url", "username"]
-    validate(form_data, required, {"phone" => form_data["phone"]}, {"email" => form_data["email"]})
-
-    @@errors
-  end
-
   private
 
   def self.validate(form_data, required, phone_fields, email_fields)
