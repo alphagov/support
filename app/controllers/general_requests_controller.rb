@@ -1,7 +1,7 @@
 require 'general_request_zendesk_ticket'
 
 class GeneralRequestsController <  RequestsController
-
+  protected
   def new_request
     GeneralRequest.new(:requester => Requester.new)
   end

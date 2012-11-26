@@ -1,26 +1,21 @@
 require 'forwardable'
 require 'date'
+require 'active_support'
 
 class ZendeskTicket
   extend Forwardable
 
-  @@in_comments = {"amend-content" => [:other_organisation, :url1, :url2, :url3],
-                   "create-user" => [:other_organisation, :user_name, :user_email, :additional],
-                   "remove-user" => [:other_organisation, :user_name, :user_email, :additional],
+  @@in_comments = {"remove-user" => [:other_organisation, :user_name, :user_email, :additional],
                    "campaign" => [:other_organisation, :campaign_name, :erg_number, :company, :description, :url, :additional],
                    "publish-tool" => [:other_organisation, :username, :url, :user_agent, :additional]
   }
 
-  @@in_subject = {"amend-content" => "Content change request",
-                  "create-user" => "Create new user",
-                  "remove-user" => "Remove user",
+  @@in_subject = {"remove-user" => "Remove user",
                   "campaign" => "Campaign",
                   "publish-tool" => "Publishing Tool"
   }
 
-  @@in_tag = {"amend-content" => "content_amend",
-              "create-user" => "new_user",
-              "remove-user" => "remove_user",
+  @@in_tag = {"remove-user" => "remove_user",
               "campaign" => "campaign",
               "publish-tool" => "publishing_tool_tech"
   }
@@ -105,13 +100,11 @@ class ZendeskTicket
     
   def has_value?(param, target = nil)
     target ||= @request
-    target.respond_to?(param) and not target.send(param).nil? and not target.send(param).to_s.strip.empty?
+    target.respond_to?(param) and not target.send(param).blank?
   end
 
   def format_comment(from_route, request)
     case from_route
-      when "amend-content" then
-        format_comment_for_amend_content(request)
       when "publish-tool" then
         format_comment_for_tech_issues(from_route, request)
       else
@@ -148,27 +141,6 @@ class ZendeskTicket
     else
       all_comments.join
     end
-  end
-
-  def format_comment_for_amend_content(request)
-    comments_sections = {"[URl(s) of content to be changed]" => [build_full_url_path(request.url1), build_full_url_path(request.url2), build_full_url_path(request.url3)],
-                         "[Details of what should be added, amended or removed]" => [request.add_content],
-                         "[Additional Comments]" => [request.additional]
-    }
-
-    comments = comments_sections.map do |key, value|
-      allvalues = value.join("\n")
-      if !allvalues.chomp.strip.empty?
-        key+"\n"+allvalues.chomp.strip
-      end
-    end
-
-    if !comments.join.empty?
-      comments.join("\n\n")
-    else
-      comments.join
-    end
-
   end
 
   def remove_space_from_phone_number(number)

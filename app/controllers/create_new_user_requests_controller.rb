@@ -1,13 +1,16 @@
+require 'create_new_user_request_zendesk_ticket'
+
 class CreateNewUserRequestsController < RequestsController
-  def new
-    @formdata = {}
-    prepopulate_organisation_list
+  protected
+  def new_request
+    CreateNewUserRequest.new(:requester => Requester.new)
   end
 
-  def create
-    @template = "create_new_user_requests/new"
+  def zendesk_ticket_class
+    CreateNewUserRequestZendeskTicket
+  end
 
-    @errors = Guard.validationsForCreateUser(params)
-    on_post(params, "create-user")
+  def parse_request_from_params
+    CreateNewUserRequest.new(params[:create_new_user_request])
   end
 end

@@ -1,0 +1,9 @@
+<div id="user_details" %>
+  <%= f.inputs "User details" do %>
+    <%= f.input :user_name, :label => "Name", :required => true, :input_html => {:class => "span6", :"aria-required" => true } %>
+
+    <%= f.input :user_email, :as => :email, :label => "Email", :required => true, :input_html => {:class => "span6", :"aria-required" => true } %>
+
+    <%= f.input :additional_comments, :as => :text, :label => "Additional comments (specify editor or writer as required for Inside Government)", :input_html => {:class => "span6", :rows => 6, :cols => 50 } %>
+  <% end %>
+</div>
