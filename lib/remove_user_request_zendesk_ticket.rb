@@ -2,18 +2,18 @@ require 'zendesk_ticket'
 require 'forwardable'
 require 'comment_snippet'
 
-class CreateNewUserRequestZendeskTicket < ZendeskTicket
+class RemoveUserRequestZendeskTicket < ZendeskTicket
   def initialize(request)
     super(request, nil)
     @requester = request.requester
   end
 
   def subject
-    "Create new user"
+    "Remove user"
   end
 
   def tags
-    ["new_user"] + inside_government_tag_if_needed
+    ["remove_user"] + inside_government_tag_if_needed
   end
 
   # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel

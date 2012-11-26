@@ -6,7 +6,6 @@ Support::Application.routes.draw do
   resource :new_feature_request, :only => [:new, :create]
 
   match "campaign" => "support#campaign"
-  match "publish-tool" => "support#publish_tool"
   match "acknowledge" => "support#acknowledge"
   root :to => 'support#landing'
 end

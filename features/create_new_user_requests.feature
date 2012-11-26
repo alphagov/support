@@ -9,16 +9,19 @@ Feature: Create new user requests
       | Name         | Email                | Job title | Organisation   | Phone |
       | John Smith   | john.smith@email.com | Developer | Cabinet Office | 12345 |
 
-  Scenario: successful request
+  Scenario: successful create user request for publisher
     When the user submits the following create user request:
-      | User's name | User's email | Additional comments |
-      | Bob Fields  | bob@gov.uk   | Editor              |
+      | Tool/Role                 | User's name | User's email | Additional comments |
+      | Departmental Contact Form | Bob Fields  | bob@gov.uk   | XXXX                |
     Then the following ticket is raised in ZenDesk:
       | Subject         | Requester email      | Requester name | Phone | Job title | Organisation   |
       | Create new user | john.smith@email.com | John Smith     | 12345 | Developer | cabinet_office |
     And the ticket is tagged with "new_user"
     And the comment on the ticket is:
       """
+      [Tool/Role]
+      Departmental Contact Form
+
       [User name]
       Bob Fields
 
@@ -26,5 +29,5 @@ Feature: Create new user requests
       bob@gov.uk
 
       [Additional comments]
-      Editor
+      XXXX
       """

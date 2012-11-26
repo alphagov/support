@@ -6,6 +6,10 @@
 
     <%= f.input :user_email, :as => :email, :label => "Email", :required => true, :input_html => {:class => "span6", :"aria-required" => true } %>
 
+    <%= f.semantic_fields_for :time_constraint do |r| %>
+      <%= r.input :not_before_date, :label => "MUST NOT be removed BEFORE", :required => false, :input_html => {:"calendar-enabled" => true, :placeholder => "dd-mm-YYYY", :value => r.object.not_before_date} %>
+    <% end %>
+
     <%= f.input :additional_comments, :as => :text, :label => "Additional comments", :input_html => {:class => "span6", :rows => 6, :cols => 50 } %>
   <% end %>
 </div>

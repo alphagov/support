@@ -12,8 +12,8 @@ class GeneralRequestZendeskTicket < ZendeskTicket
     "Govt Agency General Issue"
   end
 
-  def request_specific_tag
-    "govt_agency_general"
+  def tags
+    ["govt_agency_general"]
   end
 
   # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel

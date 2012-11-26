@@ -5,19 +5,13 @@ require 'active_support'
 class ZendeskTicket
   extend Forwardable
 
-  @@in_comments = {"remove-user" => [:other_organisation, :user_name, :user_email, :additional],
-                   "campaign" => [:other_organisation, :campaign_name, :erg_number, :company, :description, :url, :additional],
-                   "publish-tool" => [:other_organisation, :username, :url, :user_agent, :additional]
+  @@in_comments = {"campaign" => [:other_organisation, :campaign_name, :erg_number, :company, :description, :url, :additional]
   }
 
-  @@in_subject = {"remove-user" => "Remove user",
-                  "campaign" => "Campaign",
-                  "publish-tool" => "Publishing Tool"
+  @@in_subject = {"campaign" => "Campaign",
   }
 
-  @@in_tag = {"remove-user" => "remove_user",
-              "campaign" => "campaign",
-              "publish-tool" => "publishing_tool_tech"
+  @@in_tag = {"campaign" => "campaign",
   }
 
   def initialize(request, from_route)
@@ -80,12 +74,12 @@ class ZendeskTicket
     end
   end
 
-  def request_specific_tag
-    @@in_tag[@from_route]
+  def inside_government_tag_if_needed
+    @request.inside_government_related? ? ["inside_government"] : []
   end
 
   def tags
-    [request_specific_tag] + inside_government_tag
+    [@@in_tag[@from_route]]
   end
 
   private
