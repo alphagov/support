@@ -3,7 +3,7 @@ module TestData
     {"content_change_request" => 
       { "requester_attributes"       => valid_requester_params,
         "time_constraint_attributes" => valid_time_constraint_params,
-        "url1"                       => "http://www.gov.uk",
+        "url1"                       => "https://www.gov.uk",
         "details_of_change"          => "Content is wrong"}
     }
   end

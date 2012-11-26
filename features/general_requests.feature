@@ -11,7 +11,7 @@ Feature: General requests
   Scenario: successful request
     When the user submits the following general request:
       | Details          | URL               |
-      | The site is down | http://www.gov.uk |
+      | The site is down | https://www.gov.uk |
     Then the following ticket is raised in ZenDesk:
       | Subject                   | Requester email      | Requester name | Phone | Job title | Organisation   |
       | Govt Agency General Issue | john.smith@email.com | John Smith     | 12345 | Developer | cabinet_office |
@@ -19,7 +19,7 @@ Feature: General requests
     And the comment on the ticket is:
       """
       [Url]
-      http://www.gov.uk
+      https://www.gov.uk
 
       [Additional]
       The site is down
