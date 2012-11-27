@@ -46,7 +46,7 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
 
     context "concerning Inside Government" do
       should "tag the ticket with an inside_government tag" do
-        params = valid_create_new_user_request_params.tap {|p| p["create_new_user_request"].merge!("inside_government" => "yes")}
+        params = valid_create_new_user_request_params.tap {|p| p["create_new_user_request"].merge!("tool_role" => "inside_government_editor")}
 
         post :create, params
 

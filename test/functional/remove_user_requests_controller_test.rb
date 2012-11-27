@@ -22,17 +22,17 @@ class RemoveUserRequestsControllerTest < ActionController::TestCase
 
     should "use ZenDesk to populate the organisation dropdown" do
       get :new
-      assert_select "select#organisation_list option", "Advocate General for Scotland"
+      assert_select "select#remove_user_request_requester_attributes_organisation option", "Advocate General for Scotland"
     end
   end
 
   context "submitted remove user request" do
     should "reject invalid requests" do
-      params = valid_remove_user_request_params.merge("organisation" => "")
+      params = valid_remove_user_request_params.tap {|p| p["remove_user_request"]["requester_attributes"].merge!("organisation" => "")}
       post :create, params
       assert_response 400
       assert_template "new"
-      assert_select ".help-block", /Organisation information is required/
+      assert_select ".help-inline", /information is required/
     end
 
     should "submit it to ZenDesk" do
@@ -46,7 +46,7 @@ class RemoveUserRequestsControllerTest < ActionController::TestCase
 
     context "concerning Inside Government" do
       should "tag the ticket with an inside_government tag" do
-        params = valid_remove_user_request_params.merge("inside_government" => "yes")
+        params = valid_remove_user_request_params.tap {|p| p["remove_user_request"].merge!("tool_role" => "inside_government_editor")}
 
         post :create, params
 

@@ -1,15 +1,16 @@
-require 'guard'
+require 'remove_user_request_zendesk_ticket'
 
 class RemoveUserRequestsController < RequestsController
-  def new
-    @formdata = {}
-    prepopulate_organisation_list
+  protected
+  def new_request
+    RemoveUserRequest.new(:requester => Requester.new, :time_constraint => TimeConstraint.new)
   end
 
-  def create
-    @template = "remove_user_requests/new"
+  def zendesk_ticket_class
+    RemoveUserRequestZendeskTicket
+  end
 
-    @errors = Guard.validationsForDeleteUser(params)
-    on_post(params, "remove-user")
+  def parse_request_from_params
+    RemoveUserRequest.new(params[:remove_user_request])
   end
 end

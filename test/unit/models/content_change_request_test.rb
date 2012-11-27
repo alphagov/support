@@ -4,7 +4,7 @@ class ContentChangeRequestTest < Test::Unit::TestCase
   should validate_presence_of(:requester)
   should validate_presence_of(:details_of_change)
 
-  should allow_value("yes").for(:inside_government)
+  should validate_presence_of(:request_context)
 
   should allow_value("https://www.gov.uk").for(:url1)
   should allow_value("https://www.gov.uk").for(:url2)
