@@ -19,10 +19,9 @@ module WithRequestContext
 
   def request_context_options
     [
-      ["Mainstream (business/citizen)", "mainstream"],
-      ["Inside Government", "inside_government"],
       ["Detailed Guidance", "detailed_guidance"],
-      ["Other/Not sure", "other"]
+      ["Inside Government", "inside_government"],
+      ["Mainstream (business/citizen)", "mainstream"],
     ]
   end
 end
