@@ -8,7 +8,6 @@ require 'webmock/minitest'
 require 'ostruct'
 require_relative 'test_data'
 
-require 'zendesk_organisation_list_helper'
 require 'zendesk_api_stubs'
 
 class ActiveSupport::TestCase

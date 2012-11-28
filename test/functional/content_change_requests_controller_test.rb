@@ -1,7 +1,6 @@
 require "test_helper"
 
 class ContentChangeRequestsControllerTest < ActionController::TestCase
-  include ZendeskOrganisationListHelper
   include TestData
 
   setup do
@@ -14,18 +13,6 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
     should "render the form" do
       get :new
       assert_select "h1", /Request a change to existing GOV.UK content/i
-    end
-
-    should "use ZenDesk to populate the organisation dropdown" do
-      get :new
-      assert_select "select#content_change_request_requester_attributes_organisation option", "Advocate General for Scotland"
-    end
-
-    should "inform the user if ZenDesk is unreachable" do
-      @zendesk_api.should_raise_error
-
-      get :new
-      assert_template "support/zendesk_error"
     end
   end
 

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class GeneralRequestsControllerTest < ActionController::TestCase
-  include ZendeskOrganisationListHelper
   include TestData
 
   setup do
@@ -11,26 +10,13 @@ class GeneralRequestsControllerTest < ActionController::TestCase
   end
 
   context "a new general request" do
-    setup do
-      stub_zendesk_organisation_list
-    end
-
     should "render the form" do
       get :new
       assert_select "h1", /Report a problem, request GDS support, or to make a suggestion/i
     end
-
-    should "use ZenDesk to populate the organisation dropdown" do
-      get :new
-      assert_select "select#general_request_requester_attributes_organisation option", "Advocate General for Scotland"
-    end
   end
 
   context "a submitted general request" do
-    setup do
-      stub_zendesk_organisation_list
-    end
-
     should "reject invalid requests" do
       params = valid_general_request_params.tap {|p| p["general_request"]["requester_attributes"].merge!("email" => "")}
 

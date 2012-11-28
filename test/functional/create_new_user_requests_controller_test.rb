@@ -1,7 +1,6 @@
 require "test_helper"
 
 class CreateNewUserRequestsControllerTest < ActionController::TestCase
-  include ZendeskOrganisationListHelper
   include TestData
 
   setup do
@@ -11,18 +10,9 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
   end
 
   context "new user creation request" do
-    setup do
-      stub_zendesk_organisation_list
-    end
-
     should "render the form" do
       get :new
       assert_select "h1", /Create a new user account/i
-    end
-
-    should "use ZenDesk to populate the organisation dropdown" do
-      get :new
-      assert_select "select#create_new_user_request_requester_attributes_organisation option", "Advocate General for Scotland"
     end
   end
 

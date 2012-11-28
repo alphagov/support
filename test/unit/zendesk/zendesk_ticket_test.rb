@@ -23,14 +23,12 @@ class ZendeskTicketTest < Test::Unit::TestCase
         with_requester(
           :name => "John Smith",
           :email => "ab@c.com",
-          :organisation => "cabinet_office",
           :job => "Developer",
           :phone => "123456"
           )
       )
       assert_equal "John Smith", ticket.name
       assert_equal "ab@c.com", ticket.email
-      assert_equal "cabinet_office", ticket.organisation
       assert_equal "Developer", ticket.job
       assert_equal "123456", ticket.phone
     end

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class RemoveUserRequestsControllerTest < ActionController::TestCase
-  include ZendeskOrganisationListHelper
   include TestData
 
   setup do
@@ -11,18 +10,9 @@ class RemoveUserRequestsControllerTest < ActionController::TestCase
   end
 
   context "new remove user request" do
-    setup do
-      stub_zendesk_organisation_list
-    end
-
     should "render the form" do
       get :new
       assert_select "h1", /Remove User/i
-    end
-
-    should "use ZenDesk to populate the organisation dropdown" do
-      get :new
-      assert_select "select#remove_user_request_requester_attributes_organisation option", "Advocate General for Scotland"
     end
   end
 

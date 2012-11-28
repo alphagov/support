@@ -10,7 +10,7 @@ class ZendeskTicket
     @requester = request.requester
   end
 
-  def_delegators :@requester, :name, :email, :organisation, :job
+  def_delegators :@requester, :name, :email, :job
 
   def phone
     remove_space_from_phone_number(@requester.phone)

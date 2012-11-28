@@ -9,12 +9,6 @@ class ZendeskRequest
       not_before_date: "21502036" }
   end
 
-  def self.get_organisations(client)
-    organisations_hash = {}
-    client.ticket_fields.find(:id => '21494928').custom_field_options.each { |tf| organisations_hash[tf.name] = tf.value }
-    organisations_hash
-  end
-
   def self.raise_zendesk_request(client, params, from_route)
     raise_ticket(client, ZendeskTicket.new(OpenStruct.new(params), from_route))
   end

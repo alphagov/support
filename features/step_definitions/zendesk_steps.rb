@@ -6,7 +6,6 @@ Then /^the following ticket is raised in ZenDesk:$/ do |ticket_properties_table|
   assert_equal expected_ticket_props["Requester email"], @raised_ticket.email if expected_ticket_props["Requester email"]
   assert_equal expected_ticket_props["Requester name"],  @raised_ticket.name if expected_ticket_props["Requester name"]
   assert_equal expected_ticket_props["Job title"],       @raised_ticket.job if expected_ticket_props["Job title"]
-  assert_equal expected_ticket_props["Organisation"],    @raised_ticket.organisation if expected_ticket_props["Organisation"]
   assert_equal expected_ticket_props["Phone"],           @raised_ticket.phone if expected_ticket_props["Phone"]
 end
 
