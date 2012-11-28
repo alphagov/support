@@ -4,8 +4,8 @@ Support::Application.routes.draw do
   resource :remove_user_request, :only => [:new, :create]
   resource :general_request, :only => [:new, :create]
   resource :new_feature_request, :only => [:new, :create]
+  resource :campaign_request, :only => [:new, :create]
 
-  match "campaign" => "support#campaign"
   match "acknowledge" => "support#acknowledge"
   root :to => 'support#landing'
 end

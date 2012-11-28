@@ -18,9 +18,24 @@ Feature: Campaign requests
     And the ticket is tagged with "campaign"
     And the comment on the ticket is:
       """
-      [Url]
+      [Campaign title]
+      Workplace pensions
+
+      [ERG reference number]
+      123456
+
+      [Start date]
+      01-01-2020
+
+      [Description]
+      Pensions
+
+      [Affiliated group or company]
+      AXA
+
+      [URL with more information]
       https://www.gov.uk
 
-      [Additional]
-      The site is down
+      [Additional comments]
+      Some comment
       """
