@@ -15,7 +15,6 @@ class RemoveUserRequestZendeskTicket < ZendeskTicket
     [ 
       CommentSnippet.new(on: @request, field: :formatted_tool_role,
                                        label: "Tool/Role"),
-      CommentSnippet.new(on: @request.requester, field: :other_organisation),
       CommentSnippet.new(on: @request, field: :user_name),
       CommentSnippet.new(on: @request, field: :user_email),
       CommentSnippet.new(on: @request, field: :additional_comments)

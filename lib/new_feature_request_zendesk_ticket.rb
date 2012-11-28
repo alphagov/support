@@ -18,7 +18,6 @@ class NewFeatureRequestZendeskTicket < ZendeskTicket
     [ 
       CommentSnippet.new(on: @request,                 field: :formatted_request_context,
                                                        label: "Which part of GOV.UK is this about?"),
-      CommentSnippet.new(on: @request.requester,       field: :other_organisation),
       CommentSnippet.new(on: @request,                 field: :user_need),
       CommentSnippet.new(on: @request,                 field: :url_of_example),
       CommentSnippet.new(on: @request.time_constraint, field: :time_constraint_reason)

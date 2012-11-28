@@ -15,7 +15,6 @@ class ContentChangeRequestZendeskTicket < ZendeskTicket
     [ 
       CommentSnippet.new(on: @request,                 field: :formatted_request_context,
                                                        label: "Which part of GOV.UK is this about?"),
-      CommentSnippet.new(on: @request.requester,       field: :other_organisation),
       CommentSnippet.new(on: @request,                 fields: [:url1, :url2, :url3],
                                                        label: "URl(s) of content to be changed"),
       CommentSnippet.new(on: @request,                 field: :details_of_change,

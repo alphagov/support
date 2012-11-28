@@ -12,9 +12,10 @@ class GeneralRequestZendeskTicket < ZendeskTicket
 
   protected
   def comment_snippets
-    [ CommentSnippet.new(on: @request.requester, field: :other_organisation),
+    [ 
       CommentSnippet.new(on: @request, field: :url),
       CommentSnippet.new(on: @request, field: :user_agent),
-      CommentSnippet.new(on: @request, field: :additional) ]
+      CommentSnippet.new(on: @request, field: :additional)
+    ]
   end
 end
