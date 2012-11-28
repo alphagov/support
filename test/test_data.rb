@@ -30,24 +30,6 @@ module TestData
     }
   end
 
-  def valid_campaign_request_params
-    { "name"=>"Testing",
-      "email"=>"testing@digital.cabinet-office.gov.uk",
-      "job"=>"doo",
-      "phone"=>"",
-      "organisation"=>"cabinet_office",
-      "other_organisation"=>"",
-      "campaign_name"=>"Testing",
-      "erg_number"=>"1234",
-      "start_day"=>"",
-      "start_month"=>"",
-      "start_year"=>"",
-      "description"=>"Testing",
-      "company"=>"",
-      "url"=>"",
-      "additional"=>"" }
-  end
-
   def valid_general_request_params
     {"general_request" => 
       { "requester_attributes" => valid_requester_params,
@@ -61,8 +43,6 @@ module TestData
       "email"=>"testing@digital.cabinet-office.gov.uk",
       "job"=>"dev",
       "phone"=>"",
-      "organisation"=>"cabinet_office",
-      "other_organisation"=>"",
     }
   end
 

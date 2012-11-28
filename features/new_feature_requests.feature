@@ -5,8 +5,8 @@ Feature: New feature requests
 
   Background:
     * the following user has SSO access:
-      | Name         | Email                | Job title | Organisation   | Phone |
-      | John Smith   | john.smith@email.com | Developer | Cabinet Office | 12345 |
+      | Name         | Email                | Job title | Phone |
+      | John Smith   | john.smith@email.com | Developer | 12345 |
 
   Scenario: successful request
     When the user submits the following new feature request:
@@ -14,8 +14,8 @@ Feature: New feature requests
       | Inside Government | Information on XYZ | http://www.example.com | 31-12-2020     | 01-12-2020      | Legal requirement |
 
     Then the following ticket is raised in ZenDesk:
-      | Subject             | Requester email      | Requester name | Phone | Job title | Organisation   |
-      | New Feature Request | john.smith@email.com | John Smith     | 12345 | Developer | cabinet_office |
+      | Subject             | Requester email      | Requester name | Phone | Job title |
+      | New Feature Request | john.smith@email.com | John Smith     | 12345 | Developer |
     And the time constraints on the ticket are:
       | Need by date | Not before date |
       | 31-12-2020   | 01-12-2020      |

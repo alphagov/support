@@ -1,8 +1,6 @@
 require "test_helper"
 
 class SupportControllerTest < ActionController::TestCase
-  include ZendeskOrganisationListHelper
-
   setup do
     login_as_stub_user
     @zendesk_api = ZenDeskAPIClientDouble.new

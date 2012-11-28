@@ -4,7 +4,6 @@ require "zendesk_client"
 class RequestsController < ApplicationController
   def new
     @request = new_request
-    prepopulate_organisation_list
   end
 
   def create
@@ -12,7 +11,6 @@ class RequestsController < ApplicationController
     if @request.valid?
       raise_ticket(zendesk_ticket_class.new(@request))
     else
-      prepopulate_organisation_list
       render :new, :status => 400
     end
   end
@@ -30,24 +28,7 @@ class RequestsController < ApplicationController
     end
   end
 
-  def load_client_and_organisations(error_string)
-    load_client
-    load_organisations(error_string)
-  end
-
   def load_client
     @client = ZendeskClient.get_client(logger)
-  end
-
-  def load_organisations(error_string)
-    begin
-      @organisations = ZendeskRequest.get_organisations(@client)
-    rescue ZendeskError
-      return render :"support/zendesk_error", :locals => {:error_string => error_string}
-    end
-  end
-
-  def prepopulate_organisation_list
-    load_client_and_organisations("zendesk_error_upon_new_form")
   end
 end

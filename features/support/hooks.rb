@@ -1,4 +1,3 @@
 Before do
-  stub_zendesk_organisation_list
   stub_zendesk_ticket_submission
 end

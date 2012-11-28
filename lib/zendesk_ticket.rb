@@ -5,28 +5,15 @@ require 'active_support'
 class ZendeskTicket
   extend Forwardable
 
-  def initialize(request, from_route)
+  def initialize(request)
     @request = request
-    @from_route = from_route
+    @requester = request.requester
   end
 
-  def_delegators :@request, :name, :email, :organisation, :job
+  def_delegators :@requester, :name, :email, :job
 
   def phone
-    # TODO: solve this horrible mess when the refactor is done
-    if instance_variable_defined?("@requester")
-      if has_value?(:phone, @requester)
-        remove_space_from_phone_number(@requester.phone)
-      else
-        nil
-      end
-    else
-      if has_value?(:phone)
-        remove_space_from_phone_number(@request.phone)
-      else
-        nil
-      end
-    end
+    remove_space_from_phone_number(@requester.phone)
   end
 
   def comment
@@ -52,10 +39,6 @@ class ZendeskTicket
 
   def inside_government_tag_if_needed
     @request.inside_government_related? ? ["inside_government"] : []
-  end
-
-  def tags
-    [@@in_tag[@from_route]]
   end
 
   private
