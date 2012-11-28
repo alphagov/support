@@ -1,15 +1,7 @@
 require 'zendesk_ticket'
-require 'forwardable'
 require 'comment_snippet'
 
 class ContentChangeRequestZendeskTicket < ZendeskTicket
-  attr_reader :time_constraint
-
-  def initialize(request)
-    super(request, nil)
-    @requester = request.requester
-  end
-
   def subject
     "Content change request"
   end
@@ -17,9 +9,6 @@ class ContentChangeRequestZendeskTicket < ZendeskTicket
   def tags
     ["content_amend"] + inside_government_tag_if_needed
   end
-
-  # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel
-  def_delegators :@requester, :name, :email, :organisation, :job
 
   protected
   def comment_snippets

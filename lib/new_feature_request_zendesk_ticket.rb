@@ -1,14 +1,8 @@
 require 'zendesk_ticket'
-require 'forwardable'
 require 'comment_snippet'
 
 class NewFeatureRequestZendeskTicket < ZendeskTicket
   attr_reader :time_constraint
-
-  def initialize(request)
-    super(request, nil)
-    @requester = request.requester
-  end
 
   def subject
     @request.inside_government_related? ? "New Feature Request" : "New Need Request"
@@ -18,9 +12,6 @@ class NewFeatureRequestZendeskTicket < ZendeskTicket
     specific_tag = @request.inside_government_related? ? ["new_feature_request"] : ["new_need_request"]
     specific_tag + inside_government_tag_if_needed
   end
-
-  # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel
-  def_delegators :@requester, :name, :email, :organisation, :job
 
   protected
   def comment_snippets

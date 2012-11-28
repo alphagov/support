@@ -1,24 +1,32 @@
 require 'test/unit'
 require 'shoulda/context'
 require 'zendesk_ticket'
-require 'test_data'
 require 'ostruct'
 require 'date'
 
 class ZendeskTicketTest < Test::Unit::TestCase
-  def new_ticket(attributes, type = nil)
-    ZendeskTicket.new(OpenStruct.new(attributes), type)
+  def new_ticket(attributes)
+    ZendeskTicket.new(OpenStruct.new(attributes))
   end
 
-  include TestData
+  def with_requester(attributes)
+    {requester: OpenStruct.new(attributes)}
+  end
+
+  def with_time_constraint(attributes)
+    {time_constraint: OpenStruct.new(attributes)}
+  end
+
   context "content change request" do
     should "set the requester details correctly" do
       ticket = new_ticket(
-        :name => "John Smith",
-        :email => "ab@c.com",
-        :organisation => "cabinet_office",
-        :job => "Developer",
-        :phone => "123456"
+        with_requester(
+          :name => "John Smith",
+          :email => "ab@c.com",
+          :organisation => "cabinet_office",
+          :job => "Developer",
+          :phone => "123456"
+          )
       )
       assert_equal "John Smith", ticket.name
       assert_equal "ab@c.com", ticket.email
@@ -29,18 +37,18 @@ class ZendeskTicketTest < Test::Unit::TestCase
 
     context "with time constraints" do
       should "pass the need_by_date through" do
-        time_constraint = OpenStruct.new(needed_by_date: "03-02-2001")
-        assert_equal "03-02-2001", new_ticket(time_constraint: time_constraint).needed_by_date
+        assert_equal "03-02-2001", 
+                     new_ticket(with_time_constraint(needed_by_date: "03-02-2001")).needed_by_date
       end
 
       should "pass the not_before_date through" do
-        time_constraint = OpenStruct.new(not_before_date: "03-02-2001")
-        assert_equal "03-02-2001", new_ticket(time_constraint: time_constraint).not_before_date
+        assert_equal "03-02-2001", 
+                     new_ticket(with_time_constraint(not_before_date: "03-02-2001")).not_before_date
       end
     end
 
     should "remove spaces from the tel number" do
-      assert_equal "12345678", new_ticket(:phone => "1234 5678").phone
+      assert_equal "12345678", new_ticket(with_requester(:phone => "1234 5678")).phone
     end
   end
 end

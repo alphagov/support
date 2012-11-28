@@ -1,13 +1,7 @@
 require 'zendesk_ticket'
-require 'forwardable'
 require 'comment_snippet'
 
 class CampaignRequestZendeskTicket < ZendeskTicket
-  def initialize(request)
-    super(request, nil)
-    @requester = request.requester
-  end
-
   def subject
     "Campaign"
   end
@@ -15,9 +9,6 @@ class CampaignRequestZendeskTicket < ZendeskTicket
   def tags
     ["campaign"]
   end
-
-  # the following methods will be pushed down to the superclass as soon as everything is converted to ActiveModel
-  def_delegators :@requester, :name, :email, :organisation, :job
 
   protected
   def comment_snippets
