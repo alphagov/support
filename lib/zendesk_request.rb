@@ -1,5 +1,4 @@
 require_relative "zendesk_ticket"
-require 'ostruct'
 
 class ZendeskRequest
   def self.field_ids
@@ -7,10 +6,6 @@ class ZendeskRequest
       phone:           "21471291",
       needed_by_date:  "21485833",
       not_before_date: "21502036" }
-  end
-
-  def self.raise_zendesk_request(client, params, from_route)
-    raise_ticket(client, ZendeskTicket.new(OpenStruct.new(params), from_route))
   end
 
   def self.raise_ticket(client, ticket_to_raise)
