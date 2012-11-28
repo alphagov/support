@@ -18,6 +18,6 @@ rm config/zendesk.yml
 # Copy in the template, which will work for test mode
 cp config/zendesk.yml.template config/zendesk.yml
 
-bundle exec rake test
+bundle exec rake
 RESULT=$?
 exit $RESULT
