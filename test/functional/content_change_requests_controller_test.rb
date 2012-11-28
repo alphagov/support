@@ -31,11 +31,11 @@ class ContentChangeRequestsControllerTest < ActionController::TestCase
 
   context "a submitted content change request" do
     should "reject invalid change requests" do
-      params = valid_content_change_request_params.tap {|p| p["content_change_request"]["requester_attributes"].merge!("organisation" => "")}
+      params = valid_content_change_request_params.tap {|p| p["content_change_request"]["requester_attributes"].merge!("email" => "")}
       post :create, params
       assert_response 400
       assert_template "new"
-      assert_select ".help-inline", /information is required/
+      assert_select ".help-inline", /can't be blank/
     end
 
     should "submit it to ZenDesk" do

@@ -28,11 +28,11 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
 
   context "submitted user creation request" do
     should "reject invalid requests" do
-      params = valid_create_new_user_request_params.tap {|p| p["create_new_user_request"]["requester_attributes"].merge!("organisation" => "")}
+      params = valid_create_new_user_request_params.tap {|p| p["create_new_user_request"]["requester_attributes"].merge!("email" => "")}
       post :create, params
       assert_response 400
       assert_template "new"
-      assert_select ".help-inline", /information is required/
+      assert_select ".help-inline", /can't be blank/
     end
 
     should "submit it to ZenDesk" do
