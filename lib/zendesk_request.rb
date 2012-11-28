@@ -3,8 +3,7 @@ require 'ostruct'
 
 class ZendeskRequest
   def self.field_ids
-    { organisation:    "21494928",
-      job:             "21487987",
+    { job:             "21487987",
       phone:           "21471291",
       needed_by_date:  "21485833",
       not_before_date: "21502036" }
@@ -26,8 +25,7 @@ class ZendeskRequest
       :description => "Created via Govt API",
       :priority => "normal",
       :requester => {"locale_id" => 1, "name" => ticket_to_raise.name, "email" => ticket_to_raise.email},
-      :fields => [{"id" => ZendeskRequest.field_ids[:organisation],    "value" => ticket_to_raise.organisation},
-                  {"id" => ZendeskRequest.field_ids[:job],             "value" => ticket_to_raise.job},
+      :fields => [{"id" => ZendeskRequest.field_ids[:job],             "value" => ticket_to_raise.job},
                   {"id" => ZendeskRequest.field_ids[:phone],           "value" => ticket_to_raise.phone},
                   {"id" => ZendeskRequest.field_ids[:needed_by_date],  "value" => ticket_to_raise.needed_by_date},
                   {"id" => ZendeskRequest.field_ids[:not_before_date], "value" => ticket_to_raise.not_before_date}],
