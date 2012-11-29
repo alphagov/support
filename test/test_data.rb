@@ -38,11 +38,7 @@ module TestData
   end
 
   def valid_requester_params
-    { "name"=>"Testing",
-      "email"=>"testing@digital.cabinet-office.gov.uk",
-      "job"=>"dev",
-      "phone"=>"",
-    }
+    { "email"=>"testing@digital.cabinet-office.gov.uk" }
   end
 
   def valid_requested_user_params

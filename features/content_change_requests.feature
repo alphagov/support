@@ -5,8 +5,8 @@ Feature: Content change requests
 
   Background:
     * the following user has SSO access:
-      | Name         | Email                | Job title | Phone |
-      | John Smith   | john.smith@email.com | Developer | 12345 |
+      | Name         | Email                |
+      | John Smith   | john.smith@email.com |
 
   Scenario: successful Mainstream content change request 
     When the user submits the following content change request:
@@ -14,8 +14,8 @@ Feature: Content change requests
       | Mainstream (business/citizen) | Out of date XX YY | http://gov.uk/X | http://gov.uk/Y | 31-12-2020     | 01-12-2020      | New law |
 
     Then the following ticket is raised in ZenDesk:
-      | Subject                | Requester email      | Requester name | Phone | Job title |
-      | Content change request | john.smith@email.com | John Smith     | 12345 | Developer |
+      | Subject                | Requester email      |
+      | Content change request | john.smith@email.com |
     And the time constraints on the ticket are:
       | Need by date | Not before date |
       | 31-12-2020   | 01-12-2020      |
