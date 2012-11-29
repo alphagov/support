@@ -1,8 +1,5 @@
 When /^the user fills out their details$/ do
-  fill_in "Name", :with => @user_details["Name"]
-  fill_in "Email", :with => @user_details["Email"]
-  fill_in "Job title", :with => @user_details["Job title"]
-  fill_in "Phone number", :with => @user_details["Phone"]
+  fill_in "Your email", :with => @user_details["Email"]
 end
 
 When /^the user fills out the time constraints$/ do

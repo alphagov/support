@@ -19,18 +19,8 @@ class ZendeskTicketTest < Test::Unit::TestCase
 
   context "content change request" do
     should "set the requester details correctly" do
-      ticket = new_ticket(
-        with_requester(
-          :name => "John Smith",
-          :email => "ab@c.com",
-          :job => "Developer",
-          :phone => "123456"
-          )
-      )
-      assert_equal "John Smith", ticket.name
+      ticket = new_ticket(with_requester(email: "ab@c.com"))
       assert_equal "ab@c.com", ticket.email
-      assert_equal "Developer", ticket.job
-      assert_equal "123456", ticket.phone
     end
 
     context "with time constraints" do
@@ -43,10 +33,6 @@ class ZendeskTicketTest < Test::Unit::TestCase
         assert_equal "03-02-2001", 
                      new_ticket(with_time_constraint(not_before_date: "03-02-2001")).not_before_date
       end
-    end
-
-    should "remove spaces from the tel number" do
-      assert_equal "12345678", new_ticket(with_requester(:phone => "1234 5678")).phone
     end
   end
 end
