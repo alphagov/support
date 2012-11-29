@@ -50,26 +50,5 @@ class ZenDeskAPIClientDouble
 
   def initialize
     @ticket = ZenDeskAPITicketDouble.new
-    @should_raise_error = false
-  end
-
-  def should_raise_error
-    @should_raise_error = true
-  end
-
-  def ticket_fields
-    raise ZendeskError.new("zendesk is down", nil) if @should_raise_error
-    self
-  end
-
-  def find(some_criteria)
-    self
-  end
-
-  def custom_field_options
-    [ {"name"=>"Advocate General for Scotland", "value"=>"advocate_general_for_scotland"},
-      {"name"=>"Attorney General's Office", "value"=>"attorney_generals_office"},
-      {"name"=>"Cabinet Office", "value"=>"cabinet_office"}
-    ].collect {|params| OpenStruct.new(params)}
   end
 end
