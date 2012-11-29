@@ -11,8 +11,8 @@ Feature: Create new user requests
 
   Scenario: successful create user request for publisher
     When the user submits the following create user request:
-      | Tool/Role                 | User's name | User's email | Additional comments |
-      | Departmental Contact Form | Bob Fields  | bob@gov.uk   | XXXX                |
+      | Tool/Role                 | User's name | User's email | User's job title | User's phone | Additional comments |
+      | Departmental Contact Form | Bob Fields  | bob@gov.uk   | Editor           | 12345        | XXXX                |
     Then the following ticket is raised in ZenDesk:
       | Subject         | Requester email      | Requester name | Phone | Job title |
       | Create new user | john.smith@email.com | John Smith     | 12345 | Developer |
@@ -22,11 +22,17 @@ Feature: Create new user requests
       [Tool/Role]
       Departmental Contact Form
 
-      [User name]
+      [Requested user's name]
       Bob Fields
 
-      [User email]
+      [Requested user's email]
       bob@gov.uk
+
+      [Requested user's job title]
+      Editor
+
+      [Requested user's phone number]
+      12345
 
       [Additional comments]
       XXXX
