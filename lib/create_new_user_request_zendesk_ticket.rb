@@ -15,8 +15,14 @@ class CreateNewUserRequestZendeskTicket < ZendeskTicket
     [ 
       CommentSnippet.new(on: @request, field: :formatted_tool_role,
                                        label: "Tool/Role"),
-      CommentSnippet.new(on: @request, field: :user_name),
-      CommentSnippet.new(on: @request, field: :user_email),
+      CommentSnippet.new(on: @request.requested_user, field: :name,
+                                                      label: "Requested user's name"),
+      CommentSnippet.new(on: @request.requested_user, field: :email,
+                                                      label: "Requested user's email"),
+      CommentSnippet.new(on: @request.requested_user, field: :job,
+                                                      label: "Requested user's job title"),
+      CommentSnippet.new(on: @request.requested_user, field: :phone,
+                                                      label: "Requested user's phone number"),
       CommentSnippet.new(on: @request, field: :additional_comments)
     ]
   end
