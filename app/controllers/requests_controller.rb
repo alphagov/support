@@ -1,4 +1,4 @@
-require "zendesk_request"
+require "zendesk_tickets"
 require "zendesk_client"
 
 class RequestsController < ApplicationController
@@ -9,17 +9,20 @@ class RequestsController < ApplicationController
   def create
     @request = parse_request_from_params
     if @request.valid?
-      raise_ticket(zendesk_ticket_class.new(@request))
+      deal_with(@request)
     else
       render :new, :status => 400
     end
   end
 
+  protected
+  def deal_with(submitted_request)
+    raise_ticket(zendesk_ticket_class.new(submitted_request))
+  end
+
   private
   def raise_ticket(ticket)
-    load_client
-
-    ticket = ZendeskRequest.raise_ticket(@client, ticket)
+    ticket = ZendeskTickets.new(client).raise_ticket(ticket)
 
     if ticket
       redirect_to acknowledge_path
@@ -28,7 +31,7 @@ class RequestsController < ApplicationController
     end
   end
 
-  def load_client
-    @client = ZendeskClient.get_client(logger)
+  def client
+    ZendeskClient.get_client(logger)
   end
 end

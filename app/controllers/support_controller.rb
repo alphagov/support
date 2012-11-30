@@ -1,4 +1,4 @@
-class SupportController < RequestsController
+class SupportController < ApplicationController
   def landing
     render :landing, :layout => "application"
   end

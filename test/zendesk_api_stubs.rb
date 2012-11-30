@@ -1,4 +1,4 @@
-require 'zendesk_request'
+require 'zendesk_tickets'
 
 module ZendeskApiStubsHelper
   def stub_zendesk_ticket_submission
@@ -20,7 +20,7 @@ class ZenDeskAPITicketDouble
     end
   end
 
-  ZendeskRequest.field_ids.each do |field_name, field_id|
+  ZendeskTickets.field_ids.each do |field_name, field_id|
     define_method(field_name) do
       value_of_field_with_id(field_id)
     end
@@ -45,10 +45,27 @@ class ZenDeskAPITicketDouble
   end
 end
 
+class ZenDeskAPIUsersDouble
+  attr_reader :created_user_attributes
+
+  def initialize
+    @created_user_attributes = {}
+  end
+
+  def search(attributes)
+    []
+  end
+
+  def create(new_user_attributes)
+    @created_user_attributes = new_user_attributes
+  end
+end
+
 class ZenDeskAPIClientDouble
-  attr_reader :ticket
+  attr_reader :ticket, :users
 
   def initialize
     @ticket = ZenDeskAPITicketDouble.new
+    @users = ZenDeskAPIUsersDouble.new
   end
 end

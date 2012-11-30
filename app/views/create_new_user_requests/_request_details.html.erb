@@ -1,11 +1,7 @@
 <%= render :partial => 'support/tool_role_choice', :locals => {:f => f} %>
 
 <div id="user_details" %>
-  <%= f.inputs "User details" do %>
-    <%= f.input :user_name, :label => "Name", :required => true, :input_html => {:class => "span6", :"aria-required" => true } %>
-
-    <%= f.input :user_email, :as => :email, :label => "Email", :required => true, :input_html => {:class => "span6", :"aria-required" => true } %>
-
-    <%= f.input :additional_comments, :as => :text, :label => "Additional comments", :input_html => {:class => "span6", :rows => 6, :cols => 50 } %>
-  <% end %>
+  <%= render :partial => 'requested_user_details', :locals => {:f => f} %>  
 </div>
+
+<%= f.input :additional_comments, :as => :text, :label => "Additional comments", :input_html => {:class => "span6", :rows => 6, :cols => 50 } %>

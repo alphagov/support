@@ -6,7 +6,9 @@ class CreateNewUserRequest < TablelessModel
   include WithRequester
   include WithToolRoleChoice
 
-  attr_accessor :user_name, :user_email, :additional_comments
-  validates_presence_of :user_name, :user_email
-  validates :user_email, :format => {:with => /@/}
+  attr_accessor :requested_user, :additional_comments
+  validates_presence_of :requested_user
+  def requested_user_attributes=(attr)
+    self.requested_user = RequestedUser.new(attr)
+  end
 end

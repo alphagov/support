@@ -1,8 +1,5 @@
 When /^the user fills out their details$/ do
-  fill_in "Name", :with => @user_details["Name"]
-  fill_in "Email", :with => @user_details["Email"]
-  fill_in "Job title", :with => @user_details["Job title"]
-  fill_in "Phone number", :with => @user_details["Phone"]
+  fill_in "Your email", :with => @user_details["Email"]
 end
 
 When /^the user fills out the time constraints$/ do
@@ -97,8 +94,11 @@ When /^the user submits the following create user request:$/ do |request_details
   within("#user_details") do
     fill_in "Name", :with => @request_details["User's name"]
     fill_in "Email", :with => @request_details["User's email"]
-    fill_in "Additional comments", :with => @request_details["Additional comments"]
+    fill_in "Job title", :with => @request_details["User's job title"]
+    fill_in "Phone number", :with => @request_details["User's phone"]
   end
+
+  fill_in "Additional comments", :with => @request_details["Additional comments"]
 
   step "the user submits the request successfully"
 end
