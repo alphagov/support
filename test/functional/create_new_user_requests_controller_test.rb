@@ -37,7 +37,8 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
         email: "subject@digital.cabinet-office.gov.uk",
         name: "subject",
         details: "Job title: editor",
-        phone: "12345"
+        phone: "12345",
+        verified: true
       }
       assert_equal expected_created_user_attributes, @zendesk_api.users.created_user_attributes
     end
