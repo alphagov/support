@@ -1,4 +1,4 @@
-require "zendesk_request"
+require "zendesk_tickets"
 require "zendesk_client"
 
 class RequestsController < ApplicationController
@@ -19,7 +19,7 @@ class RequestsController < ApplicationController
   def raise_ticket(ticket)
     load_client
 
-    ticket = ZendeskRequest.raise_ticket(@client, ticket)
+    ticket = ZendeskTickets.new(@client).raise_ticket(ticket)
 
     if ticket
       redirect_to acknowledge_path
