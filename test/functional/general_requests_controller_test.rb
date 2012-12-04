@@ -12,7 +12,7 @@ class GeneralRequestsControllerTest < ActionController::TestCase
   context "a new general request" do
     should "render the form" do
       get :new
-      assert_select "h1", /Report a problem, request GDS support, or to make a suggestion/i
+      assert_select "h1", /Report a problem, request GDS support, or make a suggestion/i
     end
   end
 
