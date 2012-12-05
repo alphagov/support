@@ -6,9 +6,7 @@ class ZendeskTickets
   end
 
   def self.field_ids
-    { job:             "21487987",
-      phone:           "21471291",
-      needed_by_date:  "21485833",
+    { needed_by_date:  "21485833",
       not_before_date: "21502036" }
   end
 
@@ -17,10 +15,8 @@ class ZendeskTickets
       :subject => ticket_to_raise.subject,
       :description => "Created via Govt API",
       :priority => "normal",
-      :requester => {"locale_id" => 1, "name" => ticket_to_raise.name, "email" => ticket_to_raise.email},
-      :fields => [{"id" => ZendeskTickets.field_ids[:job],             "value" => ticket_to_raise.job},
-                  {"id" => ZendeskTickets.field_ids[:phone],           "value" => ticket_to_raise.phone},
-                  {"id" => ZendeskTickets.field_ids[:needed_by_date],  "value" => ticket_to_raise.needed_by_date},
+      :requester => {"locale_id" => 1, "email" => ticket_to_raise.email},
+      :fields => [{"id" => ZendeskTickets.field_ids[:needed_by_date],  "value" => ticket_to_raise.needed_by_date},
                   {"id" => ZendeskTickets.field_ids[:not_before_date], "value" => ticket_to_raise.not_before_date}],
       :tags => ticket_to_raise.tags,
       :comment => {:value => ticket_to_raise.comment})

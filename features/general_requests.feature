@@ -5,16 +5,16 @@ Feature: General requests
 
   Background:
     * the following user has SSO access:
-      | Name         | Email                | Job title | Phone |
-      | John Smith   | john.smith@email.com | Developer | 12345 |
+      | Name         | Email                |
+      | John Smith   | john.smith@email.com |
 
   Scenario: successful request
     When the user submits the following general request:
       | Details          | URL               |
       | The site is down | https://www.gov.uk |
     Then the following ticket is raised in ZenDesk:
-      | Subject                   | Requester email      | Requester name | Phone | Job title |
-      | Govt Agency General Issue | john.smith@email.com | John Smith     | 12345 | Developer |
+      | Subject                   | Requester email      |
+      | Govt Agency General Issue | john.smith@email.com |
     And the ticket is tagged with "govt_agency_general"
     And the comment on the ticket is:
       """
