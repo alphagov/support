@@ -6,27 +6,33 @@ Feature: Create new user requests
 
   Background:
     * the following user has SSO access:
-      | Name         | Email                | Job title | Phone |
-      | John Smith   | john.smith@email.com | Developer | 12345 |
+      | Name         | Email                |
+      | John Smith   | john.smith@email.com |
 
   Scenario: successful create user request for publisher
     When the user submits the following create user request:
-      | Tool/Role                 | User's name | User's email | Additional comments |
-      | Departmental Contact Form | Bob Fields  | bob@gov.uk   | XXXX                |
+      | Tool/Role                 | User's name | User's email | User's job title | User's phone | Additional comments |
+      | Departmental Contact Form | Bob Fields  | bob@gov.uk   | Editor           | 12345        | XXXX                |
     Then the following ticket is raised in ZenDesk:
-      | Subject         | Requester email      | Requester name | Phone | Job title |
-      | Create new user | john.smith@email.com | John Smith     | 12345 | Developer |
+      | Subject         | Requester email      |
+      | Create new user | john.smith@email.com |
     And the ticket is tagged with "new_user"
     And the comment on the ticket is:
       """
       [Tool/Role]
       Departmental Contact Form
 
-      [User name]
+      [Requested user's name]
       Bob Fields
 
-      [User email]
+      [Requested user's email]
       bob@gov.uk
+
+      [Requested user's job title]
+      Editor
+
+      [Requested user's phone number]
+      12345
 
       [Additional comments]
       XXXX

@@ -3,7 +3,7 @@ require 'create_new_user_request_zendesk_ticket'
 class CreateNewUserRequestsController < RequestsController
   protected
   def new_request
-    CreateNewUserRequest.new(:requester => Requester.new)
+    CreateNewUserRequest.new(requester: Requester.new, requested_user: RequestedUser.new)
   end
 
   def zendesk_ticket_class

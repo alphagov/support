@@ -10,11 +10,7 @@ class ZendeskTicket
     @requester = request.requester
   end
 
-  def_delegators :@requester, :name, :email, :job
-
-  def phone
-    remove_space_from_phone_number(@requester.phone)
-  end
+  def_delegators :@requester, :email
 
   def comment
     applicable_snippets = comment_snippets.select(&:applies?)
@@ -54,10 +50,6 @@ class ZendeskTicket
   def has_value?(param, target = nil)
     target ||= @request
     target.respond_to?(param) and not target.send(param).blank?
-  end
-
-  def remove_space_from_phone_number(number)
-    number.gsub(/\s+/, "")
   end
 end
 
