@@ -1,4 +1,4 @@
-require 'zendesk_request'
+require 'zendesk_tickets'
 
 module ZendeskApiStubsHelper
   def stub_zendesk_ticket_submission
@@ -20,7 +20,7 @@ class ZenDeskAPITicketDouble
     end
   end
 
-  ZendeskRequest.field_ids.each do |field_name, field_id|
+  ZendeskTickets.field_ids.each do |field_name, field_id|
     define_method(field_name) do
       value_of_field_with_id(field_id)
     end
