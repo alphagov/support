@@ -17,7 +17,7 @@ class ZendeskTicketTest < Test::Unit::TestCase
     {time_constraint: OpenStruct.new(attributes)}
   end
 
-  context "content change request" do
+  context "any request" do
     should "set the requester details correctly" do
       ticket = new_ticket(with_requester(email: "ab@c.com"))
       assert_equal "ab@c.com", ticket.email
@@ -32,6 +32,13 @@ class ZendeskTicketTest < Test::Unit::TestCase
       should "pass the not_before_date through" do
         assert_equal "03-02-2001", 
                      new_ticket(with_time_constraint(not_before_date: "03-02-2001")).not_before_date
+      end
+    end
+
+    context "with collaborators set" do
+      should "be passed through" do
+        ticket = new_ticket(with_requester(collaborator_emails: ["ab@c.com", "de@f.com"]))
+        assert_equal ["ab@c.com", "de@f.com"], ticket.collaborator_emails
       end
     end
   end

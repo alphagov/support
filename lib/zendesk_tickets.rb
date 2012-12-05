@@ -16,6 +16,7 @@ class ZendeskTickets
       :description => "Created via Govt API",
       :priority => "normal",
       :requester => {"locale_id" => 1, "email" => ticket_to_raise.email},
+      :collaborators => ticket_to_raise.collaborator_emails,
       :fields => [{"id" => ZendeskTickets.field_ids[:needed_by_date],  "value" => ticket_to_raise.needed_by_date},
                   {"id" => ZendeskTickets.field_ids[:not_before_date], "value" => ticket_to_raise.not_before_date}],
       :tags => ticket_to_raise.tags,
