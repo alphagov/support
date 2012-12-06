@@ -3,7 +3,12 @@ require "zendesk_error"
 class ZendeskClient
 
   def self.get_client(logger)
-    @client ||= ZendeskAPI::Client.new { |config|
+    @client ||= create_new_zendesk_api_client(logger)
+  end
+
+  private
+  def self.create_new_zendesk_api_client(logger)
+    client = ZendeskAPI::Client.new { |config|
       file = YAML::load_file(File.open('./config/zendesk.yml'))
       login_details = self.get_username_password(file)
       config.url = "https://govuk.zendesk.com/api/v2/"
@@ -12,7 +17,7 @@ class ZendeskClient
       config.logger = logger
     }
 
-    @client.insert_callback do |env|
+    client.insert_callback do |env|
       logger.info env
       
       status_401 = env[:status].to_s.start_with? "401"
@@ -23,10 +28,8 @@ class ZendeskClient
       raise ZendeskError, "Error creating ticket: #{env.inspect}" if env[:body]["error"]
     end
 
-    @client
+    client
   end
-
-  private
 
   def self.get_username_password(config_details)
     # GOVUK_ENV should be preview/production/staging. Fall back if we are in dev (or test)

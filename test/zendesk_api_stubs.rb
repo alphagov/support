@@ -45,10 +45,27 @@ class ZenDeskAPITicketDouble
   end
 end
 
+class ZenDeskAPIUsersDouble
+  attr_reader :created_user_attributes
+
+  def initialize
+    @created_user_attributes = {}
+  end
+
+  def search(attributes)
+    []
+  end
+
+  def create(new_user_attributes)
+    @created_user_attributes = new_user_attributes
+  end
+end
+
 class ZenDeskAPIClientDouble
-  attr_reader :ticket
+  attr_reader :ticket, :users
 
   def initialize
     @ticket = ZenDeskAPITicketDouble.new
+    @users = ZenDeskAPIUsersDouble.new
   end
 end

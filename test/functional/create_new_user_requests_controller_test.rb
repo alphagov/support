@@ -32,6 +32,15 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
 
       assert_equal ['new_user'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
+
+      expected_created_user_attributes = {
+        email: "subject@digital.cabinet-office.gov.uk",
+        name: "subject",
+        details: "Job title: editor",
+        phone: "12345",
+        verified: true
+      }
+      assert_equal expected_created_user_attributes, @zendesk_api.users.created_user_attributes
     end
 
     context "concerning Inside Government" do
