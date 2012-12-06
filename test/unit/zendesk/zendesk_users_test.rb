@@ -24,10 +24,10 @@ class ZendeskUsersTest < Test::Unit::TestCase
   context "creating/updating a user that doesn't exists in Zendesk" do
     should "create that user" do
       @stub_zendesk_users.expects(:search).with(query: "test@test.com").returns([])
-      @stub_zendesk_users.expects(:create).with(email:    "test@test.com",
-                                                name:     "Abc",
-                                                phone:    "12345",
-                                                details:  "Job title: Developer",
+      @stub_zendesk_users.expects(:create).with(email: "test@test.com",
+                                                name: "Abc",
+                                                phone: "12345",
+                                                details: "Job title: Developer",
                                                 verified: true)
 
       existing_user_being_requested = stub("requested user", name: "Abc", email: "test@test.com", phone: "12345", job: "Developer")
