@@ -15,7 +15,7 @@ class CreateNewUserRequestsController < RequestsController
     CreateNewUserRequest.new(params[:create_new_user_request])
   end
 
-  def deal_with(submitted_request)
+  def process_valid_request(submitted_request)
     super(submitted_request)
     ZendeskUsers.new(client).create_or_update_user(submitted_request.requested_user)
   end

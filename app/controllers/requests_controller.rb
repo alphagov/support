@@ -9,14 +9,14 @@ class RequestsController < ApplicationController
   def create
     @request = parse_request_from_params
     if @request.valid?
-      deal_with(@request)
+      process_valid_request(@request)
     else
       render :new, :status => 400
     end
   end
 
   protected
-  def deal_with(submitted_request)
+  def process_valid_request(submitted_request)
     raise_ticket(zendesk_ticket_class.new(submitted_request))
   end
 
