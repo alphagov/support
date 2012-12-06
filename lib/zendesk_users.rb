@@ -2,8 +2,8 @@ require 'zendesk_client'
 require 'active_support'
 
 class ZendeskUsers
-  def initialize(client = nil)
-    @client = client || ZendeskClient.get_client(logger)
+  def initialize(client)
+    @client = client
   end
 
   def create_or_update_user(requested_user)
