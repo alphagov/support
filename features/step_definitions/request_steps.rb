@@ -68,9 +68,7 @@ When /^the user submits the following content change request:$/ do |request_deta
   end
 
   fill_in "Details of the requested change", :with => @request_details["Details of change"]
-  fill_in "URL 1", :with => @request_details["URL 1"]
-  fill_in "URL 2", :with => @request_details["URL 2"]
-  fill_in "URL 3", :with => @request_details["URL 3"]
+  fill_in "URL", :with => @request_details["URL"]
 
   step "the user fills out the time constraints"
   step "the user submits the request successfully"

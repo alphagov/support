@@ -8,6 +8,6 @@ class ContentChangeRequest < TablelessModel
   include WithTimeConstraint
   include WithRequestContext
 
-  attr_accessor :details_of_change, :url1, :url2, :url3
+  attr_accessor :details_of_change, :url
   validates_presence_of :details_of_change
 end

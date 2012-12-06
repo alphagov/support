@@ -6,9 +6,7 @@ class ContentChangeRequestTest < Test::Unit::TestCase
 
   should validate_presence_of(:request_context)
 
-  should allow_value("https://www.gov.uk").for(:url1)
-  should allow_value("https://www.gov.uk").for(:url2)
-  should allow_value("https://www.gov.uk").for(:url3)
+  should allow_value("https://www.gov.uk").for(:url)
 
   should "allow time constraints" do
     request = ContentChangeRequest.new(:time_constraint => stub("time constraint", :valid? => true))
