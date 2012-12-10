@@ -1,4 +1,5 @@
 require 'create_new_user_request_zendesk_ticket'
+require 'zendesk_users'
 
 class CreateNewUserRequestsController < RequestsController
   protected
@@ -12,5 +13,10 @@ class CreateNewUserRequestsController < RequestsController
 
   def parse_request_from_params
     CreateNewUserRequest.new(params[:create_new_user_request])
+  end
+
+  def process_valid_request(submitted_request)
+    super(submitted_request)
+    ZendeskUsers.new(client).create_or_update_user(submitted_request.requested_user)
   end
 end

@@ -9,17 +9,20 @@ class RequestsController < ApplicationController
   def create
     @request = parse_request_from_params
     if @request.valid?
-      raise_ticket(zendesk_ticket_class.new(@request))
+      process_valid_request(@request)
     else
       render :new, :status => 400
     end
   end
 
+  protected
+  def process_valid_request(submitted_request)
+    raise_ticket(zendesk_ticket_class.new(submitted_request))
+  end
+
   private
   def raise_ticket(ticket)
-    load_client
-
-    ticket = ZendeskTickets.new(@client).raise_ticket(ticket)
+    ticket = ZendeskTickets.new(client).raise_ticket(ticket)
 
     if ticket
       redirect_to acknowledge_path
@@ -28,7 +31,7 @@ class RequestsController < ApplicationController
     end
   end
 
-  def load_client
-    @client = ZendeskClient.get_client(logger)
+  def client
+    ZendeskClient.get_client(logger)
   end
 end
