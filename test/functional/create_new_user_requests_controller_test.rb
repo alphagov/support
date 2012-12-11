@@ -9,22 +9,7 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
     ZendeskClient.stubs(:get_client).returns(@zendesk_api)
   end
 
-  context "new user creation request" do
-    should "render the form" do
-      get :new
-      assert_select "h1", /Create a new user account/i
-    end
-  end
-
   context "submitted user creation request" do
-    should "reject invalid requests" do
-      params = valid_create_new_user_request_params.tap {|p| p["create_new_user_request"]["requester_attributes"].merge!("email" => "")}
-      post :create, params
-      assert_response 400
-      assert_template "new"
-      assert_select ".help-inline", /can't be blank/
-    end
-
     should "submit it to ZenDesk" do
       params = valid_create_new_user_request_params
 
