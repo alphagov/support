@@ -95,5 +95,14 @@ class RequestsControllerTest < ActionController::TestCase
       assert_equal ['tag_a', 'tag_b'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
     end
+
+    should "set collaborators if they're set on the request" do
+      params = valid_params_for_test_request.tap do |p|
+        p["test_request"]["requester_attributes"].merge!("collaborator_emails" => "ab@c.com, def@g.com")
+      end
+
+      post :create, params
+      assert_equal ["ab@c.com", "def@g.com"], @zendesk_api.ticket.collaborators
+    end
   end
 end

@@ -14,7 +14,7 @@ class ZenDeskAPITicketDouble
     @options = options
   end
 
-  [:subject, :tags, :description].each do |property|
+  [:subject, :tags, :description, :collaborators].each do |property|
     define_method(property) do
       @options[property]
     end
