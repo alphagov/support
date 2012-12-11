@@ -2,12 +2,12 @@
 <%= content_for :header, "Create a new user account" %>
 
 <div class="well">
-  <%= semantic_form_for @request, :url => { :action => "create" }, :html => { :novalidate => false} do |f| %>
+  <%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
 
-    <%= render :partial => "support/requester", :locals => {:f => f} %>
+    <%= render partial: "support/requester", locals: { f: f, show_collaborators: false } %>
 
-    <%= render :partial => "request_details", :locals => {:f => f} %>
+    <%= render partial: "request_details", locals: { f: f } %>
 
-    <%= f.action :submit, :label => "Submit", :button_html => {:class => "btn btn-success"} %>
+    <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
   <% end %>
 </div>

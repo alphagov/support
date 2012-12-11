@@ -10,7 +10,7 @@ class ZendeskTicket
     @requester = request.requester
   end
 
-  def_delegators :@requester, :email
+  def_delegators :@requester, :email, :collaborator_emails
 
   def comment
     applicable_snippets = comment_snippets.select(&:applies?)
@@ -38,14 +38,6 @@ class ZendeskTicket
   end
 
   private
-
-  def inside_government_tag
-    if has_value?(:inside_government) and @request.inside_government == "yes"
-      ["inside_government"]
-    else
-      []
-    end
-  end
     
   def has_value?(param, target = nil)
     target ||= @request
