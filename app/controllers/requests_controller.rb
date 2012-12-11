@@ -11,17 +11,13 @@ class RequestsController < ApplicationController
     if @request.valid?
       process_valid_request(@request)
     else
-      rerender_form_with_invalid_request
+      render :new, :status => 400
     end
   end
 
   protected
   def process_valid_request(submitted_request)
     raise_ticket(zendesk_ticket_class.new(submitted_request))
-  end
-
-  def rerender_form_with_invalid_request
-    render :new, :status => 400
   end
 
   private

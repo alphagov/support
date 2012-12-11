@@ -35,15 +35,6 @@ class TestRequestsController < RequestsController
   def parse_request_from_params
     TestRequest.new(params[:test_request])
   end
-
-  def new
-    super
-    render :text => "<h1>new form</h1>"
-  end
-
-  def rerender_form_with_invalid_request
-    render :text => "<h1>your submission was invalid</h1>", :status => 400
-  end
 end
 
 def valid_params_for_test_request
@@ -67,6 +58,7 @@ class RequestsControllerTest < ActionController::TestCase
     end
 
     @controller = TestRequestsController.new
+    prevent_implicit_rendering
   end
 
   teardown do
@@ -75,19 +67,24 @@ class RequestsControllerTest < ActionController::TestCase
 
   context "a new general request" do
     should "render the form" do
+      @controller.expects(:default_render)
       get :new
-      assert_select "h1", "new form"
     end
+  end
+
+  def prevent_implicit_rendering
+    # we're not testing view rendering here,
+    # so prevent rendering by stubbing out default_render
+    @controller.stubs(:default_render)
   end
 
   context "a submission of a test request" do
     should "reject invalid parameters" do
       params = valid_params_for_test_request.tap {|p| p["test_request"].merge!("a" => "")}
 
-      post :create, params
+      @controller.expects(:render).with(:new, has_entry(:status => 400))
 
-      assert_response 400
-      assert_select "h1", "your submission was invalid"
+      post :create, params
     end
 
     should "submit it to ZenDesk" do
