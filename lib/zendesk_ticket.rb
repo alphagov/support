@@ -33,6 +33,10 @@ class ZendeskTicket
     end
   end
 
+  def tags
+    ["govt_form"]
+  end
+
   def inside_government_tag_if_needed
     @request.inside_government_related? ? ["inside_government"] : []
   end

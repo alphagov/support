@@ -7,7 +7,7 @@ class CampaignRequestZendeskTicket < ZendeskTicket
   end
 
   def tags
-    ["campaign"]
+    super + ["campaign"]
   end
 
   protected

@@ -19,7 +19,7 @@ Feature: Content change requests
     And the time constraints on the ticket are:
       | Need by date | Not before date |
       | 31-12-2020   | 01-12-2020      |
-    And the ticket is tagged with "content_amend"
+    And the ticket is tagged with "govt_form content_amend"
     And the comment on the ticket is:
       """
       [Which part of GOV.UK is this about?]
@@ -43,4 +43,4 @@ Feature: Content change requests
     Then the following ticket is raised in ZenDesk:
       | Subject                |
       | Content change request |
-    And the ticket is tagged with "content_amend inside_government"
+    And the ticket is tagged with "govt_form content_amend inside_government"

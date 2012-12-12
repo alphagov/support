@@ -16,7 +16,7 @@ Feature: Create new user requests
     Then the following ticket is raised in ZenDesk:
       | Subject         | Requester email      |
       | Create new user | john.smith@email.com |
-    And the ticket is tagged with "new_user"
+    And the ticket is tagged with "govt_form new_user"
     And the comment on the ticket is:
       """
       [Tool/Role]

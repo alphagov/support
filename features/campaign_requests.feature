@@ -15,7 +15,7 @@ Feature: Campaign requests
     Then the following ticket is raised in ZenDesk:
       | Subject  | Requester email      |
       | Campaign | john.smith@email.com |
-    And the ticket is tagged with "campaign"
+    And the ticket is tagged with "govt_form campaign"
     And the comment on the ticket is:
       """
       [Campaign title]

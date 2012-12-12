@@ -15,7 +15,7 @@ Feature: Remove user requests
     Then the following ticket is raised in ZenDesk:
       | Subject     | Requester email      | Requester name | Phone | Job title |
       | Remove user | john.smith@email.com | John Smith     | 12345 | Developer |
-    And the ticket is tagged with "remove_user"
+    And the ticket is tagged with "govt_form remove_user"
     And the time constraints on the ticket are:
       | Not before date |
       | 31-12-2020      |
