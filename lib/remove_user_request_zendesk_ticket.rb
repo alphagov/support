@@ -7,7 +7,7 @@ class RemoveUserRequestZendeskTicket < ZendeskTicket
   end
 
   def tags
-    ["remove_user"] + inside_government_tag_if_needed
+    super + ["remove_user"] + inside_government_tag_if_needed
   end
 
   protected

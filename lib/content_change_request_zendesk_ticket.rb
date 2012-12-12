@@ -7,7 +7,7 @@ class ContentChangeRequestZendeskTicket < ZendeskTicket
   end
 
   def tags
-    ["content_amend"] + inside_government_tag_if_needed
+    super + ["content_amend"] + inside_government_tag_if_needed
   end
 
   protected

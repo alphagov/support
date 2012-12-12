@@ -7,7 +7,7 @@ class CreateNewUserRequestZendeskTicket < ZendeskTicket
   end
 
   def tags
-    ["new_user"] + inside_government_tag_if_needed
+    super + ["new_user"] + inside_government_tag_if_needed
   end
 
   protected

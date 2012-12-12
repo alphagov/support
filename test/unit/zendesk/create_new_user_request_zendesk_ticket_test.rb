@@ -10,7 +10,9 @@ class CreateNewUserRequestZendeskTicketTest < Test::Unit::TestCase
 
   context "an inside government request" do
     should "be tagged with inside_government" do
-      assert_equal ["new_user", "inside_government"], ticket_with(:inside_government_related? => true).tags
+      tags_on_ticket = ticket_with(:inside_government_related? => true).tags
+      assert_includes tags_on_ticket, "new_user"
+      assert_includes tags_on_ticket, "inside_government"
     end
   end
 end

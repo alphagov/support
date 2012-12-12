@@ -15,7 +15,7 @@ Feature: General requests
     Then the following ticket is raised in ZenDesk:
       | Subject                   | Requester email      |
       | Govt Agency General Issue | john.smith@email.com |
-    And the ticket is tagged with "govt_agency_general"
+    And the ticket is tagged with "govt_form govt_agency_general"
     And the comment on the ticket is:
       """
       [Url]

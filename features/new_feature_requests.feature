@@ -19,7 +19,7 @@ Feature: New feature requests
     And the time constraints on the ticket are:
       | Need by date | Not before date |
       | 31-12-2020   | 01-12-2020      |
-    And the ticket is tagged with "new_feature_request inside_government"
+    And the ticket is tagged with "govt_form new_feature_request inside_government"
     And the comment on the ticket is:
       """
       [Which part of GOV.UK is this about?]
