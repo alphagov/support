@@ -11,12 +11,14 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
 
   context "submitted user creation request" do
     should "submit it to ZenDesk" do
-      params = valid_create_new_user_request_params
-
-      post :create, params
+      post :create, valid_create_new_user_request_params
 
       assert_equal ['new_user'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
+    end
+
+    should "create a Zendesk user with the requested user details" do
+      post :create, valid_create_new_user_request_params
 
       expected_created_user_attributes = {
         email: "subject@digital.cabinet-office.gov.uk",
@@ -26,6 +28,18 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
         verified: true
       }
       assert_equal expected_created_user_attributes, @zendesk_api.users.created_user_attributes
+    end
+
+    should "not expose an error to the user when automatic user creation goes wrong" do
+      @zendesk_api.users.should_raise_error
+
+      ExceptionNotifier::Notifier.expects(:exception_notification)
+                                 .with(anything, kind_of(ZendeskError))
+                                 .returns(stub("mailer", deliver: true))
+
+      post :create, valid_create_new_user_request_params
+
+      assert_redirected_to "/acknowledge"
     end
 
     context "concerning Inside Government" do
