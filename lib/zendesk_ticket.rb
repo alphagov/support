@@ -33,6 +33,10 @@ class ZendeskTicket
     end
   end
 
+  def tags
+    request_specific_tags
+  end
+
   def inside_government_tag_if_needed
     @request.inside_government_related? ? ["inside_government"] : []
   end
@@ -42,6 +46,10 @@ class ZendeskTicket
   def has_value?(param, target = nil)
     target ||= @request
     target.respond_to?(param) and not target.send(param).blank?
+  end
+
+  def request_specific_tags
+    raise "should be implemented by a subclass"
   end
 end
 

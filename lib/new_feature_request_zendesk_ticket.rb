@@ -8,7 +8,7 @@ class NewFeatureRequestZendeskTicket < ZendeskTicket
     @request.inside_government_related? ? "New Feature Request" : "New Need Request"
   end
 
-  def tags
+  def request_specific_tags
     specific_tag = @request.inside_government_related? ? ["new_feature_request"] : ["new_need_request"]
     specific_tag + inside_government_tag_if_needed
   end

@@ -6,7 +6,7 @@ class ContentChangeRequestZendeskTicket < ZendeskTicket
     "Content change request"
   end
 
-  def tags
+  def request_specific_tags
     ["content_amend"] + inside_government_tag_if_needed
   end
 

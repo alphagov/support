@@ -6,7 +6,7 @@ class RemoveUserRequestZendeskTicket < ZendeskTicket
     "Remove user"
   end
 
-  def tags
+  def request_specific_tags
     ["remove_user"] + inside_government_tag_if_needed
   end
 

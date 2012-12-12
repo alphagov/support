@@ -6,7 +6,7 @@ class CampaignRequestZendeskTicket < ZendeskTicket
     "Campaign"
   end
 
-  def tags
+  def request_specific_tags
     ["campaign"]
   end
 
