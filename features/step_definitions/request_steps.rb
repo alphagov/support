@@ -119,7 +119,7 @@ When /^the user submits the following remove user request:$/ do |request_details
   within("#user_details") do
     fill_in "Name", :with => @request_details["User's name"]
     fill_in "Email", :with => @request_details["User's email"]
-    fill_in "Additional comments", :with => @request_details["Additional comments"]
+    fill_in "Reason for removal", :with => @request_details["Reason for removal"]
   end
 
   fill_in "MUST NOT be removed BEFORE", :with => @request_details["Not before date"]

@@ -8,7 +8,7 @@ class RemoveUserRequest < TablelessModel
   include WithToolRoleChoice
   include WithTimeConstraint
 
-  attr_accessor :user_name, :user_email, :additional_comments
+  attr_accessor :user_name, :user_email, :reason_for_removal
   validates_presence_of :user_name, :user_email
   validates :user_email, :format => {:with => /@/}
 end
