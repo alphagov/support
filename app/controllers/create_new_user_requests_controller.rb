@@ -17,6 +17,14 @@ class CreateNewUserRequestsController < RequestsController
 
   def process_valid_request(submitted_request)
     super(submitted_request)
-    ZendeskUsers.new(client).create_or_update_user(submitted_request.requested_user)
+    create_or_update_user_in_zendesk(submitted_request.requested_user)
+  end
+
+  def create_or_update_user_in_zendesk(requested_user)
+    begin
+      ZendeskUsers.new(client).create_or_update_user(requested_user)
+    rescue ZendeskError => e
+      ExceptionNotifier::Notifier.exception_notification(request.env, e).deliver
+    end
   end
 end
