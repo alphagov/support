@@ -1,4 +1,5 @@
 require 'zendesk_tickets'
+require 'zendesk_error'
 
 module ZendeskApiStubsHelper
   def stub_zendesk_ticket_submission
@@ -50,6 +51,11 @@ class ZenDeskAPIUsersDouble
 
   def initialize
     @created_user_attributes = {}
+    @should_raise_error = false
+  end
+
+  def should_raise_error
+    @should_raise_error = true
   end
 
   def search(attributes)
@@ -57,7 +63,11 @@ class ZenDeskAPIUsersDouble
   end
 
   def create(new_user_attributes)
-    @created_user_attributes = new_user_attributes
+    if @should_raise_error
+      raise ZendeskError, "error creating users"
+    else
+      @created_user_attributes = new_user_attributes
+    end
   end
 end
 
