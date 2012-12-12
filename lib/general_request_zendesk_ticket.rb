@@ -6,8 +6,8 @@ class GeneralRequestZendeskTicket < ZendeskTicket
     "Govt Agency General Issue"
   end
 
-  def request_specific_tags
-    ["govt_agency_general"]
+  def tags
+    super + ["govt_agency_general"]
   end
 
   protected

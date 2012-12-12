@@ -34,7 +34,7 @@ class ZendeskTicket
   end
 
   def tags
-    ["govt_form"] + request_specific_tags
+    ["govt_form"]
   end
 
   def inside_government_tag_if_needed
@@ -46,10 +46,6 @@ class ZendeskTicket
   def has_value?(param, target = nil)
     target ||= @request
     target.respond_to?(param) and not target.send(param).blank?
-  end
-
-  def request_specific_tags
-    raise "should be implemented by a subclass"
   end
 end
 

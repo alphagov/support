@@ -6,8 +6,8 @@ class CreateNewUserRequestZendeskTicket < ZendeskTicket
     "Create new user"
   end
 
-  def request_specific_tags
-    ["new_user"] + inside_government_tag_if_needed
+  def tags
+    super + ["new_user"] + inside_government_tag_if_needed
   end
 
   protected

@@ -11,8 +11,8 @@ class ExampleZendeskTicketSubclass < ZendeskTicket
 end
 
 class ZendeskTicketTest < Test::Unit::TestCase
-  def new_ticket(attributes, ticket_class = ZendeskTicket)
-    ticket_class.new(OpenStruct.new(attributes))
+  def new_ticket(attributes)
+    ZendeskTicket.new(OpenStruct.new(attributes))
   end
 
   def with_requester(attributes)
@@ -34,12 +34,7 @@ class ZendeskTicketTest < Test::Unit::TestCase
     end
 
     should "have the request-specific tags as defined on the subclass" do
-      ticket = new_ticket(with_a_valid_requester, ExampleZendeskTicketSubclass)
-      assert_includes ticket.tags, "some_tag"
-    end
-
-    should "have the request-specific tags as defined on the subclass" do
-      ticket = new_ticket(with_a_valid_requester, ExampleZendeskTicketSubclass)
+      ticket = new_ticket(with_a_valid_requester)
       assert_includes ticket.tags, "govt_form"
     end
 
