@@ -17,7 +17,7 @@ class RemoveUserRequestTest < Test::Unit::TestCase
   should allow_value("ab@c.com").for(:user_email)
   should_not allow_value("ab").for(:user_email)
 
-  should allow_value("a comment").for(:additional_comments)
+  should allow_value("was fired").for(:reason_for_removal)
 
   should "allow time constraints" do
     request = RemoveUserRequest.new(:time_constraint => stub("time constraint", :valid? => true))
