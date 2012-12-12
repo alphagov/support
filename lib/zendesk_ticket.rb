@@ -34,7 +34,7 @@ class ZendeskTicket
   end
 
   def tags
-    request_specific_tags
+    ["govt_form"] + request_specific_tags
   end
 
   def inside_government_tag_if_needed

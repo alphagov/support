@@ -38,6 +38,11 @@ class ZendeskTicketTest < Test::Unit::TestCase
       assert_includes ticket.tags, "some_tag"
     end
 
+    should "have the request-specific tags as defined on the subclass" do
+      ticket = new_ticket(with_a_valid_requester, ExampleZendeskTicketSubclass)
+      assert_includes ticket.tags, "govt_form"
+    end
+
     context "with time constraints" do
       should "pass the need_by_date through" do
         assert_equal "03-02-2001", 

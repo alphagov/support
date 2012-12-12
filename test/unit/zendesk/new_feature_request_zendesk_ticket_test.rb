@@ -10,7 +10,9 @@ class NewFeatureRequestZendeskTicketTest < Test::Unit::TestCase
 
   context "an inside government request" do
     should "be tagged with inside_government" do
-      assert_equal ["new_feature_request", "inside_government"], ticket_with(:inside_government_related? => true).tags
+      tags_on_ticket = ticket_with(:inside_government_related? => true).tags
+      assert_includes tags_on_ticket, "new_feature_request"
+      assert_includes tags_on_ticket, "inside_government"
     end
 
     should "have a subject" do
@@ -20,7 +22,8 @@ class NewFeatureRequestZendeskTicketTest < Test::Unit::TestCase
 
   context "a mainstream request" do
     should "be tagged with new_need_request" do
-      assert_equal ["new_need_request"], ticket_with(:inside_government_related? => false).tags
+      tags_on_ticket = ticket_with(:inside_government_related? => false).tags
+      assert_includes tags_on_ticket, "new_need_request"
     end
 
     should "have a subject" do

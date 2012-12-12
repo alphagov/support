@@ -15,7 +15,7 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
 
       post :create, params
 
-      assert_equal ['new_user'], @zendesk_api.ticket.tags
+      assert_equal ['govt_form', 'new_user'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
 
       expected_created_user_attributes = {
