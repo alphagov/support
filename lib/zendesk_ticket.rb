@@ -12,7 +12,7 @@ class ZendeskTicket
     @requester = request.requester
   end
 
-  def_delegators :@requester, :email, :collaborator_emails
+  def_delegators :@requester, :email, :name, :collaborator_emails
 
   def comment
     SnippetCollection.new(comment_snippets).to_s
