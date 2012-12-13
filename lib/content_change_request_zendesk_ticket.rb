@@ -17,6 +17,8 @@ class ContentChangeRequestZendeskTicket < ZendeskTicket
                                                        label: "Which part of GOV.UK is this about?"),
       CommentSnippet.new(on: @request,                 field: :url,
                                                        label: "URL of content to be changed"),
+      CommentSnippet.new(on: @request,                 field: :related_urls,
+                                                       label: "Related URLs"),
       CommentSnippet.new(on: @request,                 field: :details_of_change,
                                                        label: "Details of what should be added, amended or removed"),
       CommentSnippet.new(on: @request.time_constraint, field: :time_constraint_reason)
