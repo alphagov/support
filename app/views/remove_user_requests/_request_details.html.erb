@@ -1,15 +1,15 @@
-<%= render :partial => 'support/tool_role_choice', :locals => {:f => f} %>
+<%= render partial: 'support/tool_role_choice', locals: { f: f } %>
 
 <div id="user_details" %>
   <%= f.inputs "User details" do %>
-    <%= f.input :user_name, :label => "Name", :required => true, :input_html => {:class => "span6", :"aria-required" => true } %>
+    <%= f.input :user_name, label: "Name", required: true, input_html: {:class => "span6", :"aria-required" => true } %>
 
-    <%= f.input :user_email, :as => :email, :label => "Email", :required => true, :input_html => {:class => "span6", :"aria-required" => true } %>
+    <%= f.input :user_email, as: :email, label: "Email", required: true, input_html: { :class => "span6", :"aria-required" => true } %>
 
     <%= f.semantic_fields_for :time_constraint do |r| %>
-      <%= r.input :not_before_date, :label => "MUST NOT be removed BEFORE", :required => false, :input_html => {:"calendar-enabled" => true, :placeholder => "dd-mm-YYYY", :value => r.object.not_before_date} %>
+      <%= r.input :not_before_date, label: "MUST NOT be removed BEFORE", required: false, input_html: { :"calendar-enabled" => true, :placeholder => "dd-mm-YYYY", :value => r.object.not_before_date } %>
     <% end %>
 
-    <%= f.input :reason_for_removal, :as => :text, :label => "Reason for removal", :input_html => {:class => "span6", :rows => 6, :cols => 50 } %>
+    <%= f.input :reason_for_removal, as: :text, label: "Reason for removal", input_html: { class: "span6", rows: 6, cols: 50 } %>
   <% end %>
 </div>

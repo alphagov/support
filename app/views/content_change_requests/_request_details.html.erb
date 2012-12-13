@@ -1,6 +1,6 @@
-<%= render :partial => "support/request_context", :locals => {:f => f} %>
+<%= render partial: "support/request_context", locals: { f: f } %>
 
-<%= f.inputs :name => "URL affected" do %>
-  <%= f.input :url, :label => "URL", :input_html => {:class => "span6", :placeholder => "https://www.gov.uk/"} %>
-  <%= f.input :details_of_change, :as => :text, :label => "Details of the requested change", :required => :true, :input_html => {:class => "span6", :rows => 6, :cols => 50, :"aria-required" => true } %>
+<%= f.inputs name: "URL affected" do %>
+  <%= f.input :url, label: "URL", input_html: { class: "span6", placeholder: "https://www.gov.uk/" } %>
+  <%= f.input :details_of_change, as: :text, label: "Details of the requested change", required: true, input_html: { :class => "span6", :rows => 6, :cols => 50, :"aria-required" => true } %>
 <% end %>

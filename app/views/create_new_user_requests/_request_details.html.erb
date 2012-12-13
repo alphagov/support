@@ -1,7 +1,7 @@
-<%= render :partial => 'support/tool_role_choice', :locals => {:f => f} %>
+<%= render partial: 'support/tool_role_choice', locals: { f: f } %>
 
 <div id="user_details" %>
-  <%= render :partial => 'requested_user_details', :locals => {:f => f} %>  
+  <%= render partial: 'requested_user_details', locals: { f: f } %>  
 </div>
 
-<%= f.input :additional_comments, :as => :text, :label => "Additional comments", :input_html => {:class => "span6", :rows => 6, :cols => 50 } %>
+<%= f.input :additional_comments, as: :text, label: "Additional comments", input_html: { class: "span6", rows: 6, cols: 50 } %>
