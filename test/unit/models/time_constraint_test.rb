@@ -36,4 +36,10 @@ class TimeConstraintTest < Test::Unit::TestCase
   should "allow a blank not_before_date if the needed_by_date is set" do
     assert TimeConstraint.new(:needed_by_date => as_str(Date.tomorrow)).valid?
   end
+
+  should "allow launch dates (i.e. not_before_date = needed_by_date)" do
+    constraint = TimeConstraint.new(not_before_date: as_str(Date.tomorrow), 
+                                    needed_by_date: as_str(Date.tomorrow))
+    assert constraint.valid?
+  end
 end
