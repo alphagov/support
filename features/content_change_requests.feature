@@ -10,8 +10,8 @@ Feature: Content change requests
 
   Scenario: successful Mainstream content change request 
     When the user submits the following content change request:
-      | Context                       | Details of change | URL             | Needed by date | Not before date | Reason  |
-      | Mainstream (business/citizen) | Out of date XX YY | http://gov.uk/X | 31-12-2020     | 01-12-2020      | New law |
+      | Context                       | Details of change | URL             | Related URLs | Needed by date | Not before date | Reason  |
+      | Mainstream (business/citizen) | Out of date XX YY | http://gov.uk/X | XXXXX        | 31-12-2020     | 01-12-2020      | New law |
 
     Then the following ticket is raised in ZenDesk:
       | Subject                | Requester email      |
@@ -27,6 +27,9 @@ Feature: Content change requests
 
       [URL of content to be changed]
       http://gov.uk/X
+
+      [Related URLs]
+      XXXXX
 
       [Details of what should be added, amended or removed]
       Out of date XX YY
