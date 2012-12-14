@@ -16,10 +16,23 @@ class User < OpenStruct
     User.new(auth_hash)
   end
 
-  def update_attribute(*args)
+  def remotely_signed_out?
+    remotely_signed_out
+  end
+
+  def update_attribute(key, value)
+    if uid
+      old_attributes = Rails.cache.fetch(uid)
+      new_attributes = old_attributes.merge(key => value)
+      Rails.cache.write(new_attributes["uid"], new_attributes)
+    end
+    send("#{key}=", value)
   end
 
   def update_attributes(params, hash)
-    User.new(params)
+    params.each do |key, value|
+      send("#{key}=", value)
+    end
+    Rails.cache.write(params["uid"], params)
   end
 end
