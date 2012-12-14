@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.datepicker
+//= require twitter/bootstrap/dropdown
 //= require twitter/bootstrap/collapse
 //= require_tree .
 
