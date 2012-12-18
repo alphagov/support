@@ -48,7 +48,7 @@ module Support
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
 
-    config.cache_store = :memory_store
+    config.cache_store = :redis_store
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
