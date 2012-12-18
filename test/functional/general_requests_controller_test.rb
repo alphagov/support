@@ -19,4 +19,12 @@ class GeneralRequestsControllerTest < ActionController::TestCase
       assert_includes @zendesk_api.ticket.comment, "Mozilla/5.0"
     end
   end
+
+  context "the navigation menu" do
+    should "display the user's current request with a special class" do
+      get :new
+
+      assert_select ".sidebar-nav li.active a[href=#{new_general_request_path}]", html: "General"
+    end
+  end
 end
