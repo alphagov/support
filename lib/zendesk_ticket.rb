@@ -10,7 +10,7 @@ class ZendeskTicket
     @requester = request.requester
   end
 
-  def_delegators :@requester, :email, :collaborator_emails
+  def_delegators :@requester, :name, :email, :collaborator_emails
 
   def comment
     applicable_snippets = comment_snippets.select(&:applies?)

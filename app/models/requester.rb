@@ -1,12 +1,18 @@
 require 'tableless_model'
+require 'name_guesser'
 
 class Requester < TablelessModel
   attr_accessor :email
+  attr_writer :name
 
   validates_presence_of :email
   validates :email, :format => {:with => /@/}
 
   validate :collaborator_emails_are_all_valid
+
+  def name
+    @name || NameGuesser.new.guess_from_email(self.email)
+  end
 
   def collaborator_emails
     @collaborator_emails || []
