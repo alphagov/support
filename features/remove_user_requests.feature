@@ -13,8 +13,8 @@ Feature: Remove user requests
       | Tool/Role                 | User's name  | User's email | Not before date | Reason for removal |
       | Departmental Contact Form | Bob Wasfired | bob@gov.uk   | 31-12-2020      | XXXX               |
     Then the following ticket is raised in ZenDesk:
-      | Subject     | Requester email      | Requester name | Phone | Job title |
-      | Remove user | john.smith@email.com | John Smith     | 12345 | Developer |
+      | Subject     | Requester email      | Phone | Job title |
+      | Remove user | john.smith@email.com | 12345 | Developer |
     And the ticket is tagged with "govt_form remove_user"
     And the time constraints on the ticket are:
       | Not before date |
