@@ -29,8 +29,9 @@ class ZendeskTicketTest < Test::Unit::TestCase
 
   context "any request" do
     should "set the requester details correctly" do
-      ticket = new_ticket(with_requester(email: "ab@c.com"))
+      ticket = new_ticket(with_requester(email: "ab@c.com", name: "A B"))
       assert_equal "ab@c.com", ticket.email
+      assert_equal "A B", ticket.name
     end
 
     should "have the request-specific tags as defined on the subclass" do

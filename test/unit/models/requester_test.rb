@@ -14,4 +14,8 @@ class RequesterTest < Test::Unit::TestCase
   should "have an empty list of collaborator emails if not set" do
     assert_equal [], Requester.new.collaborator_emails
   end
+
+  should "guess the name from the email if the name is not explicitly set" do
+    assert_equal "John Smith", Requester.new(email: "john.smith@abc.com").name
+  end
 end
