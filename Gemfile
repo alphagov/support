@@ -13,7 +13,7 @@ end
 
 gem 'aws-ses', require: 'aws/ses'
 gem 'exception_notification', '~> 2.4.1', require: 'exception_notifier'
-gem 'gds-sso', '2.1.0'
+gem 'gds-sso', '3.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '2.0.2'
 gem 'plek', '0.5.0'
