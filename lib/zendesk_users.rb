@@ -1,4 +1,3 @@
-require 'zendesk_client'
 require 'active_support'
 
 class ZendeskUsers

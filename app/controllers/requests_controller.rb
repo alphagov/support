@@ -1,5 +1,5 @@
 require "zendesk_tickets"
-require "zendesk_client"
+require "gds_zendesk/client"
 
 class RequestsController < ApplicationController
   def new
@@ -32,6 +32,6 @@ class RequestsController < ApplicationController
   end
 
   def client
-    ZendeskClient.get_client(logger)
+    GDSZendesk::Client.instance
   end
 end

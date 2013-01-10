@@ -6,7 +6,7 @@ class GeneralRequestsControllerTest < ActionController::TestCase
   setup do
     login_as_stub_user
     @zendesk_api = ZenDeskAPIClientDouble.new
-    ZendeskClient.stubs(:get_client).returns(@zendesk_api)
+    GDSZendesk::Client.stubs(:instance).returns(@zendesk_api)
   end
 
   context "a submitted general request" do

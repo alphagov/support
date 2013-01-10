@@ -1,10 +1,10 @@
 require 'zendesk_tickets'
-require 'zendesk_error'
+require 'gds_zendesk/zendesk_error'
 
 module ZendeskApiStubsHelper
   def stub_zendesk_ticket_submission
     @zendesk_api = ZenDeskAPIClientDouble.new
-    ZendeskClient.stubs(:get_client).returns(@zendesk_api)
+    GDSZendesk::Client.stubs(:instance).returns(@zendesk_api)
   end
 end
 
@@ -64,7 +64,7 @@ class ZenDeskAPIUsersDouble
 
   def create(new_user_attributes)
     if @should_raise_error
-      raise ZendeskError, "error creating users"
+      raise GDSZendesk::ZendeskError, "error creating users"
     else
       @created_user_attributes = new_user_attributes
     end

@@ -1,5 +1,6 @@
 require 'create_new_user_request_zendesk_ticket'
 require 'zendesk_users'
+require 'gds_zendesk/zendesk_error'
 
 class CreateNewUserRequestsController < RequestsController
   protected
@@ -23,7 +24,7 @@ class CreateNewUserRequestsController < RequestsController
   def create_or_update_user_in_zendesk(requested_user)
     begin
       ZendeskUsers.new(client).create_or_update_user(requested_user)
-    rescue ZendeskError => e
+    rescue GDSZendesk::ZendeskError => e
       ExceptionNotifier::Notifier.exception_notification(request.env, e).deliver
     end
   end
