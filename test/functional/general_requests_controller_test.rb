@@ -3,12 +3,6 @@ require 'test_helper'
 class GeneralRequestsControllerTest < ActionController::TestCase
   include TestData
 
-  setup do
-    login_as_stub_user
-    @zendesk_api = ZenDeskAPIClientDouble.new
-    GDSZendesk::Client.stubs(:instance).returns(@zendesk_api)
-  end
-
   context "a submitted general request" do
     should "add the user agent to the ticket in the comments" do
       request.user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2)"

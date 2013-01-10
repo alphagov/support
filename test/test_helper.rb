@@ -8,18 +8,24 @@ require 'webmock/minitest'
 require 'ostruct'
 require_relative 'test_data'
 
-require 'zendesk_api_stubs'
-
 class ActiveSupport::TestCase
   def setup
     super
     WebMock.disable_net_connect!
+    login_as_stub_user
+    switch_zendesk_into_dummy_mode
   end
 
   def login_as_stub_user
     @user = stub("stub user",
                   name: "Stubby McStubby", remotely_signed_out?: false)
     request.env['warden'] = stub(:authenticate! => true, :authenticated? => true, :user => @user)
+  end
+
+  def switch_zendesk_into_dummy_mode
+    GDSZendesk::Client.reset
+    GDSZendesk::Client.configure(development_mode: true)
+    @zendesk_api = GDSZendesk::Client.instance
   end
 end
 

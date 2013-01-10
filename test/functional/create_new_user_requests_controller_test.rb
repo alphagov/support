@@ -4,12 +4,6 @@ require 'gds_zendesk/zendesk_error'
 class CreateNewUserRequestsControllerTest < ActionController::TestCase
   include TestData
 
-  setup do
-    login_as_stub_user
-    @zendesk_api = ZenDeskAPIClientDouble.new
-    GDSZendesk::Client.stubs(:instance).returns(@zendesk_api)
-  end
-
   context "submitted user creation request" do
     should "submit it to ZenDesk" do
       post :create, valid_create_new_user_request_params

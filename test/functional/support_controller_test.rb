@@ -1,12 +1,6 @@
 require "test_helper"
 
 class SupportControllerTest < ActionController::TestCase
-  setup do
-    login_as_stub_user
-    @zendesk_api = ZenDeskAPIClientDouble.new
-    GDSZendesk::Client.stubs(:instance).returns(@zendesk_api)
-  end
-
   context "GET landing" do
     should "render the homepage" do
       get :landing

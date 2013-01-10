@@ -48,10 +48,6 @@ end
 
 class RequestsControllerTest < ActionController::TestCase
   setup do
-    login_as_stub_user
-    @zendesk_api = ZenDeskAPIClientDouble.new
-    GDSZendesk::Client.stubs(:instance).returns(@zendesk_api)
-
     Rails.application.routes.draw do
       match 'new' => "test_requests#new"
       match 'create' => "test_requests#create"

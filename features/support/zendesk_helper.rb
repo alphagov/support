@@ -1,3 +1,2 @@
-require_relative '../../test/zendesk_api_stubs'
-
-World(ZendeskApiStubsHelper)
+GDSZendesk::Client.reset
+GDSZendesk::Client.configure(development_mode: true)
