@@ -1,5 +1,7 @@
-PATH
-  remote: ../gds_zendesk
+GIT
+  remote: https://github.com/alphagov/gds_zendesk.git
+  revision: 0643641afcf957f9ccf49e2ed0785c3a4f5f2bb8
+  ref: 0643641afc
   specs:
     gds_zendesk (0.0.1)
       null_logger (= 0.0.1)
@@ -254,6 +256,7 @@ DEPENDENCIES
   exception_notification (~> 2.4.1)
   formtastic-bootstrap (= 2.0.0)
   gds-sso (= 3.0.0)
+  gds_zendesk!
   jquery-rails
   jquery-ui-rails (= 2.0.2)
   less-rails-bootstrap (= 2.1.1)

@@ -22,7 +22,7 @@ gem 'validates_timeliness', '3.0.14'
 if ENV['GDS_ZENDESK_DEV']
   gem "gds_zendesk", :path => '../gds_zendesk'
 else
-  gem "gds_zendesk", :git => 'https://github.com/alphagov/gds_zendesk.git', :ref => '13f3807c65'
+  gem "gds_zendesk", :git => 'https://github.com/alphagov/gds_zendesk.git', :ref => '0643641afc'
 end
 
 group :test do
