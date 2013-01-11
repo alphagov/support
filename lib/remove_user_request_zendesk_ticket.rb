@@ -1,5 +1,5 @@
 require 'zendesk_ticket'
-require 'comment_snippet'
+require 'labelled_snippet'
 
 class RemoveUserRequestZendeskTicket < ZendeskTicket
   def subject
@@ -13,11 +13,11 @@ class RemoveUserRequestZendeskTicket < ZendeskTicket
   protected
   def comment_snippets
     [ 
-      CommentSnippet.new(on: @request, field: :formatted_tool_role,
+      LabelledSnippet.new(on: @request, field: :formatted_tool_role,
                                        label: "Tool/Role"),
-      CommentSnippet.new(on: @request, field: :user_name),
-      CommentSnippet.new(on: @request, field: :user_email),
-      CommentSnippet.new(on: @request, field: :reason_for_removal)
+      LabelledSnippet.new(on: @request, field: :user_name),
+      LabelledSnippet.new(on: @request, field: :user_email),
+      LabelledSnippet.new(on: @request, field: :reason_for_removal)
     ]
   end
 end

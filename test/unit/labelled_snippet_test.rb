@@ -1,11 +1,11 @@
 require 'test/unit'
 require 'shoulda/context'
 require 'ostruct'
-require 'comment_snippet'
+require 'labelled_snippet'
 
-class CommentSnippetTest < Test::Unit::TestCase
+class LabelledSnippetTest < Test::Unit::TestCase
   def snippet(opts)
-    CommentSnippet.new(opts)
+    LabelledSnippet.new(opts)
   end
 
   def data(opts = {})

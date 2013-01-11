@@ -1,6 +1,6 @@
 require 'active_support/inflector'
 
-class CommentSnippet
+class LabelledSnippet
   def initialize(options)
     @options = options
   end

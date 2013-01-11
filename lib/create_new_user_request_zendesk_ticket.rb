@@ -1,5 +1,5 @@
 require 'zendesk_ticket'
-require 'comment_snippet'
+require 'labelled_snippet'
 
 class CreateNewUserRequestZendeskTicket < ZendeskTicket
   def subject
@@ -13,17 +13,17 @@ class CreateNewUserRequestZendeskTicket < ZendeskTicket
   protected
   def comment_snippets
     [ 
-      CommentSnippet.new(on: @request, field: :formatted_tool_role,
+      LabelledSnippet.new(on: @request, field: :formatted_tool_role,
                                        label: "Tool/Role"),
-      CommentSnippet.new(on: @request.requested_user, field: :name,
+      LabelledSnippet.new(on: @request.requested_user, field: :name,
                                                       label: "Requested user's name"),
-      CommentSnippet.new(on: @request.requested_user, field: :email,
+      LabelledSnippet.new(on: @request.requested_user, field: :email,
                                                       label: "Requested user's email"),
-      CommentSnippet.new(on: @request.requested_user, field: :job,
+      LabelledSnippet.new(on: @request.requested_user, field: :job,
                                                       label: "Requested user's job title"),
-      CommentSnippet.new(on: @request.requested_user, field: :phone,
+      LabelledSnippet.new(on: @request.requested_user, field: :phone,
                                                       label: "Requested user's phone number"),
-      CommentSnippet.new(on: @request, field: :additional_comments)
+      LabelledSnippet.new(on: @request, field: :additional_comments)
     ]
   end
 end
