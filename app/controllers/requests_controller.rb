@@ -11,7 +11,7 @@ class RequestsController < ApplicationController
     if @request.valid?
       process_valid_request(@request)
     else
-      render :new, :status => 400
+      render :new, status: 400
     end
   end
 
@@ -27,7 +27,11 @@ class RequestsController < ApplicationController
     if ticket
       redirect_to acknowledge_path
     else
-      return render "support/zendesk_error", :locals => {:error_string => "zendesk_error_upon_submit"}
+      return render "support/zendesk_error", locals: { error_string: "Zendesk timed out", ticket: ticket }
     end
+  rescue GDSZendesk::ZendeskError => e
+    ExceptionNotifier::Notifier.exception_notification(request.env, e).deliver
+    render "support/zendesk_error", status: 500, locals: { error_string: e.underlying_message, 
+                                                           ticket: ticket }
   end
 end
