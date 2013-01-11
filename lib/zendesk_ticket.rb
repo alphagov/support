@@ -1,6 +1,7 @@
 require 'forwardable'
 require 'date'
 require 'active_support'
+require 'snippet_collection'
 
 class ZendeskTicket
   extend Forwardable
@@ -13,8 +14,7 @@ class ZendeskTicket
   def_delegators :@requester, :email, :collaborator_emails
 
   def comment
-    applicable_snippets = comment_snippets.select(&:applies?)
-    applicable_snippets.collect(&:to_s).join("\n\n")
+    SnippetCollection.new(comment_snippets).to_s
   end
 
   def not_before_date
