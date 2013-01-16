@@ -23,7 +23,7 @@ class CreateNewUserRequestsController < RequestsController
 
   def create_or_update_user_in_zendesk(requested_user)
     begin
-      GDSZendesk::Users.new(client).create_or_update_user(requested_user)
+      GDSZendesk::Users.new(GDS_ZENDESK_CLIENT).create_or_update_user(requested_user)
     rescue GDSZendesk::ZendeskError => e
       ExceptionNotifier::Notifier.exception_notification(request.env, e).deliver
     end

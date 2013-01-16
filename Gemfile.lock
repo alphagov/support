@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/alphagov/gds_zendesk.git
-  revision: 0643641afcf957f9ccf49e2ed0785c3a4f5f2bb8
-  ref: 0643641afc
+  revision: cb88a21e1f74bdb8a28f43d124eadbda6ea61f46
+  ref: cb88a21e1f
   specs:
     gds_zendesk (0.0.1)
       null_logger (= 0.0.1)

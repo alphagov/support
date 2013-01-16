@@ -23,9 +23,7 @@ class ActiveSupport::TestCase
   end
 
   def switch_zendesk_into_dummy_mode
-    GDSZendesk::Client.reset
-    GDSZendesk::Client.configure(development_mode: true)
-    @zendesk_api = GDSZendesk::Client.instance
+    @zendesk_api = GDS_ZENDESK_CLIENT
   end
 end
 

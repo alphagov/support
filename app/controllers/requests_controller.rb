@@ -1,5 +1,5 @@
 require "zendesk_tickets"
-require "gds_zendesk/client"
+require 'gds_zendesk/zendesk_error'
 
 class RequestsController < ApplicationController
   def new
@@ -22,16 +22,12 @@ class RequestsController < ApplicationController
 
   private
   def raise_ticket(ticket)
-    ticket = ZendeskTickets.new(client).raise_ticket(ticket)
+    ticket = ZendeskTickets.new(GDS_ZENDESK_CLIENT).raise_ticket(ticket)
 
     if ticket
       redirect_to acknowledge_path
     else
       return render "support/zendesk_error", :locals => {:error_string => "zendesk_error_upon_submit"}
     end
-  end
-
-  def client
-    GDSZendesk::Client.instance
   end
 end
