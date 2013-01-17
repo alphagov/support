@@ -2,6 +2,7 @@
 
 export FACTER_govuk_platform=test
 export RAILS_ENV=test
+export GOVUK_APP_DOMAIN=dev.gov.uk
 export DISPLAY=":99"
 
 bundle install --path "${HOME}/bundles/${JOB_NAME}" --deployment
@@ -18,6 +19,6 @@ rm config/zendesk.yml
 # Copy in the template, which will work for test mode
 cp config/zendesk.yml.template config/zendesk.yml
 
-govuk_setenv support bundle exec rake
+bundle exec rake
 RESULT=$?
 exit $RESULT
