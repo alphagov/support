@@ -1,13 +1,8 @@
-require_relative "zendesk_ticket"
+require 'gds_zendesk/field_mappings'
 
 class ZendeskTickets
   def initialize(client)
     @client = client
-  end
-
-  def self.field_ids
-    { needed_by_date:  "21485833",
-      not_before_date: "21502036" }
   end
 
   def raise_ticket(ticket_to_raise)
@@ -17,8 +12,8 @@ class ZendeskTickets
       :priority => "normal",
       :requester => {"locale_id" => 1, "email" => ticket_to_raise.email, "name" => ticket_to_raise.email},
       :collaborators => ticket_to_raise.collaborator_emails,
-      :fields => [{"id" => ZendeskTickets.field_ids[:needed_by_date],  "value" => ticket_to_raise.needed_by_date},
-                  {"id" => ZendeskTickets.field_ids[:not_before_date], "value" => ticket_to_raise.not_before_date}],
+      :fields => [{"id" => GDSZendesk::FIELD_MAPPINGS[:needed_by_date],  "value" => ticket_to_raise.needed_by_date},
+                  {"id" => GDSZendesk::FIELD_MAPPINGS[:not_before_date], "value" => ticket_to_raise.not_before_date}],
       :tags => ticket_to_raise.tags,
       :comment => {:value => ticket_to_raise.comment})
   end

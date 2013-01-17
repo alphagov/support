@@ -17,9 +17,13 @@ gem 'gds-sso', '3.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '2.0.2'
 gem 'plek', '1.0.0'
-gem 'zendesk_api', '0.1.2'
 gem 'formtastic-bootstrap', '2.0.0'
 gem 'validates_timeliness', '3.0.14'
+if ENV['GDS_ZENDESK_DEV']
+  gem "gds_zendesk", :path => '../gds_zendesk'
+else
+  gem "gds_zendesk", :git => 'https://github.com/alphagov/gds_zendesk.git', :ref => 'cb88a21e1f'
+end
 
 group :test do
   gem "mocha", "0.12.6", require: false
