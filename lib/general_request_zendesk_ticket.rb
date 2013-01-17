@@ -1,5 +1,5 @@
 require 'zendesk_ticket'
-require 'comment_snippet'
+require 'labelled_snippet'
 
 class GeneralRequestZendeskTicket < ZendeskTicket
   def subject
@@ -13,9 +13,9 @@ class GeneralRequestZendeskTicket < ZendeskTicket
   protected
   def comment_snippets
     [ 
-      CommentSnippet.new(on: @request, field: :url),
-      CommentSnippet.new(on: @request, field: :user_agent),
-      CommentSnippet.new(on: @request, field: :additional)
+      LabelledSnippet.new(on: @request, field: :url),
+      LabelledSnippet.new(on: @request, field: :user_agent),
+      LabelledSnippet.new(on: @request, field: :additional)
     ]
   end
 end

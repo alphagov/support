@@ -58,6 +58,7 @@ class RequestsControllerTest < ActionController::TestCase
   end
 
   teardown do
+    GDS_ZENDESK_CLIENT.reset
     Rails.application.reload_routes!
   end
 
@@ -83,13 +84,25 @@ class RequestsControllerTest < ActionController::TestCase
       post :create, params
     end
 
-    should "submit it to ZenDesk" do
+    should "submit it to Zendesk" do
       params = valid_params_for_test_request
 
       post :create, params
 
       assert_equal ['tag_a', 'tag_b'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
+    end
+
+    should "notify the user and operations if there was an error submitting to Zendesk" do
+      @zendesk_api.ticket.should_raise_error
+      params = valid_params_for_test_request
+
+      @controller.expects(:render).with("support/zendesk_error", has_entry(status: 500))
+      ExceptionNotifier::Notifier.expects(:exception_notification)
+                           .with(anything, kind_of(GDSZendesk::ZendeskError))
+                           .returns(stub("mailer", deliver: true))
+
+      post :create, params
     end
 
     should "set collaborators if they're set on the request" do

@@ -1,6 +1,0 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
-en:
-  zendesk_error_upon_submit: "We're sorry, we were unable to submit your ticket to our ticketing system successfully."
-  zendesk_error_upon_new_form: "We're sorry, it appears we are unable to connect to our ticketing system right now."

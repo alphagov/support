@@ -1,5 +1,5 @@
 require 'zendesk_ticket'
-require 'comment_snippet'
+require 'labelled_snippet'
 
 class NewFeatureRequestZendeskTicket < ZendeskTicket
   attr_reader :time_constraint
@@ -16,11 +16,11 @@ class NewFeatureRequestZendeskTicket < ZendeskTicket
   protected
   def comment_snippets
     [ 
-      CommentSnippet.new(on: @request,                 field: :formatted_request_context,
+      LabelledSnippet.new(on: @request,                 field: :formatted_request_context,
                                                        label: "Which part of GOV.UK is this about?"),
-      CommentSnippet.new(on: @request,                 field: :user_need),
-      CommentSnippet.new(on: @request,                 field: :url_of_example),
-      CommentSnippet.new(on: @request.time_constraint, field: :time_constraint_reason)
+      LabelledSnippet.new(on: @request,                 field: :user_need),
+      LabelledSnippet.new(on: @request,                 field: :url_of_example),
+      LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason)
     ]
   end
 end

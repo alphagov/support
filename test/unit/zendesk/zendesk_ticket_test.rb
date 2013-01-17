@@ -38,6 +38,14 @@ class ZendeskTicketTest < Test::Unit::TestCase
       assert_includes ticket.tags, "govt_form"
     end
 
+    should "have a text representation" do
+      ticket = new_ticket(with_requester(email: "ab@c.com", collaborator_emails: "a, b"))
+      ticket.stubs(:comment_snippets).returns([])
+
+      assert_includes ticket.to_s, "ab@c.com"
+      assert_includes ticket.to_s, "a, b"
+    end
+
     context "with time constraints" do
       should "pass the need_by_date through" do
         assert_equal "03-02-2001", 
