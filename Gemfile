@@ -22,7 +22,7 @@ gem 'validates_timeliness', '3.0.14'
 if ENV['GDS_ZENDESK_DEV']
   gem "gds_zendesk", :path => '../gds_zendesk'
 else
-  gem "gds_zendesk", '0.0.3'
+  gem "gds_zendesk", '0.0.4'
 end
 
 group :test do
