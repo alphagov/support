@@ -1,6 +1,8 @@
 require 'forwardable'
 require 'date'
 require 'active_support'
+require 'snippet_collection'
+require 'labelled_snippet'
 
 class ZendeskTicket
   extend Forwardable
@@ -13,8 +15,7 @@ class ZendeskTicket
   def_delegators :@requester, :email, :collaborator_emails
 
   def comment
-    applicable_snippets = comment_snippets.select(&:applies?)
-    applicable_snippets.collect(&:to_s).join("\n\n")
+    SnippetCollection.new(comment_snippets).to_s
   end
 
   def not_before_date
@@ -41,8 +42,19 @@ class ZendeskTicket
     @request.inside_government_related? ? ["inside_government"] : []
   end
 
+  def to_s
+    SnippetCollection.new(base_attribute_snippets + comment_snippets).to_s
+  end
+
   private
-    
+  def base_attribute_snippets
+    [
+      LabelledSnippet.new(on: @requester, field: :email, label: "Requester email"),
+      LabelledSnippet.new(on: @requester, field: :collaborator_emails),
+      LabelledSnippet.new(on: self, field: :tags),
+    ]
+  end
+
   def has_value?(param, target = nil)
     target ||= @request
     target.respond_to?(param) and not target.send(param).blank?

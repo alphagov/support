@@ -1,10 +1,41 @@
 <%= content_for :page_title, "Home" %>
 <%= content_for :header, "Welcome to GOV.UK Support" %>
 <div class="alert alert-error">
-  <h2>
-    <%= I18n.t error_string %>
-  </h2>
+  <h3>
+    Unfortunately, your request could not be submitted to Zendesk.
+  </h3>
   <p>
-    Please wait and try again in a little while. Thank you!
+    This could be due to:
+
+    <ul>
+      <li>a problem with the GOV.UK support form</li>
+      <li>a problem with Zendesk</li>
+      <li>a typo or error within your request</li>
+    </ul>
   </p>
+
+  <h5>
+    <a data-toggle="collapse" data-target="#problem-details">
+      <i class="icon-chevron-right hidden"></i><i class="icon-chevron-down hidden"></i>
+      The error message <small id="problem-details-toggle" class="hidden">(click to show/hide)</small>
+    </a>
+  </h5>
+
+  <div id="problem-details" class="collapse in">
+    <p>
+      <pre>
+<%= error_string %>
+      </pre>
+    </p>
+  </div>
 </div>
+
+<h3>Next steps</h3>
+
+<p>
+  We have been notified of the problem and received a copy of your request. Please review it below. If needed, you can use your browser's Back button to correct and re-submit your request.
+
+  <pre>
+<%= ticket.to_s %>
+  </pre>
+<p>
