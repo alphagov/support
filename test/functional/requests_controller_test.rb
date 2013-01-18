@@ -48,6 +48,9 @@ end
 
 class RequestsControllerTest < ActionController::TestCase
   setup do
+    @logged_in_user_details = { name: "John Smith", email: "john.smith@gov.uk" }
+    login_as_stub_user(@logged_in_user_details[:name], @logged_in_user_details[:email])
+
     Rails.application.routes.draw do
       match 'new' => "test_requests#new"
       match 'create' => "test_requests#create"
@@ -103,6 +106,15 @@ class RequestsControllerTest < ActionController::TestCase
                            .returns(stub("mailer", deliver: true))
 
       post :create, params
+    end
+
+    should "read the signed-in user's details as the requester" do
+      params = valid_params_for_test_request
+
+      post :create, params
+
+      assert_equal @logged_in_user_details[:email], @zendesk_api.ticket.email
+      assert_equal @logged_in_user_details[:name], @zendesk_api.ticket.name
     end
 
     should "set collaborators if they're set on the request" do
