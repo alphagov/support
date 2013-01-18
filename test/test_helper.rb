@@ -12,7 +12,7 @@ class ActiveSupport::TestCase
   def setup
     super
     WebMock.disable_net_connect!
-    login_as_stub_user
+    login_as_stub_user if @user.nil?
     switch_zendesk_into_dummy_mode
   end
 

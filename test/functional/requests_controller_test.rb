@@ -96,7 +96,6 @@ class RequestsControllerTest < ActionController::TestCase
       assert_redirected_to "/acknowledge"
     end
 
-<<<<<<< HEAD
     should "notify the user and operations if there was an error submitting to Zendesk" do
       @zendesk_api.ticket.should_raise_error
       params = valid_params_for_test_request
@@ -107,7 +106,8 @@ class RequestsControllerTest < ActionController::TestCase
                            .returns(stub("mailer", deliver: true))
 
       post :create, params
-=======
+    end
+
     should "read the signed-in user's details as the requester" do
       params = valid_params_for_test_request
 
@@ -115,7 +115,6 @@ class RequestsControllerTest < ActionController::TestCase
 
       assert_equal @logged_in_user_details[:email], @zendesk_api.ticket.email
       assert_equal @logged_in_user_details[:name], @zendesk_api.ticket.name
->>>>>>> removing need to specify requester email
     end
 
     should "set collaborators if they're set on the request" do
