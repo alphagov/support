@@ -16,24 +16,6 @@
     <div class="navbar-inner">
       <div class="container-fluid">
         <%= link_to 'GOV.UK Support', root_path, :class => "brand" %>
-        <ul class="nav pull-right">
-          <li class="dropdown">
-            <a href="#"
-              class="dropdown-toggle"
-              data-toggle="dropdown">
-              Services
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="http://digital.cabinetoffice.gov.uk/">GDS blog</a></li>
-              <li><a href="http://wiki.digital.cabinet-office.gov.uk/">GDS wiki</a></li>
-              <li class="divider"></li>
-              <li><%= link_to 'Sign out', gds_sign_out_path %></li>
-            </ul>
-          </li>
-        </ul>
-
-        <p id="logged-in-user" class="navbar-text pull-right">Signed in as <a href="<%= Plek.current.find('signon') %>"><%= current_user.name %></a></p>
       </div>
     </div>
   </header>

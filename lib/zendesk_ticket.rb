@@ -12,7 +12,7 @@ class ZendeskTicket
     @requester = request.requester
   end
 
-  def_delegators :@requester, :email, :name, :collaborator_emails
+  def_delegators :@requester, :email, :collaborator_emails
 
   def comment
     SnippetCollection.new(comment_snippets).to_s
@@ -49,7 +49,6 @@ class ZendeskTicket
   private
   def base_attribute_snippets
     [
-      LabelledSnippet.new(on: @requester, field: :name, label: "Requester name"),
       LabelledSnippet.new(on: @requester, field: :email, label: "Requester email"),
       LabelledSnippet.new(on: @requester, field: :collaborator_emails),
       LabelledSnippet.new(on: self, field: :tags),

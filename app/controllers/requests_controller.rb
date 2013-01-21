@@ -8,8 +8,6 @@ class RequestsController < ApplicationController
 
   def create
     @request = parse_request_from_params
-    set_logged_in_user_as_requester_on(@request)
-
     if @request.valid?
       process_valid_request(@request)
     else
@@ -23,12 +21,6 @@ class RequestsController < ApplicationController
   end
 
   private
-  def set_logged_in_user_as_requester_on(request)
-    request.requester ||= Requester.new
-    request.requester.name = current_user.name
-    request.requester.email = current_user.email
-  end
-
   def raise_ticket(ticket)
     ticket = ZendeskTickets.new(GDS_ZENDESK_CLIENT).raise_ticket(ticket)
 

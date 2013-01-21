@@ -12,13 +12,13 @@ class ActiveSupport::TestCase
   def setup
     super
     WebMock.disable_net_connect!
-    login_as_stub_user if @user.nil?
+    login_as_stub_user
     switch_zendesk_into_dummy_mode
   end
 
-  def login_as_stub_user(name = "Stubby McStubby", email = "stubby@gov.uk")
+  def login_as_stub_user
     @user = stub("stub user",
-                  name: name, remotely_signed_out?: false, email: email)
+                  name: "Stubby McStubby", remotely_signed_out?: false)
     request.env['warden'] = stub(:authenticate! => true, :authenticated? => true, :user => @user)
   end
 

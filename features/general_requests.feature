@@ -14,7 +14,7 @@ Feature: General requests
       | The site is down | https://www.gov.uk |
     Then the following ticket is raised in ZenDesk:
       | Subject                   | Requester email      | Requester name       |
-      | Govt Agency General Issue | john.smith@email.com | John Smith           | 
+      | Govt Agency General Issue | john.smith@email.com | john.smith@email.com | 
     And the ticket is tagged with "govt_form govt_agency_general"
     And the comment on the ticket is:
       """

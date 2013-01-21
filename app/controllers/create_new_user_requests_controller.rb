@@ -5,7 +5,7 @@ require 'gds_zendesk/zendesk_error'
 class CreateNewUserRequestsController < RequestsController
   protected
   def new_request
-    CreateNewUserRequest.new(requested_user: RequestedUser.new)
+    CreateNewUserRequest.new(requester: Requester.new, requested_user: RequestedUser.new)
   end
 
   def zendesk_ticket_class
