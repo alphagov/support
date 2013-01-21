@@ -5,8 +5,8 @@ Feature: Remove user requests
 
   Background:
     * the following user has SSO access:
-      | Name         | Email                |
-      | John Smith   | john.smith@email.com |
+      | Name         | Email                | Job title | Phone |
+      | John Smith   | john.smith@email.com | Developer | 12345 |
 
   Scenario: successful remove user request for publisher
     When the user submits the following remove user request:
