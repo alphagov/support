@@ -1,3 +1,7 @@
+When /^the user fills out their details$/ do
+  fill_in "Your email", :with => @user_details["Email"]
+end
+
 When /^the user fills out the time constraints$/ do
   fill_in "MUST be published by", :with => @request_details["Needed by date"]
   fill_in "MUST NOT be published BEFORE", :with => @request_details["Not before date"]
@@ -18,6 +22,8 @@ When /^the user submits the following general request:$/ do |request_details_tab
 
   assert page.has_content?("Report a problem")
 
+  step "the user fills out their details"
+
   fill_in "Details", :with => @request_details['Details']
   fill_in "URL (if applicable)", :with => @request_details['URL']
 
@@ -32,6 +38,8 @@ When /^the user submits the following new feature request:$/ do |request_details
   click_on "New feature/need"
 
   assert page.has_content?("Request a new feature/need")
+
+  step "the user fills out their details"
 
   within "#request-context" do
     choose @request_details["Context"]
@@ -53,6 +61,8 @@ When /^the user submits the following content change request:$/ do |request_deta
 
   assert page.has_content?("Request a change")
 
+  step "the user fills out their details"
+
   within "#request-context" do
     choose @request_details["Context"]
   end
@@ -73,6 +83,8 @@ When /^the user submits the following create user request:$/ do |request_details
   click_on "Create new user"
 
   assert page.has_content?("Create a new user account")
+
+  step "the user fills out their details"
 
   within "#tool-role-choice" do
     choose @request_details["Tool/Role"]
@@ -99,6 +111,8 @@ When /^the user submits the following remove user request:$/ do |request_details
 
   assert page.has_content?("Request to remove user access")
 
+  step "the user fills out their details"
+
   within "#tool-role-choice" do
     choose @request_details["Tool/Role"]
   end
@@ -122,6 +136,8 @@ When /^the user submits the following campaign request:$/ do |request_details_ta
   click_on "Campaign"
 
   assert page.has_content?("Request GDS support for a campaign")
+
+  step "the user fills out their details"
 
   fill_in "Campaign title", :with => @request_details["Campaign title"]
   fill_in "ERG reference number", :with => @request_details["ERG ref number"]
