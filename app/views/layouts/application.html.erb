@@ -30,27 +30,7 @@
 
         <div class="row-fluid">
           <div class="span2">
-            <div class="well sidebar-nav">
-              <ul class="nav nav-list">
-                <li class="nav-header">Content request</li>
-                <%= nav_link 'Content change', new_content_change_request_path %>
-                <%= nav_link 'New feature/need', new_new_feature_request_path %>
-              </ul>
-              <ul class="nav nav-list">
-                <li class="nav-header">User Access</li>
-                <%= nav_link 'Create new user', new_create_new_user_request_path %>
-                <%= nav_link 'Remove user', new_remove_user_request_path %>
-              </ul>
-              <ul class="nav nav-list">
-                <li class="nav-header">Campaigns</li>
-                <%= nav_link 'Campaign', new_campaign_request_path %>
-              </ul>
-              <ul class="nav nav-list">
-                <li class="nav-header">Other Issues</li>
-                <%= nav_link 'General', new_general_request_path %>
-              </ul>
-            </div>
-
+            <%= render partial: 'support/new_request_links', locals: { request_groups: RequestGroups.new } %>
           </div>
 
           <div class="span10">

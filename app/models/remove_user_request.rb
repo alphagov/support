@@ -11,4 +11,8 @@ class RemoveUserRequest < TablelessModel
   attr_accessor :user_name, :user_email, :reason_for_removal
   validates_presence_of :user_name, :user_email
   validates :user_email, :format => {:with => /@/}
+
+  def self.label
+    "Remove user"
+  end
 end

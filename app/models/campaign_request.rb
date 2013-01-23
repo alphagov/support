@@ -17,4 +17,8 @@ class CampaignRequest < TablelessModel
   end
 
   attr_accessor :additional_comments
+
+  def self.label
+    "Campaign"
+  end
 end

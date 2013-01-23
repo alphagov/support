@@ -5,4 +5,8 @@ class GeneralRequest < TablelessModel
   include WithRequester
 
   attr_accessor :url, :additional, :user_agent
+
+  def self.label
+    "General"
+  end
 end

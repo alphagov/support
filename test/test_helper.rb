@@ -19,7 +19,7 @@ class ActiveSupport::TestCase
   def login_as_stub_user
     @user = stub("stub user",
                   name: "Stubby McStubby", remotely_signed_out?: false)
-    request.env['warden'] = stub(:authenticate! => true, :authenticated? => true, :user => @user)
+    request.env['warden'] = stub(:authenticate! => true, :authenticated? => true, :user => @user) unless request.nil?
   end
 
   def switch_zendesk_into_dummy_mode
