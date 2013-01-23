@@ -1,0 +1,10 @@
+<div class="well sidebar-nav">
+  <% request_groups.each do |request_group| %>
+    <ul class="nav nav-list">
+      <li class="nav-header"><%= request_group.title %></li>
+      <% request_group.request_classes.each do |request_class| %>
+        <%= nav_link request_class.label, path_to_new_request(request_class) %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

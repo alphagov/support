@@ -11,4 +11,8 @@ class CreateNewUserRequest < TablelessModel
   def requested_user_attributes=(attr)
     self.requested_user = RequestedUser.new(attr)
   end
+
+  def self.label
+    "Create new user"
+  end
 end
