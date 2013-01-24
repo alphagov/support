@@ -10,4 +10,8 @@ class NewFeatureRequest < TablelessModel
 
   attr_accessor :user_need, :url_of_example
   validates_presence_of :user_need
+
+  def self.label
+    "New feature/need"
+  end
 end
