@@ -13,4 +13,8 @@ class RequestGroups
   def each(&block)
     @groups.each(&block)
   end
+
+  def all_request_classes
+    @groups.collect(&:request_classes).flatten
+  end
 end
