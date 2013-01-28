@@ -150,3 +150,37 @@ When /^the user submits the following campaign request:$/ do |request_details_ta
 
   step "the user submits the request successfully"
 end
+
+When /^the user submits the following analytics request:$/ do |request_details_table|
+  @request_details = request_details_table.hashes.first
+
+  visit '/'
+
+  click_on "Analytics"
+
+  assert page.has_content?("Request analytics reports from GDS")
+
+  step "the user fills out their details"
+
+  within "#request-context" do
+    choose @request_details["Context"]
+  end
+
+  fill_in "From", :with => @request_details["From"]
+  fill_in "To", :with => @request_details["To"]
+
+  fill_in "Which page(s) or section(s) on GOV.UK do you want data for? (Please provide URLs and, if possible or relevant, Need IDs)",
+    with: @request_details["Pages/sections/URLs"]
+
+  fill_in "How will you use the report and what decisions will it help you make?",
+    with: @request_details["What's it for"]
+
+  fill_in "Beyond the standard reporting, what other information are you interested in?",
+    with: @request_details["More detailed analysis"]
+
+  within "#frequency" do
+    choose @request_details["Frequency"]
+  end
+
+  step "the user submits the request successfully"
+end
