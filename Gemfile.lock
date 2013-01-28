@@ -145,7 +145,7 @@ GEM
     omniauth-oauth2 (1.1.1)
       oauth2 (~> 0.8.0)
       omniauth (~> 1.0)
-    plek (1.0.0)
+    plek (1.1.0)
       builder
     poltergeist (0.7.0)
       capybara (~> 1.1)
@@ -255,7 +255,7 @@ DEPENDENCIES
   jquery-ui-rails (= 2.0.2)
   less-rails-bootstrap (= 2.1.1)
   mocha (= 0.12.6)
-  plek (= 1.0.0)
+  plek (= 1.1.0)
   poltergeist (= 0.7.0)
   rails (= 3.2.11)
   sass-rails (~> 3.2.3)
