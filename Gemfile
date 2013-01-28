@@ -16,7 +16,7 @@ gem 'exception_notification', '~> 2.4.1', require: 'exception_notifier'
 gem 'gds-sso', '3.0.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '2.0.2'
-gem 'plek', '1.0.0'
+gem 'plek', '1.1.0'
 gem 'formtastic-bootstrap', '2.0.0'
 gem 'validates_timeliness', '3.0.14'
 if ENV['GDS_ZENDESK_DEV']
