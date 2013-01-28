@@ -3,7 +3,11 @@ require 'labelled_snippet'
 
 class ContentChangeRequestZendeskTicket < ZendeskTicket
   def subject
-    "Content change request"
+    unless @request.title.nil? or @request.title.empty?
+      "#{@request.title} - Content change request"
+    else
+      "Content change request"
+    end
   end
 
   def tags
