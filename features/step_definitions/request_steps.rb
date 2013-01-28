@@ -67,6 +67,7 @@ When /^the user submits the following content change request:$/ do |request_deta
     choose @request_details["Context"]
   end
 
+  fill_in "Title of request", :with => @request_details["Title"] unless @request_details["Title"].nil?
   fill_in "Details of the requested change", :with => @request_details["Details of change"]
   fill_in "URL", :with => @request_details["URL"]
   fill_in "Does this affect any other URLs? (please specify one per line)", :with => @request_details["Related URLs"]

@@ -10,12 +10,12 @@ Feature: Content change requests
 
   Scenario: successful Mainstream content change request 
     When the user submits the following content change request:
-      | Context                       | Details of change | URL             | Related URLs | Needed by date | Not before date | Reason  |
-      | Mainstream (business/citizen) | Out of date XX YY | http://gov.uk/X | XXXXX        | 31-12-2020     | 01-12-2020      | New law |
+      | Context                       | Title    | Details of change | URL             | Related URLs | Needed by date | Not before date | Reason  |
+      | Mainstream (business/citizen) | Update X | Out of date XX YY | http://gov.uk/X | XXXXX        | 31-12-2020     | 01-12-2020      | New law |
 
     Then the following ticket is raised in ZenDesk:
-      | Subject                | Requester email      |
-      | Content change request | john.smith@email.com |
+      | Subject                           | Requester email      |
+      | Update X - Content change request | john.smith@email.com |
     And the time constraints on the ticket are:
       | Need by date | Not before date |
       | 31-12-2020   | 01-12-2020      |
