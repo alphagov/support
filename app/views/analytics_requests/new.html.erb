@@ -1,0 +1,15 @@
+<%= content_for :page_title, "Analytics" %>
+<%= content_for :header, "Request analytics reports from GDS" %>
+
+<div class="well">
+  <%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
+
+    <%= render partial: "support/requester", locals: { f: f, show_collaborators: true } %>
+
+    <%= render partial: "support/request_context", locals: { f: f } %>
+
+    <%= render partial: "needed_report_details", locals: { f: f } %>
+
+    <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
+  <% end %>
+</div>
