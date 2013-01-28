@@ -1,4 +1,4 @@
-require 'tableless_model'
+require 'shared/tableless_model'
 
 class TimeConstraint < TablelessModel
   attr_accessor :not_before_date, :needed_by_date, :time_constraint_reason

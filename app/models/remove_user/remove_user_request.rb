@@ -1,7 +1,7 @@
-require 'tableless_model'
-require 'with_requester'
-require 'with_tool_role_choice'
-require 'with_time_constraint'
+require 'shared/tableless_model'
+require 'shared/with_requester'
+require 'shared/with_tool_role_choice'
+require 'shared/with_time_constraint'
 
 class RemoveUserRequest < TablelessModel
   include WithRequester

@@ -1,6 +1,6 @@
-require 'tableless_model'
-require 'with_requester'
-require 'with_tool_role_choice'
+require 'shared/tableless_model'
+require 'shared/with_requester'
+require 'shared/with_tool_role_choice'
 
 class CreateNewUserRequest < TablelessModel
   include WithRequester

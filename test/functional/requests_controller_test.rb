@@ -1,5 +1,5 @@
 require 'test_helper'
-require 'tableless_model'
+require 'shared/tableless_model'
 require 'zendesk_ticket'
 
 class TestRequest < TablelessModel

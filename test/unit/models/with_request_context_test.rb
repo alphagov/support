@@ -1,5 +1,5 @@
-require 'tableless_model'
-require 'with_request_context'
+require 'shared/tableless_model'
+require 'shared/with_request_context'
 require 'test_helper'
 
 class TestModelWithRequestContext < TablelessModel

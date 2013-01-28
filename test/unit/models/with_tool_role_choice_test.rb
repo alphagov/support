@@ -1,5 +1,5 @@
-require 'tableless_model'
-require 'with_tool_role_choice'
+require 'shared/tableless_model'
+require 'shared/with_tool_role_choice'
 require 'test_helper'
 
 class TestModelWithToolRoleChoice < TablelessModel

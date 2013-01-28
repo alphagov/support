@@ -1,4 +1,4 @@
-require 'requester'
+require 'shared/requester'
 
 module WithRequester
   def self.included(base)

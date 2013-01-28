@@ -1,7 +1,7 @@
-require 'tableless_model'
-require 'with_requester'
-require 'with_time_constraint'
-require 'with_request_context'
+require 'shared/tableless_model'
+require 'shared/with_requester'
+require 'shared/with_time_constraint'
+require 'shared/with_request_context'
 
 class NewFeatureRequest < TablelessModel
   include WithRequester

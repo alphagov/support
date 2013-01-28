@@ -1,4 +1,4 @@
-require 'tableless_model'
+require 'shared/tableless_model'
 
 class Requester < TablelessModel
   attr_accessor :email

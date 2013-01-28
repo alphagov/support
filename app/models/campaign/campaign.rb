@@ -1,4 +1,4 @@
-require 'tableless_model'
+require 'shared/tableless_model'
 
 class Campaign < TablelessModel
   attr_accessor :title, :erg_reference_number, :start_date, :description, :affiliated_group_or_company, :info_url

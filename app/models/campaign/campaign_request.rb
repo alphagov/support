@@ -1,5 +1,5 @@
-require 'tableless_model'
-require 'with_requester'
+require 'shared/tableless_model'
+require 'shared/with_requester'
 
 class CampaignRequest < TablelessModel
   include WithRequester

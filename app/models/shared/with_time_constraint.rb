@@ -1,4 +1,4 @@
-require 'time_constraint'
+require 'shared/time_constraint'
 
 module WithTimeConstraint
   def self.included(base)

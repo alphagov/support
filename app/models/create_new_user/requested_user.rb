@@ -1,4 +1,4 @@
-require 'tableless_model'
+require 'shared/tableless_model'
 
 class RequestedUser < TablelessModel
   attr_accessor :name, :email, :job, :phone
