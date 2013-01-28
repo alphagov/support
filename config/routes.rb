@@ -1,11 +1,10 @@
+require 'request_groups'
+
 Support::Application.routes.draw do
-  resource :content_change_request, :only => [:new, :create]
-  resource :create_new_user_request, :only => [:new, :create]
-  resource :remove_user_request, :only => [:new, :create]
-  resource :general_request, :only => [:new, :create]
-  resource :new_feature_request, :only => [:new, :create]
-  resource :campaign_request, :only => [:new, :create]
+  RequestGroups.new.all_request_classes.each do |request_class|
+    resource request_class.name.underscore, only: [:new, :create]
+  end
 
   match "acknowledge" => "support#acknowledge"
-  root :to => 'support#landing'
+  root to: 'support#landing'
 end
