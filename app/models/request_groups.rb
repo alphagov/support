@@ -3,10 +3,10 @@ class RequestGroups
 
   def initialize
     @groups = [
-      RequestGroup.new("Content request", [ContentChangeRequest, NewFeatureRequest, AnalyticsRequest]),
+      RequestGroup.new("Content request", [ContentChangeRequest, NewFeatureRequest]),
       RequestGroup.new("User Access", [CreateNewUserRequest, RemoveUserRequest]),
       RequestGroup.new("Campaigns", [CampaignRequest]),
-      RequestGroup.new("Other Issues", [GeneralRequest]),
+      RequestGroup.new("Other Issues", [AnalyticsRequest, GeneralRequest]),
     ]
   end
 
