@@ -176,7 +176,7 @@ When /^the user submits the following analytics request:$/ do |request_details_t
   fill_in "How will you use the report and what decisions will it help you make?",
     with: @request_details["What's it for"]
 
-  fill_in "Beyond the standard reporting, what other information are you interested in?",
+  fill_in "Beyond the basic report, what other information are you interested in?",
     with: @request_details["More detailed analysis"]
 
   within "#frequency" do
