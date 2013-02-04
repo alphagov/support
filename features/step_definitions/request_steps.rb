@@ -183,5 +183,9 @@ When /^the user submits the following analytics request:$/ do |request_details_t
     choose @request_details["Frequency"]
   end
 
+  within "#format" do
+    choose @request_details["Format"]
+  end
+
   step "the user submits the request successfully"
 end

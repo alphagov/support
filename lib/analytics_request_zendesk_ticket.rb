@@ -23,6 +23,8 @@ class AnalyticsRequestZendeskTicket < ZendeskTicket
                                                       label: "More detailed analysis needed?"),
       LabelledSnippet.new(on: @request.needed_report, field: :formatted_frequency,
                                                       label: "Reporting frequency"),
+      LabelledSnippet.new(on: @request.needed_report, field: :formatted_format,
+                                                      label: "Report format"),
     ]
   end
 end
