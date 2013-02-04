@@ -11,6 +11,10 @@ class NeededReportTest < Test::Unit::TestCase
   should allow_value("monthly").for(:frequency)
   should_not allow_value("xxx").for(:frequency)
 
+  should allow_value(nil).for(:format)
+  should allow_value("pdf").for(:format)
+  should allow_value("csv").for(:format)
+  should_not allow_value("xxx").for(:format)
 
   should allow_value("KPI abc").for(:non_standard_requirements)
 

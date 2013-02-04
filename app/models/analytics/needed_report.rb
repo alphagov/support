@@ -5,7 +5,8 @@ class NeededReport < TablelessModel
                 :reporting_period_end,
                 :pages_or_sections,
                 :non_standard_requirements,
-                :frequency
+                :frequency,
+                :format
 
   validates_presence_of :reporting_period_start,
                         :reporting_period_end,
@@ -17,12 +18,28 @@ class NeededReport < TablelessModel
       message: "%{value} is not valid option"
     }
 
+  validates :format, inclusion: { 
+      in: %w(pdf csv),
+      message: "%{value} is not valid option"
+    }, allow_blank: true
+
   def frequency_options
     [
       ["One-off", "one-off"],
       ["Weekly", "weekly"],
       ["Monthly", "monthly"],
     ]
+  end
+
+  def format_options
+    [
+      ["CSV", "csv"],
+      ["PDF", "pdf"],
+    ]
+  end
+
+  def formatted_format
+    Hash[format_options].key(format)
   end
 
   def formatted_frequency

@@ -22,6 +22,10 @@
     <%= r.input :frequency, as: :radio, required: true, label: "How often do you need to receive these reports?", collection: r.object.frequency_options, input_html: { :"aria-required" => true } %>
   </div>
 
+  <div id="format">
+    <%= r.input :format, as: :radio, label: "Do you want a CSV file (so you can manipulate data) or a PDF (which will be more visual)?", collection: r.object.format_options %>
+  </div>
+
   <div class="alert alert-info">
     <p>For recurring reports, you will need to renew your request every 6 months.</p>
   </div>
