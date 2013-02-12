@@ -4,9 +4,14 @@ class Requester < TablelessModel
   attr_accessor :email
 
   validates_presence_of :email
-  validates :email, :format => {:with => /@/}
+
+  validates :email, format: { with: /@/ }
 
   validate :collaborator_emails_are_all_valid
+
+  def email=(new_email)
+    @email = new_email.nil? ? nil : new_email.gsub("\s", "")
+  end
 
   def collaborator_emails
     @collaborator_emails || []
