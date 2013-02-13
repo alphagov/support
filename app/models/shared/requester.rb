@@ -18,7 +18,9 @@ class Requester < TablelessModel
   end
 
   def collaborator_emails=(emails_as_string)
-    @collaborator_emails = emails_as_string.split(",").collect(&:strip)
+    collaborator_emails = emails_as_string.split(",").collect(&:strip)
+    filtered_collaborators = collaborator_emails.reject { |collab| collab == email }
+    @collaborator_emails = filtered_collaborators
   end
 
   def collaborator_emails_are_all_valid
