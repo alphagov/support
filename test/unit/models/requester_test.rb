@@ -25,4 +25,9 @@ class RequesterTest < Test::Unit::TestCase
   should "have an empty list of collaborator emails if not set" do
     assert_equal [], Requester.new.collaborator_emails
   end
+
+  should "remove the requester from the collaborators (as Zendesk doesn't allow this)" do
+    requester = Requester.new(email: "requester@x.com", collaborator_emails: "a@b.com, requester@x.com, c@d.com")
+    assert_equal ["a@b.com", "c@d.com"], requester.collaborator_emails
+  end
 end
