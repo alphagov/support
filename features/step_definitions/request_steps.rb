@@ -145,8 +145,6 @@ When /^the user submits the following analytics request:$/ do |request_details_t
 
   assert page.has_content?("Request analytics reports from GDS")
 
-  step "the user fills out their details"
-
   within "#request-context" do
     choose @request_details["Context"]
   end
