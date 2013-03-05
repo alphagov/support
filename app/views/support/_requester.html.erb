@@ -1,6 +1,0 @@
-<%= f.semantic_fields_for :requester do |r| %>
-  <%= r.input :email, label: "Your email", as: :email, required: true, input_html: { :"aria-required" => true, :class => "span6" } %>
-  <% if show_collaborators %>
-    <%= r.input :collaborator_emails, label: "Should anybody else be copied in on this request? (comma-separated list of emails)", required: false, input_html: { class: "span6", value: r.object.collaborator_emails.join(", ") } %>
-  <% end %>
-<% end %>

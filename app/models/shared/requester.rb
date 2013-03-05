@@ -1,11 +1,13 @@
 require 'shared/tableless_model'
 
 class Requester < TablelessModel
-  attr_accessor :email
+  attr_accessor :email, :name
 
   validates_presence_of :email
 
   validates :email, format: { with: /@/ }
+
+  validates_presence_of :name
 
   validate :collaborator_emails_are_all_valid
 

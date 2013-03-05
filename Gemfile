@@ -24,6 +24,7 @@ if ENV['GDS_ZENDESK_DEV']
 else
   gem "gds_zendesk", '0.0.5'
 end
+gem 'redis-rails', '3.2.3'
 
 group :test do
   gem "mocha", "0.12.6", require: false

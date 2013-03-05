@@ -39,11 +39,12 @@ class ZendeskTicketTest < Test::Unit::TestCase
     end
 
     should "have a text representation" do
-      ticket = new_ticket(with_requester(email: "ab@c.com", collaborator_emails: "a, b"))
+      ticket = new_ticket(with_requester(email: "ab@c.com", name: "A B", collaborator_emails: "a, b"))
       ticket.stubs(:comment_snippets).returns([])
 
       assert_includes ticket.to_s, "ab@c.com"
       assert_includes ticket.to_s, "a, b"
+      assert_includes ticket.to_s, "A B"
     end
 
     context "with time constraints" do
