@@ -7,12 +7,12 @@ class User < OpenStruct
   include GDS::SSO::User
 
   def self.find_by_uid(uid)
-    auth_hash = Rails.cache.fetch(uid)
+    auth_hash = Rails.cache.fetch(prefixed_key(uid))
     auth_hash ? User.new(auth_hash) : nil
   end
 
   def self.create!(auth_hash, options={})
-    Rails.cache.write(auth_hash["uid"], auth_hash)
+    Rails.cache.write(prefixed_key(auth_hash["uid"]), auth_hash)
     User.new(auth_hash)
   end
 
@@ -22,9 +22,9 @@ class User < OpenStruct
 
   def update_attribute(key, value)
     if uid
-      old_attributes = Rails.cache.fetch(uid)
+      old_attributes = Rails.cache.fetch(self.class.prefixed_key(uid))
       new_attributes = old_attributes.merge(key => value)
-      Rails.cache.write(new_attributes["uid"], new_attributes)
+      Rails.cache.write(self.class.prefixed_key(new_attributes["uid"]), new_attributes)
     end
     send("#{key}=", value)
   end
@@ -33,6 +33,10 @@ class User < OpenStruct
     params.each do |key, value|
       send("#{key}=", value)
     end
-    Rails.cache.write(params["uid"], params)
+    Rails.cache.write(self.class.prefixed_key(params["uid"]), params)
+  end
+
+  def self.prefixed_key(key)
+    "support-#{key}"
   end
 end
