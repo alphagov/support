@@ -8,6 +8,8 @@ require "active_resource/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
 
+require 'yaml'
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -49,9 +51,10 @@ module Support
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
 
+    redis_config = YAML.load_file(File.join(Rails.root, "config", "redis.yml"))[Rails.env]
     config.cache_store = [
       :redis_store, 
-      "redis://#{ENV['REDIS_HOST'] || 'localhost:6379'}",
+      "redis://#{redis_config['host']}:#{redis_config['port']}",
       { expires_in: 24.hours, namespace: "support-#{Rails.env}" }
     ]
 
