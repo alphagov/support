@@ -25,6 +25,10 @@ else
   gem "gds_zendesk", '0.0.5'
 end
 
+group :development do
+  gem "quiet_assets", "1.0.2"
+end
+
 group :test do
   gem "mocha", "0.12.6", require: false
   gem "shoulda", "~> 3.3.2"
