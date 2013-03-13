@@ -24,6 +24,7 @@ if ENV['GDS_ZENDESK_DEV']
 else
   gem "gds_zendesk", '0.0.5'
 end
+gem 'redis-rails', '3.2.3'
 
 group :development do
   gem "quiet_assets", "1.0.2"

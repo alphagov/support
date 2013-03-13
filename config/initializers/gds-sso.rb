@@ -1,5 +1,5 @@
 GDS::SSO.config do |config|
-  config.user_model   = 'ReadOnlyUser'
+  config.user_model   = 'User'
   config.oauth_id     = 'abcdefghjasndjkasndsupport'
   config.oauth_secret = 'secret'
   config.default_scope = "Support"
