@@ -37,6 +37,6 @@ class User < OpenStruct
   end
 
   def self.prefixed_key(key)
-    "support-#{key}"
+    "users-#{key}"
   end
 end

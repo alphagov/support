@@ -5,6 +5,10 @@ class UserTest < Test::Unit::TestCase
     Rails.cache.clear
   end
 
+  def teardown
+    Rails.cache.clear
+  end
+
   should "support persistent creation and retrieval" do
     assert_nil User.find_by_uid("12345")
     user = User.create!("uid" => "12345", "name" => "A", "email" => "a@b.com")
