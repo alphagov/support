@@ -4,7 +4,7 @@
 <div class="well">
   <%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
 
-    <%= render partial: "support/requester", locals: { f: f, show_collaborators: true } %>
+    <%= render partial: "support/collaborators", locals: { f: f } %>
 
     <%= render partial: "campaign_details", locals: { f: f } %>
 
