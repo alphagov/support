@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://BnrJb6FZyzspBboNJzYZ@gem.fury.io/govuk/'
 
-gem 'rails', '3.2.12'
+gem 'rails', '3.2.13'
 
 group :assets do
   gem 'less-rails-bootstrap', '2.1.1'
@@ -31,7 +31,7 @@ group :development do
 end
 
 group :test do
-  gem "mocha", "0.12.6", require: false
+  gem "mocha", "0.13.3", require: false
   gem "shoulda", "~> 3.3.2"
   gem "webmock", "1.9.0"
   gem 'capybara', '1.1.2'

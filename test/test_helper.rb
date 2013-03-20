@@ -2,7 +2,7 @@ ENV["RAILS_ENV"] = "test"
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
-require 'mocha_standalone'
+require 'mocha/api'
 require 'webmock/minitest'
 
 require 'ostruct'
@@ -24,6 +24,7 @@ class ActiveSupport::TestCase
 
   def switch_zendesk_into_dummy_mode
     @zendesk_api = GDS_ZENDESK_CLIENT
+    @zendesk_api.reset
   end
 end
 

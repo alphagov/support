@@ -54,6 +54,7 @@ class RequestsControllerTest < ActionController::TestCase
     Rails.application.routes.draw do
       match 'new' => "test_requests#new"
       match 'create' => "test_requests#create"
+      match "acknowledge" => "support#acknowledge"
     end
 
     @controller = TestRequestsController.new
