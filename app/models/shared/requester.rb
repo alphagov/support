@@ -16,13 +16,11 @@ class Requester < TablelessModel
   end
 
   def collaborator_emails
-    @collaborator_emails || []
+    (@collaborator_emails || []).reject { |collab| collab == email }
   end
 
   def collaborator_emails=(emails_as_string)
-    collaborator_emails = emails_as_string.split(",").collect(&:strip)
-    filtered_collaborators = collaborator_emails.reject { |collab| collab == email }
-    @collaborator_emails = filtered_collaborators
+    @collaborator_emails = emails_as_string.split(",").collect(&:strip)
   end
 
   def collaborator_emails_are_all_valid

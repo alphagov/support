@@ -29,7 +29,8 @@ class RequesterTest < Test::Unit::TestCase
   end
 
   should "remove the requester from the collaborators (as Zendesk doesn't allow this)" do
-    requester = Requester.new(email: "requester@x.com", collaborator_emails: "a@b.com, requester@x.com, c@d.com")
+    requester = Requester.new(collaborator_emails: "a@b.com, requester@x.com, c@d.com")
+    requester.email = "requester@x.com"
     assert_equal ["a@b.com", "c@d.com"], requester.collaborator_emails
   end
 end
