@@ -38,6 +38,7 @@ class RequestsController < ApplicationController
       return render "support/zendesk_error", locals: { error_string: "Zendesk timed out", ticket: ticket }
     end
   rescue GDSZendesk::ZendeskError => e
+    request.env["sso-credentials"] = "#{current_user.name} <#{current_user.email}>"
     ExceptionNotifier::Notifier.exception_notification(request.env, e).deliver
     render "support/zendesk_error", status: 500, locals: { error_string: e.underlying_message, 
                                                            ticket: ticket }
