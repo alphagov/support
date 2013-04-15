@@ -1,3 +1,5 @@
+class RequestGroup < Struct.new(:title, :request_classes); end
+
 class RequestGroups
   include Enumerable
 

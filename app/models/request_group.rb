@@ -1,1 +1,0 @@
-class RequestGroup < Struct.new(:title, :request_classes); end
