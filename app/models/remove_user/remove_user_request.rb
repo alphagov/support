@@ -13,4 +13,8 @@ class RemoveUserRequest < Request
   def self.label
     "Remove user"
   end
+
+  def self.accessible_by_roles
+    [ Anyone ]
+  end
 end

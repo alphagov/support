@@ -6,4 +6,8 @@ class GeneralRequest < Request
   def self.label
     "General"
   end
+
+  def self.accessible_by_roles
+    [ Anyone ]
+  end
 end

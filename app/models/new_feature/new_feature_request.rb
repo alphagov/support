@@ -12,4 +12,8 @@ class NewFeatureRequest < Request
   def self.label
     "New feature/need"
   end
+
+  def self.accessible_by_roles
+    [ Anyone ]
+  end
 end

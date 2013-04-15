@@ -16,4 +16,8 @@ class AnalyticsRequest < Request
   def self.label
     "Analytics"
   end
+
+  def self.accessible_by_roles
+    [ Anyone ]
+  end
 end

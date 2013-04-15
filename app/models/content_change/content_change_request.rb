@@ -12,4 +12,8 @@ class ContentChangeRequest < Request
   def self.label
     "Content change"
   end
+
+  def self.accessible_by_roles
+    [ Anyone ]
+  end
 end

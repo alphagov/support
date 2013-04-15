@@ -7,6 +7,7 @@ require 'webmock/minitest'
 
 require 'ostruct'
 require_relative 'test_data'
+require_relative 'stub_user'
 
 class ActiveSupport::TestCase
   def setup
@@ -18,8 +19,8 @@ class ActiveSupport::TestCase
 
   def login_as_stub_user(name = "Stubby McStubby", email = "stubby@gov.uk")
     @user = stub("stub user",
-                  name: name, remotely_signed_out?: false, email: email)
-    @request.env['warden'] = stub(:authenticate! => true, :authenticated? => true, :user => @user)
+                  name: name, remotely_signed_out?: false, email: email, has_permission?: true)
+    @request.env['warden'] = stub(authenticate!: true, authenticated?: true, user: @user)
   end
 
   def switch_zendesk_into_dummy_mode
@@ -27,4 +28,3 @@ class ActiveSupport::TestCase
     @zendesk_api.reset
   end
 end
-

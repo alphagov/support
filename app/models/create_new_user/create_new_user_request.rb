@@ -13,4 +13,8 @@ class CreateNewUserRequest < Request
   def self.label
     "Create new user"
   end
+
+  def self.accessible_by_roles
+    [ Anyone ]
+  end
 end

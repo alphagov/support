@@ -18,4 +18,8 @@ class CampaignRequest < Request
   def self.label
     "Campaign"
   end
+
+  def self.accessible_by_roles
+    [ Anyone ]
+  end
 end
