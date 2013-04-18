@@ -2,8 +2,12 @@ require 'analytics_request_zendesk_ticket'
 
 class AnalyticsRequestsController <  RequestsController
   protected
+  def request_class
+    AnalyticsRequest
+  end
+
   def new_request
-    AnalyticsRequest.new(requester: Requester.new, needed_report: NeededReport.new)
+    request_class.new(requester: Requester.new, needed_report: NeededReport.new)
   end
 
   def zendesk_ticket_class
@@ -11,6 +15,6 @@ class AnalyticsRequestsController <  RequestsController
   end
 
   def parse_request_from_params
-    AnalyticsRequest.new(params[:analytics_request])
+    request_class.new(params[:analytics_request])
   end
 end

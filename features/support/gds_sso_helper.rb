@@ -1,4 +1,5 @@
 require "warden/test/helpers"
+require_relative "../../test/stub_user"
 
 module GdsSsoHelper
   def login_as(user)

@@ -1,10 +1,8 @@
-require 'shared/tableless_model'
-require 'shared/with_requester'
+require 'shared/request'
 require 'shared/with_request_context'
 require 'analytics/needed_report'
 
-class AnalyticsRequest < TablelessModel
-  include WithRequester
+class AnalyticsRequest < Request
   include WithRequestContext
 
   attr_accessor :needed_report, :justification_for_needing_report
@@ -17,5 +15,9 @@ class AnalyticsRequest < TablelessModel
 
   def self.label
     "Analytics"
+  end
+
+  def self.accessible_by_roles
+    [ Anyone ]
   end
 end

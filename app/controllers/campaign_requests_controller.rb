@@ -2,8 +2,12 @@ require 'campaign_request_zendesk_ticket'
 
 class CampaignRequestsController <  RequestsController
   protected
+  def request_class
+    CampaignRequest
+  end
+
   def new_request
-    CampaignRequest.new(:requester => Requester.new, :campaign => Campaign.new)
+    request_class.new(:requester => Requester.new, :campaign => Campaign.new)
   end
 
   def zendesk_ticket_class
@@ -11,6 +15,6 @@ class CampaignRequestsController <  RequestsController
   end
 
   def parse_request_from_params
-    CampaignRequest.new(params[:campaign_request])
+    request_class.new(params[:campaign_request])
   end
 end

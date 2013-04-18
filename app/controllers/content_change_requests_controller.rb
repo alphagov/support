@@ -2,8 +2,12 @@ require 'content_change_request_zendesk_ticket'
 
 class ContentChangeRequestsController < RequestsController
   protected
+  def request_class
+    ContentChangeRequest
+  end
+
   def new_request
-    ContentChangeRequest.new(:requester => Requester.new, :time_constraint => TimeConstraint.new)
+    request_class.new(:requester => Requester.new, :time_constraint => TimeConstraint.new)
   end
 
   def zendesk_ticket_class
@@ -11,6 +15,6 @@ class ContentChangeRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    ContentChangeRequest.new(params[:content_change_request])
+    request_class.new(params[:content_change_request])
   end
 end

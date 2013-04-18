@@ -1,9 +1,6 @@
-require 'shared/tableless_model'
-require 'shared/with_requester'
+require 'shared/request'
 
-class CampaignRequest < TablelessModel
-  include WithRequester
-
+class CampaignRequest < Request
   attr_accessor :campaign
   validates_presence_of :campaign
   validate do |request|
@@ -20,5 +17,9 @@ class CampaignRequest < TablelessModel
 
   def self.label
     "Campaign"
+  end
+
+  def self.accessible_by_roles
+    [ CampaignRequesters, SinglePointsOfContact ]
   end
 end

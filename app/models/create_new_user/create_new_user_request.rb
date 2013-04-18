@@ -1,9 +1,7 @@
-require 'shared/tableless_model'
-require 'shared/with_requester'
+require 'shared/request'
 require 'shared/with_tool_role_choice'
 
-class CreateNewUserRequest < TablelessModel
-  include WithRequester
+class CreateNewUserRequest < Request
   include WithToolRoleChoice
 
   attr_accessor :requested_user, :additional_comments
@@ -14,5 +12,9 @@ class CreateNewUserRequest < TablelessModel
 
   def self.label
     "Create new user"
+  end
+
+  def self.accessible_by_roles
+    [ SinglePointsOfContact ]
   end
 end

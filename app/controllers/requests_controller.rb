@@ -2,6 +2,8 @@ require "zendesk_tickets"
 require 'gds_zendesk/zendesk_error'
 
 class RequestsController < ApplicationController
+  before_filter :check_user_is_permitted_to_make_request
+
   def new
     @request = new_request
   end
@@ -23,6 +25,13 @@ class RequestsController < ApplicationController
   end
 
   private
+  def check_user_is_permitted_to_make_request
+    unless request_class.accessible_by_user?(current_user)
+      render "support/forbidden", status: 403
+      return false
+    end
+  end
+
   def set_logged_in_user_as_requester_on(request)
     request.requester ||= Requester.new
     request.requester.name = current_user.name

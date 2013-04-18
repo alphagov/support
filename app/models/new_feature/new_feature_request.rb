@@ -1,10 +1,8 @@
-require 'shared/tableless_model'
-require 'shared/with_requester'
+require 'shared/request'
 require 'shared/with_time_constraint'
 require 'shared/with_request_context'
 
-class NewFeatureRequest < TablelessModel
-  include WithRequester
+class NewFeatureRequest < Request
   include WithTimeConstraint
   include WithRequestContext
 
@@ -13,5 +11,9 @@ class NewFeatureRequest < TablelessModel
 
   def self.label
     "New feature/need"
+  end
+
+  def self.accessible_by_roles
+    [ ContentRequesters, SinglePointsOfContact ]
   end
 end

@@ -1,12 +1,22 @@
 require 'test_helper'
-require 'shared/tableless_model'
+require 'shared/request'
 require 'zendesk_ticket'
 
-class TestRequest < TablelessModel
+class TestRole
+  def self.role_applies_to_user?(user)
+    user.has_permission?('test_permission')
+  end
+end
+
+class TestRequest < Request
   include WithRequester
 
   attr_accessor :a, :b
   validates_presence_of :a
+
+  def self.accessible_by_roles
+    [TestRole]
+  end
 end
 
 class TestZendeskTicket < ZendeskTicket
@@ -35,6 +45,10 @@ class TestRequestsController < RequestsController
   def parse_request_from_params
     TestRequest.new(params[:test_request])
   end
+
+  def request_class
+    TestRequest
+  end
 end
 
 def valid_params_for_test_request
@@ -49,7 +63,7 @@ end
 class RequestsControllerTest < ActionController::TestCase
   setup do
     @logged_in_user_details = { name: "John Smith", email: "john.smith@gov.uk" }
-    login_as_stub_user(@logged_in_user_details[:name], @logged_in_user_details[:email])
+    login_as_stub_user(@logged_in_user_details)
 
     Rails.application.routes.draw do
       match 'new' => "test_requests#new"
@@ -71,6 +85,13 @@ class RequestsControllerTest < ActionController::TestCase
       @controller.expects(:default_render)
       get :new
     end
+
+    should "be forbidden if the user has no permission to raise the request" do
+      login_as_stub_user(perms: ["not_the_right_perms"])
+      @controller.expects(:render).with("support/forbidden", has_entry(status: 403))
+
+      get :new
+    end
   end
 
   def prevent_implicit_rendering
@@ -83,9 +104,16 @@ class RequestsControllerTest < ActionController::TestCase
     should "reject invalid parameters" do
       params = valid_params_for_test_request.tap {|p| p["test_request"].merge!("a" => "")}
 
-      @controller.expects(:render).with(:new, has_entry(:status => 400))
+      @controller.expects(:render).with(:new, has_entry(status: 400))
 
       post :create, params
+    end
+
+    should "be forbidden if the user has no permission to raise the request" do
+      login_as_stub_user(perms: ["not_the_right_perms"])
+      @controller.expects(:render).with("support/forbidden", has_entry(status: 403))
+
+      post :create, valid_params_for_test_request
     end
 
     should "submit it to Zendesk" do
