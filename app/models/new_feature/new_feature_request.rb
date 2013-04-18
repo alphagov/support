@@ -14,6 +14,6 @@ class NewFeatureRequest < Request
   end
 
   def self.accessible_by_roles
-    [ Anyone ]
+    [ ContentRequesters ]
   end
 end
