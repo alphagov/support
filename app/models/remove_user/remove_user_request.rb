@@ -15,6 +15,6 @@ class RemoveUserRequest < Request
   end
 
   def self.accessible_by_roles
-    [ Anyone ]
+    [ SinglePointsOfContact ]
   end
 end

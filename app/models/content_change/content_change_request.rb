@@ -14,6 +14,6 @@ class ContentChangeRequest < Request
   end
 
   def self.accessible_by_roles
-    [ ContentRequesters ]
+    [ ContentRequesters, SinglePointsOfContact ]
   end
 end

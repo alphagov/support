@@ -13,6 +13,7 @@ def example_user_for(role)
   when "Anyone" then stub("anyone", has_permission?: false)
   when "ContentRequesters" then StubUser.new(perms: ["content_requesters"])
   when "CampaignRequesters" then StubUser.new(perms: ["campaign_requesters"])
+  when "SinglePointsOfContact" then StubUser.new(perms: ["single_points_of_contact"])
   else
     raise "unexpected role: #{role.name}"
   end
