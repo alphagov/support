@@ -20,6 +20,6 @@ class CampaignRequest < Request
   end
 
   def self.accessible_by_roles
-    [ Anyone ]
+    [ CampaignRequesters ]
   end
 end

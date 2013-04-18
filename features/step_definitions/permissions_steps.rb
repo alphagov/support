@@ -12,6 +12,7 @@ def example_user_for(role)
   case role.name
   when "Anyone" then stub("anyone", has_permission?: false)
   when "ContentRequesters" then StubUser.new(perms: ["content_requesters"])
+  when "CampaignRequesters" then StubUser.new(perms: ["campaign_requesters"])
   else
     raise "unexpected role: #{role.name}"
   end
