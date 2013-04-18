@@ -1,9 +1,8 @@
-class StubUser
-  def initialize(perms)
-    @perms = perms
-  end
+require 'ostruct'
 
+class StubUser < OpenStruct
   def has_permission?(perm)
-    @perms.include?(perm)
+    return true if perms.nil?
+    perms.include?(perm)
   end
 end

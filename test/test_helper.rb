@@ -17,9 +17,9 @@ class ActiveSupport::TestCase
     switch_zendesk_into_dummy_mode
   end
 
-  def login_as_stub_user(name = "Stubby McStubby", email = "stubby@gov.uk")
-    @user = stub("stub user",
-                  name: name, remotely_signed_out?: false, email: email, has_permission?: true)
+  def login_as_stub_user(options = {})
+    defaults = {name: "Stubby McStubby", email: "stubby@gov.uk", perms: nil}
+    @user = StubUser.new(defaults.merge(options))
     @request.env['warden'] = stub(authenticate!: true, authenticated?: true, user: @user)
   end
 
