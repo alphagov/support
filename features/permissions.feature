@@ -1,4 +1,3 @@
-@wip
 Feature: Request permissions
   To avoid confusion from requests raised by unauthorised individuals
   As the user support manager
