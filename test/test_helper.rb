@@ -21,7 +21,8 @@ class ActiveSupport::TestCase
               defaults = { name: "Stubby McStubby", 
                            email: "stubby@gov.uk",
                            remotely_signed_out?: false,
-                           has_permission?: true }
+                           has_permission?: true,
+                           can?: true }
               stub("stub user", defaults.merge(options_or_user))
             else
               options_or_user
