@@ -49,7 +49,7 @@ end
 class RequestsControllerTest < ActionController::TestCase
   setup do
     @logged_in_user_details = { name: "John Smith", email: "john.smith@gov.uk" }
-    login_as_stub_user(@logged_in_user_details[:name], @logged_in_user_details[:email])
+    login_as_stub_user(@logged_in_user_details)
 
     Rails.application.routes.draw do
       match 'new' => "test_requests#new"
