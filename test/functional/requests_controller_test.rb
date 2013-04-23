@@ -73,7 +73,7 @@ class RequestsControllerTest < ActionController::TestCase
     end
 
     should "be forbidden if the user has no permission to raise the request" do
-      login_as_stub_user(stub("stub user", remotely_signed_out?: false, has_permission?: false))
+      login_as_stub_user(has_permission?: false)
       @controller.expects(:render).with("support/forbidden", has_entry(status: 403))
 
       get :new
@@ -96,7 +96,7 @@ class RequestsControllerTest < ActionController::TestCase
     end
 
     should "be forbidden if the user has no permission to raise the request" do
-      login_as_stub_user(stub("stub user", remotely_signed_out?: false, has_permission?: false))
+      login_as_stub_user(has_permission?: false)
       @controller.expects(:render).with("support/forbidden", has_entry(status: 403))
 
       post :create, valid_params_for_test_request
