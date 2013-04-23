@@ -49,7 +49,7 @@ end
 class RequestsControllerTest < ActionController::TestCase
   setup do
     @logged_in_user_details = { name: "John Smith", email: "john.smith@gov.uk" }
-    login_as_stub_user(@logged_in_user_details[:name], @logged_in_user_details[:email])
+    login_as_stub_user(@logged_in_user_details)
 
     Rails.application.routes.draw do
       match 'new' => "test_requests#new"
@@ -66,9 +66,16 @@ class RequestsControllerTest < ActionController::TestCase
     Rails.application.reload_routes!
   end
 
-  context "a new general request" do
+  context "a new request" do
     should "render the form" do
       @controller.expects(:default_render)
+      get :new
+    end
+
+    should "be forbidden if the user has no permission to raise the request" do
+      login_as_stub_user(has_permission?: false)
+      @controller.expects(:render).with("support/forbidden", has_entry(status: 403))
+
       get :new
     end
   end
@@ -83,9 +90,16 @@ class RequestsControllerTest < ActionController::TestCase
     should "reject invalid parameters" do
       params = valid_params_for_test_request.tap {|p| p["test_request"].merge!("a" => "")}
 
-      @controller.expects(:render).with(:new, has_entry(:status => 400))
+      @controller.expects(:render).with(:new, has_entry(status: 400))
 
       post :create, params
+    end
+
+    should "be forbidden if the user has no permission to raise the request" do
+      login_as_stub_user(has_permission?: false)
+      @controller.expects(:render).with("support/forbidden", has_entry(status: 403))
+
+      post :create, valid_params_for_test_request
     end
 
     should "submit it to Zendesk" do

@@ -5,6 +5,11 @@ class User < OpenStruct
   end
 
   include GDS::SSO::User
+  delegate :can?, :cannot?, :to => :ability
+
+  def ability
+    @ability ||= Ability.new(self)
+  end
 
   def self.find_by_uid(uid)
     auth_hash = Rails.cache.fetch(prefixed_key(uid))
