@@ -18,7 +18,10 @@ class ActiveSupport::TestCase
 
   def login_as_stub_user(options_or_user = {})    
     @user = if options_or_user.is_a?(Hash)
-              defaults = { name: "Stubby McStubby", email: "stubby@gov.uk", remotely_signed_out?: false }
+              defaults = { name: "Stubby McStubby", 
+                           email: "stubby@gov.uk",
+                           remotely_signed_out?: false,
+                           has_permission?: true }
               stub("stub user", defaults.merge(options_or_user))
             else
               options_or_user

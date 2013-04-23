@@ -2,12 +2,16 @@ require "zendesk_tickets"
 require 'gds_zendesk/zendesk_error'
 
 class RequestsController < ApplicationController
+  check_authorization
+
   def new
     @request = new_request
+    authorize! :new, @request
   end
 
   def create
     @request = parse_request_from_params
+    authorize! :create, @request
     set_logged_in_user_as_requester_on(@request)
 
     if @request.valid?
