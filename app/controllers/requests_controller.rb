@@ -4,6 +4,10 @@ require 'gds_zendesk/zendesk_error'
 class RequestsController < ApplicationController
   check_authorization
 
+  rescue_from CanCan::AccessDenied do |exception|
+    render "support/forbidden", status: 403
+  end
+
   def new
     @request = new_request
     authorize! :new, @request
