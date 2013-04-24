@@ -16,10 +16,15 @@ class ActiveSupport::TestCase
     switch_zendesk_into_dummy_mode
   end
 
-  def login_as_stub_user(name = "Stubby McStubby", email = "stubby@gov.uk")
-    @user = stub("stub user",
-                  name: name, remotely_signed_out?: false, email: email)
-    @request.env['warden'] = stub(:authenticate! => true, :authenticated? => true, :user => @user)
+  def login_as_stub_user(options = {})
+    defaults = { name: "Stubby McStubby", 
+                 email: "stubby@gov.uk",
+                 remotely_signed_out?: false,
+                 has_permission?: true,
+                 can?: true }
+
+    @user = stub("stub user", defaults.merge(options))
+    @request.env['warden'] = stub(authenticate!: true, authenticated?: true, user: @user)
   end
 
   def switch_zendesk_into_dummy_mode

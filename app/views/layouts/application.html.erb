@@ -48,7 +48,7 @@
 
         <div class="row-fluid">
           <div class="span2">
-            <%= render partial: 'support/new_request_links', locals: { request_groups: RequestGroups.new } %>
+            <%= render partial: 'support/new_request_links', locals: { request_groups: PermittedRequestGroups.new(current_user) } %>
           </div>
 
           <div class="span10">
