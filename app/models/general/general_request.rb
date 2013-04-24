@@ -1,9 +1,6 @@
-require 'shared/tableless_model'
-require 'shared/with_requester'
+require 'shared/request'
 
-class GeneralRequest < TablelessModel
-  include WithRequester
-
+class GeneralRequest < Request
   attr_accessor :url, :additional, :user_agent
 
   def self.label

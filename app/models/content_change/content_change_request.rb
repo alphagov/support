@@ -1,10 +1,8 @@
-require 'shared/tableless_model'
-require 'shared/with_requester'
+require 'shared/request'
 require 'shared/with_time_constraint'
 require 'shared/with_request_context'
 
-class ContentChangeRequest < TablelessModel
-  include WithRequester
+class ContentChangeRequest < Request
   include WithTimeConstraint
   include WithRequestContext
 
