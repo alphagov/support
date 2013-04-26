@@ -5,8 +5,11 @@ Feature: Request permissions
 
   Scenario: permissions per role
     * The role/request matrix:
-    | Role                     | General | Content change | New feature | Campaign | Create new user | Remove user | Analytics |
-    | Content requesters       | Y       | Y              | Y           | N        | N               | N           | Y         |
-    | Campaign requesters      | Y       | N              | N           | Y        | N               | N           | Y         |
-    | Single points of contact | Y       | Y              | Y           | Y        | Y               | Y           | Y         |
-    | Anyone                   | Y       | N              | N           | N        | N               | N           | Y         |
+    | Role                   | Content requesters | Campaign requesters | Single points of contact | Anyone |
+    | Analytics              | Y                  | Y                   | Y                        | Y      |
+    | Campaign               | N                  | Y                   | Y                        | N      |
+    | Content change         | Y                  | N                   | Y                        | N      |
+    | Create new user        | N                  | N                   | Y                        | N      |
+    | General                | Y                  | Y                   | Y                        | Y      |
+    | New feature            | Y                  | N                   | Y                        | N      |
+    | Remove user            | N                  | N                   | Y                        | N      |
