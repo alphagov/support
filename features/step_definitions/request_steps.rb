@@ -171,3 +171,15 @@ When /^the user submits the following analytics request:$/ do |request_details_t
 
   step "the user submits the request successfully"
 end
+
+When /^the user submits the following technical fault report:$/ do |request_details_table|
+  @request_details = request_details_table.hashes.first
+
+  visit '/'
+
+  click_on "Report a technical fault"
+
+  assert page.has_content?("Report a technical fault to GDS")
+
+  step "the user submits the request successfully"
+end
