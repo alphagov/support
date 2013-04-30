@@ -8,6 +8,6 @@ class Ability
     can :manage, [ NewFeatureRequest, ContentChangeRequest ] if user.has_permission?('content_requesters')
     can :manage, [ CreateNewUserRequest, RemoveUserRequest ] if user.has_permission?('user_managers')
 
-    can :manage, [GeneralRequest, AnalyticsRequest]
+    can :manage, [GeneralRequest, AnalyticsRequest, TechnicalFaultReport]
   end
 end
