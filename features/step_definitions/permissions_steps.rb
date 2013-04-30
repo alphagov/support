@@ -10,6 +10,7 @@ def perms_for(role)
   when "Content requesters" then ["content_requesters"]
   when "Campaign requesters" then ["campaign_requesters"]
   when "Single points of contact" then ["single_points_of_contact"]
+  when "User managers" then ["user_managers"]
   else
     raise "unexpected role: #{role}"
   end
