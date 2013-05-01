@@ -6,6 +6,8 @@
 
     <%= render partial: "support/collaborators", locals: { f: f, show_collaborators: true } %>
 
+    <%= render partial: "technical_fault_details", locals: { f: f } %>
+
     <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
   <% end %>
 </div>

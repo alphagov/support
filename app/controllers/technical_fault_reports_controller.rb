@@ -3,7 +3,7 @@ require 'technical_fault_report_zendesk_ticket'
 class TechnicalFaultReportsController <  RequestsController
   protected
   def new_request
-    TechnicalFaultReport.new(requester: Requester.new)
+    TechnicalFaultReport.new(requester: Requester.new, fault_context: UserFacingComponent.new)
   end
 
   def zendesk_ticket_class

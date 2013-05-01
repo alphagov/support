@@ -12,15 +12,15 @@ Feature: Technical fault reports
   Scenario: successful submission of technical fault report
     When the user submits the following technical fault report:
       | Location of fault | What is broken | User's actions | What happened | What should have happened  |
-      | GOV.UK            | Smart answer   | Clicked on x   | Broken link   | Should have linked through |
+      | GOV.UK itself     | Smart answer   | Clicked on x   | Broken link   | Should have linked through |
     Then the following ticket is raised in ZenDesk:
-      | Subject               | Requester email      |
-      | Request for analytics | john.smith@email.com |
-    And the ticket is tagged with "govt_form technical_fault"
+      | Subject                | Requester email      |
+      | Technical fault report | john.smith@email.com |
+    And the ticket is tagged with "govt_form technical_fault fault_with_gov_uk"
     And the comment on the ticket is:
       """
       [Location of fault]
-      GOV.UK
+      GOV.UK itself
 
       [What is broken]
       Smart answer

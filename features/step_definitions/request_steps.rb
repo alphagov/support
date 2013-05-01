@@ -181,5 +181,9 @@ When /^the user submits the following technical fault report:$/ do |request_deta
 
   assert page.has_content?("Report a technical fault to GDS")
 
+  within "#technical-fault-context" do
+    choose @request_details["Location of fault"]
+  end
+  
   step "the user submits the request successfully"
 end
