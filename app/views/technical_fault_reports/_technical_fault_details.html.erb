@@ -3,3 +3,13 @@
     <%= r.input :name, as: :radio, required: true, label: "What isn't working properly?", collection: r.object.options, input_html: { :"aria-required" => true } %>
   <% end %>
 </div>
+
+<%= f.input :fault_specifics, as: :text, required: true, 
+            label: "How much is it affecting? (the whole thing, a specific feature or specific URLs)",
+            input_html: { :"aria-required" => true, :class => "span6", :rows => 6, :cols => 50 } %>
+
+<%= f.input :actions_leading_to_problem, as: :text, required: true, label: "What were you trying to do?", input_html: { :"aria-required" => true, :class => "span6", :rows => 6, :cols => 50 } %>
+
+<%= f.input :what_happened, as: :text, required: true, label: "What happened?", input_html: { :"aria-required" => true, :class => "span6", :rows => 6, :cols => 50 } %>
+
+<%= f.input :what_should_have_happened, as: :text, required: true, label: "What should have happened?", input_html: { :"aria-required" => true, :class => "span6", :rows => 6, :cols => 50 } %>

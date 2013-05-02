@@ -184,6 +184,18 @@ When /^the user submits the following technical fault report:$/ do |request_deta
   within "#technical-fault-context" do
     choose @request_details["Location of fault"]
   end
+
+  fill_in "How much is it affecting? (the whole thing, a specific feature or specific URLs)",
+    with: @request_details["What is broken"]
+
+  fill_in "What were you trying to do?",
+    with: @request_details["User's actions"]
+
+  fill_in "What happened?",
+    with: @request_details["What happened"]
+
+  fill_in "What should have happened?",
+    with: @request_details["What should have happened"]
   
   step "the user submits the request successfully"
 end

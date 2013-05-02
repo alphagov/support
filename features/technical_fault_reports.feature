@@ -1,4 +1,3 @@
-@wip
 Feature: Technical fault reports
   In order to reduce user inconvenience and damage to government reputation
   As a government employee
@@ -25,7 +24,7 @@ Feature: Technical fault reports
       [What is broken]
       Smart answer
 
-      [User's actions]
+      [Actions leading to problem]
       Clicked on x
 
       [What happened]

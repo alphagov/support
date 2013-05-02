@@ -1,5 +1,5 @@
 require 'shared/tableless_model'
-require 'technical_fault_report/user_facing_component'
+require 'shared/user_facing_component'
 require 'test_helper'
 
 def component(name)

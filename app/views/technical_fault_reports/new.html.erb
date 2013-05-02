@@ -8,6 +8,10 @@
 
     <%= render partial: "technical_fault_details", locals: { f: f } %>
 
+    <div class="alert alert-info alert-block">
+      <p>If you have screenshots please send them as attachments in reply to the acknowledgement email you will receive shortly.</p>
+    </div>
+
     <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
   <% end %>
 </div>
