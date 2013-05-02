@@ -5,7 +5,7 @@ namespace :users do
       "uid" => 'dummy-user',
       "name" => 'Ms Example',
       "email" => 'example@example.com',
-      "permissions" => ['signon']
+      "permissions" => ['single_points_of_contact']
     )
     puts "Created dummy user: #{user}"
   end
