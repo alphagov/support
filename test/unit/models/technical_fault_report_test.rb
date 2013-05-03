@@ -8,8 +8,8 @@ class TechnicalFaultReportTest < Test::Unit::TestCase
   should validate_presence_of(:what_happened)
   should validate_presence_of(:what_should_have_happened)
 
-  should "be Inside Government-related if the fault context is" do
-    assert TechnicalFaultReport.new(fault_context: stub("component", inside_government_related?: true)).inside_government_related?
-    refute TechnicalFaultReport.new(fault_context: stub("component", inside_government_related?: false)).inside_government_related?
+  should "be Inside Government-related if the fault is caused by an Inside Government technical component" do
+    assert TechnicalFaultReport.new(fault_context: stub(inside_government_related?: true)).inside_government_related?
+    refute TechnicalFaultReport.new(fault_context: stub(inside_government_related?: false)).inside_government_related?
   end
 end
