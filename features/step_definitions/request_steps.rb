@@ -171,3 +171,31 @@ When /^the user submits the following analytics request:$/ do |request_details_t
 
   step "the user submits the request successfully"
 end
+
+When /^the user submits the following technical fault report:$/ do |request_details_table|
+  @request_details = request_details_table.hashes.first
+
+  visit '/'
+
+  click_on "Report a technical fault"
+
+  assert page.has_content?("Report a technical fault to GDS")
+
+  within "#technical-fault-context" do
+    choose @request_details["Location of fault"]
+  end
+
+  fill_in "How much is it affecting? (the whole thing, a specific feature or specific URLs)",
+    with: @request_details["What is broken"]
+
+  fill_in "What were you trying to do?",
+    with: @request_details["User's actions"]
+
+  fill_in "What happened?",
+    with: @request_details["What happened"]
+
+  fill_in "What should have happened?",
+    with: @request_details["What should have happened"]
+  
+  step "the user submits the request successfully"
+end

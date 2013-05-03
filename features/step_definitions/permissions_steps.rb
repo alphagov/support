@@ -1,7 +1,8 @@
 require 'active_support/inflector'
 
 def request_class_for(request_name)
-  (request_name.split + ["Request"]).map(&:capitalize).join.constantize
+  class_name_suffix = request_name =~ /report/ ? []  : ["Request"]
+  (request_name.split + class_name_suffix).map(&:capitalize).join.constantize
 end
 
 def perms_for(role)

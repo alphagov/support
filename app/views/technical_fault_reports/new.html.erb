@@ -1,0 +1,17 @@
+<%= content_for :page_title, "Technical Fault Report" %>
+<%= content_for :header, "Report a technical fault to GDS" %>
+
+<div class="well">
+  <%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
+
+    <%= render partial: "support/collaborators", locals: { f: f, show_collaborators: true } %>
+
+    <%= render partial: "technical_fault_details", locals: { f: f } %>
+
+    <div class="alert alert-info alert-block">
+      <p>If you have screenshots please send them as attachments in reply to the acknowledgement email you will receive shortly.</p>
+    </div>
+
+    <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
+  <% end %>
+</div>

@@ -13,3 +13,4 @@ Feature: Request permissions
     | General                | Y                  | Y                   | Y                        | Y             | Y      |
     | New feature            | Y                  | N                   | Y                        | N             | N      |
     | Remove user            | N                  | N                   | Y                        | Y             | N      |
+    | Technical fault report | Y                  | Y                   | Y                        | Y             | Y      |
