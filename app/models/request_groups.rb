@@ -6,7 +6,7 @@ class RequestGroups
       RequestGroup.new("Content request", [ContentChangeRequest, NewFeatureRequest]),
       RequestGroup.new("User Access", [CreateNewUserRequest, RemoveUserRequest]),
       RequestGroup.new("Campaigns", [CampaignRequest]),
-      RequestGroup.new("Other Issues", [AnalyticsRequest, GeneralRequest]),
+      RequestGroup.new("Other Issues", [AnalyticsRequest, GeneralRequest, TechnicalFaultReport]),
     ]
   end
 
