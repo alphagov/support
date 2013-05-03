@@ -22,7 +22,7 @@ class UserFacingComponentTest < Test::Unit::TestCase
   end
 
   should "also define the formatted version" do
-    assert_equal "Inside Government Publisher", \
+    assert_equal "Inside Government Publisher",
       component("inside_government_publisher").formatted_name
   end
 end
