@@ -1,6 +1,6 @@
 module TestData
   def valid_create_new_user_request_params
-    { "create_new_user_request" =>
+    { "support_requests_create_new_user_request" =>
       { "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => valid_requested_user_params,
         "tool_role" => "govt_form",
@@ -9,7 +9,7 @@ module TestData
   end
 
   def valid_general_request_params
-    {"general_request" => 
+    { "support_requests_general_request" => 
       { "requester_attributes" => valid_requester_params,
         "url"=>"testing",
         "additional"=>"" }

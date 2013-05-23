@@ -9,7 +9,8 @@ module ApplicationHelper
   end
 
   def path_to_new_request(request_class)
-    path_name = "new_#{request_class.name.underscore}_path"
+    request_class_name = request_class.name.split("::").last
+    path_name = "new_#{request_class_name.underscore}_path"
     Rails.application.routes.url_helpers.send(path_name)
   end
 end

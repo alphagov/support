@@ -1,8 +1,11 @@
 require 'zendesk/ticket/create_new_user_request_ticket'
+require 'support/requests/create_new_user_request'
 require 'gds_zendesk/users'
 require 'gds_zendesk/zendesk_error'
 
 class CreateNewUserRequestsController < RequestsController
+  include Support::Requests
+
   protected
   def new_request
     CreateNewUserRequest.new(requested_user: RequestedUser.new)
@@ -13,7 +16,7 @@ class CreateNewUserRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    CreateNewUserRequest.new(params[:create_new_user_request])
+    CreateNewUserRequest.new(params[:support_requests_create_new_user_request])
   end
 
   def process_valid_request(submitted_request)

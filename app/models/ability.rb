@@ -1,6 +1,8 @@
-class Ability
+require 'support/requests'
 
+class Ability
   include CanCan::Ability
+  include Support::Requests
 
   def initialize(user)
     can :manage, :all if user.has_permission?('single_points_of_contact')

@@ -1,5 +1,8 @@
+require 'support/requests'
+
 class RequestGroups
   include Enumerable
+  include Support::Requests
 
   def initialize
     @groups = [
@@ -14,7 +17,7 @@ class RequestGroups
     @groups.each(&block)
   end
 
-  def all_request_classes
-    @groups.collect(&:request_classes).flatten
+  def all_request_class_names
+    @groups.collect(&:request_classes).flatten.map {|request_class| request_class.name.split("::").last }
   end
 end

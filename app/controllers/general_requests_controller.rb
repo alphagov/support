@@ -1,9 +1,10 @@
 require 'zendesk/ticket/general_request_ticket'
+require 'support/requests/general_request'
 
-class GeneralRequestsController <  RequestsController
+class GeneralRequestsController < RequestsController
   protected
   def new_request
-    GeneralRequest.new(:requester => Requester.new)
+    Support::Requests::GeneralRequest.new(requester: Requester.new)
   end
 
   def zendesk_ticket_class
@@ -11,7 +12,7 @@ class GeneralRequestsController <  RequestsController
   end
 
   def parse_request_from_params
-    user_request = GeneralRequest.new(params[:general_request])
+    user_request = Support::Requests::GeneralRequest.new(params[:support_requests_general_request])
     user_request.user_agent = request.user_agent
     user_request
   end

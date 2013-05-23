@@ -8,6 +8,8 @@ require 'webmock/minitest'
 require 'ostruct'
 require_relative 'test_data'
 
+require 'shoulda/context'
+
 class ActiveSupport::TestCase
   def setup
     super
@@ -32,4 +34,3 @@ class ActiveSupport::TestCase
     @zendesk_api.reset
   end
 end
-
