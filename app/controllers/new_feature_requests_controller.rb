@@ -1,4 +1,4 @@
-require 'new_feature_request_zendesk_ticket'
+require 'zendesk/ticket/new_feature_request_ticket'
 
 class NewFeatureRequestsController < RequestsController
   protected
@@ -7,7 +7,7 @@ class NewFeatureRequestsController < RequestsController
   end
 
   def zendesk_ticket_class
-    NewFeatureRequestZendeskTicket
+    Zendesk::Ticket::NewFeatureRequestTicket
   end
 
   def parse_request_from_params

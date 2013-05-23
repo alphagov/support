@@ -1,4 +1,4 @@
-require 'general_request_zendesk_ticket'
+require 'zendesk/ticket/general_request_ticket'
 
 class GeneralRequestsController <  RequestsController
   protected
@@ -7,7 +7,7 @@ class GeneralRequestsController <  RequestsController
   end
 
   def zendesk_ticket_class
-    GeneralRequestZendeskTicket
+    Zendesk::Ticket::GeneralRequestTicket
   end
 
   def parse_request_from_params

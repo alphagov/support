@@ -1,4 +1,4 @@
-require 'content_change_request_zendesk_ticket'
+require 'zendesk/ticket/content_change_request_ticket'
 
 class ContentChangeRequestsController < RequestsController
   protected
@@ -7,7 +7,7 @@ class ContentChangeRequestsController < RequestsController
   end
 
   def zendesk_ticket_class
-    ContentChangeRequestZendeskTicket
+    Zendesk::Ticket::ContentChangeRequestTicket
   end
 
   def parse_request_from_params

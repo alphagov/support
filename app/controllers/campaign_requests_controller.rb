@@ -1,4 +1,4 @@
-require 'campaign_request_zendesk_ticket'
+require 'zendesk/ticket/campaign_request_ticket'
 
 class CampaignRequestsController <  RequestsController
   protected
@@ -7,7 +7,7 @@ class CampaignRequestsController <  RequestsController
   end
 
   def zendesk_ticket_class
-    CampaignRequestZendeskTicket
+    Zendesk::Ticket::CampaignRequestTicket
   end
 
   def parse_request_from_params

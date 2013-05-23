@@ -1,4 +1,4 @@
-require 'technical_fault_report_zendesk_ticket'
+require 'zendesk/ticket/technical_fault_report_ticket'
 
 class TechnicalFaultReportsController <  RequestsController
   protected
@@ -7,7 +7,7 @@ class TechnicalFaultReportsController <  RequestsController
   end
 
   def zendesk_ticket_class
-    TechnicalFaultReportZendeskTicket
+    Zendesk::Ticket::TechnicalFaultReportTicket
   end
 
   def parse_request_from_params

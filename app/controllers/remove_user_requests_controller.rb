@@ -1,4 +1,4 @@
-require 'remove_user_request_zendesk_ticket'
+require 'zendesk/ticket/remove_user_request_ticket'
 
 class RemoveUserRequestsController < RequestsController
   protected
@@ -7,7 +7,7 @@ class RemoveUserRequestsController < RequestsController
   end
 
   def zendesk_ticket_class
-    RemoveUserRequestZendeskTicket
+    Zendesk::Ticket::RemoveUserRequestTicket
   end
 
   def parse_request_from_params

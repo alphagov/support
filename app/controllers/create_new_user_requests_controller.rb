@@ -1,4 +1,4 @@
-require 'create_new_user_request_zendesk_ticket'
+require 'zendesk/ticket/create_new_user_request_ticket'
 require 'gds_zendesk/users'
 require 'gds_zendesk/zendesk_error'
 
@@ -9,7 +9,7 @@ class CreateNewUserRequestsController < RequestsController
   end
 
   def zendesk_ticket_class
-    CreateNewUserRequestZendeskTicket
+    Zendesk::Ticket::CreateNewUserRequestTicket
   end
 
   def parse_request_from_params
