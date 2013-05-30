@@ -16,7 +16,7 @@ Feature: Campaign requests
       | Subject  | Requester email      |
       | Campaign | john.smith@email.com |
     And the ticket is tagged with "govt_form campaign"
-    And the comment on the ticket is:
+    And the description on the ticket is:
       """
       [Campaign title]
       Workplace pensions

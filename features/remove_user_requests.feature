@@ -19,7 +19,7 @@ Feature: Remove user requests
     And the time constraints on the ticket are:
       | Not before date |
       | 31-12-2020      |
-    And the comment on the ticket is:
+    And the description on the ticket is:
       """
       [Tool/Role]
       Departmental Contact Form

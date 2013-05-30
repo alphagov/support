@@ -16,7 +16,7 @@ Feature: General requests
       | Subject                   | Requester email      | Requester name       |
       | Govt Agency General Issue | john.smith@email.com | John Smith           | 
     And the ticket is tagged with "govt_form govt_agency_general"
-    And the comment on the ticket is:
+    And the description on the ticket is:
       """
       [Url]
       https://www.gov.uk
