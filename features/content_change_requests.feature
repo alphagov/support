@@ -20,7 +20,7 @@ Feature: Content change requests
       | Need by date | Not before date |
       | 31-12-2020   | 01-12-2020      |
     And the ticket is tagged with "govt_form content_amend"
-    And the comment on the ticket is:
+    And the description on the ticket is:
       """
       [Which part of GOV.UK is this about?]
       Mainstream (business/citizen)

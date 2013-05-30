@@ -17,7 +17,7 @@ Feature: Create new user requests
       | Subject         | Requester email      |
       | Create new user | john.smith@email.com |
     And the ticket is tagged with "govt_form new_user"
-    And the comment on the ticket is:
+    And the description on the ticket is:
       """
       [Tool/Role]
       Departmental Contact Form

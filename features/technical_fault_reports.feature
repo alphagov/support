@@ -16,7 +16,7 @@ Feature: Technical fault reports
       | Subject                | Requester email      |
       | Technical fault report | john.smith@email.com |
     And the ticket is tagged with "govt_form technical_fault fault_with_gov_uk"
-    And the comment on the ticket is:
+    And the description on the ticket is:
       """
       [Location of fault]
       GOV.UK itself
