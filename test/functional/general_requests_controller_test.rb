@@ -10,7 +10,7 @@ class GeneralRequestsControllerTest < ActionController::TestCase
 
       post :create, params
 
-      assert_includes @zendesk_api.ticket.comment, "Mozilla/5.0"
+      assert_includes @zendesk_api.ticket.description, "Mozilla/5.0"
     end
   end
 end

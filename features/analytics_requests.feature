@@ -16,7 +16,7 @@ Feature: Analytics requests
       | Subject               | Requester email      |
       | Request for analytics | john.smith@email.com |
     And the ticket is tagged with "govt_form analytics"
-    And the comment on the ticket is:
+    And the description on the ticket is:
       """
       [Which part of GOV.UK is this about?]
       Mainstream (business/citizen)

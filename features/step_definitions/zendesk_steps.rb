@@ -11,8 +11,8 @@ Then /^the ticket is tagged with "(.*?)"$/ do |expected_tags|
   assert_equal expected_tags, @raised_ticket.tags.join(" ")
 end
 
-Then /^the comment on the ticket is:$/ do |expected_comment_string|
-  assert_equal expected_comment_string, @raised_ticket.comment
+Then /^the description on the ticket is:$/ do |expected_comment_string|
+  assert_equal expected_comment_string, @raised_ticket.description
 end
 
 Then /^the time constraints on the ticket are:$/ do |ticket_properties_table|
