@@ -1,4 +1,5 @@
 require "zendesk_tickets"
+require 'support/permissions/ability'
 require 'gds_zendesk/zendesk_error'
 
 class RequestsController < ApplicationController
@@ -26,6 +27,10 @@ class RequestsController < ApplicationController
   end
 
   protected
+  def current_ability
+    @current_ability ||= Support::Permissions::Ability.new(current_user)
+  end
+
   def process_valid_request(submitted_request)
     raise_ticket(zendesk_ticket_class.new(submitted_request))
   end
