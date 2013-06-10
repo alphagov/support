@@ -1,5 +1,4 @@
 require 'zendesk/ticket/campaign_request_ticket'
-require 'support/requests/requester'
 require 'support/requests/campaign_request'
 
 class CampaignRequestsController <  RequestsController
@@ -7,7 +6,7 @@ class CampaignRequestsController <  RequestsController
 
   protected
   def new_request
-    CampaignRequest.new(requester: Requester.new, campaign: Support::GDS::Campaign.new)
+    CampaignRequest.new(campaign: Support::GDS::Campaign.new)
   end
 
   def zendesk_ticket_class

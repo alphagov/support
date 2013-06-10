@@ -1,5 +1,4 @@
 require 'zendesk/ticket/technical_fault_report_ticket'
-require 'support/requests/requester'
 require 'support/requests/technical_fault_report'
 
 class TechnicalFaultReportsController <  RequestsController
@@ -7,7 +6,7 @@ class TechnicalFaultReportsController <  RequestsController
 
   protected
   def new_request
-    TechnicalFaultReport.new(requester: Requester.new)
+    TechnicalFaultReport.new
   end
 
   def zendesk_ticket_class

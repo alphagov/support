@@ -1,5 +1,4 @@
 require 'zendesk/ticket/new_feature_request_ticket'
-require 'support/requests/requester'
 require 'support/requests/new_feature_request'
 require 'support/requests/time_constraint'
 
@@ -8,7 +7,7 @@ class NewFeatureRequestsController < RequestsController
 
   protected
   def new_request
-    Support::Requests::NewFeatureRequest.new(requester: Requester.new, time_constraint: TimeConstraint.new)
+    Support::Requests::NewFeatureRequest.new(time_constraint: TimeConstraint.new)
   end
 
   def zendesk_ticket_class
