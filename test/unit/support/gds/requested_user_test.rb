@@ -1,8 +1,8 @@
 require 'test_helper'
-require 'support/requests/requested_user'
+require 'support/gds/requested_user'
 
 module Support
-  module Requests
+  module GDS
     class RequestedUserTest < Test::Unit::TestCase
       should validate_presence_of(:name)
       should validate_presence_of(:email)

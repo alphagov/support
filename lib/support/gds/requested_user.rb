@@ -1,7 +1,7 @@
 require 'shared/tableless_model'
 
 module Support
-  module Requests
+  module GDS
     class RequestedUser < TablelessModel
       attr_accessor :name, :email, :job, :phone
 
