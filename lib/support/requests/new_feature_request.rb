@@ -1,12 +1,12 @@
 require 'shared/request'
 require 'support/requests/with_time_constraint'
-require 'shared/with_request_context'
+require 'support/gds/with_request_context'
 
 module Support
   module Requests
     class NewFeatureRequest < Request
       include WithTimeConstraint
-      include WithRequestContext
+      include Support::GDS::WithRequestContext
 
       attr_accessor :user_need, :url_of_example
       validates_presence_of :user_need

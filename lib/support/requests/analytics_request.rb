@@ -1,11 +1,11 @@
 require 'shared/request'
-require 'shared/with_request_context'
+require 'support/gds/with_request_context'
 require 'support/gds/needed_report'
 
 module Support
   module Requests
     class AnalyticsRequest < Request
-      include WithRequestContext
+      include Support::GDS::WithRequestContext
 
       attr_accessor :needed_report, :justification_for_needing_report
 
