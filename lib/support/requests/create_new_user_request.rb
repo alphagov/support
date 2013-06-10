@@ -13,6 +13,12 @@ module Support
         self.requested_user = Support::GDS::RequestedUser.new(attr)
       end
 
+      def initialize(attrs = {})
+        self.requested_user = Support::GDS::RequestedUser.new
+
+        super
+      end
+
       def self.label
         "Create new user"
       end

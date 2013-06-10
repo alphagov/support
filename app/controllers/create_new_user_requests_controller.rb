@@ -1,6 +1,5 @@
 require 'zendesk/ticket/create_new_user_request_ticket'
 require 'support/requests/create_new_user_request'
-require 'support/gds/requested_user'
 require 'gds_zendesk/users'
 require 'gds_zendesk/zendesk_error'
 
@@ -9,7 +8,7 @@ class CreateNewUserRequestsController < RequestsController
 
   protected
   def new_request
-    CreateNewUserRequest.new(requested_user: Support::GDS::RequestedUser.new)
+    CreateNewUserRequest.new
   end
 
   def zendesk_ticket_class

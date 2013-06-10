@@ -1,13 +1,12 @@
 require 'zendesk/ticket/content_change_request_ticket'
 require 'support/requests/content_change_request'
-require 'support/requests/time_constraint'
 
 class ContentChangeRequestsController < RequestsController
   include Support::Requests
 
   protected
   def new_request
-    ContentChangeRequest.new(time_constraint: TimeConstraint.new)
+    ContentChangeRequest.new
   end
 
   def zendesk_ticket_class

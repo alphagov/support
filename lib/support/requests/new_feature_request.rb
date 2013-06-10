@@ -11,6 +11,12 @@ module Support
       attr_accessor :user_need, :url_of_example
       validates_presence_of :user_need
 
+      def initialize(attributes = {})
+        self.time_constraint = TimeConstraint.new
+        
+        super
+      end
+
       def self.label
         "New feature/need"
       end

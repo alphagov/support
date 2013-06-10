@@ -1,13 +1,12 @@
 require 'zendesk/ticket/remove_user_request_ticket'
 require 'support/requests/remove_user_request'
-require 'support/requests/time_constraint'
 
 class RemoveUserRequestsController < RequestsController
   include Support::Requests
 
   protected
   def new_request
-    RemoveUserRequest.new(time_constraint: TimeConstraint.new)
+    RemoveUserRequest.new
   end
 
   def zendesk_ticket_class

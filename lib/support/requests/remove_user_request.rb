@@ -12,6 +12,12 @@ module Support
       validates_presence_of :user_name, :user_email
       validates :user_email, :format => {:with => /@/}
 
+      def initialize(attributes = {})
+        self.time_constraint = TimeConstraint.new
+        
+        super
+      end
+
       def self.label
         "Remove user"
       end
