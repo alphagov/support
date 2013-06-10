@@ -1,11 +1,12 @@
 require 'support/permissions/permitted_request_group'
+require 'support/requests/request_groups'
 
 module Support
   module Permissions
     class PermittedRequestGroups
       include Enumerable
 
-      def initialize(user, request_groups = RequestGroups.new)
+      def initialize(user, request_groups = Support::Requests::RequestGroups.new)
         @user = user
         @request_groups = request_groups
       end

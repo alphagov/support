@@ -1,7 +1,7 @@
-require 'request_groups'
+require 'support/requests/request_groups'
 
 Support::Application.routes.draw do
-  RequestGroups.new.all_request_class_names.each do |request_class_name|
+  Support::Requests::RequestGroups.new.all_request_class_names.each do |request_class_name|
     resource request_class_name.underscore, only: [:new, :create]
   end
 
