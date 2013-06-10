@@ -1,5 +1,7 @@
 require 'shared/request'
 
+require 'support/gds/user_facing_component'
+
 module Support
   module Requests
     class TechnicalFaultReport < Request
@@ -14,11 +16,11 @@ module Support
 
       def initialize(opts = {})
         super
-        self.fault_context ||= UserFacingComponent.new
+        self.fault_context ||= Support::GDS::UserFacingComponent.new
       end
 
       def fault_context_attributes=(attr)
-        self.fault_context = UserFacingComponent.new(attr)
+        self.fault_context = Support::GDS::UserFacingComponent.new(attr)
       end
 
       def inside_government_related?
