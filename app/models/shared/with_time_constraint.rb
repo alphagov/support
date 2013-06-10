@@ -1,4 +1,4 @@
-require 'shared/time_constraint'
+require 'support/requests/time_constraint'
 
 module WithTimeConstraint
   def self.included(base)
@@ -11,6 +11,6 @@ module WithTimeConstraint
   attr_accessor :time_constraint
 
   def time_constraint_attributes=(attr)
-    self.time_constraint = TimeConstraint.new(attr)
+    self.time_constraint = Support::Requests::TimeConstraint.new(attr)
   end
 end
