@@ -1,8 +1,8 @@
 require 'test_helper'
-require 'support/requests/campaign'
+require 'support/gds/campaign'
 
 module Support
-  module Requests
+  module GDS
     class CampaignTest < Test::Unit::TestCase
       def self.as_str(date)
         date.strftime("%d-%m-%Y")

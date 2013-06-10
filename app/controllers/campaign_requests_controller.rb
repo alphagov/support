@@ -6,7 +6,7 @@ class CampaignRequestsController <  RequestsController
 
   protected
   def new_request
-    CampaignRequest.new(requester: Requester.new, campaign: Campaign.new)
+    CampaignRequest.new(requester: Requester.new, campaign: Support::GDS::Campaign.new)
   end
 
   def zendesk_ticket_class

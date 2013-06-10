@@ -1,5 +1,5 @@
 require 'shared/request'
-require 'support/requests/campaign'
+require 'support/gds/campaign'
 
 module Support
   module Requests
@@ -13,7 +13,7 @@ module Support
       end
 
       def campaign_attributes=(attr)
-        self.campaign = Campaign.new(attr)
+        self.campaign = Support::GDS::Campaign.new(attr)
       end
 
       attr_accessor :additional_comments
