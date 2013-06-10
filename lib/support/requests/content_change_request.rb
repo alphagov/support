@@ -1,5 +1,5 @@
 require 'shared/request'
-require 'shared/with_time_constraint'
+require 'support/requests/with_time_constraint'
 require 'shared/with_request_context'
 
 module Support

@@ -1,6 +1,6 @@
 require 'shared/request'
 require 'shared/with_tool_role_choice'
-require 'shared/with_time_constraint'
+require 'support/requests/with_time_constraint'
 
 module Support
   module Requests
