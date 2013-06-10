@@ -1,11 +1,11 @@
 require 'shared/request'
-require 'shared/with_tool_role_choice'
+require 'support/gds/with_tool_role_choice'
 require 'support/requests/with_time_constraint'
 
 module Support
   module Requests
     class RemoveUserRequest < Request
-      include WithToolRoleChoice
+      include Support::GDS::WithToolRoleChoice
       include WithTimeConstraint
 
       attr_accessor :user_name, :user_email, :reason_for_removal

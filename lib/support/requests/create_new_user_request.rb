@@ -1,11 +1,11 @@
 require 'shared/request'
-require 'shared/with_tool_role_choice'
+require 'support/gds/with_tool_role_choice'
 require 'support/gds/requested_user'
 
 module Support
   module Requests
     class CreateNewUserRequest < Request
-      include WithToolRoleChoice
+      include Support::GDS::WithToolRoleChoice
 
       attr_accessor :requested_user, :additional_comments
       validates_presence_of :requested_user
