@@ -1,4 +1,4 @@
-require 'shared/request'
+require 'support/requests/request'
 require 'support/gds/with_tool_role_choice'
 require 'support/gds/requested_user'
 

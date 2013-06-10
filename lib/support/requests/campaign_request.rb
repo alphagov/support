@@ -1,4 +1,4 @@
-require 'shared/request'
+require 'support/requests/request'
 require 'support/gds/campaign'
 
 module Support

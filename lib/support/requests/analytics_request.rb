@@ -1,6 +1,6 @@
-require 'shared/request'
 require 'support/gds/with_request_context'
 require 'support/gds/needed_report'
+require 'support/requests/request'
 
 module Support
   module Requests

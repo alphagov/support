@@ -1,4 +1,4 @@
-require 'shared/request'
+require 'support/requests/request'
 require 'support/requests/with_time_constraint'
 require 'support/gds/with_request_context'
 

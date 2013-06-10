@@ -1,4 +1,4 @@
-require 'shared/request'
+require 'support/requests/request'
 
 module Support
   module Requests
