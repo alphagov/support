@@ -3,9 +3,11 @@ require 'support/requests/remove_user_request'
 require 'support/requests/time_constraint'
 
 class RemoveUserRequestsController < RequestsController
+  include Support::Requests
+
   protected
   def new_request
-    Support::Requests::RemoveUserRequest.new(time_constraint: Support::Requests::TimeConstraint.new)
+    RemoveUserRequest.new(time_constraint: TimeConstraint.new)
   end
 
   def zendesk_ticket_class
@@ -13,6 +15,6 @@ class RemoveUserRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    Support::Requests::RemoveUserRequest.new(params[:support_requests_remove_user_request])
+    RemoveUserRequest.new(params[:support_requests_remove_user_request])
   end
 end

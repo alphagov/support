@@ -4,10 +4,12 @@ require 'support/requests/content_change_request'
 require 'support/requests/time_constraint'
 
 class ContentChangeRequestsController < RequestsController
+  include Support::Requests
+
   protected
   def new_request
-    Support::Requests::ContentChangeRequest.new(requester: Support::Requests::Requester.new,
-                                                time_constraint: Support::Requests::TimeConstraint.new)
+    ContentChangeRequest.new(requester: Requester.new,
+                             time_constraint: TimeConstraint.new)
   end
 
   def zendesk_ticket_class
@@ -15,6 +17,6 @@ class ContentChangeRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    Support::Requests::ContentChangeRequest.new(params[:support_requests_content_change_request])
+    ContentChangeRequest.new(params[:support_requests_content_change_request])
   end
 end
