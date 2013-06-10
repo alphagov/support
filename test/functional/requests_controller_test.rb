@@ -1,5 +1,6 @@
 require 'test_helper'
 require 'shared/tableless_model'
+require 'support/requests/requester'
 require 'zendesk_ticket'
 
 class TestRequest < TablelessModel
@@ -25,7 +26,7 @@ end
 
 class TestRequestsController < RequestsController
   def new_request
-    TestRequest.new(:requester => Requester.new)
+    TestRequest.new(requester: Support::Requests::Requester.new)
   end
 
   def zendesk_ticket_class

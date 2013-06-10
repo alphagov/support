@@ -1,4 +1,5 @@
 require "zendesk_tickets"
+require 'support/requests/requester'
 require 'support/permissions/ability'
 require 'gds_zendesk/zendesk_error'
 
@@ -37,7 +38,7 @@ class RequestsController < ApplicationController
 
   private
   def set_logged_in_user_as_requester_on(request)
-    request.requester ||= Requester.new
+    request.requester ||= Support::Requests::Requester.new
     request.requester.name = current_user.name
     request.requester.email = current_user.email
   end

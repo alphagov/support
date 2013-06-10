@@ -1,4 +1,5 @@
 require 'zendesk/ticket/analytics_request_ticket'
+require 'support/requests/requester'
 require 'support/requests/analytics_request'
 
 class AnalyticsRequestsController <  RequestsController
@@ -6,7 +7,7 @@ class AnalyticsRequestsController <  RequestsController
 
   protected
   def new_request
-    AnalyticsRequest.new(requester: Requester.new, needed_report: Support::GDS::NeededReport.new)
+    AnalyticsRequest.new(requester: Support::Requests::Requester.new, needed_report: Support::GDS::NeededReport.new)
   end
 
   def zendesk_ticket_class

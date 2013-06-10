@@ -1,4 +1,4 @@
-require 'shared/requester'
+require 'support/requests/requester'
 
 module WithRequester
   def self.included(base)
@@ -12,6 +12,6 @@ module WithRequester
   attr_accessor :requester
 
   def requester_attributes=(attr)
-    self.requester = Requester.new(attr)
+    self.requester = Support::Requests::Requester.new(attr)
   end
 end
