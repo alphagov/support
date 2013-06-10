@@ -1,6 +1,5 @@
 require 'test_helper'
 
-require 'shared/tableless_model'
 require 'support/gds/user_facing_component'
 
 def component(name)

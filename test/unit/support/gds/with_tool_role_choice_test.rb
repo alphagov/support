@@ -1,10 +1,10 @@
-require 'shared/tableless_model'
+require 'active_model/tableless_model'
 require 'support/gds/with_tool_role_choice'
 require 'test_helper'
 
 module Support
   module GDS
-    class TestModelWithToolRoleChoice < TablelessModel
+    class TestModelWithToolRoleChoice < ActiveModel::TablelessModel
       include WithToolRoleChoice
     end
 

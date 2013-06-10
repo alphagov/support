@@ -1,11 +1,11 @@
 require 'test_helper'
 
-require 'shared/tableless_model'
+require 'active_model/tableless_model'
 require 'support/gds/with_request_context'
 
 module Support
   module GDS
-    class TestModelWithRequestContext < TablelessModel
+    class TestModelWithRequestContext < ActiveModel::TablelessModel
       include WithRequestContext
     end
 

@@ -1,8 +1,8 @@
-require 'shared/tableless_model'
+require 'active_model/tableless_model'
 
 module Support
   module GDS
-    class NeededReport < TablelessModel
+    class NeededReport < ActiveModel::TablelessModel
       attr_accessor :reporting_period_start, 
                     :reporting_period_end,
                     :pages_or_sections,

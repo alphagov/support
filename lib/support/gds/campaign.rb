@@ -1,8 +1,8 @@
-require 'shared/tableless_model'
+require 'active_model/tableless_model'
 
 module Support
   module GDS
-    class Campaign < TablelessModel
+    class Campaign < ActiveModel::TablelessModel
       attr_accessor :title, :erg_reference_number, :start_date, :description, :affiliated_group_or_company, :info_url
 
       validates_presence_of :title, :erg_reference_number, :description
