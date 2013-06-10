@@ -1,10 +1,11 @@
 require 'test_helper'
 require 'shared/tableless_model'
 require 'support/requests/requester'
+require 'support/requests/with_requester'
 require 'zendesk_ticket'
 
 class TestRequest < TablelessModel
-  include WithRequester
+  include Support::Requests::WithRequester
 
   attr_accessor :a, :b
   validates_presence_of :a

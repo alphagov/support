@@ -1,5 +1,5 @@
-require 'shared/with_requester'
+require 'support/requests/with_requester'
 
 class Request < TablelessModel
-  include WithRequester
+  include Support::Requests::WithRequester
 end
