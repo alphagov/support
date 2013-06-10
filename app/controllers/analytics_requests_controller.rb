@@ -6,7 +6,7 @@ class AnalyticsRequestsController <  RequestsController
 
   protected
   def new_request
-    AnalyticsRequest.new(requester: Requester.new, needed_report: NeededReport.new)
+    AnalyticsRequest.new(requester: Requester.new, needed_report: Support::GDS::NeededReport.new)
   end
 
   def zendesk_ticket_class

@@ -1,8 +1,8 @@
 require 'test_helper'
-require 'support/requests/needed_report'
+require 'support/gds/needed_report'
 
 module Support
-  module Requests
+  module GDS
     class NeededReportTest < Test::Unit::TestCase
       should validate_presence_of(:reporting_period_start)
       should validate_presence_of(:reporting_period_end)

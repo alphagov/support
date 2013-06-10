@@ -1,6 +1,6 @@
 require 'shared/request'
 require 'shared/with_request_context'
-require 'support/requests/needed_report'
+require 'support/gds/needed_report'
 
 module Support
   module Requests
@@ -12,7 +12,7 @@ module Support
       validates_presence_of :needed_report, :justification_for_needing_report
 
       def needed_report_attributes=(attr)
-        self.needed_report = NeededReport.new(attr)
+        self.needed_report = Support::GDS::NeededReport.new(attr)
       end
 
       def self.label

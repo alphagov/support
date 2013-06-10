@@ -1,7 +1,7 @@
 require 'shared/tableless_model'
 
 module Support
-  module Requests
+  module GDS
     class NeededReport < TablelessModel
       attr_accessor :reporting_period_start, 
                     :reporting_period_end,
