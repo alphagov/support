@@ -8,8 +8,7 @@ class ContentChangeRequestsController < RequestsController
 
   protected
   def new_request
-    ContentChangeRequest.new(requester: Requester.new,
-                             time_constraint: TimeConstraint.new)
+    ContentChangeRequest.new(requester: Requester.new, time_constraint: TimeConstraint.new)
   end
 
   def zendesk_ticket_class

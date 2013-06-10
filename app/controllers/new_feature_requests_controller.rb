@@ -8,8 +8,7 @@ class NewFeatureRequestsController < RequestsController
 
   protected
   def new_request
-    Support::Requests::NewFeatureRequest.new(requester: Requester.new,
-                                             time_constraint: TimeConstraint.new)
+    Support::Requests::NewFeatureRequest.new(requester: Requester.new, time_constraint: TimeConstraint.new)
   end
 
   def zendesk_ticket_class
