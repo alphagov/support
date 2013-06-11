@@ -20,13 +20,13 @@ module Zendesk
       def comment_snippets
         [ 
           LabelledSnippet.new(on: @request,                 field: :formatted_request_context,
-                                                           label: "Which part of GOV.UK is this about?"),
+                                                            label: "Which part of GOV.UK is this about?"),
           LabelledSnippet.new(on: @request,                 field: :url,
-                                                           label: "URL of content to be changed"),
+                                                            label: "URL of content to be changed"),
           LabelledSnippet.new(on: @request,                 field: :related_urls,
-                                                           label: "Related URLs"),
+                                                            label: "Related URLs"),
           LabelledSnippet.new(on: @request,                 field: :details_of_change,
-                                                           label: "Details of what should be added, amended or removed"),
+                                                            label: "Details of what should be added, amended or removed"),
           LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason)
         ]
       end

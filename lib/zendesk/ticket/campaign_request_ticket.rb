@@ -16,15 +16,15 @@ module Zendesk
       def comment_snippets
         [
           LabelledSnippet.new(on: @request.campaign, field: :title, 
-                                                    label: "Campaign title"),
+                                                     label: "Campaign title"),
           LabelledSnippet.new(on: @request.campaign, field: :erg_reference_number,
-                                                    label: "ERG reference number"),
+                                                     label: "ERG reference number"),
           LabelledSnippet.new(on: @request.campaign, field: :start_date),
           LabelledSnippet.new(on: @request.campaign, field: :description),
           LabelledSnippet.new(on: @request.campaign, field: :affiliated_group_or_company),
           LabelledSnippet.new(on: @request.campaign, field: :info_url,
-                                                    label: "URL with more information"),
-          LabelledSnippet.new(on: @request, field: :additional_comments)
+                                                     label: "URL with more information"),
+          LabelledSnippet.new(on: @request,          field: :additional_comments)
         ]
       end
     end

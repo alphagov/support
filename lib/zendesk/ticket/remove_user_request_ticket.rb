@@ -16,7 +16,7 @@ module Zendesk
       def comment_snippets
         [ 
           LabelledSnippet.new(on: @request, field: :formatted_tool_role,
-                                           label: "Tool/Role"),
+                                            label: "Tool/Role"),
           LabelledSnippet.new(on: @request, field: :user_name),
           LabelledSnippet.new(on: @request, field: :user_email),
           LabelledSnippet.new(on: @request, field: :reason_for_removal)

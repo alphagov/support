@@ -21,11 +21,11 @@ module Zendesk
         [
           LabelledSnippet.new(on: @request.fault_context, field: :formatted_name,
                                                           label: "Location of fault"),
-          LabelledSnippet.new(on: @request, field: :fault_specifics,
-                                            label: "What is broken"),
-          LabelledSnippet.new(on: @request, field: :actions_leading_to_problem),
-          LabelledSnippet.new(on: @request, field: :what_happened),
-          LabelledSnippet.new(on: @request, field: :what_should_have_happened),
+          LabelledSnippet.new(on: @request,               field: :fault_specifics,
+                                                          label: "What is broken"),
+          LabelledSnippet.new(on: @request,               field: :actions_leading_to_problem),
+          LabelledSnippet.new(on: @request,               field: :what_happened),
+          LabelledSnippet.new(on: @request,               field: :what_should_have_happened),
         ]
       end
     end

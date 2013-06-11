@@ -19,7 +19,7 @@ module Zendesk
       def comment_snippets
         [ 
           LabelledSnippet.new(on: @request,                 field: :formatted_request_context,
-                                                           label: "Which part of GOV.UK is this about?"),
+                                                            label: "Which part of GOV.UK is this about?"),
           LabelledSnippet.new(on: @request,                 field: :user_need),
           LabelledSnippet.new(on: @request,                 field: :url_of_example),
           LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason)
