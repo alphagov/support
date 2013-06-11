@@ -1,19 +1,23 @@
-require 'create_new_user_request_zendesk_ticket'
+require 'zendesk/ticket/create_new_user_request_ticket'
+require 'support/requests/create_new_user_request'
+require 'support/gds/requested_user'
 require 'gds_zendesk/users'
 require 'gds_zendesk/zendesk_error'
 
 class CreateNewUserRequestsController < RequestsController
+  include Support::Requests
+
   protected
   def new_request
-    CreateNewUserRequest.new(requested_user: RequestedUser.new)
+    CreateNewUserRequest.new(requested_user: Support::GDS::RequestedUser.new)
   end
 
   def zendesk_ticket_class
-    CreateNewUserRequestZendeskTicket
+    Zendesk::Ticket::CreateNewUserRequestTicket
   end
 
   def parse_request_from_params
-    CreateNewUserRequest.new(params[:create_new_user_request])
+    CreateNewUserRequest.new(params[:support_requests_create_new_user_request])
   end
 
   def process_valid_request(submitted_request)
