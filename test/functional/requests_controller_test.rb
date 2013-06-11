@@ -1,9 +1,11 @@
 require 'test_helper'
-require 'shared/tableless_model'
+require 'active_model/tableless_model'
+require 'support/requests/requester'
+require 'support/requests/with_requester'
 require 'zendesk_ticket'
 
-class TestRequest < TablelessModel
-  include WithRequester
+class TestRequest < ActiveModel::TablelessModel
+  include Support::Requests::WithRequester
 
   attr_accessor :a, :b
   validates_presence_of :a
@@ -25,7 +27,7 @@ end
 
 class TestRequestsController < RequestsController
   def new_request
-    TestRequest.new(:requester => Requester.new)
+    TestRequest.new(requester: Support::Requests::Requester.new)
   end
 
   def zendesk_ticket_class

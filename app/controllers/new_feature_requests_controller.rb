@@ -1,16 +1,20 @@
-require 'new_feature_request_zendesk_ticket'
+require 'zendesk/ticket/new_feature_request_ticket'
+require 'support/requests/new_feature_request'
+require 'support/requests/time_constraint'
 
 class NewFeatureRequestsController < RequestsController
+  include Support::Requests
+
   protected
   def new_request
-    NewFeatureRequest.new(:requester => Requester.new, :time_constraint => TimeConstraint.new)
+    Support::Requests::NewFeatureRequest.new(time_constraint: TimeConstraint.new)
   end
 
   def zendesk_ticket_class
-    NewFeatureRequestZendeskTicket
+    Zendesk::Ticket::NewFeatureRequestTicket
   end
 
   def parse_request_from_params
-    NewFeatureRequest.new(params[:new_feature_request])
+    NewFeatureRequest.new(params[:support_requests_new_feature_request])
   end
 end

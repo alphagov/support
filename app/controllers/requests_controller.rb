@@ -1,4 +1,6 @@
 require "zendesk_tickets"
+require 'support/requests/requester'
+require 'support/permissions/ability'
 require 'gds_zendesk/zendesk_error'
 
 class RequestsController < ApplicationController
@@ -26,13 +28,17 @@ class RequestsController < ApplicationController
   end
 
   protected
+  def current_ability
+    @current_ability ||= Support::Permissions::Ability.new(current_user)
+  end
+
   def process_valid_request(submitted_request)
     raise_ticket(zendesk_ticket_class.new(submitted_request))
   end
 
   private
   def set_logged_in_user_as_requester_on(request)
-    request.requester ||= Requester.new
+    request.requester ||= Support::Requests::Requester.new
     request.requester.name = current_user.name
     request.requester.email = current_user.email
   end

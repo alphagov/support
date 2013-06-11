@@ -1,4 +1,5 @@
 require 'gds-sso/user'
+require 'support/permissions/ability'
 
 class User < OpenStruct
   def self.attr_accessible(*args)
@@ -8,7 +9,7 @@ class User < OpenStruct
   delegate :can?, :cannot?, :to => :ability
 
   def ability
-    @ability ||= Ability.new(self)
+    @ability ||= Support::Permissions::Ability.new(self)
   end
 
   def self.find_by_uid(uid)

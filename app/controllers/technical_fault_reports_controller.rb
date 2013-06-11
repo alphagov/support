@@ -1,16 +1,19 @@
-require 'technical_fault_report_zendesk_ticket'
+require 'zendesk/ticket/technical_fault_report_ticket'
+require 'support/requests/technical_fault_report'
 
 class TechnicalFaultReportsController <  RequestsController
+  include Support::Requests
+
   protected
   def new_request
-    TechnicalFaultReport.new(requester: Requester.new)
+    TechnicalFaultReport.new
   end
 
   def zendesk_ticket_class
-    TechnicalFaultReportZendeskTicket
+    Zendesk::Ticket::TechnicalFaultReportTicket
   end
 
   def parse_request_from_params
-    TechnicalFaultReport.new(params[:technical_fault_report])
+    TechnicalFaultReport.new(params[:support_requests_technical_fault_report])
   end
 end

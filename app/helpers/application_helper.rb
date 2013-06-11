@@ -1,3 +1,5 @@
+require 'support/permissions/permitted_request_groups'
+
 module ApplicationHelper
   # Set class on active navigation items
   def nav_link(link_text, link_path)
@@ -9,7 +11,12 @@ module ApplicationHelper
   end
 
   def path_to_new_request(request_class)
-    path_name = "new_#{request_class.name.underscore}_path"
+    request_class_name = request_class.name.split("::").last
+    path_name = "new_#{request_class_name.underscore}_path"
     Rails.application.routes.url_helpers.send(path_name)
+  end
+
+  def request_groups
+    Support::Permissions::PermittedRequestGroups.new(current_user)
   end
 end
