@@ -119,7 +119,7 @@ class RequestsControllerTest < ActionController::TestCase
 
       @controller.expects(:render).with("support/zendesk_error", has_entry(status: 500))
       ExceptionNotifier::Notifier.expects(:exception_notification)
-                           .with(anything, kind_of(GDSZendesk::ZendeskError))
+                           .with(anything, kind_of(ZendeskAPI::Error::ClientError), has_key(:data))
                            .returns(stub("mailer", deliver: true))
 
       post :create, params
