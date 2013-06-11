@@ -1,7 +1,7 @@
 require "zendesk_tickets"
 require 'support/requests/requester'
 require 'support/permissions/ability'
-require 'gds_zendesk/zendesk_error'
+require 'zendesk_api/error'
 
 class RequestsController < ApplicationController
   check_authorization
@@ -51,10 +51,15 @@ class RequestsController < ApplicationController
     else
       return render "support/zendesk_error", locals: { error_string: "Zendesk timed out", ticket: ticket }
     end
-  rescue GDSZendesk::ZendeskError => e
+  rescue ZendeskAPI::Error::ClientError => e
     request.env["sso-credentials"] = "#{current_user.name} <#{current_user.email}>"
-    ExceptionNotifier::Notifier.exception_notification(request.env, e).deliver
-    render "support/zendesk_error", status: 500, locals: { error_string: e.underlying_message, 
+
+    exception_notification_for(e)
+    
+    error_details = e.class.name
+    error_details += ": #{e.errors}" if e.respond_to?(:errors)
+
+    render "support/zendesk_error", status: 500, locals: { error_string: error_details,
                                                            ticket: ticket }
   end
 end
