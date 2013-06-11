@@ -1,5 +1,13 @@
 #!/bin/bash -x
 
+# This removes rbenv shims from the PATH where there is no
+# .ruby-version file. This is because certain gems call their
+# respective tasks with ruby -S which causes the following error to
+# appear: ruby: no Ruby script found in input (LoadError).
+if [ ! -f .ruby-version ]; then
+  export PATH=$(printf $PATH | awk 'BEGIN { RS=":"; ORS=":" } !/rbenv/' | sed 's/:$//')
+fi
+
 export FACTER_govuk_platform=test
 export RAILS_ENV=test
 export GOVUK_APP_DOMAIN=dev.gov.uk
