@@ -1,5 +1,5 @@
 require "test_helper"
-require 'gds_zendesk/zendesk_error'
+require 'zendesk_api/error'
 
 class CreateNewUserRequestsControllerTest < ActionController::TestCase
   include TestData
@@ -29,7 +29,7 @@ class CreateNewUserRequestsControllerTest < ActionController::TestCase
       @zendesk_api.users.should_raise_error
 
       ExceptionNotifier::Notifier.expects(:exception_notification)
-                                 .with(anything, kind_of(GDSZendesk::ZendeskError))
+                                 .with(anything, kind_of(ZendeskAPI::Error::ClientError), anything)
                                  .returns(stub("mailer", deliver: true))
 
       post :create, valid_create_new_user_request_params
