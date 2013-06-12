@@ -5,7 +5,7 @@ module Support
   module Requests
     class Request < ActiveModel::TablelessModel
       def initialize(attributes = {})
-        self.requester = Requester.new        
+        self.requester = Requester.new
 
         super
       end
