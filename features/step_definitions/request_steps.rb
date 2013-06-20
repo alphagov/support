@@ -199,3 +199,9 @@ When /^the user submits the following technical fault report:$/ do |request_deta
   
   step "the user submits the request successfully"
 end
+
+When /^the user submits the following request to unpublish content:$/ do |request_details_table|
+  @request_details = request_details_table.hashes.first
+
+  visit '/'
+end
