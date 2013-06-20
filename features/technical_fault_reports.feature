@@ -10,16 +10,16 @@ Feature: Technical fault reports
 
   Scenario: successful submission of technical fault report
     When the user submits the following technical fault report:
-      | Location of fault | What is broken | User's actions | What happened | What should have happened  |
-      | GOV.UK itself     | Smart answer   | Clicked on x   | Broken link   | Should have linked through |
+      | Location of fault          | What is broken | User's actions | What happened | What should have happened  |
+      | GOV.UK: Mainstream content | Smart answer   | Clicked on x   | Broken link   | Should have linked through |
     Then the following ticket is raised in ZenDesk:
       | Subject                | Requester email      |
       | Technical fault report | john.smith@email.com |
-    And the ticket is tagged with "govt_form technical_fault fault_with_gov_uk"
+    And the ticket is tagged with "govt_form technical_fault fault_with_gov_uk_mainstream"
     And the description on the ticket is:
       """
       [Location of fault]
-      GOV.UK itself
+      GOV.UK: Mainstream content
 
       [What is broken]
       Smart answer

@@ -14,12 +14,12 @@ module Zendesk
 
       protected
       def fault_context_tag
-        "fault_with_#{@request.fault_context.name}"
+        "fault_with_#{@request.fault_context.id}"
       end
 
       def comment_snippets
         [
-          LabelledSnippet.new(on: @request.fault_context, field: :formatted_name,
+          LabelledSnippet.new(on: @request.fault_context, field: :name,
                                                           label: "Location of fault"),
           LabelledSnippet.new(on: @request,               field: :fault_specifics,
                                                           label: "What is broken"),
