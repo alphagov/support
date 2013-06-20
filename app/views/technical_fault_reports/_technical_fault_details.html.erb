@@ -1,6 +1,6 @@
 <div id="technical-fault-context">
   <%= f.semantic_fields_for :fault_context do |r| %>
-    <%= r.input :name, as: :radio, required: true, label: "What isn't working properly?", collection: r.object.options, input_html: { :"aria-required" => true } %>
+    <%= r.input :name, as: :radio, required: true, label: "What isn't working properly?", collection: f.object.fault_context_options, input_html: { :"aria-required" => true } %>
   <% end %>
 </div>
 
