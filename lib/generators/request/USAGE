@@ -1,0 +1,9 @@
+Description:
+    A generator to create new request paths quickly. By default it generates a simple form that looks like the general request.
+
+Example:
+    rails generate request MyThing
+
+    This will create:
+        lib/support/requests/my_thing_request.rb
+        test/unit/support/requests/my_thing_request_test.rb
