@@ -6,7 +6,7 @@ end
 
 When /^the user submits the request successfully$/ do
   click_on "Submit"
-  assert page.has_content?("Your ticket has been submitted successfully")
+  assert page.has_content?("Your ticket has been submitted successfully"), page.html
 end
 
 When /^the user submits the following general request:$/ do |request_details_table|
@@ -198,10 +198,4 @@ When /^the user submits the following technical fault report:$/ do |request_deta
     with: @request_details["What should have happened"]
   
   step "the user submits the request successfully"
-end
-
-When /^the user submits the following request to unpublish content:$/ do |request_details_table|
-  @request_details = request_details_table.hashes.first
-
-  visit '/'
 end

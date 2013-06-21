@@ -1,0 +1,7 @@
+<%= f.input :urls, as: :text, required: true, label: "Which content does this concern (provide one or more urls)?", input_html: { class: "span6", placeholder: "https://www.gov.uk/", rows: 16, cols: 50, :"aria-required" => true } %>
+
+<div id="unpublish-reason">
+  <%= f.input :reason_for_unpublishing, as: :radio, required: true, label: "What is the reason for unpublishing?", collection: f.object.reason_for_unpublishing_options, input_html: { :"aria-required" => true } %>
+</div>
+
+<%= f.input :further_explanation, as: :text, label: "Further explanation (this explanation can be published)", input_html: { class: "span6", rows: 16, cols: 50 } %>

@@ -1,0 +1,17 @@
+<%= content_for :page_title, "Request to unpublish content" %>
+<%= content_for :header, "Request to unpublish content" %>
+
+<div class="alert alert-info">
+  <p>Please make a separate request for each redirect.</p>
+</div>
+
+<div class="well">
+  <%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
+
+    <%= render partial: "support/collaborators", locals: { f: f } %>
+
+    <%= render partial: "request_details", locals: { f: f } %>
+
+    <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
+  <% end %>
+</div>
