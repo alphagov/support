@@ -1,0 +1,26 @@
+Feature: <%= plural_request_name.humanize.capitalize %>
+  In order to provide <somebody with some benefit>
+  As a government employee
+  I want to <feature>
+
+  Background:
+    * the following user has SSO access:
+      | Name         | Email                |
+      | John Smith   | john.smith@email.com |
+
+  Scenario: successful request
+    When the user submits the following <%= singular_request_name.humanize %>:
+      | Details          | URL                |
+      | The site is down | https://www.gov.uk |
+    Then the following ticket is raised in ZenDesk:
+      | Subject                   | Requester email      | Requester name       |
+      | <%= ("new " + singular_request_name).humanize %> | john.smith@email.com | John Smith           |
+    And the ticket is tagged with "govt_form <%= name.underscore %>"
+    And the description on the ticket is:
+      """
+      [Url]
+      https://www.gov.uk
+
+      [Additional]
+      The site is down
+      """

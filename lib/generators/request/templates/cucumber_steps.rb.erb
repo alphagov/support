@@ -1,0 +1,14 @@
+When /^the user submits the following <%= singular_request_name.humanize %>:$/ do |request_details_table|
+  @request_details = request_details_table.hashes.first
+
+  visit '/'
+
+  click_on "<%= human_name %>"
+
+  assert page.has_content?("<%= request_description %>")
+
+  fill_in "Details", :with => @request_details['Details']
+  fill_in "URL (if applicable)", :with => @request_details['URL']
+
+  step "the user submits the request successfully"
+end
