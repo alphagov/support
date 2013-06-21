@@ -1,4 +1,4 @@
-When /^the user submits the following <%= singular_request_name.humanize %>:$/ do |request_details_table|
+When /^the user submits the following <%= singular_name.humanize %>:$/ do |request_details_table|
   @request_details = request_details_table.hashes.first
 
   visit '/'

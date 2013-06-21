@@ -9,7 +9,7 @@ class RequestGeneratorTest < Rails::Generators::TestCase
   teardown :remove_temp_files
 
   setup do
-    run_generator %w{ my_thing }    
+    run_generator %w{ my_thing_request }    
   end
 
   test 'model files are created' do

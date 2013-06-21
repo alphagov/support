@@ -3,7 +3,6 @@ require 'rails/generators/named_base'
 
 class RequestGenerator < Rails::Generators::NamedBase
   source_root File.expand_path('../templates', __FILE__)
-  argument :request_description, type: :string, required: false
 
   def generate_model  
     template "request_template.rb.erb", "lib/support/requests/#{model_filename}.rb"
@@ -29,24 +28,12 @@ class RequestGenerator < Rails::Generators::NamedBase
   end
 
   private
-  def human_name
-    name.humanize
-  end
-
   def request_description
     "Some description of the request here"
   end
 
-  def singular_request_name
-    name + " request"
-  end
-
-  def plural_request_name
-    name + " requests"
-  end
-
   def model_filename
-    with_underscores(singular_request_name)
+    with_underscores(singular_name)
   end
 
   def model_class_name
@@ -54,7 +41,7 @@ class RequestGenerator < Rails::Generators::NamedBase
   end
 
   def controller_filename
-    with_underscores((plural_request_name + "_controller"))
+    with_underscores((plural_name + " controller"))
   end
 
   def controller_class_name
@@ -62,7 +49,7 @@ class RequestGenerator < Rails::Generators::NamedBase
   end
 
   def zendesk_ticket_model_filename
-    with_underscores((singular_request_name + " ticket"))
+    with_underscores((singular_name + " ticket"))
   end
 
   def zendesk_ticket_model_class_name
@@ -70,7 +57,7 @@ class RequestGenerator < Rails::Generators::NamedBase
   end
 
   def view_folder_name
-    with_underscores(plural_request_name)
+    with_underscores(plural_name)
   end
 
   def with_underscores(str)

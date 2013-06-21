@@ -3,7 +3,7 @@ Description:
     By default, it generates a simple form that looks like the general request.
 
 Example:
-    rails generate request MyThing
+    rails generate request MyThingRequest
 
     This will create:
         lib/support/requests/my_thing_request.rb
