@@ -10,17 +10,32 @@ Feature: ERTP problem reports
 
   Scenario: successful request
     When the user submits the following ERTP problem report:
-      | Details          | URL                |
-      | The site is down | https://www.gov.uk |
+      | CC ticket # | Local authority | Multiple LAs | Problem description | Investigation | Issue category | Additional |
+      | 12345       | Southwark       | true         | broken              | logs          | severe         | nothing    |
     Then the following ticket is raised in ZenDesk:
       | Subject                   |
       | New ERTP problem report   |
     And the ticket is tagged with "govt_form ertp_problem_report non_gov_uk"
     And the description on the ticket is:
       """
-      [Url]
-      https://www.gov.uk
+      [Control Center ticket number]
+      12345
+
+      [Local authority]
+      Southwark
+
+      [Multiple local authorities impacted?]
+      yes
+
+      [Problem description]
+      broken
+
+      [Details of the investigation]
+      logs
+
+      [Issue category]
+      severe
 
       [Additional]
-      The site is down
+      nothing
       """
