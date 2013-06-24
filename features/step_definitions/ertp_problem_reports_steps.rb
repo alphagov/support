@@ -5,7 +5,7 @@ When /^the user submits the following ERTP problem report:$/ do |request_details
 
   click_on "Report an ERTP problem"
 
-  assert page.has_content?("Report a an ERTP problem to GDS")
+  assert page.has_content?("Report an ERTP problem to GDS")
 
   fill_in "Control Center ticket number", with: @request_details['CC ticket #']
   fill_in "Local authority impacted", with: @request_details['Local authority']

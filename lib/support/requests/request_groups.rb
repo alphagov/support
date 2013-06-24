@@ -12,8 +12,8 @@ module Support
           RequestGroup.new("Content request", [ContentChangeRequest, NewFeatureRequest]),
           RequestGroup.new("User Access", [CreateNewUserRequest, RemoveUserRequest]),
           RequestGroup.new("Campaigns", [CampaignRequest]),
-          RequestGroup.new("ERTP", [ErtpProblemReport]),
           RequestGroup.new("Other Issues", [AnalyticsRequest, GeneralRequest, TechnicalFaultReport]),
+          RequestGroup.new("ERTP", [ErtpProblemReport]),
         ]
       end
 
