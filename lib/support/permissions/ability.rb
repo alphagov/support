@@ -12,6 +12,7 @@ module Support
         can :manage, CampaignRequest if user.has_permission?('campaign_requesters')    
         can :manage, [ NewFeatureRequest, ContentChangeRequest ] if user.has_permission?('content_requesters')
         can :manage, [ CreateNewUserRequest, RemoveUserRequest ] if user.has_permission?('user_managers')
+        can :manage, [ ErtpProblemReport ] if user.has_permission?('ertp')
 
         can :manage, [GeneralRequest, AnalyticsRequest, TechnicalFaultReport]
       end
