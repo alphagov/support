@@ -7,8 +7,8 @@ When /^the user submits the following <%= singular_name.humanize %>:$/ do |reque
 
   assert page.has_content?("<%= request_description %>")
 
-  fill_in "Details", :with => @request_details['Details']
-  fill_in "URL (if applicable)", :with => @request_details['URL']
+  fill_in "Details", with: @request_details['Details']
+  fill_in "URL (if applicable)", with: @request_details['URL']
 
   step "the user submits the request successfully"
 end
