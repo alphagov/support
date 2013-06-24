@@ -13,8 +13,8 @@ Feature: ERTP problem reports
       | CC ticket # | Local authority | Multiple LAs | Problem description | Investigation | Issue category | Additional |
       | 12345       | Southwark       | true         | broken              | logs          | severe         | nothing    |
     Then the following ticket is raised in ZenDesk:
-      | Subject                   |
-      | New ERTP problem report   |
+      | Subject             |
+      | ERTP problem report |
     And the ticket is tagged with "govt_form ertp_problem_report non_gov_uk"
     And the description on the ticket is:
       """

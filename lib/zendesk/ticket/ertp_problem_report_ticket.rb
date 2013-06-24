@@ -5,7 +5,7 @@ module Zendesk
   module Ticket
     class ErtpProblemReportTicket < ZendeskTicket
       def subject
-        "New ERTP problem report"
+        "ERTP problem report"
       end
 
       def tags
