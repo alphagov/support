@@ -1,0 +1,18 @@
+require 'test_helper'
+require 'support/requests/<%= model_filename %>'
+
+module Support
+  module Requests
+    class <%= model_class_name %>Test < Test::Unit::TestCase
+      should validate_presence_of(:requester)
+
+      should allow_value("https://www.gov.uk").for(:url)
+
+      should allow_value("a comment").for(:additional)
+
+      should "perform some custom logic" do
+        skip "specify something useful here"
+      end
+    end
+  end
+end

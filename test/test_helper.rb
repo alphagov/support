@@ -26,7 +26,7 @@ class ActiveSupport::TestCase
                  can?: true }
 
     @user = stub("stub user", defaults.merge(options))
-    @request.env['warden'] = stub(authenticate!: true, authenticated?: true, user: @user)
+    @request.env['warden'] = stub(authenticate!: true, authenticated?: true, user: @user) if @request
   end
 
   def switch_zendesk_into_dummy_mode
