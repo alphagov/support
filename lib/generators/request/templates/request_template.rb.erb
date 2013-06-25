@@ -1,0 +1,13 @@
+require 'support/requests/request'
+
+module Support
+  module Requests
+    class <%= model_class_name %> < Request
+      attr_accessor :url, :additional
+
+      def self.label
+        "<%= human_name %>"
+      end
+    end
+  end
+end

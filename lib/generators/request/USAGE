@@ -1,0 +1,23 @@
+Description:
+    A generator to create new request paths quickly.
+    By default, it generates a simple form that looks like the general request.
+
+Example:
+    rails generate request MyThingRequest
+
+    This will create:
+        lib/support/requests/my_thing_request.rb
+        test/unit/support/requests/my_thing_request_test.rb
+        
+        app/controllers/my_thing_requests_controller.rb
+        
+        lib/zendesk/ticket/my_thing_request_ticket.rb
+        
+        app/views/my_thing_requests/new.html.erb
+        app/views/my_thing_requests/_request_details.html.erb
+
+        features/my_thing_requests.feature
+
+TODO after running generator:
+    Add the new request to 'support/requests.rb'
+    Add the new request to 'request_groups.rb'
