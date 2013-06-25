@@ -10,12 +10,13 @@ Feature: ERTP problem reports
 
   Scenario: successful request
     When the user submits the following ERTP problem report:
-      | CC ticket # | Local authority | EMS supplier | Multiple LAs | Problem description | Investigation | Incident stage | Additional |
-      | 12345       | Southwark       | company A    | true         | broken              | logs          | stage 1        | nothing    |
+      | CC ticket # | Local authority | EMS supplier | Priority   | Multiple LAs | Problem description | Investigation | Incident stage | Additional |
+      | 12345       | Southwark       | company A    | 1 - urgent | true         | broken              | logs          | stage 1        | nothing    |
     Then the following ticket is raised in ZenDesk:
       | Subject                       |
       | stage 1 - ERTP problem report |
     And the ticket is tagged with "govt_form ertp_problem_report non_gov_uk"
+    And the ticket priority is "urgent"
     And the description on the ticket is:
       """
       [Control Center ticket number]

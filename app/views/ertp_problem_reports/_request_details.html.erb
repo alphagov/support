@@ -12,6 +12,9 @@
 <%= f.inputs "Problem details" do %>
   <%= f.input :description, as: :text, label: "Describe the problem", required: true, input_html: { class: "span6", rows: 6, cols: 50, :"aria-required" => true } %>
   <%= f.input :investigation, as: :text, label: "What has been done to ensure that this is a GDS problem?", input_html: { class: "span6", rows: 6, cols: 50 } %>
+  <div id="priority">
+    <%= f.input :priority, as: :select, label: "Priority", required: true, input_html: { class: "span6", :"aria-required" => true }, collection: f.object.priority_options %>
+  </div>
 <% end %>
 
 <%= f.input :additional, as: :text, label: "Additional details", input_html: { class: "span6", rows: 6, cols: 50 } %>

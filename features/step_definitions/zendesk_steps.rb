@@ -22,3 +22,7 @@ Then /^the time constraints on the ticket are:$/ do |ticket_properties_table|
   assert_equal expected_ticket_props["Need by date"], @raised_ticket.needed_by_date if expected_ticket_props["Need by date"]
   assert_equal expected_ticket_props["Not before date"], @raised_ticket.not_before_date if expected_ticket_props["Not before date"]
 end
+
+Then /^the ticket priority is "(.*?)"$/ do |expected_priority|
+  assert_equal expected_priority, @raised_ticket.priority
+end

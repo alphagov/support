@@ -8,7 +8,7 @@ class ZendeskTickets
   def raise_ticket(ticket_to_raise)
     @client.ticket.create(
       :subject => ticket_to_raise.subject,
-      :priority => "normal",
+      :priority => ticket_to_raise.priority,
       :requester => {"locale_id" => 1, "email" => ticket_to_raise.email, "name" => ticket_to_raise.name},
       :collaborators => ticket_to_raise.collaborator_emails,
       :fields => [{"id" => GDSZendesk::FIELD_MAPPINGS[:needed_by_date],  "value" => ticket_to_raise.needed_by_date},

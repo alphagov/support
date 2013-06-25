@@ -12,6 +12,10 @@ module Zendesk
         super + ["ertp_problem_report", "non_gov_uk"]
       end
 
+      def priority
+        @request.priority
+      end
+
       protected
       def comment_snippets
         [ 
