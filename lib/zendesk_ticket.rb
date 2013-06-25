@@ -46,6 +46,10 @@ class ZendeskTicket
     SnippetCollection.new(base_attribute_snippets + comment_snippets).to_s
   end
 
+  def priority
+    "normal"
+  end
+
   private
   def base_attribute_snippets
     [
