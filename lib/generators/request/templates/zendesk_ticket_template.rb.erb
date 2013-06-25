@@ -5,7 +5,7 @@ module Zendesk
   module Ticket
     class <%= zendesk_ticket_model_class_name %> < ZendeskTicket
       def subject
-        "<%= ("new " + singular_name).humanize %>"
+        "<%= singular_name.humanize %>"
       end
 
       def tags
