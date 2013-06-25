@@ -47,6 +47,10 @@ class ZendeskTicketTest < Test::Unit::TestCase
       assert_includes ticket.to_s, "A B"
     end
 
+    should "have a normal priority by default" do
+      assert_equal "normal", new_ticket(with_a_valid_requester).priority
+    end
+
     context "with time constraints" do
       should "pass the need_by_date through" do
         assert_equal "03-02-2001", 
