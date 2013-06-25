@@ -5,10 +5,12 @@ module Support
     class ErtpProblemReport < Request
       attr_accessor :control_center_ticket_number, :control_center_ticket_number,
                     :local_authority_impacted, :are_multiple_local_authorities_impacted,
-                    :description, :incident_stage, :investigation, :additional
+                    :description, :incident_stage, :investigation, :additional,
+                    :ems_supplier
 
       validates_presence_of :control_center_ticket_number, :control_center_ticket_number,
-                            :local_authority_impacted, :description, :incident_stage
+                            :local_authority_impacted, :description, :incident_stage,
+                            :ems_supplier
       validates :are_multiple_local_authorities_impacted, inclusion: { in: ["1", "0"] }
 
       def formatted_are_multiple_local_authorities_impacted

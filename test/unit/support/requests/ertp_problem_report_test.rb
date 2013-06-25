@@ -8,6 +8,7 @@ module Support
       should validate_presence_of(:control_center_ticket_number)
       should validate_presence_of(:local_authority_impacted)
       should validate_presence_of(:description)
+      should validate_presence_of(:ems_supplier)
       should validate_presence_of(:incident_stage)
 
       should allow_value("1").for(:are_multiple_local_authorities_impacted)
