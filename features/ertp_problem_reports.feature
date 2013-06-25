@@ -10,8 +10,8 @@ Feature: ERTP problem reports
 
   Scenario: successful request
     When the user submits the following ERTP problem report:
-      | CC ticket # | Local authority | Multiple LAs | Problem description | Investigation | Issue category | Additional |
-      | 12345       | Southwark       | true         | broken              | logs          | severe         | nothing    |
+      | CC ticket # | Local authority | Multiple LAs | Problem description | Investigation | Incident stage | Additional |
+      | 12345       | Southwark       | true         | broken              | logs          | stage 1        | nothing    |
     Then the following ticket is raised in ZenDesk:
       | Subject             |
       | ERTP problem report |
@@ -33,8 +33,8 @@ Feature: ERTP problem reports
       [Details of the investigation]
       logs
 
-      [Issue category]
-      severe
+      [Incident stage]
+      stage 1
 
       [Additional]
       nothing

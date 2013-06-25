@@ -2,7 +2,7 @@
   <%= f.input :control_center_ticket_number, label: "Control Center ticket number", required: true, input_html: { class: "span6", :"aria-required" => true } %>
   <%= f.input :local_authority_impacted, label: "Local authority impacted", required: true, input_html: { class: "span6", :"aria-required" => true } %>
 
-  <%= f.input :issue_category, label: "Issue category", required: true, input_html: { class: "span6", :"aria-required" => true } %>
+  <%= f.input :incident_stage, label: "Incident stage", required: true, input_html: { class: "span6", :"aria-required" => true } %>
 
   <%= f.input :are_multiple_local_authorities_impacted, as: :boolean, required: false, label: "Multiple local authorities impacted?" %>
 <% end %>

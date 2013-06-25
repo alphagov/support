@@ -13,7 +13,7 @@ When /^the user submits the following ERTP problem report:$/ do |request_details
   
   fill_in "Describe the problem", with: @request_details['Problem description']
   fill_in "What has been done to ensure that this is a GDS problem?", with: @request_details['Investigation']
-  fill_in "Issue category", with: @request_details['Issue category']
+  fill_in "Incident stage", with: @request_details['Incident stage']
   fill_in "Additional details", with: @request_details['Additional']
 
   step "the user submits the request successfully"
