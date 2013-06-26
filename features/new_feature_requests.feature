@@ -10,12 +10,12 @@ Feature: New feature requests
 
   Scenario: successful request
     When the user submits the following new feature request:
-      | Context           | User need          | URL of example         | Needed by date | Not before date | Reason            |
-      | Inside Government | Information on XYZ | http://www.example.com | 31-12-2020     | 01-12-2020      | Legal requirement |
+      | Context           | Title | User need          | URL of example         | Needed by date | Not before date | Reason            |
+      | Inside Government | Abc   | Information on XYZ | http://www.example.com | 31-12-2020     | 01-12-2020      | Legal requirement |
 
     Then the following ticket is raised in ZenDesk:
-      | Subject             | Requester email      |
-      | New Feature Request | john.smith@email.com |
+      | Subject                   | Requester email      |
+      | Abc - New Feature Request | john.smith@email.com |
     And the time constraints on the ticket are:
       | Need by date | Not before date |
       | 31-12-2020   | 01-12-2020      |
