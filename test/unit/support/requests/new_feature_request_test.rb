@@ -7,6 +7,8 @@ module Support
       should validate_presence_of(:requester)
       should validate_presence_of(:user_need)
       should validate_presence_of(:request_context)
+
+      should allow_value("XXX").for(:title)
     end
   end
 end

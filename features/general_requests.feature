@@ -10,11 +10,11 @@ Feature: General requests
 
   Scenario: successful request
     When the user submits the following general request:
-      | Details          | URL               |
-      | The site is down | https://www.gov.uk |
+      | Title    | Details          | URL               |
+      | Downtime | The site is down | https://www.gov.uk |
     Then the following ticket is raised in ZenDesk:
-      | Subject                   | Requester email      | Requester name       |
-      | Govt Agency General Issue | john.smith@email.com | John Smith           | 
+      | Subject                              | Requester email      | Requester name       |
+      | Downtime - Govt Agency General Issue | john.smith@email.com | John Smith           | 
     And the ticket is tagged with "govt_form govt_agency_general"
     And the description on the ticket is:
       """

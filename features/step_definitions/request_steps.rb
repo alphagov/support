@@ -18,6 +18,7 @@ When /^the user submits the following general request:$/ do |request_details_tab
 
   assert page.has_content?("Report a problem")
 
+  fill_in "Title of request", with: @request_details["Title"] if @request_details["Title"]
   fill_in "Details", :with => @request_details['Details']
   fill_in "URL (if applicable)", :with => @request_details['URL']
 
@@ -32,6 +33,8 @@ When /^the user submits the following new feature request:$/ do |request_details
   click_on "New feature/need"
 
   assert page.has_content?("Request a new feature/need")
+
+  fill_in "Title of request", with: @request_details["Title"] if @request_details["Title"]
 
   within "#request-context" do
     choose @request_details["Context"]

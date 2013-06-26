@@ -8,7 +8,7 @@ module Support
       include WithTimeConstraint
       include Support::GDS::WithRequestContext
 
-      attr_accessor :user_need, :url_of_example
+      attr_accessor :title, :user_need, :url_of_example
       validates_presence_of :user_need
 
       def initialize(attributes = {})
