@@ -33,6 +33,8 @@ When /^the user submits the following new feature request:$/ do |request_details
 
   assert page.has_content?("Request a new feature/need")
 
+  fill_in "Title of request", with: @request_details["Title"] if @request_details["Title"]
+
   within "#request-context" do
     choose @request_details["Context"]
   end

@@ -7,7 +7,9 @@ module Zendesk
       attr_reader :time_constraint
 
       def subject
-        @request.inside_government_related? ? "New Feature Request" : "New Need Request"
+        subject_prefix = (@request.title.nil? or @request.title.empty?) ? "" : "#{@request.title} - "
+        subject_suffix = @request.inside_government_related? ? "New Feature Request" : "New Need Request"
+        subject_prefix + subject_suffix
       end
 
       def tags

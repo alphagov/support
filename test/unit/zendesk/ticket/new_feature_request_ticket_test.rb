@@ -17,7 +17,7 @@ module Zendesk
           assert_includes tags_on_ticket, "inside_government"
         end
 
-        should "have a subject" do
+        should "have a subject if no title set" do
           assert_equal "New Feature Request", ticket_with(:inside_government_related? => true).subject
         end
       end
@@ -28,8 +28,12 @@ module Zendesk
           assert_includes tags_on_ticket, "new_need_request"
         end
 
-        should "have a subject" do
+        should "have a subject if no title set" do
           assert_equal "New Need Request", ticket_with(:inside_government_related? => false).subject
+        end
+
+        should "have a subject if a title is set" do
+          assert_equal "ABC - New Need Request", ticket_with(title: "ABC", inside_government_related?: false).subject
         end
       end
     end
