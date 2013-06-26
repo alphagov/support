@@ -5,7 +5,11 @@ module Zendesk
   module Ticket
     class GeneralRequestTicket < ZendeskTicket
       def subject
-        "Govt Agency General Issue"
+        if (@request.title.nil? or @request.title.empty?)
+          "Govt Agency General Issue"
+        else
+          "#{@request.title} - Govt Agency General Issue"
+        end
       end
 
       def tags

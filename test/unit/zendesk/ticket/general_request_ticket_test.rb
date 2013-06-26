@@ -18,8 +18,12 @@ module Zendesk
           assert_includes ticket_with(:url => "http://url").comment, "http://url"
         end
 
-        should "have the a subject" do
+        should "have the a subject if no title set" do
           assert_equal ticket.subject, "Govt Agency General Issue"
+        end
+
+        should "have the a subject if a title is set" do
+          assert_equal ticket_with(title: "abc").subject, "abc - Govt Agency General Issue"
         end
 
         should "have the appropriate tag set" do
