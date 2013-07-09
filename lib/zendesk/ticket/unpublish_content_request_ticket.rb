@@ -14,11 +14,18 @@ module Zendesk
 
       protected
       def comment_snippets
-        [ 
-          LabelledSnippet.new(on: @request, field: :urls, label: "URL of content to be unpublished"),
-          LabelledSnippet.new(on: @request, field: :formatted_reason_for_unpublishing, label: "Reason"),
-          LabelledSnippet.new(on: @request, field: :further_explanation)
+        labels = [ 
+          request_label(field: :urls, label: "URL of content to be unpublished"),
+          request_label(field: :formatted_reason_for_unpublishing, label: "Reason"),
+          request_label(field: :further_explanation),
         ]
+        if @request.another_page_involved?
+          labels += [
+            request_label(field: :redirect_url, label: "Redirect URL"),
+            request_label(field: :formatted_automatic_redirect, label: "Automatic redirect?")
+          ]
+        end
+        labels
       end
     end
   end

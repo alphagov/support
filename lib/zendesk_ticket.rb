@@ -50,6 +50,11 @@ class ZendeskTicket
     "normal"
   end
 
+  protected
+  def request_label(attributes)
+    LabelledSnippet.new({on: @request}.merge(attributes))
+  end
+
   private
   def base_attribute_snippets
     [

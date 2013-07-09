@@ -1,7 +1,13 @@
-<%= f.input :urls, as: :text, required: true, label: "Which content does this concern (provide one or more urls)?", input_html: { class: "span6", placeholder: "https://www.gov.uk/", rows: 6, cols: 50, :"aria-required" => true } %>
+<%= f.input :urls, as: :text, required: true, label: "Which content does this concern (provide one or more urls)?", input_html: { class: "span9", placeholder: "https://www.gov.uk/", rows: 6, cols: 50, :"aria-required" => true } %>
 
 <div id="unpublish-reason">
   <%= f.input :reason_for_unpublishing, as: :radio, required: true, label: "What is the reason for unpublishing?", collection: f.object.reason_for_unpublishing_options, input_html: { :"aria-required" => true } %>
 </div>
 
 <%= f.input :further_explanation, as: :text, label: "Further explanation (this explanation can be published)", input_html: { class: "span6", rows: 6, cols: 50 } %>
+
+<%= f.inputs name: "Redirect details (optional if published in error)" do %>
+  <%= f.input :redirect_url, required: false, label: "Redirect URL", input_html: { class: "span9" } %>
+
+  <%= f.input :automatic_redirect, as: :boolean, required: false, label: "Redirect to URL automatically?" %>
+<% end %>

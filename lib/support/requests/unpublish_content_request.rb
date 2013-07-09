@@ -4,8 +4,17 @@ module Support
   module Requests
     class UnpublishContentRequest < Request
 
-      attr_accessor :urls, :reason_for_unpublishing, :further_explanation
+      attr_accessor :urls, :reason_for_unpublishing, :further_explanation, :redirect_url, :automatic_redirect
       validates_presence_of :urls, :reason_for_unpublishing
+
+      validates_presence_of :redirect_url, :automatic_redirect, if: :another_page_involved?
+      validates :automatic_redirect, inclusion: { in: ["1", "0", nil] }
+
+      def initialize(attr = {})
+        self.automatic_redirect = 1
+
+        super
+      end
 
       def reason_for_unpublishing_options
         [
@@ -19,8 +28,16 @@ module Support
         Hash[reason_for_unpublishing_options].key(reason_for_unpublishing)
       end
 
+      def formatted_automatic_redirect
+        (automatic_redirect == "1").to_s
+      end
+
       def self.label
         "Unpublish content"
+      end
+
+      def another_page_involved?
+        ["duplicate_publication", "superseded_publication"].include? reason_for_unpublishing
       end
     end
   end

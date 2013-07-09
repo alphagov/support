@@ -27,3 +27,29 @@ Feature: Unpublish content requests
       [Further explanation]
       Typo in slug name
       """
+
+  Scenario: request to unpublish when page is a dupe
+    When the user submits the following request to unpublish content:
+      | URL                  | Reason                    | Further explanation | Where should redirect? | Automatic redirect? |
+      | https://www.gov.uk/X | Duplicate of another page | Some reason         | https://www.gov.uk/X   | yes                 |
+    Then the following ticket is raised in ZenDesk:
+      | Subject                                               |
+      | Duplicate of another page - Unpublish content request |
+    And the ticket is tagged with "govt_form unpublish_content inside_government duplicate_publication"
+    And the description on the ticket is:
+      """
+      [URL of content to be unpublished]
+      https://www.gov.uk/X
+
+      [Reason]
+      Duplicate of another page
+
+      [Further explanation]
+      Some reason
+
+      [Redirect URL]
+      https://www.gov.uk/X
+
+      [Automatic redirect?]
+      true
+      """
