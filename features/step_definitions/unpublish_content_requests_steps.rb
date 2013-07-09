@@ -13,7 +13,7 @@ When /^the user submits the following request to unpublish content:$/ do |reques
     choose @request_details["Reason"]
   end
 
-  fill_in "Further explanation (this explanation can be published)", with: @request_details['Further explanation']
+  fill_in "Further explanation (this explanation will be published to users)", with: @request_details['Further explanation']
 
   fill_in "Redirect URL", with: @request_details['Where should redirect?'] if @request_details['Where should redirect?']
 
