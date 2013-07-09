@@ -14,7 +14,7 @@ Feature: Unpublish content requests
       | https://www.gov.uk/X | Published in error | Typo in slug name   |
     Then the following ticket is raised in ZenDesk:
       | Subject                   |
-      | Unpublish content request |
+      | Published in error - Unpublish content request |
     And the ticket is tagged with "govt_form unpublish_content inside_government published_in_error"
     And the description on the ticket is:
       """

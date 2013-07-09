@@ -5,7 +5,7 @@ module Zendesk
   module Ticket
     class UnpublishContentRequestTicket < ZendeskTicket
       def subject
-        "Unpublish content request"
+        "#{@request.formatted_reason_for_unpublishing} - Unpublish content request"
       end
 
       def tags
