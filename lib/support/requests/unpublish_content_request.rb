@@ -3,6 +3,7 @@ require 'support/requests/request'
 module Support
   module Requests
     class UnpublishContentRequest < Request
+      DEFAULTS = { automatic_redirect: "1" }
 
       attr_accessor :urls, :reason_for_unpublishing, :further_explanation, :redirect_url, :automatic_redirect
       validates_presence_of :urls, :reason_for_unpublishing
@@ -11,9 +12,7 @@ module Support
       validates :automatic_redirect, inclusion: { in: ["1", "0", nil] }
 
       def initialize(attr = {})
-        self.automatic_redirect = 1
-
-        super
+        super(DEFAULTS.merge(attr))
       end
 
       def reason_for_unpublishing_options

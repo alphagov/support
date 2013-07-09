@@ -31,7 +31,7 @@ Feature: Unpublish content requests
   Scenario: request to unpublish when page is a dupe
     When the user submits the following request to unpublish content:
       | URL                  | Reason                    | Further explanation | Where should redirect? | Automatic redirect? |
-      | https://www.gov.uk/X | Duplicate of another page | Some reason         | https://www.gov.uk/X   | yes                 |
+      | https://www.gov.uk/X | Duplicate of another page | Some reason         | https://www.gov.uk/Y   | yes                 |
     Then the following ticket is raised in ZenDesk:
       | Subject                                               |
       | Duplicate of another page - Unpublish content request |
@@ -48,7 +48,7 @@ Feature: Unpublish content requests
       Some reason
 
       [Redirect URL]
-      https://www.gov.uk/X
+      https://www.gov.uk/Y
 
       [Automatic redirect?]
       true

@@ -30,7 +30,6 @@ module Support
 
       should "validate presence of the redirect url if the reason for publishing involves another page" do
         assert_not_nil request(reason_for_unpublishing: "duplicate_publication").errors.get(:redirect_url)
-
         assert_not_nil request(reason_for_unpublishing: "superseded_publication").errors.get(:redirect_url)
 
         assert_nil request(reason_for_unpublishing: "published_in_error").errors.get(:redirect_url)
@@ -38,7 +37,6 @@ module Support
 
       should "specify whether the redirect is automatic or not if the reason involves another page" do
         assert_not_nil request(reason_for_unpublishing: "duplicate_publication", automatic_redirect: nil).errors.get(:automatic_redirect)
-
         assert_not_nil request(reason_for_unpublishing: "superseded_publication", automatic_redirect: nil).errors.get(:automatic_redirect)
 
         assert_nil request(reason_for_unpublishing: "published_in_error", automatic_redirect: nil).errors.get(:automatic_redirect)        
