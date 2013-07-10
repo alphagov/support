@@ -10,8 +10,8 @@ Feature: Create or change user requests
 
   Scenario: user creation request
     When the user submits the following request to create or change users:
-      | Tool/Role                 | User's name | User's email | User's job title | User's phone | Additional comments |
-      | Departmental Contact Form | Bob Fields  | bob@gov.uk   | Editor           | 12345        | XXXX                |
+      | Action                     | Tool/Role                 | User's name | User's email | User's job title | User's phone | Additional comments |
+      | Request a new user account | Departmental Contact Form | Bob Fields  | bob@gov.uk   | Editor           | 12345        | XXXX                |
     Then the following ticket is raised in ZenDesk:
       | Subject         | Requester email      |
       | Create new user | john.smith@email.com |

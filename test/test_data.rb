@@ -3,6 +3,7 @@ module TestData
     { "support_requests_create_or_change_user_request" =>
       { "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => valid_requested_user_params,
+        "action" => "create_new_user",
         "tool_role" => "govt_form",
         "additional_comments"=>"" }
     }

@@ -77,6 +77,10 @@ When /^the user submits the following request to create or change users:$/ do |r
   click_on "Create or change user"
 
   assert page.has_content?("Create or change a user account")
+  
+  within "#action" do
+    choose @request_details["Action"]
+  end
 
   within "#tool-role-choice" do
     choose @request_details["Tool/Role"]

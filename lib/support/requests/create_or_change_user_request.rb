@@ -7,8 +7,10 @@ module Support
     class CreateOrChangeUserRequest < Request
       include Support::GDS::WithToolRoleChoice
 
-      attr_accessor :requested_user, :additional_comments
-      validates_presence_of :requested_user
+      attr_accessor :action, :requested_user, :additional_comments
+      validates_presence_of :action, :requested_user
+      validates :action, inclusion: { in: ["create_new_user", "change_user"] }
+
       def requested_user_attributes=(attr)
         self.requested_user = Support::GDS::RequestedUser.new(attr)
       end
@@ -17,6 +19,16 @@ module Support
         self.requested_user = Support::GDS::RequestedUser.new
 
         super
+      end
+
+      def formatted_action
+        Hash[action_options].key(action)
+      end
+
+      def action_options
+        [
+          ["Request a new user account", "create_new_user"],
+        ]
       end
 
       def self.label
