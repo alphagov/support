@@ -69,14 +69,18 @@ When /^the user submits the following content change request:$/ do |request_deta
   step "the user submits the request successfully"
 end
 
-When /^the user submits the following create user request:$/ do |request_details_table|
+When /^the user submits the following request to create or change users:$/ do |request_details_table|
   @request_details = request_details_table.hashes.first
 
   visit '/'
 
-  click_on "Create new user"
+  click_on "Create or change user"
 
-  assert page.has_content?("Create a new user account")
+  assert page.has_content?("Create or change a user account")
+  
+  within "#action" do
+    choose @request_details["Action"]
+  end
 
   within "#tool-role-choice" do
     choose @request_details["Tool/Role"]
