@@ -4,7 +4,7 @@ require 'support/gds/requested_user'
 
 module Support
   module Requests
-    class CreateNewUserRequest < Request
+    class CreateOrChangeUserRequest < Request
       include Support::GDS::WithToolRoleChoice
 
       attr_accessor :requested_user, :additional_comments
@@ -20,7 +20,7 @@ module Support
       end
 
       def self.label
-        "Create new user"
+        "Create or change user"
       end
     end
   end

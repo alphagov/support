@@ -1,9 +1,9 @@
 require 'test_helper'
-require 'support/requests/create_new_user_request'
+require 'support/requests/create_or_change_user_request'
 
 module Support
   module Requests
-    class CreateNewUserRequestTest < Test::Unit::TestCase
+    class CreateOrChangeUserRequestTest < Test::Unit::TestCase
       should validate_presence_of(:requester)
       should validate_presence_of(:requested_user)
       should validate_presence_of(:tool_role)

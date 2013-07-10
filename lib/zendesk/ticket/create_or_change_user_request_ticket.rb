@@ -3,7 +3,7 @@ require 'labelled_snippet'
 
 module Zendesk
   module Ticket
-    class CreateNewUserRequestTicket < ZendeskTicket
+    class CreateOrChangeUserRequestTicket < ZendeskTicket
       def subject
         "Create new user"
       end

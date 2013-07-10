@@ -1,13 +1,13 @@
 require 'test/unit'
 require 'shoulda/context'
-require 'zendesk/ticket/create_new_user_request_ticket'
+require 'zendesk/ticket/create_or_change_user_request_ticket'
 require 'ostruct'
 
 module Zendesk
   module Ticket
-    class CreateNewUserRequestTest < Test::Unit::TestCase
+    class CreateOrChangeUserRequestTest < Test::Unit::TestCase
       def ticket_with(opts)
-        CreateNewUserRequestTicket.new(stub_everything("request", opts))
+        CreateOrChangeUserRequestTicket.new(stub_everything("request", opts))
       end
 
       context "an inside government request" do

@@ -10,7 +10,7 @@ Feature: Request permissions
     | Campaign               | N                  | Y                   | Y                        | N             | N      | N          |
     | Content change         | Y                  | N                   | Y                        | N             | N      | N          |
     | Unpublish content      | Y                  | N                   | Y                        | N             | N      | N          |
-    | Create new user        | N                  | N                   | Y                        | Y             | N      | N          |
+    | Create or change user  | N                  | N                   | Y                        | Y             | N      | N          |
     | General                | Y                  | Y                   | Y                        | Y             | Y      | Y          |
     | New feature            | Y                  | N                   | Y                        | N             | N      | N          |
     | Remove user            | N                  | N                   | Y                        | Y             | N      | N          |
