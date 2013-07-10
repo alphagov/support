@@ -8,6 +8,12 @@ module Support
       include Support::GDS::WithToolRoleChoice
 
       attr_accessor :action, :requested_user, :additional_comments
+
+      validate do |request|
+        if request.requested_user and not request.requested_user.valid?
+          errors[:base] << "The details of the user in question are either incomplete or invalid."
+        end
+      end
       validates_presence_of :action, :requested_user
       validates :action, inclusion: { in: ["create_new_user", "change_user"] }
 
@@ -28,6 +34,7 @@ module Support
       def action_options
         [
           ["New user account", "create_new_user"],
+          ["Change an existing user's permissions", "change_user"],
         ]
       end
 
