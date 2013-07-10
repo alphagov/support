@@ -10,14 +10,17 @@ Feature: Create or change user requests
 
   Scenario: user creation request
     When the user submits the following request to create or change users:
-      | Action                     | Tool/Role                 | User's name | User's email | User's job title | User's phone | Additional comments |
-      | Request a new user account | Departmental Contact Form | Bob Fields  | bob@gov.uk   | Editor           | 12345        | XXXX                |
+      | Action           | Tool/Role                 | User's name | User's email | User's job title | User's phone | Additional comments |
+      | New user account | Departmental Contact Form | Bob Fields  | bob@gov.uk   | Editor           | 12345        | XXXX                |
     Then the following ticket is raised in ZenDesk:
-      | Subject         | Requester email      |
-      | Create new user | john.smith@email.com |
-    And the ticket is tagged with "govt_form new_user"
+      | Subject          | Requester email      |
+      | New user account | john.smith@email.com |
+    And the ticket is tagged with "govt_form create_new_user"
     And the description on the ticket is:
       """
+      [Action]
+      New user account
+
       [Tool/Role]
       Departmental Contact Form
 

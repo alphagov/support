@@ -20,7 +20,7 @@ module Support
       end
 
       should "provide formatted action" do
-        assert_equal "Request a new user account", CreateOrChangeUserRequest.new(action: "create_new_user").formatted_action
+        assert_equal "New user account", CreateOrChangeUserRequest.new(action: "create_new_user").formatted_action
       end
     end
   end

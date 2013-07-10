@@ -1,6 +1,8 @@
 <div id="action">
-   <%= f.input :action, as: :radio, required: true, label: "What would you like to do?", collection: f.object.action_options, input_html: { :"aria-required" => true } %>
+   <%= f.input :action, as: :radio, required: true, label: "What would you like to request?", collection: f.object.action_options, input_html: { :"aria-required" => true } %>
 </div>
+
+<br/>
 
 <%= render partial: 'support/tool_role_choice', locals: { f: f } %>
 

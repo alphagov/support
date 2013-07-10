@@ -8,7 +8,7 @@ class CreateOrChangeUserRequestsControllerTest < ActionController::TestCase
     should "submit it to ZenDesk" do
       post :create, valid_create_or_change_user_request_params
 
-      assert_equal ['govt_form', 'new_user'], @zendesk_api.ticket.tags
+      assert_equal ['govt_form', 'create_new_user'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
     end
 

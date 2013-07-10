@@ -27,7 +27,7 @@ module Support
 
       def action_options
         [
-          ["Request a new user account", "create_new_user"],
+          ["New user account", "create_new_user"],
         ]
       end
 

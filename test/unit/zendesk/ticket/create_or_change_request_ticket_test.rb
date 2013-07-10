@@ -12,8 +12,8 @@ module Zendesk
 
       context "an inside government request" do
         should "be tagged with inside_government" do
-          tags_on_ticket = ticket_with(:inside_government_related? => true).tags
-          assert_includes tags_on_ticket, "new_user"
+          tags_on_ticket = ticket_with(inside_government_related?: true, action: "create_new_user").tags
+          assert_includes tags_on_ticket, "create_new_user"
           assert_includes tags_on_ticket, "inside_government"
         end
       end
