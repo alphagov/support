@@ -3,18 +3,20 @@ require 'labelled_snippet'
 
 module Zendesk
   module Ticket
-    class CreateNewUserRequestTicket < ZendeskTicket
+    class CreateOrChangeUserRequestTicket < ZendeskTicket
       def subject
-        "Create new user"
+        @request.formatted_action
       end
 
       def tags
-        super + ["new_user"] + inside_government_tag_if_needed
+        super + [@request.action] + inside_government_tag_if_needed
       end
 
       protected
       def comment_snippets
         [ 
+          LabelledSnippet.new(on: @request,                field: :formatted_action,
+                                                           label: "Action"),
           LabelledSnippet.new(on: @request,                field: :formatted_tool_role,
                                                            label: "Tool/Role"),
           LabelledSnippet.new(on: @request.requested_user, field: :name,
