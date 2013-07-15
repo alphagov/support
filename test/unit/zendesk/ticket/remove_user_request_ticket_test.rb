@@ -6,16 +6,13 @@ require 'ostruct'
 module Zendesk
   module Ticket
     class RemoveUserRequestTicketTest < Test::Unit::TestCase
-      def ticket_with(opts)
+      def ticket(opts = {})
         RemoveUserRequestTicket.new(stub_everything("request", opts))
       end
 
-      context "an inside government request" do
-        should "be tagged with inside_government" do
-          tags_on_ticket = ticket_with(:inside_government_related? => true).tags
-          assert_includes tags_on_ticket, "remove_user"
-          assert_includes tags_on_ticket, "inside_government"
-        end
+      should "be tagged with remove_user" do
+        tags_on_ticket = ticket.tags
+        assert_includes tags_on_ticket, "remove_user"
       end
     end
   end

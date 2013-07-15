@@ -107,10 +107,6 @@ When /^the user submits the following remove user request:$/ do |request_details
 
   assert page.has_content?("Request to remove user access")
 
-  within "#tool-role-choice" do
-    choose @request_details["Tool/Role"]
-  end
-
   within("#user_details") do
     fill_in "Name", :with => @request_details["User's name"]
     fill_in "Email", :with => @request_details["User's email"]
