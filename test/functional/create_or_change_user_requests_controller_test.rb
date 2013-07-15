@@ -5,15 +5,17 @@ class CreateOrChangeUserRequestsControllerTest < ActionController::TestCase
   include TestData
 
   context "submitted user creation request" do
+
+
     should "submit it to ZenDesk" do
-      post :create, valid_create_or_change_user_request_params
+      post :create, valid_create_user_request_params
 
       assert_equal ['govt_form', 'create_new_user'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
     end
 
     should "create a Zendesk user with the requested user details" do
-      post :create, valid_create_or_change_user_request_params
+      post :create, valid_create_user_request_params
 
       expected_created_user_attributes = {
         email: "subject@digital.cabinet-office.gov.uk",
@@ -25,6 +27,14 @@ class CreateOrChangeUserRequestsControllerTest < ActionController::TestCase
       assert_equal expected_created_user_attributes, @zendesk_api.users.created_user_attributes
     end
 
+    should "not make any changes to the Zendesk user for change user requests" do
+      @zendesk_api.reset
+
+      post :create, valid_change_user_request_params
+
+      assert @zendesk_api.users.created_user_attributes.empty?
+    end
+
     should "not expose an error to the user when automatic user creation goes wrong" do
       @zendesk_api.users.should_raise_error
 
@@ -32,14 +42,14 @@ class CreateOrChangeUserRequestsControllerTest < ActionController::TestCase
                                  .with(anything, kind_of(ZendeskAPI::Error::ClientError), anything)
                                  .returns(stub("mailer", deliver: true))
 
-      post :create, valid_create_or_change_user_request_params
+      post :create, valid_create_user_request_params
 
       assert_redirected_to "/acknowledge"
     end
 
     context "concerning Inside Government" do
       should "tag the ticket with an inside_government tag" do
-        params = valid_create_or_change_user_request_params.tap {|p| p["support_requests_create_or_change_user_request"].merge!("tool_role" => "inside_government_editor")}
+        params = valid_create_user_request_params.tap {|p| p["support_requests_create_or_change_user_request"].merge!("tool_role" => "inside_government_editor")}
 
         post :create, params
 
