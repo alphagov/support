@@ -20,11 +20,14 @@ module Support
       should allow_value("a comment").for(:additional_comments)
 
       should "provide action choices" do
-        assert !CreateOrChangeUserRequest.new.action_options.empty?
+        assert !request.action_options.empty?
       end
 
       should "provide formatted action" do
-        assert_equal "New user account", CreateOrChangeUserRequest.new(action: "create_new_user").formatted_action
+        assert_equal "New user account", request(action: "create_new_user").formatted_action
+
+        assert request(action: "create_new_user").for_new_user?
+        refute request(action: "change_user").for_new_user?
       end
 
       should "validate that the requested user is valid" do

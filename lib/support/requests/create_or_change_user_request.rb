@@ -27,6 +27,10 @@ module Support
         super
       end
 
+      def for_new_user?
+        action == "create_new_user"
+      end
+
       def formatted_action
         Hash[action_options].key(action)
       end
