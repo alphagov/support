@@ -49,7 +49,7 @@ class CreateOrChangeUserRequestsControllerTest < ActionController::TestCase
 
     context "concerning Inside Government" do
       should "tag the ticket with an inside_government tag" do
-        params = valid_create_user_request_params.tap {|p| p["support_requests_create_or_change_user_request"].merge!("tool_role" => "inside_government_editor")}
+        params = valid_create_user_request_params.tap {|p| p["support_requests_create_or_change_user_request"].merge!("user_needs" => ["inside_government_editor"])}
 
         post :create, params
 

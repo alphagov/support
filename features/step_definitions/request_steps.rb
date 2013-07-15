@@ -82,8 +82,10 @@ When /^the user submits the following request to create or change users:$/ do |r
     choose @request_details["Action"]
   end
 
-  within "#tool-role-choice" do
-    choose @request_details["Tool/Role"]
+  within "#user-needs" do
+    @request_details["User needs"].split(", ").each do |user_need|
+      check user_need
+    end
   end
 
   within("#user_details") do

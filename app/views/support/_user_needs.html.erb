@@ -1,0 +1,3 @@
+<div id="user-needs">
+   <%= f.input :user_needs, as: :check_boxes, required: true, label: "What does the user need?", collection: f.object.user_need_options, input_html: { :"aria-required" => true } %>
+</div>
