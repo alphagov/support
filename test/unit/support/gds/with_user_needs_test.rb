@@ -14,7 +14,7 @@ module Support
       end
 
       should validate_presence_of(:user_needs)
-      should allow_value(["", "govt_form"]).for(:user_needs)
+      should allow_value(["", "other"]).for(:user_needs)
       should allow_value(["inside_government_editor"]).for(:user_needs)
       should allow_value(["inside_government_writer"]).for(:user_needs)
       should allow_value(["other"]).for(:user_needs)
@@ -25,7 +25,7 @@ module Support
       should "know if it's related to inside government or not" do
         assert request(user_needs: ["inside_government_editor"]).inside_government_related?
         assert request(user_needs: ["inside_government_editor"]).inside_government_related?
-        refute request(user_needs: ["govt_form"]).inside_government_related?
+        refute request(user_needs: ["user_manager"]).inside_government_related?
         refute request(user_needs: ["other"]).inside_government_related?
       end
 
@@ -34,8 +34,8 @@ module Support
       end
 
       should "also define the formatted version" do
-        assert_equal "Inside Government writer", request(user_needs: ["inside_government_writer"]).formatted_user_needs
-        assert_equal "Inside Government editor, Inside Government writer", request(user_needs: ["inside_government_writer", "inside_government_editor"]).formatted_user_needs
+        assert_equal "Inside Government writer permissions", request(user_needs: ["inside_government_writer"]).formatted_user_needs
+        assert_equal "Inside Government editor permissions, Inside Government writer permissions", request(user_needs: ["inside_government_writer", "inside_government_editor"]).formatted_user_needs
       end
     end
   end

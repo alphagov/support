@@ -18,9 +18,12 @@ module Support
 
       def user_need_options
         [
-          ["Inside Government editor", "inside_government_editor"],
-          ["Inside Government writer", "inside_government_writer"],
-          ["Departmental Contact Form", "govt_form"],
+          ["Inside Government writer permissions", "inside_government_writer"],
+          ["Inside Government editor permissions", "inside_government_editor"],
+          ["to request Inside Government content unpublishing", "ig_unpublishing"],
+          ["to request new content and content changes", "content_change"],
+          ["to request creation, deletion and changes to user permissions", "user_manager"],
+          ["to request new campaigns", "campaign_requester"],
           ["Other/Not sure", "other"]
         ]
       end
