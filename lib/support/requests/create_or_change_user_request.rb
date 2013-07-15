@@ -1,11 +1,11 @@
 require 'support/requests/request'
-require 'support/gds/with_tool_role_choice'
+require 'support/gds/with_user_needs'
 require 'support/gds/requested_user'
 
 module Support
   module Requests
     class CreateOrChangeUserRequest < Request
-      include Support::GDS::WithToolRoleChoice
+      include Support::GDS::WithUserNeeds
 
       attr_accessor :action, :requested_user, :additional_comments
 

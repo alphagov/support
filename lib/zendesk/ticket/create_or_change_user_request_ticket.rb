@@ -17,8 +17,8 @@ module Zendesk
         [ 
           LabelledSnippet.new(on: @request,                field: :formatted_action,
                                                            label: "Action"),
-          LabelledSnippet.new(on: @request,                field: :formatted_tool_role,
-                                                           label: "Tool/Role"),
+          LabelledSnippet.new(on: @request,                field: :formatted_user_needs,
+                                                           label: "User needs"),
           LabelledSnippet.new(on: @request.requested_user, field: :name,
                                                            label: "Requested user's name"),
           LabelledSnippet.new(on: @request.requested_user, field: :email,
