@@ -10,7 +10,7 @@ module Support
 
       should validate_presence_of(:requester)
       should validate_presence_of(:requested_user)
-      should validate_presence_of(:tool_role)
+      should validate_presence_of(:user_needs)
       should validate_presence_of(:action)
 
       should allow_value("create_new_user").for(:action)

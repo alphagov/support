@@ -10,19 +10,19 @@ Feature: Create or change user requests
 
   Scenario: user creation request
     When the user submits the following request to create or change users:
-      | Action           | Tool/Role                 | User's name | User's email | User's job title | User's phone | Additional comments |
-      | New user account | Departmental Contact Form | Bob Fields  | bob@gov.uk   | Editor           | 12345        | XXXX                |
+      | Action           | User needs                                          | User's name | User's email | User's job title | User's phone | Additional comments |
+      | New user account | Departmental Contact Form, Inside Government editor | Bob Fields  | bob@gov.uk   | Editor           | 12345        | XXXX                |
     Then the following ticket is raised in ZenDesk:
       | Subject          | Requester email      |
       | New user account | john.smith@email.com |
-    And the ticket is tagged with "govt_form create_new_user"
+    And the ticket is tagged with "govt_form create_new_user inside_government"
     And the description on the ticket is:
       """
       [Action]
       New user account
 
-      [Tool/Role]
-      Departmental Contact Form
+      [User needs]
+      Departmental Contact Form, Inside Government editor
 
       [Requested user's name]
       Bob Fields
@@ -42,7 +42,7 @@ Feature: Create or change user requests
 
   Scenario: changing user permissions
     When the user submits the following request to create or change users:
-      | Action                                | Tool/Role                 | User's name | User's email | Additional comments |
+      | Action                                | User needs                | User's name | User's email | Additional comments |
       | Change an existing user's permissions | Departmental Contact Form | Bob Fields  | bob@gov.uk   | XXXX                |
     Then the following ticket is raised in ZenDesk:
       | Subject                               | Requester email      |
@@ -53,7 +53,7 @@ Feature: Create or change user requests
       [Action]
       Change an existing user's permissions
 
-      [Tool/Role]
+      [User needs]
       Departmental Contact Form
 
       [Requested user's name]

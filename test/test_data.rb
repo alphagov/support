@@ -4,7 +4,7 @@ module TestData
       { "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => valid_requested_user_params,
         "action" => "create_new_user",
-        "tool_role" => "govt_form",
+        "user_needs" => ["", "govt_form"],
         "additional_comments"=>"" }
     }
   end
