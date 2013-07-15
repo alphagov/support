@@ -5,7 +5,6 @@ require 'support/requests/with_time_constraint'
 module Support
   module Requests
     class RemoveUserRequest < Request
-      include Support::GDS::WithToolRoleChoice
       include WithTimeConstraint
 
       attr_accessor :user_name, :user_email, :reason_for_removal

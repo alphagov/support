@@ -9,14 +9,12 @@ module Zendesk
       end
 
       def tags
-        super + ["remove_user"] + inside_government_tag_if_needed
+        super + ["remove_user"]
       end
 
       protected
       def comment_snippets
         [ 
-          LabelledSnippet.new(on: @request, field: :formatted_tool_role,
-                                            label: "Tool/Role"),
           LabelledSnippet.new(on: @request, field: :user_name),
           LabelledSnippet.new(on: @request, field: :user_email),
           LabelledSnippet.new(on: @request, field: :reason_for_removal)
