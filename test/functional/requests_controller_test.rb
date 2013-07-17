@@ -117,12 +117,12 @@ class RequestsControllerTest < ActionController::TestCase
       @zendesk_api.ticket.should_raise_error
       params = valid_params_for_test_request
 
-      @controller.expects(:render).with("support/zendesk_error", has_entry(status: 500))
-      ExceptionNotifier::Notifier.expects(:exception_notification)
-                           .with(anything, kind_of(ZendeskAPI::Error::ClientError), has_key(:data))
+      ExceptionNotifier::Notifier.expects(:background_exception_notification)
+                           .with(kind_of(ZendeskAPI::Error::ClientError), has_key(:data))
                            .returns(stub("mailer", deliver: true))
 
       post :create, params
+      assert_redirected_to "/acknowledge"
     end
 
     should "read the signed-in user's details as the requester" do
