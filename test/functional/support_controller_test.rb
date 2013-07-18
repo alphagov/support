@@ -1,4 +1,5 @@
 require "test_helper"
+require 'json'
 
 class SupportControllerTest < ActionController::TestCase
   setup do
@@ -21,5 +22,24 @@ class SupportControllerTest < ActionController::TestCase
     should "show have a link to log out" do
       assert_select "a[href=/auth/gds/sign_out]", html: "Sign out"
     end    
+  end
+
+  context "GET /_status" do
+    should "return the status of the queues" do
+      Sidekiq::Stats.expects(:new).returns(stub("stats", queues: [["queue_a", 3], ["queue_b", 5]]))
+      @request.env['HTTP_ACCEPT'] = 'application/json'
+
+      get :queue_status
+
+      actual_response = JSON.parse(@response.body)
+      expected_response = {
+        "queues" => {
+          "queue_a" => { "jobs" => 3 },
+          "queue_b" => { "jobs" => 5 }
+        }
+      }
+
+      assert_equal expected_response, actual_response
+    end
   end
 end

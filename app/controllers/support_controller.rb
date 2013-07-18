@@ -1,3 +1,5 @@
+require 'sidekiq'
+
 class SupportController < ApplicationController
   def landing
     render :landing, :layout => "application"
@@ -5,5 +7,22 @@ class SupportController < ApplicationController
 
   def acknowledge
     render :acknowledge, :layout => "application"
+  end
+
+  def queue_status
+    status = { queues: {} }
+
+    Sidekiq::Stats.new.queues.each do |queue_name, queue_size|
+      status[:queues][queue_name] = {"jobs" => queue_size}
+    end
+
+    respond_to do |format|
+      format.json do
+        render json: status
+      end
+      format.any do
+        render nothing: true, status: 406
+      end
+    end
   end
 end
