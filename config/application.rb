@@ -50,7 +50,7 @@ module Support
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
 
-    redis_config = YAML.load_file(File.join(Rails.root, "config", "redis.yml"))[Rails.env]
+    redis_config = YAML.load_file(File.join(Rails.root, "config", "redis.yml"))
     config.cache_store = [
       :redis_store, 
       "redis://#{redis_config['host']}:#{redis_config['port']}",
