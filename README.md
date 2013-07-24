@@ -14,6 +14,14 @@ Against a real SSO instance:
 
     GDS_SSO_STRATEGY=real bowl signon support
 
+### Starting the background processing queues
+
+Zendesk tickets are raised in the background using a redis-backed queue called [sidekiq](http://sidekiq.org/).
+
+To start the background workers:
+
+    rake jobs:work
+
 ### Tests
 
 To run unit tests, execute
