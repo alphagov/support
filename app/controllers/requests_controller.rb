@@ -1,7 +1,6 @@
 require "zendesk_tickets"
 require 'support/requests/requester'
 require 'support/permissions/ability'
-require 'zendesk_api/error'
 
 class RequestsController < ApplicationController
   check_authorization
@@ -33,33 +32,22 @@ class RequestsController < ApplicationController
   end
 
   def process_valid_request(submitted_request)
-    raise_ticket(zendesk_ticket_class.new(submitted_request))
+    ticket = zendesk_ticket_class.new(submitted_request)
+    log_queue_sizes
+    ZendeskTickets.new.raise_ticket(ticket)
+    redirect_to acknowledge_path
   end
 
   private
+  def log_queue_sizes
+    Sidekiq::Stats.new.queues.each do |queue_name, queue_size|
+      Statsd.new(::STATSD_HOST).gauge("#{::STATSD_PREFIX}.queues.#{queue_name}", queue_size)
+    end
+  end
+
   def set_logged_in_user_as_requester_on(request)
     request.requester ||= Support::Requests::Requester.new
     request.requester.name = current_user.name
     request.requester.email = current_user.email
-  end
-
-  def raise_ticket(ticket)
-    ticket = ZendeskTickets.new(GDS_ZENDESK_CLIENT).raise_ticket(ticket)
-
-    if ticket
-      redirect_to acknowledge_path
-    else
-      return render "support/zendesk_error", locals: { error_string: "Zendesk timed out", ticket: ticket }
-    end
-  rescue ZendeskAPI::Error::ClientError => e
-    request.env["sso-credentials"] = "#{current_user.name} <#{current_user.email}>"
-
-    exception_notification_for(e)
-    
-    error_details = e.class.name
-    error_details += ": #{e.errors}" if e.respond_to?(:errors)
-
-    render "support/zendesk_error", status: 500, locals: { error_string: error_details,
-                                                           ticket: ticket }
   end
 end
