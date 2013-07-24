@@ -9,6 +9,7 @@ require 'ostruct'
 require_relative 'test_data'
 
 require 'shoulda/context'
+require 'sidekiq/testing/inline'
 
 class ActiveSupport::TestCase
   def setup

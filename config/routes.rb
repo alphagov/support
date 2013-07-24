@@ -6,5 +6,6 @@ Support::Application.routes.draw do
   end
 
   match "acknowledge" => "support#acknowledge"
+  match "_status" => "support#queue_status"
   root to: 'support#landing'
 end

@@ -6,7 +6,7 @@ end
 
 When /^the user submits the request successfully$/ do
   click_on "Submit"
-  assert page.has_content?("Your ticket has been submitted successfully"), page.html
+  assert page.has_content?("You should receive a confirmation email shortly."), page.html
 end
 
 When /^the user submits the following general request:$/ do |request_details_table|

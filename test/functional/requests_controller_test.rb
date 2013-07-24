@@ -113,18 +113,6 @@ class RequestsControllerTest < ActionController::TestCase
       assert_redirected_to "/acknowledge"
     end
 
-    should "notify the user and operations if there was an error submitting to Zendesk" do
-      @zendesk_api.ticket.should_raise_error
-      params = valid_params_for_test_request
-
-      @controller.expects(:render).with("support/zendesk_error", has_entry(status: 500))
-      ExceptionNotifier::Notifier.expects(:exception_notification)
-                           .with(anything, kind_of(ZendeskAPI::Error::ClientError), has_key(:data))
-                           .returns(stub("mailer", deliver: true))
-
-      post :create, params
-    end
-
     should "read the signed-in user's details as the requester" do
       params = valid_params_for_test_request
 
