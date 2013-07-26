@@ -41,7 +41,7 @@ class RequestsController < ApplicationController
   private
   def log_queue_sizes
     Sidekiq::Stats.new.queues.each do |queue_name, queue_size|
-      Statsd.new(::STATSD_HOST).gauge("govuk.apps.support.queues.#{queue_name}", queue_size)
+      Statsd.new(::STATSD_HOST).gauge("govuk.app.support.queues.#{queue_name}", queue_size)
     end
   end
 
