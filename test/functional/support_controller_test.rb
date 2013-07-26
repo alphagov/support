@@ -25,6 +25,15 @@ class SupportControllerTest < ActionController::TestCase
   end
 
   context "GET /_status" do
+    should "be accessible without SSO" do
+      logout
+      @request.env['HTTP_ACCEPT'] = 'application/json'
+
+      get :queue_status
+
+      assert_response :success
+    end
+
     should "return the status of the queues" do
       Sidekiq::Stats.expects(:new).returns(stub("stats", queues: [["queue_a", 3], ["queue_b", 5]]))
       @request.env['HTTP_ACCEPT'] = 'application/json'

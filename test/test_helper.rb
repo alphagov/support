@@ -30,6 +30,11 @@ class ActiveSupport::TestCase
     @request.env['warden'] = stub(authenticate!: true, authenticated?: true, user: @user) if @request
   end
 
+  def logout
+    @request.env['warden'] = stub(authenticated?: false)
+    @request.env['warden'].stubs(:authenticate!).raises(GDS::SSO::ControllerMethods::PermissionDeniedException)
+  end
+
   def switch_zendesk_into_dummy_mode
     @zendesk_api = GDS_ZENDESK_CLIENT
     @zendesk_api.reset
