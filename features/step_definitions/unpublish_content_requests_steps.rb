@@ -7,13 +7,13 @@ When /^the user submits the following request to unpublish content:$/ do |reques
 
   assert page.has_content?("Request to unpublish content")
 
-  fill_in "Which content does this concern (provide one or more urls)?", with: @request_details['URL']
+  fill_in "Please give the Whitehall URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)", with: @request_details['URL']
 
   within "#unpublish-reason" do
     choose @request_details["Reason"]
   end
 
-  fill_in "Further explanation (this explanation will be published to users)", with: @request_details['Further explanation']
+  fill_in "Redirects will be automatic unless you give a reason:", with: @request_details['Further explanation']
 
   fill_in "Redirect URL", with: @request_details['Where should redirect?'] if @request_details['Where should redirect?']
 
