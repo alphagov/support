@@ -1,13 +1,37 @@
-<%= f.input :urls, as: :text, required: true, label: "Which content does this concern (provide one or more urls)?", input_html: { class: "span9", placeholder: "https://www.gov.uk/", rows: 6, cols: 50, :"aria-required" => true } %>
+<%= f.input :urls, as: :text, required: true, label: "Please give the Whitehall URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)", input_html: { class: "span9", placeholder: "https://whitehall-admin.production.alphagov.co.uk/government/admin/...", rows: 6, cols: 50, :"aria-required" => true } %>
+
+<div class="alert alert-info">
+  <p>You may also wish to send this information in a spreadsheet, by attaching it to the Zendesk confirmation email
+  </p>
+</div>
+
+<br/>
 
 <div id="unpublish-reason">
   <%= f.input :reason_for_unpublishing, as: :radio, required: true, label: "What is the reason for unpublishing?", collection: f.object.reason_for_unpublishing_options, input_html: { :"aria-required" => true } %>
 </div>
 
-<%= f.input :further_explanation, as: :text, label: "Further explanation (this explanation will be published to users)", input_html: { class: "span6", rows: 6, cols: 50 } %>
+<%= f.input :further_explanation, as: :text, label: "Redirects will be automatic unless you give a reason:", input_html: { class: "span6", rows: 6, cols: 50 } %>
+
+<div class="alert alert-info">
+  <p>If you do give a reason, users will go to a landing page and read your reason, then click on the redirect URL. Note that:
+    <ul>
+      <li>it is essential to write some text if the redirect is to the National Archives or an external website.</li>
+      <li>you should always give an explanation for users if a page is being deleted with no redirect, and is not likely to be republished.</li>
+    </ul>
+  </p>
+</div>
 
 <%= f.inputs name: "Redirect details (optional if published in error)" do %>
-  <%= f.input :redirect_url, required: false, label: "Redirect URL", input_html: { class: "span9" } %>
+  <%= f.input :redirect_url, required: false, label: "Redirect URL (we need the GOV.UK page for the redirect URL)", input_html: { class: "span9", placeholder: "https://www.gov.uk/government/..." } %>
 
   <%= f.input :automatic_redirect, as: :boolean, required: false, label: "Redirect to URL automatically?" %>
 <% end %>
+
+<div class="alert alert-info">
+  <p>This page will be unpublished (it will revert to draft). You will be notified when this is done and it is then your responsibility to delete this page or re-publish it in due course.</p>
+</div>
+
+<div class="alert alert-error">
+  <p>Pages cannot be recovered once you have deleted them. Please ensure that all requests to GDS to unpublish content have been approved at the correct level in your organisation - if you aren't sure check with your GDS single point of contact.</p>
+</div>
