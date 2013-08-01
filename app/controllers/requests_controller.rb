@@ -17,7 +17,7 @@ class RequestsController < ApplicationController
   def create
     @request = parse_request_from_params
     authorize! :create, @request
-    set_logged_in_user_as_requester_on(@request)
+    set_requester_on(@request)
 
     if @request.valid?
       process_valid_request(@request)
@@ -45,7 +45,7 @@ class RequestsController < ApplicationController
     end
   end
 
-  def set_logged_in_user_as_requester_on(request)
+  def set_requester_on(request)
     request.requester ||= Support::Requests::Requester.new
     request.requester.name = current_user.name
     request.requester.email = current_user.email

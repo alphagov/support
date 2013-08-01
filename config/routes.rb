@@ -5,6 +5,8 @@ Support::Application.routes.draw do
     resource request_class_name.underscore, only: [:new, :create]
   end
 
+  resource :foi_requests, only: :create
+
   match "acknowledge" => "support#acknowledge"
   match "_status" => "support#queue_status"
   root to: 'support#landing'
