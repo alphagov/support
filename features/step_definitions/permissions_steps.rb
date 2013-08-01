@@ -2,7 +2,7 @@ require 'active_support/inflector'
 require 'support/requests'
 
 def request_class_for(request_name)
-  class_name_suffix = request_name =~ /report/ ? []  : ["Request"]
+  class_name_suffix = request_name =~ /report/ ? [] : ["Request"]
   classname = (request_name.split + class_name_suffix).map(&:capitalize).join
   "Support::Requests::#{classname}".constantize
 end
@@ -15,6 +15,7 @@ def perms_for(role)
   when "Single points of contact" then ["single_points_of_contact"]
   when "ERTP users" then ["ertp"]
   when "User managers" then ["user_managers"]
+  when "API users" then ["api_users"]
   else
     raise "unexpected role: #{role}"
   end

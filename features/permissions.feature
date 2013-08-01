@@ -16,17 +16,19 @@ Feature: Request permissions
     | Remove user            | N                  | N                   | Y                        |
     | Technical fault report | Y                  | Y                   | Y                        |
     | ERTP problem report    | N                  | N                   | Y                        |
+    | FOI                    | N                  | N                   | Y                        |
 
   Scenario: permissions per role (part 2)
     * The role/request matrix:
-    | Role                   | User managers | Anyone | ERTP users |
-    | Analytics              | Y             | Y      | Y          |
-    | Campaign               | N             | N      | N          |
-    | Content change         | N             | N      | N          |
-    | Unpublish content      | Y             | Y      | Y          |
-    | Create or change user  | Y             | N      | N          |
-    | General                | Y             | Y      | Y          |
-    | New feature            | N             | N      | N          |
-    | Remove user            | Y             | N      | N          |
-    | Technical fault report | Y             | Y      | Y          |
-    | ERTP problem report    | N             | N      | Y          |
+    | Role                   | User managers | Anyone | ERTP users | API users |
+    | Analytics              | Y             | Y      | Y          | Y         |
+    | Campaign               | N             | N      | N          | N         |
+    | Content change         | N             | N      | N          | N         |
+    | Unpublish content      | Y             | Y      | Y          | Y         |
+    | Create or change user  | Y             | N      | N          | N         |
+    | General                | Y             | Y      | Y          | Y         |
+    | New feature            | N             | N      | N          | N         |
+    | Remove user            | Y             | N      | N          | N         |
+    | Technical fault report | Y             | Y      | Y          | Y         |
+    | ERTP problem report    | N             | N      | Y          | N         |
+    | FOI                    | N             | N      | N          | Y         |
