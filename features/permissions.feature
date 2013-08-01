@@ -9,7 +9,7 @@ Feature: Request permissions
     | Analytics              | Y                  | Y                   | Y                        | Y             | Y      | Y          |
     | Campaign               | N                  | Y                   | Y                        | N             | N      | N          |
     | Content change         | Y                  | N                   | Y                        | N             | N      | N          |
-    | Unpublish content      | Y                  | N                   | Y                        | N             | N      | N          |
+    | Unpublish content      | Y                  | Y                   | Y                        | Y             | Y      | Y          |
     | Create or change user  | N                  | N                   | Y                        | Y             | N      | N          |
     | General                | Y                  | Y                   | Y                        | Y             | Y      | Y          |
     | New feature            | Y                  | N                   | Y                        | N             | N      | N          |
