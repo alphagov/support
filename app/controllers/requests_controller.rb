@@ -22,7 +22,10 @@ class RequestsController < ApplicationController
     if @request.valid?
       process_valid_request(@request)
     else
-      render :new, status: 400
+      respond_to do |format|
+        format.html { render :new, status: 400 }
+        format.json { render json: {"errors" => @request.errors.to_a}, status: 400 }
+      end
     end
   end
 
