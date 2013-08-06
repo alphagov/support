@@ -14,7 +14,7 @@ class FoiRequestsControllerTest < ActionController::TestCase
     should "acknowledge a valid request" do
       post :create, valid_foi_request.merge(format: :json)
 
-      assert_redirected_to "/acknowledge"
+      assert_response 201
     end
 
     should "return a JSON array of errors for invalid requests" do

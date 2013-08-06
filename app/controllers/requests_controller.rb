@@ -21,6 +21,10 @@ class RequestsController < ApplicationController
 
     if @request.valid?
       process_valid_request(@request)
+      respond_to do |format|
+        format.html { redirect_to acknowledge_path }
+        format.json { render nothing: true, status: 201 }
+      end      
     else
       respond_to do |format|
         format.html { render :new, status: 400 }
@@ -38,7 +42,6 @@ class RequestsController < ApplicationController
     ticket = zendesk_ticket_class.new(submitted_request)
     log_queue_sizes
     ZendeskTickets.new.raise_ticket(ticket)
-    redirect_to acknowledge_path
   end
 
   private
