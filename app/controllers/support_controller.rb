@@ -8,7 +8,10 @@ class SupportController < ApplicationController
   end
 
   def acknowledge
-    render :acknowledge, :layout => "application"
+    respond_to do |format|
+      format.html { render :acknowledge, :layout => "application" }
+      format.json { render nothing: true }
+    end
   end
 
   def queue_status

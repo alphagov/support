@@ -17,12 +17,19 @@ class RequestsController < ApplicationController
   def create
     @request = parse_request_from_params
     authorize! :create, @request
-    set_logged_in_user_as_requester_on(@request)
+    set_requester_on(@request)
 
     if @request.valid?
       process_valid_request(@request)
+      respond_to do |format|
+        format.html { redirect_to acknowledge_path }
+        format.json { render nothing: true, status: 201 }
+      end      
     else
-      render :new, status: 400
+      respond_to do |format|
+        format.html { render :new, status: 400 }
+        format.json { render json: {"errors" => @request.errors.to_a}, status: 400 }
+      end
     end
   end
 
@@ -35,7 +42,6 @@ class RequestsController < ApplicationController
     ticket = zendesk_ticket_class.new(submitted_request)
     log_queue_sizes
     ZendeskTickets.new.raise_ticket(ticket)
-    redirect_to acknowledge_path
   end
 
   private
@@ -45,7 +51,7 @@ class RequestsController < ApplicationController
     end
   end
 
-  def set_logged_in_user_as_requester_on(request)
+  def set_requester_on(request)
     request.requester ||= Support::Requests::Requester.new
     request.requester.name = current_user.name
     request.requester.email = current_user.email
