@@ -137,6 +137,9 @@ GEM
     libv8 (3.3.10.4)
     libwebsocket (0.1.5)
       addressable
+    logstash-event (1.1.5)
+    logstasher (0.2.5)
+      logstash-event
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -281,6 +284,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails (= 2.0.2)
   less-rails-bootstrap (= 2.1.1)
+  logstasher (= 0.2.5)
   mocha (= 0.13.3)
   plek (= 1.1.0)
   poltergeist (= 0.7.0)

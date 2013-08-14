@@ -62,4 +62,8 @@ Support::Application.configure do
   config.active_support.deprecation = :notify
 
   config.action_mailer.delivery_method = :ses
+
+  config.logstasher.enabled = true
+  config.logstasher.logger = Logger.new("#{Rails.root}/log/#{Rails.env}.json.log")
+  config.logstasher.supress_app_log = true
 end
