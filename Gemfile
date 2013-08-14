@@ -6,7 +6,7 @@ gem 'rails', '3.2.14'
 group :assets do
   gem 'less-rails-bootstrap', '2.1.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'therubyracer', '~> 0.9.4'
+  gem 'therubyracer', '0.11.4'
 end
 
 gem 'aws-ses', require: 'aws/ses'
