@@ -7,14 +7,7 @@ class ZendeskTicketWorkerTest < Test::Unit::TestCase
                          .with(kind_of(ZendeskAPI::Error::ClientError), has_key(:data))
                          .returns(stub("mailer", deliver: true))
 
-    ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
-  end
-
-  should "not raise a ticket if the user is suspended" do
-    GDS_ZENDESK_CLIENT.users.should_be_suspended
-
-    ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
-    refute GDS_ZENDESK_CLIENT.ticket.raised?
+    ZendeskTicketWorker.new.perform(some: "options")
   end
 
   def teardown
