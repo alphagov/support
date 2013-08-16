@@ -21,7 +21,7 @@ gem 'validates_timeliness', '3.0.14'
 if ENV['GDS_ZENDESK_DEV']
   gem "gds_zendesk", :path => '../gds_zendesk'
 else
-  gem "gds_zendesk", '0.1.1'
+  gem "gds_zendesk", '1.0.0'
 end
 gem 'redis-rails', '3.2.3'
 gem 'redis-activesupport', '3.2.3', :git => "https://github.com/alphagov/redis-store", :branch => "connection_url", :ref => '2f9efcf48e124be3279e2f8864c979f999bed2ad'

@@ -6,11 +6,9 @@ class GeneralRequestsControllerTest < ActionController::TestCase
   context "a submitted general request" do
     should "add the user agent to the ticket in the comments" do
       request.user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2)"
-      params = valid_general_request_params
+      stub_zendesk_ticket_creation_with_body(/Mozilla\/5.0/)
 
-      post :create, params
-
-      assert_includes @zendesk_api.ticket.description, "Mozilla/5.0"
+      post :create, valid_general_request_params
     end
   end
 end

@@ -18,6 +18,7 @@ module TestData
         },
         "action" => "change_user",
         "tool_role" => "govt_form",
+        "user_needs" => ["", "other"],
         "additional_comments"=>"" }
     }
   end

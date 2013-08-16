@@ -64,7 +64,6 @@ class RequestsControllerTest < ActionController::TestCase
   end
 
   teardown do
-    GDS_ZENDESK_CLIENT.reset
     Rails.application.reload_routes!
   end
 
@@ -105,30 +104,30 @@ class RequestsControllerTest < ActionController::TestCase
     end
 
     should "submit it to Zendesk" do
+      stub_ticket_creation = stub_zendesk_ticket_creation(hash_including(tags: ['tag_a', 'tag_b']))
+
       params = valid_params_for_test_request
 
       post :create, params
 
-      assert_equal ['tag_a', 'tag_b'], @zendesk_api.ticket.tags
       assert_redirected_to "/acknowledge"
+      assert_requested stub_ticket_creation
     end
 
     should "read the signed-in user's details as the requester" do
-      params = valid_params_for_test_request
+      requester_details = { email: @logged_in_user_details[:email], name: @logged_in_user_details[:name] }
+      stub_zendesk_ticket_creation(hash_including(requester: hash_including(requester_details)))
 
-      post :create, params
-
-      assert_equal @logged_in_user_details[:email], @zendesk_api.ticket.email
-      assert_equal @logged_in_user_details[:name], @zendesk_api.ticket.name
+      post :create, valid_params_for_test_request
     end
 
     should "set collaborators if they're set on the request" do
       params = valid_params_for_test_request.tap do |p|
         p["test_request"]["requester_attributes"].merge!("collaborator_emails" => "ab@c.com, def@g.com")
       end
+      stub_zendesk_ticket_creation(hash_including(collaborators: ["ab@c.com", "def@g.com"]))
 
       post :create, params
-      assert_equal ["ab@c.com", "def@g.com"], @zendesk_api.ticket.collaborators
     end
   end
 end
