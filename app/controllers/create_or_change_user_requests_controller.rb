@@ -20,13 +20,13 @@ class CreateOrChangeUserRequestsController < RequestsController
   end
 
   def process_valid_request(submitted_request)
-    super(submitted_request)
+    super
     create_or_update_user_in_zendesk(submitted_request.requested_user) if submitted_request.for_new_user?
   end
 
   def create_or_update_user_in_zendesk(requested_user)
     begin
-      GDSZendesk::Users.new(GDS_ZENDESK_CLIENT).create_or_update_user(requested_user)
+      GDS_ZENDESK_CLIENT.users.create_or_update_user(requested_user)
     rescue ZendeskAPI::Error::ClientError => e
       exception_notification_for(e)
     end

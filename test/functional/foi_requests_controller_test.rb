@@ -12,6 +12,7 @@ class FoiRequestsControllerTest < ActionController::TestCase
 
   context "new request" do
     should "acknowledge a valid request" do
+      stub_zendesk_ticket_creation
       post :create, valid_foi_request.merge(format: :json)
 
       assert_response 201
