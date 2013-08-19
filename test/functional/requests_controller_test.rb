@@ -53,6 +53,9 @@ class RequestsControllerTest < ActionController::TestCase
     @logged_in_user_details = { name: "John Smith", email: "john.smith@gov.uk" }
     login_as_stub_user(@logged_in_user_details)
 
+    self.valid_zendesk_credentials = ZENDESK_CREDENTIALS
+    zendesk_has_no_user_with_email("john.smith@gov.uk")
+
     Rails.application.routes.draw do
       match 'new' => "test_requests#new"
       match 'create' => "test_requests#create"
