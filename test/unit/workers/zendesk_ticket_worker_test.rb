@@ -8,6 +8,14 @@ class ZendeskTicketWorkerTest < ActiveSupport::TestCase
                          .with(kind_of(ZendeskAPI::Error::ClientError), has_key(:data))
                          .returns(stub("mailer", deliver: true))
 
-    ZendeskTicketWorker.new.perform(some: "options")
+    ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
+  end
+
+  should "not raise a ticket if the user is suspended" do
+    zendesk_has_user(email: "a@b.com", "suspended" => true)
+
+    ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
+
+    assert_not_requested(:post, %r{.*/tickets/.*})
   end
 end

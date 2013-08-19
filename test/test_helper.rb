@@ -21,6 +21,7 @@ class ActiveSupport::TestCase
     super
     login_as_stub_user if @user.nil?
     self.valid_zendesk_credentials = ZENDESK_CREDENTIALS
+    zendesk_has_no_user_with_email(@user.email)
   end
 
   def login_as_stub_user(options = {})
