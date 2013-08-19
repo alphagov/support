@@ -11,12 +11,16 @@ require_relative 'test_data'
 require 'shoulda/context'
 require 'sidekiq/testing/inline'
 
+require 'gds_zendesk/test_helpers'
+WebMock.disable_net_connect!
+
 class ActiveSupport::TestCase
+  include GDSZendesk::TestHelpers
+
   def setup
     super
-    WebMock.disable_net_connect!
     login_as_stub_user if @user.nil?
-    switch_zendesk_into_dummy_mode
+    self.valid_zendesk_credentials = ZENDESK_CREDENTIALS
   end
 
   def login_as_stub_user(options = {})
@@ -33,10 +37,5 @@ class ActiveSupport::TestCase
   def logout
     @request.env['warden'] = stub(authenticated?: false)
     @request.env['warden'].stubs(:authenticate!).raises(GDS::SSO::ControllerMethods::PermissionDeniedException)
-  end
-
-  def switch_zendesk_into_dummy_mode
-    @zendesk_api = GDS_ZENDESK_CLIENT
-    @zendesk_api.reset
   end
 end

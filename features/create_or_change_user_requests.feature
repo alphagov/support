@@ -7,6 +7,7 @@ Feature: Create or change user requests
     * the following user has SSO access:
       | Name         | Email                |
       | John Smith   | john.smith@email.com |
+    * there are no users with email "bob@gov.uk" in Zendesk
 
   Scenario: user creation request
     When the user submits the following request to create or change users:
