@@ -32,6 +32,11 @@ module Zendesk
         refute ticket(page_owner: nil).tags.any? {|tag| tag =~ /page_owner/}
       end
 
+      should "be tagged with the source, if one is provided" do
+        assert_includes ticket(source: "inside_government").tags, "inside_government"
+        refute ticket(source: nil).tags.empty?
+      end
+
       should "be tagged appropriately if the user was referred by a GOV.UK URL" do
         assert_includes ticket(referrer: "https://www.gov.uk/abc/def").tags, "govuk_referrer"
         refute_includes ticket(referrer: "https://www.council.gov.uk/abc/def").tags, "govuk_referrer"

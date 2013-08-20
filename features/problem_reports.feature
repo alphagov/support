@@ -15,7 +15,7 @@ Feature: Problem reports
     Then the following ticket is raised in ZenDesk:
       | Subject | Requester email      |
       | /x/y    | api-user@example.com |
-    And the ticket is tagged with "public_form report_a_problem govuk_referrer page_owner/hmrc"
+    And the ticket is tagged with "public_form report_a_problem inside_government govuk_referrer page_owner/hmrc"
     And the description on the ticket is:
       """
       url: https://www.gov.uk/x/y

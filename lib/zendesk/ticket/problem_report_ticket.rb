@@ -9,7 +9,7 @@ module Zendesk
       end
 
       def tags
-        ["public_form", "report_a_problem"] + govuk_referrer_tag_if_needed + page_owner_tag_if_needed
+        ["public_form", "report_a_problem"] + source_tag_if_needed + govuk_referrer_tag_if_needed + page_owner_tag_if_needed
       end
 
       def comment
@@ -19,6 +19,10 @@ module Zendesk
       end
 
       protected
+      def source_tag_if_needed
+        @request.source.nil? ? [] : [ @request.source ]
+      end
+
       def page_owner_tag_if_needed
         @request.page_owner.nil? ? [] : ["page_owner/#{@request.page_owner}"]
       end
