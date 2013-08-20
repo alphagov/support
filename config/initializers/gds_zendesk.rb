@@ -2,6 +2,8 @@ require 'yaml'
 require 'gds_zendesk/client'
 require 'gds_zendesk/dummy_client'
 
+ZENDESK_ANONYMOUS_TICKETS_REQUESTER_EMAIL = "api-user@example.com"
+
 if Rails.env.development?
   GDS_ZENDESK_CLIENT = GDSZendesk::DummyClient.new(logger: Rails.logger)
 else

@@ -1,0 +1,20 @@
+<%= content_for :page_title, "Problem Report" %>
+<%= content_for :header, "Some description of the request here" %>
+
+<div class="alert alert-info">
+  <p>Please use this path to:</p>
+  <ul>
+    <li>some cases for when this path should be used</li>
+  </ul>
+</div>
+
+<div class="well">
+  <%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
+
+    <%= render partial: "support/collaborators", locals: { f: f } %>
+
+    <%= render partial: "request_details", locals: { f: f } %>
+
+    <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
+  <% end %>
+</div>

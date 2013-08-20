@@ -6,6 +6,7 @@ Support::Application.routes.draw do
   end
 
   resource :foi_requests, only: :create
+  resource :problem_reports, only: :create
 
   match "acknowledge" => "support#acknowledge"
   match "_status" => "support#queue_status"
