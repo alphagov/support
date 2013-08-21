@@ -86,7 +86,7 @@ class RequestsControllerTest < ActionController::TestCase
     context "json requests" do
       should "be forbidden if the user has no permission to raise the request" do
         login_as_stub_user(has_permission?: false)
-        @controller.expects(:render).with(json: {"errors" => "You have not been granted permission to create these requests."}, status: 403)
+        @controller.expects(:render).with(json: {"error" => "You have not been granted permission to create these requests."}, status: 403)
 
         get :new, format: :json
       end

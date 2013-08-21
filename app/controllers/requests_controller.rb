@@ -8,7 +8,7 @@ class RequestsController < ApplicationController
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.html { render "support/forbidden", status: 403 }
-      format.json { render json: {"errors" => "You have not been granted permission to create these requests."}, status: 403 }
+      format.json { render json: {"error" => "You have not been granted permission to create these requests."}, status: 403 }
     end
   end
 
