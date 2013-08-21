@@ -82,6 +82,15 @@ class RequestsControllerTest < ActionController::TestCase
 
       get :new
     end
+
+    context "json requests" do
+      should "be forbidden if the user has no permission to raise the request" do
+        login_as_stub_user(has_permission?: false)
+        @controller.expects(:render).with(json: {"error" => "You have not been granted permission to create these requests."}, status: 403)
+
+        get :new, format: :json
+      end
+    end
   end
 
   def prevent_implicit_rendering
