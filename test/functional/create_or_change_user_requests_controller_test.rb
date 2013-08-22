@@ -37,6 +37,8 @@ class CreateOrChangeUserRequestsControllerTest < ActionController::TestCase
     should "not expose an error to the user when automatic user creation goes wrong" do
       zendesk_is_unavailable
 
+      ZendeskTickets.any_instance.stubs(:raise_ticket)
+
       ExceptionNotifier::Notifier.expects(:exception_notification)
                                  .with(anything, kind_of(ZendeskAPI::Error::ClientError), anything)
                                  .returns(stub("mailer", deliver: true))
