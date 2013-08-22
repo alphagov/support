@@ -1,5 +1,3 @@
-require 'zendesk_api/error'
-
 class ZendeskTicketWorker
   include Sidekiq::Worker
   
