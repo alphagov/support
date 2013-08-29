@@ -29,6 +29,9 @@ gem "sidekiq", "2.13.0"
 gem "statsd-ruby", "1.2.1", require: "statsd"
 gem "logstasher", "0.2.5"
 
+# pin to version that includes security vulnerability fix, needed by sidekiq
+gem "redis-namespace", "1.3.1"
+
 group :development do
   gem "quiet_assets", "1.0.2"
 end
