@@ -43,14 +43,14 @@ class RequestsController < ApplicationController
 
   def process_valid_request(submitted_request)
     ticket = zendesk_ticket_class.new(submitted_request)
-    log_queue_sizes
-    ZendeskTickets.new.raise_ticket(ticket)
+    $statsd.time("#{::STATSD_PREFIX}.timings.querying_sidekiq_stats") { log_queue_sizes }
+    $statsd.time("#{::STATSD_PREFIX}.timings.putting_ticket_on_queue") { ZendeskTickets.new.raise_ticket(ticket) }
   end
 
   private
   def log_queue_sizes
     Sidekiq::Stats.new.queues.each do |queue_name, queue_size|
-      Statsd.new(::STATSD_HOST).gauge("govuk.app.support.queues.#{queue_name}", queue_size)
+      $statsd.gauge("govuk.app.support.queues.#{queue_name}", queue_size)
     end
   end
 
