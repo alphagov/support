@@ -1,7 +1,7 @@
 require 'sidekiq'
 
 class SupportController < ApplicationController
-  skip_before_filter :authenticate_user!, only: [:queue_status]
+  skip_before_filter :authenticate_support_user!, only: [:queue_status]
 
   def landing
     render :landing, :layout => "application"
