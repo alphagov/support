@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include GDS::SSO::ControllerMethods
   
-  before_filter :authenticate_user!
+  before_filter :authenticate_support_user!
   
   protect_from_forgery
 
@@ -16,5 +16,9 @@ class ApplicationController < ActionController::Base
     else
       ExceptionNotifier::Notifier.exception_notification(request.env, e).deliver
     end
+  end
+
+  def authenticate_support_user!
+    $statsd.time("#{::STATSD_PREFIX}.timings.authentication") { authenticate_user! }
   end
 end
