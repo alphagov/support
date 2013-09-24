@@ -17,6 +17,7 @@ Feature: Request permissions
     | Technical fault report | Y                  | Y                   | Y                        |
     | FOI                    | N                  | N                   | Y                        |
     | Problem report         | N                  | N                   | Y                        |
+    | Named contact          | N                  | N                   | Y                        |
 
   Scenario: permissions per role (part 2)
     * The role/request matrix:
@@ -32,3 +33,4 @@ Feature: Request permissions
     | Technical fault report | Y             | Y      | Y         |
     | FOI                    | N             | N      | Y         |
     | Problem report         | N             | N      | Y         |
+    | Named contact          | N             | N      | Y         |
