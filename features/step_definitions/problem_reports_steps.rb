@@ -14,7 +14,7 @@ When /^the user submits the following problem report through the API:$/ do |requ
     }
   }
 
-  post '/problem_reports', params.to_json, {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json'}
+  post '/anonymous_feedback/problem_reports', params.to_json, {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json'}
 
   assert_equal 201, last_response.status, "Request not successful, request: #{last_request.body.read}\nresponse: #{last_response.body}"
 end

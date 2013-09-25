@@ -1,7 +1,7 @@
 require 'zendesk/ticket/problem_report_ticket'
 require 'support/requests/problem_report'
 
-class ProblemReportsController < RequestsController
+class AnonymousFeedback::ProblemReportsController < RequestsController
   include Support::Requests
 
   protected
