@@ -2,7 +2,7 @@ require 'active_support/inflector'
 require 'support/requests'
 
 def request_class_for(request_name)
-  class_name_suffix = request_name =~ /report/ ? [] : ["Request"]
+  class_name_suffix = request_name =~ /report/ || request_name =~ /contact/ ? [] : ["Request"]
   classname = (request_name.split + class_name_suffix).map(&:capitalize).join
   "Support::Requests::#{classname}".constantize
 end

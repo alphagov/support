@@ -12,7 +12,7 @@ module Support
         can :manage, CampaignRequest if user.has_permission?('campaign_requesters')    
         can :manage, [ NewFeatureRequest, ContentChangeRequest ] if user.has_permission?('content_requesters')
         can :manage, [ CreateOrChangeUserRequest, RemoveUserRequest ] if user.has_permission?('user_managers')
-        can :manage, [ FoiRequest, ProblemReport ] if user.has_permission?('api_users')
+        can :manage, [ FoiRequest, ProblemReport, NamedContact ] if user.has_permission?('api_users')
 
         can :manage, [GeneralRequest, AnalyticsRequest, TechnicalFaultReport, UnpublishContentRequest]
       end
