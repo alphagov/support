@@ -1,7 +1,7 @@
 require 'zendesk/ticket/problem_report_ticket'
 require 'support/requests/problem_report'
 
-class ProblemReportsController < RequestsController
+class AnonymousFeedback::ProblemReportsController < AnonymousFeedbackController
   include Support::Requests
 
   protected
@@ -15,9 +15,5 @@ class ProblemReportsController < RequestsController
 
   def parse_request_from_params
     ProblemReport.new(params[:problem_report])
-  end
-
-  def set_requester_on(request)
-    # this is anonymous feedback, so anonymous requester set automatically on ProblemReport
   end
 end

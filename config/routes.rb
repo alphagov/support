@@ -6,7 +6,14 @@ Support::Application.routes.draw do
   end
 
   resource :foi_requests, only: :create
-  resource :problem_reports, only: :create
+
+  # this is a legacy route that can be removed once the switch-over
+  # to the namespaced endpoint occurs
+  resource :problem_reports, only: :create, to: "anonymous_feedback/problem_reports"
+
+  namespace :anonymous_feedback do
+    resource :problem_reports, only: :create
+  end
 
   match "acknowledge" => "support#acknowledge"
   match "_status" => "support#queue_status"
