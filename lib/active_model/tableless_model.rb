@@ -5,7 +5,7 @@ module ActiveModel
     extend ActiveModel::Naming
 
     def initialize(attributes = {})
-      attributes.each do |key, value|
+      (attributes || {}).each do |key, value|
         if respond_to? "#{key}="
           send("#{key}=", value)
         end
