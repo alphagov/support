@@ -25,11 +25,3 @@ Feature: Problem reports
       referrer: https://www.gov.uk/z
       javascript_enabled: true
       """
-
-  Scenario: successful submission on legacy endpoint (this can be removed when the legacy endpoint is deleted)
-    When the user submits the following problem report through the API on the legacy endpoint:
-      | What you were doing | What went wrong | URL                    | User agent | JS? | Referrer             | Source            | Page owner |
-      | Eating sandwich     | Fell on floor   | https://www.gov.uk/x/y | Safari     | yes | https://www.gov.uk/z | inside_government | hmrc       |
-    Then the following ticket is raised in ZenDesk:
-      | Subject | Requester email      |
-      | /x/y    | api-user@example.com |
