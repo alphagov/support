@@ -1,6 +1,6 @@
 require 'test/unit'
 require 'shoulda/context'
-require 'support/requests/problem_report'
+require 'support/requests/anonymous/problem_report'
 require 'zendesk/ticket/problem_report_ticket'
 require 'ostruct'
 

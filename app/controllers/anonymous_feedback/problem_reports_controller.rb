@@ -1,5 +1,5 @@
 require 'zendesk/ticket/problem_report_ticket'
-require 'support/requests/problem_report'
+require 'support/requests/anonymous/problem_report'
 
 class AnonymousFeedback::ProblemReportsController < AnonymousFeedbackController
   include Support::Requests

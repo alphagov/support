@@ -1,6 +1,6 @@
 # encoding: UTF-8
 require 'test_helper'
-require 'support/requests/problem_report'
+require 'support/requests/anonymous/problem_report'
 
 module Support
   module Requests
