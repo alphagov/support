@@ -8,10 +8,6 @@ Support::Application.routes.draw do
   resource :foi_requests, only: :create
   resource :named_contacts, only: :create
 
-  # this is a legacy route that can be removed once the switch-over
-  # to the namespaced endpoint occurs
-  resource :problem_reports, only: :create, to: "anonymous_feedback/problem_reports"
-
   namespace :anonymous_feedback do
     resource :problem_reports, only: :create
   end
