@@ -8,7 +8,7 @@ module Zendesk
   module Ticket
     class ProblemReportTicketTest < Test::Unit::TestCase
       def ticket(opts)
-        ProblemReportTicket.new(Support::Requests::ProblemReport.new(opts))
+        ProblemReportTicket.new(Support::Requests::Anonymous::ProblemReport.new(opts))
       end
 
       should "contain the URL path in the subject, if one is provided" do

@@ -6,7 +6,7 @@ class AnonymousFeedback::ProblemReportsController < AnonymousFeedbackController
 
   protected
   def new_request
-    ProblemReport.new
+    Anonymous::ProblemReport.new
   end
 
   def zendesk_ticket_class
@@ -14,6 +14,6 @@ class AnonymousFeedback::ProblemReportsController < AnonymousFeedbackController
   end
 
   def parse_request_from_params
-    ProblemReport.new(params[:problem_report])
+    Anonymous::ProblemReport.new(params[:problem_report])
   end
 end
