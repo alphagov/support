@@ -25,6 +25,13 @@ module Support
         @collaborator_emails = emails_as_string.split(",").collect(&:strip)
       end
 
+      class << self
+        def anonymous
+          Requester.new(email: ZENDESK_ANONYMOUS_TICKETS_REQUESTER_EMAIL, name: "Anonymous feedback")
+        end
+      end
+
+      private
       def collaborator_emails_are_all_valid
         unless collaborator_emails.blank?
           collaborator_emails.each do |collaborator_email|
