@@ -4,7 +4,7 @@ module Support
   module Requests
     module Anonymous
       class ProblemReport < Request
-        DEFAULTS = {requester: Requester.new(email: ZENDESK_ANONYMOUS_TICKETS_REQUESTER_EMAIL, name: "Anonymous feedback")}
+        DEFAULTS = { requester: Requester.anonymous }
 
         attr_accessor :what_doing, :what_wrong, :url, :user_agent, :javascript_enabled, :referrer, :source, :page_owner
 

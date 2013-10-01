@@ -4,7 +4,7 @@ require 'support/requests'
 def request_class_for(request_name)
   class_name_suffix = request_name =~ /report/ || request_name =~ /contact/ ? [] : ["Request"]
   classname = (request_name.split + class_name_suffix).map(&:capitalize).join
-  if ["ProblemReport"].include? classname
+  if ["ProblemReport", "LongFormContact"].include? classname
     "Support::Requests::Anonymous::#{classname}".constantize
   else
     "Support::Requests::#{classname}".constantize

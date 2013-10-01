@@ -1,14 +1,14 @@
-Feature: Problem reports
+Feature: Anonymous feedback
   In order to fix and improve GOV.UK
   As a GDS employee
-  I want to capture problem reports submitted by the general public
+  I want to capture bugs, gripes and improvement suggestions submitted by the general public
 
   Background:
     * the following user has SSO access:
       | Name         | Email           |
       | Feedback app | feedback@gov.uk |
 
-  Scenario: successful submission
+  Scenario: successful problem report submission
     When the user submits the following problem report through the API:
       | What you were doing | What went wrong | URL                    | User agent | JS? | Referrer             | Source            | Page owner |
       | Eating sandwich     | Fell on floor   | https://www.gov.uk/x/y | Safari     | yes | https://www.gov.uk/z | inside_government | hmrc       |
@@ -24,4 +24,30 @@ Feature: Problem reports
       user_agent: Safari
       referrer: https://www.gov.uk/z
       javascript_enabled: true
+      """
+
+  Scenario: successful long-form anonymous contact (to do with a specific page)
+    When the user submits the following long-form anonymous contact through the API:
+      | Details | Link                 |
+      | xyz     | https://www.gov.uk/y |
+    Then the following ticket is raised in ZenDesk:
+      | Subject                    |
+      | Anonymous contact about /y |
+    And the ticket is tagged with "public_form anonymous_feedback long_form_contact"
+    And the description on the ticket is:
+      """
+      [Details]
+      xyz
+
+      [Link]
+      https://www.gov.uk/y
+
+      [Referrer]
+      Unknown
+
+      [User agent]
+      Unknown
+
+      [JavaScript Enabled]
+      false
       """
