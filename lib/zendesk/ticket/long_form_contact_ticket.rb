@@ -10,7 +10,7 @@ module Zendesk
       end
 
       def tags
-        %w{public_form anonymous_feedback long_form_contact}
+        %w{anonymous_feedback public_form long_form_contact}
       end
 
       protected
