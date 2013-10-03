@@ -3,8 +3,6 @@ When /^the user submits the following named contact through the API:$/ do |reque
 
   params = { "named_contact" => {} }
 
-# | Details | User agent  | JS? | Referrer             |
-
   params["named_contact"]["requester"] = { "name" => @request_details['Name'], "email" => @request_details['Email'] }
   params["named_contact"].merge!(
     "details" => @request_details['Details'],

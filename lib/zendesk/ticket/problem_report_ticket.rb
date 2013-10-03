@@ -9,7 +9,7 @@ module Zendesk
       end
 
       def tags
-        ["public_form", "report_a_problem"] + source_tag_if_needed + govuk_referrer_tag_if_needed + page_owner_tag_if_needed
+        ["anonymous_feedback", "public_form", "report_a_problem"] + source_tag_if_needed + govuk_referrer_tag_if_needed + page_owner_tag_if_needed
       end
 
       def comment
