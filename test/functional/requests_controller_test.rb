@@ -115,6 +115,14 @@ class RequestsControllerTest < ActionController::TestCase
       post :create, valid_params_for_test_request
     end
 
+    should "persist the request (if possible)" do
+      stub_zendesk_ticket_creation
+
+      TestRequest.any_instance.expects(:save!).returns(true)
+
+      post :create, valid_params_for_test_request
+    end
+
     should "submit it to Zendesk" do
       stub_ticket_creation = stub_zendesk_ticket_creation(hash_including(tags: ['tag_a', 'tag_b']))
 

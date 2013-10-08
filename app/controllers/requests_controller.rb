@@ -23,6 +23,7 @@ class RequestsController < ApplicationController
     set_requester_on(@request)
 
     if @request.valid?
+      @request.save! if @request.respond_to?(:save!)
       process_valid_request(@request)
       respond_to do |format|
         format.html { redirect_to acknowledge_path }

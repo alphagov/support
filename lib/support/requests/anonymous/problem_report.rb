@@ -1,20 +1,19 @@
-require 'support/requests/request'
+require 'support/requests/with_requester'
 
 module Support
   module Requests
     module Anonymous
-      class ProblemReport < Request
-        DEFAULTS = { requester: Requester.anonymous }
+      class ProblemReport < ActiveRecord::Base
+        include WithRequester
 
-        attr_accessor :what_doing, :what_wrong, :url, :user_agent, :javascript_enabled, :referrer, :source, :page_owner
+        attr_accessible :what_doing, :what_wrong, :url, :user_agent, :javascript_enabled, :referrer, :source, :page_owner
 
         validates_inclusion_of :javascript_enabled, in: [ true, false ]
 
         validates :url, :referrer, url: true, allow_nil: true
 
-
-        def initialize(options = {})
-          super(DEFAULTS.merge(options))
+        def requester
+          Requester.anonymous
         end
 
         def referrer_url_on_gov_uk?

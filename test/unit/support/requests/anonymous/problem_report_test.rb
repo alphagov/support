@@ -6,8 +6,6 @@ module Support
   module Requests
     module Anonymous
       class ProblemReportTest < Test::Unit::TestCase
-        should validate_presence_of(:requester)
-
         should allow_value("abc").for(:what_doing)
         should allow_value("abc").for(:what_wrong)
 

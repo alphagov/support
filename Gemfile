@@ -9,6 +9,7 @@ group :assets do
   gem 'therubyracer', '0.11.4'
 end
 
+gem 'mysql2', '0.3.11'
 gem 'aws-ses', require: 'aws/ses'
 gem "exception_notification", '3.0.1'
 gem 'gds-sso', '3.0.5'
