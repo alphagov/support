@@ -27,6 +27,7 @@ rm config/zendesk.yml
 # Copy in the template, which will work for test mode
 cp config/zendesk.yml.template config/zendesk.yml
 
+bundle exec rake db:drop db:create db:schema:load
 bundle exec rake
 RESULT=$?
 exit $RESULT
