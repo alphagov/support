@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20131017150022) do
 
   create_table "long_form_contacts", :force => true do |t|
     t.text     "details"
-    t.string   "link"
+    t.text     "link"
     t.string   "user_agent"
     t.boolean  "javascript_enabled"
     t.string   "referrer"

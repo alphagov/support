@@ -11,6 +11,7 @@ module Support
         end
 
         validates_presence_of :details
+        validates :link, length: { maximum: 2048 }
         validates :details, length: { maximum: 2 ** 16 }
         validates_inclusion_of :javascript_enabled, in: [ true, false ]
 

@@ -11,6 +11,7 @@ module Support
         validates_inclusion_of :javascript_enabled, in: [ true, false ]
 
         validates :url, :referrer, url: true, allow_nil: true
+        validates :url, length: { maximum: 2048 }
 
         validates :what_doing, length: { maximum: 2 ** 16 }
         validates :what_wrong, length: { maximum: 2 ** 16 }

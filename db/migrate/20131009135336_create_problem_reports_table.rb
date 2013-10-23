@@ -3,7 +3,7 @@ class CreateProblemReportsTable < ActiveRecord::Migration
     create_table :problem_reports do |t|
       t.text    :what_doing 
       t.text    :what_wrong
-      t.string  :url
+      t.text    :url
       t.string  :user_agent
       t.boolean :javascript_enabled
       t.string  :referrer
