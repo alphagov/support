@@ -1,5 +1,10 @@
 language: ruby
+before_install:
+  - mysql -u root -e "CREATE USER 'support_contacts'@'localhost' IDENTIFIED BY 'support_contacts'"
+  - mysql -u root -e 'CREATE DATABASE support_contacts_test'
+  - mysql -u root -e "GRANT ALL ON support_contacts_test.* TO 'support_contacts'@'localhost'"
 script:
+  - bundle exec rake db:schema:load
   - bundle exec rake
 rvm:
   - 1.9.3
