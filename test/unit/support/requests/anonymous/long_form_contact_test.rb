@@ -12,6 +12,9 @@ module Support
         should allow_value(true).for(:javascript_enabled)
         should allow_value(false).for(:javascript_enabled)
 
+        should allow_value("a" * 2**16).for(:details)
+        should_not allow_value("a" * (2**16+1)).for(:details)
+
         should "not allow random values for javascript_enabled" do
           refute LongFormContact.new(javascript_enabled: "abc").javascript_enabled
         end

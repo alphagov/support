@@ -22,6 +22,11 @@ module Support
         should allow_value(true).for(:javascript_enabled)
         should allow_value("hmrc").for(:page_owner)
 
+        should allow_value("a" * 2**16).for(:what_doing)
+        should allow_value("a" * 2**16).for(:what_wrong)
+        should_not allow_value("a" * (2**16+1)).for(:what_doing)
+        should_not allow_value("a" * (2**16+1)).for(:what_wrong)
+
         should "have the anonymous email address as the requester email by default" do
           assert_equal ZENDESK_ANONYMOUS_TICKETS_REQUESTER_EMAIL, ProblemReport.new.requester.email
         end

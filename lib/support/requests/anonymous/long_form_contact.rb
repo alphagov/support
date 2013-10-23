@@ -11,6 +11,7 @@ module Support
         end
 
         validates_presence_of :details
+        validates :details, length: { maximum: 2 ** 16 }
         validates_inclusion_of :javascript_enabled, in: [ true, false ]
 
         def govuk_link_path

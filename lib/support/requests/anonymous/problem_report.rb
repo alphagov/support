@@ -12,6 +12,9 @@ module Support
 
         validates :url, :referrer, url: true, allow_nil: true
 
+        validates :what_doing, length: { maximum: 2 ** 16 }
+        validates :what_wrong, length: { maximum: 2 ** 16 }
+
         def requester
           Requester.anonymous
         end
