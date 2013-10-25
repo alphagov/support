@@ -11,27 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131017150022) do
+ActiveRecord::Schema.define(:version => 20131025135336) do
 
-  create_table "long_form_contacts", :force => true do |t|
-    t.text     "details"
-    t.text     "link"
-    t.string   "user_agent"
-    t.boolean  "javascript_enabled"
-    t.string   "referrer"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
-
-  create_table "problem_reports", :force => true do |t|
+  create_table "anonymous_contacts", :force => true do |t|
+    t.string   "type"
     t.text     "what_doing"
     t.text     "what_wrong"
-    t.string   "url"
-    t.string   "user_agent"
-    t.boolean  "javascript_enabled"
-    t.string   "referrer"
+    t.text     "details"
     t.string   "source"
     t.string   "page_owner"
+    t.text     "url"
+    t.string   "user_agent"
+    t.string   "referrer"
+    t.boolean  "javascript_enabled"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
   end

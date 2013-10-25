@@ -6,12 +6,12 @@ module Support
     module Anonymous
       class LongFormContactTest < Test::Unit::TestCase
         should validate_presence_of(:details)
-        should allow_value("abc").for(:referrer)
+        should allow_value("https://www.google.com").for(:referrer)
         should allow_value("abc").for(:user_agent)
 
-        should allow_value("https://www.gov.uk").for(:link)
-        should allow_value("http://" + ("a" * 2040)).for(:link)
-        should_not allow_value("http://" + ("a" * 2050)).for(:link)
+        should allow_value("https://www.gov.uk").for(:url)
+        should allow_value("http://" + ("a" * 2040)).for(:url)
+        should_not allow_value("http://" + ("a" * 2050)).for(:url)
 
         should allow_value(true).for(:javascript_enabled)
         should allow_value(false).for(:javascript_enabled)
@@ -32,9 +32,9 @@ module Support
         end
 
         should "provide the path if a GOV.UK link is specified" do
-          assert_equal "/abc", LongFormContact.new(link: "https://www.gov.uk/abc").govuk_link_path
-          assert_nil LongFormContact.new(link: "https://www.google.co.uk/ab").govuk_link_path
-          assert_nil LongFormContact.new(link: nil).govuk_link_path
+          assert_equal "/abc", LongFormContact.new(url: "https://www.gov.uk/abc").govuk_link_path
+          assert_nil LongFormContact.new(url: "https://www.google.co.uk/ab").govuk_link_path
+          assert_nil LongFormContact.new(url: nil).govuk_link_path
         end
       end
     end
