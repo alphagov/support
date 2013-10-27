@@ -39,7 +39,7 @@ Feature: Anonymous feedback
       [Details]
       xyz
 
-      [Link]
+      [Url]
       https://www.gov.uk/y
 
       [Referrer]
