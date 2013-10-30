@@ -13,7 +13,6 @@ module Support
       end
 
       should validate_presence_of(:title)
-      should validate_presence_of(:erg_reference_number)
       should validate_presence_of(:description)
 
       should allow_value("some group or company").for(:affiliated_group_or_company)
