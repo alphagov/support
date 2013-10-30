@@ -2,7 +2,7 @@
   <%= r.inputs :name => "Campaign details" do %>
     <%= r.input :title, label: "Campaign title", required: true, input_html: {:class => "span6", :"aria-required" => true} %>
 
-    <%= r.input :erg_reference_number, label: "ERG reference number", required: true, input_html: {:class => "span6", :"aria-required" => true} %>
+    <%= r.input :erg_reference_number, label: "ERG reference number", input_html: {:class => "span6"} %>
 
     <%= r.input :start_date, label: "Start date", required: false, input_html: {:"calendar-enabled" => true, :placeholder => "dd-mm-YYYY", :value => r.object.start_date} %>
     <%= r.input :description, as: :text, label: "Campaign description", required: true, input_html: {:class => "span6", :rows => 6, :cols => 50, :"aria-required" => true } %>
