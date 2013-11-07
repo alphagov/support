@@ -9,8 +9,9 @@ Support::Application.routes.draw do
   resource :named_contacts, only: :create
 
   namespace :anonymous_feedback do
-    resource :problem_reports, only: :create
-    resource :long_form_contacts, only: :create
+    resources :problem_reports, only: :create
+    resources :long_form_contacts, only: :create
+    resources :service_feedback, only: :create
   end
 
   match "acknowledge" => "support#acknowledge"
