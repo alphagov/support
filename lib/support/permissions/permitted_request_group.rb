@@ -15,7 +15,7 @@ module Support
       end
 
       def request_classes
-        @request_group.request_classes.select { |request_class| @user.can? :modify, request_class }
+        @request_group.request_classes.select { |request_class| @user.can? :create, request_class }
       end
     end
   end

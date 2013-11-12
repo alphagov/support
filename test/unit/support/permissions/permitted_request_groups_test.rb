@@ -8,8 +8,8 @@ module Support
         @accessible = stub("request class", to_s: "accessible")
         @inaccessible = stub("request class", to_s: "inaccessible")
         @user = stub("user")
-        @user.stubs(:can?).with(:modify, @accessible).returns(true)
-        @user.stubs(:can?).with(:modify, @inaccessible).returns(false)
+        @user.stubs(:can?).with(:create, @accessible).returns(true)
+        @user.stubs(:can?).with(:create, @inaccessible).returns(false)
       end
 
       def test_that_request_groups_which_user_cannot_access_are_filtered_out
