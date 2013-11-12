@@ -1,17 +1,7 @@
 require "zendesk_tickets"
 require 'support/requests/requester'
-require 'support/permissions/ability'
 
 class RequestsController < ApplicationController
-  check_authorization
-
-  rescue_from CanCan::AccessDenied do |exception|
-    respond_to do |format|
-      format.html { render "support/forbidden", status: 403 }
-      format.json { render json: {"error" => "You have not been granted permission to create these requests."}, status: 403 }
-    end
-  end
-
   def new
     @request = new_request
     authorize! :new, @request
@@ -38,10 +28,6 @@ class RequestsController < ApplicationController
   end
 
   protected
-  def current_ability
-    @current_ability ||= Support::Permissions::Ability.new(current_user)
-  end
-
   def save_to_zendesk(submitted_request)
     ticket = zendesk_ticket_class.new(submitted_request)
     $statsd.time("#{::STATSD_PREFIX}.timings.querying_sidekiq_stats") { log_queue_sizes }
