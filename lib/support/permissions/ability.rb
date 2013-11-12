@@ -8,13 +8,13 @@ module Support
       include Support::Requests
 
       def initialize(user)
-        can :manage, :all if user.has_permission?('single_points_of_contact')
-        can :manage, CampaignRequest if user.has_permission?('campaign_requesters')    
-        can :manage, [ NewFeatureRequest, ContentChangeRequest ] if user.has_permission?('content_requesters')
-        can :manage, [ CreateOrChangeUserRequest, RemoveUserRequest ] if user.has_permission?('user_managers')
-        can :manage, [ FoiRequest, Anonymous::ProblemReport, Anonymous::LongFormContact, NamedContact ] if user.has_permission?('api_users')
+        can :create, :all if user.has_permission?('single_points_of_contact')
+        can :create, CampaignRequest if user.has_permission?('campaign_requesters')    
+        can :create, [ NewFeatureRequest, ContentChangeRequest ] if user.has_permission?('content_requesters')
+        can :create, [ CreateOrChangeUserRequest, RemoveUserRequest ] if user.has_permission?('user_managers')
+        can :create, [ FoiRequest, Anonymous::ProblemReport, Anonymous::LongFormContact, Anonymous::ServiceFeedback, NamedContact ] if user.has_permission?('api_users')
 
-        can :manage, [GeneralRequest, AnalyticsRequest, TechnicalFaultReport, UnpublishContentRequest]
+        can :create, [GeneralRequest, AnalyticsRequest, TechnicalFaultReport, UnpublishContentRequest]
       end
     end
   end

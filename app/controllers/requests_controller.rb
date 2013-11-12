@@ -24,7 +24,7 @@ class RequestsController < ApplicationController
 
     if @request.valid?
       @request.save! if @request.respond_to?(:save!)
-      process_valid_request(@request)
+      save_to_zendesk(@request) if persistence_to_zendesk_necessary?
       respond_to do |format|
         format.html { redirect_to acknowledge_path }
         format.json { render nothing: true, status: 201 }
@@ -42,7 +42,7 @@ class RequestsController < ApplicationController
     @current_ability ||= Support::Permissions::Ability.new(current_user)
   end
 
-  def process_valid_request(submitted_request)
+  def save_to_zendesk(submitted_request)
     ticket = zendesk_ticket_class.new(submitted_request)
     $statsd.time("#{::STATSD_PREFIX}.timings.querying_sidekiq_stats") { log_queue_sizes }
     $statsd.time("#{::STATSD_PREFIX}.timings.putting_ticket_on_queue") { ZendeskTickets.new.raise_ticket(ticket) }
@@ -59,5 +59,9 @@ class RequestsController < ApplicationController
     request.requester ||= Support::Requests::Requester.new
     request.requester.name = current_user.name
     request.requester.email = current_user.email
+  end
+
+  def persistence_to_zendesk_necessary?
+    true
   end
 end

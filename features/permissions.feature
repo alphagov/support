@@ -19,6 +19,7 @@ Feature: Request permissions
     | Problem report         | N                  | N                   | Y                        |
     | Named contact          | N                  | N                   | Y                        |
     | Long form contact      | N                  | N                   | Y                        |
+    | Service feedback       | N                  | N                   | Y                        |
 
   Scenario: permissions per role (part 2)
     * The role/request matrix:
@@ -36,3 +37,4 @@ Feature: Request permissions
     | Problem report         | N             | N      | Y         |
     | Named contact          | N             | N      | Y         |
     | Long form contact      | N             | N      | Y         |
+    | Service feedback       | N             | N      | Y         |

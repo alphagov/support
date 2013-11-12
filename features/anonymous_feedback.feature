@@ -51,3 +51,10 @@ Feature: Anonymous feedback
       [JavaScript Enabled]
       false
       """
+
+  Scenario: successful service feedback submission
+    When the user submits feedback about a GOV.UK service through the API:
+      | Slug                     | Satisfaction rating  | Improvement comments    | User agent | JS? |
+      | done/find-court-tribunal | 3                    | Make service less 'meh' | Safari     | yes |
+    # Then TBD...
+    # for now, we store the feedback and expose it later through an API
