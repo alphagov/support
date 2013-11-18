@@ -9,13 +9,15 @@ Support::Application.routes.draw do
   resources :named_contacts, only: :create
 
   namespace :anonymous_feedback do
-    resources :problem_reports, only: [ :create, :index ], format: false
+    resources :problem_reports, only: FEEDEX_ENABLED ? [ :create, :index ] : [ :create ], format: false
     resources :long_form_contacts, only: :create
     resources :service_feedback, only: :create
 
-    namespace :problem_reports do
-      get :explore, to: "explore#new", format: false
-      post :explore, to: "explore#create", format: false
+    if FEEDEX_ENABLED
+      namespace :problem_reports do
+        get :explore, to: "explore#new", format: false
+        post :explore, to: "explore#create", format: false
+      end
     end
   end
 

@@ -5,8 +5,6 @@ module Support
   module Requests
     module Anonymous
       class ProblemReport < AnonymousContact
-
-
         attr_accessible :what_doing, :what_wrong, :url, :source, :page_owner
 
         validates :url, :referrer, url: true, allow_nil: true
