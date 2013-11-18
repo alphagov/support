@@ -5,6 +5,8 @@ module Support
   module Requests
     module Anonymous
       class ProblemReport < AnonymousContact
+
+
         attr_accessible :what_doing, :what_wrong, :url, :source, :page_owner
 
         validates :url, :referrer, url: true, allow_nil: true
@@ -22,7 +24,7 @@ module Support
         end
 
         def self.find_all_starting_with_path(path)
-          where("url like ?", "%" + path + "%").order("created_at desc").select { |pr| pr.path.start_with?(path) }
+          where("url like ?", "%" + path + "%").free_of_personal_info.order("created_at desc").select { |pr| pr.path.start_with?(path) }
         end
       end
     end

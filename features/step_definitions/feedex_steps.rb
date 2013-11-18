@@ -1,15 +1,19 @@
 require 'date'
 
+Before do
+  Support::Requests::Anonymous::ProblemReport.delete_all
+end
+
 Given /^the following problem reports have been left by members of the public:$/ do |table|
-  table.hashes.each do |probem_report_details|
+  table.hashes.each do |problem_report_details|
     problem_report = Support::Requests::Anonymous::ProblemReport.create!(
-      url: probem_report_details["URL"],
-      referrer: probem_report_details["User came from"],
-      what_doing: probem_report_details["What user was doing"],
-      what_wrong: probem_report_details["What went wrong"],
+      url: problem_report_details["URL"],
+      referrer: problem_report_details["User came from"],
+      what_doing: problem_report_details["What user was doing"],
+      what_wrong: problem_report_details["What went wrong"],
       javascript_enabled: true
     )
-    problem_report.created_at = Date.strptime(probem_report_details["Creation date"], '%Y-%m-%d')
+    problem_report.created_at = Date.strptime(problem_report_details["Creation date"], '%Y-%m-%d')
     problem_report.save
   end
 end

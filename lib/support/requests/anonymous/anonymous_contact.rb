@@ -18,6 +18,10 @@ module Support
         validates_inclusion_of :javascript_enabled, in: [ true, false ]
         validates_inclusion_of :personal_information_status, in: [ "suspected", "absent" ], allow_nil: true
 
+        def self.free_of_personal_info
+          where(personal_information_status: "absent")
+        end
+
         private
         def detect_personal_information
           self.personal_information_status ||= personal_info_present? ? "suspected" : "absent"
