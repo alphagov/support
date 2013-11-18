@@ -1,0 +1,16 @@
+<%= content_for :page_title, "FeedEx" %>
+<%= content_for :header, "Explore GOV.UK anonymous feedback" %>
+
+<h2>Anonymous feedback for: <%= params[:path] %></h2>
+
+<table id="results" class="table table-hover sortable">
+  <thead>
+    <th>creation date</th>
+    <th>feedback</th>
+    <th>full path</th>
+    <th>user came from</th>
+  </thead>
+  <tbody>
+    <%= render partial: "problem-report", collection: @feedback, as: :problem_report %>
+  </tbody>
+</table>

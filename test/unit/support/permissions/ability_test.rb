@@ -10,6 +10,11 @@ module Support
         assert ability.can?(:create, Support::Requests::CampaignRequest)
         assert ability.can?(:create, Support::Requests::ContentChangeRequest)
       end
+
+      def test_feedex_users_can_read_problem_reports
+        ability = Ability.new(User.new(permissions: ["feedex"]))
+        assert ability.can?(:read, Support::Requests::Anonymous::ProblemReport)
+      end
     end
   end
 end
