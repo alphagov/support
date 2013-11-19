@@ -52,9 +52,16 @@ Feature: Anonymous feedback
       false
       """
 
-  Scenario: successful service feedback submission
+  Scenario: successful service feedback submission with comment
     When the user submits feedback about a GOV.UK service through the API:
       | Slug                     | Satisfaction rating  | Improvement comments    | User agent | JS? |
       | done/find-court-tribunal | 3                    | Make service less 'meh' | Safari     | yes |
+    # Then TBD...
+    # for now, we store the feedback and expose it later through an API
+
+  Scenario: successful service feedback submission without comment
+    When the user submits feedback about a GOV.UK service through the API:
+      | Slug                     | Satisfaction rating  | Improvement comments    | User agent | JS? |
+      | done/find-court-tribunal | 3                    |                         | Safari     | yes |
     # Then TBD...
     # for now, we store the feedback and expose it later through an API
