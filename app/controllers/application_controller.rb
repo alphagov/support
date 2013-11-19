@@ -1,3 +1,5 @@
+require 'support/permissions/ability'
+
 class ApplicationController < ActionController::Base
   include GDS::SSO::ControllerMethods
   
@@ -5,7 +7,20 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery
 
+  check_authorization
+
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.html { render "support/forbidden", status: 403 }
+      format.json { render json: {"error" => "You have not been granted permission to make these requests."}, status: 403 }
+    end
+  end
+
   protected
+  def current_ability
+    @current_ability ||= Support::Permissions::Ability.new(current_user)
+  end
+
   def exception_notification_for(e)
     exception_class_name = e.class.name.demodulize.downcase
     $statsd.increment("#{::STATSD_PREFIX}.exception.#{exception_class_name}")

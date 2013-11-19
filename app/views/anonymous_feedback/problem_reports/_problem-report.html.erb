@@ -1,0 +1,18 @@
+<tr class="problem-report">
+  <td><%= problem_report.created_at.strftime("%d.%m.%Y") %></td>
+  <td>
+    <strong>action</strong>: <%= problem_report.what_doing %>
+    <br/>
+    <strong>problem</strong>: <%= problem_report.what_wrong %>
+  </td>
+  <td>
+    <%= link_to URI(problem_report.url).path, problem_report.url %>
+  </td>
+  <td>
+    <% if problem_report.referrer %>
+      <%= link_to problem_report.referrer, problem_report.referrer %>
+    <% else %>
+      &ndash;
+    <% end %>  
+  </td>
+</tr>

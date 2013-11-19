@@ -1,3 +1,4 @@
+require 'uri'
 require 'support/requests/anonymous/anonymous_contact'
 
 module Support
@@ -12,8 +13,16 @@ module Support
         validates :what_doing, length: { maximum: 2 ** 16 }
         validates :what_wrong, length: { maximum: 2 ** 16 }
 
+        def path
+          URI(url).path
+        end
+
         def referrer_url_on_gov_uk?
           referrer and URI.parse(referrer).host == "www.gov.uk"
+        end
+
+        def self.find_all_starting_with_path(path)
+          where("url like ?", "%" + path + "%").free_of_personal_info.order("created_at desc").select { |pr| pr.path.start_with?(path) }
         end
       end
     end

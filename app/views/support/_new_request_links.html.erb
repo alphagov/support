@@ -7,4 +7,10 @@
       <% end %>
     </ul>
   <% end %>
+  <% if FEEDEX_ENABLED and current_user.can? :read, Support::Requests::Anonymous::ProblemReport %>
+    <ul class="nav nav-list">
+        <li class="nav-header">Anonymous feedback</li>
+        <%= feedex_nav_link %>
+    </ul>
+  <% end %>
 </div>
