@@ -6,7 +6,7 @@ module Support
     module Anonymous
       class ServiceFeedbackTest < Test::Unit::TestCase
         should validate_presence_of(:service_satisfaction_rating)
-        should validate_presence_of(:details)
+        should allow_value(nil).for(:details)
         should validate_presence_of(:slug)
 
         should ensure_inclusion_of(:service_satisfaction_rating).in_range(1..5)
