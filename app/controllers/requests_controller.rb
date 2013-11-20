@@ -1,7 +1,7 @@
 require "zendesk_tickets"
 require 'support/requests/requester'
 
-class RequestsController < ApplicationController
+class RequestsController < AuthorisationController
   def new
     @request = new_request
     authorize! :new, @request
