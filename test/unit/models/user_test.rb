@@ -10,10 +10,10 @@ class UserTest < Test::Unit::TestCase
   end
 
   should "support persistent creation and retrieval" do
-    assert_nil User.find_by_uid("12345")
+    assert User.where(uid: "12345").empty?
     user = User.create!("uid" => "12345", "name" => "A", "email" => "a@b.com")
 
-    u = User.find_by_uid("12345")
+    u = User.where(uid: "12345").first
     assert_not_nil u
     assert_equal "A", u.name
     assert_equal "a@b.com", u.email
@@ -21,12 +21,12 @@ class UserTest < Test::Unit::TestCase
 
   should "support remote sign-out" do
     user = User.create!("uid" => "12345", "name" => "A", "email" => "a@b.com")
-    assert !user.remotely_signed_out?
+    refute user.remotely_signed_out?
 
     user.update_attribute(:remotely_signed_out, true)
     assert user.remotely_signed_out?
 
-    assert User.find_by_uid("12345").remotely_signed_out?
+    assert User.where(uid: "12345").first.remotely_signed_out?
   end
 
   should "support mass updating of attributes" do
@@ -37,6 +37,6 @@ class UserTest < Test::Unit::TestCase
     assert_equal "Z", user.name
     assert_equal "x@y.com", user.email
 
-    assert_equal "Z", User.find_by_uid("12345").name
+    assert_equal "Z", User.where(uid: "12345").first.name
   end
 end
