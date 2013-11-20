@@ -1,6 +1,6 @@
 require 'sidekiq'
 
-class SupportController < ApplicationController
+class SupportController < AuthorisationController
   skip_authorization_check
   skip_before_filter :authenticate_support_user!, only: [:queue_status]
 
