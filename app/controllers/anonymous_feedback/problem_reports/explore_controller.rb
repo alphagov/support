@@ -1,8 +1,7 @@
-require 'support/requests/anonymous/problem_report'
 require 'support/requests/anonymous/explore'
 
 class AnonymousFeedback::ProblemReports::ExploreController < AuthorisationController
-  authorize_resource class: Support::Requests::Anonymous::ProblemReport
+  authorize_resource class: Support::Requests::Anonymous::Explore
 
   def new
     @explore = Support::Requests::Anonymous::Explore.new

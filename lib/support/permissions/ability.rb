@@ -15,6 +15,7 @@ module Support
         can :create, [ FoiRequest, Anonymous::ProblemReport, Anonymous::LongFormContact, Anonymous::ServiceFeedback, NamedContact ] if user.has_permission?('api_users')
 
         can :read, Anonymous::ProblemReport if user.has_permission?('feedex')
+        can :create, Support::Requests::Anonymous::Explore if user.has_permission?('feedex')
         can :create, [GeneralRequest, AnalyticsRequest, TechnicalFaultReport, UnpublishContentRequest]
       end
     end

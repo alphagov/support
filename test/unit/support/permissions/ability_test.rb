@@ -1,5 +1,7 @@
 require 'test_helper'
 require 'support/permissions/ability'
+require 'support/requests/anonymous/problem_report'
+require 'support/requests/anonymous/explore'
 
 module Support
   module Permissions
@@ -14,6 +16,11 @@ module Support
       def test_feedex_users_can_read_problem_reports
         ability = Ability.new(User.new(permissions: ["feedex"]))
         assert ability.can?(:read, Support::Requests::Anonymous::ProblemReport)
+      end
+
+      def test_feedex_users_can_explore_anonymous_feedback
+        ability = Ability.new(User.new(permissions: ["feedex"]))
+        assert ability.can?(:create, Support::Requests::Anonymous::Explore)
       end
     end
   end
