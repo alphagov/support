@@ -1,5 +1,6 @@
 require 'cancan/ability'
 require 'support/requests'
+require 'support/requests/anonymous/explore'
 
 module Support
   module Permissions
