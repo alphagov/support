@@ -13,3 +13,5 @@ branches:
     - release
 notifications:
   email: false
+services:
+  - redis-server
