@@ -23,7 +23,7 @@ module Support
         [
           ["Detailed Guidance", "detailed_guidance"],
           ["Departments and policy", "inside_government"],
-          ["Mainstream (business/citizen)", "mainstream"],
+          ["Services and information", "mainstream"],
         ]
       end
     end

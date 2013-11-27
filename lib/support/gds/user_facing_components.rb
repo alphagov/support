@@ -17,7 +17,7 @@ module Support
         protected
         def component_options
           [
-            { name: "GOV.UK: Mainstream content", id: "gov_uk_mainstream" },
+            { name: "GOV.UK: Services and information content", id: "gov_uk_mainstream" },
             { name: "GOV.UK: Departments and policy content", id: "gov_uk_inside_government", inside_government_related: true },
             { name: "Whitehall Publisher", id: "inside_government_publisher", inside_government_related: true },
             { name: "Mainstream Publisher", id: "mainstream_publisher" },
