@@ -6,10 +6,10 @@ gem 'rails', '3.2.14'
 group :assets do
   gem 'less-rails-bootstrap', '2.1.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'therubyracer', '0.11.4'
+  gem "therubyracer", "0.12.0"
 end
 
-gem 'mysql2', '0.3.11'
+gem 'mysql2', '0.3.14'
 gem 'aws-ses', require: 'aws/ses'
 gem "exception_notification", '3.0.1'
 gem 'gds-sso', '3.0.5'
