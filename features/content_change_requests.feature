@@ -38,10 +38,10 @@ Feature: Content change requests
       New law
       """
 
-  Scenario: successful Inside Government content change request 
+  Scenario: successful Departments and Policy content change request 
     When the user submits the following content change request:
-      | Context           | Details of change |
-      | Inside Government | Out of date XX YY |
+      | Context                | Details of change |
+      | Departments and policy | Out of date XX YY |
 
     Then the following ticket is raised in ZenDesk:
       | Subject                |

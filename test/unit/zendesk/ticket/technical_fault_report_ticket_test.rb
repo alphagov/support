@@ -17,7 +17,7 @@ module Zendesk
       end
 
       context "a inside government-related report" do
-        should "be tagged with inside_government if the fault is in an Inside Government component" do
+        should "be tagged with inside_government if the fault is in an gov.uk/departments component" do
           tags_on_ticket = ticket_with(inside_government_related?: true, id: "some_component").tags
           assert_includes tags_on_ticket, "technical_fault"
           assert_includes tags_on_ticket, "inside_government"

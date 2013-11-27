@@ -48,7 +48,7 @@ class CreateOrChangeUserRequestsControllerTest < ActionController::TestCase
       assert_redirected_to "/acknowledge"
     end
 
-    context "concerning Inside Government" do
+    context "concerning departments and policy" do
       should "tag the ticket with an inside_government tag" do
         stub_request = stub_zendesk_ticket_creation(hash_including(tags: ['govt_form', 'change_user', 'inside_government']))
         params = valid_change_user_request_params.tap {|p| p["support_requests_create_or_change_user_request"].merge!("user_needs" => ["inside_government_editor"])}

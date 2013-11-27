@@ -23,7 +23,7 @@ module Support
       end
 
       should "also define the formatted version" do
-        assert "Inside Government", TestModelWithRequestContext.new(request_context: "inside_government").formatted_request_context
+        assert_equal "Departments and policy", TestModelWithRequestContext.new(request_context: "inside_government").formatted_request_context
       end
     end
   end

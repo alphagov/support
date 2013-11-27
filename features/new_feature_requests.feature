@@ -10,8 +10,8 @@ Feature: New feature requests
 
   Scenario: successful request
     When the user submits the following new feature request:
-      | Context           | Title | User need          | URL of example         | Needed by date | Not before date | Reason            |
-      | Inside Government | Abc   | Information on XYZ | http://www.example.com | 31-12-2020     | 01-12-2020      | Legal requirement |
+      | Context                | Title | User need          | URL of example         | Needed by date | Not before date | Reason            |
+      | Departments and policy | Abc   | Information on XYZ | http://www.example.com | 31-12-2020     | 01-12-2020      | Legal requirement |
 
     Then the following ticket is raised in ZenDesk:
       | Subject                   | Requester email      |
@@ -23,7 +23,7 @@ Feature: New feature requests
     And the description on the ticket is:
       """
       [Which part of GOV.UK is this about?]
-      Inside Government
+      Departments and policy
 
       [User need]
       Information on XYZ

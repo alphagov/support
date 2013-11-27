@@ -11,8 +11,8 @@ Feature: Create or change user requests
 
   Scenario: user creation request
     When the user submits the following request to create or change users:
-      | Action           | User needs                                                                 | User's name | User's email | User's job title | User's phone | Additional comments |
-      | New user account | Inside Government writer permissions, Inside Government editor permissions | Bob Fields  | bob@gov.uk   | Editor           | 12345        | XXXX                |
+      | Action           | User needs                                                                           | User's name | User's email | User's job title | User's phone | Additional comments |
+      | New user account | Departments and policy writer permissions, Departments and policy editor permissions | Bob Fields  | bob@gov.uk   | Editor           | 12345        | XXXX                |
     Then the following ticket is raised in ZenDesk:
       | Subject          | Requester email      |
       | New user account | john.smith@email.com |
@@ -23,7 +23,7 @@ Feature: Create or change user requests
       New user account
 
       [User needs]
-      Inside Government editor permissions, Inside Government writer permissions
+      Departments and policy editor permissions, Departments and policy writer permissions
 
       [Requested user's name]
       Bob Fields

@@ -1,7 +1,7 @@
 Feature: Unpublish content requests
   In order to reduce user confusion and damage to government reputation
   As a government employee
-  I want to ask the Inside Government team to unpublish content
+  I want to ask the Departments and policy team to unpublish content
 
   Background:
     * the following user has SSO access:

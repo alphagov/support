@@ -18,8 +18,8 @@ module Support
         def component_options
           [
             { name: "GOV.UK: Mainstream content", id: "gov_uk_mainstream" },
-            { name: "GOV.UK: Inside Government content", id: "gov_uk_inside_government", inside_government_related: true },
-            { name: "Inside Government Publisher", id: "inside_government_publisher", inside_government_related: true },
+            { name: "GOV.UK: Departments and policy content", id: "gov_uk_inside_government", inside_government_related: true },
+            { name: "Whitehall Publisher", id: "inside_government_publisher", inside_government_related: true },
             { name: "Mainstream Publisher", id: "mainstream_publisher" },
             { name: "Travel Advice Publisher", id: "travel_advice_publisher" },
           ]
