@@ -12,9 +12,10 @@ class User < OpenStruct
     @ability ||= Support::Permissions::Ability.new(self)
   end
 
-  def self.find_by_uid(uid)
+  def self.where(options)
+    uid = options[:uid]
     auth_hash = Rails.cache.fetch(prefixed_key(uid))
-    auth_hash ? User.new(auth_hash) : nil
+    auth_hash ? [ User.new(auth_hash) ] : []
   end
 
   def self.create!(auth_hash, options={})
@@ -22,6 +23,7 @@ class User < OpenStruct
     User.new(auth_hash)
   end
 
+  # only used by the mock_gds_sso strategy
   def self.first
     auth_hash = Rails.cache.fetch(prefixed_key('dummy-user'))
     raise("Dummy user not found, run rake users:create_dummy") unless auth_hash
