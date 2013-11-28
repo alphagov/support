@@ -34,8 +34,8 @@ module Support
       end
 
       should "also define the formatted version" do
-        assert_equal "Inside Government writer permissions", request(user_needs: ["inside_government_writer"]).formatted_user_needs
-        assert_equal "Inside Government editor permissions, Inside Government writer permissions", request(user_needs: ["inside_government_writer", "inside_government_editor"]).formatted_user_needs
+        assert_equal "Departments and policy writer permissions", request(user_needs: ["inside_government_writer"]).formatted_user_needs
+        assert_equal "Departments and policy editor permissions, Departments and policy writer permissions", request(user_needs: ["inside_government_writer", "inside_government_editor"]).formatted_user_needs
       end
     end
   end

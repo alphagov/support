@@ -10,8 +10,8 @@ Feature: Technical fault reports
 
   Scenario: successful submission of technical fault report
     When the user submits the following technical fault report:
-      | Location of fault          | What is broken | User's actions | What happened | What should have happened  |
-      | GOV.UK: Mainstream content | Smart answer   | Clicked on x   | Broken link   | Should have linked through |
+      | Location of fault                        | What is broken | User's actions | What happened | What should have happened  |
+      | GOV.UK: Services and information content | Smart answer   | Clicked on x   | Broken link   | Should have linked through |
     Then the following ticket is raised in ZenDesk:
       | Subject                | Requester email      |
       | Technical fault report | john.smith@email.com |
@@ -19,7 +19,7 @@ Feature: Technical fault reports
     And the description on the ticket is:
       """
       [Location of fault]
-      GOV.UK: Mainstream content
+      GOV.UK: Services and information content
 
       [What is broken]
       Smart answer

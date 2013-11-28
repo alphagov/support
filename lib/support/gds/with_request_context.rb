@@ -22,8 +22,8 @@ module Support
       def request_context_options
         [
           ["Detailed Guidance", "detailed_guidance"],
-          ["Inside Government", "inside_government"],
-          ["Mainstream (business/citizen)", "mainstream"],
+          ["Departments and policy", "inside_government"],
+          ["Services and information", "mainstream"],
         ]
       end
     end

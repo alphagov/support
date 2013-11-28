@@ -10,8 +10,8 @@ Feature: Analytics requests
 
   Scenario: successful analytics request
     When the user submits the following analytics request:
-      | Context                       | From          | To       | Pages/sections/URLs | What's it for              | More detailed analysis | Frequency | Format |
-      | Mainstream (business/citizen) | Start Q4 2012 | End 2012 | https://gov.uk/X    | To measure campaign success | I also need KPI Y      | One-off   | PDF    |
+      | Context                  | From          | To       | Pages/sections/URLs | What's it for              | More detailed analysis | Frequency | Format |
+      | Services and information | Start Q4 2012 | End 2012 | https://gov.uk/X    | To measure campaign success | I also need KPI Y      | One-off   | PDF    |
     Then the following ticket is raised in ZenDesk:
       | Subject               | Requester email      |
       | Request for analytics | john.smith@email.com |
@@ -19,7 +19,7 @@ Feature: Analytics requests
     And the description on the ticket is:
       """
       [Which part of GOV.UK is this about?]
-      Mainstream (business/citizen)
+      Services and information
 
       [Reporting period]
       From Start Q4 2012 to End 2012
