@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source 'https://BnrJb6FZyzspBboNJzYZ@gem.fury.io/govuk/'
 
-gem 'rails', '3.2.14'
+gem 'rails', '3.2.16'
 
 group :assets do
   gem 'less-rails-bootstrap', '2.1.1'
