@@ -29,7 +29,7 @@ gem 'redis-rails', '3.2.3'
 gem 'redis-activesupport', '3.2.3', :git => "https://github.com/alphagov/redis-store", :branch => "connection_url", :ref => '2f9efcf48e124be3279e2f8864c979f999bed2ad'
 gem "sidekiq", "2.13.0"
 gem "statsd-ruby", "1.2.1", require: "statsd"
-gem "logstasher", "0.2.5"
+gem 'logstasher', '0.4.0'
 gem 'jquery-tablesorter', '1.8.1'
 
 # pin to version that includes security vulnerability fix, needed by sidekiq

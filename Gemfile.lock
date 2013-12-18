@@ -141,8 +141,8 @@ GEM
     libwebsocket (0.1.5)
       addressable
     logstash-event (1.1.5)
-    logstasher (0.2.5)
-      logstash-event
+    logstasher (0.4.0)
+      logstash-event (~> 1.1.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -292,7 +292,7 @@ DEPENDENCIES
   jquery-tablesorter (= 1.8.1)
   jquery-ui-rails (= 2.0.2)
   less-rails-bootstrap (= 2.1.1)
-  logstasher (= 0.2.5)
+  logstasher (= 0.4.0)
   mocha (= 0.13.3)
   mysql2 (= 0.3.14)
   plek (= 1.1.0)
