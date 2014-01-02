@@ -26,13 +26,10 @@ else
   gem "gds_zendesk", '1.0.1'
 end
 gem 'redis-rails', '3.2.4'
-gem "sidekiq", "2.13.0"
+gem "sidekiq", "2.17.1"
 gem "statsd-ruby", "1.2.1", require: "statsd"
 gem 'logstasher', '0.4.0'
 gem 'jquery-tablesorter', '1.8.1'
-
-# pin to version that includes security vulnerability fix, needed by sidekiq
-gem "redis-namespace", "1.3.1"
 
 group :development do
   gem "quiet_assets", "1.0.2"
