@@ -18,11 +18,15 @@ module Support
         should_not allow_value("http://" + ("a" * 2050)).for(:url)
         should_not allow_value("http://bla.example.org:9292/méh/fào?bar").for(:url)
 
-        should "aggregate by rating" do
-          create_feedback(rating: 1)
-          create_feedback(rating: 2)
-          create_feedback(rating: 5)
+        def setup
+          ServiceFeedback.delete_all
 
+          create_feedback(rating: 1, slug: "a")
+          create_feedback(rating: 2, slug: "a", details: "meh")
+          create_feedback(rating: 5, slug: "b")
+        end
+
+        should "aggregate by rating" do
           expected = {
             1 => 1,
             2 => 1,
@@ -34,14 +38,11 @@ module Support
         end
 
         should "aggregate by comment" do
-          create_feedback(rating: 1, details: "meh")
-          create_feedback(rating: 2)
-
           assert_equal 1, ServiceFeedback.with_comments_count
         end
 
-        def setup
-          ServiceFeedback.delete_all
+        should "provide a list of available slugs" do
+          assert_equal ["a", "b"], ServiceFeedback.transaction_slugs
         end
 
         def create_feedback(options)
