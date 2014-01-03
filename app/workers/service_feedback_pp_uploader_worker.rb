@@ -7,6 +7,7 @@ class ServiceFeedbackPPUploaderWorker
   include Support::Requests::Anonymous
 
   def perform(year, month, day, transaction_slug)
+    Rails.logger.info("Uploading statistics for #{year}-#{month}-#{day}, slug #{transaction_slug}")
     api = GdsApi::PerformancePlatform::DataIn.new(
       PP_DATA_IN_API[:url],
       bearer_token: PP_DATA_IN_API[:bearer_token]
@@ -17,8 +18,10 @@ class ServiceFeedbackPPUploaderWorker
 
   def self.run
     yesterday = Date.yesterday
-    Support::Requests::Anonymous::ServiceFeedback.transaction_slugs.each do |transaction_slug|
+    slugs = Support::Requests::Anonymous::ServiceFeedback.transaction_slugs
+    slugs.each do |transaction_slug|
       perform_async(yesterday.year, yesterday.month, yesterday.day, transaction_slug)
     end
+    Rails.logger.info("Queued upload for #{slugs.size} slugs")
   end
 end
