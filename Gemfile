@@ -30,6 +30,11 @@ gem "sidekiq", "2.17.1"
 gem "statsd-ruby", "1.2.1", require: "statsd"
 gem 'logstasher', '0.4.1'
 gem 'jquery-tablesorter', '1.8.1'
+if ENV['API_DEV']
+  gem "gds-api-adapters", :path => '../gds-api-adapters'
+else
+  gem "gds-api-adapters", "7.19.0"
+end
 
 group :development do
   gem "quiet_assets", "1.0.2"
