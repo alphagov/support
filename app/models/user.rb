@@ -30,6 +30,11 @@ class User < OpenStruct
     User.new(auth_hash)
   end
 
+  # only used by the mock_gds_sso_api_access
+  def self.find_by_email(email)
+    first
+  end
+
   def remotely_signed_out?
     remotely_signed_out
   end
