@@ -10,6 +10,7 @@ class ZendeskTickets
       :fields => [{"id" => GDSZendesk::FIELD_MAPPINGS[:needed_by_date],  "value" => ticket_to_raise.needed_by_date},
                   {"id" => GDSZendesk::FIELD_MAPPINGS[:not_before_date], "value" => ticket_to_raise.not_before_date}],
       :tags => ticket_to_raise.tags,
-      :comment => ticket_to_raise.comment})
+      :comment => { "body" => ticket_to_raise.comment }
+    })
   end
 end

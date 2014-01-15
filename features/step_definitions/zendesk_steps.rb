@@ -22,7 +22,7 @@ Then /^the ticket is tagged with "(.*?)"$/ do |expected_tags|
 end
 
 Then /^the description on the ticket is:$/ do |expected_comment_string|
-  assert_created_ticket_has(comment: expected_comment_string)
+  assert_created_ticket_has(comment: { body: expected_comment_string })
 end
 
 Then /^the time constraints on the ticket are:$/ do |ticket_properties_table|
