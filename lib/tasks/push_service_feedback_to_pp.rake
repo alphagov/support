@@ -7,6 +7,6 @@ task :push_service_feedback_to_pp => :environment do
     ServiceFeedbackPPUploaderWorker.run
     puts "ServiceFeedbackPPUploaderWorker invoked"
   else
-    puts "ServiceFeedbackPPUploaderWorker: skipping, couldn't obtain lock (probably the task has already run on another node"
+    puts "ServiceFeedbackPPUploaderWorker: skipping, couldn't obtain lock (probably the task has already run on another node)"
   end
 end
