@@ -29,7 +29,7 @@ class ServiceFeedbackPPUploaderWorkerTest < ActiveSupport::TestCase
   end
 
   should "raise an exception if PP upload returns 404" do
-    service_feedback_bucket_unavailable_for("some_slug")
+    stub_service_feedback_bucket_unavailable_for("some_slug")
 
     Date.stubs(:yesterday).returns(Date.new(2013,2,10))
     ServiceFeedback.stubs(:transaction_slugs).returns(["some_slug"])
