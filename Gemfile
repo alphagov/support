@@ -13,7 +13,7 @@ gem 'mysql2', '0.3.14'
 gem 'aws-ses', require: 'aws/ses'
 gem "exception_notification", '3.0.1'
 
-gem 'gds-sso', '9.1.0'
+gem 'gds-sso', '9.2.0'
 gem 'cancan', '1.6.9'
 gem 'jquery-rails'
 gem 'jquery-ui-rails', '2.0.2'
