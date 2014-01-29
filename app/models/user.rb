@@ -15,7 +15,12 @@ class User < OpenStruct
   def self.where(options)
     uid = options[:uid]
     auth_hash = Rails.cache.fetch(prefixed_key(uid))
-    auth_hash ? [ User.new(auth_hash) ] : []
+    return [] unless auth_hash && user_matches?(options, User.new(auth_hash))
+    [ User.new(auth_hash) ]
+  end
+
+  def self.user_matches?(options, user)
+    options.all? { |key, value| user.send(key.to_sym) == value }
   end
 
   def self.create!(auth_hash, options={})

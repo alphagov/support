@@ -26,7 +26,7 @@ class UserTest < Test::Unit::TestCase
     user.update_attribute(:remotely_signed_out, true)
     assert user.remotely_signed_out?
 
-    assert User.where(uid: "12345").first.remotely_signed_out?
+    assert User.where(uid: "12345", remotely_signed_out: false).empty?
   end
 
   should "support mass updating of attributes" do
