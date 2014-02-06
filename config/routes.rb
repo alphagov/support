@@ -9,15 +9,15 @@ Support::Application.routes.draw do
   resources :named_contacts, only: :create
 
   namespace :anonymous_feedback do
-    resources :problem_reports, only: [ :create, :index ], format: false
+    resources :problem_reports, only: :create, format: false
     resources :long_form_contacts, only: :create
     resources :service_feedback, only: :create
 
-    namespace :problem_reports do
-      get :explore, to: "explore#new", format: false
-      post :explore, to: "explore#create", format: false
-    end
+    get :explore, to: "explore#new", format: false
+    post :explore, to: "explore#create", format: false
   end
+
+  resources :anonymous_feedback, only: :index, format: false
 
   match "acknowledge" => "support#acknowledge"
   match "_status" => "support#queue_status"

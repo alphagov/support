@@ -21,12 +21,12 @@ module ApplicationHelper
   end
 
   def feedex_nav_link
-    is_on_feedex_page = current_page?(controller: "anonymous_feedback/problem_reports/explore", action: :new) ||
-                        current_page?(controller: 'anonymous_feedback/problem_reports', action: :index)
+    is_on_feedex_page = current_page?(controller: "anonymous_feedback/explore", action: :new) ||
+                        current_page?(controller: 'anonymous_feedback', action: :index)
     class_name = is_on_feedex_page ? 'active' : ''
 
     content_tag(:li, class: class_name, id: "feedex") do
-      link_to "Feedback explorer", anonymous_feedback_problem_reports_explore_url
+      link_to "Feedback explorer", anonymous_feedback_explore_url
     end
   end
 end
