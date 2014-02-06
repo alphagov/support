@@ -22,7 +22,7 @@ class AnonymousFeedbackControllerTest < ActionController::TestCase
     end
   end
 
-  context "valid input" do
+  context "valid input, problem reports" do
     setup do
       login_as_stub_user
 
@@ -47,7 +47,7 @@ class AnonymousFeedbackControllerTest < ActionController::TestCase
     end
 
     context "JSON" do
-      should "return the results" do
+      should "return the results for problem" do
         get :index, { "path" => "/tax-disc", "format" => "json" }
         
         assert_response :success
@@ -59,6 +59,48 @@ class AnonymousFeedbackControllerTest < ActionController::TestCase
         assert_equal "B", result["what_doing"]
         assert_equal "https://www.gov.uk/tax-disc", result["url"]
         assert_equal "https://www.gov.uk/tax-disc", result["referrer"]
+        refute result["created_at"].nil?
+      end
+    end
+  end
+
+  context "valid input, service feedback" do
+    setup do
+      login_as_stub_user
+
+      @time = Time.now
+      result = Support::Requests::Anonymous::ServiceFeedback.new(
+        slug: "apply-carers-allowance",
+        details: "It's great",
+        service_satisfaction_rating: 5,
+        url: "https://www.gov.uk/done/apply-carers-allowance"
+      )
+      result.created_at = @time
+
+      Support::Requests::Anonymous::AnonymousContact.expects(:find_all_starting_with_path).with("/done/apply-carers-allowance").returns([result])
+    end
+
+    context "HTML representation" do
+      should "render the results" do
+        get :index, path: "/done/apply-carers-allowance"
+
+        assert_response :success          
+      end
+    end
+
+    context "JSON" do
+      should "return the results for problem" do
+        get :index, { "path" => "/done/apply-carers-allowance", "format" => "json" }
+        
+        assert_response :success
+
+        results = JSON.parse(response.body)
+        assert_equal 1, results.size
+        result = results.first
+        assert_equal "apply-carers-allowance", result["slug"]
+        assert_equal "It's great", result["details"]
+        assert_equal "https://www.gov.uk/done/apply-carers-allowance", result["url"]
+        assert_equal 5, result["service_satisfaction_rating"]
         refute result["created_at"].nil?
       end
     end

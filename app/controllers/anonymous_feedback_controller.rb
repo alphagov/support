@@ -13,7 +13,21 @@ class AnonymousFeedbackController < RequestsController
       @feedback = Anonymous::AnonymousContact.find_all_starting_with_path(params[:path])
       respond_to do |format|
         format.html { render :index }
-        format.json { render json: @feedback.as_json(root:false, only: [:what_wrong, :what_doing, :created_at, :url, :referrer]) }
+        format.json {
+          render json: @feedback.as_json(
+            root: false,
+            only: [
+              :what_wrong,
+              :what_doing,
+              :created_at,
+              :url,
+              :referrer,
+              :slug,
+              :details,
+              :service_satisfaction_rating
+            ]
+          )
+        }
       end
     end
   end
