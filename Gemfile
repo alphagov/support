@@ -48,6 +48,7 @@ group :test do
   gem 'capybara', '1.1.2'
   gem 'poltergeist', '0.7.0'
   gem 'cucumber-rails', '1.3.0', :require => false
+  gem 'timecop', '0.7.1'
 end
 
 gem 'unicorn', '4.3.1'

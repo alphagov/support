@@ -24,6 +24,10 @@ module Support
 
         def path
           URI(url).path
+        rescue ArgumentError
+          nil
+        rescue URI::InvalidURIError
+          nil
         end
 
         def self.find_all_starting_with_path(path)

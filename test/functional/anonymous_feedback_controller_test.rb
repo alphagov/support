@@ -35,7 +35,7 @@ class AnonymousFeedbackControllerTest < ActionController::TestCase
       )
       result.created_at = @time
 
-      Support::Requests::Anonymous::ProblemReport.expects(:find_all_starting_with_path).with("/tax-disc").returns([result])
+      Support::Requests::Anonymous::AnonymousContact.expects(:find_all_starting_with_path).with("/tax-disc").returns([result])
     end
 
     context "HTML representation" do

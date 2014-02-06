@@ -2,7 +2,7 @@ class AnonymousFeedbackController < RequestsController
   include Support::Requests
 
   def index
-    authorize! :read, Anonymous::ProblemReport
+    authorize! :read, Anonymous::AnonymousContact
 
     if params[:path].nil? or params[:path].empty?
       respond_to do |format|
@@ -10,7 +10,7 @@ class AnonymousFeedbackController < RequestsController
         format.json { render json: {"errors" => ["Please set a valid 'path' parameter"] }, status: 400 }
       end
     else
-      @feedback = Anonymous::ProblemReport.find_all_starting_with_path(params[:path])
+      @feedback = Anonymous::AnonymousContact.find_all_starting_with_path(params[:path])
       respond_to do |format|
         format.html { render :index }
         format.json { render json: @feedback.as_json(root:false, only: [:what_wrong, :what_doing, :created_at, :url, :referrer]) }

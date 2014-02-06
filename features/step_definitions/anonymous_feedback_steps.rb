@@ -43,6 +43,7 @@ When /^the user submits feedback about a GOV[.]UK service through the API:$/ do 
   params = {
     "service_feedback" => {
       "slug" => @request_details['Slug'],
+      "url" => @request_details['URL'],
       "improvement_comments" => @request_details['Improvement comments'],
       "service_satisfaction_rating" => @request_details['Satisfaction rating'].to_i,
       "user_agent" => @request_details['User agent'],

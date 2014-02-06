@@ -1,7 +1,7 @@
 require 'date'
 
 Before do
-  Support::Requests::Anonymous::ProblemReport.delete_all
+  Support::Requests::Anonymous::AnonymousContact.delete_all
 end
 
 Given /^the following problem reports have been left by members of the public:$/ do |table|
