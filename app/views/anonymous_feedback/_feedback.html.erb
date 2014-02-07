@@ -1,0 +1,13 @@
+<% if anonymous_contact.is_a?(Support::Requests::Anonymous::ProblemReport) %>
+  <strong>action</strong>: <%= anonymous_contact.what_doing %>
+  <br/>
+  <strong>problem</strong>: <%= anonymous_contact.what_wrong %>
+<% elsif anonymous_contact.is_a?(Support::Requests::Anonymous::ServiceFeedback) %>
+  <strong>rating</strong>: <%= anonymous_contact.service_satisfaction_rating %>
+  <% unless anonymous_contact.details.empty? %>
+    <br/>
+    <strong>comment</strong>: <%= anonymous_contact.details %>
+  <% end %>
+<% else %>
+  <%= anonymous_contact.details %>
+<% end %>

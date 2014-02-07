@@ -22,6 +22,18 @@ module Support
           where(personal_information_status: "absent")
         end
 
+        def path
+          URI(url).path
+        rescue ArgumentError
+          nil
+        rescue URI::InvalidURIError
+          nil
+        end
+
+        def self.find_all_starting_with_path(path)
+          where("url is not null and url like ?", "%" + path + "%").free_of_personal_info.order("created_at desc").select { |pr| pr.path.start_with?(path) }
+        end
+
         private
         def detect_personal_information
           self.personal_information_status ||= personal_info_present? ? "suspected" : "absent"

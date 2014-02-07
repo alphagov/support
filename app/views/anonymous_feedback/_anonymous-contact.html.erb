@@ -1,0 +1,20 @@
+<tr class="anonymous-contact">
+  <th scope="row"><%= anonymous_contact.created_at.strftime("%d.%m.%Y") %></th>
+  <td>
+    <%= render partial: "feedback", locals: { anonymous_contact: anonymous_contact } %>
+  </td>
+  <td>
+    <% if anonymous_contact.path %>
+      <%= link_to anonymous_contact.path, anonymous_contact.url %>
+    <% else %>
+      &ndash;
+    <% end %>
+  </td>
+  <td>
+    <% if anonymous_contact.referrer %>
+      <%= link_to anonymous_contact.referrer, anonymous_contact.referrer %>
+    <% else %>
+      &ndash;
+    <% end %>  
+  </td>
+</tr>

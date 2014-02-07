@@ -53,15 +53,25 @@ Feature: Anonymous feedback
       """
 
   Scenario: successful service feedback submission with comment
+    Given the date is 2013-02-28
     When the user submits feedback about a GOV.UK service through the API:
-      | Slug                     | Satisfaction rating  | Improvement comments    | User agent | JS? |
-      | done/find-court-tribunal | 3                    | Make service less 'meh' | Safari     | yes |
-    # Then TBD...
-    # for now, we store the feedback and expose it later through an API
+      | Slug                     | URL                                         | Satisfaction rating  | Improvement comments    | User agent | JS? |
+      | done/find-court-tribunal | https://www.gov.uk/done/find-court-tribunal | 3                    | Make service less 'meh' | Safari     | yes |
+    And the user explores the feedback with the following filters:
+      | URL                                         |
+      | https://www.gov.uk/done/find-court-tribunal |
+    Then the following result is shown:
+      | creation date | feedback                                        | full path                 | user came from |
+      | 28.02.2013    | rating: 3\n    comment: Make service less 'meh' | /done/find-court-tribunal | –              |
 
   Scenario: successful service feedback submission without comment
+    Given the date is 2013-02-28
     When the user submits feedback about a GOV.UK service through the API:
-      | Slug                     | Satisfaction rating  | Improvement comments    | User agent | JS? |
-      | done/find-court-tribunal | 3                    |                         | Safari     | yes |
-    # Then TBD...
-    # for now, we store the feedback and expose it later through an API
+      | Slug                     | URL                                         | Satisfaction rating  | Improvement comments    | User agent | JS? |
+      | done/find-court-tribunal | https://www.gov.uk/done/find-court-tribunal | 3                    |                         | Safari     | yes |
+    And the user explores the feedback with the following filters:
+      | URL                                         |
+      | https://www.gov.uk/done/find-court-tribunal |
+    Then the following result is shown:
+      | creation date | feedback  | full path                 | user came from |
+      | 28.02.2013    | rating: 3 | /done/find-court-tribunal | –              |
