@@ -1,5 +1,5 @@
 <tr class="anonymous-contact">
-  <td><%= anonymous_contact.created_at.strftime("%d.%m.%Y") %></td>
+  <th scope="row"><%= anonymous_contact.created_at.strftime("%d.%m.%Y") %></th>
   <td>
     <%= render partial: "feedback", locals: { anonymous_contact: anonymous_contact } %>
   </td>
