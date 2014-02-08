@@ -26,7 +26,7 @@ $(function() {
     // the widgetOptions.uitheme is no longer required to be set
     theme : "bootstrap",
 
-    widthFixed: true,
+    widthFixed: false,
 
     headerTemplate : '{content} {icon}', // new in v2.7. Needed to add the bootstrap icon!
 
