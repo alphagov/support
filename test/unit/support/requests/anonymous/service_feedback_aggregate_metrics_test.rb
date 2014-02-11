@@ -6,9 +6,9 @@ module Support
       class ServiceFeedbackAggregatedMetricsTest < Test::Unit::TestCase
         def setup
           create_feedback(rating: 1, slug: "abcde", created_at: Date.new(2013,2,10))
-          create_feedback(rating: 3, slug: "apply_carers_allowance", created_at: Date.new(2013,2,10))
-          create_feedback(rating: 2, details: "abcde", slug: "apply_carers_allowance", created_at: Date.new(2013,2,10))
-          @stats = ServiceFeedbackAggregatedMetrics.new(Date.new(2013,2,10), "apply_carers_allowance").to_h
+          create_feedback(rating: 3, slug: "apply-carers-allowance", created_at: Date.new(2013,2,10))
+          create_feedback(rating: 2, details: "abcde", slug: "apply-carers-allowance", created_at: Date.new(2013,2,10))
+          @stats = ServiceFeedbackAggregatedMetrics.new(Date.new(2013,2,10), "apply-carers-allowance").to_h
         end
 
         def create_feedback(options)
@@ -21,7 +21,7 @@ module Support
 
         context "metadata" do
           should "generate an id based on the slug and date" do
-            assert_equal "20130210_apply_carers_allowance", @stats["_id"]
+            assert_equal "20130210_apply-carers-allowance", @stats["_id"]
           end
 
           should "set the period to a day" do
@@ -30,6 +30,10 @@ module Support
 
           should "set the start time correctly" do
             assert_equal "2013-02-10T00:00:00+00:00", @stats["_timestamp"]
+          end
+
+          should "contain the slug" do
+            assert_equal "apply-carers-allowance", @stats["slug"]
           end
         end
 
