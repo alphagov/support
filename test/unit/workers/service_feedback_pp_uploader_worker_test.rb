@@ -28,8 +28,9 @@ class ServiceFeedbackPPUploaderWorkerTest < ActiveSupport::TestCase
     assert_requested(stub_post2)
   end
 
-  should "raise an exception if PP upload returns 404" do
+  should "not raise an exception, increment a counter if PP upload returns 404" do
     stub_service_feedback_bucket_unavailable_for("some_slug")
+    $statsd.expects(:increment).with("#{::STATSD_PREFIX}.some_slug.404")
 
     Date.stubs(:yesterday).returns(Date.new(2013,2,10))
     ServiceFeedback.stubs(:transaction_slugs).returns(["some_slug"])
@@ -37,6 +38,6 @@ class ServiceFeedbackPPUploaderWorkerTest < ActiveSupport::TestCase
       with(Date.new(2013,2,10),"some_slug").
       returns(stub(to_h: { some: "waste_carrier_data"}))
 
-    assert_raises(GdsApi::HTTPNotFound) { ServiceFeedbackPPUploaderWorker.run }
+    assert_nothing_raised { ServiceFeedbackPPUploaderWorker.run }
   end
 end

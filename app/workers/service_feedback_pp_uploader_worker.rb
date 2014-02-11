@@ -14,6 +14,8 @@ class ServiceFeedbackPPUploaderWorker
     )
     request_details = ServiceFeedbackAggregatedMetrics.new(Date.new(year, month, day), transaction_slug).to_h
     api.submit_service_feedback_day_aggregate(transaction_slug, request_details)
+  rescue GdsApi::HTTPNotFound
+    $statsd.increment("#{::STATSD_PREFIX}.#{transaction_slug}.404")
   end
 
   def self.run
