@@ -29,7 +29,8 @@ module Support
           {
             "_id" => metric_id,
             "_timestamp" => start_timestamp,
-            "period" => "day"
+            "period" => "day",
+            "slug" => @slug
           }
         end
 
