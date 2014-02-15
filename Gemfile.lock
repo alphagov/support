@@ -92,7 +92,7 @@ GEM
       rack-accept (~> 0.4.4)
       rails (>= 3.0.0)
       warden (~> 1.2)
-    gds_zendesk (1.0.1)
+    gds_zendesk (1.0.2)
       null_logger (= 0.0.1)
       zendesk_api (= 1.0.2)
     gherkin (2.12.2)
@@ -298,7 +298,7 @@ DEPENDENCIES
   formtastic-bootstrap (= 2.1.1)
   gds-api-adapters (= 8.3.2)
   gds-sso (= 9.2.0)
-  gds_zendesk (= 1.0.1)
+  gds_zendesk (= 1.0.2)
   jquery-rails
   jquery-tablesorter (= 1.8.1)
   jquery-ui-rails (= 2.0.2)
