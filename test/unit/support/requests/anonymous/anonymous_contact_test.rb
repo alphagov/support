@@ -60,6 +60,12 @@ module Support
             assert result.include?(b)
           end
 
+          should "ignore feedback with invalid URLs" do
+            contact(url: "https://www.gov.uk/abc def")
+
+            assert_equal [], TestContact.find_all_starting_with_path("/abc")
+          end
+
           should "return the results in reverse chronological order" do
             a, b, c = contact, contact, contact
             a.created_at = Time.now - 1.hour
