@@ -31,7 +31,7 @@ module Support
         end
 
         def self.find_all_starting_with_path(path)
-          where("url is not null and url like ?", "%" + path + "%").free_of_personal_info.order("created_at desc").select { |pr| pr.path.start_with?(path) }
+          where("url is not null and url like ?", "%" + path + "%").free_of_personal_info.order("created_at desc").select { |pr| pr.path && pr.path.start_with?(path) }
         end
 
         private
