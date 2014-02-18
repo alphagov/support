@@ -5,6 +5,8 @@ module Support
   module Requests
     module Anonymous
       class AnonymousContact < ActiveRecord::Base
+        MAXIMUM_NUMBER_OF_RESULTS = 5000
+
         attr_accessible :referrer, :javascript_enabled, :user_agent, :personal_information_status
         validates :referrer, url: true, allow_nil: true
 
@@ -31,7 +33,11 @@ module Support
         end
 
         def self.find_all_starting_with_path(path)
-          where("url is not null and url like ?", "%" + path + "%").free_of_personal_info.order("created_at desc").select { |pr| pr.path && pr.path.start_with?(path) }
+          where("url is not null and url like ?", "%" + path + "%").
+            free_of_personal_info.
+            order("created_at desc").
+            limit(MAXIMUM_NUMBER_OF_RESULTS).
+            select { |pr| pr.path && pr.path.start_with?(path) }
         end
 
         private
