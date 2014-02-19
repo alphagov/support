@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.16'
+gem 'rails', '3.2.17'
 
 group :assets do
   gem 'less-rails-bootstrap', '2.1.1'
