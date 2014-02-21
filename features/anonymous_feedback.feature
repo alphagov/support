@@ -28,8 +28,8 @@ Feature: Anonymous feedback
 
   Scenario: successful long-form anonymous contact (to do with a specific page)
     When the user submits the following long-form anonymous contact through the API:
-      | Details | Link                 |
-      | xyz     | https://www.gov.uk/y |
+      | Details | Link                 | URL                              |
+      | xyz     | https://www.gov.uk/y | https://www.gov.uk/contact/govuk |
     Then the following ticket is raised in ZenDesk:
       | Subject                    |
       | Anonymous contact about /y |
@@ -39,7 +39,7 @@ Feature: Anonymous feedback
       [Details]
       xyz
 
-      [Url]
+      [URL]
       https://www.gov.uk/y
 
       [Referrer]

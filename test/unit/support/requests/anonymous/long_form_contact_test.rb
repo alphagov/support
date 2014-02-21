@@ -19,6 +19,9 @@ module Support
         should allow_value("a" * 2**16).for(:details)
         should_not allow_value("a" * (2**16+1)).for(:details)
 
+        should allow_value("abc").for(:user_specified_url)
+        should allow_value(nil).for(:user_specified_url)
+
         should "not allow random values for javascript_enabled" do
           refute LongFormContact.new(javascript_enabled: "abc").javascript_enabled
         end
@@ -32,9 +35,9 @@ module Support
         end
 
         should "provide the path if a GOV.UK link is specified" do
-          assert_equal "/abc", LongFormContact.new(url: "https://www.gov.uk/abc").govuk_link_path
-          assert_nil LongFormContact.new(url: "https://www.google.co.uk/ab").govuk_link_path
-          assert_nil LongFormContact.new(url: nil).govuk_link_path
+          assert_equal "/abc", LongFormContact.new(user_specified_url: "https://www.gov.uk/abc").govuk_link_path
+          assert_nil LongFormContact.new(user_specified_url: "https://www.google.co.uk/ab").govuk_link_path
+          assert_nil LongFormContact.new(user_specified_url: nil).govuk_link_path
         end
       end
     end

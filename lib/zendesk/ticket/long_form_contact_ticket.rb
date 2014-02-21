@@ -17,7 +17,7 @@ module Zendesk
       def comment_snippets
         [
           request_label(field: :details),
-          request_label(field: :url),
+          request_label(field: :user_specified_url, label: "URL"),
           LabelledSnippet.new(on: self, field: :referrer),
           LabelledSnippet.new(on: self, field: :user_agent),
           LabelledSnippet.new(on: self, field: :javascript_enabled, label: "JavaScript Enabled")
