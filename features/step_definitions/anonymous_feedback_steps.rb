@@ -29,6 +29,7 @@ When /^the user submits the following long-form anonymous contact through the AP
       "user_agent" => @request_details['User agent'],
       "javascript_enabled" => (@request_details['JS?'] == "yes"),
       "referrer" => @request_details['Referrer'],
+      "url" => @request_details['URL'],
     }
   }
 

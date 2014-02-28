@@ -15,7 +15,7 @@ class AnonymousFeedback::LongFormContactsController < AnonymousFeedbackControlle
 
   def parse_request_from_params
     # remapping link => url while the public form submits the 'url' param
-    params[:long_form_contact][:url] ||= params[:long_form_contact][:link]
+    params[:long_form_contact][:user_specified_url] = params[:long_form_contact][:link]
     Anonymous::LongFormContact.new(params[:long_form_contact])
   end
 end
