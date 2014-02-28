@@ -52,6 +52,12 @@ module Support
           end
         end
 
+        def mark_as_duplicate
+          self.is_actionable = false
+          self.reason_why_not_actionable = "duplicate"
+          self
+        end
+
         private
         def detect_personal_information
           self.personal_information_status ||= personal_info_present? ? "suspected" : "absent"
