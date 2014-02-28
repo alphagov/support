@@ -1,6 +1,7 @@
 require 'test_helper'
 require 'time'
 require 'json'
+require 'deduplication_worker'
 
 class DeduplicationTest < ActionDispatch::IntegrationTest
   def setup

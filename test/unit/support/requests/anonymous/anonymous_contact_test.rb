@@ -100,6 +100,24 @@ module Support
             TestContact.delete_all
           end
         end
+
+        context "#deduplicate_contacts_created_between" do
+          should "update contacts created in the given interval as they are marked as dupes" do
+            interval = mock("some time interval")
+            original_contact = mock("anonymous contact")
+            duplicate = mock("anonymous contact")
+            contacts = [ original_contact, duplicate ]
+
+            AnonymousContact.expects(:where).with(created_at: interval).returns(stub(order: contacts))
+            DuplicateDetector.any_instance.stubs(:duplicate?).with(original_contact).returns(false)
+            DuplicateDetector.any_instance.stubs(:duplicate?).with(duplicate).returns(true)
+
+            duplicate.expects(:mark_as_duplicate)
+            duplicate.expects(:save)
+
+            AnonymousContact.deduplicate_contacts_created_between(interval)
+          end
+        end
       end
     end
   end

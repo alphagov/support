@@ -1,5 +1,6 @@
 require 'support/requests/requester'
 require 'support/requests/anonymous/field_which_may_contain_personal_information'
+require 'support/requests/anonymous/duplicate_detector'
 
 module Support
   module Requests
@@ -38,6 +39,17 @@ module Support
             only_actionable.
             order("created_at desc").
             select { |pr| pr.path && pr.path.start_with?(path) }
+        end
+
+        def self.deduplicate_contacts_created_between(interval)
+          contacts = where(created_at: interval).order("created_at asc")
+          duplicate_detector = DuplicateDetector.new
+          contacts.each do |contact|
+            if duplicate_detector.duplicate?(contact)
+              contact.mark_as_duplicate
+              contact.save
+            end
+          end
         end
 
         private
