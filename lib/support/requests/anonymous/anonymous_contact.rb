@@ -5,8 +5,8 @@ module Support
   module Requests
     module Anonymous
       class AnonymousContact < ActiveRecord::Base
-        attr_accessible :referrer, :javascript_enabled, :user_agent, :personal_information_status, :is_actionable
-        validates :referrer, url: true, allow_nil: true
+        attr_accessible :referrer, :javascript_enabled, :user_agent, :personal_information_status
+        attr_accessible :is_actionable, :reason_why_not_actionable
 
         before_save :detect_personal_information
 
@@ -14,6 +14,7 @@ module Support
           Requester.anonymous
         end
 
+        validates :referrer, url: true, allow_nil: true
         validates :details, length: { maximum: 2 ** 16 }
         validates_inclusion_of :javascript_enabled, in: [ true, false ]
         validates_inclusion_of :personal_information_status, in: [ "suspected", "absent" ], allow_nil: true
@@ -22,6 +23,10 @@ module Support
 
         def self.free_of_personal_info
           where(personal_information_status: "absent")
+        end
+
+        def self.only_actionable
+          where(is_actionable: true)
         end
 
         def path
@@ -33,7 +38,11 @@ module Support
         end
 
         def self.find_all_starting_with_path(path)
-          where("url is not null and url like ?", "%" + path + "%").free_of_personal_info.order("created_at desc").select { |pr| pr.path && pr.path.start_with?(path) }
+          where("url is not null and url like ?", "%" + path + "%").
+            free_of_personal_info.
+            only_actionable.
+            order("created_at desc").
+            select { |pr| pr.path && pr.path.start_with?(path) }
         end
 
         private

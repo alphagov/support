@@ -89,6 +89,13 @@ module Support
             assert_equal [a], TestContact.find_all_starting_with_path(path_for(DEFAULTS[:url]))
           end
 
+          should "only return actionable feedback" do
+            a = contact(is_actionable: true)
+            _ = contact(is_actionable: false, reason_why_not_actionable: "spam")
+
+            assert_equal [a], TestContact.find_all_starting_with_path(path_for(DEFAULTS[:url]))
+          end
+
           def teardown
             TestContact.delete_all
           end
