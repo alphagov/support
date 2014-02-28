@@ -23,6 +23,12 @@ module Support
           URI(url).path
         end
 
+        should "enforce the presence of a reason why feedback isn't actionable" do
+          contact = new_contact(is_actionable: false, reason_why_not_actionable: "")
+          refute contact.valid?
+          refute contact.errors[:reason_why_not_actionable].empty?
+        end
+
         should "not detect personal info when none is present in free text fields" do
           assert_equal "absent", contact(details: "abc", what_wrong: "abc", what_doing: "abc").personal_information_status
         end
