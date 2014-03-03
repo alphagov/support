@@ -21,13 +21,8 @@ module Support
         validates_inclusion_of :is_actionable, in: [ true, false ]
         validates_presence_of :reason_why_not_actionable, unless: "is_actionable"
 
-        def self.free_of_personal_info
-          where(personal_information_status: "absent")
-        end
-
-        def self.only_actionable
-          where(is_actionable: true)
-        end
+        scope :free_of_personal_info, where(personal_information_status: "absent")
+        scope :only_actionable, where(is_actionable: true)
 
         def path
           URI(url).path
