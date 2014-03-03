@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20140228185036) do
     t.string   "slug"
     t.integer  "service_satisfaction_rating"
     t.text     "user_specified_url"
-    t.boolean  "is_actionable",               :default => true
+    t.boolean  "is_actionable",               :default => true, :null => false
     t.string   "reason_why_not_actionable"
   end
 
