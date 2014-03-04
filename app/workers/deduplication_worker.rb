@@ -4,6 +4,10 @@ class DeduplicationWorker
   include Sidekiq::Worker
   include Support::Requests::Anonymous
 
+  sidekiq_retry_in do |count|
+    60 * 60 * 2 # every 2 hours
+  end
+
   def perform(year, month, day)
     logger.info("Deduping anonymous feedback for #{year}-#{month}-#{day}")
     day = Date.new(year, month, day)
