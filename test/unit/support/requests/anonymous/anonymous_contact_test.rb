@@ -53,6 +53,14 @@ module Support
           refute new_contact(personal_information_status: "abcde").valid?
         end
 
+        should "mark duplicates as non-actionable" do
+          contact = new_contact
+          contact.mark_as_duplicate
+
+          refute contact.is_actionable
+          assert_equal "duplicate", contact.reason_why_not_actionable
+        end
+
         context "#find_all_starting_with_path" do
           should "find urls beginning with the given path" do
             a = contact(url: "https://www.gov.uk/some-calculator/y/abc")
@@ -98,6 +106,24 @@ module Support
 
           def teardown
             TestContact.delete_all
+          end
+        end
+
+        context "#deduplicate_contacts_created_between" do
+          should "update contacts created in the given interval as they are marked as dupes" do
+            interval = mock("some time interval")
+            original_contact = mock("anonymous contact")
+            duplicate = mock("anonymous contact")
+            contacts = [ original_contact, duplicate ]
+
+            AnonymousContact.expects(:where).with(created_at: interval).returns(stub(order: contacts))
+            DuplicateDetector.any_instance.stubs(:duplicate?).with(original_contact).returns(false)
+            DuplicateDetector.any_instance.stubs(:duplicate?).with(duplicate).returns(true)
+
+            duplicate.expects(:mark_as_duplicate)
+            duplicate.expects(:save!)
+
+            AnonymousContact.deduplicate_contacts_created_between(interval)
           end
         end
       end
