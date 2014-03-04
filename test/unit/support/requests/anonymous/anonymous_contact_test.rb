@@ -121,7 +121,7 @@ module Support
             DuplicateDetector.any_instance.stubs(:duplicate?).with(duplicate).returns(true)
 
             duplicate.expects(:mark_as_duplicate)
-            duplicate.expects(:save)
+            duplicate.expects(:save!)
 
             AnonymousContact.deduplicate_contacts_created_between(interval)
           end

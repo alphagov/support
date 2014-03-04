@@ -47,7 +47,7 @@ module Support
           contacts.each do |contact|
             if duplicate_detector.duplicate?(contact)
               contact.mark_as_duplicate
-              contact.save
+              contact.save!
             end
           end
         end
