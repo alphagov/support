@@ -1,7 +1,7 @@
 class MoveAllUserSpecifiedLinksForLongFormFeedback < ActiveRecord::Migration
   def up
     ActiveRecord::Base.connection.execute("UPDATE anonymous_contacts
-                                              SET user_specified_link = url
+                                              SET user_specified_url = url
                                             WHERE type = 'Support::Requests::Anonymous::LongFormContact'
                                               AND url IS NOT NULL")
     ActiveRecord::Base.connection.execute("UPDATE anonymous_contacts
@@ -14,9 +14,9 @@ class MoveAllUserSpecifiedLinksForLongFormFeedback < ActiveRecord::Migration
                                               SET url = NULL
                                             WHERE type = 'Support::Requests::Anonymous::LongFormContact'")
     ActiveRecord::Base.connection.execute("UPDATE anonymous_contacts
-                                              SET url = user_specified_link
+                                              SET url = user_specified_url
                                             WHERE type = 'Support::Requests::Anonymous::LongFormContact'
-                                              AND user_specified_link IS NOT NULL")
+                                              AND user_specified_url IS NOT NULL")
 
   end
 end
