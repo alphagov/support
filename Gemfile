@@ -11,6 +11,7 @@ end
 gem 'mysql2', '0.3.14'
 gem 'aws-ses', require: 'aws/ses'
 gem "exception_notification", '3.0.1'
+gem "airbrake", "3.1.15"
 
 gem 'gds-sso', '9.2.0'
 gem 'cancan', '1.6.9'
