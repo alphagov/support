@@ -41,11 +41,13 @@ end
 When /^the user submits feedback about a GOV[.]UK service through the API:$/ do |request_details_table|
   @request_details = request_details_table.hashes.first
 
+  comment = @request_details['Improvement comments'].present? ? @request_details['Improvement comments'] : nil
+
   params = {
     "service_feedback" => {
       "slug" => @request_details['Slug'],
       "url" => @request_details['URL'],
-      "improvement_comments" => @request_details['Improvement comments'],
+      "improvement_comments" => comment,
       "service_satisfaction_rating" => @request_details['Satisfaction rating'].to_i,
       "user_agent" => @request_details['User agent'],
       "javascript_enabled" => (@request_details['JS?'] == "yes"),
