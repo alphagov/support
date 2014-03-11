@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140228185036) do
+ActiveRecord::Schema.define(:version => 20140311105006) do
 
   create_table "anonymous_contacts", :force => true do |t|
     t.string   "type"
