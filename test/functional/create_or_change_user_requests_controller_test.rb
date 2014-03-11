@@ -39,9 +39,8 @@ class CreateOrChangeUserRequestsControllerTest < ActionController::TestCase
 
       ZendeskTickets.any_instance.stubs(:raise_ticket)
 
-      ExceptionNotifier::Notifier.expects(:exception_notification)
-                                 .with(anything, kind_of(ZendeskAPI::Error::ClientError), anything)
-                                 .returns(stub("mailer", deliver: true))
+      @controller.expects(:notify_airbrake)
+                 .with(kind_of(ZendeskAPI::Error::ClientError))
 
       post :create, valid_create_user_request_params
 
