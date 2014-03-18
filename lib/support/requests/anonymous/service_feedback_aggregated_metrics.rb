@@ -43,7 +43,7 @@ module Support
         end
 
         def filter_by_day_and_slug
-          ServiceFeedback.where(slug: @slug, created_at: time_interval)
+          ServiceFeedback.where(slug: @slug, created_at: time_interval).only_actionable
         end
 
         def time_interval
