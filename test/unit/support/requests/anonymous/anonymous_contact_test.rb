@@ -53,6 +53,14 @@ module Support
           refute new_contact(personal_information_status: "abcde").valid?
         end
 
+        context "URLs" do
+          should allow_value("https://www.gov.uk/something").for(:url)
+          should allow_value(nil).for(:url)
+          should allow_value("http://" + ("a" * 2040)).for(:url)
+          should_not allow_value("http://" + ("a" * 2050)).for(:url)
+          should_not allow_value("http://bla.example.org:9292/méh/fào?bar").for(:url)
+        end
+
         should "mark duplicates as non-actionable" do
           contact = new_contact
           contact.mark_as_duplicate
@@ -72,12 +80,6 @@ module Support
             assert_equal 2, result.size
             assert result.include?(a)
             assert result.include?(b)
-          end
-
-          should "ignore feedback with invalid URLs" do
-            contact(url: "https://www.gov.uk/abc def")
-
-            assert_equal [], TestContact.find_all_starting_with_path("/abc")
           end
 
           should "return the results in reverse chronological order" do

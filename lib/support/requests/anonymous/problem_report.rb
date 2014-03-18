@@ -5,10 +5,9 @@ module Support
   module Requests
     module Anonymous
       class ProblemReport < AnonymousContact
-        attr_accessible :what_doing, :what_wrong, :url, :source, :page_owner
+        attr_accessible :what_doing, :what_wrong, :source, :page_owner
 
-        validates :url, :referrer, url: true, allow_nil: true
-        validates :url, length: { maximum: 2048 }
+        validates :referrer, url: true, allow_nil: true
 
         validates :what_doing, length: { maximum: 2 ** 16 }
         validates :what_wrong, length: { maximum: 2 ** 16 }

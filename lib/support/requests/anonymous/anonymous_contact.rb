@@ -6,7 +6,7 @@ module Support
   module Requests
     module Anonymous
       class AnonymousContact < ActiveRecord::Base
-        attr_accessible :referrer, :javascript_enabled, :user_agent, :personal_information_status
+        attr_accessible :url, :referrer, :javascript_enabled, :user_agent, :personal_information_status
         attr_accessible :is_actionable, :reason_why_not_actionable
 
         before_save :detect_personal_information
@@ -17,6 +17,7 @@ module Support
 
         validates :referrer, url: true, allow_nil: true
         validates :details, length: { maximum: 2 ** 16 }
+        validates :url, url: true, length: { maximum: 2048 }, allow_nil: true
         validates_inclusion_of :javascript_enabled, in: [ true, false ]
         validates_inclusion_of :personal_information_status, in: [ "suspected", "absent" ], allow_nil: true
         validates_inclusion_of :is_actionable, in: [ true, false ]
