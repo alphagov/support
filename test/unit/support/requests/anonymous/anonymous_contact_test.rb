@@ -61,6 +61,14 @@ module Support
           should_not allow_value("http://bla.example.org:9292/méh/fào?bar").for(:url)
         end
 
+        context "referrer" do
+          should allow_value("https://www.gov.uk/y").for(:referrer)
+          should allow_value(nil).for(:referrer)
+          should allow_value("http://" + ("a" * 2040)).for(:referrer)
+          should_not allow_value("http://" + ("a" * 2050)).for(:referrer)
+          should_not allow_value("http://bla.example.org:9292/méh/fào?bar").for(:referrer)
+        end
+
         should "mark duplicates as non-actionable" do
           contact = new_contact
           contact.mark_as_duplicate

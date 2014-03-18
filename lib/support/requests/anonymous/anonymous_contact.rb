@@ -15,7 +15,7 @@ module Support
           Requester.anonymous
         end
 
-        validates :referrer, url: true, allow_nil: true
+        validates :referrer, url: true, length: { maximum: 2048 }, allow_nil: true
         validates :details, length: { maximum: 2 ** 16 }
         validates :url, url: true, length: { maximum: 2048 }, allow_nil: true
         validates_inclusion_of :javascript_enabled, in: [ true, false ]

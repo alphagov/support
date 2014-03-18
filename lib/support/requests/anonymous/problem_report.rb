@@ -7,8 +7,6 @@ module Support
       class ProblemReport < AnonymousContact
         attr_accessible :what_doing, :what_wrong, :source, :page_owner
 
-        validates :referrer, url: true, allow_nil: true
-
         validates :what_doing, length: { maximum: 2 ** 16 }
         validates :what_wrong, length: { maximum: 2 ** 16 }
 
