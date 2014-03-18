@@ -8,10 +8,15 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
- *= require_tree .
- *= require formtastic-bootstrap
- *= require jquery.ui.datepicker
  *= require jquery-tablesorter/theme.bootstrap
- *= require forms
+ *= require jquery.ui.datepicker
+ *= require_self
  */
+
+@import "bootstrap";
+@import "theme";
+@import "nav";
+
+#nav-links .active {
+  font-weight: 900;
+}

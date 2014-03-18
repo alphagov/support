@@ -12,7 +12,7 @@ class NewRequestLinksTest < ActionView::TestCase
 
     render "support/new_request_links", request_groups: Support::Requests::RequestGroups.new
 
-    assert_select "div.sidebar-nav li.active"
+    assert_select "div#nav-links li.active"
   end
 
   def test_rendering_of_inactive_links
@@ -20,7 +20,7 @@ class NewRequestLinksTest < ActionView::TestCase
 
     render "support/new_request_links", request_groups: Support::Requests::RequestGroups.new
 
-    assert_select "div.sidebar-nav li.active", 0
+    assert_select "div#nav-links li.active", 0
   end
 
   def test_rendering_of_feedex_link
