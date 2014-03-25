@@ -53,12 +53,26 @@ module Support
           refute new_contact(personal_information_status: "abcde").valid?
         end
 
+        should "store the relative path of the page from which the feedback was lodged" do
+          contact = new_contact(url: "https://www.gov.uk/vat-rates")
+          contact.save!
+          assert_equal "/vat-rates", contact.path
+        end
+
         context "URLs" do
           should allow_value("https://www.gov.uk/something").for(:url)
           should allow_value(nil).for(:url)
           should allow_value("http://" + ("a" * 2040)).for(:url)
           should_not allow_value("http://" + ("a" * 2050)).for(:url)
           should_not allow_value("http://bla.example.org:9292/méh/fào?bar").for(:url)
+        end
+
+        context "path" do
+          should allow_value("/something").for(:path)
+          should allow_value(nil).for(:path)
+          should allow_value("/" + ("a" * 2040)).for(:path)
+          should_not allow_value("/" + ("a" * 2050)).for(:path)
+          should_not allow_value("/méh/fào?bar").for(:path)
         end
 
         context "referrer" do

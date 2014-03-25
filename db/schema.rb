@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140311105006) do
+ActiveRecord::Schema.define(:version => 20140325015245) do
 
   create_table "anonymous_contacts", :force => true do |t|
     t.string   "type"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20140311105006) do
     t.text     "user_specified_url"
     t.boolean  "is_actionable",               :default => true, :null => false
     t.string   "reason_why_not_actionable"
+    t.text     "path"
   end
 
 end
