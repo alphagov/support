@@ -5,17 +5,20 @@ module Support
     module Anonymous
       class ServiceFeedbackAggregatedMetricsTest < Test::Unit::TestCase
         def setup
-          create_feedback(rating: 1, slug: "abcde", created_at: Date.new(2013,2,10))
-          create_feedback(rating: 3, slug: "apply-carers-allowance", created_at: Date.new(2013,2,10))
-          create_feedback(rating: 2, details: "abcde", slug: "apply-carers-allowance", created_at: Date.new(2013,2,10))
+          create_feedback(service_satisfaction_rating: 1, slug: "abcde", created_at: Date.new(2013,2,10))
+          create_feedback(service_satisfaction_rating: 3, slug: "apply-carers-allowance", created_at: Date.new(2013,2,10))
+          create_feedback(service_satisfaction_rating: 2, details: "abcde", slug: "apply-carers-allowance", created_at: Date.new(2013,2,10))
           @stats = ServiceFeedbackAggregatedMetrics.new(Date.new(2013,2,10), "apply-carers-allowance").to_h
         end
 
         def create_feedback(options)
-          f = ServiceFeedback.create!(slug: options[:slug] || "a",
-                                      details: options[:details],
-                                      service_satisfaction_rating: options[:rating],
-                                      javascript_enabled: true)
+          defaults = {
+            slug: "a",
+            javascript_enabled: true,
+            is_actionable: true,
+            service_satisfaction_rating: 3
+          }
+          f = ServiceFeedback.create!(defaults.merge(options))
           f.update_attribute(:created_at, options[:created_at])
         end
 
@@ -46,6 +49,20 @@ module Support
             assert_equal 0, @stats["rating_5"]
             assert_equal 2, @stats["total"]
             assert_equal 1, @stats["comments"]
+          end
+
+          should "not include non-actionable comments, such as spam or dupes" do
+            ServiceFeedback.delete_all
+
+            create_feedback(
+              is_actionable: false,
+              reason_why_not_actionable: "abc",
+              slug: "apply-carers-allowance",
+              created_at: Date.new(2013,2,10)
+            )
+            stats = ServiceFeedbackAggregatedMetrics.new(Date.new(2013,2,10), "apply-carers-allowance").to_h
+
+            assert_equal 0, stats["total"]
           end
         end
       end
