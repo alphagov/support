@@ -6,12 +6,7 @@ module Support
     module Anonymous
       class LongFormContactTest < Test::Unit::TestCase
         should validate_presence_of(:details)
-        should allow_value("https://www.google.com").for(:referrer)
         should allow_value("abc").for(:user_agent)
-
-        should allow_value("https://www.gov.uk").for(:url)
-        should allow_value("http://" + ("a" * 2040)).for(:url)
-        should_not allow_value("http://" + ("a" * 2050)).for(:url)
 
         should allow_value(true).for(:javascript_enabled)
         should allow_value(false).for(:javascript_enabled)

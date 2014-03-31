@@ -4,10 +4,9 @@ module Support
   module Requests
     module Anonymous
       class LongFormContact < AnonymousContact
-        attr_accessible :url, :details, :user_specified_url
+        attr_accessible :details, :user_specified_url
 
         validates_presence_of :details
-        validates :url, length: { maximum: 2048 }
         validates :user_specified_url, length: { maximum: 2048 }
         validates :details, length: { maximum: 2 ** 16 }
 

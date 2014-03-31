@@ -10,16 +10,6 @@ module Support
         should allow_value("abc").for(:what_doing)
         should allow_value("abc").for(:what_wrong)
 
-        should allow_value("https://www.gov.uk/x").for(:url)
-        should allow_value(nil).for(:url)
-        should_not allow_value("http://bla.example.org:9292/méh/fào?bar").for(:url)
-        should allow_value("http://" + ("a" * 2040)).for(:url)
-        should_not allow_value("http://" + ("a" * 2050)).for(:url)
-
-        should allow_value("https://www.gov.uk/y").for(:referrer)
-        should allow_value(nil).for(:referrer)
-        should_not allow_value("http://bla.example.org:9292/méh/fào?bar").for(:referrer)
-
         should allow_value("Safari").for(:user_agent)
         should allow_value("inside_government").for(:source)
         should allow_value(true).for(:javascript_enabled)

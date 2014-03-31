@@ -12,12 +12,6 @@ module Support
 
         should ensure_inclusion_of(:service_satisfaction_rating).in_range(1..5)
 
-        should allow_value("https://www.gov.uk/something").for(:url)
-        should allow_value(nil).for(:url)
-        should allow_value("http://" + ("a" * 2040)).for(:url)
-        should_not allow_value("http://" + ("a" * 2050)).for(:url)
-        should_not allow_value("http://bla.example.org:9292/méh/fào?bar").for(:url)
-
         def setup
           ServiceFeedback.delete_all
 
