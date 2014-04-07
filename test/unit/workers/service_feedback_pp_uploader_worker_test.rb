@@ -18,7 +18,7 @@ class ServiceFeedbackPPUploaderWorkerTest < ActiveSupport::TestCase
     ServiceFeedbackAggregatedMetrics.stubs(:new).
       with(Date.new(2013,2,10),"apply_carers_allowance").
       returns(stub(to_h: { some: "carers_allowance_data"}))
-    
+
     stub_post1 = stub_service_feedback_day_aggregate_submission("apply_carers_allowance", { some: "carers_allowance_data"})
     stub_post2 = stub_service_feedback_day_aggregate_submission("waste_carrier_or_broker_registration", { some: "waste_carrier_data"})
 
@@ -26,18 +26,5 @@ class ServiceFeedbackPPUploaderWorkerTest < ActiveSupport::TestCase
 
     assert_requested(stub_post1)
     assert_requested(stub_post2)
-  end
-
-  should "not raise an exception, increment a counter if PP upload returns 404" do
-    stub_service_feedback_bucket_unavailable_for("some_slug")
-    $statsd.expects(:increment).with("#{::STATSD_PREFIX}.some_slug.404")
-
-    Date.stubs(:yesterday).returns(Date.new(2013,2,10))
-    ServiceFeedback.stubs(:transaction_slugs).returns(["some_slug"])
-    ServiceFeedbackAggregatedMetrics.stubs(:new).
-      with(Date.new(2013,2,10),"some_slug").
-      returns(stub(to_h: { some: "waste_carrier_data"}))
-
-    assert_nothing_raised { ServiceFeedbackPPUploaderWorker.run }
   end
 end
