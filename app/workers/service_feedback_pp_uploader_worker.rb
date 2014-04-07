@@ -10,7 +10,7 @@ class ServiceFeedbackPPUploaderWorker
     logger.info("Uploading statistics for #{year}-#{month}-#{day}, slug #{transaction_slug}")
     api = GdsApi::PerformancePlatform::DataIn.new(
       PP_DATA_IN_API[:url],
-      bearer_token: PP_DATA_IN_API[:bearer_token]
+      bearer_token: PP_DATA_IN_API[:bearer_tokens][:satisfaction_survey]
     )
     request_details = ServiceFeedbackAggregatedMetrics.new(Date.new(year, month, day), transaction_slug).to_h
     api.submit_service_feedback_day_aggregate(transaction_slug, request_details)
