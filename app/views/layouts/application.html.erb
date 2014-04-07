@@ -12,46 +12,41 @@
   <%= javascript_include_tag "application" %>
 </head>
 <body>
-  <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
-    <div class="navbar-inner">
-      <div class="container-fluid">
-        <%= link_to 'GOV.UK Support', root_path, :class => "brand" %>
-        <ul class="nav pull-right">
-          <li class="dropdown">
-            <a href="#"
-              class="dropdown-toggle"
-              data-toggle="dropdown">
-              Services
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="http://digital.cabinetoffice.gov.uk/">GDS blog</a></li>
-              <li><a href="http://wiki.digital.cabinet-office.gov.uk/">GDS wiki</a></li>
-              <li class="divider"></li>
-              <li><%= link_to 'Sign out', gds_sign_out_path %></li>
-            </ul>
-          </li>
-        </ul>
-
-        <p id="logged-in-user" class="navbar-text pull-right">Signed in as <a href="<%= Plek.current.find('signon') %>"><%= current_user.name %></a></p>
+  <header class="navbar navbar-default navbar-inverse navbar-static-top" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <%# Bootstrap toggle for collapsed navbar content, used at smaller widths %>
+        <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <%= link_to 'GOV.UK Support', root_path, :class => 'navbar-brand' %>
       </div>
+
+      <nav role="navigation" class="collapse navbar-collapse">
+        <p id="logged-in-user" class="navbar-text pull-right">
+          Hello, <%= link_to current_user.name, Plek.current.find('signon') %> &bull; <%= link_to 'Sign out', gds_sign_out_path %>
+        </p>
+      </nav>
     </div>
   </header>
 
-  <section class="container-fluid" role="main">
-    <div class="row-fluid">
-      <div class="span12">
+  <section class="container" role="main">
+    <div class="row">
+      <div class="col-md-12">
 
         <div class="page-header">
           <h1><%= yield :header %></h1>
         </div>
 
-        <div class="row-fluid">
-          <div class="span2">
+        <div class="row">
+          <div class="col-md-3">
             <%= render partial: 'support/new_request_links', locals: { request_groups: request_groups } %>
           </div>
 
-          <div class="span10">
+          <div class="col-md-9">
             <%= yield %>
           </div>
         </div>

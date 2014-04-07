@@ -3,9 +3,10 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.17'
 
 group :assets do
-  gem 'less-rails-bootstrap', '2.1.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem "therubyracer", "0.12.0"
+  gem 'sass', '3.2.12'
+  gem 'sass-rails', '3.2.6'
+  gem 'bootstrap-sass', '3.1.0'
+  gem 'uglifier', '2.0.1'
 end
 
 gem 'mysql2', '0.3.14'
@@ -13,10 +14,10 @@ gem "airbrake", "3.1.15"
 
 gem 'gds-sso', '9.2.0'
 gem 'cancan', '1.6.9'
-gem 'jquery-rails'
-gem 'jquery-ui-rails', '2.0.2'
+gem 'jquery-rails', '3.1.0'
+gem 'jquery-ui-rails', '4.2.0'
 gem 'plek', '1.7.0'
-gem 'formtastic-bootstrap', '2.1.1'
+gem 'formtastic-bootstrap', '3.0.0'
 gem 'validates_timeliness', '3.0.14'
 if ENV['GDS_ZENDESK_DEV']
   gem "gds_zendesk", :path => '../gds_zendesk'
