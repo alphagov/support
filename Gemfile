@@ -32,7 +32,7 @@ gem 'whenever', '0.9.0', require: false
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else
-  gem "gds-api-adapters", "10.6.2"
+  gem "gds-api-adapters", "10.8.0"
 end
 
 group :development do
