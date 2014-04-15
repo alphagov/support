@@ -10,7 +10,7 @@ class ProblemReportStatsPPUploaderWorkerTest < ActiveSupport::TestCase
     Date.stubs(:today).returns(Date.new(2013,2,1))
 
     CorporateContentProblemReportAggregatedMetrics.stubs(:new).with(2013,1).returns(
-      stub(to_h: { feedback_counts: [ :some, :counts ], top_urls: [ :some, :top, :urls ] })
+      stub(to_h: { "feedback_counts" => [ :some, :counts ], "top_urls" => [ :some, :top, :urls ] })
     )
 
     stub_post1 = stub_corporate_content_problem_report_count_submission([ :some, :counts ])
