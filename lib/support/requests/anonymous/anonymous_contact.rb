@@ -25,8 +25,8 @@ module Support
         validates_inclusion_of :is_actionable, in: [ true, false ]
         validates_presence_of :reason_why_not_actionable, unless: "is_actionable"
 
-        scope :free_of_personal_info, where(personal_information_status: "absent")
-        scope :only_actionable, where(is_actionable: true)
+        scope :free_of_personal_info, -> { where(personal_information_status: "absent") }
+        scope :only_actionable, -> { where(is_actionable: true) }
 
         def self.find_all_starting_with_path(path)
           where("url is not null and url like ?", "%" + path + "%").
