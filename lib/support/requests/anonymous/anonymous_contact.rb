@@ -27,14 +27,12 @@ module Support
 
         scope :free_of_personal_info, -> { where(personal_information_status: "absent") }
         scope :only_actionable, -> { where(is_actionable: true) }
-
-        def self.find_all_starting_with_path(path)
-          where("url is not null and url like ?", "%" + path + "%").
+        scope :find_all_starting_with_path, ->(path) {
+          where("path is not null and path like ?", path + "%").
             free_of_personal_info.
             only_actionable.
-            order("created_at desc").
-            select { |pr| pr.path && pr.path.start_with?(path) }
-        end
+            order("created_at desc")
+        }
 
         def self.deduplicate_contacts_created_between(interval)
           contacts = where(created_at: interval).order("created_at asc")
