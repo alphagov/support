@@ -11,8 +11,10 @@ class ProblemReportStatsPPUploaderWorker
       bearer_token: PP_DATA_IN_API[:bearer_token]
     )
     stats = CorporateContentProblemReportAggregatedMetrics.new(year, month).to_h
-    api.corporate_content_problem_report_count(stats["feedback_counts"])
-    api.corporate_content_urls_with_the_most_problem_reports(stats["top_urls"])
+    response = api.corporate_content_problem_report_count(stats["feedback_counts"])
+    logger.info "Feedback counts push response: #{response.code}"
+    response = api.corporate_content_urls_with_the_most_problem_reports(stats["top_urls"])
+    logger.info "Top URLs counts push response: #{response.code}"
   end
 
   def self.run
