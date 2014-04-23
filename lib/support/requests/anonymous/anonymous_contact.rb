@@ -6,33 +6,27 @@ module Support
   module Requests
     module Anonymous
       class AnonymousContact < ActiveRecord::Base
-        attr_accessible :url, :referrer, :javascript_enabled, :user_agent, :personal_information_status
+        attr_accessible :url, :path, :referrer, :javascript_enabled, :user_agent, :personal_information_status
         attr_accessible :is_actionable, :reason_why_not_actionable
 
         before_save :detect_personal_information
+        before_save :set_path_from_url
 
         def requester
           Requester.anonymous
         end
 
         validates :referrer, url: true, length: { maximum: 2048 }, allow_nil: true
+        validates :url,      url: true, length: { maximum: 2048 }, allow_nil: true
+        validates :path,     url: true, length: { maximum: 2048 }, allow_nil: true
         validates :details, length: { maximum: 2 ** 16 }
-        validates :url, url: true, length: { maximum: 2048 }, allow_nil: true
         validates_inclusion_of :javascript_enabled, in: [ true, false ]
         validates_inclusion_of :personal_information_status, in: [ "suspected", "absent" ], allow_nil: true
         validates_inclusion_of :is_actionable, in: [ true, false ]
         validates_presence_of :reason_why_not_actionable, unless: "is_actionable"
 
-        scope :free_of_personal_info, where(personal_information_status: "absent")
-        scope :only_actionable, where(is_actionable: true)
-
-        def path
-          URI(url).path
-        rescue ArgumentError
-          nil
-        rescue URI::InvalidURIError
-          nil
-        end
+        scope :free_of_personal_info, -> { where(personal_information_status: "absent") }
+        scope :only_actionable, -> { where(is_actionable: true) }
 
         def self.find_all_starting_with_path(path)
           where("url is not null and url like ?", "%" + path + "%").
@@ -67,6 +61,10 @@ module Support
         def personal_info_present?
           free_text_fields = [ self.details, self.what_wrong, self.what_doing ]
           free_text_fields.any? { |text| FieldWhichMayContainPersonalInformation.new(text).include_personal_info? }
+        end
+
+        def set_path_from_url
+          self.path = URI.parse(url).path unless url.nil?
         end
       end
     end
