@@ -12,6 +12,5 @@
  *= require_tree .
  *= require formtastic-bootstrap
  *= require jquery.ui.datepicker
- *= require jquery-tablesorter/theme.bootstrap
  *= require forms
  */

@@ -10,7 +10,9 @@ class AnonymousFeedbackController < RequestsController
         format.json { render json: {"errors" => ["Please set a valid 'path' parameter"] }, status: 400 }
       end
     else
-      @feedback = Anonymous::AnonymousContact.find_all_starting_with_path(params[:path])
+      @feedback = Anonymous::AnonymousContact.
+        find_all_starting_with_path(params[:path]).
+        page(params[:page])
       respond_to do |format|
         format.html { render :index }
         format.json {

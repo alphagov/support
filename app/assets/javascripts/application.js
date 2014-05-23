@@ -15,7 +15,6 @@
 //= require jquery.ui.datepicker
 //= require twitter/bootstrap/dropdown
 //= require twitter/bootstrap/collapse
-//= require feedex
 
 $(document).ready(function() {
   $('input[calendar-enabled=true]').datepicker({minDate: 0, dateFormat: 'dd-mm-yy'});
@@ -24,6 +23,5 @@ $(document).ready(function() {
     var displayAdditionalFields = ($(this).val() != "change_user")
     $('#support_requests_create_or_change_user_request_requested_user_attributes_job_input').toggle(displayAdditionalFields);
     $('#support_requests_create_or_change_user_request_requested_user_attributes_phone_input').toggle(displayAdditionalFields);
-  });  
+  });
 });
-
