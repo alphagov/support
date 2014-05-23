@@ -29,6 +29,7 @@ gem "statsd-ruby", "1.2.1", require: "statsd"
 gem 'logstasher', '0.4.8'
 gem 'jquery-tablesorter', '1.8.1'
 gem 'whenever', '0.9.0', require: false
+gem 'kaminari', '0.15.1'
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else

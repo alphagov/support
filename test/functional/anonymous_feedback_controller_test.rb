@@ -17,7 +17,7 @@ class AnonymousFeedbackControllerTest < ActionController::TestCase
         assert_response 400
 
         expected_result = { "errors" => ["Please set a valid 'path' parameter"] }
-        assert_equal expected_result, JSON.parse(response.body) 
+        assert_equal expected_result, JSON.parse(response.body)
       end
     end
   end
@@ -27,29 +27,44 @@ class AnonymousFeedbackControllerTest < ActionController::TestCase
       login_as_stub_user
 
       @time = Time.now
-      result = Support::Requests::Anonymous::ProblemReport.new(
+      result = Support::Requests::Anonymous::ProblemReport.create!(
         what_wrong: "A",
         what_doing: "B",
         url: "https://www.gov.uk/tax-disc",
-        referrer: "https://www.gov.uk/tax-disc"
+        referrer: "https://www.gov.uk/tax-disc",
+        javascript_enabled: true
       )
       result.created_at = @time
-
-      Support::Requests::Anonymous::AnonymousContact.expects(:find_all_starting_with_path).with("/tax-disc").returns([result])
+      result.save
     end
 
     context "HTML representation" do
       should "render the results" do
         get :index, path: "/tax-disc"
 
-        assert_response :success          
+        assert_response :success
+      end
+
+      should "display at most 50 results per page" do
+        70.times {
+          Support::Requests::Anonymous::ProblemReport.create!(
+            what_wrong: "A",
+            what_doing: "B",
+            url: "https://www.gov.uk/tax-disc",
+            javascript_enabled: true
+          )
+        }
+
+        get :index, path: "/tax-disc"
+
+        assert_equal 50, assigns["feedback"].to_a.size
       end
     end
 
     context "JSON" do
       should "return the results for problem" do
         get :index, { "path" => "/tax-disc", "format" => "json" }
-        
+
         assert_response :success
 
         results = JSON.parse(response.body)
@@ -69,29 +84,29 @@ class AnonymousFeedbackControllerTest < ActionController::TestCase
       login_as_stub_user
 
       @time = Time.now
-      result = Support::Requests::Anonymous::ServiceFeedback.new(
+      result = Support::Requests::Anonymous::ServiceFeedback.create!(
         slug: "apply-carers-allowance",
         details: "It's great",
         service_satisfaction_rating: 5,
-        url: "https://www.gov.uk/done/apply-carers-allowance"
+        url: "https://www.gov.uk/done/apply-carers-allowance",
+        javascript_enabled: true
       )
       result.created_at = @time
-
-      Support::Requests::Anonymous::AnonymousContact.expects(:find_all_starting_with_path).with("/done/apply-carers-allowance").returns([result])
+      result.save
     end
 
     context "HTML representation" do
       should "render the results" do
         get :index, path: "/done/apply-carers-allowance"
 
-        assert_response :success          
+        assert_response :success
       end
     end
 
     context "JSON" do
       should "return the results for problem" do
         get :index, { "path" => "/done/apply-carers-allowance", "format" => "json" }
-        
+
         assert_response :success
 
         results = JSON.parse(response.body)

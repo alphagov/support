@@ -110,6 +110,9 @@ GEM
     json (1.8.1)
     jwt (0.1.11)
       multi_json (>= 1.5)
+    kaminari (0.15.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     kgio (2.7.4)
     less (2.2.2)
       commonjs (~> 0.2.6)
@@ -296,6 +299,7 @@ DEPENDENCIES
   jquery-rails
   jquery-tablesorter (= 1.8.1)
   jquery-ui-rails (= 2.0.2)
+  kaminari (= 0.15.1)
   less-rails-bootstrap (= 2.1.1)
   logstasher (= 0.4.8)
   mocha (= 0.13.3)

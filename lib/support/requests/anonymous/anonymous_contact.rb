@@ -12,6 +12,8 @@ module Support
         before_save :detect_personal_information
         before_save :set_path_from_url
 
+        paginates_per 50
+
         def requester
           Requester.anonymous
         end

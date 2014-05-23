@@ -3,6 +3,8 @@
 
 <h2>Anonymous feedback for: <%= params[:path] %></h2>
 
+<%= paginate @feedback %>
+
 <table id="results" class="table table-hover sortable">
   <thead>
     <th>creation date</th>
@@ -14,3 +16,5 @@
     <%= render partial: "anonymous-contact", collection: @feedback, as: :anonymous_contact %>
   </tbody>
 </table>
+
+<%= paginate @feedback %>
