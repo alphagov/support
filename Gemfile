@@ -3,9 +3,9 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.18'
 
 group :assets do
-  gem 'less-rails-bootstrap', '2.1.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem "therubyracer", "0.12.0"
+  gem 'sass', '3.2.12'
+  gem 'sass-rails', '3.2.6'
+  gem 'uglifier', '2.0.1'
 end
 
 gem 'mysql2', '0.3.14'
@@ -13,10 +13,9 @@ gem "airbrake", "3.1.15"
 
 gem 'gds-sso', '9.2.0'
 gem 'cancan', '1.6.9'
-gem 'jquery-rails'
-gem 'jquery-ui-rails', '2.0.2'
+gem 'jquery-ui-rails', '4.2.1'
 gem 'plek', '1.7.0'
-gem 'formtastic-bootstrap', '2.1.1'
+gem 'formtastic-bootstrap', '3.0.0'
 gem 'validates_timeliness', '3.0.14'
 if ENV['GDS_ZENDESK_DEV']
   gem "gds_zendesk", :path => '../gds_zendesk'
@@ -29,6 +28,8 @@ gem "statsd-ruby", "1.2.1", require: "statsd"
 gem 'logstasher', '0.4.8'
 gem 'whenever', '0.9.0', require: false
 gem 'kaminari', '0.15.1'
+gem 'bootstrap-kaminari-views', '0.0.3'
+gem 'govuk_admin_template', '0.0.4'
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else

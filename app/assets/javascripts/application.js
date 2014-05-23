@@ -10,11 +10,7 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery
-//= require jquery_ujs
 //= require jquery.ui.datepicker
-//= require twitter/bootstrap/dropdown
-//= require twitter/bootstrap/collapse
 
 $(document).ready(function() {
   $('input[calendar-enabled=true]').datepicker({minDate: 0, dateFormat: 'dd-mm-yy'});
@@ -24,4 +20,6 @@ $(document).ready(function() {
     $('#support_requests_create_or_change_user_request_requested_user_attributes_job_input').toggle(displayAdditionalFields);
     $('#support_requests_create_or_change_user_request_requested_user_attributes_phone_input').toggle(displayAdditionalFields);
   });
+
+  $('.dropdown-toggle').dropdown();
 });

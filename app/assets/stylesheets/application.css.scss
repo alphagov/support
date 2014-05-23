@@ -9,8 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
- *= require formtastic-bootstrap
  *= require jquery.ui.datepicker
- *= require forms
  */
+
+@import "govuk_admin_template";

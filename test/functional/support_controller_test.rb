@@ -16,7 +16,7 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "show the name of the user who is logged in" do
-      assert_select '#logged-in-user a', content: "John"
+      assert_select 'nav a', content: "John"
     end
 
     should "show have a link to log out" do

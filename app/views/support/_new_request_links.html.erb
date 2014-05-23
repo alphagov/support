@@ -1,16 +1,19 @@
-<div class="well sidebar-nav">
-  <% request_groups.each do |request_group| %>
-    <ul class="nav nav-list">
-      <li class="nav-header"><%= request_group.title %></li>
+<li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Make new request <b class="caret"></b></a>
+
+  <ul class="dropdown-menu" role="menu">
+    <% request_groups.each_with_index do |request_group, index| %>
+      <li role="presentation" class="dropdown-header"><%= request_group.title %></li>
       <% request_group.request_classes.each do |request_class| %>
         <%= nav_link request_class.label, path_to_new_request(request_class) %>
       <% end %>
-    </ul>
-  <% end %>
-  <% if current_user.can? :read, Support::Requests::Anonymous::ProblemReport %>
-    <ul class="nav nav-list">
-        <li class="nav-header">Anonymous feedback</li>
-        <%= feedex_nav_link %>
-    </ul>
-  <% end %>
-</div>
+      <% if index < request_groups.to_a.size - 1 %>
+        <li class="divider"></li>
+      <% end %>
+    <% end %>
+  </ul>
+</li>
+
+<% if current_user.can? :read, Support::Requests::Anonymous::ProblemReport %>
+  <%= feedex_nav_link %>
+<% end %>

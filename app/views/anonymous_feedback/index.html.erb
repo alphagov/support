@@ -3,7 +3,7 @@
 
 <h2>Anonymous feedback for: <%= params[:path] %></h2>
 
-<%= paginate @feedback %>
+<%= paginate @feedback, theme: 'twitter-bootstrap-3' %>
 
 <table id="results" class="table table-hover table-bordered">
   <thead>
@@ -17,4 +17,4 @@
   </tbody>
 </table>
 
-<%= paginate @feedback %>
+<%= paginate @feedback, theme: 'twitter-bootstrap-3' %>
