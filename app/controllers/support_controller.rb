@@ -5,12 +5,11 @@ class SupportController < AuthorisationController
   skip_before_filter :authenticate_support_user!, only: [:queue_status]
 
   def landing
-    render :landing, :layout => "application"
   end
 
   def acknowledge
     respond_to do |format|
-      format.html { render :acknowledge, :layout => "application" }
+      format.html { render :acknowledge }
       format.json { render nothing: true }
     end
   end
