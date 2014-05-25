@@ -31,11 +31,11 @@ When /^the user explores the feedback with the following filters:$/ do |table|
 
   click_on "Explore"
 
-  assert page.has_content?("Anonymous feedback for"), page.html  
+  assert page.has_content?("Anonymous feedback for"), page.html
 end
 
 Then /^the following result is shown:$/ do |table|
-  actual = find('table#results').all('thead, tr').map { |row| row.all('th, td').map { |cell| cell.text.strip } }
+  actual = find('table#results').all('tr').map { |row| row.all('th, td').map { |cell| cell.text.strip } }
 
   table.diff!(actual)
 end

@@ -7,10 +7,12 @@
 
 <table id="results" class="table table-hover table-bordered">
   <thead>
-    <th>creation date</th>
-    <th>feedback</th>
-    <th>full path</th>
-    <th>user came from</th>
+    <tr>
+      <th>creation date</th>
+      <th>feedback</th>
+      <th>full path</th>
+      <th>user came from</th>
+    </tr>
   </thead>
   <tbody>
     <%= render partial: "anonymous-contact", collection: @feedback, as: :anonymous_contact %>
