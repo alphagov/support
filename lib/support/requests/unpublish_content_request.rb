@@ -35,6 +35,10 @@ module Support
         "Unpublish content"
       end
 
+      def self.description
+        "Request to unpublish content"
+      end
+
       def another_page_involved?
         ["duplicate_publication", "superseded_publication"].include? reason_for_unpublishing
       end

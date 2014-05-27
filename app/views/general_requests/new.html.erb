@@ -1,5 +1,5 @@
-<%= content_for :page_title, "General" %>
-<%= content_for :header, "Report a problem, request GDS support, or make a suggestion" %>
+<%= content_for :page_title, @request.class.label %>
+<%= content_for :header, @request.class.description %>
 
 <div class="alert alert-info">
   <p>Please use this path to:</p>

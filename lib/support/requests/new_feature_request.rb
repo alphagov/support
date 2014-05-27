@@ -20,6 +20,10 @@ module Support
       def self.label
         "New feature/need"
       end
+
+      def self.description
+        "Request a new feature/need"
+      end
     end
   end
 end

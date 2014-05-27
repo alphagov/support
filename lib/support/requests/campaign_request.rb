@@ -21,6 +21,10 @@ module Support
       def self.label
         "Campaign"
       end
+
+      def self.description
+        "Request GDS support for a campaign"
+      end
     end
   end
 end

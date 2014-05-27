@@ -37,6 +37,10 @@ module Support
       def self.label
         "Report a technical fault"
       end
+
+      def self.description
+        "Report a technical fault to GDS"
+      end
     end
   end
 end

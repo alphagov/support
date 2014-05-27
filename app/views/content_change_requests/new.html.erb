@@ -1,5 +1,5 @@
-<%= content_for :page_title, "Content change" %>
-<%= content_for :header, "Request a change to existing GOV.UK content" %>
+<%= content_for :page_title, @request.class.label %>
+<%= content_for :header, @request.class.description %>
 
 <div class="alert alert-info alert-block">
   <p>You'll get an automated response to confirm we've received your request. We'll then review your request within 2 working days.</p>

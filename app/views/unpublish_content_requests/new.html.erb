@@ -1,5 +1,5 @@
-<%= content_for :page_title, "Request to unpublish content" %>
-<%= content_for :header, "Request to unpublish content" %>
+<%= content_for :page_title, @request.class.label %>
+<%= content_for :header, @request.class.description %>
 
 <div class="alert alert-info">
   <p>Please make a separate request for each target redirect.</p>

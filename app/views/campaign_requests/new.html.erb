@@ -1,5 +1,5 @@
-<%= content_for :page_title, "Campaign" %>
-<%= content_for :header, "Request GDS support for a campaign" %>
+<%= content_for :page_title, @request.class.label %>
+<%= content_for :header, @request.class.description %>
 
 <%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
 
