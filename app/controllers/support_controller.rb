@@ -5,6 +5,7 @@ class SupportController < AuthorisationController
   skip_before_filter :authenticate_support_user!, only: [:queue_status]
 
   def landing
+    @request_classes = Support::Requests::RequestGroups.new.all_request_classes
   end
 
   def acknowledge

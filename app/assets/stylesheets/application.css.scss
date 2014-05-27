@@ -18,3 +18,11 @@
 thead {
   background-color: $gray-lighter;
 }
+
+#new-request-dropdown {
+  display: none;
+}
+
+.js #new-request-dropdown {
+  display: block;
+}

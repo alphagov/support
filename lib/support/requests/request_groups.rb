@@ -21,7 +21,11 @@ module Support
       end
 
       def all_request_class_names
-        @groups.collect(&:request_classes).flatten.map {|request_class| request_class.name.split("::").last }
+        all_request_classes.collect {|request_class| request_class.name.split("::").last }
+      end
+
+      def all_request_classes
+        @groups.flat_map(&:request_classes)
       end
     end
   end
