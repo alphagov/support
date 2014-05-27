@@ -1,15 +1,13 @@
 <%= content_for :page_title, "Campaign" %>
 <%= content_for :header, "Request GDS support for a campaign" %>
 
-<div class="well">
-  <%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
+<%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
 
-    <%= render partial: "support/collaborators", locals: { f: f } %>
+  <%= render partial: "support/collaborators", locals: { f: f } %>
 
-    <%= render partial: "campaign_details", locals: { f: f } %>
+  <%= render partial: "campaign_details", locals: { f: f } %>
 
-    <%= f.input :additional_comments, as: :text, label: "Additional comments", input_html: { class: "form-md-6", rows: 6, cols: 50 } %>
+  <%= f.input :additional_comments, as: :text, label: "Additional comments", input_html: { class: "form-md-6", rows: 6, cols: 50 } %>
 
-    <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
-  <% end %>
-</div>
+  <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
+<% end %>

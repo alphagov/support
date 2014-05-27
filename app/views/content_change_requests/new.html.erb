@@ -18,22 +18,19 @@
   </ul>
 </div>
 
-<div class="well">
-  <%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
+<%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
 
-    <%= render partial: "support/collaborators", locals: { f: f } %>
+  <%= render partial: "support/collaborators", locals: { f: f } %>
 
-    <%= render partial: "request_details", locals: { f: f} %>
+  <%= render partial: "request_details", locals: { f: f} %>
 
-    <%= render partial: "support/attachment_instructions" %>
+  <%= render partial: "support/attachment_instructions" %>
 
-    <%= render partial: "support/time_constraint", locals: { f: f } %>
+  <%= render partial: "support/time_constraint", locals: { f: f } %>
 
-    <div class="alert alert-info alert-block">
-      <p>If your request is urgent, please fill in this form then call 07827 992603 to let us know. (It's ONLY urgent when the public or the government is facing immediate and significant financial, legal or physical risk.)</p>
-    </div>
+  <div class="alert alert-info alert-block">
+    <p>If your request is urgent, please fill in this form then call 07827 992603 to let us know. (It's ONLY urgent when the public or the government is facing immediate and significant financial, legal or physical risk.)</p>
+  </div>
 
-    <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
-  <% end %>
-</div>
-
+  <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
+<% end %>
