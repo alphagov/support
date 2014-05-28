@@ -13,7 +13,7 @@ module Support
 
       def initialize(attributes = {})
         self.time_constraint = TimeConstraint.new
-        
+
         super
       end
 

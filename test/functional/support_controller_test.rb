@@ -21,7 +21,7 @@ class SupportControllerTest < ActionController::TestCase
 
     should "show have a link to log out" do
       assert_select "a[href=/auth/gds/sign_out]", html: "Sign out"
-    end    
+    end
   end
 
   context "GET /_status" do
