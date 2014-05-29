@@ -1,4 +1,4 @@
-<%= f.input :urls, as: :text, required: true, label: "Please give the Whitehall URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)", input_html: { class: "span9", placeholder: "https://whitehall-admin.production.alphagov.co.uk/government/admin/...", rows: 6, cols: 50, :"aria-required" => true } %>
+<%= f.input :urls, as: :text, required: true, label: "Please give the Whitehall URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)", input_html: { class: "form-md-8", placeholder: "https://whitehall-admin.production.alphagov.co.uk/government/admin/...", rows: 6, cols: 50, :"aria-required" => true } %>
 
 <div class="alert alert-info">
   <p>You may also wish to send this information in a spreadsheet, by attaching it to the Zendesk confirmation email
@@ -11,7 +11,7 @@
   <%= f.input :reason_for_unpublishing, as: :radio, required: true, label: "What is the reason for unpublishing?", collection: f.object.reason_for_unpublishing_options, input_html: { :"aria-required" => true } %>
 </div>
 
-<%= f.input :further_explanation, as: :text, label: "Redirects will be automatic unless you give a reason:", input_html: { class: "span6", rows: 6, cols: 50 } %>
+<%= f.input :further_explanation, as: :text, label: "Redirects will be automatic unless you give a reason:", input_html: { class: "form-md-6", rows: 6, cols: 50 } %>
 
 <div class="alert alert-info">
   <p>If you do give a reason, users will go to a landing page and read your reason, then click on the redirect URL. Note that:
@@ -23,7 +23,7 @@
 </div>
 
 <%= f.inputs name: "Redirect details (optional if published in error)" do %>
-  <%= f.input :redirect_url, required: false, label: "Redirect URL (we need the GOV.UK page for the redirect URL)", input_html: { class: "span9", placeholder: "https://www.gov.uk/government/..." } %>
+  <%= f.input :redirect_url, required: false, label: "Redirect URL (we need the GOV.UK page for the redirect URL)", input_html: { class: "form-md-8", placeholder: "https://www.gov.uk/government/..." } %>
 
   <%= f.input :automatic_redirect, as: :boolean, required: false, label: "Redirect to URL automatically?" %>
 <% end %>

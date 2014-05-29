@@ -8,7 +8,7 @@
 
     <%= render partial: "campaign_details", locals: { f: f } %>
 
-    <%= f.input :additional_comments, as: :text, label: "Additional comments", input_html: { class: "span6", rows: 6, cols: 50 } %>
+    <%= f.input :additional_comments, as: :text, label: "Additional comments", input_html: { class: "form-md-6", rows: 6, cols: 50 } %>
 
     <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
   <% end %>

@@ -1,11 +1,11 @@
 <%= f.semantic_fields_for :needed_report do |r| %>
   <%= r.inputs name: "What reporting period are you interested in?" do %>
-    <%= r.input :reporting_period_start, label: "From", required: true, input_html: {:class => "span6", :"aria-required" => true} %>
-    <%= r.input :reporting_period_end, label: "To", required: true, input_html: {:class => "span6", :"aria-required" => true} %>
-    <%= r.input :pages_or_sections, as: :text, label: "Which page(s) or section(s) on GOV.UK do you want data for? (Please provide URLs and, if possible or relevant, Need IDs)", required: true, input_html: {:class => "span6", :rows => 6, :cols => 50, :"aria-required" => true } %>
+    <%= r.input :reporting_period_start, label: "From", required: true, input_html: {:class => "form-md-6", :"aria-required" => true} %>
+    <%= r.input :reporting_period_end, label: "To", required: true, input_html: {:class => "form-md-6", :"aria-required" => true} %>
+    <%= r.input :pages_or_sections, as: :text, label: "Which page(s) or section(s) on GOV.UK do you want data for? (Please provide URLs and, if possible or relevant, Need IDs)", required: true, input_html: {:class => "form-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
   <% end %>
 
-  <%= f.input :justification_for_needing_report, as: :text, label: "How will you use the report and what decisions will it help you make?", required: true, input_html: {:class => "span6", :rows => 6, :cols => 50, :"aria-required" => true } %>
+  <%= f.input :justification_for_needing_report, as: :text, label: "How will you use the report and what decisions will it help you make?", required: true, input_html: {:class => "form-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
 
   <div class="alert alert-info">
     <p>The basic report includes the following metrics:</p>
@@ -16,7 +16,7 @@
     </ul>
   </div>
 
-  <%= r.input :non_standard_requirements, as: :text, label: "Beyond the basic report, what other information are you interested in?", input_html: {:class => "span6", :rows => 6, :cols => 50} %>
+  <%= r.input :non_standard_requirements, as: :text, label: "Beyond the basic report, what other information are you interested in?", input_html: {:class => "form-md-6", :rows => 6, :cols => 50} %>
 
   <div id="frequency">
     <%= r.input :frequency, as: :radio, required: true, label: "How often do you need to receive these reports?", collection: r.object.frequency_options, input_html: { :"aria-required" => true } %>

@@ -1,8 +1,8 @@
 <%= f.semantic_fields_for :requested_user do |r| %>
   <%= r.inputs :name => "User details" do %>
-    <%= r.input :name, label: "Name", required: true, input_html: { :"aria-required" => true, :class => "span6" } %>
-    <%= r.input :email, label: "Email", as: :email, required: true, input_html: { :"aria-required" => true, :class => "span6" } %>
-    <%= r.input :job, label: "Job title", input_html: { class: "span6" } %>
-    <%= r.input :phone, label: "Phone number", as: :phone, required: false, input_html: { class: "span6" } %>
+    <%= r.input :name, label: "Name", required: true, input_html: { :"aria-required" => true, :class => "form-md-6" } %>
+    <%= r.input :email, label: "Email", as: :email, required: true, input_html: { :"aria-required" => true, :class => "form-md-6" } %>
+    <%= r.input :job, label: "Job title", input_html: { class: "form-md-6" } %>
+    <%= r.input :phone, label: "Phone number", as: :phone, required: false, input_html: { class: "form-md-6" } %>
   <% end %>
 <% end %>
