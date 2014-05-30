@@ -12,4 +12,11 @@
       <p class="list-group-item-text"><%= request_class.description %></p>
     <% end %>
   <% end %>
+
+  <% if current_user.can? :read, Support::Requests::Anonymous::ProblemReport %>
+    <%= link_to anonymous_feedback_explore_url, class: "list-group-item" do %>
+      <h4 class="list-group-item-heading">Feedback explorer</h4>
+      <p class="list-group-item-text">Explore GOV.UK anonymous feedback</p>
+    <% end %>
+  <% end %>
 </div>
