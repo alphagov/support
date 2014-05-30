@@ -20,6 +20,10 @@ module Support
       def self.label
         "Content change"
       end
+
+      def self.description
+        "Request a change to existing GOV.UK content"
+      end
     end
   end
 end

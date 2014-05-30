@@ -18,6 +18,10 @@ module Support
       def self.label
         "Analytics"
       end
+
+      def self.description
+        "Request analytics reports from GDS"
+      end
     end
   end
 end

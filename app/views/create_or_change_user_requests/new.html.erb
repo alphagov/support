@@ -1,11 +1,9 @@
-<%= content_for :page_title, "Create or change user" %>
-<%= content_for :header, "Create or change a user account" %>
+<%= content_for :page_title, @request.class.label %>
+<%= content_for :header, @request.class.description %>
 
-<div class="well">
-  <%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
+<%= semantic_form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
 
-    <%= render partial: "request_details", locals: { f: f } %>
+  <%= render partial: "request_details", locals: { f: f } %>
 
-    <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
-  <% end %>
-</div>
+  <%= f.action :submit, label: "Submit", button_html: { class: "btn btn-success" } %>
+<% end %>

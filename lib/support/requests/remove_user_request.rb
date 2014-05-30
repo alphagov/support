@@ -20,6 +20,10 @@ module Support
       def self.label
         "Remove user"
       end
+
+      def self.description
+        "Request to remove user access"
+      end
     end
   end
 end

@@ -1,6 +1,22 @@
 <%= content_for :page_title, "Home" %>
 <%= content_for :header, "Welcome to GOV.UK Support" %>
 
-<p class="landing">
-  Choose one of the options to help us deal with your request as quickly as possible.
+<p class="lead">
+  Choose one of the following sections to submit a request to the GOV.UK team.
 </p>
+
+<div class="list-group">
+  <% @request_classes.each do |request_class| %>
+    <%= link_to path_to_new_request(request_class), class: "list-group-item" do %>
+      <h4 class="list-group-item-heading"><%= request_class.label %></h4>
+      <p class="list-group-item-text"><%= request_class.description %></p>
+    <% end %>
+  <% end %>
+
+  <% if current_user.can? :read, Support::Requests::Anonymous::ProblemReport %>
+    <%= link_to anonymous_feedback_explore_url, class: "list-group-item" do %>
+      <h4 class="list-group-item-heading">Feedback explorer</h4>
+      <p class="list-group-item-text">Explore GOV.UK anonymous feedback</p>
+    <% end %>
+  <% end %>
+</div>

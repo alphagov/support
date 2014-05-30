@@ -45,6 +45,10 @@ module Support
       def self.label
         "Create or change user"
       end
+
+      def self.description
+        "Create or change a user account"
+      end
     end
   end
 end
