@@ -18,7 +18,7 @@ module Zendesk
 
       protected
       def comment_snippets
-        [ 
+        [
           LabelledSnippet.new(on: @request, field: :url),
           LabelledSnippet.new(on: @request, field: :user_agent),
           LabelledSnippet.new(on: @request, field: :additional)
