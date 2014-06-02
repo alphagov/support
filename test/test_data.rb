@@ -14,7 +14,7 @@ module TestData
       { "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => {
           "name"=>"subject",
-          "email"=>"subject@digital.cabinet-office.gov.uk",          
+          "email"=>"subject@digital.cabinet-office.gov.uk",
         },
         "action" => "change_user",
         "tool_role" => "govt_form",
@@ -24,7 +24,7 @@ module TestData
   end
 
   def valid_general_request_params
-    { "support_requests_general_request" => 
+    { "support_requests_general_request" =>
       { "requester_attributes" => valid_requester_params,
         "url"=>"testing",
         "additional"=>"" }
@@ -41,6 +41,6 @@ module TestData
       "email"=>"subject@digital.cabinet-office.gov.uk",
       "job"=>"editor",
       "phone"=>"12345",
-    }    
+    }
   end
 end
