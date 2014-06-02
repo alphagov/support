@@ -3,7 +3,7 @@ require 'support/requests/request'
 module Support
   module Requests
     class GeneralRequest < Request
-      attr_accessor :title, :url, :additional, :user_agent
+      attr_accessor :title, :url, :details, :user_agent
 
       def self.label
         "General"

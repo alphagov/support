@@ -10,7 +10,7 @@ module Support
 
       should allow_value("https://www.gov.uk").for(:url)
 
-      should allow_value("a comment").for(:additional)
+      should allow_value("a comment").for(:details)
     end
   end
 end

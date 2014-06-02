@@ -27,7 +27,7 @@ module TestData
     { "support_requests_general_request" =>
       { "requester_attributes" => valid_requester_params,
         "url"=>"testing",
-        "additional"=>"" }
+        "details"=>"" }
     }
   end
 
