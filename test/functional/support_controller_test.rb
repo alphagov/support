@@ -24,15 +24,15 @@ class SupportControllerTest < ActionController::TestCase
     end
 
     should "list links to accessibile form sections" do
-      assert_select '#section-links a[href="/general_request/new"]'
+      assert_select '#accessible-sections a[href="/general_request/new"]'
     end
 
-    should "not list links to inaccessible form sections" do
+    should "list links inaccessible form sections as flat text" do
       @user.stubs(:can?).returns(false)
 
       get :landing
 
-      assert_select '#section-links a[href="/general_request/new"]', false
+      assert_select '#inaccessible-sections h4.list-group-item-heading', "General"
     end
   end
 
