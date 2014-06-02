@@ -5,6 +5,7 @@ module Support
   module Requests
     class GeneralRequestTest < Test::Unit::TestCase
       should validate_presence_of(:requester)
+      should validate_presence_of(:details)
 
       should allow_value("xxx").for(:title)
 
