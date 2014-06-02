@@ -1,11 +1,15 @@
 require 'sidekiq'
 
 class SupportController < AuthorisationController
+  include Support::Navigation
+
   skip_authorization_check
   skip_before_filter :authenticate_support_user!, only: [:queue_status]
 
   def landing
-    @request_classes = Support::Requests::RequestGroups.new.all_request_classes
+    @sections =
+      (SectionGroups.new(current_user).all_sections + [ FeedexSection.new(current_user) ]).
+      select(&:accessible?)
   end
 
   def acknowledge

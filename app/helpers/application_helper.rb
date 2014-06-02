@@ -1,32 +1,23 @@
-require 'support/permissions/permitted_request_groups'
+require 'support/navigation/feedex_section'
+require 'support/navigation/section_groups'
 
 module ApplicationHelper
-  # Set class on active navigation items
-  def nav_link(link_text, link_path, list_item_id = nil)
-    class_name = current_page?(link_path) ? 'active' : ''
-
-    content_tag(:li, class: class_name, id: list_item_id) do
-      link_to link_text, link_path
-    end
+  def accessible_section_groups
+    Support::Navigation::SectionGroups.new(current_user).select(&:accessible?)
   end
 
-  def path_to_new_request(request_class)
-    request_class_name = request_class.name.split("::").last
-    path_name = "new_#{request_class_name.underscore}_path"
-    Rails.application.routes.url_helpers.send(path_name)
+  def feedex_section
+    Support::Navigation::FeedexSection.new(current_user)
   end
 
-  def request_groups
-    Support::Permissions::PermittedRequestGroups.new(current_user)
+  def in_feedex?
+    current_page?(controller: "anonymous_feedback/explore", action: :new) ||
+      current_page?(controller: 'anonymous_feedback', action: :index)
   end
 
-  def feedex_nav_link
-    is_on_feedex_page = current_page?(controller: "anonymous_feedback/explore", action: :new) ||
-                        current_page?(controller: 'anonymous_feedback', action: :index)
-    class_name = is_on_feedex_page ? 'active' : ''
-
-    content_tag(:li, class: class_name, id: "feedex") do
-      link_to "Feedback explorer", anonymous_feedback_explore_url
+  def nav_link_to(section, options = { is_active: false })
+    content_tag(:li, class: options[:is_active] ? 'active' : '', id: options[:id]) do
+      link_to section.label, section.link
     end
   end
 end
