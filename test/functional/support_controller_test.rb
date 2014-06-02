@@ -22,6 +22,18 @@ class SupportControllerTest < ActionController::TestCase
     should "show have a link to log out" do
       assert_select "a[href=/auth/gds/sign_out]", html: "Sign out"
     end
+
+    should "list links to accessibile form sections" do
+      assert_select '#section-links a[href="/general_request/new"]'
+    end
+
+    should "not list links to inaccessible form sections" do
+      @user.stubs(:can?).returns(false)
+
+      get :landing
+
+      assert_select '#section-links a[href="/general_request/new"]', false
+    end
   end
 
   context "GET /_status" do
