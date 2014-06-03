@@ -26,3 +26,7 @@ thead {
 .js #new-request-dropdown {
   display: block;
 }
+
+.list-group.disabled {
+  color: $nav-disabled-link-hover-color;
+}

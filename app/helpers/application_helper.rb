@@ -2,8 +2,8 @@ require 'support/navigation/feedex_section'
 require 'support/navigation/section_groups'
 
 module ApplicationHelper
-  def accessible_section_groups
-    Support::Navigation::SectionGroups.new(current_user).select(&:accessible?)
+  def all_section_groups
+    Support::Navigation::SectionGroups.new(current_user)
   end
 
   def feedex_section
@@ -16,7 +16,12 @@ module ApplicationHelper
   end
 
   def nav_link_to(section, options = { is_active: false })
-    content_tag(:li, class: options[:is_active] ? 'active' : '', id: options[:id]) do
+    list_class = case
+      when options[:is_active] then 'active'
+      when !section.accessible? then 'disabled'
+      else '' end
+
+    content_tag(:li, class: list_class, id: options[:id]) do
       link_to section.label, section.link
     end
   end

@@ -7,9 +7,8 @@ class SupportController < AuthorisationController
   skip_before_filter :authenticate_support_user!, only: [:queue_status]
 
   def landing
-    @sections =
-      (SectionGroups.new(current_user).all_sections + [ FeedexSection.new(current_user) ]).
-      select(&:accessible?)
+    all_sections = SectionGroups.new(current_user).all_sections + [ FeedexSection.new(current_user) ]
+    @accessible_sections, @inaccessible_sections = all_sections.partition(&:accessible?)
   end
 
   def acknowledge

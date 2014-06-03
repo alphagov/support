@@ -31,11 +31,12 @@ class NewRequestLinksTest < ActionView::TestCase
     assert_select "#feedex a", "Feedback explorer"
   end
 
-  def test_inaccessible_links_are_hidden
+  def test_inaccessible_links_are_greyed_out
     @user.stubs(:can?).returns(false)
 
     render "support/new_request_links", section_groups: SectionGroups.new(@user)
 
-    assert_select "#feedex a", false
+    assert_select "#feedex.disabled a"
+    assert_select "ul.dropdown-menu li.disabled"
   end
 end
