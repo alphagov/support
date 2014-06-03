@@ -21,6 +21,6 @@ Feature: General requests
       [Url]
       https://www.gov.uk
 
-      [Additional]
+      [Details]
       The site is down
       """

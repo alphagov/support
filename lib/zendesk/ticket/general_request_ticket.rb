@@ -21,7 +21,7 @@ module Zendesk
         [
           LabelledSnippet.new(on: @request, field: :url),
           LabelledSnippet.new(on: @request, field: :user_agent),
-          LabelledSnippet.new(on: @request, field: :additional)
+          LabelledSnippet.new(on: @request, field: :details)
         ]
       end
     end
