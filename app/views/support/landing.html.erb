@@ -14,15 +14,17 @@
   <% end %>
 </div>
 
-<p class="lead">
-  You don't have access to the following sections - your departmental single point of contact can request the access on your behalf.
-</p>
+<% unless @inaccessible_sections.empty? %>
+  <p class="lead">
+    You don't have access to the following sections - your departmental single point of contact can request the access on your behalf.
+  </p>
 
-<div id="inaccessible-sections" class="list-group disabled">
-  <% @inaccessible_sections.each do |section| %>
-    <div class="list-group-item">
-      <h4 class="list-group-item-heading"><%= section.label %></h4>
-      <p class="list-group-item-text"><%= section.description %></p>
-    </div>
-  <% end %>
-</div>
+  <div id="inaccessible-sections" class="list-group disabled">
+    <% @inaccessible_sections.each do |section| %>
+      <div class="list-group-item">
+        <h4 class="list-group-item-heading"><%= section.label %></h4>
+        <p class="list-group-item-text"><%= section.description %></p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
