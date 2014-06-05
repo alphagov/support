@@ -29,7 +29,7 @@ gem 'logstasher', '0.4.8'
 gem 'whenever', '0.9.0', require: false
 gem 'kaminari', '0.15.1'
 gem 'bootstrap-kaminari-views', '0.0.3'
-gem 'govuk_admin_template', '0.0.6'
+gem 'govuk_admin_template', '0.1.1'
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else
