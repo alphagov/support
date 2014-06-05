@@ -7,12 +7,17 @@
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tag %>
-  <%= favicon_link_tag 'favicon.ico' %>
 
   <% # Google Analytics tracking, minified via http://mathiasbynens.be/notes/async-analytics-snippet %>
   <% if Rails.env.production? %>
     <script>var _gaq=[['_setAccount','UA-38052350-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
   <% end %>
+<% end %>
+
+<% content_for :favicon do %>
+  <% environment_style = GovukAdminTemplate.environment_style %>
+  <%= favicon_link_tag environment_style ?
+        "favicon-#{environment_style}.png" : "favicon.png" %>
 <% end %>
 
 <% content_for :navbar_right do %>
