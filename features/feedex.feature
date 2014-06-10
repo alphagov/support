@@ -18,9 +18,9 @@ Feature: Feedback explorer
       | URL                          |
       | https://www.gov.uk/vat-rates |
     Then the following result is shown:
-      | creation date | feedback                                                        | full path  | user came from             |
-      | 01.03.2013    | action: looking at 3rd paragraph\n  problem: typo in 2rd word | /vat-rates | https://www.gov.uk         |
-      | 01.02.2013    | action: looking at rates\n  problem: standard rate is wrong   | /vat-rates | https://www.gov.uk/pay-vat |
+      | creation date | feedback                                                   | full path  | user came from             |
+      | 01.03.2013    | action: looking at 3rd paragraph problem: typo in 2rd word | /vat-rates | https://www.gov.uk         |
+      | 01.02.2013    | action: looking at rates problem: standard rate is wrong   | /vat-rates | https://www.gov.uk/pay-vat |
 
   Scenario: explore doesn't return reports with email or national insurance numbers
     Given the following problem reports have been left by members of the public:
@@ -32,5 +32,5 @@ Feature: Feedback explorer
       | URL                          |
       | https://www.gov.uk/vat-rates |
     Then the following result is shown:
-      | creation date | feedback                                                        | full path  | user came from             |
-      | 01.03.2013    | action: looking at 3rd paragraph\n  problem: typo in 2rd word | /vat-rates | https://www.gov.uk         |
+      | creation date | feedback                                                   | full path  | user came from             |
+      | 01.03.2013    | action: looking at 3rd paragraph problem: typo in 2rd word | /vat-rates | https://www.gov.uk         |
