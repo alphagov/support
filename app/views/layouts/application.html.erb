@@ -26,6 +26,9 @@
 
 <% content_for :navbar_items do %>
   <%= render partial: 'support/new_request_links', locals: { section_groups: all_section_groups } %>
+  <li>
+    <%= link_to "GOV.UK Zendesk", "https://govuk.zendesk.com/" %>
+  </li>
 <% end %>
 
 <% content_for :content do %>
