@@ -61,8 +61,8 @@ Feature: Anonymous feedback
       | URL                                         |
       | https://www.gov.uk/done/find-court-tribunal |
     Then the following result is shown:
-      | creation date | feedback                                        | full path                 | user came from |
-      | 28.02.2013    | rating: 3\n    comment: Make service less 'meh' | /done/find-court-tribunal | –              |
+      | creation date | feedback                                   | full path                 | user came from |
+      | 28.02.2013    | rating: 3 comment: Make service less 'meh' | /done/find-court-tribunal | –              |
 
   Scenario: successful service feedback submission without comment
     Given the date is 2013-02-28

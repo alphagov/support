@@ -25,7 +25,7 @@ When /^the user explores the feedback with the following filters:$/ do |table|
 
   click_on "Feedback explorer"
 
-  assert page.has_content?("FeedEx"), page.html
+  assert page.has_title?("FeedEx"), page.html
 
   fill_in 'By URL', with: explore_details["URL"]
 
