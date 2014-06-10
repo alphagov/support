@@ -19,7 +19,7 @@ module Support
       should allow_value("http://www.google.com").for(:info_url)
 
       should_not allow_value("xxx").for(:start_date)
-      
+
       should allow_value(as_str(Date.tomorrow)).for(:start_date)
       should allow_value(as_str(Date.today)).for(:start_date)
     end

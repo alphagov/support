@@ -39,7 +39,7 @@ module Support
         assert_not_nil request(reason_for_unpublishing: "duplicate_publication", automatic_redirect: nil).errors.get(:automatic_redirect)
         assert_not_nil request(reason_for_unpublishing: "superseded_publication", automatic_redirect: nil).errors.get(:automatic_redirect)
 
-        assert_nil request(reason_for_unpublishing: "published_in_error", automatic_redirect: nil).errors.get(:automatic_redirect)        
+        assert_nil request(reason_for_unpublishing: "published_in_error", automatic_redirect: nil).errors.get(:automatic_redirect)
       end
 
       should "have automatic redirection selected by default" do

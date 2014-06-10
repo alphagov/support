@@ -19,7 +19,7 @@ module Support
       should_not allow_value(as_str(Date.yesterday)).for(:needed_by_date)
 
       should_not allow_value("xxx").for(:not_before_date)
-      
+
       should allow_value(as_str(Date.tomorrow)).for(:not_before_date)
       should allow_value(as_str(Date.today)).for(:not_before_date)
       should_not allow_value(as_str(Date.yesterday)).for(:not_before_date)
@@ -30,7 +30,7 @@ module Support
       end
 
       should "not allow the 'not before' date to be set after the 'needed by' date" do
-        constraint = TimeConstraint.new(:not_before_date => as_str(Date.tomorrow + 1.day), 
+        constraint = TimeConstraint.new(:not_before_date => as_str(Date.tomorrow + 1.day),
                                         :needed_by_date  => as_str(Date.tomorrow))
         assert !constraint.valid?
         assert constraint.errors[:not_before_date].size > 0
@@ -41,7 +41,7 @@ module Support
       end
 
       should "allow launch dates (i.e. not_before_date = needed_by_date)" do
-        constraint = TimeConstraint.new(not_before_date: as_str(Date.tomorrow), 
+        constraint = TimeConstraint.new(not_before_date: as_str(Date.tomorrow),
                                         needed_by_date: as_str(Date.tomorrow))
         assert constraint.valid?
       end
