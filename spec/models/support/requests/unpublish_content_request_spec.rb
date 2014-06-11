@@ -29,17 +29,17 @@ module Support
       end
 
       it "validates presence of the redirect url if the reason for publishing involves another page" do
-        expect(request(reason_for_unpublishing: "duplicate_publication").errors[:redirect_url]).to_not be_empty
-        expect(request(reason_for_unpublishing: "superseded_publication").errors[:redirect_url]).to_not be_empty
+        expect(request(reason_for_unpublishing: "duplicate_publication")).to have(1).error_on(:redirect_url)
+        expect(request(reason_for_unpublishing: "superseded_publication")).to have(1).error_on(:redirect_url)
 
-        expect(request(reason_for_unpublishing: "published_in_error").errors[:redirect_url]).to be_empty
+        expect(request(reason_for_unpublishing: "published_in_error")).to have(0).errors_on(:redirect_url)
       end
 
       it "specifies whether the redirect is automatic or not if the reason involves another page" do
-        expect(request(reason_for_unpublishing: "duplicate_publication", automatic_redirect: nil).errors[:automatic_redirect]).to_not be_empty
-        expect(request(reason_for_unpublishing: "superseded_publication", automatic_redirect: nil).errors[:automatic_redirect]).to_not be_empty
+        expect(request(reason_for_unpublishing: "duplicate_publication", automatic_redirect: nil)).to have(1).error_on(:automatic_redirect)
+        expect(request(reason_for_unpublishing: "superseded_publication", automatic_redirect: nil)).to have(1).error_on(:automatic_redirect)
 
-        expect(request(reason_for_unpublishing: "published_in_error", automatic_redirect: nil).errors[:automatic_redirect]).to be_empty
+        expect(request(reason_for_unpublishing: "published_in_error", automatic_redirect: nil)).to have(0).errors_on(:automatic_redirect)
       end
 
       it "has automatic redirection selected by default" do

@@ -28,7 +28,7 @@ module Support
         constraint = TimeConstraint.new(not_before_date: as_str(Date.tomorrow + 1.day),
                                         needed_by_date: as_str(Date.tomorrow))
         expect(constraint).to_not be_valid
-        expect(constraint.errors[:not_before_date]).to_not be_empty
+        expect(constraint).to have_at_least(1).error_on(:not_before_date)
       end
 
       it "allows a blank not_before_date if the needed_by_date is set" do

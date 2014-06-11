@@ -20,7 +20,7 @@ module Support
           ContentChangeRequest.new(time_constraint: double("time constraint", valid?: true)).
           tap(&:valid?)
 
-        expect(request.errors[:time_constraint]).to be_empty
+        expect(request).to have(0).errors_on(:time_constraint)
       end
     end
   end

@@ -35,7 +35,7 @@ module Support
           requester: double("user", valid?: true),
           requested_user: double("user", valid?: false)
         )
-        expect(request.errors.get(:base)).to_not be_nil
+        expect(request).to have_at_least(1).error_on(:base)
       end
     end
   end

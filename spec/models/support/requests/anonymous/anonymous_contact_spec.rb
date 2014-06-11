@@ -26,7 +26,7 @@ module Support
         it "enforces the presence of a reason why feedback isn't actionable" do
           contact = new_contact(is_actionable: false, reason_why_not_actionable: "")
           expect(contact).to_not be_valid
-          expect(contact.errors[:reason_why_not_actionable]).to_not be_empty
+          expect(contact).to have_at_least(1).error_on(:reason_why_not_actionable)
         end
 
         it "doesn't detect personal info when none is present in free text fields" do

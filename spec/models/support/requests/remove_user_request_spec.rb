@@ -18,7 +18,7 @@ module Support
           tap(&:valid?)
 
         expect(request.time_constraint).to_not be_nil
-        expect(request.errors[:time_constraint]).to be_empty
+        expect(request).to have(0).errors_on(:time_constraint)
       end
     end
   end

@@ -47,6 +47,7 @@ group :test do
   gem 'capybara', '2.3.0'
   gem 'cucumber-rails', '1.3.0', :require => false
   gem 'timecop', '0.7.1'
+  gem 'rspec-collection_matchers', '1.0.0'
 end
 
 group :development, :test do
