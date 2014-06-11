@@ -17,6 +17,7 @@
 
 require 'active_model'
 require 'shoulda-matchers'
+require 'rspec/its'
 require 'validates_timeliness'
 
 RSpec.configure do |config|

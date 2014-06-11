@@ -50,6 +50,10 @@ class ZendeskTicket
     "normal"
   end
 
+  def comment_snippets
+    []
+  end
+
   protected
   def request_label(attributes)
     LabelledSnippet.new({on: @request}.merge(attributes))
@@ -70,4 +74,3 @@ class ZendeskTicket
     target.respond_to?(param) and not target.send(param).blank?
   end
 end
-

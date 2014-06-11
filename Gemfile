@@ -49,6 +49,7 @@ group :test do
   gem 'timecop', '0.7.1'
   gem 'rspec-collection_matchers', '1.0.0'
   gem 'factory_girl_rails', '4.4.1'
+  gem 'rspec-its', '1.0.1'
 end
 
 group :development, :test do
