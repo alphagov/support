@@ -9,7 +9,7 @@ module Support
   module Requests
     module Anonymous
       describe AnonymousContact, :type => :model do
-        DEFAULTS = { javascript_enabled: true, url: "https://www.gov.uk/tax-disc" }
+        DEFAULTS = { javascript_enabled: true, url: "https://www.gov.uk/tax-disc", path: "/tax-disc" }
 
         def new_contact(options = {})
           TestContact.new(DEFAULTS.merge(options))
@@ -17,10 +17,6 @@ module Support
 
         def contact(options = {})
           new_contact(options).tap { |c| c.save! }
-        end
-
-        def path_for(url)
-          URI(url).path
         end
 
         it "enforces the presence of a reason why feedback isn't actionable" do
@@ -108,21 +104,21 @@ module Support
             c.created_at = Time.now
             [a, b, c].map(&:save)
 
-            expect(TestContact.find_all_starting_with_path(path_for(DEFAULTS[:url]))).to eq([c, a, b])
+            expect(TestContact.find_all_starting_with_path(DEFAULTS[:path])).to eq([c, a, b])
           end
 
           it "only returns reports with no known personal information" do
             a = contact(personal_information_status: "absent")
             _ = contact(personal_information_status: "suspected")
 
-            expect(TestContact.find_all_starting_with_path(path_for(DEFAULTS[:url]))).to eq([a])
+            expect(TestContact.find_all_starting_with_path(DEFAULTS[:path])).to eq([a])
           end
 
           it "only returns actionable feedback" do
             a = contact(is_actionable: true)
             _ = contact(is_actionable: false, reason_why_not_actionable: "spam")
 
-            expect(TestContact.find_all_starting_with_path(path_for(DEFAULTS[:url]))).to eq([a])
+            expect(TestContact.find_all_starting_with_path(DEFAULTS[:path])).to eq([a])
           end
 
           after do
