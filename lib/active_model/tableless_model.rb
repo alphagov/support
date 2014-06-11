@@ -1,7 +1,9 @@
+require 'active_model'
+
 module ActiveModel
   class TablelessModel
     include ActiveModel::Validations
-    include ActiveModel::Conversion  
+    include ActiveModel::Conversion
     extend ActiveModel::Naming
 
     def initialize(attributes = {})
@@ -12,8 +14,8 @@ module ActiveModel
       end
     end
 
-    def persisted?  
-      false  
+    def persisted?
+      false
     end
   end
 end
