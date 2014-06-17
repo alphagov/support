@@ -1,33 +1,24 @@
-require 'test_helper'
+require 'rails_helper'
 require 'time'
 require 'json'
 require 'deduplication_worker'
 
-class DeduplicationTest < ActionDispatch::IntegrationTest
-  def setup
-    User.first
-  rescue
-    User.create!(
-      "uid" => 'dummy-user',
-      "name" => 'Ms Example',
-      "email" => 'example@example.com',
-      "permissions" => ['single_points_of_contact', 'feedex', 'api_users']
-    )
+describe "de-duplication" do
+  before do
+    login_as create(:feedex_user)
   end
 
-  test "duplicate service feedback is flagged and removed from results" do
-    # create service feedback
-
+  it "flags and removes duplicate service feedback from results" do
     Timecop.travel Time.parse("2013-01-15 12:00:00")
 
-    create_service_feedback_with(
+    create(:service_feedback,
       service_satisfaction_rating: 5,
       details: "this service is great",
       slug: "some-tx",
       url: "https://www.gov.uk/done/some-tx"
-    )    
+    )
 
-    create_service_feedback_with(
+    create(:service_feedback,
       service_satisfaction_rating: 3,
       details: "this service is meh",
       slug: "some-tx",
@@ -36,7 +27,7 @@ class DeduplicationTest < ActionDispatch::IntegrationTest
 
     Timecop.travel Time.parse("2013-01-15 12:00:01")
 
-    create_service_feedback_with(
+    create(:service_feedback,
       service_satisfaction_rating: 3,
       details: "this service is meh",
       slug: "some-tx",
@@ -45,8 +36,7 @@ class DeduplicationTest < ActionDispatch::IntegrationTest
 
     get '/anonymous_feedback?path=/done/some-tx', "", {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json'}
 
-    results = JSON.parse(response.body)
-    assert_equal 3, results.size
+    expect(json_response).to have(3).items
 
     # deduplicate
     Timecop.travel Time.parse("2013-01-16 00:30:00")
@@ -55,21 +45,11 @@ class DeduplicationTest < ActionDispatch::IntegrationTest
     # rerun query, one piece of feedback should now be suppressed
     get '/anonymous_feedback?path=/done/some-tx', "", {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json'}
 
-    results = JSON.parse(response.body)
-    assert_equal 2, results.size
-    assert_equal ["this service is great", "this service is meh"], results.map {|r| r["details"]}.sort
+    expect(json_response).to have(2).items
+    expect(json_response.map {|r| r["details"]}.sort).to eq(["this service is great", "this service is meh"])
   end
 
   def teardown
     Timecop.return
-  end
-
-  def create_service_feedback_with(options)
-    defaults = {
-      service_satisfaction_rating: 5,
-      details: "this service is great",
-      javascript_enabled: true,
-    }
-    Support::Requests::Anonymous::ServiceFeedback.create!(defaults.merge(options))
   end
 end

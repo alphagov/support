@@ -7,3 +7,4 @@ module GdsSsoHelpers
 end
 
 RSpec.configuration.include GdsSsoHelpers, type: :feature
+RSpec.configuration.include GdsSsoHelpers, type: :request
