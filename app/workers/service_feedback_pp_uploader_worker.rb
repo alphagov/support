@@ -18,7 +18,7 @@ class ServiceFeedbackPPUploaderWorker
 
   def self.run
     yesterday = Date.yesterday
-    slugs = Support::Requests::Anonymous::ServiceFeedback.transaction_slugs
+    slugs = ServiceFeedback.transaction_slugs
     slugs.each do |transaction_slug|
       perform_async(yesterday.year, yesterday.month, yesterday.day, transaction_slug)
     end
