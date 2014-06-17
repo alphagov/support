@@ -1,12 +1,12 @@
-require 'test_helper'
+require 'rails_helper'
 require 'time'
 require 'json'
 require 'gds_api/test_helpers/performance_platform/data_in'
 
-class CorporateContentProblemReportStatsTest < ActionDispatch::IntegrationTest
+describe "corporate content problem report stats" do
   include GdsApi::TestHelpers::PerformancePlatform::DataIn
 
-  test "corporate content for the previous month is pushed to the performance platform" do
+  it "is pushed to the performance platform for the previous month" do
     stub_post1 = stub_corporate_content_problem_report_count_submission([
       {
         "_id" => "201301_dft",
@@ -30,7 +30,7 @@ class CorporateContentProblemReportStatsTest < ActionDispatch::IntegrationTest
 
     Timecop.travel Time.parse("2013-01-15 12:00:00")
 
-    create_problem_report_with(
+    create(:problem_report,
       what_wrong: "this service is great",
       url: "https://www.gov.uk/abc",
       page_owner: "dft"
@@ -40,16 +40,11 @@ class CorporateContentProblemReportStatsTest < ActionDispatch::IntegrationTest
 
     ProblemReportStatsPPUploaderWorker.run
 
-    assert_requested(stub_post1)
-    assert_requested(stub_post2)
+    expect(stub_post1).to have_been_made
+    expect(stub_post2).to have_been_made
   end
 
   def teardown
     Timecop.return
-  end
-
-  def create_problem_report_with(options)
-    defaults = { javascript_enabled: true }
-    Support::Requests::Anonymous::ProblemReport.create!(defaults.merge(options))
   end
 end
