@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe GeneralRequestsController, :type => :controller do
+describe GeneralRequestsController, :type => :controller do
   def valid_general_request_params
     { "support_requests_general_request" =>
       { "requester_attributes" => valid_requester_params,

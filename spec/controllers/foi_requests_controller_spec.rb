@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe FoiRequestsController, :type => :controller do
+describe FoiRequestsController, :type => :controller do
   before do
     login_as create(:api_user)
   end

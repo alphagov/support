@@ -3,7 +3,7 @@ require 'active_model/tableless_model'
 require 'support/requests/requester'
 require 'zendesk_ticket'
 
-RSpec.describe RequestsController, :type => :controller do
+describe RequestsController, :type => :controller do
   class TestRequest < ActiveModel::TablelessModel
     include Support::Requests::WithRequester
 

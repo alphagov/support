@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe AnonymousFeedbackController, :type => :controller do
+describe AnonymousFeedbackController, :type => :controller do
   before do
     login_as create(:feedex_user)
   end

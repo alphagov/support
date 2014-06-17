@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe CreateOrChangeUserRequestsController, :type => :controller do
+describe CreateOrChangeUserRequestsController, :type => :controller do
   def valid_requested_user_params
     {
       "name"=>"subject",

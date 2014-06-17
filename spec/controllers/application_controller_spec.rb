@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ApplicationController, :type => :controller do
+describe ApplicationController, :type => :controller do
   class ControllerWhichTimesOutDuringAuthentication < ApplicationController
     def index
       raise "should never reach this point because authentication should time out"
