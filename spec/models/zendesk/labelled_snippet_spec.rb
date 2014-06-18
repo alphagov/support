@@ -1,10 +1,10 @@
 require 'spec_helper'
 require 'ostruct'
-require 'labelled_snippet'
+require 'zendesk/labelled_snippet'
 
-describe LabelledSnippet do
+describe Zendesk::LabelledSnippet do
   def snippet(opts)
-    LabelledSnippet.new(opts)
+    Zendesk::LabelledSnippet.new(opts)
   end
 
   def data(opts = {})

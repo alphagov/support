@@ -1,5 +1,5 @@
 require 'zendesk/ticket/named_contact_ticket'
-require 'labelled_snippet'
+require 'zendesk/labelled_snippet'
 
 module Zendesk
   module Ticket

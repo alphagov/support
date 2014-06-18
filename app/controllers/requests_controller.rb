@@ -1,4 +1,4 @@
-require "zendesk_tickets"
+require "zendesk/zendesk_tickets"
 require 'support/requests/requester'
 
 class RequestsController < AuthorisationController
@@ -18,7 +18,7 @@ class RequestsController < AuthorisationController
       respond_to do |format|
         format.html { redirect_to acknowledge_path }
         format.json { render nothing: true, status: 201 }
-      end      
+      end
     else
       respond_to do |format|
         format.html { render :new, status: 400 }

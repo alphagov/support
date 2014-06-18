@@ -1,12 +1,12 @@
 require 'spec_helper'
-require 'zendesk_ticket'
+require 'zendesk/zendesk_ticket'
 require 'ostruct'
 require 'date'
 
-describe ZendeskTicket do
+describe Zendesk::ZendeskTicket do
   def new_ticket(attributes)
     attributes ||= { requester: OpenStruct.new(email: "ab@c.com") }
-    ZendeskTicket.new(OpenStruct.new(attributes))
+    Zendesk::ZendeskTicket.new(OpenStruct.new(attributes))
   end
 
   def with_requester(attributes)

@@ -1,5 +1,5 @@
-require 'zendesk_ticket'
-require 'labelled_snippet'
+require 'zendesk/zendesk_ticket'
+require 'zendesk/labelled_snippet'
 
 module Zendesk
   module Ticket
@@ -14,7 +14,7 @@ module Zendesk
 
       protected
       def comment_snippets
-        [ 
+        [
           LabelledSnippet.new(on: @request, field: :user_name),
           LabelledSnippet.new(on: @request, field: :user_email),
           LabelledSnippet.new(on: @request, field: :reason_for_removal)
