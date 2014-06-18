@@ -6,15 +6,13 @@ end
 
 Given /^the following problem reports have been left by members of the public:$/ do |table|
   table.hashes.each do |problem_report_details|
-    problem_report = Support::Requests::Anonymous::ProblemReport.create!(
+    problem_report = FactoryGirl.create(:problem_report,
       url: problem_report_details["URL"],
       referrer: problem_report_details["User came from"],
       what_doing: problem_report_details["What user was doing"],
       what_wrong: problem_report_details["What went wrong"],
-      javascript_enabled: true
+      created_at: Date.strptime(problem_report_details["Creation date"], '%Y-%m-%d')
     )
-    problem_report.created_at = Date.strptime(problem_report_details["Creation date"], '%Y-%m-%d')
-    problem_report.save
   end
 end
 
