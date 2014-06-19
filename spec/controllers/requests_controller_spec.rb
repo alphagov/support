@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'active_model/tableless_model'
 require 'support/requests/requester'
-require 'zendesk_ticket'
+require 'zendesk/zendesk_ticket'
 
 describe RequestsController, :type => :controller do
   class TestRequest < ActiveModel::TablelessModel
@@ -11,7 +11,7 @@ describe RequestsController, :type => :controller do
     validates_presence_of :a
   end
 
-  class TestZendeskTicket < ZendeskTicket
+  class TestZendeskTicket < Zendesk::ZendeskTicket
     def subject
       "Test request"
     end

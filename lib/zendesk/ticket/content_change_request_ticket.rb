@@ -1,5 +1,5 @@
-require 'zendesk_ticket'
-require 'labelled_snippet'
+require 'zendesk/zendesk_ticket'
+require 'zendesk/labelled_snippet'
 
 module Zendesk
   module Ticket
