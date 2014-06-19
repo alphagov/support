@@ -49,7 +49,7 @@ describe "de-duplication" do
     expect(json_response.map {|r| r["details"]}.sort).to eq(["this service is great", "this service is meh"])
   end
 
-  def teardown
+  after do
     Timecop.return
   end
 end
