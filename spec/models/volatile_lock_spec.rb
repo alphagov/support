@@ -15,10 +15,10 @@ describe VolatileLock do
   end
 
   it "ensures only one lock is obtained per key across hosts" do
-    Socket.stubs(:gethostname).returns('pluto')
+    allow(Socket).to receive(:gethostname).and_return('pluto')
     assert volatile_lock('foo').obtained?
 
-    Socket.stubs(:gethostname).returns('mars')
+    allow(Socket).to receive(:gethostname).and_return('mars')
     refute volatile_lock('foo').obtained?
   end
 
