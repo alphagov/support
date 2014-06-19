@@ -22,9 +22,9 @@ To start the background workers:
 
     rake jobs:work
 
-### Tests
+### Tests/specs
 
-To run unit tests, execute
+To run the specs, execute:
 
-    govuk_setenv support bundle exec rake test
+    bundle exec rake
 
