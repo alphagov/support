@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 describe ApplicationController, :type => :controller do
-  class ControllerWhichTimesOutDuringAuthentication < ApplicationController
+  # this controller is set up so that the auth always times out
+  controller do
     def index
       raise "should never reach this point because authentication should time out"
     end
@@ -14,18 +15,6 @@ describe ApplicationController, :type => :controller do
     def default_timeout_in_seconds
       0.5
     end
-  end
-
-  before do
-    @controller = ControllerWhichTimesOutDuringAuthentication.new
-
-    Rails.application.routes.draw do
-      match 'index' => "controller_which_times_out_during_authentication#index"
-    end
-  end
-
-  after do
-    Rails.application.reload_routes!
   end
 
   it "is unavailable if authentication times out" do

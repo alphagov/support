@@ -74,7 +74,7 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
 
       allow_any_instance_of(ZendeskTickets).to receive(:raise_ticket)
 
-      expect(@controller).to receive(:notify_airbrake)
+      expect(controller).to receive(:notify_airbrake)
         .with(kind_of(ZendeskAPI::Error::ClientError))
 
       post :create, valid_create_user_request_params
