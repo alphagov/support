@@ -25,7 +25,7 @@ describe RequestsController, :type => :controller do
     end
   end
 
-  class TestRequestsController < RequestsController
+  controller do
     def new_request
       TestRequest.new(requester: Support::Requests::Requester.new)
     end
@@ -51,20 +51,13 @@ describe RequestsController, :type => :controller do
   def prevent_implicit_rendering
     # we're not testing view rendering here,
     # so prevent rendering by stubbing out default_render
-    allow(@controller).to receive(:default_render)
+    allow(controller).to receive(:default_render)
   end
 
   before do
     login_as user
     zendesk_has_no_user_with_email(user.email)
 
-    Rails.application.routes.draw do
-      match 'new' => "test_requests#new"
-      match 'create' => "test_requests#create"
-      match "acknowledge" => "support#acknowledge"
-    end
-
-    @controller = TestRequestsController.new
     prevent_implicit_rendering
   end
 
@@ -78,7 +71,7 @@ describe RequestsController, :type => :controller do
 
     it "rejects form submissions with invalid parameters" do
       params = valid_params_for_test_request.tap {|p| p["test_request"].merge!("a" => "")}
-      expect(@controller).to receive(:render).with(:new, hash_including(status: 400))
+      expect(controller).to receive(:render).with(:new, hash_including(status: 400))
 
       post :create, params
     end
@@ -119,22 +112,18 @@ describe RequestsController, :type => :controller do
     let(:user) { create(:user_who_cannot_access_anything) }
 
     it "rejects an text/html request for a new form" do
-      expect(@controller).to receive(:render).with("support/forbidden", hash_including(status: 403))
+      expect(controller).to receive(:render).with("support/forbidden", hash_including(status: 403))
       get :new
     end
 
     it "rejects a json request for a new form" do
-      expect(@controller).to receive(:render).with(json: {"error" => "You have not been granted permission to make these requests."}, status: 403)
+      expect(controller).to receive(:render).with(json: {"error" => "You have not been granted permission to make these requests."}, status: 403)
       get :new, format: :json
     end
 
     it "rejects a form submission" do
-      expect(@controller).to receive(:render).with("support/forbidden", hash_including(status: 403))
+      expect(controller).to receive(:render).with("support/forbidden", hash_including(status: 403))
       post :create, valid_params_for_test_request
     end
-  end
-
-  after do
-    Rails.application.reload_routes!
   end
 end
