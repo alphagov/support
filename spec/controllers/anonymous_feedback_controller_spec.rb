@@ -46,13 +46,13 @@ describe AnonymousFeedbackController, :type => :controller do
     end
 
     context "JSON" do
+      render_views
+
       it "returns the results for problem" do
         get :index, { "path" => "/tax-disc", "format" => "json" }
 
         expect(response).to have_http_status(:success)
-
         expect(json_response).to have(1).item
-
         expect(json_response.first).to include(
           "what_wrong" => "A",
           "what_doing" => "B",
@@ -81,13 +81,13 @@ describe AnonymousFeedbackController, :type => :controller do
     end
 
     context "JSON" do
+      render_views
+
       it "returns the results" do
         get :index, { "path" => "/done/apply-carers-allowance", "format" => "json" }
 
         expect(response).to have_http_status(:success)
-
         expect(json_response).to have(1).item
-
         expect(json_response.first).to include(
           "slug" => "apply-carers-allowance",
           "details" => "It's great",
