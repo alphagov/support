@@ -28,7 +28,8 @@ describe AnonymousFeedbackController, :type => :controller do
         what_wrong: "A",
         what_doing: "B",
         url: "https://www.gov.uk/tax-disc",
-        referrer: "https://www.gov.uk/browse"
+        referrer: "https://www.gov.uk/browse",
+        user_agent: "Safari",
       )
     end
 
@@ -58,7 +59,8 @@ describe AnonymousFeedbackController, :type => :controller do
           "what_wrong" => "A",
           "what_doing" => "B",
           "url" => "https://www.gov.uk/tax-disc",
-          "referrer" => "https://www.gov.uk/browse"
+          "referrer" => "https://www.gov.uk/browse",
+          "user_agent" => "Safari",
         )
       end
     end
@@ -69,7 +71,8 @@ describe AnonymousFeedbackController, :type => :controller do
       create(:long_form_contact,
         url: "https://www.gov.uk/tax-disc",
         referrer: "https://www.gov.uk/contact/govuk",
-        details: "Abc def"
+        details: "Abc def",
+        user_agent: "Safari",
       )
     end
 
@@ -92,7 +95,8 @@ describe AnonymousFeedbackController, :type => :controller do
           "type" => "long-form-contact",
           "details" => "Abc def",
           "url" => "https://www.gov.uk/tax-disc",
-          "referrer" => "https://www.gov.uk/contact/govuk"
+          "referrer" => "https://www.gov.uk/contact/govuk",
+          "user_agent" => "Safari",
         )
       end
     end
@@ -104,7 +108,8 @@ describe AnonymousFeedbackController, :type => :controller do
         slug: "apply-carers-allowance",
         url: "https://www.gov.uk/done/apply-carers-allowance",
         details: "It's great",
-        service_satisfaction_rating: 5
+        service_satisfaction_rating: 5,
+        user_agent: "Safari",
       )
     end
 
@@ -128,7 +133,8 @@ describe AnonymousFeedbackController, :type => :controller do
           "slug" => "apply-carers-allowance",
           "details" => "It's great",
           "url" => "https://www.gov.uk/done/apply-carers-allowance",
-          "service_satisfaction_rating" => 5
+          "service_satisfaction_rating" => 5,
+          "user_agent" => "Safari",
         )
       end
     end
