@@ -64,6 +64,40 @@ describe AnonymousFeedbackController, :type => :controller do
     end
   end
 
+  context "valid input, long-form feedback" do
+    before do
+      create(:long_form_contact,
+        url: "https://www.gov.uk/tax-disc",
+        referrer: "https://www.gov.uk/contact/govuk",
+        details: "Abc def"
+      )
+    end
+
+    context "HTML representation" do
+      it "renders the results for an HTML request" do
+        get :index, path: "/tax-disc"
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    context "JSON representation" do
+      render_views
+
+      it "returns the results for problem" do
+        get :index, { "path" => "/tax-disc", "format" => "json" }
+
+        expect(response).to have_http_status(:success)
+        expect(json_response).to have(1).item
+        expect(json_response.first).to include(
+          "type" => "long-form-contact",
+          "details" => "Abc def",
+          "url" => "https://www.gov.uk/tax-disc",
+          "referrer" => "https://www.gov.uk/contact/govuk"
+        )
+      end
+    end
+  end
+
   context "valid input, service feedback" do
     before do
       create(:service_feedback,
@@ -81,7 +115,7 @@ describe AnonymousFeedbackController, :type => :controller do
       end
     end
 
-    context "JSON" do
+    context "JSON representation" do
       render_views
 
       it "returns the results" do
