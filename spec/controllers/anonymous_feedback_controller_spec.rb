@@ -54,6 +54,7 @@ describe AnonymousFeedbackController, :type => :controller do
         expect(response).to have_http_status(:success)
         expect(json_response).to have(1).item
         expect(json_response.first).to include(
+          "type" => "problem-report",
           "what_wrong" => "A",
           "what_doing" => "B",
           "url" => "https://www.gov.uk/tax-disc",
@@ -89,6 +90,7 @@ describe AnonymousFeedbackController, :type => :controller do
         expect(response).to have_http_status(:success)
         expect(json_response).to have(1).item
         expect(json_response.first).to include(
+          "type" => "service-feedback",
           "slug" => "apply-carers-allowance",
           "details" => "It's great",
           "url" => "https://www.gov.uk/done/apply-carers-allowance",
