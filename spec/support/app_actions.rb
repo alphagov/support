@@ -1,4 +1,4 @@
-module FeedexHelpers
+module AppActions
   def explore_anonymous_feedback_with(options)
     visit "/"
     click_on "Feedback explorer"
@@ -15,6 +15,11 @@ module FeedexHelpers
     first_row, results = all_cells[0], all_cells[1..-1]
     results.collect { |row| Hash[first_row.zip(row)] }
   end
+
+  def user_submits_the_request_successfully
+    click_on "Submit"
+    expect(page).to have_content("You should receive a confirmation email shortly.")
+  end
 end
 
-RSpec.configure { |c| c.include FeedexHelpers }
+RSpec.configure { |c| c.include AppActions }
