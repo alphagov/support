@@ -35,6 +35,7 @@ if ENV['API_DEV']
 else
   gem "gds-api-adapters", "10.8.0"
 end
+gem 'jbuilder', '2.1.1'
 
 group :development do
   gem "quiet_assets", "1.0.2"
