@@ -1,28 +1,12 @@
 When /^the user fills out the time constraints$/ do
   fill_in "MUST be published by", :with => @request_details["Needed by date"]
   fill_in "MUST NOT be published BEFORE", :with => @request_details["Not before date"]
-  fill_in "Reason for the above dates", :with => @request_details["Reason"]  
+  fill_in "Reason for the above dates", :with => @request_details["Reason"]
 end
 
 When /^the user submits the request successfully$/ do
   click_on "Submit"
   assert page.has_content?("You should receive a confirmation email shortly."), page.html
-end
-
-When /^the user submits the following general request:$/ do |request_details_table|
-  @request_details = request_details_table.hashes.first
-
-  visit '/'
-
-  click_on "General"
-
-  assert page.has_content?("Report a problem")
-
-  fill_in "Title of request", with: @request_details["Title"] if @request_details["Title"]
-  fill_in "Details", :with => @request_details['Details']
-  fill_in "URL (if applicable)", :with => @request_details['URL']
-
-  step "the user submits the request successfully"
 end
 
 When /^the user submits the following new feature request:$/ do |request_details_table|
@@ -77,7 +61,7 @@ When /^the user submits the following request to create or change users:$/ do |r
   click_on "Create or change user"
 
   assert page.has_content?("Create or change a user account")
-  
+
   within "#action" do
     choose @request_details["Action"]
   end
@@ -201,6 +185,6 @@ When /^the user submits the following technical fault report:$/ do |request_deta
 
   fill_in "What should have happened?",
     with: @request_details["What should have happened"]
-  
+
   step "the user submits the request successfully"
 end
