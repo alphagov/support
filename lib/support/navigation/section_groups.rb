@@ -12,7 +12,7 @@ module Support
       def initialize(current_user = nil)
         @current_user = current_user
         @groups = [
-          SectionGroup.new("Content request",sections_for(ContentChangeRequest, NewFeatureRequest, UnpublishContentRequest)),
+          SectionGroup.new("Content request",sections_for(ContentAdviceRequest, ContentChangeRequest, NewFeatureRequest, UnpublishContentRequest)),
           SectionGroup.new("User access", sections_for(CreateOrChangeUserRequest, RemoveUserRequest)),
           SectionGroup.new("Campaigns", sections_for(CampaignRequest)),
           SectionGroup.new("Other requests", sections_for(AnalyticsRequest, GeneralRequest, TechnicalFaultReport)),
