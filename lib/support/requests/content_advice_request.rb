@@ -3,13 +3,16 @@ require 'support/requests/request'
 module Support
   module Requests
     class ContentAdviceRequest < Request
-      attr_accessor :title, :nature_of_request
+      attr_accessor :title, :nature_of_request, :nature_of_request_details
 
       validates_presence_of :nature_of_request
       validates :nature_of_request, inclusion: {
         in: %w(initial_guidance formal_response other),
         message: "%{value} is not valid option"
       }
+
+      validates_presence_of :nature_of_request_details,
+        if: Proc.new { |r| r.nature_of_request == 'other' }
 
       def nature_of_request_options
         [
