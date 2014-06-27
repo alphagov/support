@@ -5,7 +5,8 @@ module Support
   module Requests
     class ContentAdviceRequest < Request
       attr_accessor :title, :nature_of_request, :nature_of_request_details,
-                    :details, :urls, :response_needed_by_date, :reason_for_deadline
+                    :details, :urls, :response_needed_by_date, :reason_for_deadline,
+                    :contact_number
 
       validates_presence_of :nature_of_request
       validates_presence_of :details

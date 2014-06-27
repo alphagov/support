@@ -16,6 +16,7 @@ module Support
 
       it { should validate_presence_of(:nature_of_request) }
       it { should allow_value("xxx").for(:reason_for_deadline) }
+      it { should allow_value("xxx").for(:contact_number) }
 
       its(:nature_of_request_options) { is_expected.to have_exactly(3).items }
 

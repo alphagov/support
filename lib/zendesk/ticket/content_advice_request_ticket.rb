@@ -27,6 +27,7 @@ module Zendesk
           request_label(field: :response_needed_by_date,
                         label: "Date needed by"),
           request_label(field: :reason_for_deadline),
+          request_label(field: :contact_number),
         ]
       end
     end
