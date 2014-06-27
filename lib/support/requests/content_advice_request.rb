@@ -3,7 +3,25 @@ require 'support/requests/request'
 module Support
   module Requests
     class ContentAdviceRequest < Request
-      attr_accessor :title
+      attr_accessor :title, :nature_of_request
+
+      validates_presence_of :nature_of_request
+      validates :nature_of_request, inclusion: {
+        in: %w(initial_guidance formal_response other),
+        message: "%{value} is not valid option"
+      }
+
+      def nature_of_request_options
+        [
+          ["Initial guidance from GOV.UK on content you are working on", "initial_guidance"],
+          ["A formal response that you would like to pass onto other teams in your department or organisation", "formal_response"],
+          ["Other - please give information", "other"],
+        ]
+      end
+
+      def formatted_nature_of_request
+        Hash[nature_of_request_options].key(nature_of_request)
+      end
 
       def self.label
         "Content advice"

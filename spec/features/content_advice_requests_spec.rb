@@ -16,9 +16,9 @@ feature "Request for content advice" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Which format - Advice on content",
       "tags" => [ "govt_form", "dept_content_advice" ],
-#       "comment" => { "body" =>
-# "[Nature of the request]
-# Initial guidance from GOV.UK
+      "comment" => { "body" =>
+"[Nature of the request]
+Initial guidance from GOV.UK on content you are working on"}
 #
 # [Details]
 # I need help to choose a format, here's my content:
@@ -61,7 +61,7 @@ feature "Request for content advice" do
     expect(page).to have_content("Ask for advice and guidance on Departments and Policy content")
 
     fill_in "Title of request", with: details[:title]
-    # choose details[:nature_of_request]
+    choose details[:nature_of_request]
     # fill_in "Details", with: details[:details]
     # fill_in "Relevant URLs (if applicable)", with: details[:urls]
     #

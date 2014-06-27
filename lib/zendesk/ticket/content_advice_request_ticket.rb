@@ -19,7 +19,8 @@ module Zendesk
       protected
       def comment_snippets
         [
-          # LabelledSnippet.new(on: @request, field: :url),
+          LabelledSnippet.new(on: @request, field: :formatted_nature_of_request,
+                                            label: "Nature of the request"),
           # LabelledSnippet.new(on: @request, field: :user_agent),
           # LabelledSnippet.new(on: @request, field: :details)
         ]
