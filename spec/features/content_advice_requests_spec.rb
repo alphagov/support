@@ -21,11 +21,10 @@ feature "Request for content advice" do
 Initial guidance from GOV.UK on content you are working on
 
 [Details]
-I need help to choose a format, here's my content..."}
-#
-# [Relevant URLs]
-# https://www.gov.uk/x
-# https://www.gov.uk/y
+I need help to choose a format, here's my content...
+
+[Relevant URLs]
+https://www.gov.uk/x, https://www.gov.uk/y"}
 #
 # [Date needed by]
 # 12th January 2014
@@ -41,7 +40,7 @@ I need help to choose a format, here's my content..."}
       title: "Which format",
       nature_of_request: "Initial guidance from GOV.UK",
       details: "I need help to choose a format, here's my content...",
-      urls: "https://www.gov.uk/x\nhttps://www.gov.uk/y",
+      urls: "https://www.gov.uk/x, https://www.gov.uk/y",
       needed_by: "2014-01-12",
       reason_for_deadline: "Ministerial announcement Z",
       contact_number: "0121 111111",
@@ -60,7 +59,7 @@ I need help to choose a format, here's my content..."}
     fill_in "Title of request", with: details[:title]
     choose details[:nature_of_request]
     fill_in "Please explain what you would like help with", with: details[:details]
-    # fill_in "Relevant URLs (if applicable)", with: details[:urls]
+    fill_in "Relevant URLs (if applicable)", with: details[:urls]
     #
     # fill_in "Is there a date you need to have a response by?", with: details[:needed_by]
     # fill_in "Reason for deadline:", with: details[:reason_for_deadline]

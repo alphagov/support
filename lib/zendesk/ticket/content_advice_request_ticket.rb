@@ -22,7 +22,8 @@ module Zendesk
           request_label(field: :formatted_nature_of_request,
                         label: "Nature of the request"),
           request_label(field: :details),
-          # LabelledSnippet.new(on: @request, field: :details)
+          request_label(field: :urls,
+                        label: "Relevant URLs")
         ]
       end
     end

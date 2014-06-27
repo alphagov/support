@@ -10,4 +10,9 @@
               input_html: { class: "form-md-6", rows: 6, cols: 50, :"aria-required" => true } %>
 
   <%= render partial: "support/attachment_instructions" %>
+
+  <%= f.input :urls, as: :text,
+              label: "Relevant URLs (if applicable)",
+              input_html: { class: "form-md-6", rows: 6, cols: 50 } %>
+
 <% end %>

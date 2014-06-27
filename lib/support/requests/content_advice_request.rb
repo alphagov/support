@@ -3,7 +3,7 @@ require 'support/requests/request'
 module Support
   module Requests
     class ContentAdviceRequest < Request
-      attr_accessor :title, :nature_of_request, :nature_of_request_details, :details
+      attr_accessor :title, :nature_of_request, :nature_of_request_details, :details, :urls
 
       validates_presence_of :nature_of_request
       validates_presence_of :details

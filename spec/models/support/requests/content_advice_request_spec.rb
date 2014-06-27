@@ -8,6 +8,7 @@ module Support
       it { should validate_presence_of(:details) }
       it { should allow_value("xxx").for(:title) }
       it { should allow_value("xxx").for(:nature_of_request_details) }
+      it { should allow_value("xxx").for(:urls) }
 
       it { should validate_presence_of(:nature_of_request) }
 
