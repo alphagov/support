@@ -18,12 +18,10 @@ feature "Request for content advice" do
       "tags" => [ "govt_form", "dept_content_advice" ],
       "comment" => { "body" =>
 "[Nature of the request]
-Initial guidance from GOV.UK on content you are working on"}
-#
-# [Details]
-# I need help to choose a format, here's my content:
-#
-# lorem ipsum...
+Initial guidance from GOV.UK on content you are working on
+
+[Details]
+I need help to choose a format, here's my content..."}
 #
 # [Relevant URLs]
 # https://www.gov.uk/x
@@ -42,8 +40,7 @@ Initial guidance from GOV.UK on content you are working on"}
     user_requests_content_advice(
       title: "Which format",
       nature_of_request: "Initial guidance from GOV.UK",
-      details: "I need help to choose a format, here's my content:\n\n" +
-        "lorem ipsum...",
+      details: "I need help to choose a format, here's my content...",
       urls: "https://www.gov.uk/x\nhttps://www.gov.uk/y",
       needed_by: "2014-01-12",
       reason_for_deadline: "Ministerial announcement Z",
@@ -62,7 +59,7 @@ Initial guidance from GOV.UK on content you are working on"}
 
     fill_in "Title of request", with: details[:title]
     choose details[:nature_of_request]
-    # fill_in "Details", with: details[:details]
+    fill_in "Please explain what you would like help with", with: details[:details]
     # fill_in "Relevant URLs (if applicable)", with: details[:urls]
     #
     # fill_in "Is there a date you need to have a response by?", with: details[:needed_by]

@@ -3,9 +3,10 @@ require 'support/requests/request'
 module Support
   module Requests
     class ContentAdviceRequest < Request
-      attr_accessor :title, :nature_of_request, :nature_of_request_details
+      attr_accessor :title, :nature_of_request, :nature_of_request_details, :details
 
       validates_presence_of :nature_of_request
+      validates_presence_of :details
       validates :nature_of_request, inclusion: {
         in: %w(initial_guidance formal_response other),
         message: "%{value} is not valid option"

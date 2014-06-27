@@ -3,3 +3,9 @@
 <%= f.input :nature_of_request, as: :radio, required: true, label: "What is the nature of this request?", collection: f.object.nature_of_request_options, input_html: { :"aria-required" => true } %>
 
 <%= f.input :nature_of_request_details, label: false, input_html: { class: "form-md-6" } %>
+
+<%= f.inputs name: "Details of your request" do %>
+  <%= f.input :details, as: :text, required: true,
+              label: "Please explain what you would like help with",
+              input_html: { class: "form-md-6", rows: 6, cols: 50, :"aria-required" => true } %>
+<% end %>
