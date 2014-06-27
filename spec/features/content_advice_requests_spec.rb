@@ -24,11 +24,11 @@ Initial guidance from GOV.UK on content you are working on
 I need help to choose a format, here's my content...
 
 [Relevant URLs]
-https://www.gov.uk/x, https://www.gov.uk/y"}
-#
-# [Date needed by]
-# 12th January 2014
-#
+https://www.gov.uk/x, https://www.gov.uk/y
+
+[Date needed by]
+12-01-2020"}
+
 # [Reason for deadline]
 # Ministerial announcement Z
 #
@@ -41,7 +41,7 @@ https://www.gov.uk/x, https://www.gov.uk/y"}
       nature_of_request: "Initial guidance from GOV.UK",
       details: "I need help to choose a format, here's my content...",
       urls: "https://www.gov.uk/x, https://www.gov.uk/y",
-      needed_by: "2014-01-12",
+      needed_by: "12-01-2020",
       reason_for_deadline: "Ministerial announcement Z",
       contact_number: "0121 111111",
     )
@@ -60,8 +60,8 @@ https://www.gov.uk/x, https://www.gov.uk/y"}
     choose details[:nature_of_request]
     fill_in "Please explain what you would like help with", with: details[:details]
     fill_in "Relevant URLs (if applicable)", with: details[:urls]
-    #
-    # fill_in "Is there a date you need to have a response by?", with: details[:needed_by]
+
+    fill_in "Is there a date you need to have a response by?", with: details[:needed_by]
     # fill_in "Reason for deadline:", with: details[:reason_for_deadline]
     # fill_in "Contact telephone number (in case we need to call you to discuss the content)",
     #   with: details[:contact_number]

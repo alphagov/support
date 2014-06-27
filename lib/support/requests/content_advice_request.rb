@@ -1,9 +1,11 @@
 require 'support/requests/request'
+require 'active_support/core_ext'
 
 module Support
   module Requests
     class ContentAdviceRequest < Request
-      attr_accessor :title, :nature_of_request, :nature_of_request_details, :details, :urls
+      attr_accessor :title, :nature_of_request, :nature_of_request_details,
+                    :details, :urls, :response_needed_by_date
 
       validates_presence_of :nature_of_request
       validates_presence_of :details
@@ -14,6 +16,9 @@ module Support
 
       validates_presence_of :nature_of_request_details,
         if: Proc.new { |r| r.nature_of_request == 'other' }
+
+      validates_date :response_needed_by_date,
+        allow_nil: true, allow_blank: true, on_or_after: :today
 
       def nature_of_request_options
         [

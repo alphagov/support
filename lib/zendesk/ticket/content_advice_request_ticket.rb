@@ -23,7 +23,9 @@ module Zendesk
                         label: "Nature of the request"),
           request_label(field: :details),
           request_label(field: :urls,
-                        label: "Relevant URLs")
+                        label: "Relevant URLs"),
+          request_label(field: :response_needed_by_date,
+                        label: "Date needed by"),
         ]
       end
     end

@@ -10,6 +10,10 @@ module Support
       it { should allow_value("xxx").for(:nature_of_request_details) }
       it { should allow_value("xxx").for(:urls) }
 
+      it { should allow_value(nil).for(:response_needed_by_date) }
+      it { should allow_value(as_str(Date.today + 1)).for(:response_needed_by_date) }
+      it { should_not allow_value("x").for(:response_needed_by_date) }
+
       it { should validate_presence_of(:nature_of_request) }
 
       its(:nature_of_request_options) { is_expected.to have_exactly(3).items }
@@ -18,6 +22,10 @@ module Support
         subject { ContentAdviceRequest.new(nature_of_request: 'other') }
 
         it { should validate_presence_of(:nature_of_request_details) }
+      end
+
+      def as_str(date)
+        date.strftime("%d-%m-%Y")
       end
     end
   end
