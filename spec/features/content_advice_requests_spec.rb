@@ -27,10 +27,10 @@ I need help to choose a format, here's my content...
 https://www.gov.uk/x, https://www.gov.uk/y
 
 [Date needed by]
-12-01-2020"}
+12-01-2020
 
-# [Reason for deadline]
-# Ministerial announcement Z
+[Reason for deadline]
+Ministerial announcement Z"}
 #
 # [Contact number]
 # 0121 111111"}
@@ -62,7 +62,7 @@ https://www.gov.uk/x, https://www.gov.uk/y
     fill_in "Relevant URLs (if applicable)", with: details[:urls]
 
     fill_in "Is there a date you need to have a response by?", with: details[:needed_by]
-    # fill_in "Reason for deadline:", with: details[:reason_for_deadline]
+    fill_in "Reason for deadline", with: details[:reason_for_deadline]
     # fill_in "Contact telephone number (in case we need to call you to discuss the content)",
     #   with: details[:contact_number]
 

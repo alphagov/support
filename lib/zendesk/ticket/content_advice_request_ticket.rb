@@ -26,6 +26,7 @@ module Zendesk
                         label: "Relevant URLs"),
           request_label(field: :response_needed_by_date,
                         label: "Date needed by"),
+          request_label(field: :reason_for_deadline),
         ]
       end
     end
