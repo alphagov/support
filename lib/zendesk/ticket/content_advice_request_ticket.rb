@@ -5,11 +5,13 @@ module Zendesk
   module Ticket
     class ContentAdviceRequestTicket < ZendeskTicket
       def subject
-        if (@request.title.nil? or @request.title.empty?)
-          "Advice on content"
-        else
-          "#{@request.title} - Advice on content"
-        end
+        deadline_prefix = (deadline_date ? "Needed by #{deadline_date}: " : "")
+        title_text = if (@request.title.nil? or @request.title.empty?)
+                       "Advice on content"
+                     else
+                       "#{@request.title} - Advice on content"
+                     end
+        deadline_prefix + title_text
       end
 
       def tags
@@ -29,6 +31,12 @@ module Zendesk
           request_label(field: :reason_for_deadline),
           request_label(field: :contact_number),
         ]
+      end
+
+      def deadline_date
+        if @request.response_needed_by_date && !@request.response_needed_by_date.empty?
+          @request.response_needed_by_date[0..4]
+        end
       end
     end
   end
