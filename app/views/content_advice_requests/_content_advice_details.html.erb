@@ -9,7 +9,9 @@
               label: "Please explain what you would like help with",
               input_html: { class: "form-md-6", rows: 6, cols: 50, :"aria-required" => true } %>
 
-  <%= render partial: "support/attachment_instructions" %>
+  <div class="alert alert-info alert-block">
+    <p>If you have relevant supporting documents, please send them as attachments in reply to the acknowledgement email you will receive shortly.</p>
+  </div>
 
   <%= f.input :urls, as: :text,
               label: "Relevant URLs (if applicable)",
