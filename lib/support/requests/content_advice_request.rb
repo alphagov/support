@@ -12,7 +12,7 @@ module Support
       validates_presence_of :details
       validates :nature_of_request, inclusion: {
         in: %w(initial_guidance formal_response other),
-        message: "%{value} is not valid option"
+        message: "%{value} is not a valid option"
       }
 
       validates_presence_of :nature_of_request_details,
