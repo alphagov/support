@@ -35,7 +35,7 @@ module Zendesk
 
       def deadline_date
         if @request.response_needed_by_date && !@request.response_needed_by_date.empty?
-          @request.response_needed_by_date[0..4]
+          Date.parse(@request.response_needed_by_date).strftime("%-d %b")
         end
       end
     end

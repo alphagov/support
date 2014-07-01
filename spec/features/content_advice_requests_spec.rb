@@ -14,7 +14,7 @@ feature "Request for content advice" do
 
   scenario "successful request" do
     request = expect_zendesk_to_receive_ticket(
-      "subject" => "Needed by 12-01: Which format - Advice on content",
+      "subject" => "Needed by 12 Jan: Which format - Advice on content",
       "tags" => [ "govt_form", "dept_content_advice" ],
       "comment" => { "body" =>
 "[Nature of the request]
