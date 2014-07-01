@@ -1,4 +1,5 @@
 require 'support/requests/analytics_request'
+require 'support/requests/content_advice_request'
 require 'support/requests/content_change_request'
 require 'support/requests/new_feature_request'
 require 'support/requests/create_or_change_user_request'

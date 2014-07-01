@@ -3,7 +3,7 @@ require 'active_model/tableless_model'
 module Support
   module GDS
     class NeededReport < ActiveModel::TablelessModel
-      attr_accessor :reporting_period_start, 
+      attr_accessor :reporting_period_start,
                     :reporting_period_end,
                     :pages_or_sections,
                     :non_standard_requirements,
@@ -15,14 +15,14 @@ module Support
                             :pages_or_sections,
                             :frequency
 
-      validates :frequency, inclusion: { 
+      validates :frequency, inclusion: {
           in: %w(one-off weekly monthly),
-          message: "%{value} is not valid option"
+          message: "%{value} is not a valid option"
         }
 
-      validates :format, inclusion: { 
+      validates :format, inclusion: {
           in: %w(pdf csv),
-          message: "%{value} is not valid option"
+          message: "%{value} is not a valid option"
         }, allow_blank: true
 
       def frequency_options

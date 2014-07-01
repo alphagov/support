@@ -8,6 +8,7 @@ Feature: Request permissions
     | Role                   | Content requesters | Campaign requesters | Single points of contact |
     | Analytics              | Y                  | Y                   | Y                        |
     | Campaign               | N                  | Y                   | Y                        |
+    | Content advice         | Y                  | Y                   | Y                        |
     | Content change         | Y                  | N                   | Y                        |
     | Unpublish content      | Y                  | Y                   | Y                        |
     | Create or change user  | N                  | N                   | Y                        |
@@ -26,6 +27,7 @@ Feature: Request permissions
     | Role                   | User managers | Anyone | API users |
     | Analytics              | Y             | Y      | Y         |
     | Campaign               | N             | N      | N         |
+    | Content advice         | Y             | Y      | Y         |
     | Content change         | N             | N      | N         |
     | Unpublish content      | Y             | Y      | Y         |
     | Create or change user  | Y             | N      | N         |
