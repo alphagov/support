@@ -25,7 +25,7 @@
 <%= f.inputs name: "Time constraints" do %>
   <%= f.input :response_needed_by_date,
               label: "Is there a date you need to have a response by?",
-              input_html: { class: "form-md-2", :"calendar-enabled" => true, :placeholder => "dd-mm-YYYY", :value => f.object.response_needed_by_date } %>
+              input_html: { class: "form-md-2", :"calendar-enabled" => true, :placeholder => "dd-mm-yyyy", :value => f.object.response_needed_by_date } %>
 
   <%= f.input :reason_for_deadline, label: "Reason for deadline", input_html: { class: "form-md-6" } %>
 <% end %>

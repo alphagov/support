@@ -4,7 +4,7 @@
 
     <%= r.input :erg_reference_number, label: "ERG reference number", input_html: {:class => "form-md-6"} %>
 
-    <%= r.input :start_date, label: "Start date", required: false, input_html: { class: "form-md-2", :"calendar-enabled" => true, :placeholder => "dd-mm-YYYY", :value => r.object.start_date} %>
+    <%= r.input :start_date, label: "Start date", required: false, input_html: { class: "form-md-2", :"calendar-enabled" => true, :placeholder => "dd-mm-yyyy", :value => r.object.start_date} %>
     <%= r.input :description, as: :text, label: "Campaign description", required: true, input_html: {:class => "form-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
 
     <%= r.input :affiliated_group_or_company, label: "Group or company affiliated with this campaign", required: false, input_html: { class: "form-md-6" } %>
