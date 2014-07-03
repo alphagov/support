@@ -41,14 +41,6 @@ module Support
           expect(contact(what_wrong: "my NI number is QQ 12 34 56 A thanks").personal_information_status).to eq("suspected")
         end
 
-        it "validates the personal_information_status field" do
-          expect(new_contact(personal_information_status: nil)).to be_valid
-          expect(new_contact(personal_information_status: "suspected")).to be_valid
-          expect(new_contact(personal_information_status: "absent")).to be_valid
-
-          expect(new_contact(personal_information_status: "abcde")).to_not be_valid
-        end
-
         it "stores the relative path of the page from which the feedback was lodged" do
           contact = new_contact(url: "https://www.gov.uk/vat-rates")
           contact.save!
