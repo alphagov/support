@@ -1,14 +1,12 @@
 require 'support/requests/anonymous/anonymous_contact'
+require 'support/requests/anonymous/service_feedback_validations'
 
 module Support
   module Requests
     module Anonymous
       class ServiceFeedback < AnonymousContact
+        include ServiceFeedbackValidations
         attr_accessible :details, :slug, :service_satisfaction_rating
-
-        validates_presence_of :slug, :service_satisfaction_rating
-        validates :details, length: { maximum: 2 ** 16 }
-        validates_inclusion_of :service_satisfaction_rating, in: (1..5).to_a
 
         def self.transaction_slugs
           uniq.pluck(:slug).sort
