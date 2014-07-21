@@ -11,7 +11,7 @@ end
 gem 'mysql2', '0.3.14'
 gem "airbrake", "3.1.15"
 
-gem 'gds-sso', '9.2.0'
+gem 'gds-sso', '9.3.0'
 gem 'cancan', '1.6.9'
 gem 'jquery-ui-rails', '4.2.1'
 gem 'plek', '1.7.0'

@@ -12,7 +12,7 @@ When /^the user submits the following named contact through the API:$/ do |reque
     "referrer" => @request_details['Referrer'],
   )
 
-  post '/named_contacts', params.to_json, {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json'}
+  post '/named_contacts', params.to_json, {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json', 'HTTP_AUTHORIZATION' => 'Bearer 12345678'}
 
   assert_equal 201, last_response.status, "Request not successful, response: #{last_response.body}"
 end
