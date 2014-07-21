@@ -14,7 +14,7 @@ When /^the user submits the following problem report through the API:$/ do |requ
     }
   }
 
-  post '/anonymous_feedback/problem_reports', params.to_json, {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json', 'HTTP_AUTHORIZATION' => 'Bearer 12345678'}
+  post_json '/anonymous_feedback/problem_reports', params
 
   assert_equal 201, last_response.status, "Request not successful, request: #{last_request.body.read}\nresponse: #{last_response.body}"
 end
@@ -33,7 +33,7 @@ When /^the user submits the following long-form anonymous contact through the AP
     }
   }
 
-  post '/anonymous_feedback/long_form_contacts', params.to_json, {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json', 'HTTP_AUTHORIZATION' => 'Bearer 12345678'}
+  post_json '/anonymous_feedback/long_form_contacts', params
 
   assert_equal 201, last_response.status, "Request not successful, request: #{last_request.body.read}\nresponse: #{last_response.body}"
 end
@@ -54,7 +54,7 @@ When /^the user submits feedback about a GOV[.]UK service through the API:$/ do 
     }
   }
 
-  post '/anonymous_feedback/service_feedback', params.to_json, {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json', 'HTTP_AUTHORIZATION' => 'Bearer 12345678'}
+  post_json '/anonymous_feedback/service_feedback', params
 
   assert_equal 201, last_response.status, "Request not successful, request: #{last_request.body.read}\nresponse: #{last_response.body}"
 end

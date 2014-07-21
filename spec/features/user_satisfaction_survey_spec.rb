@@ -52,9 +52,7 @@ feature "User satisfaction survey submissions" do
   end
 
   def user_submits_satisfaction_survey_on_done_page(options)
-    post '/anonymous_feedback/service_feedback',
-         { "service_feedback" => options }.to_json,
-         {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json', 'HTTP_AUTHORIZATION' => 'Bearer 12345678'}
+    post_json '/anonymous_feedback/service_feedback', { "service_feedback" => options }
 
     assert_equal 201, last_response.status, "Request not successful, request: #{last_request.body.read}\nresponse: #{last_response.body}"
   end
