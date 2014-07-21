@@ -34,7 +34,7 @@ describe "de-duplication" do
       url: "https://www.gov.uk/done/some-tx"
     )
 
-    get '/anonymous_feedback?path=/done/some-tx', "", {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json', 'HTTP_AUTHORIZATION' => 'Bearer 12345678'}
+    get_json '/anonymous_feedback?path=/done/some-tx'
 
     expect(json_response).to have(3).items
 
@@ -43,7 +43,7 @@ describe "de-duplication" do
     DeduplicationWorker.run
 
     # rerun query, one piece of feedback should now be suppressed
-    get '/anonymous_feedback?path=/done/some-tx', "", {"CONTENT_TYPE" => 'application/json', 'HTTP_ACCEPT' => 'application/json', 'HTTP_AUTHORIZATION' => 'Bearer 12345678'}
+    get_json '/anonymous_feedback?path=/done/some-tx'
 
     expect(json_response).to have(2).items
     expect(json_response.map {|r| r["details"]}.sort).to eq(["this service is great", "this service is meh"])
