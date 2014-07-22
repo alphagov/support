@@ -7,6 +7,7 @@ FactoryGirl.define do
     factory :feedex_user do permissions { [ "signin", "feedex" ] } end
     factory :api_user do permissions { [ "signin", "api_users" ] } end
     factory :user_manager do permissions { [ "signin", "user_managers" ] } end
+    factory :content_requester do permissions { [ "signin", "content_requesters" ] } end
 
     factory :user_who_can_access_everything do
       after(:create) do |user, _|
