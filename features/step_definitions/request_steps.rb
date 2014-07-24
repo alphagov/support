@@ -104,27 +104,6 @@ When /^the user submits the following remove user request:$/ do |request_details
   step "the user submits the request successfully"
 end
 
-When /^the user submits the following campaign request:$/ do |request_details_table|
-  @request_details = request_details_table.hashes.first
-
-  visit '/'
-
-  click_on "Campaign"
-
-  assert page.has_content?("Request GDS support for a campaign")
-
-  fill_in "Campaign title", :with => @request_details["Campaign title"]
-  fill_in "ERG reference number", :with => @request_details["ERG ref number"]
-  fill_in "Start date", :with => @request_details["Start date"]
-  fill_in "Campaign description", :with => @request_details["Description"]
-  fill_in "Group or company affiliated with this campaign", :with => @request_details["Affiliated group"]
-  fill_in "URL with more information", :with => @request_details["Info URL"]
-
-  fill_in "Additional comments", :with => @request_details["Additional comments"]
-
-  step "the user submits the request successfully"
-end
-
 When /^the user submits the following analytics request:$/ do |request_details_table|
   @request_details = request_details_table.hashes.first
 
