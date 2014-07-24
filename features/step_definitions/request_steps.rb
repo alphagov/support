@@ -104,42 +104,6 @@ When /^the user submits the following remove user request:$/ do |request_details
   step "the user submits the request successfully"
 end
 
-When /^the user submits the following analytics request:$/ do |request_details_table|
-  @request_details = request_details_table.hashes.first
-
-  visit '/'
-
-  click_on "Analytics"
-
-  assert page.has_content?("Request analytics reports from GDS")
-
-  within "#request-context" do
-    choose @request_details["Context"]
-  end
-
-  fill_in "From", :with => @request_details["From"]
-  fill_in "To", :with => @request_details["To"]
-
-  fill_in "Which page(s) or section(s) on GOV.UK do you want data for? (Please provide URLs and, if possible or relevant, Need IDs)",
-    with: @request_details["Pages/sections/URLs"]
-
-  fill_in "How will you use the report and what decisions will it help you make?",
-    with: @request_details["What's it for"]
-
-  fill_in "Beyond the basic report, what other information are you interested in?",
-    with: @request_details["More detailed analysis"]
-
-  within "#frequency" do
-    choose @request_details["Frequency"]
-  end
-
-  within "#format" do
-    choose @request_details["Format"]
-  end
-
-  step "the user submits the request successfully"
-end
-
 When /^the user submits the following technical fault report:$/ do |request_details_table|
   @request_details = request_details_table.hashes.first
 
