@@ -13,7 +13,6 @@ Support::Application.routes.draw do
   namespace :anonymous_feedback do
     resources :problem_reports, only: :create, format: false
     resources :long_form_contacts, only: :create
-    resources :service_feedback, only: :create
 
     get 'problem_reports', to: redirect {|p, req| req.params[:path] ? "/anonymous_feedback?path=" + req.params[:path] : "/anonymous_feedback"}
 

@@ -6,16 +6,16 @@ feature "User satisfaction survey submissions" do
   # I want to record and view bugs, gripes and improvement suggestions submitted by the service users
 
   background do
-    login_as create(:user, permissions: ['api_users', 'feedex'])
+    login_as create(:feedex_user)
     the_date_is("2013-02-28")
   end
 
   scenario "submission with comment" do
-    user_submits_satisfaction_survey_on_done_page(
-      slug: "done/find-court-tribunal",
-      url: "https://www.gov.uk/done/find-court-tribunal",
+    create(:service_feedback,
+      slug: "find-court-tribunal",
+      path: "/done/find-court-tribunal",
       service_satisfaction_rating: 3,
-      improvement_comments: "Make service less 'meh'",
+      details: "Make service less 'meh'",
       user_agent: "Safari",
       javascript_enabled: true,
     )
@@ -33,11 +33,11 @@ feature "User satisfaction survey submissions" do
   end
 
   scenario "submission without a comment" do
-    user_submits_satisfaction_survey_on_done_page(
-      slug: "done/apply-carers-allowance",
-      url: "https://www.gov.uk/done/apply-carers-allowance",
+    create(:service_feedback,
+      slug: "apply-carers-allowance",
+      path: "/done/apply-carers-allowance",
       service_satisfaction_rating: 3,
-      improvement_comments: nil,
+      details: nil,
       javascript_enabled: true,
     )
 
@@ -49,11 +49,5 @@ feature "User satisfaction survey submissions" do
   private
   def the_date_is(date_string)
     Timecop.travel Date.parse(date_string)
-  end
-
-  def user_submits_satisfaction_survey_on_done_page(options)
-    post_json '/anonymous_feedback/service_feedback', { "service_feedback" => options }
-
-    assert_equal 201, last_response.status, "Request not successful, request: #{last_request.body.read}\nresponse: #{last_response.body}"
   end
 end

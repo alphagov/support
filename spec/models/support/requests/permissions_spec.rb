@@ -72,7 +72,6 @@ module Support
         let(:requests_specific_to_role) { [
           Anonymous::ProblemReport,
           Anonymous::LongFormContact,
-          Anonymous::ServiceFeedback,
           FoiRequest,
           NamedContact,
         ] }
