@@ -1,6 +1,8 @@
 require 'support/navigation/section_groups'
 
 Support::Application.routes.draw do
+  mount GovukAdminTemplate::Engine, at: "/style-guide", as: "style_guide"
+
   Support::Navigation::SectionGroups.new.all_request_class_names.each do |request_class_name|
     resource request_class_name.underscore, only: [:new, :create]
   end
