@@ -16,6 +16,12 @@ module AppActions
     results.collect { |row| Hash[first_row.zip(row)] }
   end
 
+  def user_fills_out_time_constraints(details)
+    fill_in "MUST be published by", with: details[:needed_by_date]
+    fill_in "MUST NOT be published BEFORE", with: details[:not_before_date]
+    fill_in "Reason for the above dates", with: details[:reason]
+  end
+
   def user_submits_the_request_successfully
     click_on "Submit"
     expect(page).to have_content("You should receive a confirmation email shortly.")
