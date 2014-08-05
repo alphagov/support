@@ -1,4 +1,8 @@
 <%= content_for :page_title, "FeedEx" %>
 <%= content_for :header, "Anonymous feedback for “#{params[:path]}”" %>
 
-<%= render partial: "results", locals: { feedback: @feedback } %>
+<% if @feedback.empty? %>
+  <div class="no-content no-content-bordered">There is no feedback for this path.</div>
+<% else %>
+  <%= render partial: "results", locals: { feedback: @feedback } %>
+<% end %>
