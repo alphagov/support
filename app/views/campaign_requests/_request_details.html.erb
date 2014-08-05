@@ -12,3 +12,5 @@
     <%= r.input :info_url, label: "URL with more information", required: false, input_html: { class: "form-md-6" } %>
   <% end %>
 <% end %>
+
+<%= f.input :additional_comments, as: :text, label: "Additional comments", input_html: { class: "form-md-6", rows: 6, cols: 50 } %>
