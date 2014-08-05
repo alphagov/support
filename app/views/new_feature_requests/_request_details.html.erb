@@ -9,3 +9,7 @@
   <%= f.input :url_of_example, label: "Can you provide a link to an example of this feature?", input_html: { class: "form-md-6", placeholder: "http://www.example.com/" } %>
 
 <% end %>
+
+<%= render partial: "support/attachment_instructions" %>
+
+<%= render partial: "support/time_constraint", locals: { f: f } %>

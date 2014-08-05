@@ -1,3 +1,5 @@
+<%= render partial: "support/request_context", locals: { f: f } %>
+
 <%= f.semantic_fields_for :needed_report do |r| %>
   <%= r.inputs name: "What reporting period are you interested in?" do %>
     <%= r.input :reporting_period_start, label: "From", required: true, input_html: {:class => "form-md-6", :"aria-required" => true} %>
