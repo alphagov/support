@@ -1,6 +1,8 @@
 <%= content_for :page_title, @request.class.label %>
 <%= content_for :header, @request.class.description %>
 
+<% breadcrumb :request, @request %>
+
 <%# render the guidance only if the partial is there, because not every form needs guidance %>
 <% begin %>
   <%= render partial: "guidance" %>
