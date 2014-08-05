@@ -1,20 +1,4 @@
 <%= content_for :page_title, "FeedEx" %>
 <%= content_for :header, "Anonymous feedback for “#{params[:path]}”" %>
 
-<%= paginate @feedback, theme: 'twitter-bootstrap-3' %>
-
-<table id="results" class="table table-hover table-bordered">
-  <thead>
-    <tr>
-      <th>creation date</th>
-      <th>feedback</th>
-      <th>full path</th>
-      <th>user came from</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= render partial: "anonymous-contact", collection: @feedback, as: :anonymous_contact %>
-  </tbody>
-</table>
-
-<%= paginate @feedback, theme: 'twitter-bootstrap-3' %>
+<%= render partial: "results", locals: { feedback: @feedback } %>
