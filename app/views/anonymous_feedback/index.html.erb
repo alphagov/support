@@ -1,7 +1,5 @@
 <%= content_for :page_title, "FeedEx" %>
-<%= content_for :header, "Explore GOV.UK anonymous feedback" %>
-
-<h2>Anonymous feedback for: <%= params[:path] %></h2>
+<%= content_for :header, "Anonymous feedback for “#{params[:path]}”" %>
 
 <%= paginate @feedback, theme: 'twitter-bootstrap-3' %>
 
