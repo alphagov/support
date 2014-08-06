@@ -14,7 +14,7 @@ class AnonymousFeedback::ExploreController < AuthorisationController
     if @explore_by_url.valid?
       redirect_to @explore_by_url.redirect_path
     else
-      render :new, status: 400
+      render :new, status: 422
     end
   end
 end
