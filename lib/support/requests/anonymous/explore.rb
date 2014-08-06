@@ -12,8 +12,8 @@ module Support
         validates_presence_of :url
         validate :url_is_well_formed
 
-        def path
-          URI(url).path
+        def redirect_path
+          Rails.application.routes.url_helpers.anonymous_feedback_index_path(path: URI(url).path)
         end
 
         private

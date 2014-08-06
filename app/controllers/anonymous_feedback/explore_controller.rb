@@ -12,7 +12,7 @@ class AnonymousFeedback::ExploreController < AuthorisationController
       params[:support_requests_anonymous_explore_by_url]
     )
     if @explore_by_url.valid?
-      redirect_to anonymous_feedback_index_url(path: @explore_by_url.path)
+      redirect_to @explore_by_url.redirect_path
     else
       render :new, status: 400
     end

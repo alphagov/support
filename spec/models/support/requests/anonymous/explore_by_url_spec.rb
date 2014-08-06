@@ -10,8 +10,9 @@ module Support
         it { should allow_value("https://www.gov.uk/test").for(:url) }
         it { should_not allow_value("https:aaaa").for(:url).with_message(/must be a valid URL/) }
 
-        it "works out the path from the URL" do
-          expect(ExploreByUrl.new(url: "https://www.gov.uk/some-path").path).to eq("/some-path")
+        it "works out the path to redirect to from the URL" do
+          expect(ExploreByUrl.new(url: "https://www.gov.uk/some-path").redirect_path).
+            to eq("/anonymous_feedback?path=%2Fsome-path")
         end
       end
     end
