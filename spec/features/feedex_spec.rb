@@ -46,4 +46,10 @@ feature "Exploring anonymous feedback" do
       }
     ])
   end
+
+  scenario "no feedback found" do
+    explore_anonymous_feedback_with(url: "https://www.gov.uk/non-existent-path")
+
+    expect(page).to have_content("There is no feedback for this path.")
+  end
 end
