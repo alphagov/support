@@ -4,22 +4,25 @@ require 'active_model/tableless_model'
 module Support
   module Requests
     module Anonymous
-      class Explore < ActiveModel::TablelessModel
-        attr_accessor :by_url
-        validates_presence_of :by_url
-        validate :well_formed_url
+      # this superclass is defined so authorisation can be defined on it
+      class Explore < ActiveModel::TablelessModel; end
+
+      class ExploreByUrl < Explore
+        attr_accessor :url
+        validates_presence_of :url
+        validate :url_is_well_formed
 
         def path
-          URI(by_url).path
+          URI(url).path
         end
 
         private
-        def well_formed_url
-          uri = URI.parse(by_url)
+        def url_is_well_formed
+          uri = URI.parse(url)
           valid = (uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)) && !uri.path.nil? && !uri.host.nil?
-          errors.add(:by_url, "must be a valid URL") unless valid
+          errors.add(:url, "must be a valid URL") unless valid
         rescue URI::InvalidURIError
-          errors.add(:by_url, "must be a valid URL") 
+          errors.add(:url, "must be a valid URL")
         end
       end
     end
