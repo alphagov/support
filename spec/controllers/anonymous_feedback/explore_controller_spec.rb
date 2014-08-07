@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe AnonymousFeedback::ExploreController, :type => :controller do
   before do
-    login_as create(:feedex_user)
+    login_as create(:user)
   end
 
   it "shows the new form again for invalid requests" do

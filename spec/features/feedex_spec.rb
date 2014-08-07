@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature "Exploring anonymous feedback" do
   background do
-    login_as create(:feedex_user)
+    login_as create(:user)
   end
 
   scenario "exploring feedback by URL" do

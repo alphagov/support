@@ -6,7 +6,7 @@ feature "User satisfaction survey submissions" do
   # I want to record and view bugs, gripes and improvement suggestions submitted by the service users
 
   background do
-    login_as create(:feedex_user)
+    login_as create(:user)
     the_date_is("2013-02-28")
   end
 

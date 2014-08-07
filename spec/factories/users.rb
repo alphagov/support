@@ -4,7 +4,6 @@ FactoryGirl.define do
     sequence(:email) {|n| "person-#{n}@example.com" }
     permissions { [ "signin" ] }
 
-    factory :feedex_user do permissions { [ "signin", "feedex" ] } end
     factory :api_user do permissions { [ "signin", "api_users" ] } end
     factory :user_manager do permissions { [ "signin", "user_managers" ] } end
     factory :content_requester do permissions { [ "signin", "content_requesters" ] } end

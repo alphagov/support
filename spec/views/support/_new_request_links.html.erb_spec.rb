@@ -24,14 +24,4 @@ describe 'support/_new_request_links' do
     render "support/new_request_links", section_groups: section_groups
     expect(rendered).to have_selector("#feedex a", text: "Feedback explorer")
   end
-
-  context "for a user who doesn't have access to feedex" do
-    let(:user) { build(:user_who_cannot_access_anything) }
-
-    it "greys out the feedex link" do
-      render "support/new_request_links", section_groups: section_groups
-      expect(rendered).to have_selector("#feedex.disabled a")
-      expect(rendered).to have_selector("ul.dropdown-menu li.disabled")
-    end
-  end
 end
