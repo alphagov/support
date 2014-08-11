@@ -3,11 +3,11 @@ module AppActions
     visit "/"
     click_on "Feedback explorer"
     assert page.has_title?("FeedEx"), page.html
-    fill_in 'By URL', with: options[:url]
+    fill_in 'URL', with: options[:url]
 
     click_on "Explore"
 
-    assert page.has_content?("Anonymous feedback for"), page.html
+    expect(page).to have_content("Anonymous feedback for")
   end
 
   def feedex_results

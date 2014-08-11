@@ -3,8 +3,27 @@
 
 <% breadcrumb :feedex %>
 
-<%= semantic_form_for @explore, url: { action: "create" }, html: { novalidate: false } do |f| %>
-  <%= f.input :by_url, label: "By URL", required: true, input_html: { class: "form-md-6", :"aria-required" => true, type: "url"} %>
-
-  <%= f.action :submit, label: "Explore", button_html: { class: "btn btn-success" } %>
-<% end %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        Feedback for a specific URL
+      </div>
+      <div class="panel-body">
+        <%= semantic_form_for @explore_by_url, url: { action: "create" }, html: { novalidate: false } do |f| %>
+          <%= f.input :url, label: "URL", required: true, input_html: { class: "form-md-6", :"aria-required" => true, type: "url"} %>
+          <%= f.action :submit, label: "Explore", button_html: { class: "btn btn-success" } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="alert alert-info">
+      Users submit this feedback:
+        <ul>
+          <li>via the <strong>Is there anything wrong with this page?</strong> forms at the bottom of GOV.UK pages.</li>
+          <li>by filling out the <a href="https://www.gov.uk/service-manual/measurement/user-satisfaction.html">satisfaction survey</a> upon completion of a transaction that started on GOV.UK.</li>
+        </ul>
+    </div>
+  </div>
+</div>
