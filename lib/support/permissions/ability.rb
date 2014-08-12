@@ -15,8 +15,8 @@ module Support
         can :create, [ CreateOrChangeUserRequest, RemoveUserRequest ] if user.has_permission?('user_managers')
         can :create, [ FoiRequest, Anonymous::ProblemReport, Anonymous::LongFormContact, NamedContact ] if user.has_permission?('api_users')
 
-        can :read, Anonymous::AnonymousContact if user.has_permission?('feedex')
-        can :create, Support::Requests::Anonymous::Explore if user.has_permission?('feedex')
+        can :read, Anonymous::AnonymousContact
+        can :create, Support::Requests::Anonymous::Explore
         can :create, [GeneralRequest, AnalyticsRequest, ContentAdviceRequest, TechnicalFaultReport, UnpublishContentRequest]
       end
     end

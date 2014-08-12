@@ -14,13 +14,6 @@ module Support
         it { should be_able_to(:create, Support::Requests::CampaignRequest) }
         it { should be_able_to(:create, Support::Requests::ContentChangeRequest) }
       end
-
-      context "for a FeedEx user" do
-        let(:user_permissions) { ["feedex"] }
-
-        it { should be_able_to(:read, Support::Requests::Anonymous::ProblemReport) }
-        it { should be_able_to(:create, Support::Requests::Anonymous::Explore) }
-      end
     end
   end
 end

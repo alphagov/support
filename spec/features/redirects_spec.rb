@@ -3,7 +3,7 @@ require 'uri'
 
 describe "legacy feedex URL redirect" do
   before do
-    login_as create(:feedex_user)
+    login_as create(:user)
   end
 
   it "redirects the legacy feedex landing page to the current feedex landing page" do

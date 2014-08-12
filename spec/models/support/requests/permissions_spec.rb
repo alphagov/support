@@ -94,15 +94,6 @@ module Support
         ] }
         it_behaves_like "a role"
       end
-
-      context "for feedex role" do
-        subject { create(:feedex_user) }
-        it "can access anonymous feedback" do
-          expect(subject).to be_able_to(:read, Anonymous::ProblemReport)
-          expect(subject).to be_able_to(:read, Anonymous::LongFormContact)
-          expect(subject).to be_able_to(:read, Anonymous::ServiceFeedback)
-        end
-      end
     end
   end
 end

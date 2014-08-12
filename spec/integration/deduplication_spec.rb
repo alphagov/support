@@ -5,7 +5,7 @@ require 'deduplication_worker'
 
 describe "de-duplication" do
   before do
-    login_as create(:feedex_user)
+    login_as create(:user)
   end
 
   it "flags and removes duplicate service feedback from results" do

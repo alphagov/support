@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe AnonymousFeedbackController, :type => :controller do
   before do
-    login_as create(:feedex_user)
+    login_as create(:user)
   end
 
   context "invalid input" do
