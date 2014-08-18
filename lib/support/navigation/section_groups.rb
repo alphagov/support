@@ -1,7 +1,6 @@
 require 'support/requests'
 require 'support/navigation/request_section'
 require 'support/navigation/section_group'
-require 'support/navigation/feedex_section'
 
 module Support
   module Navigation

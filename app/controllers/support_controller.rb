@@ -1,4 +1,5 @@
 require 'sidekiq'
+require 'support/navigation/feedex_section'
 
 class SupportController < AuthorisationController
   include Support::Navigation
