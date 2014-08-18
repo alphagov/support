@@ -15,3 +15,5 @@
 /tmp
 
 config/zendesk.yml
+
+.DS_Store
