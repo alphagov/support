@@ -24,6 +24,11 @@ Support::Application.routes.draw do
     post :explore, to: "explore#create", format: false
   end
 
+  get "emergency-contact-details",
+    to: 'support#emergency_contact_details',
+    format: false,
+    as: "emergency_contact_details"
+
   resources :anonymous_feedback, only: :index, format: false
 
   match "acknowledge" => "support#acknowledge"

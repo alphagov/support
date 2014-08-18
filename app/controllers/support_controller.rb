@@ -1,5 +1,6 @@
 require 'sidekiq'
 require 'support/navigation/feedex_section'
+require 'support/navigation/emergency_contact_details_section'
 
 class SupportController < AuthorisationController
   include Support::Navigation
@@ -8,8 +9,14 @@ class SupportController < AuthorisationController
   skip_before_filter :authenticate_support_user!, only: [:queue_status]
 
   def landing
-    all_sections = SectionGroups.new(current_user).all_sections + [ FeedexSection.new(current_user) ]
+    all_sections = SectionGroups.new(current_user).all_sections +
+      [ FeedexSection.new(current_user), EmergencyContactDetailsSection.new(current_user) ]
     @accessible_sections, @inaccessible_sections = all_sections.partition(&:accessible?)
+  end
+
+  def emergency_contact_details
+    @primary_contact_details = EMERGENCY_CONTACT_DETAILS[:primary_contacts]
+    @secondary_contact_details = EMERGENCY_CONTACT_DETAILS[:secondary_contacts]
   end
 
   def acknowledge
