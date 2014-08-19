@@ -1,0 +1,19 @@
+primary_contacts:
+  national_emergencies:
+    phone: 05555 555555
+  major_technical_problems:
+    phone: 05555 555555
+  urgent_mainstream_content_change:
+    phone: 05555 555555
+  urgent_department_content_change:
+    phone: 05555 555555
+
+secondary_contacts:
+  deputy_director:
+    name: Billy Director
+    phone: 05555 555555
+    email: billy.director@email.uk
+  operations_manager:
+    name: Bob Manager
+    phone: 05555 555556
+    email: bob.manager@email.uk

@@ -31,3 +31,14 @@ thead {
 .list-group.disabled {
   color: $nav-disabled-link-hover-color;
 }
+
+.danger-callout {
+  border-left-color: #d9534f;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.rounded-callout {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}

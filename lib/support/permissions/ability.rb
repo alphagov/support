@@ -1,6 +1,7 @@
 require 'cancan/ability'
 require 'support/requests'
 require 'support/requests/anonymous/explore'
+require 'support/navigation/emergency_contact_details_section'
 
 module Support
   module Permissions
@@ -16,6 +17,7 @@ module Support
         can :create, [ FoiRequest, Anonymous::ProblemReport, Anonymous::LongFormContact, NamedContact ] if user.has_permission?('api_users')
 
         can :read, Anonymous::AnonymousContact
+        can :read, Support::Navigation::EmergencyContactDetailsSection
         can :create, Support::Requests::Anonymous::Explore
         can :create, [GeneralRequest, AnalyticsRequest, ContentAdviceRequest, TechnicalFaultReport, UnpublishContentRequest]
       end

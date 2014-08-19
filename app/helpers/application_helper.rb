@@ -1,4 +1,5 @@
 require 'support/navigation/feedex_section'
+require 'support/navigation/emergency_contact_details_section'
 require 'support/navigation/section_groups'
 
 module ApplicationHelper
@@ -8,6 +9,10 @@ module ApplicationHelper
 
   def feedex_section
     Support::Navigation::FeedexSection.new(current_user)
+  end
+
+  def emergency_contact_details_section
+    Support::Navigation::EmergencyContactDetailsSection.new(current_user)
   end
 
   def in_feedex?

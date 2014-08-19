@@ -1,0 +1,99 @@
+<%= content_for :page_title, "Emergency Contact Details" %>
+<%= content_for :header, "GOV.UK Emergency Contact Details" %>
+
+<% breadcrumb :emergency_contact_details %>
+
+<main class="add-bottom-padding">
+<p class="subtitle text-muted">Current at 1 July 2014</p>
+<section>
+  <blockquote class="bg-danger danger-callout">
+    <p>First read the guidance on <%= link_to "publishing procedures for national emergencies", "https://insidegovuk.blog.gov.uk/gov-uk-support-requests-our-processes-and-response-times/#urgent" %> and <%= link_to "GOV.UK contact procedures", "https://insidegovuk.blog.gov.uk/2013/10/24/gov-uk-support-requests-a-brief-guide-to-our-standardsurgent/" %>.</p>
+  </blockquote>
+</section>
+<section class="add-bottom-padding add-top-padding">
+  <h2 class="add-bottom-padding">Primary Contacts</h2>
+
+  <h3>National emergencies</h3>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="lead remove-bottom-margin"><%= @primary_contact_details[:national_emergencies][:phone] %></p>
+      <p class="text-muted">24 hours, 7 days a week</p>
+    </div>
+    <div class="col-md-6">
+      <ul>
+        <li>Use for sudden, critical national emergencies such as terrorist attacks.</li>
+        <li>This number will put you in contact with the GOV.UK operations manager, who will establish your identity and put the GOV.UK site into ‘emergency’ mode.</li>
+        <li>For use only by the communications coordinator in the lead crisis response department.</li>
+        <li><%= link_to "Further information and guidance", "https://insidegovuk.blog.gov.uk/gov-uk-national-emergency-publishing-procedures/" %>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Major technical problems with GOV.UK site</h3>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="lead remove-bottom-margin"><%= @primary_contact_details[:major_technical_problems][:phone] %></p>
+      <p class="text-muted">24 hours, 7 days a week</p>
+    </div>
+    <div class="col-md-6">
+      <ul>
+        <li>Use for critical, high-profile technical issues with the GOV.UK site - eg pages not loading or search not working.</li>
+        <li>This number will put you in contact with the GOV.UK operations manager, who will advise on next steps.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Urgent changes to GOV.UK mainstream content</h3>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="lead remove-bottom-margin"><%= @primary_contact_details[:urgent_mainstream_content_change][:phone] %></p>
+      <p class="text-muted">Daily, 8am - 10pm<br>(including bank holidays and weekends)</p>
+    </div>
+    <div class="col-md-6">
+      <ul>
+        <li>Use to request urgent GOV.UK content updates in cases in which the public or government is facing immediate and significant financial, legal, or physical risk.</li>
+        <li>This number will put you in touch with a GOV.UK mainstream content manager.</li>
+        <li><%= link_to "Create a content request on the internal support form", new_content_change_request_path %> before you phone.</li>
+        <li><%= link_to "Read the full guidelines", "https://insidegovuk.blog.gov.uk/gov-uk-support-requests-our-processes-and-response-times/" %>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Urgent changes to GOV.UK government content</h3>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="lead remove-bottom-margin"><%= @primary_contact_details[:urgent_department_content_change][:phone] %></p>
+      <p class="text-muted">Monday to Friday, 9am - 5.30pm<br>(excluding bank holidays and weekends)</p>
+    </div>
+    <div class="col-md-6">
+      <ul>
+        <li>Use if you are unable to publish at a critical time, or to make changes to government content managed by GDS.</li>
+        <li>This number will put you in touch with a GOV.UK Departments and Policy content manager.</li>
+        <li><%= link_to "Create a content request on the internal support form", new_content_change_request_path %> before you phone.</li>
+        <li><%= link_to "Read the full guidelines", "https://insidegovuk.blog.gov.uk/gov-uk-support-requests-our-processes-and-response-times/" %>.</li>
+        </ul>
+    </div>
+  </div>
+</section>
+
+<section class="add-bottom-padding add-top-padding">
+  <h2>Secondary Contacts</h2>
+  <blockquote class="rounded-callout">
+    <p>If you are unable to get an answer on the primary numbers, try an alternative number.</p>
+  </blockquote>
+  <div class="row">
+    <div class="col-md-6">
+      <p><%= @secondary_contact_details[:operations_manager][:name] %><br>
+      <span class="text-muted">GOV.UK Operations Manager</span></p>
+      <%= mail_to @secondary_contact_details[:operations_manager][:email] %>
+      <p><%= @secondary_contact_details[:operations_manager][:phone] %></p>
+    </div>
+    <div class="col-md-6">
+      <p><%= @secondary_contact_details[:deputy_director][:name] %><br>
+      <span class="text-muted">GOV.UK Deputy Director</span></p>
+      <%= mail_to @secondary_contact_details[:deputy_director][:email] %>
+      <p><%= @secondary_contact_details[:deputy_director][:phone] %></p>
+    </div>
+  </div>
+</section>
+</main>
