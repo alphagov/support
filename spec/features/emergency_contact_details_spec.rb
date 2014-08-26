@@ -14,7 +14,7 @@ feature "Emergency contact details" do
 
     click_on "Emergency contact details"
 
-    expect(page).to have_content("05555 555555") # Billy Director
-    expect(page).to have_content("05555 555556") # Bob Manager
+    expect(page).to have_content("05555 555 555") # Billy Director
+    expect(page).to have_content("05555 555 556") # Bob Manager
   end
 end
