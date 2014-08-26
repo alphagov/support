@@ -1,17 +1,17 @@
-<%= content_for :page_title, "Emergency Contact Details" %>
-<%= content_for :header, "GOV.UK Emergency Contact Details" %>
+<%= content_for :page_title, "Emergency contact details" %>
+<%= content_for :header, "GOV.UK emergency contact details" %>
 
 <% breadcrumb :emergency_contact_details %>
 
 <main class="add-bottom-padding">
-<p class="subtitle text-muted">Current at 1 July 2014</p>
+<p class="subtitle text-muted">Current at <%= @current_at.to_s(:govuk_date) %></p>
 <section>
   <blockquote class="bg-danger danger-callout">
     <p>First read the guidance on <%= link_to "publishing procedures for national emergencies", "https://insidegovuk.blog.gov.uk/gov-uk-support-requests-our-processes-and-response-times/#urgent" %> and <%= link_to "GOV.UK contact procedures", "https://insidegovuk.blog.gov.uk/2013/10/24/gov-uk-support-requests-a-brief-guide-to-our-standardsurgent/" %>.</p>
   </blockquote>
 </section>
 <section class="add-bottom-padding add-top-padding">
-  <h2 class="add-bottom-padding">Primary Contacts</h2>
+  <h2 class="add-bottom-padding">Primary contacts</h2>
 
   <h3>National emergencies</h3>
   <div class="row">
@@ -77,23 +77,21 @@
 </section>
 
 <section class="add-bottom-padding add-top-padding">
-  <h2>Secondary Contacts</h2>
+  <h2>Secondary contacts</h2>
   <blockquote class="rounded-callout">
     <p>If you are unable to get an answer on the primary numbers, try an alternative number.</p>
   </blockquote>
   <div class="row">
-    <div class="col-md-6">
-      <p><%= @secondary_contact_details[:operations_manager][:name] %><br>
-      <span class="text-muted">GOV.UK Operations Manager</span></p>
-      <%= mail_to @secondary_contact_details[:operations_manager][:email] %>
-      <p><%= @secondary_contact_details[:operations_manager][:phone] %></p>
-    </div>
-    <div class="col-md-6">
-      <p><%= @secondary_contact_details[:deputy_director][:name] %><br>
-      <span class="text-muted">GOV.UK Deputy Director</span></p>
-      <%= mail_to @secondary_contact_details[:deputy_director][:email] %>
-      <p><%= @secondary_contact_details[:deputy_director][:phone] %></p>
-    </div>
+    <% @secondary_contact_details.each do |details| %>
+      <div class="col-md-6">
+        <p>
+          <%= details[:name] %><br>
+          <span class="text-muted"><%= details[:role] %></span>
+        </p>
+        <%= mail_to details[:email] %>
+        <p><%= details[:phone] %></p>
+      </div>
+    <% end %>
   </div>
 </section>
 </main>
