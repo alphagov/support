@@ -4,7 +4,7 @@
 <% breadcrumb :emergency_contact_details %>
 
 <main class="add-bottom-padding">
-<p class="subtitle text-muted">Current at 1 July 2014</p>
+<p class="subtitle text-muted">Current at <%= @current_at.to_s(:govuk_date) %></p>
 <section>
   <blockquote class="bg-danger danger-callout">
     <p>First read the guidance on <%= link_to "publishing procedures for national emergencies", "https://insidegovuk.blog.gov.uk/gov-uk-support-requests-our-processes-and-response-times/#urgent" %> and <%= link_to "GOV.UK contact procedures", "https://insidegovuk.blog.gov.uk/2013/10/24/gov-uk-support-requests-a-brief-guide-to-our-standardsurgent/" %>.</p>
