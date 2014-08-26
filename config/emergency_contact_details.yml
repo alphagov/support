@@ -9,11 +9,13 @@ primary_contacts:
     phone: 05555 555555
 
 secondary_contacts:
-  deputy_director:
+  -
     name: Billy Director
+    role: Director
     phone: 05555 555555
     email: billy.director@email.uk
-  operations_manager:
+  -
     name: Bob Manager
+    role: Manager
     phone: 05555 555556
     email: bob.manager@email.uk

@@ -82,18 +82,16 @@
     <p>If you are unable to get an answer on the primary numbers, try an alternative number.</p>
   </blockquote>
   <div class="row">
-    <div class="col-md-6">
-      <p><%= @secondary_contact_details[:operations_manager][:name] %><br>
-      <span class="text-muted">GOV.UK Operations Manager</span></p>
-      <%= mail_to @secondary_contact_details[:operations_manager][:email] %>
-      <p><%= @secondary_contact_details[:operations_manager][:phone] %></p>
-    </div>
-    <div class="col-md-6">
-      <p><%= @secondary_contact_details[:deputy_director][:name] %><br>
-      <span class="text-muted">GOV.UK Deputy Director</span></p>
-      <%= mail_to @secondary_contact_details[:deputy_director][:email] %>
-      <p><%= @secondary_contact_details[:deputy_director][:phone] %></p>
-    </div>
+    <% @secondary_contact_details.each do |details| %>
+      <div class="col-md-6">
+        <p>
+          <%= details[:name] %><br>
+          <span class="text-muted"><%= details[:role] %></span>
+        </p>
+        <%= mail_to details[:email] %>
+        <p><%= details[:phone] %></p>
+      </div>
+    <% end %>
   </div>
 </section>
 </main>
