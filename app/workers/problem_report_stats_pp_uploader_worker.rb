@@ -1,3 +1,4 @@
+require 'gds_api/performance_platform/data_in'
 require 'support/requests/anonymous/corporate_content_problem_report_aggregated_metrics'
 
 class ProblemReportStatsPPUploaderWorker
