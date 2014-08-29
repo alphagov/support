@@ -52,18 +52,6 @@ class User < OpenStruct
     User.new(auth_hash)
   end
 
-  # only used by the mock_gds_sso strategy
-  def self.first
-    auth_hash = Store.fetch('dummy-user')
-    raise("Dummy user not found, run rake users:create_dummy") unless auth_hash
-    User.new(auth_hash)
-  end
-
-  # only used by the mock_gds_sso_api_access
-  def self.find_by_email(email)
-    first
-  end
-
   def remotely_signed_out?
     remotely_signed_out
   end
