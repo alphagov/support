@@ -1,7 +1,31 @@
 require 'gds-sso/user'
 require 'support/permissions/ability'
+require 'json'
+require 'redis_client'
 
 class User < OpenStruct
+  class Store
+    class << self
+      def write(uid, attributes)
+        redis.setex prefixed_key(uid), 1.day, attributes.to_json
+      end
+
+      def fetch(uid)
+        data = redis.get(prefixed_key(uid))
+        data && JSON.parse(data)
+      end
+
+    private
+      def prefixed_key(key)
+        "support-#{Rails.env}:users-#{key}"
+      end
+
+      def redis
+        RedisClient.instance.connection
+      end
+    end
+  end
+
   def self.attr_accessible(*args)
   end
 
@@ -14,7 +38,7 @@ class User < OpenStruct
 
   def self.where(options)
     uid = options[:uid]
-    auth_hash = Rails.cache.fetch(prefixed_key(uid))
+    auth_hash = Store.fetch(uid)
     return [] unless auth_hash && user_matches?(options, User.new(auth_hash))
     [ User.new(auth_hash) ]
   end
@@ -24,13 +48,13 @@ class User < OpenStruct
   end
 
   def self.create!(auth_hash, options={})
-    Rails.cache.write(prefixed_key(auth_hash["uid"]), auth_hash)
+    Store.write(auth_hash["uid"], auth_hash)
     User.new(auth_hash)
   end
 
   # only used by the mock_gds_sso strategy
   def self.first
-    auth_hash = Rails.cache.fetch(prefixed_key('dummy-user'))
+    auth_hash = Store.fetch('dummy-user')
     raise("Dummy user not found, run rake users:create_dummy") unless auth_hash
     User.new(auth_hash)
   end
@@ -46,9 +70,9 @@ class User < OpenStruct
 
   def update_attribute(key, value)
     if uid
-      old_attributes = Rails.cache.fetch(self.class.prefixed_key(uid))
+      old_attributes = Store.fetch(uid) || {}
       new_attributes = old_attributes.merge(key => value)
-      Rails.cache.write(self.class.prefixed_key(new_attributes["uid"]), new_attributes)
+      Store.write(new_attributes["uid"], new_attributes)
     end
     send("#{key}=", value)
   end
@@ -57,10 +81,6 @@ class User < OpenStruct
     params.each do |key, value|
       send("#{key}=", value)
     end
-    Rails.cache.write(self.class.prefixed_key(params["uid"]), params)
-  end
-
-  def self.prefixed_key(key)
-    "users-#{key}"
+    Store.write(params["uid"], params)
   end
 end
