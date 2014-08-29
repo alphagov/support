@@ -51,13 +51,6 @@ module Support
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
 
-    redis_config = YAML.load_file(File.join(Rails.root, "config", "redis.yml"))
-    config.cache_store = [
-      :redis_store, 
-      "redis://#{redis_config['host']}:#{redis_config['port']}",
-      { expires_in: 24.hours, namespace: "support-#{Rails.env}" }
-    ]
-
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types

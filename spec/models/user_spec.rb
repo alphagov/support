@@ -1,12 +1,9 @@
 require 'rails_helper'
+require 'redis_client'
 
 describe User, :type => :model do
   before do
-    Rails.cache.clear
-  end
-
-  after do
-    Rails.cache.clear
+    RedisClient.instance.connection.del "support-test:users-12345"
   end
 
   it "supports persistent creation and retrieval" do
