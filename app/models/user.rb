@@ -47,7 +47,7 @@ class User < OpenStruct
     options.all? { |key, value| user.send(key.to_sym) == value }
   end
 
-  def self.create!(auth_hash, options={})
+  def self.upsert!(auth_hash, options={})
     Store.write(auth_hash["uid"], auth_hash)
     User.new(auth_hash)
   end

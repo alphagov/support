@@ -6,7 +6,7 @@ GDS::SSO.config do |config|
 end
 
 if Rails.env == "development" && ENV['GDS_SSO_STRATEGY'] != 'real'
-  GDS::SSO.test_user = User.create!(
+  GDS::SSO.test_user = User.upsert!(
     "uid" => 'dummy-user',
     "name" => 'Ms Example',
     "email" => 'example@example.com',
