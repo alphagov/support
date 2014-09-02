@@ -52,6 +52,10 @@ class User < OpenStruct
     User.new(auth_hash)
   end
 
+  class << self
+    alias :create! :upsert!
+  end
+
   def remotely_signed_out?
     remotely_signed_out
   end
