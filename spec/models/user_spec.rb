@@ -8,7 +8,7 @@ describe User, :type => :model do
 
   it "supports persistent creation and retrieval" do
     expect(User.where(uid: "12345")).to be_empty
-    user = User.create!("uid" => "12345", "name" => "A", "email" => "a@b.com")
+    user = User.upsert!("uid" => "12345", "name" => "A", "email" => "a@b.com")
 
     u = User.where(uid: "12345").first
     expect(u).to_not be_nil
@@ -17,7 +17,7 @@ describe User, :type => :model do
   end
 
   it "supports remote sign-out" do
-    user = User.create!("uid" => "12345", "name" => "A", "email" => "a@b.com")
+    user = User.upsert!("uid" => "12345", "name" => "A", "email" => "a@b.com")
     expect(user).to_not be_remotely_signed_out
 
     user.update_attribute(:remotely_signed_out, true)
@@ -27,7 +27,7 @@ describe User, :type => :model do
   end
 
   it "supports mass updating of attributes" do
-    user = User.create!("uid" => "12345", "name" => "A", "email" => "a@b.com")
+    user = User.upsert!("uid" => "12345", "name" => "A", "email" => "a@b.com")
 
     user.update_attributes({ "uid" => "12345", "name" => "Z", "email" => "x@y.com" }, { as: :somebody })
 

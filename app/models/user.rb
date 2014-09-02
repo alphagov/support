@@ -47,21 +47,9 @@ class User < OpenStruct
     options.all? { |key, value| user.send(key.to_sym) == value }
   end
 
-  def self.create!(auth_hash, options={})
+  def self.upsert!(auth_hash, options={})
     Store.write(auth_hash["uid"], auth_hash)
     User.new(auth_hash)
-  end
-
-  # only used by the mock_gds_sso strategy
-  def self.first
-    auth_hash = Store.fetch('dummy-user')
-    raise("Dummy user not found, run rake users:create_dummy") unless auth_hash
-    User.new(auth_hash)
-  end
-
-  # only used by the mock_gds_sso_api_access
-  def self.find_by_email(email)
-    first
   end
 
   def remotely_signed_out?

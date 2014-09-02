@@ -1,18 +1,17 @@
 # Support
 
-Forms that create Zendesk tickets for requests coming from government agencies. 
+Forms that create Zendesk tickets for requests coming from government agencies.
 The app is written in Rails and uses the zendesk_api gem to connect to Zendesk.
 
-### To start the app:
+### Getting started
 
-Mocking out SSO:
+To start the app using `bowler`:
 
-    rake users:create_dummy
     bowl support
 
-Against a real SSO instance:
+To start the app directly:
 
-    GDS_SSO_STRATEGY=real bowl signon support
+    ./startup.sh
 
 ### Starting the background processing queues
 
@@ -22,9 +21,8 @@ To start the background workers:
 
     rake jobs:work
 
-### Tests/specs
+### Specs
 
 To run the specs, execute:
 
     bundle exec rake
-
