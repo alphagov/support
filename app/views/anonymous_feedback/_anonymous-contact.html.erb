@@ -5,16 +5,16 @@
   </td>
   <td>
     <% if anonymous_contact.path %>
-      <%= link_to anonymous_contact.path, anonymous_contact.url %>
+      <%= link_to anonymous_contact.path, anonymous_contact.url, class: "breakable" %>
     <% else %>
       &ndash;
     <% end %>
   </td>
   <td>
     <% if anonymous_contact.referrer %>
-      <%= link_to anonymous_contact.referrer, anonymous_contact.referrer %>
+      <%= link_to truncate(anonymous_contact.referrer), anonymous_contact.referrer, class: "breakable" %>
     <% else %>
       &ndash;
-    <% end %>  
+    <% end %>
   </td>
 </tr>
