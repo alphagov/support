@@ -1,6 +1,8 @@
 require 'rails_helper'
 require 'redis_client'
 
+require 'gds-sso/lint/user_spec'
+
 describe User, :type => :model do
   before do
     RedisClient.instance.connection.del "support-test:users-12345"
@@ -36,4 +38,6 @@ describe User, :type => :model do
 
     expect(User.where(uid: "12345").first.name).to eq("Z")
   end
+
+  it_behaves_like "a gds-sso user class"
 end
