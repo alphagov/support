@@ -71,13 +71,6 @@ module Support
           it { should_not allow_value("http://bla.example.org:9292/méh/fào?bar").for(:referrer) }
         end
 
-        it "marks duplicates as non-actionable" do
-          contact = new_contact.tap(&:mark_as_duplicate)
-
-          expect(contact.is_actionable).to be_falsy
-          expect(contact.reason_why_not_actionable).to eq("duplicate")
-        end
-
         context "#find_all_starting_with_path" do
           it "finds urls beginning with the given path" do
             a = contact(url: "https://www.gov.uk/some-calculator/y/abc")
@@ -115,24 +108,6 @@ module Support
 
           after do
             TestContact.delete_all
-          end
-        end
-
-        context "#deduplicate_contacts_created_between" do
-          it "updates contacts created in the given interval as they are marked as dupes" do
-            interval = double("some time interval")
-            original_contact = double("anonymous contact")
-            duplicate = double("anonymous contact")
-            contacts = [ original_contact, duplicate ]
-
-            allow(AnonymousContact).to receive(:where).with(created_at: interval).and_return(double(order: contacts))
-            allow_any_instance_of(DuplicateDetector).to receive(:duplicate?).with(original_contact).and_return(false)
-            allow_any_instance_of(DuplicateDetector).to receive(:duplicate?).with(duplicate).and_return(true)
-
-            expect(duplicate).to receive(:mark_as_duplicate)
-            expect(duplicate).to receive(:save!)
-
-            AnonymousContact.deduplicate_contacts_created_between(interval)
           end
         end
       end
