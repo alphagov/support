@@ -11,7 +11,7 @@
       </div>
       <div class="panel-body">
         <%= semantic_form_for @explore_by_url, url: { action: "create" }, html: { novalidate: false } do |f| %>
-          <%= f.input :url, label: "URL", required: true, input_html: { class: "form-md-6", :"aria-required" => true, type: "url"} %>
+          <%= f.input :url, label: "URL", required: true, input_html: { class: "input-md-6", :"aria-required" => true, type: "url"} %>
           <%= f.action :submit, label: "Explore", button_html: { class: "btn btn-success" } %>
         <% end %>
       </div>

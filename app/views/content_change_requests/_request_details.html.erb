@@ -1,13 +1,13 @@
 <%= render partial: "support/request_context", locals: { f: f } %>
 
-<%= f.input :title, label: "Title of request", input_html: { class: "form-md-6", placeholder: "Content change request" } %>
+<%= f.input :title, label: "Title of request", input_html: { class: "input-md-6", placeholder: "Content change request" } %>
 
 <%= f.inputs name: "URL affected" do %>
-  <%= f.input :url, label: "URL", input_html: { class: "form-md-6", placeholder: "https://www.gov.uk/" } %>
+  <%= f.input :url, label: "URL", input_html: { class: "input-md-6", placeholder: "https://www.gov.uk/" } %>
 
-  <%= f.input :details_of_change, as: :text, label: "Details of the requested change", required: true, input_html: { :class => "form-md-6", :rows => 16, :cols => 50, :"aria-required" => true } %>
+  <%= f.input :details_of_change, as: :text, label: "Details of the requested change", required: true, input_html: { :class => "input-md-6", :rows => 16, :cols => 50, :"aria-required" => true } %>
 
-  <%= f.input :related_urls, as: :text, label: "Does this affect any other URLs? (please specify one per line)", input_html: { class: "form-md-6", rows: 4, cols: 50 } %>
+  <%= f.input :related_urls, as: :text, label: "Does this affect any other URLs? (please specify one per line)", input_html: { class: "input-md-6", rows: 4, cols: 50 } %>
 
 <% end %>
 
