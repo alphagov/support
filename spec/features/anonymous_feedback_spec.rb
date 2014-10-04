@@ -39,39 +39,4 @@ javascript_enabled: true"})
     expect(last_response.status).to eq(201)
     expect(request).to have_been_made
   end
-
-  scenario "successful problem report submission" do
-    request = expect_zendesk_to_receive_ticket(
-      "subject" => "Anonymous contact about /y",
-      "requester" => hash_including("email" => ZENDESK_ANONYMOUS_TICKETS_REQUESTER_EMAIL),
-      "tags" => %w{anonymous_feedback public_form long_form_contact},
-      "comment" => { "body" =>
-"[Details]
-xyz
-
-[URL]
-https://www.gov.uk/y
-
-[Referrer]
-Unknown
-
-[User agent]
-Unknown
-
-[JavaScript Enabled]
-false"})
-
-    post_json '/anonymous_feedback/long_form_contacts', {
-      "long_form_contact" => {
-        "details" => "xyz",
-        "link" => "https://www.gov.uk/y",
-        "user_agent" => nil,
-        "javascript_enabled" => false,
-        "referrer" => nil,
-      }
-    }
-
-    expect(last_response.status).to eq(201)
-    expect(request).to have_been_made
-  end
 end
