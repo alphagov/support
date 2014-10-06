@@ -1,13 +1,13 @@
-<%= f.input :title, label: "Title of request", input_html: { class: "form-md-6", placeholder: "Advice on content" } %>
+<%= f.input :title, label: "Title of request", input_html: { class: "input-md-6", placeholder: "Advice on content" } %>
 
 <%= f.input :nature_of_request, as: :radio, required: true, label: "What is the nature of this request?", collection: f.object.nature_of_request_options, input_html: { :"aria-required" => true } %>
 
-<%= f.input :nature_of_request_details, label: false, input_html: { class: "form-md-6" } %>
+<%= f.input :nature_of_request_details, label: false, input_html: { class: "input-md-6" } %>
 
 <%= f.inputs name: "Details of your request" do %>
   <%= f.input :details, as: :text, required: true,
               label: "Please explain what you would like help with",
-              input_html: { class: "form-md-6", rows: 6, cols: 50, :"aria-required" => true } %>
+              input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true } %>
 
   <div class="alert alert-info alert-block">
     <p>If you have relevant supporting documents, please send them as attachments in reply to the acknowledgement email you will receive shortly.</p>
@@ -15,17 +15,17 @@
 
   <%= f.input :urls, as: :text,
               label: "Relevant URLs (if applicable)",
-              input_html: { class: "form-md-6", rows: 6, cols: 50 } %>
+              input_html: { class: "input-md-6", rows: 6, cols: 50 } %>
 
   <%= f.input :contact_number,
               label: "Contact telephone number (in case we need to call you to discuss the content)",
-              input_html: { class: "form-md-6" } %>
+              input_html: { class: "input-md-6" } %>
 <% end %>
 
 <%= f.inputs name: "Time constraints" do %>
   <%= f.input :response_needed_by_date,
               label: "Is there a date you need to have a response by?",
-              input_html: { class: "form-md-2", :"calendar-enabled" => true, :placeholder => "dd-mm-yyyy", :value => f.object.response_needed_by_date } %>
+              input_html: { class: "input-md-2", :"calendar-enabled" => true, :placeholder => "dd-mm-yyyy", :value => f.object.response_needed_by_date } %>
 
-  <%= f.input :reason_for_deadline, label: "Reason for deadline", input_html: { class: "form-md-6" } %>
+  <%= f.input :reason_for_deadline, label: "Reason for deadline", input_html: { class: "input-md-6" } %>
 <% end %>

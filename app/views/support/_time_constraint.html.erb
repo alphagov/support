@@ -1,7 +1,7 @@
 <%= f.semantic_fields_for :time_constraint do |r| %>
   <%= r.inputs name: "Are there any time constraints? (Optional)" do %>
-    <%= r.input :needed_by_date, label: "MUST be published by", required: false, input_html: { class: "form-md-2", :"calendar-enabled" => true, :placeholder => "dd-mm-yyyy", :value => r.object.needed_by_date } %>
-    <%= r.input :not_before_date, label: "MUST NOT be published BEFORE", required: false, input_html: { class: "form-md-2", :"calendar-enabled" => true, :placeholder => "dd-mm-yyyy", :value => r.object.not_before_date } %>
-    <%= r.input :time_constraint_reason, as: :text, label: "Reason for the above dates", required: false, input_html: { class: "form-md-6", rows: 6, cols: 50 } %>
+    <%= r.input :needed_by_date, label: "MUST be published by", required: false, input_html: { class: "input-md-2", :"calendar-enabled" => true, :placeholder => "dd-mm-yyyy", :value => r.object.needed_by_date } %>
+    <%= r.input :not_before_date, label: "MUST NOT be published BEFORE", required: false, input_html: { class: "input-md-2", :"calendar-enabled" => true, :placeholder => "dd-mm-yyyy", :value => r.object.not_before_date } %>
+    <%= r.input :time_constraint_reason, as: :text, label: "Reason for the above dates", required: false, input_html: { class: "input-md-6", rows: 6, cols: 50 } %>
   <% end %>
 <% end %>
