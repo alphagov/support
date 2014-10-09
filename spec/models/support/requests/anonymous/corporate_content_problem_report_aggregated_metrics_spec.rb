@@ -16,13 +16,13 @@ module Support
         before do
           { 7 => ["a"], 5 => ["b", "c", "d"], 3 => ["e", "f"], 1 => ["g"] }.each do |count, slugs|
             slugs.each do |slug|
-              count.times { create_report(page_owner: "co", created_at: Date.new(2013,2,10), url: "https://www.gov.uk/#{slug}") }
+              count.times { create_report(page_owner: "co", created_at: Date.new(2013,2,10), path: "/#{slug}") }
             end
           end
 
-          create_report(page_owner: "dft", created_at: Date.new(2013,2,10), url: "https://www.gov.uk/h")
-          create_report(page_owner: "hmrc", created_at: Date.new(2013,2,10), url: "https://www.gov.uk/i")
-          create_report(page_owner: "co", created_at: Date.new(2013,1,1), url: "https://www.gov.uk/a")
+          create_report(page_owner: "dft", created_at: Date.new(2013,2,10), path: "/h")
+          create_report(page_owner: "hmrc", created_at: Date.new(2013,2,10), path: "/i")
+          create_report(page_owner: "co", created_at: Date.new(2013,1,1), path: "/a")
         end
 
         after do
@@ -89,13 +89,13 @@ module Support
             it "includes urls, comment counts, grouped by page owner" do
               aggregates = top_urls.map {|entry| [ entry["organisation_acronym"], entry["url"], entry["comment_count"] ] }
               expect(aggregates).to eq([
-                ["co", "https://www.gov.uk/a", 7],
-                ["co", "https://www.gov.uk/b", 5],
-                ["co", "https://www.gov.uk/c", 5],
-                ["co", "https://www.gov.uk/d", 5],
-                ["co", "https://www.gov.uk/e", 3],
-                ["dft", "https://www.gov.uk/h", 1],
-                ["hmrc", "https://www.gov.uk/i", 1],
+                ["co", "http://www.dev.gov.uk/a", 7],
+                ["co", "http://www.dev.gov.uk/b", 5],
+                ["co", "http://www.dev.gov.uk/c", 5],
+                ["co", "http://www.dev.gov.uk/d", 5],
+                ["co", "http://www.dev.gov.uk/e", 3],
+                ["dft", "http://www.dev.gov.uk/h", 1],
+                ["hmrc", "http://www.dev.gov.uk/i", 1],
               ])
             end
           end

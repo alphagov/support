@@ -27,7 +27,7 @@ describe AnonymousFeedbackController, :type => :controller do
       create(:problem_report,
         what_wrong: "A",
         what_doing: "B",
-        url: "https://www.gov.uk/tax-disc",
+        path: "/tax-disc",
         referrer: "https://www.gov.uk/browse",
         user_agent: "Safari",
       )
@@ -40,7 +40,7 @@ describe AnonymousFeedbackController, :type => :controller do
       end
 
       it "displays at most 50 results per page" do
-        create_list(:problem_report, 70, url: "https://www.gov.uk/tax-disc")
+        create_list(:problem_report, 70, path: "/tax-disc")
         get :index, path: "/tax-disc"
         expect(assigns["feedback"]).to have(50).items
       end
@@ -59,7 +59,7 @@ describe AnonymousFeedbackController, :type => :controller do
           "type" => "problem-report",
           "what_wrong" => "A",
           "what_doing" => "B",
-          "url" => "https://www.gov.uk/tax-disc",
+          "url" => "http://www.dev.gov.uk/tax-disc",
           "referrer" => "https://www.gov.uk/browse",
           "user_agent" => "Safari",
         )
@@ -70,7 +70,7 @@ describe AnonymousFeedbackController, :type => :controller do
   context "valid input, long-form feedback" do
     let!(:feedback) do
       create(:long_form_contact,
-        url: "https://www.gov.uk/tax-disc",
+        path: "/tax-disc",
         referrer: "https://www.gov.uk/contact/govuk",
         details: "Abc def",
         user_agent: "Safari",
@@ -96,7 +96,7 @@ describe AnonymousFeedbackController, :type => :controller do
           "id" => feedback.id,
           "type" => "long-form-contact",
           "details" => "Abc def",
-          "url" => "https://www.gov.uk/tax-disc",
+          "url" => "http://www.dev.gov.uk/tax-disc",
           "referrer" => "https://www.gov.uk/contact/govuk",
           "user_agent" => "Safari",
         )
@@ -108,7 +108,7 @@ describe AnonymousFeedbackController, :type => :controller do
     let!(:feedback) do
       create(:service_feedback,
         slug: "apply-carers-allowance",
-        url: "https://www.gov.uk/done/apply-carers-allowance",
+        path: "/done/apply-carers-allowance",
         details: "It's great",
         service_satisfaction_rating: 5,
         user_agent: "Safari",
@@ -135,7 +135,7 @@ describe AnonymousFeedbackController, :type => :controller do
           "type" => "service-feedback",
           "slug" => "apply-carers-allowance",
           "details" => "It's great",
-          "url" => "https://www.gov.uk/done/apply-carers-allowance",
+          "url" => "http://www.dev.gov.uk/done/apply-carers-allowance",
           "service_satisfaction_rating" => 5,
           "user_agent" => "Safari",
         )

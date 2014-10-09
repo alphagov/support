@@ -7,7 +7,7 @@ feature "Exploring anonymous feedback" do
 
   scenario "exploring feedback by URL" do
     create(:problem_report,
-      url: "https://www.gov.uk/tax-disc",
+      path: "/tax-disc",
       created_at: DateTime.parse("2013-01-01"),
       what_doing: "logging in",
       what_wrong: "error",
@@ -15,7 +15,7 @@ feature "Exploring anonymous feedback" do
     )
 
     create(:problem_report,
-      url: "https://www.gov.uk/vat-rates",
+      path: "/vat-rates",
       created_at: DateTime.parse("2013-02-01"),
       what_doing: "looking at rates",
       what_wrong: "standard rate is wrong",
@@ -23,7 +23,7 @@ feature "Exploring anonymous feedback" do
     )
 
     create(:problem_report,
-      url: "https://www.gov.uk/vat-rates",
+      path: "/vat-rates",
       created_at: DateTime.parse("2013-03-01"),
       what_doing: "looking at 3rd paragraph",
       what_wrong: "typo in 2rd word",
