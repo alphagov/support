@@ -9,15 +9,18 @@ module Support
         include WithPersonalInformationChecking
         include AnonymousContactValidations
 
-        attr_accessible :url, :path, :referrer, :javascript_enabled, :user_agent, :personal_information_status
+        attr_accessible :path, :referrer, :javascript_enabled, :user_agent, :personal_information_status
         attr_accessible :is_actionable, :reason_why_not_actionable
 
-        before_save :set_path_from_url
         before_save do |feedback|
           detect_personal_information_in(feedback.details, feedback.what_wrong, feedback.what_doing)
         end
 
         paginates_per 50
+
+        def url
+          path.present? ? Plek.new.website_root + path : nil
+        end
 
         def requester
           Requester.anonymous
@@ -30,11 +33,6 @@ module Support
             only_actionable.
             order("created_at desc")
         }
-
-        private
-        def set_path_from_url
-          self.path = URI.parse(url).path unless url.nil?
-        end
       end
     end
   end

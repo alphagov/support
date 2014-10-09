@@ -41,7 +41,7 @@ module Support
       end
 
       class TopUrls
-        NUMBER_OF_URLS_PER_ORG = 5
+        NUMBER_OF_PATHS_PER_ORG = 5
 
         def initialize(first_day_of_period, period_in_question)
           @first_day_of_period = first_day_of_period
@@ -50,7 +50,7 @@ module Support
 
         def to_a
           top_urls = distinct_org_acronyms.inject([]) do |list, org_acronym|
-            list + top_urls_for(org_acronym).zip(1..NUMBER_OF_URLS_PER_ORG)
+            list + top_urls_for(org_acronym).zip(1..NUMBER_OF_PATHS_PER_ORG)
           end
           top_urls.map do |top_url, rank|
             {
@@ -58,7 +58,7 @@ module Support
               "_timestamp" => @first_day_of_period.to_time.iso8601,
               "period" => "month",
               "organisation_acronym" => top_url.page_owner,
-              "comment_count" => top_url.number_of_urls,
+              "comment_count" => top_url.number_of_paths,
               "url" => top_url.url
             }
           end
@@ -70,10 +70,10 @@ module Support
             only_actionable.
             where(created_at: @period_in_question).
             where(page_owner: org_acronym).
-            select("page_owner, url, count(*) as number_of_urls").
-            group(:url).
-            order("number_of_urls desc, url asc").
-            limit(NUMBER_OF_URLS_PER_ORG)
+            select("page_owner, path, count(*) as number_of_paths").
+            group(:path).
+            order("number_of_paths desc, path asc").
+            limit(NUMBER_OF_PATHS_PER_ORG)
         end
 
         def distinct_org_acronyms

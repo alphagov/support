@@ -24,7 +24,7 @@ describe "corporate content problem report stats" do
         "period" => "month",
         "organisation_acronym" => "dft",
         "comment_count" => 1,
-        "url" => "https://www.gov.uk/abc"
+        "url" => "http://www.dev.gov.uk/abc"
       }
     ])
 
@@ -32,7 +32,7 @@ describe "corporate content problem report stats" do
 
     create(:problem_report,
       what_wrong: "this service is great",
-      url: "https://www.gov.uk/abc",
+      path: "/abc",
       page_owner: "dft"
     )
 

@@ -1,4 +1,5 @@
 require 'uri'
+require 'plek'
 require 'support/requests/anonymous/anonymous_contact'
 
 module Support

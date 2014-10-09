@@ -2,14 +2,14 @@ require 'rails_helper'
 require 'support/requests/anonymous/anonymous_contact'
 
 class TestContact < Support::Requests::Anonymous::AnonymousContact
-  attr_accessible :details, :what_wrong, :what_doing, :url
+  attr_accessible :details, :what_wrong, :what_doing, :path
 end
 
 module Support
   module Requests
     module Anonymous
       describe AnonymousContact, :type => :model do
-        DEFAULTS = { javascript_enabled: true, url: "https://www.gov.uk/tax-disc", path: "/tax-disc" }
+        DEFAULTS = { javascript_enabled: true, path: "/tax-disc" }
 
         def new_contact(options = {})
           TestContact.new(DEFAULTS.merge(options))
@@ -41,20 +41,6 @@ module Support
           expect(contact(what_wrong: "my NI number is QQ 12 34 56 A thanks").personal_information_status).to eq("suspected")
         end
 
-        it "stores the relative path of the page from which the feedback was lodged" do
-          contact = new_contact(url: "https://www.gov.uk/vat-rates")
-          contact.save!
-          expect(contact.path).to eq("/vat-rates")
-        end
-
-        context "URLs" do
-          it { should allow_value("https://www.gov.uk/something").for(:url) }
-          it { should allow_value(nil).for(:url) }
-          it { should allow_value("http://" + ("a" * 2040)).for(:url) }
-          it { should_not allow_value("http://" + ("a" * 2050)).for(:url) }
-          it { should_not allow_value("http://bla.example.org:9292/méh/fào?bar").for(:url) }
-        end
-
         context "path" do
           it { should allow_value("/something").for(:path) }
           it { should allow_value(nil).for(:path) }
@@ -73,9 +59,9 @@ module Support
 
         context "#find_all_starting_with_path" do
           it "finds urls beginning with the given path" do
-            a = contact(url: "https://www.gov.uk/some-calculator/y/abc")
-            b = contact(url: "https://www.gov.uk/some-calculator/y/abc/x")
-            c = contact(url: "https://www.gov.uk/tax-disc")
+            a = contact(path: "/some-calculator/y/abc")
+            b = contact(path: "/some-calculator/y/abc/x")
+            c = contact(path: "/tax-disc")
 
             result = TestContact.find_all_starting_with_path("/some-calculator")
 
