@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.18'
 
 group :assets do
-  gem 'sass', '3.2.12'
+  gem 'sass', '3.2.19'
   gem 'sass-rails', '3.2.6'
   gem 'uglifier', '2.0.1'
 end
@@ -29,7 +29,7 @@ gem 'logstasher', '0.4.8'
 gem 'whenever', '0.9.0', require: false
 gem 'kaminari', '0.15.1'
 gem 'bootstrap-kaminari-views', '0.0.3'
-gem 'govuk_admin_template', '1.1.6'
+gem 'govuk_admin_template', '1.5.1'
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else
