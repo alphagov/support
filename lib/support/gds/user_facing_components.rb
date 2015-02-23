@@ -22,6 +22,7 @@ module Support
             { name: "Whitehall Publisher", id: "inside_government_publisher", inside_government_related: true },
             { name: "Mainstream Publisher", id: "mainstream_publisher" },
             { name: "Travel Advice Publisher", id: "travel_advice_publisher" },
+            { name: "Specialist Publisher", id: "specialist_publisher" },
           ]
         end
       end
