@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.18'
+gem 'rails', '4.1.9'
 
 group :assets do
-  gem 'sass', '3.2.19'
-  gem 'sass-rails', '3.2.6'
+  gem 'sass-rails', '5.0.1'
   gem 'uglifier', '2.0.1'
 end
 
