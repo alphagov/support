@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'support/requests/anonymous/anonymous_contact'
 
 class TestContact < Support::Requests::Anonymous::AnonymousContact
-  attr_accessible :details, :what_wrong, :what_doing, :path
 end
 
 module Support

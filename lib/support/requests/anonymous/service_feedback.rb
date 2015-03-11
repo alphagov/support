@@ -6,7 +6,6 @@ module Support
     module Anonymous
       class ServiceFeedback < AnonymousContact
         include ServiceFeedbackValidations
-        attr_accessible :details, :slug, :service_satisfaction_rating
       end
     end
   end
