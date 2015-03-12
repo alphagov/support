@@ -28,7 +28,7 @@ Support::Application.routes.draw do
 
   resources :anonymous_feedback, only: :index, format: false
 
-  match "acknowledge" => "support#acknowledge"
-  match "_status" => "support#queue_status"
+  get "acknowledge" => "support#acknowledge"
+  get "_status" => "support#queue_status"
   root to: 'support#landing'
 end
