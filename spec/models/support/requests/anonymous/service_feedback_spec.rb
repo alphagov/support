@@ -10,7 +10,7 @@ module Support
         it { should allow_value(nil).for(:details) }
         it { should validate_presence_of(:slug) }
 
-        it { should ensure_inclusion_of(:service_satisfaction_rating).in_range(1..5) }
+        it { should validate_inclusion_of(:service_satisfaction_rating).in_range(1..5) }
       end
     end
   end
