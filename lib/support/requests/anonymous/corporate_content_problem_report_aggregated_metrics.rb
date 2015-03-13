@@ -32,7 +32,8 @@ module Support
             with_known_page_owner.
             where(created_at: @period_in_question).
             order("page_owner asc").
-            count(group: :page_owner)
+            group(:page_owner).
+            count
         end
 
         def feedback_count_id_for(page_owner)
