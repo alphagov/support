@@ -14,7 +14,7 @@ gem 'gds-sso', '9.4.0'
 gem 'cancan', '1.6.9'
 gem 'jquery-ui-rails', '4.2.1'
 gem 'plek', '1.7.0'
-gem 'formtastic-bootstrap', '3.0.0'
+gem 'formtastic-bootstrap', '3.1.0'
 gem 'jc-validates_timeliness', '3.1.1'
 if ENV['GDS_ZENDESK_DEV']
   gem "gds_zendesk", :path => '../gds_zendesk'
