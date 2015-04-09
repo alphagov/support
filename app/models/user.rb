@@ -69,7 +69,7 @@ class User < OpenStruct
     send("#{key}=", value)
   end
 
-  def update_attributes(params, hash)
+  def update_attributes(params, hash = nil)
     params.each do |key, value|
       send("#{key}=", value)
     end

@@ -9,9 +9,6 @@ module Support
         include WithPersonalInformationChecking
         include AnonymousContactValidations
 
-        attr_accessible :path, :referrer, :javascript_enabled, :user_agent, :personal_information_status
-        attr_accessible :is_actionable, :reason_why_not_actionable
-
         before_save do |feedback|
           detect_personal_information_in(feedback.details, feedback.what_wrong, feedback.what_doing)
         end

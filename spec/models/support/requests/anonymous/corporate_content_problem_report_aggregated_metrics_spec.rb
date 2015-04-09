@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'support/requests/anonymous/corporate_content_problem_report_aggregated_metrics'
 
 module Support
   module Requests

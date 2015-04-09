@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.18'
+gem 'rails', '4.2.1'
 
 group :assets do
-  gem 'sass', '3.2.19'
-  gem 'sass-rails', '3.2.6'
+  gem 'sass-rails', '5.0.1'
   gem 'uglifier', '2.0.1'
 end
 
@@ -13,10 +12,10 @@ gem "airbrake", "3.1.15"
 
 gem 'gds-sso', '9.4.0'
 gem 'cancan', '1.6.9'
-gem 'jquery-ui-rails', '4.2.1'
+gem 'jquery-ui-rails', '5.0.1'
 gem 'plek', '1.7.0'
-gem 'formtastic-bootstrap', '3.0.0'
-gem 'validates_timeliness', '3.0.14'
+gem 'formtastic-bootstrap', '3.1.0'
+gem 'jc-validates_timeliness', '3.1.1'
 if ENV['GDS_ZENDESK_DEV']
   gem "gds_zendesk", :path => '../gds_zendesk'
 else
@@ -53,7 +52,7 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '3.0.1'
+  gem 'rspec-rails', '3.2.1'
 end
 
 gem 'unicorn', '4.3.1'
