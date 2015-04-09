@@ -19,7 +19,7 @@ gem 'jc-validates_timeliness', '3.1.1'
 if ENV['GDS_ZENDESK_DEV']
   gem "gds_zendesk", :path => '../gds_zendesk'
 else
-  gem "gds_zendesk", '1.0.2'
+  gem "gds_zendesk", '1.0.4'
 end
 gem 'redis', '3.0.6'
 gem "sidekiq", "2.17.1"
