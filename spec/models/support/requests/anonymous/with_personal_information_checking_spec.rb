@@ -1,11 +1,12 @@
 require 'rails_helper'
-require 'active_model/tableless_model'
+require 'active_model/model'
 require 'support/requests/anonymous/with_personal_information_checking'
 
 module Support
   module Requests
     module Anonymous
-      class ContactWithFreeTextFields < ActiveModel::TablelessModel
+      class ContactWithFreeTextFields
+        include ActiveModel::Model
         def self.scope(*args); end
 
         attr_accessor :free_text_field, :personal_information_status

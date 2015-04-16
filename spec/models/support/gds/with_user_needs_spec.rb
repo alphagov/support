@@ -1,10 +1,11 @@
 require 'spec_helper'
-require 'active_model/tableless_model'
+require 'active_model/model'
 require 'support/gds/with_user_needs'
 
 module Support
   module GDS
-    class TestModelWithUserNeeds < ActiveModel::TablelessModel
+    class TestModelWithUserNeeds
+      include ActiveModel::Model
       include WithUserNeeds
     end
 

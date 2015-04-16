@@ -1,8 +1,9 @@
-require 'active_model/tableless_model'
+require 'active_model/model'
 
 module Support
   module GDS
-    class UserFacingComponent < ActiveModel::TablelessModel
+    class UserFacingComponent
+      include ActiveModel::Model
       attr_accessor :name, :id, :inside_government_related
 
       validates_presence_of :name, :id
