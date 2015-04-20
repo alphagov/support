@@ -1,9 +1,11 @@
-require 'active_model/tableless_model'
+require 'active_model/model'
 require 'support/requests/with_requester'
 
 module Support
   module Requests
-    class Request < ActiveModel::TablelessModel
+    class Request
+      include ActiveModel::Model
+
       def initialize(attributes = {})
         self.requester = Requester.new
 

@@ -1,8 +1,9 @@
-require 'active_model/tableless_model'
+require 'active_model/model'
 
 module Support
   module Requests
-    class TimeConstraint < ActiveModel::TablelessModel
+    class TimeConstraint
+      include ActiveModel::Model
       attr_accessor :not_before_date, :needed_by_date, :time_constraint_reason
 
       validates_date :needed_by_date, :allow_nil => true, :allow_blank => true, :on_or_after => :today

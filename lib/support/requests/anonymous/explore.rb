@@ -1,11 +1,13 @@
 require 'uri'
-require 'active_model/tableless_model'
+require 'active_model/model'
 
 module Support
   module Requests
     module Anonymous
       # this superclass is defined so authorisation can be defined on it
-      class Explore < ActiveModel::TablelessModel; end
+      class Explore
+        include ActiveModel::Model
+      end
 
       class ExploreByUrl < Explore
         attr_accessor :url

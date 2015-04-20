@@ -1,8 +1,9 @@
-require 'active_model/tableless_model'
+require 'active_model/model'
 
 module Support
   module GDS
-    class RequestedUser < ActiveModel::TablelessModel
+    class RequestedUser
+      include ActiveModel::Model
       attr_accessor :name, :email, :job, :phone
 
       validates_presence_of :name, :email

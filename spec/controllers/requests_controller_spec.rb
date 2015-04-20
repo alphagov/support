@@ -1,10 +1,11 @@
 require 'rails_helper'
-require 'active_model/tableless_model'
+require 'active_model/model'
 require 'support/requests/requester'
 require 'zendesk/zendesk_ticket'
 
 describe RequestsController, :type => :controller do
-  class TestRequest < ActiveModel::TablelessModel
+  class TestRequest
+    include ActiveModel::Model
     include Support::Requests::WithRequester
 
     attr_accessor :a, :b

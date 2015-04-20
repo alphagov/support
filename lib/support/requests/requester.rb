@@ -1,8 +1,9 @@
-require 'active_model/tableless_model'
+require 'active_model/model'
 
 module Support
   module Requests
-    class Requester < ActiveModel::TablelessModel
+    class Requester
+      include ActiveModel::Model
       attr_accessor :email, :name
 
       validates_presence_of :email
