@@ -1,5 +1,5 @@
-<%= content_for :page_title, "FeedEx" %>
-<%= content_for :header, "Anonymous feedback for “#{params[:path]}”" %>
+<%= content_for :page_title, "Feedback for “#{params[:path]}”" %>
+<%= content_for :header, "Feedback for “#{params[:path]}”" %>
 <% breadcrumb :anonymous_feedback_by_path, params[:path] %>
 
 <% if @feedback.empty? %>
