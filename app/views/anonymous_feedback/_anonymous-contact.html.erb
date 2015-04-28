@@ -1,5 +1,5 @@
 <tr class="anonymous-contact">
-  <th scope="row"><%= anonymous_contact.created_at.strftime("%d.%m.%Y") %></th>
+  <th scope="row" class="no-wrap"><%= anonymous_contact.created_at.to_date.to_s(:govuk_date) %></th>
   <td>
     <%= render partial: "feedback", locals: { anonymous_contact: anonymous_contact } %>
   </td>

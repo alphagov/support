@@ -34,15 +34,15 @@ feature "Exploring anonymous feedback" do
 
     expect(feedex_results).to eq([
       {
-        "creation date" => "01.03.2013",
-        "feedback" => "action: looking at 3rd paragraph problem: typo in 2rd word",
-        "full path" => "/vat-rates",
-        "user came from" => "https://www.gov.uk"
+        "Date" => "1 March 2013",
+        "Feedback" => "action: looking at 3rd paragraph problem: typo in 2rd word",
+        "URL" => "/vat-rates",
+        "Referrer" => "https://www.gov.uk"
       }, {
-        "creation date" => "01.02.2013",
-        "feedback" => "action: looking at rates problem: standard rate is wrong",
-        "full path" => "/vat-rates",
-        "user came from" => "https://www.gov.uk/pay-vat"
+        "Date" => "1 February 2013",
+        "Feedback" => "action: looking at rates problem: standard rate is wrong",
+        "URL" => "/vat-rates",
+        "Referrer" => "https://www.gov.uk/pay-vat"
       }
     ])
   end
