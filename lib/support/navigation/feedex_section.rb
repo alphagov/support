@@ -12,7 +12,7 @@ module Support
       end
 
       def description
-        "Explore GOV.UK anonymous feedback"
+        "GOV.UK Anonymous Feedback"
       end
 
       def link

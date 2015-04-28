@@ -24,10 +24,10 @@ feature "User satisfaction survey submissions" do
 
     expect(feedex_results).to eq([
       {
-        "creation date" => "28.02.2013",
-        "feedback" => "rating: 3 comment: Make service less 'meh'",
-        "full path" => "/done/find-court-tribunal",
-        "user came from" => "–"
+        "Date" => "28 February 2013",
+        "Feedback" => "rating: 3 comment: Make service less 'meh'",
+        "URL" => "/done/find-court-tribunal",
+        "Referrer" => "–"
       }
     ])
   end
@@ -43,7 +43,7 @@ feature "User satisfaction survey submissions" do
 
     explore_anonymous_feedback_with(url: "https://www.gov.uk/done/apply-carers-allowance")
 
-    expect(feedex_results.first["feedback"]).to eq("rating: 3")
+    expect(feedex_results.first["Feedback"]).to eq("rating: 3")
   end
 
   private
