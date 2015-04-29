@@ -85,11 +85,11 @@ GEM
       null_logger
       plek
       rest-client (~> 1.6.3)
-    gds-sso (9.4.0)
+    gds-sso (11.0.0)
       multi_json (~> 1.0)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
-      omniauth-gds (~> 3.1)
+      omniauth-gds (~> 3.2)
       rack-accept (~> 0.4.4)
       rails (>= 3.0.0)
       warden (~> 1.2)
@@ -297,7 +297,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.5.0)
   formtastic-bootstrap (= 3.1.0)
   gds-api-adapters (= 10.8.0)
-  gds-sso (= 9.4.0)
+  gds-sso (= 11.0.0)
   gds_zendesk (= 1.0.4)
   govuk_admin_template (= 2.2.0)
   gretel (= 3.0.8)
