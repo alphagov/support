@@ -23,7 +23,7 @@ gem 'redis', '3.0.6'
 gem "sidekiq", "2.17.1"
 gem "statsd-ruby", "1.2.1", require: "statsd"
 gem 'logstasher', '0.4.8'
-gem 'whenever', '0.9.0', require: false
+gem 'whenever', '0.9.4', require: false
 gem 'kaminari', '0.15.1'
 gem 'bootstrap-kaminari-views', '0.0.5'
 gem 'govuk_admin_template', '2.2.0'
