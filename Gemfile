@@ -6,7 +6,7 @@ gem 'sass-rails', '5.0.3'
 gem 'uglifier', '2.7.1'
 
 gem 'mysql2', '0.3.14'
-gem "airbrake", "3.1.15"
+gem "airbrake", "4.1.0"
 
 gem 'gds-sso', '11.0.0'
 gem 'cancan', '1.6.10'
@@ -20,7 +20,7 @@ else
   gem "gds_zendesk", '1.0.4'
 end
 gem 'redis', '3.2.1'
-gem "sidekiq", "2.17.1"
+gem "sidekiq", "3.3.4"
 gem "statsd-ruby", "1.2.1", require: "statsd"
 gem 'logstasher', '0.4.8'
 gem 'whenever', '0.9.4', require: false

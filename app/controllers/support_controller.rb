@@ -1,4 +1,4 @@
-require 'sidekiq'
+require 'sidekiq/api'
 require 'support/navigation/feedex_section'
 require 'support/navigation/emergency_contact_details_section'
 

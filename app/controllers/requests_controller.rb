@@ -1,5 +1,6 @@
 require "zendesk/zendesk_tickets"
 require 'support/requests/requester'
+require 'sidekiq/api'
 
 class RequestsController < AuthorisationController
   def new
