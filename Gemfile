@@ -38,7 +38,7 @@ gem 'jbuilder', '2.1.1'
 gem 'gretel', '3.0.7'
 
 group :development do
-  gem "quiet_assets", "1.0.2"
+  gem "quiet_assets", "~> 1.1.0"
 end
 
 group :test do
