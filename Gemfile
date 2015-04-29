@@ -19,7 +19,7 @@ if ENV['GDS_ZENDESK_DEV']
 else
   gem "gds_zendesk", '1.0.4'
 end
-gem 'redis', '3.0.6'
+gem 'redis', '3.2.1'
 gem "sidekiq", "2.17.1"
 gem "statsd-ruby", "1.2.1", require: "statsd"
 gem 'logstasher', '0.4.8'
