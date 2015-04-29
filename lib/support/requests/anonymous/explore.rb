@@ -27,9 +27,16 @@ module Support
           errors.add(:url, "must be a valid URL")
         end
 
+        # correct user's URL entries to give them what they're after
+        # we only really care about the path they've entered
+        # strip out
+        # - malformed http eg https:, http//:, http:/, http:///
+        # - www.gov.uk and gov.uk
+        # allow
+        # treat some-path as if it were /some-path
         def path_from_url
-          path = URI(url).path
-          path.sub(/^(www.)?gov.uk/, '')
+          path = URI(url).path.sub(/^(http(s)?(:)?(\/)+?(:)?)?((\/)?www.)?gov.uk/, '')
+          path.start_with?('/') ? path : "/#{path}"
         end
       end
     end
