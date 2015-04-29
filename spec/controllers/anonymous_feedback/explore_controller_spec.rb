@@ -6,7 +6,7 @@ describe AnonymousFeedback::ExploreController, :type => :controller do
   end
 
   it "shows the new form again for invalid requests" do
-    post :create, { support_requests_anonymous_explore_by_url: { url: "abc" } }
+    post :create, { support_requests_anonymous_explore_by_url: { url: "" } }
     expect(response).to have_http_status(422)
   end
 

@@ -15,16 +15,21 @@ module Support
         validate :url_is_well_formed
 
         def redirect_path
-          Rails.application.routes.url_helpers.anonymous_feedback_index_path(path: URI(url).path)
+          Rails.application.routes.url_helpers.anonymous_feedback_index_path(path: path_from_url)
         end
 
         private
         def url_is_well_formed
           uri = URI.parse(url)
-          valid = (uri.kind_of?(URI::HTTP) or uri.kind_of?(URI::HTTPS)) && !uri.path.nil? && !uri.host.nil?
+          valid = !uri.path.nil?
           errors.add(:url, "must be a valid URL") unless valid
         rescue URI::InvalidURIError
           errors.add(:url, "must be a valid URL")
+        end
+
+        def path_from_url
+          path = URI(url).path
+          path.sub(/^(www.)?gov.uk/, '')
         end
       end
     end
