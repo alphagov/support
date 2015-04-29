@@ -11,7 +11,7 @@ gem 'mysql2', '0.3.14'
 gem "airbrake", "3.1.15"
 
 gem 'gds-sso', '9.4.0'
-gem 'cancan', '1.6.9'
+gem 'cancan', '1.6.10'
 gem 'jquery-ui-rails', '5.0.1'
 gem 'plek', '1.10.0'
 gem 'formtastic-bootstrap', '3.1.0'
