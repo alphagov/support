@@ -30,9 +30,7 @@ feature "Exploring anonymous feedback" do
       referrer: "https://www.gov.uk",
     )
 
-    explore_anonymous_feedback_with(url: "https://www.gov.uk/vat-rates")
-
-    expect(feedex_results).to eq([
+    feedback_reports = [
       {
         "Date" => "1 March 2013",
         "Feedback" => "action: looking at 3rd paragraph problem: typo in 2rd word",
@@ -44,7 +42,10 @@ feature "Exploring anonymous feedback" do
         "URL" => "/vat-rates",
         "Referrer" => "https://www.gov.uk/pay-vat"
       }
-    ])
+    ]
+
+    explore_anonymous_feedback_with(url: "www.gov.uk/vat-rates")
+    expect(feedex_results).to eq(feedback_reports)
   end
 
   scenario "no feedback found" do
