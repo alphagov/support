@@ -18,15 +18,6 @@ module Support
           Rails.application.routes.url_helpers.anonymous_feedback_index_path(path: path_from_url)
         end
 
-        private
-        def url_is_well_formed
-          uri = URI.parse(url)
-          valid = !uri.path.nil?
-          errors.add(:url, "must be a valid URL") unless valid
-        rescue URI::InvalidURIError
-          errors.add(:url, "must be a valid URL")
-        end
-
         # correct user's URL entries to give them what they're after
         # we only really care about the path they've entered
         # strip out
@@ -37,6 +28,15 @@ module Support
         def path_from_url
           path = URI(url).path.sub(/^(http(s)?(:)?(\/)+?(:)?)?((\/)?www.)?gov.uk/, '')
           path.start_with?('/') ? path : "/#{path}"
+        end
+
+        private
+        def url_is_well_formed
+          uri = URI.parse(url)
+          valid = !uri.path.nil?
+          errors.add(:url, "must be a valid URL") unless valid
+        rescue URI::InvalidURIError
+          errors.add(:url, "must be a valid URL")
         end
       end
     end

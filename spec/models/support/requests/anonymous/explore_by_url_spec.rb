@@ -14,6 +14,35 @@ module Support
           expect(ExploreByUrl.new(url: "https://www.gov.uk/some-path").redirect_path).
             to eq("/anonymous_feedback?path=%2Fsome-path")
         end
+
+        it "can extract the path from a valid URL" do
+          [
+            "https://www.gov.uk/abc",
+            "http://www.gov.uk/abc",
+          ].each {|url| expect(extracted_path_from(url)).to eq("/abc")}
+        end
+
+        it "can extract the path from a URL with a malformed protocol" do
+          [
+            "http:///www.gov.uk/abc",
+            "http//:www.gov.uk/abc",
+            "http/:www.gov.uk/abc",
+            "http:/www.gov.uk/abc",
+          ].each {|url| expect(extracted_path_from(url)).to eq("/abc")}
+        end
+
+        it "can extract the path from short hand URLs" do
+          [
+            "www.gov.uk/abc",
+            "gov.uk/abc",
+            "/abc",
+            "abc",
+          ].each {|url| expect(extracted_path_from(url)).to eq("/abc")}
+        end
+
+        def extracted_path_from(url)
+          ExploreByUrl.new(url: url).path_from_url
+        end
       end
     end
   end

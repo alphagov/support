@@ -44,25 +44,7 @@ feature "Exploring anonymous feedback" do
       }
     ]
 
-    explore_anonymous_feedback_with(url: "https://www.gov.uk/vat-rates")
-    expect(feedex_results).to eq(feedback_reports)
-
-    explore_anonymous_feedback_with(url: "http:/www.gov.uk/vat-rates")
-    expect(feedex_results).to eq(feedback_reports)
-
-    explore_anonymous_feedback_with(url: "https//www.gov.uk/vat-rates")
-    expect(feedex_results).to eq(feedback_reports)
-
     explore_anonymous_feedback_with(url: "www.gov.uk/vat-rates")
-    expect(feedex_results).to eq(feedback_reports)
-
-    explore_anonymous_feedback_with(url: "gov.uk/vat-rates")
-    expect(feedex_results).to eq(feedback_reports)
-
-    explore_anonymous_feedback_with(url: "/vat-rates")
-    expect(feedex_results).to eq(feedback_reports)
-
-    explore_anonymous_feedback_with(url: "vat-rates")
     expect(feedex_results).to eq(feedback_reports)
   end
 
