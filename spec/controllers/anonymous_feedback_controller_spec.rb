@@ -6,19 +6,9 @@ describe AnonymousFeedbackController, :type => :controller do
   end
 
   context "invalid input" do
-    context "HTML representation" do
-      it "redirects to the explore endpoint when no path given" do
-        get :index
-        expect(response).to redirect_to(anonymous_feedback_explore_url)
-      end
-    end
-
-    context "JSON" do
-      it "returns an error when no path given" do
-        get :index, format: :json
-        expect(response).to have_http_status(400)
-        expect(json_response).to eq("errors" => ["Please set a valid 'path' parameter"])
-      end
+    it "redirects to the explore endpoint when no path given" do
+      get :index
+      expect(response).to redirect_to(anonymous_feedback_explore_url)
     end
   end
 
@@ -33,37 +23,15 @@ describe AnonymousFeedbackController, :type => :controller do
       )
     end
 
-    context "HTML representation" do
-      it "renders the results" do
-        get :index, path: "/tax-disc"
-        expect(response).to have_http_status(:success)
-      end
-
-      it "displays at most 50 results per page" do
-        create_list(:problem_report, 70, path: "/tax-disc")
-        get :index, path: "/tax-disc"
-        expect(assigns["feedback"]).to have(50).items
-      end
+    it "renders the results" do
+      get :index, path: "/tax-disc"
+      expect(response).to have_http_status(:success)
     end
 
-    context "JSON" do
-      render_views
-
-      it "returns the results for problem" do
-        get :index, { "path" => "/tax-disc", "format" => "json" }
-
-        expect(response).to have_http_status(:success)
-        expect(json_response).to have(1).item
-        expect(json_response.first).to include(
-          "id" => feedback.id,
-          "type" => "problem-report",
-          "what_wrong" => "A",
-          "what_doing" => "B",
-          "url" => "http://www.dev.gov.uk/tax-disc",
-          "referrer" => "https://www.gov.uk/browse",
-          "user_agent" => "Safari",
-        )
-      end
+    it "displays at most 50 results per page" do
+      create_list(:problem_report, 70, path: "/tax-disc")
+      get :index, path: "/tax-disc"
+      expect(assigns["feedback"]).to have(50).items
     end
   end
 
@@ -77,30 +45,9 @@ describe AnonymousFeedbackController, :type => :controller do
       )
     end
 
-    context "HTML representation" do
-      it "renders the results for an HTML request" do
-        get :index, path: "/tax-disc"
-        expect(response).to have_http_status(:success)
-      end
-    end
-
-    context "JSON representation" do
-      render_views
-
-      it "returns the results for problem" do
-        get :index, { "path" => "/tax-disc", "format" => "json" }
-
-        expect(response).to have_http_status(:success)
-        expect(json_response).to have(1).item
-        expect(json_response.first).to include(
-          "id" => feedback.id,
-          "type" => "long-form-contact",
-          "details" => "Abc def",
-          "url" => "http://www.dev.gov.uk/tax-disc",
-          "referrer" => "https://www.gov.uk/contact/govuk",
-          "user_agent" => "Safari",
-        )
-      end
+    it "renders the results for an HTML request" do
+      get :index, path: "/tax-disc"
+      expect(response).to have_http_status(:success)
     end
   end
 
@@ -115,31 +62,9 @@ describe AnonymousFeedbackController, :type => :controller do
       )
     end
 
-    context "HTML representation" do
-      it "renders the results" do
-        get :index, path: "/done/apply-carers-allowance"
-        expect(response).to have_http_status(:success)
-      end
-    end
-
-    context "JSON representation" do
-      render_views
-
-      it "returns the results" do
-        get :index, { "path" => "/done/apply-carers-allowance", "format" => "json" }
-
-        expect(response).to have_http_status(:success)
-        expect(json_response).to have(1).item
-        expect(json_response.first).to include(
-          "id" => feedback.id,
-          "type" => "service-feedback",
-          "slug" => "apply-carers-allowance",
-          "details" => "It's great",
-          "url" => "http://www.dev.gov.uk/done/apply-carers-allowance",
-          "service_satisfaction_rating" => 5,
-          "user_agent" => "Safari",
-        )
-      end
+    it "renders the results" do
+      get :index, path: "/done/apply-carers-allowance"
+      expect(response).to have_http_status(:success)
     end
   end
 end

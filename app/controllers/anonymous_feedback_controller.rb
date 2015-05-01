@@ -5,18 +5,11 @@ class AnonymousFeedbackController < RequestsController
     authorize! :read, Anonymous::AnonymousContact
 
     if params[:path].nil? or params[:path].empty?
-      respond_to do |format|
-        format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
-        format.json { render json: {"errors" => ["Please set a valid 'path' parameter"] }, status: 400 }
-      end
+      redirect_to anonymous_feedback_explore_url, status: 301
     else
       @feedback = Anonymous::AnonymousContact.
         find_all_starting_with_path(params[:path]).
         page(params[:page])
-      respond_to do |format|
-        format.html
-        format.json
-      end
     end
   end
 
