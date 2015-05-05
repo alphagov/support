@@ -27,7 +27,7 @@ feature "User satisfaction survey submissions" do
         "Date" => "28 February 2013",
         "Feedback" => "rating: 3 comment: Make service less 'meh'",
         "URL" => "/done/find-court-tribunal",
-        "Referrer" => "–"
+        "Referrer" => ""
       }
     ])
   end

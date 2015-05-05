@@ -11,7 +11,7 @@ feature "Exploring anonymous feedback" do
       created_at: DateTime.parse("2013-01-01"),
       what_doing: "logging in",
       what_wrong: "error",
-      referrer: "https://www.gov.uk",
+      referrer: "https://www.gov.uk/",
     )
 
     create(:problem_report,
@@ -27,7 +27,7 @@ feature "Exploring anonymous feedback" do
       created_at: DateTime.parse("2013-03-01"),
       what_doing: "looking at 3rd paragraph",
       what_wrong: "typo in 2rd word",
-      referrer: "https://www.gov.uk",
+      referrer: "https://www.gov.uk/",
     )
 
     feedback_reports = [
@@ -35,12 +35,12 @@ feature "Exploring anonymous feedback" do
         "Date" => "1 March 2013",
         "Feedback" => "action: looking at 3rd paragraph problem: typo in 2rd word",
         "URL" => "/vat-rates",
-        "Referrer" => "https://www.gov.uk"
+        "Referrer" => "/"
       }, {
         "Date" => "1 February 2013",
         "Feedback" => "action: looking at rates problem: standard rate is wrong",
         "URL" => "/vat-rates",
-        "Referrer" => "https://www.gov.uk/pay-vat"
+        "Referrer" => "/pay-vat"
       }
     ]
 
