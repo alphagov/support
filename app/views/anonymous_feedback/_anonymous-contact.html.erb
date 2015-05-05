@@ -11,10 +11,12 @@
     <% end %>
   </td>
   <td>
-    <% if anonymous_contact.referrer %>
-      <%= link_to truncate(anonymous_contact.referrer), anonymous_contact.referrer, class: "breakable" %>
-    <% else %>
-      &ndash;
+    <% if anonymous_contact.referrer and anonymous_contact.referrer != "unknown" %>
+      <% search_term = extract_search_term(anonymous_contact.referrer) %>
+      <%= link_to friendly_referrer(anonymous_contact.referrer), anonymous_contact.referrer, class: "breakable" %>
+      <% if search_term %>
+        <br /><span title="Search term">“<%= search_term %>”</span>
+      <% end %>
     <% end %>
   </td>
 </tr>
