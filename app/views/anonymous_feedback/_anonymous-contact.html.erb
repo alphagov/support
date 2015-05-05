@@ -15,7 +15,7 @@
       <% search_term = extract_search_term(anonymous_contact.referrer) %>
       <%= link_to friendly_referrer(anonymous_contact.referrer), anonymous_contact.referrer, class: "breakable" %>
       <% if search_term %>
-        <span class="text-muted help" title="Search term">“<%= search_term %>”</span>
+        <br /><span title="Search term">“<%= search_term %>”</span>
       <% end %>
     <% end %>
   </td>
