@@ -1,33 +1,21 @@
 <%= content_for :page_title, "Anonymous Feedback" %>
-<%= content_for :header, "GOV.UK Anonymous Feedback" %>
+<%= content_for :header, "Feedback" %>
 
 <% breadcrumb :feedex %>
 
 <div class="row">
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">
-          Feedback on a URL or path
-        </h3>
-      </div>
-      <div class="panel-body">
-        <%= semantic_form_for @explore_by_url, url: { action: "create" } do |f| %>
-          <%= f.input :url, label: "URL", required: true, input_html: { class: "input-md-6", :"aria-required" => true, type: "url"} %>
-          <p class="help-block">eg <code>/vat-rates</code> or <code>https://www.gov.uk/bank-holidays</code></p>
-          <hr />
-          <%= f.action :submit, label: "Explore", button_html: { class: "btn btn-success" } %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="alert alert-info">
-      Users submit this feedback:
-        <ul>
-          <li>via the <strong>Is there anything wrong with this page?</strong> forms at the bottom of GOV.UK pages.</li>
-          <li>by filling out the <a href="https://www.gov.uk/service-manual/measurement/user-satisfaction.html">satisfaction survey</a> upon completion of a transaction that started on GOV.UK.</li>
-        </ul>
-    </div>
+  <p class="lead col-md-8">
+    At the bottom of every page on GOV.UK we ask, “is there anything wrong with this page?”. Users can leave comments on what they were doing and what went wrong. Feedback is anonymous and we’ve not removed spam.
+  </p>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <h2 class="add-bottom-margin">By URL</h2>
+    <%= semantic_form_for @explore_by_url, url: { action: "create" }, html: {class: 'well'} do |f| %>
+      <%= f.input :url, label: "URL", required: true, input_html: { class: "input-md-7", :"aria-required" => true, type: "url"} %>
+      <p class="help-block add-bottom-margin">eg <code>/vat-rates</code> or <code>https://www.gov.uk/bank-holidays</code></p>
+      <%= f.action :submit, label: "Explore", button_html: { class: "btn btn-success" } %>
+    <% end %>
   </div>
 </div>
