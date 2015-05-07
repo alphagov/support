@@ -12,7 +12,11 @@ gem 'gds-sso', '11.0.0'
 gem 'cancan', '1.6.10'
 gem 'jquery-ui-rails', '5.0.1'
 gem 'plek', '1.10.0'
-gem 'formtastic-bootstrap', '3.1.0'
+
+# using github version to pick up unreleased bugfix
+# https://github.com/mjbellantoni/formtastic-bootstrap/pull/119
+gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap', ref: '8134e3f'
+
 gem 'jc-validates_timeliness', '3.1.1'
 if ENV['GDS_ZENDESK_DEV']
   gem "gds_zendesk", :path => '../gds_zendesk'
