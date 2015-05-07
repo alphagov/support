@@ -1,70 +1,51 @@
 require 'rails_helper'
+require 'gds_api/test_helpers/support_api'
 
 describe AnonymousFeedbackController, :type => :controller do
+  include GdsApi::TestHelpers::SupportApi
+
   before do
     login_as create(:user)
   end
 
-  context "invalid input" do
-    it "redirects to the explore endpoint when no path given" do
-      get :index
-      expect(response).to redirect_to(anonymous_feedback_explore_url)
-    end
-  end
-
-  context "valid input, problem reports" do
-    let!(:feedback) do
-      create(:problem_report,
-        what_wrong: "A",
-        what_doing: "B",
-        path: "/tax-disc",
-        referrer: "https://www.gov.uk/browse",
-        user_agent: "Safari",
-      )
+  describe "#index" do
+    context "with invalid input" do
+      it "redirects to the explore endpoint when no path given" do
+        get :index
+        expect(response).to redirect_to(anonymous_feedback_explore_url)
+      end
     end
 
-    it "renders the results" do
-      get :index, path: "/tax-disc"
-      expect(response).to have_http_status(:success)
-    end
+    context "with valid input" do
+      let(:starting_with_path) { "/tax-disc" }
 
-    it "displays at most 50 results per page" do
-      create_list(:problem_report, 70, path: "/tax-disc")
-      get :index, path: "/tax-disc"
-      expect(assigns["feedback"]).to have(50).items
-    end
-  end
+      before do
+        stub_get_anonymous_feedback(
+          {
+            starting_with_path: starting_with_path,
+          },
+          response_body: {
+            "current_page" => 1,
+            "pages" => 1,
+            "page_size" => 1,
+            "results" => [
+              {
+                type: :problem_report,
+                path: "/vat-rates",
+                created_at: DateTime.parse("2013-03-01"),
+                what_doing: "looking at 3rd paragraph",
+                what_wrong: "typo in 2rd word",
+                referrer: "https://www.gov.uk",
+              },
+            ],
+          }.to_json
+        )
+      end
 
-  context "valid input, long-form feedback" do
-    let!(:feedback) do
-      create(:long_form_contact,
-        path: "/tax-disc",
-        referrer: "https://www.gov.uk/contact/govuk",
-        details: "Abc def",
-        user_agent: "Safari",
-      )
-    end
-
-    it "renders the results for an HTML request" do
-      get :index, path: "/tax-disc"
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  context "valid input, service feedback" do
-    let!(:feedback) do
-      create(:service_feedback,
-        slug: "apply-carers-allowance",
-        path: "/done/apply-carers-allowance",
-        details: "It's great",
-        service_satisfaction_rating: 5,
-        user_agent: "Safari",
-      )
-    end
-
-    it "renders the results" do
-      get :index, path: "/done/apply-carers-allowance"
-      expect(response).to have_http_status(:success)
+      it "is successful" do
+        get :index, path: starting_with_path
+        expect(response).to have_http_status(:success)
+      end
     end
   end
 end

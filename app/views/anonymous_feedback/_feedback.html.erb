@@ -1,8 +1,8 @@
-<% if anonymous_contact.is_a?(Support::Requests::Anonymous::ProblemReport) %>
+<% if anonymous_contact.type == "problem_report" %>
   <strong>action</strong>: <%= anonymous_contact.what_doing %>
   <br/>
   <strong>problem</strong>: <%= anonymous_contact.what_wrong %>
-<% elsif anonymous_contact.is_a?(Support::Requests::Anonymous::ServiceFeedback) %>
+<% elsif anonymous_contact.type == "service_feedback" %>
   <strong>rating</strong>: <%= anonymous_contact.service_satisfaction_rating %>
   <% if anonymous_contact.details.present? %>
     <br/>
