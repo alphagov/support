@@ -14,6 +14,15 @@ class ContentAdviceRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    ContentAdviceRequest.new(params[:support_requests_content_advice_request])
+    ContentAdviceRequest.new(content_advice_request_params)
+  end
+
+  def content_advice_request_params
+    params.require(:support_requests_content_advice_request).permit(
+      :title, :nature_of_request, :nature_of_request_details,
+      :details, :urls, :response_needed_by_date, :reason_for_deadline,
+      :contact_number,
+      requester_attributes: [:email, :name, :collaborator_emails],
+    )
   end
 end

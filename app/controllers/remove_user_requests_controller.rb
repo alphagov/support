@@ -14,6 +14,14 @@ class RemoveUserRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    RemoveUserRequest.new(params[:support_requests_remove_user_request])
+    RemoveUserRequest.new(remove_user_request_params)
+  end
+
+  def remove_user_request_params
+    params.require(:support_requests_remove_user_request).permit(
+      :user_name, :user_email, :reason_for_removal,
+      requester_attributes: [:email, :name, :collaborator_emails],
+      time_constraint_attributes: [:not_before_date, :needed_by_date, :time_constraint_reason],
+    )
   end
 end

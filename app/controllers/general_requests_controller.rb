@@ -14,8 +14,15 @@ class GeneralRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    user_request = GeneralRequest.new(params[:support_requests_general_request])
+    user_request = GeneralRequest.new(general_request_params)
     user_request.user_agent = request.user_agent
     user_request
+  end
+
+  def general_request_params
+    params.require(:support_requests_general_request).permit(
+      :title, :url, :details,
+      requester_attributes: [:email, :name, :collaborator_emails],
+    )
   end
 end

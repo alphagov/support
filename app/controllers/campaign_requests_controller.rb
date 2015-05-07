@@ -14,6 +14,16 @@ class CampaignRequestsController <  RequestsController
   end
 
   def parse_request_from_params
-    CampaignRequest.new(params[:support_requests_campaign_request])
+    CampaignRequest.new(campaign_request_params)
+  end
+
+  def campaign_request_params
+    params.require(:support_requests_campaign_request).permit(
+      :additional_comments,
+      requester_attributes: [:email, :name, :collaborator_emails],
+      campaign_attributes: [
+        :title, :erg_reference_number, :start_date, :description, :affiliated_group_or_company, :info_url
+      ]
+    )
   end
 end

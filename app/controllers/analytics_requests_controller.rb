@@ -14,6 +14,22 @@ class AnalyticsRequestsController <  RequestsController
   end
 
   def parse_request_from_params
-    AnalyticsRequest.new(params[:support_requests_analytics_request])
+    AnalyticsRequest.new(analytics_request_params)
+  end
+
+  def analytics_request_params
+    params.require(:support_requests_analytics_request).permit(
+      :justification_for_needing_report,
+      :request_context,
+      requester_attributes: [:email, :name, :collaborator_emails],
+      needed_report_attributes: [
+        :reporting_period_start,
+        :reporting_period_end,
+        :pages_or_sections,
+        :non_standard_requirements,
+        :frequency,
+        :format
+      ],
+    )
   end
 end
