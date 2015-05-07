@@ -30,7 +30,11 @@ module Support
       end
 
       def formatted_nature_of_request
-        Hash[nature_of_request_options].key(nature_of_request)
+        if nature_of_request == "other"
+          nature_of_request_details
+        else
+          Hash[nature_of_request_options].key(nature_of_request)
+        end
       end
 
       def self.label
