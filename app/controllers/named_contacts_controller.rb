@@ -14,10 +14,17 @@ class NamedContactsController < RequestsController
   end
 
   def parse_request_from_params
-    NamedContact.new(params[:named_contact])
+    NamedContact.new(named_contact_params)
   end
 
   def set_requester_on(request)
-    request.requester = Support::Requests::Requester.new(params[:named_contact][:requester])
+    request.requester = Support::Requests::Requester.new(named_contact_params[:requester])
+  end
+
+  def named_contact_params
+    params.require(:named_contact).permit(
+      :details, :link, :referrer, :javascript_enabled, :user_agent,
+      requester: [:email, :name],
+    )
   end
 end

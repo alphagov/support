@@ -14,10 +14,16 @@ class FoiRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    FoiRequest.new(params[:foi_request])
+    FoiRequest.new(foi_request_params)
   end
 
   def set_requester_on(request)
-    request.requester = Support::Requests::Requester.new(params[:foi_request][:requester])
+    request.requester = Support::Requests::Requester.new(foi_request_params[:requester])
+  end
+
+  def foi_request_params
+    params.require(:foi_request).permit(
+      :details, { requester: [:email, :name] }
+    )
   end
 end
