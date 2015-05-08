@@ -48,6 +48,35 @@ Ministerial announcement Z
     expect(request).to have_been_made
   end
 
+  scenario "successful request with other reaason" do
+    request = expect_zendesk_to_receive_ticket(
+      "subject" => "Tricky query - Advice on content",
+      "tags" => [ "govt_form", "dept_content_advice" ],
+      "comment" => { "body" =>
+"[Nature of the request]
+some details
+
+[Details]
+I have a tricky query, here's my content...
+
+[Relevant URLs]
+https://www.gov.uk/x, https://www.gov.uk/y
+
+[Contact number]
+0121 111111"})
+
+    user_requests_content_advice(
+      title: "Tricky query",
+      nature_of_request: "Other - please give information",
+      nature_of_request_details: "some details",
+      details: "I have a tricky query, here's my content...",
+      urls: "https://www.gov.uk/x, https://www.gov.uk/y",
+      contact_number: "0121 111111",
+    )
+
+    expect(request).to have_been_made
+  end
+
   private
   def user_requests_content_advice(details)
     visit '/'
@@ -57,6 +86,8 @@ Ministerial announcement Z
 
     fill_in "Title of request", with: details[:title]
     choose details[:nature_of_request]
+    fill_in 'support_requests_content_advice_request_nature_of_request_details',
+      with: details[:nature_of_request_details] if details[:nature_of_request_details]
     fill_in "Please explain what you would like help with", with: details[:details]
     fill_in "Relevant URLs (if applicable)", with: details[:urls]
 
