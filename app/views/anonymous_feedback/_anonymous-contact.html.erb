@@ -1,5 +1,7 @@
 <tr class="anonymous-contact">
-  <th scope="row" class="no-wrap"><%= anonymous_contact.created_at.to_date.to_s(:govuk_date) %></th>
+  <th scope="row" class="table-header-secondary no-wrap">
+    <%= anonymous_contact.created_at.to_date.to_s(:govuk_date_short) %>
+  </th>
   <td>
     <%= render partial: "feedback", locals: { anonymous_contact: anonymous_contact } %>
   </td>
