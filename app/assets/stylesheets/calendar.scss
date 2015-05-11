@@ -57,6 +57,11 @@
     font-weight: bold;
   }
 
+  .ui-datepicker-today .ui-state-default {
+    border: 2px solid $turquoise;
+    padding: 9px 4px;
+  }
+
   .ui-state-disabled .ui-state-default {
     background: #fff;
     color: $text-muted;
