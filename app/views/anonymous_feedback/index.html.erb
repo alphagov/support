@@ -1,6 +1,11 @@
 <%= content_for :page_title, "Feedback for “#{params[:path]}”" %>
-<%= content_for :header, "Feedback for “#{params[:path]}”" %>
+<%= content_for :sub_header, "Feedback for" %>
+<%= content_for :header, params[:path] %>
 <% breadcrumb :anonymous_feedback_by_path, params[:path] %>
+
+<h2 <% if @feedback.total_count == @feedback.count %>class="add-bottom-margin"<% end %>>
+  <%= pluralize(number_with_delimiter(@feedback.total_count), 'response') %>
+</h2>
 
 <% if @feedback.empty? %>
   <div class="no-content no-content-bordered">There is no feedback for this path.</div>
