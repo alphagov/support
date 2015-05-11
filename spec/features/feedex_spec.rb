@@ -32,13 +32,13 @@ feature "Exploring anonymous feedback" do
 
     feedback_reports = [
       {
-        "Date" => "1 March 2013",
-        "Feedback" => "action: looking at 3rd paragraph problem: typo in 2rd word",
+        "Date" => "1 Mar 2013",
+        "Feedback" => "Action: Looking at 3rd paragraph Problem: Typo in 2rd word",
         "URL" => "/vat-rates",
         "Referrer" => "/"
       }, {
-        "Date" => "1 February 2013",
-        "Feedback" => "action: looking at rates problem: standard rate is wrong",
+        "Date" => "1 Feb 2013",
+        "Feedback" => "Action: Looking at rates Problem: Standard rate is wrong",
         "URL" => "/vat-rates",
         "Referrer" => "/pay-vat"
       }

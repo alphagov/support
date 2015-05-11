@@ -24,7 +24,7 @@ feature "User satisfaction survey submissions" do
 
     expect(feedex_results).to eq([
       {
-        "Date" => "28 February 2013",
+        "Date" => "28 Feb 2013",
         "Feedback" => "rating: 3 comment: Make service less 'meh'",
         "URL" => "/done/find-court-tribunal",
         "Referrer" => ""

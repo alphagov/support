@@ -1,7 +1,14 @@
 <% if anonymous_contact.is_a?(Support::Requests::Anonymous::ProblemReport) %>
-  <strong>action</strong>: <%= anonymous_contact.what_doing %>
-  <br/>
-  <strong>problem</strong>: <%= anonymous_contact.what_wrong %>
+  <% if anonymous_contact.what_doing.present? %>
+    <div class="bold">
+      <span class="rm">Action:</span>
+      <%= anonymous_contact.what_doing.capitalize %>
+    </div>
+  <% end %>
+  <% if anonymous_contact.what_wrong.present? %>
+    <span class="rm">Problem:</span>
+    <%= anonymous_contact.what_wrong.capitalize if anonymous_contact.what_wrong %>
+  <% end %>
 <% elsif anonymous_contact.is_a?(Support::Requests::Anonymous::ServiceFeedback) %>
   <strong>rating</strong>: <%= anonymous_contact.service_satisfaction_rating %>
   <% if anonymous_contact.details.present? %>
