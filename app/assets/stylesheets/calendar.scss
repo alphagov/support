@@ -1,0 +1,97 @@
+// jQuery UI calendar widget
+// Default styles are not included and the source HTML is styled from scratch
+// http://jqueryui.com/datepicker/
+
+.ui-datepicker {
+  background: #fff;
+  margin-top: $default-label-margin;
+  border: 1px solid $table-border-color;
+  border-radius: $border-radius-base;
+  width: 25em;
+  box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px;
+  display: none;
+}
+
+.ui-datepicker-title {
+  @extend h4;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-align: center;
+  font-weight: bold;
+  background-color: $gray-lighter;
+  padding: 7px;
+}
+
+.ui-datepicker-calendar {
+  width: 100%;
+  border-collapse: collapse;
+
+  td {
+    padding: 1px;
+    width: 14.57285%;
+  }
+
+  th {
+    padding: 7px;
+    text-align: center;
+    background-color: $table-bg-accent;
+    border-top: 1px solid $table-border-color;
+    border-bottom: 1px solid $table-border-color;
+  }
+
+  .ui-state-default {
+    background-color: $gray-lighter;
+    display: block;
+    text-align: center;
+    padding: 10px 5px;
+    border: 1px solid $table-border-color;
+    color: inherit;
+  }
+
+  .ui-state-active,
+  a.ui-state-default:hover {
+    border: 2px solid $gray;
+    padding: 9px 4px;
+    text-decoration: none;
+    color: $gray;
+    font-weight: bold;
+  }
+
+  .ui-state-disabled .ui-state-default {
+    background: #fff;
+    color: $text-muted;
+    border: none;
+  }
+}
+
+.ui-datepicker-prev,
+.ui-datepicker-next {
+  @extend .glyphicon;
+  @extend .link-inherit;
+  text-decoration: none;
+  cursor: pointer;
+  position: absolute;
+  top: 9px;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  span {
+    @extend .rm;
+  }
+
+  &.ui-state-disabled {
+    display: none;
+  }
+}
+
+.ui-datepicker-prev {
+  @extend .glyphicon-chevron-left;
+  left: 14px;
+}
+
+.ui-datepicker-next {
+  @extend .glyphicon-chevron-right;
+  right: 14px;
+}
