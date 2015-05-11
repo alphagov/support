@@ -1,0 +1,1 @@
+class ProblemReportPresenter < OpenStruct; end
