@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery-ui/datepicker
+//= require_directory ./modules
 
 $(document).ready(function() {
   $('input[calendar-enabled=true]').datepicker({minDate: 0, dateFormat: 'dd-mm-yy'});
