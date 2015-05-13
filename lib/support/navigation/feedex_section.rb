@@ -20,7 +20,7 @@ module Support
       end
 
       def accessible?
-        @current_user.can? :read, Support::Requests::Anonymous::ProblemReport
+        @current_user.can? :read, :anonymous_feedback
       end
     end
   end

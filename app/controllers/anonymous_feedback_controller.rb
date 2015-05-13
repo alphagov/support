@@ -4,7 +4,7 @@ class AnonymousFeedbackController < RequestsController
   include Support::Requests
 
   def index
-    authorize! :read, Anonymous::AnonymousContact
+    authorize! :read, :anonymous_feedback
 
     if index_params[:path].nil? or index_params[:path].empty?
       respond_to do |format|
