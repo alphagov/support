@@ -5,7 +5,6 @@ gem 'rails', '4.2.1'
 gem 'sass-rails', '5.0.3'
 gem 'uglifier', '2.7.1'
 
-gem 'mysql2', '0.3.14'
 gem "airbrake", "4.1.0"
 
 gem 'gds-sso', '11.0.0'
