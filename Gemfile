@@ -35,7 +35,6 @@ if ENV['API_DEV']
 else
   gem "gds-api-adapters", '~> 18.8.0'
 end
-gem 'jbuilder', '2.2.13'
 gem 'gretel', '3.0.8'
 
 group :development do
