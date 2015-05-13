@@ -1,33 +1,40 @@
 require 'rails_helper'
+require 'gds_api/test_helpers/support_api'
 
 feature "Exploring anonymous feedback" do
+  include GdsApi::TestHelpers::SupportApi
   background do
     login_as create(:user)
   end
 
   scenario "exploring feedback by URL" do
-    create(:problem_report,
-      path: "/tax-disc",
-      created_at: DateTime.parse("2013-01-01"),
-      what_doing: "logging in",
-      what_wrong: "error",
-      referrer: "https://www.gov.uk/",
-    )
-
-    create(:problem_report,
-      path: "/vat-rates",
-      created_at: DateTime.parse("2013-02-01"),
-      what_doing: "looking at rates",
-      what_wrong: "standard rate is wrong",
-      referrer: "https://www.gov.uk/pay-vat",
-    )
-
-    create(:problem_report,
-      path: "/vat-rates",
-      created_at: DateTime.parse("2013-03-01"),
-      what_doing: "looking at 3rd paragraph",
-      what_wrong: "typo in 2rd word",
-      referrer: "https://www.gov.uk/",
+    stub_anonymous_feedback(
+      { path_prefix: "/vat-rates" },
+      {
+        "current_page" => 1,
+        "pages" => 1,
+        "page_size" => 2,
+        "results" => [
+          {
+            type: "problem-report",
+            path: "/vat-rates",
+            url: "http://www.dev.gov.uk/vat-rates",
+            created_at: DateTime.parse("2013-03-01"),
+            what_doing: "looking at 3rd paragraph",
+            what_wrong: "typo in 2rd word",
+            referrer: "https://www.gov.uk/",
+          },
+          {
+            type: "problem-report",
+            path: "/vat-rates",
+            url: "http://www.dev.gov.uk/vat-rates",
+            created_at: DateTime.parse("2013-02-01"),
+            what_doing: "looking at rates",
+            what_wrong: "standard rate is wrong",
+            referrer: "https://www.gov.uk/pay-vat",
+          },
+        ]
+      }
     )
 
     feedback_reports = [
@@ -49,6 +56,11 @@ feature "Exploring anonymous feedback" do
   end
 
   scenario "no feedback found" do
+    stub_anonymous_feedback(
+      { path_prefix: "/non-existent-path" },
+      { "results" => [], "pages" => 0, "current_page" => 1 }
+    )
+
     explore_anonymous_feedback_with(url: "https://www.gov.uk/non-existent-path")
 
     expect(page).to have_content("There is no feedback for this path.")

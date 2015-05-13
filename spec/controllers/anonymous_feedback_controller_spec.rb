@@ -1,6 +1,8 @@
 require 'rails_helper'
+require 'gds_api/test_helpers/support_api'
 
 describe AnonymousFeedbackController, :type => :controller do
+  include GdsApi::TestHelpers::SupportApi
   before do
     login_as create(:user)
   end
@@ -22,14 +24,56 @@ describe AnonymousFeedbackController, :type => :controller do
     end
   end
 
+  context "no results" do
+    context "on the first page" do
+      it "should show no results" do
+        stub_anonymous_feedback(
+          { path_prefix: "/a" },
+          { "results" => [], "pages" => 0, "current_page" => 1 },
+        )
+
+        get :index, { "path" => "/a", "format" => "json" }
+
+        expect(json_response).to have(0).items
+      end
+    end
+
+    context "user has manually entered a non-existent page" do
+      it "should redirect to the first page" do
+        stub_anonymous_feedback(
+          { path_prefix: "/a", page: 4 },
+          { "results" => [], "pages" => 3, "current_page" => 4 },
+        )
+
+        get :index, path: "/a", page: 4
+
+        expect(response).to redirect_to(anonymous_feedback_index_path(path: "/a", page: 1))
+      end
+    end
+  end
+
   context "valid input, problem reports" do
-    let!(:feedback) do
-      create(:problem_report,
-        what_wrong: "A",
-        what_doing: "B",
-        path: "/tax-disc",
-        referrer: "https://www.gov.uk/browse",
-        user_agent: "Safari",
+    before do
+      stub_anonymous_feedback(
+        { path_prefix: "/tax-disc" },
+        {
+          "current_page" => 1,
+          "pages" => 1,
+          "page_size" => 1,
+          "results" => [
+            {
+              id: "123",
+              type: "problem-report",
+              path: "/tax-disc",
+              url: "http://www.dev.gov.uk/tax-disc",
+              created_at: DateTime.parse("2013-03-01"),
+              what_doing: "looking at 3rd paragraph",
+              what_wrong: "typo in 2rd word",
+              referrer: "https://www.gov.uk",
+              user_agent: "Safari",
+            },
+          ],
+        }
       )
     end
 
@@ -37,12 +81,6 @@ describe AnonymousFeedbackController, :type => :controller do
       it "renders the results" do
         get :index, path: "/tax-disc"
         expect(response).to have_http_status(:success)
-      end
-
-      it "displays at most 50 results per page" do
-        create_list(:problem_report, 70, path: "/tax-disc")
-        get :index, path: "/tax-disc"
-        expect(assigns["feedback"]).to have(50).items
       end
     end
 
@@ -55,12 +93,12 @@ describe AnonymousFeedbackController, :type => :controller do
         expect(response).to have_http_status(:success)
         expect(json_response).to have(1).item
         expect(json_response.first).to include(
-          "id" => feedback.id,
+          "id" => "123",
           "type" => "problem-report",
-          "what_wrong" => "A",
-          "what_doing" => "B",
+          "what_wrong" => "typo in 2rd word",
+          "what_doing" => "looking at 3rd paragraph",
           "url" => "http://www.dev.gov.uk/tax-disc",
-          "referrer" => "https://www.gov.uk/browse",
+          "referrer" => "https://www.gov.uk",
           "user_agent" => "Safari",
         )
       end
@@ -68,12 +106,25 @@ describe AnonymousFeedbackController, :type => :controller do
   end
 
   context "valid input, long-form feedback" do
-    let!(:feedback) do
-      create(:long_form_contact,
-        path: "/tax-disc",
-        referrer: "https://www.gov.uk/contact/govuk",
-        details: "Abc def",
-        user_agent: "Safari",
+    before do
+      stub_anonymous_feedback(
+        { path_prefix: "/contact/govuk" },
+        {
+          "current_page" => 1,
+          "pages" => 1,
+          "page_size" => 1,
+          "results" => [
+            {
+              id: "123",
+              type: "long-form-contact",
+              url: "http://www.dev.gov.uk/contact/govuk",
+              path: "/contact/govuk",
+              referrer: "https://www.gov.uk/contact",
+              details: "Abc def",
+              user_agent: "Safari",
+            },
+          ],
+        }
       )
     end
 
@@ -88,16 +139,16 @@ describe AnonymousFeedbackController, :type => :controller do
       render_views
 
       it "returns the results for problem" do
-        get :index, { "path" => "/tax-disc", "format" => "json" }
+        get :index, { "path" => "/contact/govuk", "format" => "json" }
 
         expect(response).to have_http_status(:success)
         expect(json_response).to have(1).item
         expect(json_response.first).to include(
-          "id" => feedback.id,
+          "id" => "123",
           "type" => "long-form-contact",
           "details" => "Abc def",
-          "url" => "http://www.dev.gov.uk/tax-disc",
-          "referrer" => "https://www.gov.uk/contact/govuk",
+          "url" => "http://www.dev.gov.uk/contact/govuk",
+          "referrer" => "https://www.gov.uk/contact",
           "user_agent" => "Safari",
         )
       end
@@ -105,13 +156,26 @@ describe AnonymousFeedbackController, :type => :controller do
   end
 
   context "valid input, service feedback" do
-    let!(:feedback) do
-      create(:service_feedback,
-        slug: "apply-carers-allowance",
-        path: "/done/apply-carers-allowance",
-        details: "It's great",
-        service_satisfaction_rating: 5,
-        user_agent: "Safari",
+    before do
+      stub_anonymous_feedback(
+        { path_prefix: "/done/apply-carers-allowance" },
+        {
+          "current_page" => 1,
+          "pages" => 1,
+          "page_size" => 1,
+          "results" => [
+            {
+              id: "123",
+              type: "service-feedback",
+              slug: "apply-carers-allowance",
+              url: "http://www.dev.gov.uk/done/apply-carers-allowance",
+              path: "/done/apply-carers-allowance",
+              details: "It's great",
+              service_satisfaction_rating: 5,
+              user_agent: "Safari",
+            },
+          ],
+        }
       )
     end
 
@@ -131,7 +195,7 @@ describe AnonymousFeedbackController, :type => :controller do
         expect(response).to have_http_status(:success)
         expect(json_response).to have(1).item
         expect(json_response.first).to include(
-          "id" => feedback.id,
+          "id" => "123",
           "type" => "service-feedback",
           "slug" => "apply-carers-allowance",
           "details" => "It's great",
