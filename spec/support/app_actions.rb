@@ -12,7 +12,7 @@ module AppActions
     assert page.has_title?("Anonymous Feedback"), page.html
     fill_in 'URL', with: options[:url]
 
-    click_on "Explore"
+    click_on "Explore by URL"
 
     expect(page).to have_content("Feedback for")
   end
