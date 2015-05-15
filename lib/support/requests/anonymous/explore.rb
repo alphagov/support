@@ -39,6 +39,17 @@ module Support
           errors.add(:url, "must be a valid URL")
         end
       end
+
+      class ExploreByOrganisation < Explore
+        attr_accessor :organisation
+        validates_presence_of :organisation
+
+        def redirect_path
+          Rails.application.routes.url_helpers.anonymous_feedback_index_path(
+            organisation: organisation
+          )
+        end
+      end
     end
   end
 end
