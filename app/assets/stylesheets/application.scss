@@ -32,3 +32,12 @@ thead {
 .no-wrap {
   white-space: nowrap;
 }
+
+.feedback-response-count {
+  margin-top: - ($default-vertical-margin * 1.5);
+  font-size: $font-size-h3;
+}
+
+.date-filter-form label {
+  font-weight: normal;
+}
