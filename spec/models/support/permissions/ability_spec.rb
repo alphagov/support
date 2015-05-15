@@ -1,6 +1,5 @@
 require 'rails_helper'
 require 'support/permissions/ability'
-require 'support/requests/anonymous/problem_report'
 require 'support/requests/anonymous/explore'
 
 module Support

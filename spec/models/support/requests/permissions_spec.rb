@@ -14,9 +14,7 @@ module Support
 
       let(:all_request_types) {
         requests_anyone_can_make + [
-          Anonymous::ProblemReport,
-          Anonymous::LongFormContact,
-          Anonymous::ServiceFeedback,
+          :anonymous_feedback,
           CampaignRequest,
           ContentChangeRequest,
           CreateOrChangeUserRequest,
@@ -70,8 +68,6 @@ module Support
       context "for API users" do
         subject { create(:api_user) }
         let(:requests_specific_to_role) { [
-          Anonymous::ProblemReport,
-          Anonymous::LongFormContact,
           FoiRequest,
           NamedContact,
         ] }
@@ -81,9 +77,7 @@ module Support
       context "for single points of contact" do
         subject { create(:single_point_of_contact) }
         let(:requests_specific_to_role) { [
-          Anonymous::ProblemReport,
-          Anonymous::LongFormContact,
-          Anonymous::ServiceFeedback,
+          :anonymous_feedback,
           CampaignRequest,
           ContentChangeRequest,
           CreateOrChangeUserRequest,

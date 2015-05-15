@@ -5,7 +5,6 @@ gem 'rails', '4.2.1'
 gem 'sass-rails', '5.0.3'
 gem 'uglifier', '2.7.1'
 
-gem 'mysql2', '0.3.14'
 gem "airbrake", "4.1.0"
 
 gem 'gds-sso', '11.0.0'
@@ -33,9 +32,8 @@ gem 'govuk_admin_template', '2.2.0'
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else
-  gem "gds-api-adapters", "10.8.0"
+  gem "gds-api-adapters", '~> 18.8.0'
 end
-gem 'jbuilder', '2.2.13'
 gem 'gretel', '3.0.8'
 
 group :development do
