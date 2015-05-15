@@ -30,7 +30,7 @@ module Support
           path.start_with?('/') ? path : "/#{path}"
         end
 
-        private
+      private
         def url_is_well_formed
           uri = URI.parse(url)
           valid = !uri.path.nil?
