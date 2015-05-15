@@ -6,17 +6,25 @@ class AnonymousFeedback::ExploreController < AuthorisationController
 
   def new
     @explore_by_url = Support::Requests::Anonymous::ExploreByUrl.new
+    @explore_by_organisation = Support::Requests::Anonymous::ExploreByOrganisation.new
     @organisations_list = organisations_api.organisations.map { |org|
       [org.title, org.details.slug]
     }
   end
 
   def create
-    @explore_by_url = Support::Requests::Anonymous::ExploreByUrl.new(
-      params[:support_requests_anonymous_explore_by_url]
-    )
-    if @explore_by_url.valid?
-      redirect_to @explore_by_url.redirect_path
+    if params[:support_requests_anonymous_explore_by_url].present?
+      @explore = Support::Requests::Anonymous::ExploreByUrl.new(
+        params[:support_requests_anonymous_explore_by_url]
+      )
+    else
+      @explore = Support::Requests::Anonymous::ExploreByOrganisation.new(
+        params[:support_requests_anonymous_explore_by_organisation]
+      )
+    end
+
+    if @explore.valid?
+      redirect_to @explore.redirect_path
     else
       render :new, status: 422
     end

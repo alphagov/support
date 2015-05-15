@@ -6,12 +6,7 @@ class AnonymousFeedbackController < RequestsController
   def index
     authorize! :read, :anonymous_feedback
 
-    if index_params[:path].nil? or index_params[:path].empty?
-      respond_to do |format|
-        format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
-        format.json { render json: {"errors" => ["Please set a valid 'path' parameter"] }, status: 400 }
-      end
-    else
+    if index_params[:path].present?
       api_response = fetch_anonymous_feedback_from_support_api
 
       if api_response["pages"] > 0 && api_response["current_page"] > api_response["pages"]
@@ -26,6 +21,14 @@ class AnonymousFeedbackController < RequestsController
           format.html
           format.json { render json: @feedback.to_json }
         end
+      end
+    elsif index_params[:organisation].present?
+      # FIXME: actually get actual feedback based on organisation
+      @feedback = []
+    else
+      respond_to do |format|
+        format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
+        format.json { render json: {"errors" => ["Please set a valid 'path' or 'organisation' parameter"] }, status: 400 }
       end
     end
   end
