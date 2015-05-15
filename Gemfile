@@ -15,6 +15,7 @@ gem 'plek', '1.10.0'
 # using github version to pick up unreleased bugfix
 # https://github.com/mjbellantoni/formtastic-bootstrap/pull/119
 gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap', ref: '8134e3f'
+gem 'select2-rails', '3.5.9.3'
 
 gem 'jc-validates_timeliness', '3.1.1'
 if ENV['GDS_ZENDESK_DEV']
