@@ -9,16 +9,17 @@
 <div class="row">
   <div class="col-md-7">
     <div class="panel panel-default">
-      <form class="form-inline date-filter-form panel-body">
+      <form action="<% anonymous_feedback_index_path%>" class="form-inline date-filter-form panel-body">
+        <input type="hidden" name="path" value="<%= params[:path]%>" />
         <fieldset>
           <legend class="rm">Filter feedback by date</legend>
           <label class="add-right-margin" for="start-date">
             Show responses between <span class="rm">starting date</span>
           </label>
-          <input type="text" id="start-date" class="input-sm form-control add-right-margin" data-module="calendar" data-max-date="0" />
+          <input type="text" name="from" id="start-date" class="input-sm form-control add-right-margin" data-module="calendar" data-max-date="0" value="<%= params[:from]%>"/>
 
           <label class="add-right-margin" for="end-date">and <span class="rm">end date</span></label>
-          <input type="text" id="end-date" class="form-control input-sm" data-module="calendar" data-max-date="0" />
+          <input type="text" name="to" id="end-date" class="form-control input-sm" data-module="calendar" data-max-date="0" value="<%= params[:to]%>"/>
 
           <input type="submit" value="Filter" class="btn-sm btn btn-default add-left-margin" />
         </fieldset>

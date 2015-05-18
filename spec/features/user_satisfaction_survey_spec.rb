@@ -14,7 +14,7 @@ feature "User satisfaction survey submissions" do
 
   scenario "submission with comment" do
     stub_anonymous_feedback(
-      { path_prefix: "/done/find-court-tribunal" },
+      { path_prefix: "/done/find-court-tribunal", from: nil, to: nil },
       {
         "current_page" => 1,
         "pages" => 1,
@@ -50,7 +50,7 @@ feature "User satisfaction survey submissions" do
 
   scenario "submission without a comment" do
     stub_anonymous_feedback(
-      { path_prefix: "/done/some-service" },
+      { path_prefix: "/done/some-service", from: nil, to: nil },
       {
         "current_page" => 1,
         "pages" => 1,
