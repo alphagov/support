@@ -34,11 +34,11 @@ class AnonymousFeedbackController < RequestsController
 
 private
   def index_params
-    params.permit(:path, :page)
+    params.permit(:path, :page, :from, :to)
   end
 
   def fetch_anonymous_feedback_from_support_api
-    api_params = { path_prefix: index_params[:path] }
+    api_params = { path_prefix: index_params[:path], from: index_params[:from], to: index_params[:to] }
     api_params[:page] = index_params[:page] if index_params[:page]
     support_api.anonymous_feedback(api_params)
   end

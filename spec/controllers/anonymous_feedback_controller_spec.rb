@@ -28,7 +28,7 @@ describe AnonymousFeedbackController, :type => :controller do
     context "on the first page" do
       it "should show no results" do
         stub_anonymous_feedback(
-          { path_prefix: "/a" },
+          { path_prefix: "/a", from: nil, to: nil },
           { "results" => [], "pages" => 0, "current_page" => 1 },
         )
 
@@ -41,7 +41,7 @@ describe AnonymousFeedbackController, :type => :controller do
     context "user has manually entered a non-existent page" do
       it "should redirect to the first page" do
         stub_anonymous_feedback(
-          { path_prefix: "/a", page: 4 },
+          { path_prefix: "/a", page: 4, from: nil, to: nil },
           { "results" => [], "pages" => 3, "current_page" => 4 },
         )
 
@@ -55,7 +55,7 @@ describe AnonymousFeedbackController, :type => :controller do
   context "valid input, problem reports" do
     before do
       stub_anonymous_feedback(
-        { path_prefix: "/tax-disc" },
+        { path_prefix: "/tax-disc", from: "13/10/2014", to: "25th November 2014" },
         {
           "current_page" => 1,
           "pages" => 1,
@@ -79,7 +79,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
     context "HTML representation" do
       it "renders the results" do
-        get :index, path: "/tax-disc"
+        get :index, path: "/tax-disc", from: "13/10/2014", to: "25th November 2014"
         expect(response).to have_http_status(:success)
       end
     end
@@ -88,7 +88,7 @@ describe AnonymousFeedbackController, :type => :controller do
       render_views
 
       it "returns the results for problem" do
-        get :index, { "path" => "/tax-disc", "format" => "json" }
+        get :index, { "path" => "/tax-disc", "format" => "json", from: "13/10/2014", to: "25th November 2014" }
 
         expect(response).to have_http_status(:success)
         expect(json_response).to have(1).item
@@ -108,7 +108,7 @@ describe AnonymousFeedbackController, :type => :controller do
   context "valid input, long-form feedback" do
     before do
       stub_anonymous_feedback(
-        { path_prefix: "/contact/govuk" },
+        { path_prefix: "/contact/govuk", from: nil, to: nil },
         {
           "current_page" => 1,
           "pages" => 1,
@@ -158,7 +158,7 @@ describe AnonymousFeedbackController, :type => :controller do
   context "valid input, service feedback" do
     before do
       stub_anonymous_feedback(
-        { path_prefix: "/done/apply-carers-allowance" },
+        { path_prefix: "/done/apply-carers-allowance", from: nil, to: nil },
         {
           "current_page" => 1,
           "pages" => 1,
