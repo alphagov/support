@@ -16,7 +16,7 @@ describe "legacy feedex URL redirect" do
 
   it "redirects the old problem report deep-links to the current anon feedback links" do
     stub_anonymous_feedback(
-      { path_prefix: "/vat-rates" },
+      { path_prefix: "/vat-etc" },
       {
         "current_page" => 1,
         "pages" => 1,
@@ -24,7 +24,7 @@ describe "legacy feedex URL redirect" do
         "results" => [],
       }
     )
-    visit '/anonymous_feedback/problem_reports?path=/vat-rates'
-    expect(current_url).to eq(current_host + '/anonymous_feedback?path=%2Fvat-rates')
+    visit '/anonymous_feedback/problem_reports?path=/vat-etc'
+    expect(current_url).to eq(current_host + '/anonymous_feedback?path=%2Fvat-etc')
   end
 end
