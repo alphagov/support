@@ -21,5 +21,4 @@ describe(DateFilterHelper) do
       expect(total_responses_header(1, nil, nil)).to eq('1 response')
     end
   end
-
 end

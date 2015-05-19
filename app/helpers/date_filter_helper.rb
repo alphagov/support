@@ -4,6 +4,14 @@ module DateFilterHelper
 		@from_date.present? or @to_date.present?
 	end
 
+	def attempted_to_filter?
+		params[:from].present? or params[:to].present?
+	end
+
+	def invalid_filter?
+		attempted_to_filter? && !date_filtered?
+	end
+
 	def total_responses_header(total_count, from, to)
 		response_total = pluralize(number_with_delimiter(total_count), 'response')
 
