@@ -21,9 +21,9 @@ describe AnonymousFeedback::ExploreController, :type => :controller do
     context "when exploring by organisation" do
       let(:org) { "department-of-fair-dos" }
       let(:attributes) { {organisation: org} }
-      let(:redirect_path) { "/anonymous_feedback?organisation=#{org}" }
+      let(:redirect_path) { "/anonymous_feedback/organisations/#{org}" }
 
-      it "redirects to the anonymous feedback index page" do
+      it "redirects to anonymous_feedback/organisations#show" do
         post :create,
           { support_requests_anonymous_explore_by_organisation: attributes }
 

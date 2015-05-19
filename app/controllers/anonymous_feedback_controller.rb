@@ -22,13 +22,10 @@ class AnonymousFeedbackController < RequestsController
           format.json { render json: @feedback.to_json }
         end
       end
-    elsif index_params[:organisation].present?
-      # FIXME: actually get actual feedback based on organisation
-      @feedback = []
     else
       respond_to do |format|
         format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
-        format.json { render json: {"errors" => ["Please set a valid 'path' or 'organisation' parameter"] }, status: 400 }
+        format.json { render json: {"errors" => ["Please set a valid 'path' parameter"] }, status: 400 }
       end
     end
   end

@@ -7,7 +7,7 @@ describe AnonymousFeedbackController, :type => :controller do
     login_as create(:user)
   end
 
-  context "when no `path` or `organisation` given" do
+  context "when no `path` given" do
     context "HTML representation" do
       it "redirects to the explore endpoint" do
         get :index
@@ -19,7 +19,7 @@ describe AnonymousFeedbackController, :type => :controller do
       it "returns an error" do
         get :index, format: :json
         expect(response).to have_http_status(400)
-        expect(json_response).to eq("errors" => ["Please set a valid 'path' or 'organisation' parameter"])
+        expect(json_response).to eq("errors" => ["Please set a valid 'path' parameter"])
       end
     end
   end

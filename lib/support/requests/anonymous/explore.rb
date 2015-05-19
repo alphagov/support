@@ -45,8 +45,8 @@ module Support
         validates_presence_of :organisation
 
         def redirect_path
-          Rails.application.routes.url_helpers.anonymous_feedback_index_path(
-            organisation: organisation
+          Rails.application.routes.url_helpers.anonymous_feedback_organisation_path(
+            slug: organisation
           )
         end
       end
