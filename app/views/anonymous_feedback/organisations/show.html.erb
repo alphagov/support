@@ -1,0 +1,42 @@
+<%= content_for :page_title, "Anonymous Feedback" %>
+<%= content_for :sub_header, "Feedback for" %>
+<%= content_for :header, @organisation_title %>
+
+<% breadcrumb :feedex %>
+
+<table class="table table-bordered" data-module="filterable-table">
+  <thead>
+    <tr class="table-header">
+      <th style="width: 800px">Page</th>
+      <th>7 days</th>
+      <th>30 days</th>
+      <th>90 days</th>
+    </tr>
+    <tr class="if-no-js-hide table-header-secondary">
+      <td colspan="4">
+        <form>
+          <label for="table-filter" class="rm">Filter pages</label>
+          <input id="table-filter" type="text" class="form-control normal js-filter-table-input" placeholder="Filter pages">
+        </form>
+      </td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @content_items.each do |content_item| %>
+      <tr>
+        <td>
+          <%= link_to content_item.path, anonymous_feedback_index_path(path: content_item.path), class: "breakable" %>
+        </td>
+        <td>
+          <%= pluralize(content_item.last_7_days, "item") %>
+        </td>
+        <td>
+          <%= pluralize(content_item.last_30_days, "item") %>
+        </td>
+        <td>
+          <%= pluralize(content_item.last_90_days, "item") %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
