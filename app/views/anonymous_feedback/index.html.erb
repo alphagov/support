@@ -1,10 +1,9 @@
-
 <%= content_for :page_title, "Feedback for “#{params[:path]}”" %>
 <%= content_for :header, params[:path] %>
 <% breadcrumb :anonymous_feedback_by_path, params[:path] %>
 
 <p class="feedback-response-count text-muted">
-  <%= pluralize(number_with_delimiter(@feedback.total_count), 'response') %>
+  <%= total_responses_header(@feedback.total_count, @from_date, @to_date) %>
 </p>
 
 <div class="row">
