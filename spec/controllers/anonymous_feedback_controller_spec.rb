@@ -130,7 +130,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
     context "HTML representation" do
       it "renders the results for an HTML request" do
-        get :index, path: "/tax-disc"
+        get :index, path: "/contact/govuk"
         expect(response).to have_http_status(:success)
       end
     end
