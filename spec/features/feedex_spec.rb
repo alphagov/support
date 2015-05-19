@@ -9,7 +9,7 @@ feature "Exploring anonymous feedback" do
 
   scenario "exploring feedback by URL" do
     stub_anonymous_feedback(
-      { path_prefix: "/vat-rates", from: nil, to: nil },
+      { path_prefix: "/vat-rates" },
       {
         "current_page" => 1,
         "pages" => 1,
@@ -57,7 +57,7 @@ feature "Exploring anonymous feedback" do
 
   scenario "no feedback found" do
     stub_anonymous_feedback(
-      { path_prefix: "/non-existent-path", from: nil, to: nil },
+      { path_prefix: "/non-existent-path" },
       { "results" => [], "pages" => 0, "current_page" => 1 }
     )
 

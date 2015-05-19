@@ -28,7 +28,7 @@ describe AnonymousFeedbackController, :type => :controller do
     context "on the first page" do
       it "should show no results" do
         stub_anonymous_feedback(
-          { path_prefix: "/a", from: nil, to: nil },
+          { path_prefix: "/a" },
           { "results" => [], "pages" => 0, "current_page" => 1 },
         )
 
@@ -41,7 +41,7 @@ describe AnonymousFeedbackController, :type => :controller do
     context "user has manually entered a non-existent page" do
       it "should redirect to the first page" do
         stub_anonymous_feedback(
-          { path_prefix: "/a", page: 4, from: nil, to: nil },
+          { path_prefix: "/a", page: 4 },
           { "results" => [], "pages" => 3, "current_page" => 4 },
         )
 
@@ -108,7 +108,7 @@ describe AnonymousFeedbackController, :type => :controller do
   context "valid input, long-form feedback" do
     before do
       stub_anonymous_feedback(
-        { path_prefix: "/contact/govuk", from: nil, to: nil },
+        { path_prefix: "/contact/govuk" },
         {
           "current_page" => 1,
           "pages" => 1,
@@ -158,7 +158,7 @@ describe AnonymousFeedbackController, :type => :controller do
   context "valid input, service feedback" do
     before do
       stub_anonymous_feedback(
-        { path_prefix: "/done/apply-carers-allowance", from: nil, to: nil },
+        { path_prefix: "/done/apply-carers-allowance" },
         {
           "current_page" => 1,
           "pages" => 1,
