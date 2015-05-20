@@ -63,6 +63,6 @@ feature "Exploring anonymous feedback" do
 
     explore_anonymous_feedback_with(url: "https://www.gov.uk/non-existent-path")
 
-    expect(page).to have_content("There’s no feedback for this path.")
+    expect(page).to have_content("There’s no feedback for this URL.")
   end
 end

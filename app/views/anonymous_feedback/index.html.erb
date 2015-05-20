@@ -12,7 +12,7 @@
       <% if invalid_filter? %>
         <div class="panel-heading">
           <h3 class="panel-title">
-            Sorry, we couldn’t filter by these dates
+            Sorry, these don’t look like dates. You can leave these fields blank.
           </h3>
         </div>
       <% end %>
@@ -43,10 +43,10 @@
 <% if @feedback.empty? %>
   <div class="no-content no-content-bordered">
     <% if date_filtered? %>
-      There’s no feedback for this path in this date range.<br />
-      <%= link_to 'Show all feedback for this path', anonymous_feedback_index_path(path:params[:path]), class: 'link-inherit' %>
+      There’s no feedback for this URL in this date range.<br />
+      <%= link_to 'Show all feedback for this URL', anonymous_feedback_index_path(path:params[:path]), class: 'link-inherit' %>
     <% else %>
-      There’s no feedback for this path.
+      There’s no feedback for this URL.
     <% end %>
   </div>
 <% else %>
