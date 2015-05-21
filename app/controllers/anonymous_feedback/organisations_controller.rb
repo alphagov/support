@@ -4,11 +4,10 @@ class AnonymousFeedback::OrganisationsController < AuthorisationController
   def show
     authorize! :read, :anonymous_feedback
 
-    feedback = fetch_organisation_summary_from_support_api
-    @organisation_title = feedback["title"]
-    @content_items = feedback["results"].map { |content_item|
-      OpenStruct.new(content_item)
-    }.sort_by(&:path)
+    api_response = fetch_organisation_summary_from_support_api
+
+    @organisation_title = api_response["title"]
+    @content_items = OrganisationSummaryPresenter.new(api_response)
   end
 
 private
