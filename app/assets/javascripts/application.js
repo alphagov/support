@@ -11,10 +11,9 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery-ui/datepicker
+//= require_directory ./modules
 
 $(document).ready(function() {
-  $('input[calendar-enabled=true]').datepicker({minDate: 0, dateFormat: 'dd-mm-yy'});
-
   $('input[name="support_requests_create_or_change_user_request[action]"]').change(function () {
     var displayAdditionalFields = ($(this).val() != "change_user")
     $('#support_requests_create_or_change_user_request_requested_user_attributes_job_input').toggle(displayAdditionalFields);

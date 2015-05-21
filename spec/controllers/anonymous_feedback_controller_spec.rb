@@ -55,7 +55,7 @@ describe AnonymousFeedbackController, :type => :controller do
   context "valid input, problem reports" do
     before do
       stub_anonymous_feedback(
-        { path_prefix: "/tax-disc" },
+        { path_prefix: "/tax-disc", from: "13/10/2014", to: "25th November 2014" },
         {
           "current_page" => 1,
           "pages" => 1,
@@ -79,7 +79,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
     context "HTML representation" do
       it "renders the results" do
-        get :index, path: "/tax-disc"
+        get :index, path: "/tax-disc", from: "13/10/2014", to: "25th November 2014"
         expect(response).to have_http_status(:success)
       end
     end
@@ -88,7 +88,7 @@ describe AnonymousFeedbackController, :type => :controller do
       render_views
 
       it "returns the results for problem" do
-        get :index, { "path" => "/tax-disc", "format" => "json" }
+        get :index, { "path" => "/tax-disc", "format" => "json", from: "13/10/2014", to: "25th November 2014" }
 
         expect(response).to have_http_status(:success)
         expect(json_response).to have(1).item

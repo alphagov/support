@@ -19,6 +19,8 @@ class AnonymousFeedbackController < RequestsController
         redirect_to anonymous_feedback_index_path(index_params.merge(page: 1))
       else
         @feedback = AnonymousFeedbackPresenter.new(api_response)
+        @from_date = Date.parse(api_response["from_date"]).to_s(:govuk_date_short) if api_response["from_date"]
+        @to_date = Date.parse(api_response["to_date"]).to_s(:govuk_date_short) if api_response["to_date"]
 
         respond_to do |format|
           format.html
@@ -34,12 +36,16 @@ class AnonymousFeedbackController < RequestsController
 
 private
   def index_params
-    params.permit(:path, :page)
+    params.permit(:path, :page, :from, :to)
   end
 
   def fetch_anonymous_feedback_from_support_api
     api_params = { path_prefix: index_params[:path] }
-    api_params[:page] = index_params[:page] if index_params[:page]
+
+    [:from, :to, :page].each do |sym|
+      api_params[sym] = index_params[sym] if index_params[sym]
+    end
+
     support_api.anonymous_feedback(api_params)
   end
 
