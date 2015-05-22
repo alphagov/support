@@ -12,6 +12,7 @@
 //
 //= require jquery-ui/datepicker
 //= require_directory ./modules
+//= require select2
 
 $(document).ready(function() {
   $('input[name="support_requests_create_or_change_user_request[action]"]').change(function () {
@@ -21,4 +22,5 @@ $(document).ready(function() {
   });
 
   $('.dropdown-toggle').dropdown();
+  $(".select2").select2();
 });

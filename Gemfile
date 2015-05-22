@@ -15,6 +15,7 @@ gem 'plek', '1.10.0'
 # using github version to pick up unreleased bugfix
 # https://github.com/mjbellantoni/formtastic-bootstrap/pull/119
 gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap', ref: '8134e3f'
+gem 'select2-rails', '3.5.9.3'
 
 gem 'jc-validates_timeliness', '3.1.1'
 if ENV['GDS_ZENDESK_DEV']
@@ -32,7 +33,7 @@ gem 'govuk_admin_template', '2.2.0'
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else
-  gem "gds-api-adapters", '~> 18.8.0'
+  gem "gds-api-adapters", '~> 18.9.0'
 end
 gem 'gretel', '3.0.8'
 

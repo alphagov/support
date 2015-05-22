@@ -30,13 +30,24 @@ module Support
           path.start_with?('/') ? path : "/#{path}"
         end
 
-        private
+      private
         def url_is_well_formed
           uri = URI.parse(url)
           valid = !uri.path.nil?
           errors.add(:url, "must be a valid URL") unless valid
         rescue URI::InvalidURIError
           errors.add(:url, "must be a valid URL")
+        end
+      end
+
+      class ExploreByOrganisation < Explore
+        attr_accessor :organisation
+        validates_presence_of :organisation
+
+        def redirect_path
+          Rails.application.routes.url_helpers.anonymous_feedback_organisation_path(
+            slug: organisation
+          )
         end
       end
     end
