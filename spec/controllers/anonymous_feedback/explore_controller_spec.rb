@@ -1,13 +1,47 @@
 require 'rails_helper'
+require 'gds_api/test_helpers/support_api'
 
 describe AnonymousFeedback::ExploreController, :type => :controller do
+  include GdsApi::TestHelpers::SupportApi
   before do
-    login_as create(:user)
+    login_as create(:user, organisation_slug: "cabinet-office")
   end
 
   it "shows the new form again for invalid requests" do
     post :create, { support_requests_anonymous_explore_by_url: { url: "" } }
     expect(response).to have_http_status(422)
+  end
+
+  context "#new" do
+    before do
+      stub_anonymous_feedback_organisations_list([
+        {
+          slug: "cabinet-office",
+          web_url: "https://www.gov.uk/government/organisations/cabinet-office",
+          title: "Cabinet Office",
+          acronym: "CO",
+          govuk_status: "live"
+        },{
+          slug: "ministry-of-magic",
+          web_url: "https://www.gov.uk/government/organisations/ministry-of-magic",
+          title: "Ministry of Magic",
+          acronym: "",
+          govuk_status: "transitioning"
+        }
+      ])
+      get :new
+    end
+
+    it "defaults to the user's organisation" do
+      expect(assigns(:explore_by_organisation).organisation).to eq("cabinet-office")
+    end
+
+    it "lists the available organisations" do
+      expect(assigns(:organisations_list)).to eq([
+        ["Cabinet Office (CO)", "cabinet-office"],
+        ["Ministry of Magic [Transitioning]", "ministry-of-magic"]
+      ])
+    end
   end
 
   context "with a successful request" do
