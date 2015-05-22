@@ -8,10 +8,7 @@ class AnonymousFeedback::ExploreController < AuthorisationController
     @explore_by_url = Support::Requests::Anonymous::ExploreByUrl.new
     @explore_by_organisation = Support::Requests::Anonymous::ExploreByOrganisation.new(organisation: current_user.organisation_slug)
     @organisations_list = support_api.organisations_list.map do |org|
-      title = org["title"]
-      title << " (#{org["acronym"]})" if org["acronym"].present?
-      title << " [#{org["govuk_status"].titleize}]" if org["govuk_status"] && org["govuk_status"] != "live"
-      [title, org["slug"]]
+      [organisation_title(org), org["slug"]]
     end
   end
 
@@ -36,5 +33,12 @@ class AnonymousFeedback::ExploreController < AuthorisationController
 private
   def support_api
     GdsApi::SupportApi.new(Plek.find("support-api"))
+  end
+
+  def organisation_title(organisation)
+    title = organisation["title"]
+    title << " (#{organisation["acronym"]})" if organisation["acronym"].present?
+    title << " [#{organisation["govuk_status"].titleize}]" if organisation["govuk_status"] && organisation["govuk_status"] != "live"
+    title
   end
 end
