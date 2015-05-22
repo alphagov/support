@@ -21,7 +21,7 @@ module ReferrerHelper
     uri = URI.parse(referrer)
     params = Rack::Utils.parse_query(uri.query)
     params['q'] if params['q'].present?
-  rescue URI::InvalidURIError
+  rescue URI::InvalidURIError, ArgumentError
     nil
   end
 end
