@@ -1,15 +1,15 @@
 require 'support/requests/anonymous/explore'
-require 'gds_api/organisations'
+require 'gds_api/support_api'
 
 class AnonymousFeedback::ExploreController < AuthorisationController
   authorize_resource class: Support::Requests::Anonymous::Explore
 
   def new
     @explore_by_url = Support::Requests::Anonymous::ExploreByUrl.new
-    @explore_by_organisation = Support::Requests::Anonymous::ExploreByOrganisation.new
-    @organisations_list = organisations_api.organisations.map { |org|
-      [org.title, org.details.slug]
-    }
+    @explore_by_organisation = Support::Requests::Anonymous::ExploreByOrganisation.new(organisation: current_user.organisation_slug)
+    @organisations_list = support_api.organisations_list.map do |org|
+      [organisation_title(org), org["slug"]]
+    end
   end
 
   def create
@@ -31,7 +31,14 @@ class AnonymousFeedback::ExploreController < AuthorisationController
   end
 
 private
-  def organisations_api
-    GdsApi::Organisations.new(Plek.current.find("whitehall-admin"))
+  def support_api
+    GdsApi::SupportApi.new(Plek.find("support-api"))
+  end
+
+  def organisation_title(organisation)
+    title = organisation["title"]
+    title << " (#{organisation["acronym"]})" if organisation["acronym"].present?
+    title << " [#{organisation["govuk_status"].titleize}]" if organisation["govuk_status"] && organisation["govuk_status"] != "live"
+    title
   end
 end

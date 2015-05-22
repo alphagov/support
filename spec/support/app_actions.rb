@@ -1,12 +1,12 @@
-require 'gds_api/test_helpers/organisations'
+require 'gds_api/test_helpers/support_api'
 
 module AppActions
-  include GdsApi::TestHelpers::Organisations
+  include GdsApi::TestHelpers::SupportApi
 
   def explore_anonymous_feedback_with(options)
     visit "/"
 
-    stub_organisations_api
+    stub_anonymous_feedback_organisations_list
 
     click_on "Feedback explorer"
     assert page.has_title?("Anonymous Feedback"), page.html
@@ -15,11 +15,6 @@ module AppActions
     click_on "Explore by URL"
 
     expect(page).to have_content("Feedback for")
-  end
-
-  def stub_organisations_api
-    organisations_slugs = %w(department-of-fair-dos)
-    organisations_api_has_organisations(organisations_slugs)
   end
 
   def feedex_results
