@@ -19,12 +19,22 @@ describe(ReferrerHelper) do
       expect(friendly_referrer('https://www.gov.uk/bank-holidays')).to eq('/bank-holidays')
       expect(friendly_referrer('https://www.gov.uk/')).to eq('/')
     end
+
+    it('can handle incorrectly encoded query strings') do
+      expect(friendly_referrer('https://www.gov.uk/search?q=Taxed%20to%2')).to eq('/search')
+    end
   end
 
-  it('can extract a search term from a referrer') do
-    expect(extract_search_term('https://www.gov.uk/search?q=Bank+holidays')).to eq('Bank holidays')
-    expect(extract_search_term('http://www.google.co.uk/search?q=public+holidays+in+uk&hl=en-GB&gbv=2&oq=&gs_l=')).to eq('public holidays in uk')
-    expect(extract_search_term('http://www.bing.com/search?q=4th+May+2015+Bank+Holiday&FORM=QSRE1')).to eq('4th May 2015 Bank Holiday')
+  context('extract_search_term') do
+    it('can extract a search term from a referrer') do
+      expect(extract_search_term('https://www.gov.uk/search?q=Bank+holidays')).to eq('Bank holidays')
+      expect(extract_search_term('http://www.google.co.uk/search?q=public+holidays+in+uk&hl=en-GB&gbv=2&oq=&gs_l=')).to eq('public holidays in uk')
+      expect(extract_search_term('http://www.bing.com/search?q=4th+May+2015+Bank+Holiday&FORM=QSRE1')).to eq('4th May 2015 Bank Holiday')
+    end
+
+    it('can handle incorrectly encoded query strings') do
+      expect(extract_search_term('https://www.gov.uk/search?q=Taxed%20to%2')).to eq(nil)
+    end
   end
 
 end
