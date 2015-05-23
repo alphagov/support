@@ -42,11 +42,5 @@ describe OrganisationSummaryPresenter, type: :presenter do
     it "should match api_response's `anonymous_feedback_counts`" do
       expect(presenter.size).to eql(3)
     end
-
-    it "should sort `anonymous_feedback_counts` by `path`" do
-      expect(presenter[0].path).to eql(path_a)
-      expect(presenter[1].path).to eql(path_b)
-      expect(presenter[2].path).to eql(path_c)
-    end
   end
 end
