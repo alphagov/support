@@ -1,0 +1,26 @@
+.table-sortable {
+  .sortable-column {
+    padding: 0;
+  }
+
+  .sortable-column div {
+    padding: $table-cell-padding;
+  }
+
+  .sortable-column a:hover,
+  .sortable-column a:focus {
+    text-decoration: none;
+
+    div {
+      background-color: #ccc;
+    }
+  }
+
+  .sorted-column div {
+    background-color: #ddd;
+  }
+
+  .sorted-column .glyphicon {
+    margin-left: 5px;
+  }
+}
