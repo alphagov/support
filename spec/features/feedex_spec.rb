@@ -65,4 +65,38 @@ feature "Exploring anonymous feedback" do
 
     expect(page).to have_content("There’s no feedback for this URL.")
   end
+
+  scenario "exploring feedback by organisation" do
+    stub_anonymous_feedback_organisation_summary('department-of-fair-dos', 'last_7_days', {
+      "title" => "Department of Fair Dos",
+      "anonymous_feedback_counts" => [
+        { path: '/done-well', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
+        { path: '/not-bad-my-friend' },
+        { path: '/fair-enough' },
+      ],
+    })
+
+    organisation_summary = [
+      {
+        "Page" => "/done-well",
+        "7 days" => "5 items",
+        "30 days" => "10 items",
+        "90 days" => "20 items",
+      }, {
+        "Page" => "/not-bad-my-friend",
+        "7 days" => "0 items",
+        "30 days" => "0 items",
+        "90 days" => "0 items",
+      }, {
+        "Page" => "/fair-enough",
+        "7 days" => "0 items",
+        "30 days" => "0 items",
+        "90 days" => "0 items",
+      }
+    ]
+
+    explore_anonymous_feedback_with(organisation: "Department Of Fair Dos")
+    expect(page).to have_content("Feedback for Department of Fair Dos")
+    expect(organisation_summary_results).to eq(organisation_summary)
+  end
 end

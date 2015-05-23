@@ -10,9 +10,14 @@ module AppActions
 
     click_on "Feedback explorer"
     assert page.has_title?("Anonymous Feedback"), page.html
-    fill_in 'URL', with: options[:url]
 
-    click_on "Explore by URL"
+    if options[:url].present?
+      fill_in 'URL', with: options[:url]
+      click_on "Explore by URL"
+    else
+      select options[:organisation], from: 'Organisation'
+      click_on "Explore by organisation"
+    end
 
     expect(page).to have_content("Feedback for")
   end
@@ -20,6 +25,12 @@ module AppActions
   def feedex_results
     all_cells = find('table#results').all('tr').map { |row| row.all('th, td').map { |cell| cell.text.strip } }
     first_row, results = all_cells[0], all_cells[1..-1]
+    results.collect { |row| Hash[first_row.zip(row)] }
+  end
+
+  def organisation_summary_results
+    all_cells = find('table').all('tr').map { |row| row.all('th, td').map { |cell| cell.text.strip } }
+    first_row, results = all_cells[0], all_cells[2..-1]
     results.collect { |row| Hash[first_row.zip(row)] }
   end
 
