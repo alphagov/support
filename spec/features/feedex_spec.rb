@@ -67,8 +67,8 @@ feature "Exploring anonymous feedback" do
   end
 
   scenario "exploring feedback by organisation" do
-    stub_anonymous_feedback_organisation_summary('department-of-fair-dos', 'last_7_days', {
-      "title" => "Department of Fair Dos",
+    stub_anonymous_feedback_organisation_summary('cabinet-office', 'last_7_days', {
+      "title" => "Cabinet Office",
       "anonymous_feedback_counts" => [
         { path: '/done-well', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
         { path: '/not-bad-my-friend' },
@@ -95,8 +95,8 @@ feature "Exploring anonymous feedback" do
       }
     ]
 
-    explore_anonymous_feedback_with(organisation: "Department Of Fair Dos")
-    expect(page).to have_content("Feedback for Department of Fair Dos")
+    explore_anonymous_feedback_with(organisation: "Cabinet Office")
+    expect(page).to have_content("Feedback for Cabinet Office")
     expect(organisation_summary_results).to eq(organisation_summary)
   end
 end
