@@ -8,10 +8,6 @@ class OrganisationSummaryPresenter < SimpleDelegator
 
 private
   def present_results(results)
-    sort_results(results).map { |entry| OpenStruct.new(entry) }
-  end
-
-  def sort_results(results)
-    results.sort_by { |content_item| content_item["path"] }
+    results.map { |entry| OpenStruct.new(entry) }
   end
 end

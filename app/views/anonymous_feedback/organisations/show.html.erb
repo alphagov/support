@@ -4,13 +4,30 @@
 
 <% breadcrumb :feedex %>
 
-<table class="table table-bordered" data-module="filterable-table">
+<table class="table table-bordered table-sortable" data-module="filterable-table">
   <thead>
     <tr class="table-header">
-      <th style="width: 800px">Page</th>
-      <th>7 days</th>
-      <th>30 days</th>
-      <th>90 days</th>
+      <% {
+          path: 'Page',
+          last_7_days: '7 days',
+          last_30_days: '30 days',
+          last_90_days: '90 days',
+        }.each do |param, name| %>
+        <% sorted = @ordering == param.to_s %>
+        <th class="sortable-column<% if sorted %> sorted-column<% end %>">
+          <% if sorted %>
+            <div>
+              <%= name %><span class="glyphicon glyphicon-arrow-down"></span>
+            </div>
+          <% else %>
+            <a href="?ordering=<%= param %>" class="link-inherit" title="Sort table by this column">
+              <div>
+                <%= name %>
+              </div>
+            </a>
+          <% end %>
+        </th>
+      <% end %>
     </tr>
     <tr class="if-no-js-hide table-header-secondary">
       <td colspan="4">
