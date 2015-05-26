@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def in_feedex?
-    current_page?('/anonymous_feedback')
+    current_page?('/anonymous_feedback/explore')
   end
 
   def nav_link_to(section, options = { is_active: false })
