@@ -12,6 +12,11 @@ crumb :feedex do
   parent :root
 end
 
+crumb :organisation do |organisation_name|
+  link organisation_name, anonymous_feedback_organisation_path
+  parent :feedex
+end
+
 crumb :anonymous_feedback_by_path do |path|
   link "Feedback for “#{path}”"
   parent :feedex
