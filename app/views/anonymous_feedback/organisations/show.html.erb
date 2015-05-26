@@ -14,7 +14,7 @@
           last_90_days: '90 days',
         }.each do |param, name| %>
         <% sorted = @ordering == param.to_s %>
-        <th class="sortable-column<% if sorted %> sorted-column<% end %>">
+        <th class="<% unless param == :path %>item-count-column <% end %>sortable-column<% if sorted %> sorted-column<% end %>">
           <% if sorted %>
             <div>
               <%= name %><span class="glyphicon glyphicon-arrow-down"></span>
