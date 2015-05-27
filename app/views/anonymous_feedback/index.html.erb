@@ -16,19 +16,27 @@
           </h3>
         </div>
       <% end %>
-      <form action="<% anonymous_feedback_index_path%>" class="form-inline date-filter-form panel-body">
+      <form action="<% anonymous_feedback_index_path%>" class="form-inline date-filter-form panel-body"
+        <% if date_filtered? %>
+          data-module="auto-track-event"
+          data-track-action="<%= date_range_track_action(@from_date, @to_date) %>"
+          data-track-label="<%= date_range_track_label(@from_date, @to_date) %>"
+        <% end %>
+      >
         <input type="hidden" name="path" value="<%= params[:path]%>" />
         <fieldset>
           <legend class="rm">Filter feedback by date</legend>
           <label class="add-right-margin" for="start-date">
             Show feedback between <span class="rm">starting date</span>
           </label>
+
           <input type="text" name="from" id="start-date" class="input-sm form-control add-right-margin" data-module="calendar" data-max-date="0" value="<%= params[:from]%>"/>
 
           <label class="add-right-margin" for="end-date">and <span class="rm">end date</span></label>
           <input type="text" name="to" id="end-date" class="form-control input-sm" data-module="calendar" data-max-date="0" value="<%= params[:to]%>"/>
 
           <input type="submit" value="Filter" class="btn-sm btn btn-default add-left-margin" />
+
           <% if attempted_to_filter? %>
             <%= link_to anonymous_feedback_index_path(path:params[:path]), class: "inherit remove-filter pull-right" do %>
               <span class="glyphicon glyphicon-remove"></span>
@@ -52,4 +60,3 @@
 <% else %>
   <%= render partial: "results", locals: { feedback: @feedback } %>
 <% end %>
-

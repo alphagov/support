@@ -14,8 +14,8 @@ class AnonymousFeedbackController < RequestsController
         redirect_to anonymous_feedback_index_path(index_params.merge(page: 1))
       else
         @feedback = AnonymousFeedbackPresenter.new(api_response)
-        @from_date = Date.parse(api_response["from_date"]).to_s(:govuk_date_short) if api_response["from_date"]
-        @to_date = Date.parse(api_response["to_date"]).to_s(:govuk_date_short) if api_response["to_date"]
+        @from_date = Date.parse(api_response["from_date"]) if api_response["from_date"]
+        @to_date = Date.parse(api_response["to_date"]) if api_response["to_date"]
 
         respond_to do |format|
           format.html
