@@ -21,6 +21,8 @@ Support::Application.routes.draw do
     post :explore, to: "explore#create", format: false
 
     resources :organisations, only: :show, param: :slug, format: false
+
+    resources :export_requests, only: [:create, :show], format: false
   end
 
   get "emergency-contact-details",

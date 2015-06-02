@@ -2,9 +2,15 @@
 <%= content_for :header, params[:path] %>
 <% breadcrumb :anonymous_feedback_by_path, params[:path] %>
 
-<p class="feedback-response-count text-muted">
-  <%= total_responses_header(@feedback.total_count, @from_date, @to_date) %>
-</p>
+<%= form_tag anonymous_feedback_export_requests_path, class: "form-inline" %>
+  <p class="feedback-response-count text-muted">
+    <%= total_responses_header(@feedback.total_count, @from_date, @to_date) %>
+    <input type="hidden" name="from" value="<%= params[:from]%>" />
+    <input type="hidden" name="to" value="<%= params[:to]%>" />
+    <input type="hidden" name="path" value="<%= params[:path]%>" />
+    <input type="submit" value="Export as CSV" class="btn-sm btn btn-default add-left-margin" />
+  </p>
+</form>
 
 <div class="row">
   <div class="col-md-8">
@@ -16,7 +22,7 @@
           </h3>
         </div>
       <% end %>
-      <form action="<% anonymous_feedback_index_path%>" class="form-inline date-filter-form panel-body">
+      <form action="<%= anonymous_feedback_index_path%>" class="form-inline date-filter-form panel-body">
         <input type="hidden" name="path" value="<%= params[:path]%>" />
         <fieldset>
           <legend class="rm">Filter feedback by date</legend>
