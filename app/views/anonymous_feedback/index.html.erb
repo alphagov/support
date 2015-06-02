@@ -1,6 +1,6 @@
-<%= content_for :page_title, "Feedback for “#{params[:path]}”" %>
-<%= content_for :header, params[:path] %>
-<% breadcrumb :anonymous_feedback_by_path, params[:path] %>
+<%= content_for :page_title, "Feedback for “#{@filtered_by}”" %>
+<%= content_for :header, @filtered_by %>
+<% breadcrumb :anonymous_feedback_by_filter, @filtered_by %>
 
 <%= form_tag anonymous_feedback_export_requests_path, class: "form-inline" %>
   <p class="feedback-response-count text-muted">

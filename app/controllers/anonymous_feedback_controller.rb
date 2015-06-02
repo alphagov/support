@@ -9,7 +9,7 @@ class AnonymousFeedbackController < RequestsController
     unless has_required_api_params?
       respond_to do |format|
         format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
-        format.json { render json: {"errors" => ["Please set a valid 'path' parameter"] }, status: 400 }
+        format.json { render json: {"errors" => ["Please set a valid 'path' or 'organisation' parameter"] }, status: 400 }
       end
       return
     end
@@ -25,6 +25,14 @@ class AnonymousFeedbackController < RequestsController
       format.html {
         @feedback = AnonymousFeedbackPresenter.new(api_response)
         @dates = present_date_filters(api_response)
+        # TODO: we should decide how to describe filtering by both a path and
+        # an organisation, separately and together
+        # TODO: I guess we should determine this filtering information from the
+        # api_response rather than user-supplied params
+        # TODO: this shouldn't be here, it belongs in its own object, possibly
+        # combined with date filters in a more general filters presenter?
+        @filtered_by = index_params[:path].present? ?
+          index_params[:path] : index_params[:organisation]
       }
       format.json { render json: api_response.results }
     end
@@ -36,7 +44,7 @@ class AnonymousFeedbackController < RequestsController
 
 private
   def index_params
-    params.permit(:path, :page, :from, :to)
+    params.permit(:path, :organisation, :page, :from, :to)
   end
 
   def present_date_filters(api_response)
@@ -55,6 +63,7 @@ private
   def api_params
     {
       path_prefix: index_params[:path],
+      organisation_slug: index_params[:organisation],
       from: index_params[:from],
       to: index_params[:to],
       page: index_params[:page],
@@ -64,6 +73,7 @@ private
   def at_least_one_required_api_params
     [
       :path_prefix,
+      :organisation_slug,
     ]
   end
 
