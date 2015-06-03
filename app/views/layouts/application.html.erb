@@ -29,6 +29,25 @@
 <% content_for :content do %>
   <%= breadcrumbs style: :bootstrap %>
 
+  <% [:success, :info, :warning, :danger, :notice, :alert].select { |k| flash[k].present? }.each do |k| %>
+    <%
+      case k
+      when :notice
+        alert_class = "success"
+      when :alert
+        alert_class = "danger"
+      else
+        alert_class = k
+      end
+    %>
+    <div class="alert alert-<%= alert_class %>"
+      data-module="auto-track-event"
+      data-track-action="alert-<%= alert_class %>"
+      data-track-label="<%= strip_tags(flash[k]).gsub(/[\S]+@[\S]+/, '[email]') %>">
+        <%= flash[k] %>
+    </div>
+  <% end %>
+
   <div class="page-title">
     <h1>
       <% if content_for :sub_header %>
@@ -37,7 +56,6 @@
       <%= yield :header %>
     </h1>
   </div>
-
   <%= yield %>
 <% end %>
 
