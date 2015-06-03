@@ -1,8 +1,8 @@
 <%= content_for :page_title, "Anonymous Feedback" %>
 <%= content_for :sub_header, "Feedback for" %>
-<%= content_for :header, @organisation_title %>
+<%= content_for :header, @organisation.title %>
 
-<% breadcrumb :organisation, @organisation_title %>
+<% breadcrumb :organisation, @organisation.title %>
 
 <table class="table table-bordered table-sortable" data-module="filterable-table">
   <thead>
