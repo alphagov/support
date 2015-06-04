@@ -29,9 +29,12 @@ module AppActions
   end
 
   def organisation_summary_results
-    all_cells = find('table').all('tr').map { |row| row.all('th, td').map { |cell| cell.text.strip } }
-    first_row, results = all_cells[0], all_cells[2..-1]
-    results.collect { |row| Hash[first_row.zip(row)] }
+    column_headings = find("table tr.table-header").all("th").
+      map { |cell| cell.text.strip }
+    summary_rows = find("table").all("tr.organisation-summary").
+      map { |row| row.all("td").map { |cell| cell.text.strip } }
+
+    summary_rows.map { |row| Hash[column_headings.zip(row)] }
   end
 
   def user_fills_out_time_constraints(details)

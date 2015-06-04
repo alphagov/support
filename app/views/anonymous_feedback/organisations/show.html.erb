@@ -39,6 +39,11 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td colspan="4">
+        <%= link_to "All feedback for #{@organisation.title}", anonymous_feedback_index_path(organisation: @organisation.slug), class: "breakable" %>
+      </td>
+    </tr>
     <% @content_items.each do |content_item| %>
       <tr class="organisation-summary">
         <td>
