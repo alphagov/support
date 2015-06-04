@@ -39,13 +39,16 @@ private
     params.permit(:path, :page, :from, :to)
   end
 
+  def api_params
+    {
+      path_prefix: index_params[:path],
+      from: index_params[:from],
+      to: index_params[:to],
+      page: index_params[:page],
+    }.select { |_, value| value.present? }
+  end
+
   def fetch_anonymous_feedback_from_support_api
-    api_params = { path_prefix: index_params[:path] }
-
-    [:from, :to, :page].each do |sym|
-      api_params[sym] = index_params[sym] if index_params[sym]
-    end
-
     support_api.anonymous_feedback(api_params)
   end
 
