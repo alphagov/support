@@ -24,8 +24,7 @@ class AnonymousFeedbackController < RequestsController
     respond_to do |format|
       format.html {
         @feedback = AnonymousFeedbackPresenter.new(api_response)
-        @from_date = Date.parse(api_response.from_date).to_s(:govuk_date_short) if api_response.from_date
-        @to_date = Date.parse(api_response.to_date).to_s(:govuk_date_short) if api_response.to_date
+        @dates = present_date_filters(api_response)
       }
       format.json { render json: api_response.results }
     end
@@ -38,6 +37,15 @@ class AnonymousFeedbackController < RequestsController
 private
   def index_params
     params.permit(:path, :page, :from, :to)
+  end
+
+  def present_date_filters(api_response)
+    DateFiltersPresenter.new(
+      requested_from: index_params[:from],
+      requested_to: index_params[:to],
+      actual_from: api_response.from,
+      actual_to: api_response.to,
+    )
   end
 
   def first_page
