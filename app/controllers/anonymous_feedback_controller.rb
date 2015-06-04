@@ -16,18 +16,18 @@ class AnonymousFeedbackController < RequestsController
 
     api_response = fetch_anonymous_feedback_from_support_api
 
-    if api_response["pages"] > 0 && api_response["current_page"] > api_response["pages"]
-      # assume user has gone past last page, redirect to first page
-      redirect_to anonymous_feedback_index_path(index_params.merge(page: 1))
-    else
-      respond_to do |format|
-        format.html {
-          @feedback = AnonymousFeedbackPresenter.new(api_response)
-          @from_date = Date.parse(api_response["from_date"]).to_s(:govuk_date_short) if api_response["from_date"]
-          @to_date = Date.parse(api_response["to_date"]).to_s(:govuk_date_short) if api_response["to_date"]
-        }
-        format.json { render json: api_response["results"] }
-      end
+    if api_response.beyond_last_page?
+      redirect_to first_page
+      return
+    end
+
+    respond_to do |format|
+      format.html {
+        @feedback = AnonymousFeedbackPresenter.new(api_response)
+        @from_date = Date.parse(api_response.from_date).to_s(:govuk_date_short) if api_response.from_date
+        @to_date = Date.parse(api_response.to_date).to_s(:govuk_date_short) if api_response.to_date
+      }
+      format.json { render json: api_response.results }
     end
   end
 
@@ -38,6 +38,10 @@ class AnonymousFeedbackController < RequestsController
 private
   def index_params
     params.permit(:path, :page, :from, :to)
+  end
+
+  def first_page
+    anonymous_feedback_index_path(index_params.merge(page: 1))
   end
 
   def api_params
@@ -62,7 +66,9 @@ private
   end
 
   def fetch_anonymous_feedback_from_support_api
-    support_api.anonymous_feedback(api_params)
+    AnonymousFeedbackApiResponse.new(
+      support_api.anonymous_feedback(api_params).to_hash
+    )
   end
 
   def support_api
