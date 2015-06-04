@@ -6,26 +6,27 @@ class AnonymousFeedbackController < RequestsController
   def index
     authorize! :read, :anonymous_feedback
 
-    if index_params[:path].present?
-      api_response = fetch_anonymous_feedback_from_support_api
-
-      if api_response["pages"] > 0 && api_response["current_page"] > api_response["pages"]
-        # assume user has gone past last page, redirect to first page
-        redirect_to anonymous_feedback_index_path(index_params.merge(page: 1))
-      else
-        @feedback = AnonymousFeedbackPresenter.new(api_response)
-        @from_date = Date.parse(api_response["from_date"]).to_s(:govuk_date_short) if api_response["from_date"]
-        @to_date = Date.parse(api_response["to_date"]).to_s(:govuk_date_short) if api_response["to_date"]
-
-        respond_to do |format|
-          format.html
-          format.json { render json: @feedback.to_json }
-        end
-      end
-    else
+    unless has_required_api_params?
       respond_to do |format|
         format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
         format.json { render json: {"errors" => ["Please set a valid 'path' parameter"] }, status: 400 }
+      end
+      return
+    end
+
+    api_response = fetch_anonymous_feedback_from_support_api
+
+    if api_response["pages"] > 0 && api_response["current_page"] > api_response["pages"]
+      # assume user has gone past last page, redirect to first page
+      redirect_to anonymous_feedback_index_path(index_params.merge(page: 1))
+    else
+      @feedback = AnonymousFeedbackPresenter.new(api_response)
+      @from_date = Date.parse(api_response["from_date"]).to_s(:govuk_date_short) if api_response["from_date"]
+      @to_date = Date.parse(api_response["to_date"]).to_s(:govuk_date_short) if api_response["to_date"]
+
+      respond_to do |format|
+        format.html
+        format.json { render json: @feedback.to_json }
       end
     end
   end
@@ -46,6 +47,18 @@ private
       to: index_params[:to],
       page: index_params[:page],
     }.select { |_, value| value.present? }
+  end
+
+  def at_least_one_required_api_params
+    [
+      :path_prefix,
+    ]
+  end
+
+  def has_required_api_params?
+    at_least_one_required_api_params.any? { |required_param|
+      api_params[required_param].present?
+    }
   end
 
   def fetch_anonymous_feedback_from_support_api
