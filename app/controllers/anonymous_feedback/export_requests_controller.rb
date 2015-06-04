@@ -7,7 +7,7 @@ class AnonymousFeedback::ExportRequestsController < AuthorisationController
 
     support_api.create_feedback_export_request(export_request_params)
     redirect_to anonymous_feedback_index_path(params.slice(:from, :to, :path)),
-      notice: "We are sending your CSV file to #{current_user.email}, it may take a few minutes. If you don't see it, check your spam folder."
+      notice: "We are sending your CSV file to #{current_user.email}. If you don't see it in a few minutes, check your spam folder."
   end
 
   def show
