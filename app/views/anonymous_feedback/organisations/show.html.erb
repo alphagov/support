@@ -40,7 +40,7 @@
   </thead>
   <tbody>
     <% @content_items.each do |content_item| %>
-      <tr>
+      <tr class="organisation-summary">
         <td>
           <%= link_to content_item.path, anonymous_feedback_index_path(path: content_item.path), class: "breakable" %>
         </td>
