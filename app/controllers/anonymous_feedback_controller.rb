@@ -31,8 +31,11 @@ class AnonymousFeedbackController < RequestsController
         # api_response rather than user-supplied params
         # TODO: this shouldn't be here, it belongs in its own object, possibly
         # combined with date filters in a more general filters presenter?
-        @filtered_by = index_params[:path].present? ?
-          index_params[:path] : index_params[:organisation]
+        if index_params[:path].present?
+          @filtered_by = index_params[:path]
+        elsif index_params[:organisation].present?
+          @filtered_by = organisation_title(index_params[:organisation])
+        end
       }
       format.json { render json: api_response.results }
     end
@@ -87,6 +90,11 @@ private
     AnonymousFeedbackApiResponse.new(
       support_api.anonymous_feedback(api_params).to_hash
     )
+  end
+
+  def organisation_title(slug)
+    org = support_api.organisations_list.detect { |o| o["slug"] == slug }
+    org.present? ? org["title"] : slug
   end
 
   def support_api
