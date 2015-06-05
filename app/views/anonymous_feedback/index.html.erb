@@ -4,12 +4,11 @@
 
 <%= form_tag anonymous_feedback_export_requests_path, class: "form-inline" %>
   <p class="feedback-response-count text-muted">
-    <%= total_responses_header(total_count: @feedback.total_count,
-                               from: @from_date,
-                               to: @to_date) %>
-    <input type="hidden" name="from" value="<%= params[:from]%>" />
-    <input type="hidden" name="to" value="<%= params[:to]%>" />
-    <input type="hidden" name="path" value="<%= params[:path]%>" />
+    <%= total_responses_header(total_count: @feedback.total_count, from: @dates.from, to: @dates.to) %>
+    <% %i(from to path organisation).each do |attr| %>
+      <% next if params[attr].blank? %>
+      <input type="hidden" name="<%= attr%>" value="<%= params[attr]%>" />
+    <% end %>
     <input type="submit" value="Export as CSV" class="btn-sm btn btn-default add-left-margin" />
   </p>
 </form>

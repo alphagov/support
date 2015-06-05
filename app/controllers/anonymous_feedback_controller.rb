@@ -51,8 +51,8 @@ private
     DateFiltersPresenter.new(
       requested_from: index_params[:from],
       requested_to: index_params[:to],
-      actual_from: api_response.from,
-      actual_to: api_response.to,
+      actual_from: api_response.from_date,
+      actual_to: api_response.to_date,
     )
   end
 
