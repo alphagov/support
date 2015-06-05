@@ -13,7 +13,7 @@
 </form>
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-lg-8 col-md-9">
     <div class="panel <% if invalid_filter? %>panel-warning<% else %>panel-default<% end %>">
       <% if invalid_filter? %>
         <div class="panel-heading">
@@ -58,4 +58,3 @@
 <% else %>
   <%= render partial: "results", locals: { feedback: @feedback } %>
 <% end %>
-
