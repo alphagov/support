@@ -25,6 +25,7 @@
       <% end %>
       <form action="<%= anonymous_feedback_index_path%>" class="form-inline date-filter-form panel-body">
         <input type="hidden" name="path" value="<%= params[:path]%>" />
+        <input type="hidden" name="path" value="<%= params[:organisation]%>" />
         <fieldset>
           <legend class="rm">Filter feedback by date</legend>
           <label class="add-right-margin" for="start-date">
