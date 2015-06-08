@@ -7,7 +7,7 @@ describe AnonymousFeedbackController, :type => :controller do
     login_as create(:user)
   end
 
-  context "when no `path` given" do
+  context "when no `path` or `organisation` given" do
     context "HTML representation" do
       it "redirects to the explore endpoint" do
         get :index
@@ -19,7 +19,7 @@ describe AnonymousFeedbackController, :type => :controller do
       it "returns an error" do
         get :index, format: :json
         expect(response).to have_http_status(400)
-        expect(json_response).to eq("errors" => ["Please set a valid 'path' parameter"])
+        expect(json_response).to eq("errors" => ["Please set a valid 'path' or 'organisation' parameter"])
       end
     end
   end
@@ -204,6 +204,41 @@ describe AnonymousFeedbackController, :type => :controller do
           "user_agent" => "Safari",
         )
       end
+    end
+  end
+
+  context "for an organisation" do
+    render_views
+
+    before do
+      stub_anonymous_feedback(
+        { organisation_slug: "cabinet-office" },
+        {
+          "current_page" => 1,
+          "pages" => 1,
+          "page_size" => 1,
+          "results" => [
+            {
+              id: "123",
+              type: "problem-report",
+              path: "/government/organisations/cabinet-office",
+              url: "http://www.dev.gov.uk/government/organisations/cabinet-office",
+              created_at: DateTime.parse("2013-03-01"),
+              what_doing: "looking at 3rd paragraph",
+              what_wrong: "typo in 2rd word",
+              referrer: "https://www.gov.uk",
+              user_agent: "Safari",
+            },
+          ],
+        }
+      )
+      stub_organisation("cabinet-office")
+    end
+
+    it "resolves the slug to a title" do
+      get :index, organisation: "cabinet-office"
+
+      expect(response.body).to include "Cabinet Office"
     end
   end
 end

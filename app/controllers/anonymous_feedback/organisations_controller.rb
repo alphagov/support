@@ -12,7 +12,7 @@ class AnonymousFeedback::OrganisationsController < AuthorisationController
 
     api_response = fetch_organisation_summary_from_support_api(@ordering)
 
-    @organisation_title = api_response["title"]
+    @organisation = OrganisationPresenter.new(api_response)
     @content_items = OrganisationSummaryPresenter.new(api_response)
   end
 

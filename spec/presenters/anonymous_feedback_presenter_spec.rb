@@ -2,7 +2,15 @@ require 'rails_helper'
 
 describe AnonymousFeedbackPresenter, type: :presenter do
   context "when api_response has no `results`" do
-    let(:api_response) { {"results" => []} }
+    let(:api_response) {
+      double(
+        results: [],
+        current_page: 1,
+        pages: 1,
+        page_size: 50,
+        total_count: 11,
+      )
+    }
     subject(:presenter) { AnonymousFeedbackPresenter.new(api_response) }
 
     it "should be empty" do
@@ -20,12 +28,13 @@ describe AnonymousFeedbackPresenter, type: :presenter do
 
   context "when api_response has `results`" do
     let(:api_response) {
-      {
-        "current_page" => 2,
-        "pages" => 9,
-        "page_size" => 50,
-        "results" => [ {}, {}, {} ]
-      }
+      double(
+        current_page: 2,
+        pages: 9,
+        page_size: 50,
+        results: [ {}, {}, {} ],
+        total_count: 444,
+      )
     }
     subject(:presenter) { AnonymousFeedbackPresenter.new(api_response) }
 

@@ -10,32 +10,61 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
   end
 
   describe "#create" do
-    let!(:stub_request) do
-      stub_support_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
-                                                    path_prefix: "/foo",
-                                                    filter_from: "2015-05-01",
-                                                    filter_to: "2015-06-01")
+    shared_examples "a successful create request" do
+      it "passes the user's email to the api" do
+        do_request
+        expect(stub_request).to have_been_made
+      end
+
+      it "sets the flash" do
+        do_request
+
+        expect(flash[:notice]).to include "foo.bar@example.gov.uk"
+      end
     end
 
-    let(:do_request) { post :create, path: "/foo", from: "2015-05-01", to: "2015-06-01" }
+    context "with a path" do
+      let!(:stub_request) do
+        stub_support_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
+                                                      path_prefix: "/foo",
+                                                      from: "2015-05-01",
+                                                      to: "2015-06-01",
+                                                      organisation: nil)
+      end
 
-    it "passes the user's email to the api" do
-      do_request
-      expect(stub_request).to have_been_made
+      let(:do_request) { post :create, path: "/foo", from: "2015-05-01", to: "2015-06-01" }
+
+      it_behaves_like "a successful create request"
+
+      it "redirects back to the list" do
+        do_request
+
+        expect(response).to redirect_to(anonymous_feedback_index_path(path: "/foo",
+                                                                      from: "2015-05-01",
+                                                                      to: "2015-06-01"))
+      end
     end
 
-    it "sets the flash" do
-      do_request
+    context "with a path" do
+      let!(:stub_request) do
+        stub_support_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
+                                                      path_prefix: nil,
+                                                      from: "2015-05-01",
+                                                      to: "2015-06-01",
+                                                      organisation: "hm-revenue-customs")
+      end
 
-      expect(flash[:notice]).to include "foo.bar@example.gov.uk"
-    end
+      let(:do_request) { post :create, organisation: "hm-revenue-customs", from: "2015-05-01", to: "2015-06-01" }
 
-    it "redirects back to the list" do
-      do_request
+      it_behaves_like "a successful create request"
 
-      expect(response).to redirect_to(anonymous_feedback_index_path(path: "/foo",
-                                                                    from: "2015-05-01",
-                                                                    to: "2015-06-01"))
+      it "redirects back to the list" do
+        do_request
+
+        expect(response).to redirect_to(anonymous_feedback_index_path(organisation: "hm-revenue-customs",
+                                                                      from: "2015-05-01",
+                                                                      to: "2015-06-01"))
+      end
     end
   end
 

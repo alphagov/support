@@ -10,7 +10,7 @@ describe "legacy feedex URL redirect" do
   end
 
   it "redirects the legacy feedex landing page to the current feedex landing page" do
-    stub_anonymous_feedback_organisations_list
+    stub_organisations_list
 
     visit '/anonymous_feedback/problem_reports/explore'
     expect(page.current_path).to eq('/anonymous_feedback/explore')

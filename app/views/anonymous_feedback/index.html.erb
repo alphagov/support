@@ -1,21 +1,22 @@
-<%= content_for :page_title, "Feedback for “#{params[:path]}”" %>
-<%= content_for :header, params[:path] %>
-<% breadcrumb :anonymous_feedback_by_path, params[:path] %>
+<%= content_for :page_title, "Feedback for “#{@filtered_by}”" %>
+<%= content_for :header, @filtered_by %>
+<% breadcrumb :anonymous_feedback_by_filter, @filtered_by %>
 
 <%= form_tag anonymous_feedback_export_requests_path, class: "form-inline" %>
   <p class="feedback-response-count text-muted">
-    <%= total_responses_header(@feedback.total_count, @from_date, @to_date) %>
-    <input type="hidden" name="from" value="<%= params[:from]%>" />
-    <input type="hidden" name="to" value="<%= params[:to]%>" />
-    <input type="hidden" name="path" value="<%= params[:path]%>" />
+    <%= total_responses_header(total_count: @feedback.total_count, from: @dates.from, to: @dates.to) %>
+    <% %i(from to path organisation).each do |attr| %>
+      <% next if params[attr].blank? %>
+      <input type="hidden" name="<%= attr%>" value="<%= params[attr]%>" />
+    <% end %>
     <input type="submit" value="Export as CSV" class="btn-sm btn btn-default add-left-margin" />
   </p>
 </form>
 
 <div class="row">
   <div class="col-lg-8 col-md-9">
-    <div class="panel <% if invalid_filter? %>panel-warning<% else %>panel-default<% end %>">
-      <% if invalid_filter? %>
+    <div class="panel <% if @dates.invalid_filter? %>panel-warning<% else %>panel-default<% end %>">
+      <% if @dates.invalid_filter? %>
         <div class="panel-heading">
           <h3 class="panel-title">
             Sorry, these don’t look like dates. You can leave these fields blank.
@@ -35,7 +36,7 @@
           <input type="text" name="to" id="end-date" class="form-control input-sm" data-module="calendar" data-max-date="0" value="<%= params[:to]%>"/>
 
           <input type="submit" value="Filter" class="btn-sm btn btn-default add-left-margin" />
-          <% if attempted_to_filter? %>
+          <% if @dates.attempted_to_filter? %>
             <%= link_to anonymous_feedback_index_path(path:params[:path]), class: "inherit remove-filter pull-right" do %>
               <span class="glyphicon glyphicon-remove"></span>
             <% end %>
@@ -48,7 +49,7 @@
 
 <% if @feedback.empty? %>
   <div class="no-content no-content-bordered">
-    <% if date_filtered? %>
+    <% if @dates.filtered? %>
       There’s no feedback for this URL in this date range.<br />
       <%= link_to 'Show all feedback for this URL', anonymous_feedback_index_path(path:params[:path]), class: 'link-inherit' %>
     <% else %>

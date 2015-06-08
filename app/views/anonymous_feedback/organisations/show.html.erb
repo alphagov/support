@@ -1,8 +1,8 @@
 <%= content_for :page_title, "Anonymous Feedback" %>
 <%= content_for :sub_header, "Feedback for" %>
-<%= content_for :header, @organisation_title %>
+<%= content_for :header, @organisation.title %>
 
-<% breadcrumb :organisation, @organisation_title %>
+<% breadcrumb :organisation, @organisation.title %>
 
 <table class="table table-bordered table-sortable" data-module="filterable-table">
   <thead>
@@ -39,8 +39,13 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td colspan="4">
+        <%= link_to "All feedback for #{@organisation.title}", anonymous_feedback_index_path(organisation: @organisation.slug), class: "breakable" %>
+      </td>
+    </tr>
     <% @content_items.each do |content_item| %>
-      <tr>
+      <tr class="organisation-summary">
         <td>
           <%= link_to content_item.path, anonymous_feedback_index_path(path: content_item.path), class: "breakable" %>
         </td>
