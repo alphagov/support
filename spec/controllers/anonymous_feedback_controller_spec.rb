@@ -206,4 +206,39 @@ describe AnonymousFeedbackController, :type => :controller do
       end
     end
   end
+
+  context "for an organisation" do
+    render_views
+
+    before do
+      stub_anonymous_feedback(
+        { organisation_slug: "cabinet-office" },
+        {
+          "current_page" => 1,
+          "pages" => 1,
+          "page_size" => 1,
+          "results" => [
+            {
+              id: "123",
+              type: "problem-report",
+              path: "/government/organisations/cabinet-office",
+              url: "http://www.dev.gov.uk/government/organisations/cabinet-office",
+              created_at: DateTime.parse("2013-03-01"),
+              what_doing: "looking at 3rd paragraph",
+              what_wrong: "typo in 2rd word",
+              referrer: "https://www.gov.uk",
+              user_agent: "Safari",
+            },
+          ],
+        }
+      )
+      stub_organisation("cabinet-office")
+    end
+
+    it "resolves the slug to a title" do
+      get :index, organisation: "cabinet-office"
+
+      expect(response.body).to include "Cabinet Office"
+    end
+  end
 end

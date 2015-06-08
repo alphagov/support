@@ -93,7 +93,7 @@ private
   end
 
   def organisation_title(slug)
-    org = support_api.organisations_list.detect { |o| o["slug"] == slug }
+    org = support_api.organisation(slug)
     org.present? ? org["title"] : slug
   end
 
