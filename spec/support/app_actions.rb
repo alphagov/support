@@ -6,7 +6,7 @@ module AppActions
   def explore_anonymous_feedback_with(options)
     visit "/"
 
-    stub_anonymous_feedback_organisations_list
+    stub_organisations_list
 
     click_on "Feedback explorer"
     assert page.has_title?("Anonymous Feedback"), page.html

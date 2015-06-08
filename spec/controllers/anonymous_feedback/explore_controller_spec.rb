@@ -14,7 +14,7 @@ describe AnonymousFeedback::ExploreController, :type => :controller do
 
   context "#new" do
     before do
-      stub_anonymous_feedback_organisations_list([
+      stub_organisations_list([
         {
           slug: "cabinet-office",
           web_url: "https://www.gov.uk/government/organisations/cabinet-office",
