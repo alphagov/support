@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.2'
 
 gem 'sass-rails', '5.0.3'
 gem 'uglifier', '2.7.1'
@@ -29,7 +29,7 @@ gem "statsd-ruby", "1.2.1", require: "statsd"
 gem 'logstasher', '0.4.8'
 gem 'kaminari', '0.16.3'
 gem 'bootstrap-kaminari-views', '0.0.5'
-gem 'govuk_admin_template', '2.2.0'
+gem 'govuk_admin_template', '2.3.1'
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else
