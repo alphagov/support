@@ -4,31 +4,33 @@ require 'gds_api/test_helpers/support_api'
 describe AnonymousFeedback::ExploreController, :type => :controller do
   include GdsApi::TestHelpers::SupportApi
   before do
+    stub_organisations_list([
+      {
+        slug: "cabinet-office",
+        web_url: "https://www.gov.uk/government/organisations/cabinet-office",
+        title: "Cabinet Office",
+        acronym: "CO",
+        govuk_status: "live"
+      },{
+        slug: "ministry-of-magic",
+        web_url: "https://www.gov.uk/government/organisations/ministry-of-magic",
+        title: "Ministry of Magic",
+        acronym: "",
+        govuk_status: "transitioning"
+      }
+    ])
+
     login_as create(:user, organisation_slug: "cabinet-office")
   end
 
   it "shows the new form again for invalid requests" do
     post :create, { support_requests_anonymous_explore_by_url: { url: "" } }
     expect(response).to have_http_status(422)
+    expect(assigns(:explore_by_url)).to be_present
   end
 
   context "#new" do
     before do
-      stub_organisations_list([
-        {
-          slug: "cabinet-office",
-          web_url: "https://www.gov.uk/government/organisations/cabinet-office",
-          title: "Cabinet Office",
-          acronym: "CO",
-          govuk_status: "live"
-        },{
-          slug: "ministry-of-magic",
-          web_url: "https://www.gov.uk/government/organisations/ministry-of-magic",
-          title: "Ministry of Magic",
-          acronym: "",
-          govuk_status: "transitioning"
-        }
-      ])
       get :new
     end
 
