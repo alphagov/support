@@ -13,47 +13,47 @@
 <section class="add-bottom-padding add-top-padding">
   <h2 class="add-bottom-padding">Primary contacts</h2>
 
-  <h4>Urgent changes to GOV.UK departments and policy content</h4>
+  <h4>GOV.UK content support: primary contacts</h4>
   <div class="row">
     <div class="col-md-6">
-      <p>Use if you are unable to publish at a critical time, or to make changes to government content managed by GDS.</p>
+      <p>Use this number if you’re unable to publish at a critical time, or to make changes to government content managed by GDS. This number will put you in touch with a GOV.UK content designer. You must:</p>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
-      <p>This number will put you in touch with a GOV.UK departments and policy content manager.</p>
       <ul>
-        <li><%= link_to "Submit a support request", new_content_change_request_path %> before you phone.</li>
-        <li><%= link_to "Read the full guidelines", "https://www.gov.uk/government/publications/govuk-support-requests-our-processes-and-response-times" %>.</li>
+        <li><%= link_to “submit a support request", new_content_change_request_path %> before you phone</li>
+        <li><%= link_to “read the full guidelines", "https://www.gov.uk/government/publications/govuk-support-requests-our-processes-and-response-times" %></li>
       </ul>
     </div>
   </div>
   <div class="row add-bottom-padding add-top-padding">
     <div class="col-md-12">
       <p class="remove-bottom-margin"><strong><%= @primary_contact_details[:urgent_department_content_change][:phone] %></strong></p>
-      <p class="text-muted">Monday to Friday, 10am - 5pm<br>(excluding bank holidays and weekends)</p>
+      <p class="text-muted">Monday to Friday, 9am - 6pm<br>(excluding bank holidays and weekends)</p>
     </div>
   </div>
 
-  <h4>Emergency changes to GOV.UK mainstream content</h4>
+  <h4>Emergency changes to centrally managed content published on GOV.UK</h4>
   <div class="row">
     <div class="col-md-6">
-      <p>Use only in cases where the public or government is facing immediate and significant financial, legal, or physical risk, to request emergency GOV.UK content updates.</p>
+	<p>The GOV.UK content team’s standard hours are 9am to 6pm Monday to Friday. Outside these hours, emergency cover is provided.</p>
+      <p><strong>This should only be used if the public or government is facing immediate and significant financial, legal or physical risk, to request emergency GOV.UK content updates.</strong></p>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
-      <p>This number will put you in touch with a GOV.UK mainstream content manager.</p>
+      <p>This number will put you in touch with a GOV.UK content lead. You must:</p>
       <ul>
-        <li><%= link_to "Submit a support request", new_content_change_request_path %> before you phone.</li>
-        <li><%= link_to "Read the full guidelines", "https://www.gov.uk/government/publications/govuk-support-requests-our-processes-and-response-times" %>.</li>
+        <li><%= link_to “submit a support request", new_content_change_request_path %> before you phone</li>
+        <li><%= link_to “read the full guidelines", "https://www.gov.uk/government/publications/govuk-support-requests-our-processes-and-response-times" %></li>
       </ul>
     </div>
   </div>
   <div class="row add-bottom-padding add-top-padding">
     <div class="col-md-12">
       <p class="remove-bottom-margin"><strong><%= @primary_contact_details[:urgent_mainstream_content_change][:phone] %></strong></p>
-      <p class="text-muted">Daily, 8am - 10pm<br>(including bank holidays and weekends)</p>
+      <p class="text-muted">Monday to Sunday, 6pm to 9am</p>
     </div>
   </div>
 
