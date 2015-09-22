@@ -56,6 +56,7 @@ module Zendesk
         [
           LabelledSnippet.new(on: self, field: :needed_by_date, label: "Needed by date"),
           LabelledSnippet.new(on: self, field: :not_before_date, label: "Not before date"),
+          LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason, label: "Reason for time constraint")
         ]
       else
         []

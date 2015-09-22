@@ -27,7 +27,6 @@ module Zendesk
                                                             label: "Related URLs"),
           LabelledSnippet.new(on: @request,                 field: :details_of_change,
                                                             label: "Details of what should be added, amended or removed"),
-          LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason)
         ]
       end
     end

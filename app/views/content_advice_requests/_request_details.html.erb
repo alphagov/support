@@ -22,10 +22,12 @@
               input_html: { class: "input-md-6" } %>
 <% end %>
 
-<%= f.inputs name: "Time constraints" do %>
-  <%= f.input :response_needed_by_date,
-              label: "Is there a date you need to have a response by?",
-              input_html: { class: "input-md-2", :"data-module" => 'calendar', :"data-format" => 'dd-mm-yy', :"data-min-date" => 0, :placeholder => "dd-mm-yyyy", :value => f.object.response_needed_by_date } %>
+<%= f.semantic_fields_for :time_constraint do |r| %>
+  <%= r.inputs name: "Time constraints" do %>
+    <%= r.input :needed_by_date,
+                label: "Is there a date you need to have a response by?",
+                input_html: { class: "input-md-2", :"data-module" => 'calendar', :"data-format" => 'dd-mm-yy', :"data-min-date" => 0, :placeholder => "dd-mm-yyyy", :value => r.object.needed_by_date } %>
 
-  <%= f.input :reason_for_deadline, label: "Reason for deadline", input_html: { class: "input-md-6" } %>
+    <%= r.input :time_constraint_reason, label: "Reason for deadline", input_html: { class: "input-md-6" } %>
+  <% end %>
 <% end %>

@@ -24,6 +24,9 @@ feature "New feature requests" do
 [Not before date]
 01-12-2020
 
+[Reason for time constraint]
+Legal requirement
+
 [Which part of GOV.UK is this about?]
 Departments and policy
 
@@ -31,10 +34,7 @@ Departments and policy
 Information on XYZ
 
 [Url of example]
-http://www.example.com
-
-[Time constraint reason]
-Legal requirement"})
+http://www.example.com"})
 
     user_makes_a_new_feature_request(
       title: "Abc",

@@ -17,7 +17,13 @@ feature "Request for content advice" do
       "subject" => "Needed by 12 Jan: Which format - Advice on content",
       "tags" => [ "govt_form", "dept_content_advice" ],
       "comment" => { "body" =>
-"[Nature of the request]
+"[Needed by date]
+12-01-2020
+
+[Reason for time constraint]
+Ministerial announcement Z
+
+[Nature of the request]
 Initial guidance from GOV.UK on content you are working on
 
 [Details]
@@ -25,12 +31,6 @@ I need help to choose a format, here's my content...
 
 [Relevant URLs]
 https://www.gov.uk/x, https://www.gov.uk/y
-
-[Date needed by]
-12-01-2020
-
-[Reason for deadline]
-Ministerial announcement Z
 
 [Contact number]
 0121 111111"})

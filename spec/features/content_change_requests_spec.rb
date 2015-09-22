@@ -24,6 +24,9 @@ feature "Content change requests" do
 [Not before date]
 01-12-2020
 
+[Reason for time constraint]
+New law
+
 [Which part of GOV.UK is this about?]
 Services and information
 
@@ -34,10 +37,7 @@ http://gov.uk/X
 XXXXX
 
 [Details of what should be added, amended or removed]
-Out of date XX YY
-
-[Time constraint reason]
-New law"})
+Out of date XX YY"})
 
     user_makes_a_content_change_request(
       title: "Update X",

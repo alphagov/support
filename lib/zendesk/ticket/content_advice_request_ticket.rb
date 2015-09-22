@@ -26,16 +26,13 @@ module Zendesk
           request_label(field: :details),
           request_label(field: :urls,
                         label: "Relevant URLs"),
-          request_label(field: :response_needed_by_date,
-                        label: "Date needed by"),
-          request_label(field: :reason_for_deadline),
           request_label(field: :contact_number),
         ]
       end
 
       def deadline_date
-        if @request.response_needed_by_date && !@request.response_needed_by_date.empty?
-          Date.parse(@request.response_needed_by_date).strftime("%-d %b")
+        if needed_by_date && !needed_by_date.empty?
+          Date.parse(needed_by_date).strftime("%-d %b")
         end
       end
     end
