@@ -16,7 +16,7 @@ module Zendesk
     def_delegators :@requester, :email, :name, :collaborator_emails
 
     def comment
-      SnippetCollection.new(comment_snippets).to_s
+      SnippetCollection.new(base_comment_snippets + comment_snippets).to_s
     end
 
     def not_before_date
@@ -44,11 +44,22 @@ module Zendesk
     end
 
     def to_s
-      SnippetCollection.new(base_attribute_snippets + comment_snippets).to_s
+      SnippetCollection.new(base_attribute_snippets + base_comment_snippets + comment_snippets).to_s
     end
 
     def priority
       "normal"
+    end
+
+    def base_comment_snippets
+      if has_value?(:time_constraint)
+        [
+          LabelledSnippet.new(on: self, field: :needed_by_date, label: "Needed by date"),
+          LabelledSnippet.new(on: self, field: :not_before_date, label: "Not before date"),
+        ]
+      else
+        []
+      end
     end
 
     def comment_snippets
