@@ -17,22 +17,24 @@ feature "New feature requests" do
       "subject" => "Abc - New Feature Request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => [ "govt_form", "new_feature_request", "inside_government" ],
-      "fields" => [
-        { "id" => GDSZendesk::FIELD_MAPPINGS[:needed_by_date], "value" => "31-12-2020" },
-        { "id" => GDSZendesk::FIELD_MAPPINGS[:not_before_date], "value" => "01-12-2020" }
-      ],
       "comment" => { "body" =>
-"[Which part of GOV.UK is this about?]
+"[Needed by date]
+31-12-2020
+
+[Not before date]
+01-12-2020
+
+[Reason for time constraint]
+Legal requirement
+
+[Which part of GOV.UK is this about?]
 Departments and policy
 
 [User need]
 Information on XYZ
 
 [Url of example]
-http://www.example.com
-
-[Time constraint reason]
-Legal requirement"})
+http://www.example.com"})
 
     user_makes_a_new_feature_request(
       title: "Abc",

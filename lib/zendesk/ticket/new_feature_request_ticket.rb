@@ -24,7 +24,6 @@ module Zendesk
                                                             label: "Which part of GOV.UK is this about?"),
           LabelledSnippet.new(on: @request,                 field: :user_need),
           LabelledSnippet.new(on: @request,                 field: :url_of_example),
-          LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason)
         ]
       end
     end

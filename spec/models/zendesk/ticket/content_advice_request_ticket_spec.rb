@@ -5,7 +5,7 @@ module Zendesk
   module Ticket
     describe ContentAdviceRequestTicket do
       def ticket(opts = {})
-        defaults = { requester: nil, title: nil, response_needed_by_date: nil }
+        defaults = { requester: nil, title: nil, time_constraint: double(needed_by_date: nil) }
         ContentAdviceRequestTicket.new(double(defaults.merge(opts)))
       end
 
@@ -18,7 +18,7 @@ module Zendesk
       end
 
       it "contains the deadline in the subject, if one is provided" do
-        t = ticket(title: "Abc", response_needed_by_date: "12-04-2020")
+        t = ticket(title: "Abc", time_constraint: double(needed_by_date: "12-04-2020"))
         expect(t.subject).to eq("Needed by 12 Apr: Abc - Advice on content")
       end
     end

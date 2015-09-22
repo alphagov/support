@@ -10,12 +10,7 @@ module Support
       it { should allow_value("xxx").for(:nature_of_request_details) }
       it { should allow_value("xxx").for(:urls) }
 
-      it { should allow_value(nil).for(:response_needed_by_date) }
-      it { should allow_value(as_str(Date.today + 1)).for(:response_needed_by_date) }
-      it { should_not allow_value("x").for(:response_needed_by_date) }
-
       it { should validate_presence_of(:nature_of_request) }
-      it { should allow_value("xxx").for(:reason_for_deadline) }
       it { should allow_value("xxx").for(:contact_number) }
 
       its(:nature_of_request_options) { is_expected.to have_exactly(3).items }

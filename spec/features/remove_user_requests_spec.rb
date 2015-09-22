@@ -16,10 +16,12 @@ feature "Remove user requests" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Remove user",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "fields" => array_including("id" => GDSZendesk::FIELD_MAPPINGS[:not_before_date], "value" => "31-12-2020"),
       "tags" => [ "govt_form", "remove_user" ],
       "comment" => { "body" =>
-"[User name]
+"[Not before date]
+31-12-2020
+
+[User name]
 Bob
 
 [User email]

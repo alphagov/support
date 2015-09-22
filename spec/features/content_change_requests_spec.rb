@@ -17,12 +17,17 @@ feature "Content change requests" do
       "subject" => "Update X - Content change request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => [ "govt_form", "content_amend" ],
-      "fields" => [
-        { "id" => GDSZendesk::FIELD_MAPPINGS[:needed_by_date], "value" => "31-12-2020" },
-        { "id" => GDSZendesk::FIELD_MAPPINGS[:not_before_date], "value" => "01-12-2020" }
-      ],
       "comment" => { "body" =>
-"[Which part of GOV.UK is this about?]
+"[Needed by date]
+31-12-2020
+
+[Not before date]
+01-12-2020
+
+[Reason for time constraint]
+New law
+
+[Which part of GOV.UK is this about?]
 Services and information
 
 [URL of content to be changed]
@@ -32,10 +37,7 @@ http://gov.uk/X
 XXXXX
 
 [Details of what should be added, amended or removed]
-Out of date XX YY
-
-[Time constraint reason]
-New law"})
+Out of date XX YY"})
 
     user_makes_a_content_change_request(
       title: "Update X",
