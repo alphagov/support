@@ -16,12 +16,12 @@ feature "Create or change user requests" do
     zendesk_has_no_user_with_email("bob@gov.uk")
 
     ticket_request = expect_zendesk_to_receive_ticket(
-      "subject" => "New user account",
+      "subject" => "Create a new user account",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w{govt_form create_new_user inside_government},
       "comment" => { "body" =>
 "[Action]
-New user account
+Create a new user account
 
 [User needs]
 Departments and policy editor permissions, Departments and policy writer permissions
@@ -50,7 +50,7 @@ XXXX"})
     )
 
     user_requests_a_change_to_user_accounts(
-      action: "New user account",
+      action: "Create a new user account",
       user_needs: [ "Departments and policy writer permissions", "Departments and policy editor permissions" ],
       user_name: "Bob Fields",
       user_email: "bob@gov.uk",
@@ -67,12 +67,12 @@ XXXX"})
     zendesk_has_user(email: "bob@gov.uk", name: "Bob Fields")
 
     ticket_request = expect_zendesk_to_receive_ticket(
-      "subject" => "Change an existing user's permissions",
+      "subject" => "Change an existing user's account",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w{govt_form change_user},
       "comment" => { "body" =>
 "[Action]
-Change an existing user's permissions
+Change an existing user's account
 
 [User needs]
 Other/Not sure
@@ -87,7 +87,7 @@ bob@gov.uk
 XXXX"})
 
     user_requests_a_change_to_user_accounts(
-      action: "Change an existing user's permissions",
+      action: "Change an existing user's account",
       user_needs: [ "Other/Not sure" ],
       user_name: "Bob Fields",
       user_email: "bob@gov.uk",

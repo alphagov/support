@@ -37,8 +37,8 @@ module Support
 
       def action_options
         [
-          ["New user account", "create_new_user"],
-          ["Change an existing user's permissions", "change_user"],
+          ["Create a new user account", "create_new_user"],
+          ["Change an existing user's account", "change_user"],
         ]
       end
 
