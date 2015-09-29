@@ -24,7 +24,7 @@ feature "Create or change user requests" do
 Create a new user account
 
 [User needs]
-Departments and policy editor permissions, Departments and policy writer permissions
+editor - can create, review and publish content
 
 [Requested user's name]
 Bob Fields
@@ -51,7 +51,7 @@ XXXX"})
 
     user_requests_a_change_to_user_accounts(
       action: "Create a new user account",
-      user_needs: [ "Departments and policy writer permissions", "Departments and policy editor permissions" ],
+      user_needs: "editor - can create, review and publish content",
       user_name: "Bob Fields",
       user_email: "bob@gov.uk",
       user_job_title: "Editor",
@@ -69,13 +69,13 @@ XXXX"})
     ticket_request = expect_zendesk_to_receive_ticket(
       "subject" => "Change an existing user's account",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => %w{govt_form change_user},
+      "tags" => %w{govt_form change_user inside_government},
       "comment" => { "body" =>
 "[Action]
 Change an existing user's account
 
 [User needs]
-Other/Not sure
+writer - can create content
 
 [Requested user's name]
 Bob Fields
@@ -88,7 +88,7 @@ XXXX"})
 
     user_requests_a_change_to_user_accounts(
       action: "Change an existing user's account",
-      user_needs: [ "Other/Not sure" ],
+      user_needs: "writer - can create content",
       user_name: "Bob Fields",
       user_email: "bob@gov.uk",
       additional_comments: "XXXX",
@@ -110,7 +110,7 @@ XXXX"})
     end
 
     within "#user-needs" do
-      details[:user_needs].each { |user_need| check user_need }
+      choose details[:user_needs]
     end
 
     within("#user_details") do

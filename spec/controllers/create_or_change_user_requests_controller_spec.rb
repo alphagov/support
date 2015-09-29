@@ -15,8 +15,9 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
       { "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => valid_requested_user_params,
         "action" => "create_new_user",
-        "user_needs" => ["", "other"],
-        "additional_comments"=>"" }
+        "user_needs" => "editor",
+        "additional_comments"=>""
+      }
     }
   end
 
@@ -25,11 +26,12 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
       { "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => {
           "name"=>"subject",
-          "email"=>"subject@digital.cabinet-office.gov.uk",
+          "email"=>"subject@digital.cabinet-office.gov.uk"
         },
         "action" => "change_user",
-        "user_needs" => ["", "other"],
-        "additional_comments"=>"" }
+        "user_needs" => "other",
+        "additional_comments"=>""
+      }
     }
   end
 
@@ -42,7 +44,7 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
     it "submits the request to Zendesk and creates a Zendesk user with the requested user details" do
       zendesk_has_no_user_with_email(valid_requested_user_params["email"])
       stub_ticket_creation = stub_zendesk_ticket_creation(
-        hash_including("tags" => ['govt_form', 'create_new_user'])
+        hash_including("tags" => ['govt_form', 'create_new_user', "inside_government"])
       )
       stub_user_creation = stub_zendesk_user_creation(
         email: "subject@digital.cabinet-office.gov.uk",
@@ -86,7 +88,8 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
         stub_request = stub_zendesk_ticket_creation(
           hash_including("tags" => ['govt_form', 'change_user', 'inside_government'])
         )
-        params = valid_change_user_request_params.tap {|p| p["support_requests_create_or_change_user_request"].merge!("user_needs" => ["inside_government_editor"])}
+
+        params = valid_change_user_request_params.tap {|p| p["support_requests_create_or_change_user_request"].merge!("user_needs" => "editor")}
 
         post :create, params
 
