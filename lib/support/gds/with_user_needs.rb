@@ -1,15 +1,19 @@
 module Support
   module GDS
     module WithUserNeeds
-      attr_accessor :user_needs
+      attr_accessor :user_needs, :mainstream_changes, :maslow, :other_details
 
       def self.included(base)
-        base.validates :user_needs, presence: true, inclusion: { in: %w{writer editor managing_editor other} }
-        base.validate :allowed_user_needs
+        base.validates :formatted_user_needs, presence: {message: "must select at least one option"}
       end
 
       def formatted_user_needs
-        Hash[whitehall_account_options].key(user_needs)
+        needs_list = []
+        needs_list << Hash[whitehall_account_options].key(user_needs)
+        needs_list << Hash[other_permissions_options].key("mainstream_changes") if self.mainstream_changes == "1"
+        needs_list << Hash[other_permissions_options].key("maslow") if self.maslow == "1"
+        needs_list << "Other: #{self.other_details}" if self.other_details.present?
+        needs_list.reject(&:blank?).compact.join("\n")
       end
 
       def inside_government_related?
@@ -18,18 +22,17 @@ module Support
 
       def whitehall_account_options
         [
-          ["writer - can create content", "writer"],
-          ["editor - can create, review and publish content", "editor"],
-          ["managing editor - can create, review and publish content, and additional rights", "managing_editor"],
-          ["other", "other"]
+          ["Writer - can create content", "writer"],
+          ["Editor - can create, review and publish content", "editor"],
+          ["Managing editor - can create, review and publish content, and additional rights", "managing_editor"],
         ]
       end
 
-      protected
-
-      def allowed_user_needs
-        return user_needs if user_needs.class == String
-        errors.add(:user_needs, " not valid user needs")
+      def other_permissions_options
+        [
+          ["Request changes to your organisation’s mainstream content", "mainstream_changes"],
+          ["Access to Maslow database of user needs", "maslow"],
+        ]
       end
 
     end

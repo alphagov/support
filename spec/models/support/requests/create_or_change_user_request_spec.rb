@@ -10,7 +10,6 @@ module Support
 
       it { should validate_presence_of(:requester) }
       it { should validate_presence_of(:requested_user) }
-      it { should validate_presence_of(:user_needs) }
       it { should validate_presence_of(:action) }
 
       it { should allow_value("create_new_user").for(:action) }

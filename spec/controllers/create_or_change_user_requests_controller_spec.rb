@@ -29,7 +29,7 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
           "email"=>"subject@digital.cabinet-office.gov.uk"
         },
         "action" => "change_user",
-        "user_needs" => "other",
+        "user_needs" => "writer",
         "additional_comments"=>""
       }
     }

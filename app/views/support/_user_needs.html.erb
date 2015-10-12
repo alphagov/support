@@ -1,3 +1,17 @@
-<div id="user-needs">
-   <%= f.input :user_needs, as: :radio, required: true, label: "Select Whitehall user account", collection: f.object.whitehall_account_options, input_html: { :"aria-required" => true } %>
+<div id="user-needs"<%= ' class="has-error"'.html_safe if f.object.errors[:formatted_user_needs].any? %>>
+  <div id="whitehall">
+     <%= f.input :user_needs, as: :radio, label: "Select Whitehall user account", collection: f.object.whitehall_account_options %>
+  </div>
+  <div id="other_permissions">
+     <%= f.label "Other permissions", class: "control-label" %>
+     <%= f.input :mainstream_changes, as: :boolean, label: "request changes to your organisation’s mainstream content" %>
+     <%= f.input :maslow, as: :boolean, label: "access to Maslow database of user needs" %>
+     <%= f.input :other_details, label: "other, please give details", input_html: { class: "input-md-6" } %>
+  </div>
+  <% if f.object.errors[:formatted_user_needs].any? %>
+    <span class="help-block">
+      <%= f.object.errors[:formatted_user_needs].to_sentence %>
+    </span>
+  <% end %>
 </div>
+

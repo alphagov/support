@@ -14,27 +14,59 @@ module Support
         TestModelWithUserNeeds.new(attr)
       end
 
-      it { should validate_presence_of(:user_needs) }
-      it { should allow_value("other").for(:user_needs) }
-      it { should allow_value("editor").for(:user_needs) }
-      it { should allow_value("writer").for(:user_needs) }
-      it { should allow_value("other").for(:user_needs) }
-      it { should_not allow_value("xxx").for(:user_needs) }
-      it { should_not allow_value(["other", "editor"]).for(:user_needs) }
-      it { should_not allow_value([""]).for(:user_needs) }
-
       it "knows if it's related to inside government or not" do
         expect(request(user_needs: "writer")).to be_inside_government_related
         expect(request(user_needs: "editor")).to be_inside_government_related
         expect(request(user_needs: "managing_editor")).to be_inside_government_related
-        expect(request(user_needs: "other")).to_not be_inside_government_related
       end
 
-      it "defines the formatted version" do
-        expect(request(user_needs: "writer").formatted_user_needs).
-          to eq("writer - can create content")
-        expect(request(user_needs: "editor").formatted_user_needs).
-          to eq("editor - can create, review and publish content")
+      describe "formatted_user_needs" do
+        context "for a Whitehall user account" do
+          it "returns the long text of the user need" do
+            expect(request(user_needs: "writer").formatted_user_needs).
+              to eq("writer - can create content")
+          end
+        end
+
+        context "when nothing is selected" do
+          it "returns an empty string" do
+            expect(request(mainstream_changes: "0",maslow: "0").formatted_user_needs).to be_blank
+          end
+
+          it "fails validation" do
+            expect(request(mainstream_changes: "0",maslow: "0")).to_not be_valid
+          end
+        end
+
+        context "for other permissions" do
+
+          context "when one is ticked" do
+            it "returns the long text of the permission" do
+              expect(request(maslow: "1").formatted_user_needs).
+                to eq("access to Maslow database of user needs")
+            end
+          end
+
+          context "when several are ticked" do
+            it "returns the long text of the permissions, with one permission per line" do
+              expect(request(mainstream_changes:"1", maslow: "1").formatted_user_needs).
+                to eq("request changes to your organisation’s mainstream content\naccess to Maslow database of user needs")
+            end
+          end
+
+          context "when other is filled in" do
+            it "returns the text of the other field" do
+              expect(request(other_details:"special permission request").formatted_user_needs).
+                to eq("Other: special permission request")
+            end
+            context "and when another permission is ticked" do
+              it "returns long text of the permissions and the text of the other field" do
+                expect(request(mainstream_changes:"1", other_details:"special permission request").formatted_user_needs).
+                  to eq("request changes to your organisation’s mainstream content\nOther: special permission request")
+              end
+            end
+          end
+        end
       end
     end
   end
