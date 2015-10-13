@@ -10,7 +10,6 @@ module Support
 
       it { should validate_presence_of(:requester) }
       it { should validate_presence_of(:requested_user) }
-      it { should validate_presence_of(:user_needs) }
       it { should validate_presence_of(:action) }
 
       it { should allow_value("create_new_user").for(:action) }
@@ -24,7 +23,7 @@ module Support
       end
 
       it "provides formatted action" do
-        expect(request(action: "create_new_user").formatted_action).to eq("New user account")
+        expect(request(action: "create_new_user").formatted_action).to eq("Create a new user account")
 
         expect(request(action: "create_new_user").for_new_user?).to be_truthy
         expect(request(action: "change_user").for_new_user?).to be_falsey

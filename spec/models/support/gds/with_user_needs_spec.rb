@@ -14,31 +14,59 @@ module Support
         TestModelWithUserNeeds.new(attr)
       end
 
-      it { should validate_presence_of(:user_needs) }
-      it { should allow_value(["", "other"]).for(:user_needs) }
-      it { should allow_value(["inside_government_editor"]).for(:user_needs) }
-      it { should allow_value(["inside_government_writer"]).for(:user_needs) }
-      it { should allow_value(["other"]).for(:user_needs) }
-      it { should_not allow_value(["xxx"]).for(:user_needs) }
-      it { should_not allow_value([]).for(:user_needs) }
-      it { should_not allow_value([""]).for(:user_needs) }
-
       it "knows if it's related to inside government or not" do
-        expect(request(user_needs: ["inside_government_editor"])).to be_inside_government_related
-        expect(request(user_needs: ["inside_government_editor"])).to be_inside_government_related
-        expect(request(user_needs: ["user_manager"])).to_not be_inside_government_related
-        expect(request(user_needs: ["other"])).to_not be_inside_government_related
+        expect(request(user_needs: "writer")).to be_inside_government_related
+        expect(request(user_needs: "editor")).to be_inside_government_related
+        expect(request(user_needs: "managing_editor")).to be_inside_government_related
       end
 
-      it "filters out empty choices for user needs (apparently it's a rails things with tickboxes)" do
-        expect(request(user_needs: ["", "other"]).formatted_user_needs).to eq("Other/Not sure")
-      end
+      describe "formatted_user_needs" do
+        context "for a Whitehall user account" do
+          it "returns the long text of the user need" do
+            expect(request(user_needs: "writer").formatted_user_needs).
+              to eq("Writer - can create content")
+          end
+        end
 
-      it "defines the formatted version" do
-        expect(request(user_needs: ["inside_government_writer"]).formatted_user_needs).
-          to eq("Departments and policy writer permissions")
-        expect(request(user_needs: ["inside_government_writer", "inside_government_editor"]).formatted_user_needs).
-          to eq("Departments and policy editor permissions, Departments and policy writer permissions")
+        context "when nothing is selected" do
+          it "returns an empty string" do
+            expect(request(mainstream_changes: "0",maslow: "0").formatted_user_needs).to be_blank
+          end
+
+          it "fails validation" do
+            expect(request(mainstream_changes: "0",maslow: "0")).to_not be_valid
+          end
+        end
+
+        context "for other permissions" do
+
+          context "when one is ticked" do
+            it "returns the long text of the permission" do
+              expect(request(maslow: "1").formatted_user_needs).
+                to eq("Access to Maslow database of user needs")
+            end
+          end
+
+          context "when several are ticked" do
+            it "returns the long text of the permissions, with one permission per line" do
+              expect(request(mainstream_changes:"1", maslow: "1").formatted_user_needs).
+                to eq("Request changes to your organisation’s mainstream content\nAccess to Maslow database of user needs")
+            end
+          end
+
+          context "when other is filled in" do
+            it "returns the text of the other field" do
+              expect(request(other_details:"special permission request").formatted_user_needs).
+                to eq("Other: special permission request")
+            end
+            context "and when another permission is ticked" do
+              it "returns long text of the permissions and the text of the other field" do
+                expect(request(mainstream_changes:"1", other_details:"special permission request").formatted_user_needs).
+                  to eq("Request changes to your organisation’s mainstream content\nOther: special permission request")
+              end
+            end
+          end
+        end
       end
     end
   end

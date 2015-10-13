@@ -14,7 +14,7 @@ module Zendesk
 
       protected
       def comment_snippets
-        [ 
+        [
           LabelledSnippet.new(on: @request,                field: :formatted_action,
                                                            label: "Action"),
           LabelledSnippet.new(on: @request,                field: :formatted_user_needs,

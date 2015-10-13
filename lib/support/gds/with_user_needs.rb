@@ -1,50 +1,40 @@
 module Support
   module GDS
     module WithUserNeeds
-      attr_accessor :user_needs
+      attr_accessor :user_needs, :mainstream_changes, :maslow, :other_details
 
       def self.included(base)
-        base.validates_presence_of :user_needs
-        base.validate :allowed_user_needs, :at_least_one_user_need
+        base.validates :formatted_user_needs, presence: {message: "must select at least one option"}
       end
 
       def formatted_user_needs
-        filtered_user_needs.map {|user_need| Hash[user_need_options].key(user_need) }.sort.join(", ")
+        needs_list = []
+        needs_list << Hash[whitehall_account_options].key(user_needs)
+        needs_list << Hash[other_permissions_options].key("mainstream_changes") if self.mainstream_changes == "1"
+        needs_list << Hash[other_permissions_options].key("maslow") if self.maslow == "1"
+        needs_list << "Other: #{self.other_details}" if self.other_details.present?
+        needs_list.reject(&:blank?).compact.join("\n")
       end
 
       def inside_government_related?
-        not (%w{inside_government_editor inside_government_writer} & filtered_user_needs).empty?
+        %w{editor writer managing_editor}.include?(user_needs)
       end
 
-      def user_need_options
+      def whitehall_account_options
         [
-          ["Departments and policy writer permissions", "inside_government_writer"],
-          ["Departments and policy editor permissions", "inside_government_editor"],
-          ["to request new content and content changes", "content_change"],
-          ["to request creation, deletion and changes to user permissions", "user_manager"],
-          ["to request new campaigns", "campaign_requester"],
-          ["Other/Not sure", "other"]
+          ["Writer - can create content", "writer"],
+          ["Editor - can create, review and publish content", "editor"],
+          ["Managing editor - can create, review and publish content, and additional rights", "managing_editor"],
         ]
       end
 
-      protected
-      def filtered_user_needs
-        (user_needs || []).reject(&:empty?)
+      def other_permissions_options
+        [
+          ["Request changes to your organisation’s mainstream content", "mainstream_changes"],
+          ["Access to Maslow database of user needs", "maslow"],
+        ]
       end
 
-      def at_least_one_user_need
-        if filtered_user_needs.empty?
-          errors.add(:user_needs, "please choose at least one option")
-        end
-      end
-
-      def allowed_user_needs
-        permitted_user_needs = user_need_options.map(&:last)
-        disallowed_needs = filtered_user_needs - permitted_user_needs
-        unless disallowed_needs.empty?
-          errors.add(:user_needs, disallowed_needs.join(", ") + " not valid user needs")
-        end
-      end
     end
   end
 end
