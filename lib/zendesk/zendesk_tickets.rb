@@ -1,5 +1,3 @@
-require 'gds_zendesk/field_mappings'
-
 class ZendeskTickets
   def raise_ticket(ticket_to_raise)
     ZendeskTicketWorker.perform_async({
