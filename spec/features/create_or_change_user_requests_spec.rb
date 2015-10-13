@@ -25,7 +25,7 @@ feature "Create or change user requests" do
 Create a new user account
 
 [User needs]
-editor - can create, review and publish content
+Editor - can create, review and publish content
 
 [Requested user's name]
 Bob Fields
@@ -52,7 +52,7 @@ XXXX"})
 
       user_requests_a_change_to_whitehall_user_accounts(
         action: "Create a new user account",
-        user_needs: "editor - can create, review and publish content",
+        user_needs: "Editor - can create, review and publish content",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         user_job_title: "Editor",
@@ -76,7 +76,7 @@ XXXX"})
 Change an existing user's account
 
 [User needs]
-writer - can create content
+Writer - can create content
 
 [Requested user's name]
 Bob Fields
@@ -89,7 +89,7 @@ XXXX"})
 
       user_requests_a_change_to_whitehall_user_accounts(
         action: "Change an existing user's account",
-        user_needs: "writer - can create content",
+        user_needs: "Writer - can create content",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         additional_comments: "XXXX",
@@ -112,7 +112,7 @@ XXXX"})
 Create a new user account
 
 [User needs]
-request changes to your organisation’s mainstream content
+Request changes to your organisation’s mainstream content
 
 [Requested user's name]
 Bob Fields
@@ -139,7 +139,7 @@ XXXX"})
 
       user_requests_a_change_to_other_user_accounts(
         action: "Create a new user account",
-        user_needs: ["request changes to your organisation’s mainstream content"],
+        user_needs: ["Request changes to your organisation’s mainstream content"],
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         user_job_title: "Editor",
@@ -163,7 +163,7 @@ XXXX"})
 Change an existing user's account
 
 [User needs]
-request changes to your organisation’s mainstream content\naccess to Maslow database of user needs
+Request changes to your organisation’s mainstream content\nAccess to Maslow database of user needs
 
 [Requested user's name]
 Bob Fields
@@ -176,7 +176,7 @@ XXXX"})
 
       user_requests_a_change_to_other_user_accounts(
         action: "Change an existing user's account",
-        user_needs: ["request changes to your organisation’s mainstream content", "access to Maslow database of user needs"],
+        user_needs: ["Request changes to your organisation’s mainstream content", "Access to Maslow database of user needs"],
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         additional_comments: "XXXX",

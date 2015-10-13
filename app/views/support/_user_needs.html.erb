@@ -1,12 +1,20 @@
 <div id="user-needs"<%= ' class="has-error"'.html_safe if f.object.errors[:formatted_user_needs].any? %>>
   <div id="whitehall">
-     <%= f.input :user_needs, as: :radio, label: "Select Whitehall user account", collection: f.object.whitehall_account_options %>
+    <%= f.input :user_needs, as: :radio, label: "Select type of Whitehall user account (optional)", collection: f.object.whitehall_account_options %>
+    <div class="managing_editor_note">
+      A managing editor can also:
+      <ul>
+        <li>unpublish and withdraw your organisation’s content</li>
+        <li>request changes to user accounts</li>
+        <li>request new campaigns, organisations and groups</li>
+      </ul>
+    </div>
   </div>
   <div id="other_permissions">
      <%= f.label "Other permissions", class: "control-label" %>
-     <%= f.input :mainstream_changes, as: :boolean, label: "request changes to your organisation’s mainstream content" %>
-     <%= f.input :maslow, as: :boolean, label: "access to Maslow database of user needs" %>
-     <%= f.input :other_details, label: "other, please give details", input_html: { class: "input-md-6" } %>
+     <%= f.input :mainstream_changes, as: :boolean, label: "Request changes to your organisation’s mainstream content" %>
+     <%= f.input :maslow, as: :boolean, label: "Access to Maslow database of user needs" %>
+     <%= f.input :other_details, label: "Other, please give details", input_html: { class: "input-md-6" } %>
   </div>
   <% if f.object.errors[:formatted_user_needs].any? %>
     <span class="help-block">
