@@ -7,6 +7,7 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
       "email"=>"subject@digital.cabinet-office.gov.uk",
       "job"=>"editor",
       "phone"=>"12345",
+      "training"=>"Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne"
     }
   end
 
@@ -26,7 +27,8 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
       { "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => {
           "name"=>"subject",
-          "email"=>"subject@digital.cabinet-office.gov.uk"
+          "email"=>"subject@digital.cabinet-office.gov.uk",
+          "training"=>"Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne"
         },
         "action" => "change_user",
         "user_needs" => "writer",

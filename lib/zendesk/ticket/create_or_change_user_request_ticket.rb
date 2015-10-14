@@ -27,6 +27,8 @@ module Zendesk
                                                            label: "Requested user's job title"),
           LabelledSnippet.new(on: @request.requested_user, field: :phone,
                                                            label: "Requested user's phone number"),
+          LabelledSnippet.new(on: @request.requested_user, field: :training,
+                                                           label: "Requested user's previous training"),
           LabelledSnippet.new(on: @request,                field: :additional_comments)
         ]
       end
