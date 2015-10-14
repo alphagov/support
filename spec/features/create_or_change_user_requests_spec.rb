@@ -39,6 +39,9 @@ Editor
 [Requested user's phone number]
 12345
 
+[Requested user's previous training]
+Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne
+
 [Additional comments]
 XXXX"})
 
@@ -57,6 +60,7 @@ XXXX"})
         user_email: "bob@gov.uk",
         user_job_title: "Editor",
         user_phone: "12345",
+        training: "Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne",
         additional_comments: "XXXX",
       )
 
@@ -84,6 +88,9 @@ Bob Fields
 [Requested user's email]
 bob@gov.uk
 
+[Requested user's previous training]
+Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne
+
 [Additional comments]
 XXXX"})
 
@@ -92,6 +99,7 @@ XXXX"})
         user_needs: "Writer - can create content",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
+        training: "Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne",
         additional_comments: "XXXX",
       )
 
@@ -126,6 +134,9 @@ Editor
 [Requested user's phone number]
 12345
 
+[Requested user's previous training]
+Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne
+
 [Additional comments]
 XXXX"})
 
@@ -144,6 +155,7 @@ XXXX"})
         user_email: "bob@gov.uk",
         user_job_title: "Editor",
         user_phone: "12345",
+        training: "Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne",
         additional_comments: "XXXX",
       )
 
@@ -171,6 +183,9 @@ Bob Fields
 [Requested user's email]
 bob@gov.uk
 
+[Requested user's previous training]
+Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne
+
 [Additional comments]
 XXXX"})
 
@@ -179,6 +194,7 @@ XXXX"})
         user_needs: ["Request changes to your organisation’s mainstream content", "Access to Maslow database of user needs"],
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
+        training: "Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne",
         additional_comments: "XXXX",
       )
 
@@ -207,6 +223,7 @@ XXXX"})
       fill_in "Email", with: details[:user_email]
       fill_in "Job title", with: details[:user_job_title] if details[:user_job_title]
       fill_in "Phone number", with: details[:user_phone] if details[:user_phone]
+      fill_in "training", with: details[:training]
     end
 
     fill_in "Additional comments", with: details[:additional_comments]
@@ -236,6 +253,7 @@ XXXX"})
       fill_in "Email", with: details[:user_email]
       fill_in "Job title", with: details[:user_job_title] if details[:user_job_title]
       fill_in "Phone number", with: details[:user_phone] if details[:user_phone]
+      fill_in "support_requests_create_or_change_user_request_requested_user_attributes_training", with: details[:training]
     end
 
     fill_in "Additional comments", with: details[:additional_comments]

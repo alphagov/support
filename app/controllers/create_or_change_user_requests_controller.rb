@@ -22,9 +22,9 @@ class CreateOrChangeUserRequestsController < RequestsController
   def create_or_change_user_request_params
     params.require(:support_requests_create_or_change_user_request).permit(
       :action, :additional_comments,
-      :user_needs,:mainstream_changes, :maslow, :other_details,
+      :user_needs, :mainstream_changes, :maslow, :other_details,
       requester_attributes: [:email, :name, :collaborator_emails],
-      requested_user_attributes: [:name, :email, :job, :phone],
+      requested_user_attributes: [:name, :email, :job, :phone, :training],
     )
   end
 
