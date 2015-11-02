@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.2'
+gem 'rails', '4.2.4'
 
 gem 'sass-rails', '5.0.3'
 gem 'uglifier', '2.7.1'
@@ -52,7 +52,7 @@ group :test do
 end
 
 group :development, :test do
-  gem 'rspec-rails', '3.2.1'
+  gem 'rspec-rails', '3.3.3'
   gem 'jasmine', '2.3.0'
 end
 
