@@ -13,6 +13,7 @@ module Support
 
       validates_presence_of :name, :email
       validates :email, :format => {:with => /@/}
+      validates :other_training, presence: true, if: -> { Array(training).empty? }
       validate :training_options
 
       def formatted_training
