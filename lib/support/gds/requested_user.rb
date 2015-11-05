@@ -4,10 +4,32 @@ module Support
   module GDS
     class RequestedUser
       include ActiveModel::Model
-      attr_accessor :name, :email, :job, :phone, :training
+      attr_accessor :name, :email, :job, :phone, :training, :other_training
 
-      validates_presence_of :name, :email, :training
+      TRAINING_OPTIONS = {
+        "Writing for GOV.UK" => "writing",
+        "Using Whitehall Publisher" => "using_publisher",
+      }
+
+      validates_presence_of :name, :email
       validates :email, :format => {:with => /@/}
+      validates :other_training, presence: true, if: -> { training.empty? }
+      validate :validate_training_options
+
+      def formatted_training
+        training.map { |k| TRAINING_OPTIONS.key(k) }.to_sentence
+      end
+
+      def training
+        Array(@training).reject(&:empty?)
+      end
+
+    private
+      def validate_training_options
+        unless (training - TRAINING_OPTIONS.values).empty?
+          errors.add(:training, "must be one of the provided options")
+        end
+      end
     end
   end
 end

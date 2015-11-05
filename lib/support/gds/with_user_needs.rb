@@ -24,7 +24,7 @@ module Support
         [
           ["Writer - can create content", "writer"],
           ["Editor - can create, review and publish content", "editor"],
-          ["Managing editor - can create, review and publish content, and additional rights", "managing_editor"],
+          ["Managing editor - can create, review and publish content, and has admin rights", "managing_editor"],
         ]
       end
 

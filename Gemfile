@@ -52,6 +52,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'pry-byebug'
   gem 'rspec-rails', '3.3.3'
   gem 'jasmine', '2.3.0'
 end

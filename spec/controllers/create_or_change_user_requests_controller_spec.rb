@@ -3,11 +3,12 @@ require 'rails_helper'
 describe CreateOrChangeUserRequestsController, :type => :controller do
   def valid_requested_user_params
     {
-      "name"=>"subject",
-      "email"=>"subject@digital.cabinet-office.gov.uk",
-      "job"=>"editor",
-      "phone"=>"12345",
-      "training"=>"Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne"
+      "name" => "subject",
+      "email" => "subject@digital.cabinet-office.gov.uk",
+      "job" => "editor",
+      "phone" => "12345",
+      "training" => %w(writing using_publisher),
+      "other_training" => "Various other forms of training"
     }
   end
 
@@ -17,7 +18,7 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
         "requested_user_attributes" => valid_requested_user_params,
         "action" => "create_new_user",
         "user_needs" => "editor",
-        "additional_comments"=>""
+        "additional_comments" => ""
       }
     }
   end
@@ -26,13 +27,14 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
     { "support_requests_create_or_change_user_request" =>
       { "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => {
-          "name"=>"subject",
-          "email"=>"subject@digital.cabinet-office.gov.uk",
-          "training"=>"Attended publishing for GOV.UK training in September 2015 with Christine Cawthorne"
+          "name" => "subject",
+          "email" => "subject@digital.cabinet-office.gov.uk",
+          "training" => %w(writing using_publisher),
+          "other_training" => "Various other forms of training"
         },
         "action" => "change_user",
         "user_needs" => "writer",
-        "additional_comments"=>""
+        "additional_comments" => ""
       }
     }
   end
