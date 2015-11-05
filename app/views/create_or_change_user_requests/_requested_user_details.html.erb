@@ -5,6 +5,6 @@
     <%= r.input :job, label: "Job title", input_html: { class: "input-md-6" } %>
     <%= r.input :phone, label: "Phone number", as: :phone, required: false, input_html: { class: "input-md-6" } %>
     <%= r.input :training, as: :check_boxes, collection: Support::GDS::RequestedUser::TRAINING_OPTIONS, label: "Which GOV.UK training has this user had?" %>
-    <%= r.input :other_training, label: "Other, give details", input_html: { class: "input-md-6" } %>
+    <%= r.input :other_training, label: "Other, give details", input_html: { class: "input-md-6" }, required: false %>
   <% end %>
 <% end %>
