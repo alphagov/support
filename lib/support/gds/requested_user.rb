@@ -13,16 +13,20 @@ module Support
 
       validates_presence_of :name, :email
       validates :email, :format => {:with => /@/}
-      validates :other_training, presence: true, if: -> { Array(training).empty? }
+      validates :other_training, presence: true, if: -> { training.empty? }
       validate :training_options
 
       def formatted_training
-        training.reject(&:empty?).map { |k| TRAINING_OPTIONS.key(k) }.to_sentence
+        training.map { |k| TRAINING_OPTIONS.key(k) }.to_sentence
+      end
+
+      def training
+        Array(@training).reject(&:empty?)
       end
 
     private
       def training_options
-        unless (Array(training).reject(&:empty?) - TRAINING_OPTIONS.values).empty?
+        unless (training - TRAINING_OPTIONS.values).empty?
           errors.add(:training, "must be one of the provided options")
         end
       end
