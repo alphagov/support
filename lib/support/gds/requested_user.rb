@@ -6,20 +6,24 @@ module Support
       include ActiveModel::Model
       attr_accessor :name, :email, :job, :phone, :training, :other_training
 
+      TRAINING_OPTIONS = {
+        "Writing for GOV.UK" => "writing",
+        "Using Whitehall Publisher" => "using_publisher",
+      }
+
       validates_presence_of :name, :email
       validates :email, :format => {:with => /@/}
+      validate :training_options
 
       def formatted_training
-        training.reject(&:empty?).map do |k|
-          self.class.training_options.key(k.to_sym)
-        end.to_sentence
+        training.reject(&:empty?).map { |k| TRAINING_OPTIONS.key(k) }.to_sentence
       end
 
-      def self.training_options
-        {
-          "Writing for GOV.UK" => :writing,
-          "Using Whitehall Publisher" => :using_publisher,
-        }
+    private
+      def training_options
+        unless (Array(training).reject(&:empty?) - TRAINING_OPTIONS.values).empty?
+          errors.add(:training, "must be one of the provided options")
+        end
       end
     end
   end
