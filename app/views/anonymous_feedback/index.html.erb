@@ -4,7 +4,10 @@
 
 <%= form_tag anonymous_feedback_export_requests_path, class: "form-inline" %>
   <p class="feedback-response-count text-muted">
-    <%= total_responses_header(total_count: @feedback.total_count, from: @dates.from, to: @dates.to) %>
+    <%= total_responses_header(total_count: @feedback.total_count,
+                               from: @dates.from,
+                               to: @dates.to,
+                               results_limited: @feedback.results_limited) %>
     <% %i(from to path organisation).each do |attr| %>
       <% next if params[attr].blank? %>
       <input type="hidden" name="<%= attr%>" value="<%= params[attr]%>" />
@@ -58,5 +61,15 @@
     <% end %>
   </div>
 <% else %>
+  <% if @feedback.results_limited && @feedback.current_page == @feedback.total_pages %>
+    <div class="callout callout-info">
+      <div class="callout-title">
+        More responses are available.
+      </div>
+      <div class="callout-body">
+        You can change the date range to see more results, or export the whole range as a CSV.
+      </div>
+    </div>
+  <% end %>
   <%= render partial: "results", locals: { feedback: @feedback } %>
 <% end %>

@@ -24,6 +24,10 @@ describe AnonymousFeedbackPresenter, type: :presenter do
     it "should present api_response's `results` as an empty array" do
       expect(presenter).to eq([])
     end
+
+    it "should return false for results_limited" do
+      expect(presenter.results_limited).to be_falsey
+    end
   end
 
   context "when api_response has `results`" do
@@ -34,6 +38,7 @@ describe AnonymousFeedbackPresenter, type: :presenter do
         page_size: 50,
         results: [ {}, {}, {} ],
         total_count: 444,
+        results_limited: true
       )
     }
     subject(:presenter) { AnonymousFeedbackPresenter.new(api_response) }
@@ -53,6 +58,10 @@ describe AnonymousFeedbackPresenter, type: :presenter do
 
       it "should report `limit_value`" do
         expect(presenter.limit_value).to eq(50)
+      end
+
+      it "should return false for results_limited" do
+        expect(presenter.results_limited).to be_truthy
       end
     end
   end
