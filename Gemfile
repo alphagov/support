@@ -7,7 +7,7 @@ gem 'uglifier', '2.7.1'
 
 gem "airbrake", "4.1.0"
 
-gem 'gds-sso', '11.0.0'
+gem 'gds-sso', '11.2.0'
 gem 'cancan', '1.6.10'
 gem 'jquery-ui-rails', '5.0.1'
 gem 'plek', '1.10.0'
