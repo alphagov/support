@@ -56,6 +56,10 @@ class User < OpenStruct
     alias :create! :upsert!
   end
 
+  def disabled?
+    disabled
+  end
+
   def remotely_signed_out?
     remotely_signed_out
   end
