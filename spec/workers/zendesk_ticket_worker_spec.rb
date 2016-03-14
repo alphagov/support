@@ -18,4 +18,15 @@ describe ZendeskTicketWorker do
 
     expect(a_request(:post, %r{.*/tickets/.*})).to_not have_been_made
   end
+
+  it "discards the ticket if it receives a 409 response" do
+    zendesk_has_user(email: "a@b.com", "suspended" => false)
+
+    zendesk_returns_conflict
+
+    ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
+
+    expect(a_request(:post, %r{.*/tickets/.*})).to_not have_been_made
+  end
+
 end
