@@ -29,4 +29,12 @@ describe ZendeskTicketWorker do
     expect(a_request(:post, %r{.*/tickets/.*})).to_not have_been_made
   end
 
+  it "raises the ticket if it receives a 503 response" do
+    zendesk_has_user(email: "a@b.com", suspended: false)
+
+    zendesk_is_unavailable
+
+    expect{ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })}.to raise_error
+  end
+
 end
