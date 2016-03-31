@@ -43,7 +43,7 @@
     <div class="alert alert-<%= alert_class %>"
       data-module="auto-track-event"
       data-track-action="alert-<%= alert_class %>"
-      data-track-label="<%= strip_tags(flash[k]).gsub(/[\S]+@[\S]+/, '[email]') %>">
+      data-track-label="<%= strip_tags(flash[k]) %>">
         <%= flash[k] %>
     </div>
   <% end %>
