@@ -1,8 +1,4 @@
-<% content_for(:app_title) { "GOV.UK Support" } %>
-
-<% #content_for concatenates successive calls %>
-<% content_for :page_title do %> | GOV.UK Support<% end %>
-
+<% content_for :page_title, ' | GOV.UK Support' %>
 <% content_for :head do %>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -13,10 +9,6 @@
   <% environment_style = GovukAdminTemplate.environment_style %>
   <%= favicon_link_tag environment_style ?
         "favicon-#{environment_style}.png" : "favicon.png" %>
-<% end %>
-
-<% content_for :navbar_right do %>
-  <%= link_to current_user.name, Plek.find('signon') %> &bull; <%= link_to 'Sign out', gds_sign_out_path %>
 <% end %>
 
 <% content_for :navbar_items do %>
@@ -43,7 +35,7 @@
     <div class="alert alert-<%= alert_class %>"
       data-module="auto-track-event"
       data-track-action="alert-<%= alert_class %>"
-      data-track-label="<%= strip_tags(flash[k]).gsub(/[\S]+@[\S]+/, '[email]') %>">
+      data-track-label="<%= strip_tags(flash[k]) %>">
         <%= flash[k] %>
     </div>
   <% end %>
