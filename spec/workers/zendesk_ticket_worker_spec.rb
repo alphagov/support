@@ -34,7 +34,7 @@ describe ZendeskTicketWorker do
 
     zendesk_is_unavailable
 
-    expect{ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })}.to raise_error
+    expect{ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })}.to raise_error(ZendeskAPI::Error::NetworkError)
   end
 
 end
