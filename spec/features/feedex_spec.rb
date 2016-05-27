@@ -44,7 +44,7 @@ feature "Exploring anonymous feedback" do
         "URL" => "/vat-rates",
         "Referrer" => "/"
       }, {
-        "Date" => 20.days.ago.strftime('%e %b %Y'),
+        "Date" => 20.days.ago.strftime('%e %b %Y').strip,
         "Feedback" => "Action: Looking at rates Problem: Standard rate is wrong",
         "URL" => "/vat-rates",
         "Referrer" => "/pay-vat"
