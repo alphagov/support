@@ -8,7 +8,7 @@ feature "Exploring anonymous feedback" do
   end
 
   scenario "exploring feedback by URL" do
-    stub_anonymous_feedback_with_default_date_range(
+    stub_anonymous_feedback(
       { path_prefix: "/vat-rates" },
       {
         "current_page" => 1,
@@ -19,7 +19,7 @@ feature "Exploring anonymous feedback" do
             type: "problem-report",
             path: "/vat-rates",
             url: "http://www.dev.gov.uk/vat-rates",
-            created_at: 10.days.ago,
+            created_at: DateTime.parse("2013-03-01"),
             what_doing: "looking at 3rd paragraph",
             what_wrong: "typo in 2rd word",
             referrer: "https://www.gov.uk/",
@@ -28,7 +28,7 @@ feature "Exploring anonymous feedback" do
             type: "problem-report",
             path: "/vat-rates",
             url: "http://www.dev.gov.uk/vat-rates",
-            created_at: 20.days.ago,
+            created_at: DateTime.parse("2013-02-01"),
             what_doing: "looking at rates",
             what_wrong: "standard rate is wrong",
             referrer: "https://www.gov.uk/pay-vat",
@@ -39,12 +39,12 @@ feature "Exploring anonymous feedback" do
 
     feedback_reports = [
       {
-        "Date" => 10.days.ago.strftime('%e %b %Y'),
+        "Date" => "1 Mar 2013",
         "Feedback" => "Action: Looking at 3rd paragraph Problem: Typo in 2rd word",
         "URL" => "/vat-rates",
         "Referrer" => "/"
       }, {
-        "Date" => 20.days.ago.strftime('%e %b %Y'),
+        "Date" => "1 Feb 2013",
         "Feedback" => "Action: Looking at rates Problem: Standard rate is wrong",
         "URL" => "/vat-rates",
         "Referrer" => "/pay-vat"
@@ -56,7 +56,7 @@ feature "Exploring anonymous feedback" do
   end
 
   scenario "no feedback found" do
-    stub_anonymous_feedback_with_default_date_range(
+    stub_anonymous_feedback(
       { path_prefix: "/non-existent-path" },
       { "results" => [], "pages" => 0, "current_page" => 1 }
     )

@@ -17,7 +17,7 @@ describe "legacy feedex URL redirect" do
   end
 
   it "redirects the old problem report deep-links to the current anon feedback links" do
-    stub_anonymous_feedback_with_default_date_range(
+    stub_anonymous_feedback(
       { path_prefix: "/vat-etc" },
       {
         "current_page" => 1,

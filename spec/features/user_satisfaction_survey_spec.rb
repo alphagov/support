@@ -9,10 +9,11 @@ feature "User satisfaction survey submissions" do
 
   background do
     login_as create(:user)
+    Timecop.travel Date.parse("2013-02-28")
   end
 
   scenario "submission with comment" do
-    stub_anonymous_feedback_with_default_date_range(
+    stub_anonymous_feedback(
       { path_prefix: "/done/find-court-tribunal" },
       {
         "current_page" => 1,
@@ -28,8 +29,8 @@ feature "User satisfaction survey submissions" do
             details: "Make service less 'meh'",
             user_agent: "Safari",
             javascript_enabled: true,
-            created_at: 10.days.ago,
-            updated_at: 10.days.ago,
+            created_at: Time.now,
+            updated_at: Time.now,
           }
         ]
       }
@@ -39,7 +40,7 @@ feature "User satisfaction survey submissions" do
 
     expect(feedex_results).to eq([
       {
-        "Date" => 10.days.ago.strftime('%e %b %Y'),
+        "Date" => "28 Feb 2013",
         "Feedback" => "rating: 3 comment: Make service less 'meh'",
         "URL" => "/done/find-court-tribunal",
         "Referrer" => ""
@@ -48,7 +49,7 @@ feature "User satisfaction survey submissions" do
   end
 
   scenario "submission without a comment" do
-    stub_anonymous_feedback_with_default_date_range(
+    stub_anonymous_feedback(
       { path_prefix: "/done/some-service" },
       {
         "current_page" => 1,
