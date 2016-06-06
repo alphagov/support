@@ -27,7 +27,7 @@ describe AnonymousFeedbackController, :type => :controller do
   context "no results" do
     context "on the first page" do
       it "should show no results" do
-        stub_anonymous_feedback_with_default_date_range(
+        stub_anonymous_feedback(
           { path_prefix: "/a" },
           { "results" => [], "pages" => 0, "current_page" => 1 },
         )
@@ -40,16 +40,14 @@ describe AnonymousFeedbackController, :type => :controller do
 
     context "user has manually entered a non-existent page" do
       it "should redirect to the first page" do
-        stub_anonymous_feedback_with_default_date_range(
+        stub_anonymous_feedback(
           { path_prefix: "/a", page: 4 },
           { "results" => [], "pages" => 3, "current_page" => 4 },
         )
 
         get :index, path: "/a", page: 4
 
-        expect(response)
-          .to redirect_to(anonymous_feedback_index_path(
-            default_date_range.merge(path: "/a", page: 1)))
+        expect(response).to redirect_to(anonymous_feedback_index_path(path: "/a", page: 1))
       end
     end
   end
@@ -109,7 +107,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
   context "valid input, long-form feedback" do
     before do
-      stub_anonymous_feedback_with_default_date_range(
+      stub_anonymous_feedback(
         { path_prefix: "/contact/govuk" },
         {
           "current_page" => 1,
@@ -159,7 +157,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
   context "valid input, service feedback" do
     before do
-      stub_anonymous_feedback_with_default_date_range(
+      stub_anonymous_feedback(
         { path_prefix: "/done/apply-carers-allowance" },
         {
           "current_page" => 1,
@@ -213,7 +211,7 @@ describe AnonymousFeedbackController, :type => :controller do
     render_views
 
     before do
-      stub_anonymous_feedback_with_default_date_range(
+      stub_anonymous_feedback(
         { organisation_slug: "cabinet-office" },
         {
           "current_page" => 1,
