@@ -24,7 +24,7 @@ else
   gem "gds_zendesk", '2.1.0'
 end
 gem 'redis', '3.2.1'
-gem "govuk_sidekiq", "0.0.3"
+gem "govuk_sidekiq", '0.0.4'
 gem "statsd-ruby", "1.2.1", require: "statsd"
 gem 'logstasher', '0.4.8'
 gem 'kaminari', '0.16.3'
