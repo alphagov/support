@@ -1,7 +1,7 @@
 class ZendeskTicketWorker
   include Sidekiq::Worker
 
-  def perform(ticket_options, _govuk_headers = nil)
+  def perform(ticket_options)
     if GDS_ZENDESK_CLIENT.users.suspended?(ticket_options["requester"]["email"])
       $statsd.increment("#{::STATSD_PREFIX}.report_a_problem.submission_from_suspended_user")
     else
