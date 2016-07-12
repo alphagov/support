@@ -7,7 +7,8 @@
     <%= total_responses_header(total_count: @feedback.total_count,
                                from: @dates.from,
                                to: @dates.to,
-                               results_limited: @feedback.results_limited) %>
+                               results_limited: @feedback.results_limited,
+                               path: @filtered_by) %>
     <% %i(from to path organisation).each do |attr| %>
       <% next if params[attr].blank? %>
       <input type="hidden" name="<%= attr%>" value="<%= params[attr]%>" />
