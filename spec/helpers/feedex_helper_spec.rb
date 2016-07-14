@@ -9,19 +9,45 @@ describe FeedexHelper, type: :helper do
         total_count: total_count,
         from: from,
         to: to,
-        results_limited: results_limited
+        results_limited: results_limited,
+        path: path
       )
     }
 
     let(:results_limited) { false }
+    let(:path) {"/vat-rates"}
 
-    context "with no dates and a total_count of 1" do
+    context "when the page has no ratings" do
+      context "with no dates and a total_count of 1" do
+        let(:total_count) { 1 }
+        let(:from) { nil }
+        let(:to) { nil }
+
+        it "outputs total_count" do
+          expect(header).to eq("1 response")
+        end
+      end
+    end
+    context "when the page has ratings" do
       let(:total_count) { 1 }
       let(:from) { nil }
       let(:to) { nil }
+      let(:path) {"/done/register-to-vote"}
 
-      it "outputs total_count" do
-        expect(header).to eq("1 response")
+      context "with no dates and a total_count of 1" do
+        it "doesn't output the responses" do
+          expect(header).to eq "All responses"
+        end
+      end
+
+      context "with dates and a total_count of 1" do
+        let(:total_count) { 1 }
+        let(:from) { "10 May 2015" }
+        let(:to) { "11 May 2015" }
+
+        it "outputs the dates only" do
+          expect(header).to eq "Responses between 10 May 2015 and 11 May 2015"
+        end
       end
     end
 
