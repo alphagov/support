@@ -226,9 +226,9 @@ XXXX"})
   def user_requests_a_change_to_whitehall_user_accounts(details)
     visit '/'
 
-    click_on "Create or change user"
+    click_on "Accounts, permissions and training"
 
-    expect(page).to have_content("Create or change a user account")
+    expect(page).to have_content("Request a new account, change an account or unlock an account")
 
     within "#action" do
       choose details[:action]
@@ -256,9 +256,9 @@ XXXX"})
   def user_requests_a_change_to_other_user_accounts(details)
     visit '/'
 
-    click_on "Create or change user"
+    click_on "Accounts, permissions and training"
 
-    expect(page).to have_content("Create or change a user account")
+    expect(page).to have_content("Request a new account, change an account or unlock an account")
 
     within "#action" do
       choose details[:action]

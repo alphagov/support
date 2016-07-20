@@ -43,11 +43,11 @@ module Support
       end
 
       def self.label
-        "Create or change user"
+        "Accounts, permissions and training"
       end
 
       def self.description
-        "Create or change a user account"
+        "Request a new account, change an account or unlock an account"
       end
     end
   end

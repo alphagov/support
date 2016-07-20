@@ -56,7 +56,7 @@ Some comment"})
   def user_makes_a_campaign_request(details)
     visit '/'
 
-    click_on "Campaign"
+    click_on "Campaign requests and support"
 
     expect(page).to have_content("Request GDS support for a campaign")
 

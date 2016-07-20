@@ -53,9 +53,9 @@ http://www.example.com"})
   def user_makes_a_new_feature_request(details)
     visit '/'
 
-    click_on "New feature/need"
+    click_on "Changes to publishing applications or technical advice"
 
-    expect(page).to have_content("Request a new feature/need")
+    expect(page).to have_content("Request for changes or new features for any publishing applications or ask for technical advice. Also used for transitioning new sites to GOV.UK")
 
     fill_in "Title of request", with: details[:title]
 

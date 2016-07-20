@@ -43,11 +43,11 @@ module Support
       end
 
       def self.label
-        "Content advice"
+        "Content advice and help"
       end
 
       def self.description
-        "Ask for advice and guidance on Departments and Policy content"
+        "Ask for help or advice on any content problems"
       end
     end
   end

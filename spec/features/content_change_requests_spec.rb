@@ -71,9 +71,9 @@ Out of date XX YY"})
   def user_makes_a_content_change_request(details)
     visit '/'
 
-    click_on "Content change"
+    click_on "Content changes and new content requests"
 
-    expect(page).to have_content("Request a change")
+    expect(page).to have_content("Request changes to GOV.UK content managed by GDS content designers")
 
     within "#request-context" do
       choose details[:context]
