@@ -20,7 +20,6 @@ class ContentChangeRequestsController < RequestsController
   def content_change_request_params
     params.require(:support_requests_content_change_request).permit(
       :title, :details_of_change, :url, :related_urls,
-      :request_context,
       requester_attributes: [:email, :name, :collaborator_emails],
       time_constraint_attributes: [:not_before_date, :needed_by_date, :time_constraint_reason],
     )
