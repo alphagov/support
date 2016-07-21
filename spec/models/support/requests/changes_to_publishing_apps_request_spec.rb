@@ -6,7 +6,6 @@ module Support
     describe ChangesToPublishingAppsRequest do
       it { should validate_presence_of(:requester) }
       it { should validate_presence_of(:user_need) }
-      it { should validate_presence_of(:request_context) }
 
       it { should allow_value("XXX").for(:title) }
     end
