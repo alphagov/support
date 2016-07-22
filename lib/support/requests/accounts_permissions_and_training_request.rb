@@ -15,7 +15,7 @@ module Support
         end
       end
       validates_presence_of :action, :requested_user
-      validates :action, inclusion: { in: ["create_new_user", "change_user"] }
+      validates :action, inclusion: { in: ["create_new_user", "change_user", "unsuspend_user"] }
 
       def requested_user_attributes=(attr)
         self.requested_user = Support::GDS::RequestedUser.new(attr)
@@ -39,6 +39,7 @@ module Support
         [
           ["Create a new user account", "create_new_user"],
           ["Change an existing user's account", "change_user"],
+          ["Unsuspend an existing user's account", "unsuspend_user"],
         ]
       end
 

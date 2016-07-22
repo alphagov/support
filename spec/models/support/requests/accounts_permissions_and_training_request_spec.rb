@@ -14,6 +14,7 @@ module Support
 
       it { should allow_value("create_new_user").for(:action) }
       it { should allow_value("change_user").for(:action) }
+      it { should allow_value("unsuspend_user").for(:action) }
       it { should_not allow_value("xxx").for(:action) }
 
       it { should allow_value("a comment").for(:additional_comments) }
