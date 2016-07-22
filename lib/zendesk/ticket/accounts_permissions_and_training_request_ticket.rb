@@ -3,7 +3,7 @@ require 'zendesk/labelled_snippet'
 
 module Zendesk
   module Ticket
-    class CreateOrChangeUserRequestTicket < ZendeskTicket
+    class AccountsPermissionsAndTrainingRequestTicket < ZendeskTicket
       def subject
         @request.formatted_action
       end

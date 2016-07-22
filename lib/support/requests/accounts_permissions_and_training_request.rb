@@ -4,7 +4,7 @@ require 'support/gds/requested_user'
 
 module Support
   module Requests
-    class CreateOrChangeUserRequest < Request
+    class AccountsPermissionsAndTrainingRequest < Request
       include Support::GDS::WithUserNeeds
 
       attr_accessor :action, :requested_user, :additional_comments

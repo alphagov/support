@@ -1,26 +1,26 @@
-require 'zendesk/ticket/create_or_change_user_request_ticket'
-require 'support/requests/create_or_change_user_request'
+require 'zendesk/ticket/accounts_permissions_and_training_request_ticket'
+require 'support/requests/accounts_permissions_and_training_request'
 require 'gds_zendesk/users'
 require 'zendesk_api/error'
 
-class CreateOrChangeUserRequestsController < RequestsController
+class AccountsPermissionsAndTrainingRequestsController < RequestsController
   include Support::Requests
 
   protected
   def new_request
-    CreateOrChangeUserRequest.new
+    AccountsPermissionsAndTrainingRequest.new
   end
 
   def zendesk_ticket_class
-    Zendesk::Ticket::CreateOrChangeUserRequestTicket
+    Zendesk::Ticket::AccountsPermissionsAndTrainingRequestTicket
   end
 
   def parse_request_from_params
-    CreateOrChangeUserRequest.new(create_or_change_user_request_params)
+    AccountsPermissionsAndTrainingRequest.new(create_or_change_user_request_params)
   end
 
   def create_or_change_user_request_params
-    params.require(:support_requests_create_or_change_user_request).permit(
+    params.require(:support_requests_accounts_permissions_and_training_request).permit(
       :action, :additional_comments,
       :user_needs, :mainstream_changes, :maslow, :other_details,
       requester_attributes: [:email, :name, :collaborator_emails],

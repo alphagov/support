@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'support/requests/create_or_change_user_request'
+require 'support/requests/accounts_permissions_and_training_request'
 
 module Support
   module Requests
-    describe CreateOrChangeUserRequest do
+    describe AccountsPermissionsAndTrainingRequest do
       def request(options = {})
-        CreateOrChangeUserRequest.new(options).tap(&:valid?)
+        AccountsPermissionsAndTrainingRequest.new(options).tap(&:valid?)
       end
 
       it { should validate_presence_of(:requester) }
