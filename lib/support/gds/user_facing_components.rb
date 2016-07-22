@@ -17,8 +17,7 @@ module Support
         protected
         def component_options
           [
-            { name: "GOV.UK: Services and information content", id: "gov_uk_mainstream" },
-            { name: "GOV.UK: Departments and policy content", id: "gov_uk_inside_government", inside_government_related: true },
+            { name: "GOV.UK: content", id: "gov_uk_content" },
             { name: "Whitehall Publisher", id: "inside_government_publisher", inside_government_related: true },
             { name: "Mainstream Publisher", id: "mainstream_publisher" },
             { name: "Travel Advice Publisher", id: "travel_advice_publisher" },
