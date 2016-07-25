@@ -1,7 +1,7 @@
 require 'support/requests/analytics_request'
 require 'support/requests/content_advice_request'
 require 'support/requests/content_change_request'
-require 'support/requests/new_feature_request'
+require 'support/requests/changes_to_publishing_apps_request'
 require 'support/requests/accounts_permissions_and_training_request'
 require 'support/requests/remove_user_request'
 require 'support/requests/campaign_request'

@@ -20,7 +20,7 @@ module Support
           AccountsPermissionsAndTrainingRequest,
           FoiRequest,
           NamedContact,
-          NewFeatureRequest,
+          ChangesToPublishingAppsRequest,
           RemoveUserRequest,
         ] }
 
@@ -49,7 +49,7 @@ module Support
 
       context "for content requesters" do
         subject { create(:content_requester) }
-        let(:requests_specific_to_role) { [ ContentChangeRequest, NewFeatureRequest ] }
+        let(:requests_specific_to_role) { [ ContentChangeRequest, ChangesToPublishingAppsRequest ] }
         it_behaves_like "a role"
       end
 
@@ -83,7 +83,7 @@ module Support
           AccountsPermissionsAndTrainingRequest,
           FoiRequest,
           NamedContact,
-          NewFeatureRequest,
+          ChangesToPublishingAppsRequest,
           RemoveUserRequest,
         ] }
         it_behaves_like "a role"

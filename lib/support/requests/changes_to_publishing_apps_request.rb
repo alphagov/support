@@ -4,7 +4,7 @@ require 'support/gds/with_request_context'
 
 module Support
   module Requests
-    class NewFeatureRequest < Request
+    class ChangesToPublishingAppsRequest < Request
       include WithTimeConstraint
       include Support::GDS::WithRequestContext
 

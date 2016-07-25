@@ -1,9 +1,9 @@
 require 'spec_helper'
-require 'support/requests/new_feature_request'
+require 'support/requests/changes_to_publishing_apps_request'
 
 module Support
   module Requests
-    describe NewFeatureRequest do
+    describe ChangesToPublishingAppsRequest do
       it { should validate_presence_of(:requester) }
       it { should validate_presence_of(:user_need) }
       it { should validate_presence_of(:request_context) }

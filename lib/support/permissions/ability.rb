@@ -12,7 +12,7 @@ module Support
       def initialize(user)
         can :create, :all if user.has_permission?('single_points_of_contact')
         can :create, CampaignRequest if user.has_permission?('campaign_requesters')
-        can :create, [ NewFeatureRequest, ContentChangeRequest ] if user.has_permission?('content_requesters')
+        can :create, [ ChangesToPublishingAppsRequest, ContentChangeRequest ] if user.has_permission?('content_requesters')
         can :create, [ AccountsPermissionsAndTrainingRequest, RemoveUserRequest ] if user.has_permission?('user_managers')
         can :create, [ FoiRequest, NamedContact ] if user.has_permission?('api_users')
 

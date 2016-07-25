@@ -3,7 +3,7 @@ require 'zendesk/labelled_snippet'
 
 module Zendesk
   module Ticket
-    class NewFeatureRequestTicket < ZendeskTicket
+    class ChangesToPublishingAppsRequestTicket < ZendeskTicket
       attr_reader :time_constraint
 
       def subject
@@ -19,7 +19,7 @@ module Zendesk
 
       protected
       def comment_snippets
-        [ 
+        [
           LabelledSnippet.new(on: @request,                 field: :formatted_request_context,
                                                             label: "Which part of GOV.UK is this about?"),
           LabelledSnippet.new(on: @request,                 field: :user_need),
