@@ -19,8 +19,7 @@ class ContentAdviceRequestsController < RequestsController
 
   def content_advice_request_params
     params.require(:support_requests_content_advice_request).permit(
-      :title, :nature_of_request, :nature_of_request_details,
-      :details, :urls, :contact_number,
+      :title, :details, :urls, :contact_number,
       requester_attributes: [:email, :name, :collaborator_emails],
       time_constraint_attributes: [:needed_by_date, :time_constraint_reason],
     )

@@ -18,10 +18,7 @@ feature "Analytics requests" do
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => [ "govt_form", "analytics" ],
       "comment" => { "body" =>
-"[Which part of GOV.UK is this about?]
-Services and information
-
-[Reporting period]
+"[Reporting period]
 From Start Q4 2012 to End 2012
 
 [Requested pages/sections]
@@ -40,7 +37,6 @@ One-off
 PDF"})
 
     user_makes_an_analytics_request(
-      context: "Services and information",
       from: "Start Q4 2012",
       to: "End 2012",
       which_part_of_govuk: "https://gov.uk/X",
@@ -60,10 +56,6 @@ PDF"})
     click_on "Analytics access, reports and help"
 
     expect(page).to have_content("Request access to Google Analytics or help with analytics or reports")
-
-    within "#request-context" do
-      choose details[:context]
-    end
 
     fill_in "From", :with => details[:from]
     fill_in "To", :with => details[:to]

@@ -1,9 +1,5 @@
 <%= f.input :title, label: "Title of request", input_html: { class: "input-md-6", placeholder: "Advice on content" } %>
 
-<%= f.input :nature_of_request, as: :radio, required: true, label: "What is the nature of this request?", collection: f.object.nature_of_request_options, input_html: { :"aria-required" => true } %>
-
-<%= f.input :nature_of_request_details, label: false, input_html: { class: "input-md-6" } %>
-
 <%= f.inputs name: "Details of your request" do %>
   <%= f.input :details, as: :text, required: true,
               label: "Please explain what you would like help with",

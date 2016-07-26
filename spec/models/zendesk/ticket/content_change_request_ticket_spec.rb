@@ -17,9 +17,8 @@ module Zendesk
         expect(ticket.subject).to eq("Content change request")
       end
 
-      context "an inside government request" do
-        subject { ticket(inside_government_related?: true) }
-        its(:tags) { should include("content_amend", "inside_government") }
+      it 'includes a "content_amend" tag' do
+        expect(ticket.tags).to include("content_amend")
       end
     end
   end

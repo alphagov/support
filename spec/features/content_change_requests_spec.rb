@@ -27,9 +27,6 @@ feature "Content change requests" do
 [Reason for time constraint]
 New law
 
-[Which part of GOV.UK is this about?]
-Services and information
-
 [URL of content to be changed]
 http://gov.uk/X
 
@@ -41,7 +38,6 @@ Out of date XX YY"})
 
     user_makes_a_content_change_request(
       title: "Update X",
-      context: "Services and information",
       details_of_change: "Out of date XX YY",
       url: "http://gov.uk/X",
       related_urls: "XXXXX",
@@ -57,7 +53,7 @@ Out of date XX YY"})
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Content change request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => %w{govt_form content_amend inside_government})
+      "tags" => %w{govt_form content_amend})
 
     user_makes_a_content_change_request(
       context: "Departments and policy",
@@ -74,10 +70,6 @@ Out of date XX YY"})
     click_on "Content changes and new content requests"
 
     expect(page).to have_content("Request changes to GOV.UK content managed by GDS content designers")
-
-    within "#request-context" do
-      choose details[:context]
-    end
 
     fill_in "Title of request", with: details[:title] unless details[:title].nil?
     fill_in "Details of the requested change", with: details[:details_of_change]

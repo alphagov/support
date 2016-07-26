@@ -13,14 +13,12 @@ module Zendesk
       end
 
       def tags
-        super + ["content_amend"] + inside_government_tag_if_needed
+        super + ["content_amend"]
       end
 
       protected
       def comment_snippets
-        [ 
-          LabelledSnippet.new(on: @request,                 field: :formatted_request_context,
-                                                            label: "Which part of GOV.UK is this about?"),
+        [
           LabelledSnippet.new(on: @request,                 field: :url,
                                                             label: "URL of content to be changed"),
           LabelledSnippet.new(on: @request,                 field: :related_urls,

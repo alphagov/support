@@ -23,9 +23,6 @@ feature "Request for content advice" do
 [Reason for time constraint]
 Ministerial announcement Z
 
-[Nature of the request]
-Initial guidance from GOV.UK on content you are working on
-
 [Details]
 I need help to choose a format, here's my content...
 
@@ -37,7 +34,6 @@ https://www.gov.uk/x, https://www.gov.uk/y
 
     user_requests_content_advice(
       title: "Which format",
-      nature_of_request: "Initial guidance from GOV.UK",
       details: "I need help to choose a format, here's my content...",
       urls: "https://www.gov.uk/x, https://www.gov.uk/y",
       needed_by: "12-01-2020",
@@ -53,10 +49,7 @@ https://www.gov.uk/x, https://www.gov.uk/y
       "subject" => "Tricky query - Advice on content",
       "tags" => [ "govt_form", "dept_content_advice" ],
       "comment" => { "body" =>
-"[Nature of the request]
-some details
-
-[Details]
+"[Details]
 I have a tricky query, here's my content...
 
 [Relevant URLs]
@@ -67,8 +60,6 @@ https://www.gov.uk/x, https://www.gov.uk/y
 
     user_requests_content_advice(
       title: "Tricky query",
-      nature_of_request: "Other - please give information",
-      nature_of_request_details: "some details",
       details: "I have a tricky query, here's my content...",
       urls: "https://www.gov.uk/x, https://www.gov.uk/y",
       contact_number: "0121 111111",
@@ -85,9 +76,6 @@ https://www.gov.uk/x, https://www.gov.uk/y
     expect(page).to have_content("Ask for help or advice on any content problems")
 
     fill_in "Title of request", with: details[:title]
-    choose details[:nature_of_request]
-    fill_in 'support_requests_content_advice_request_nature_of_request_details',
-      with: details[:nature_of_request_details] if details[:nature_of_request_details]
     fill_in "Please explain what you would like help with", with: details[:details]
     fill_in "Relevant URLs (if applicable)", with: details[:urls]
 

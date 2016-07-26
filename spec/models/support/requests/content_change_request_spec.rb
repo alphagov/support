@@ -7,8 +7,6 @@ module Support
       it { should validate_presence_of(:requester) }
       it { should validate_presence_of(:details_of_change) }
 
-      it { should validate_presence_of(:request_context) }
-
       it { should allow_value("xxxx").for(:title) }
       it { should allow_value(nil).for(:title) }
 

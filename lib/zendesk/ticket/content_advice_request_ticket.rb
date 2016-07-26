@@ -21,8 +21,6 @@ module Zendesk
       protected
       def comment_snippets
         [
-          request_label(field: :formatted_nature_of_request,
-                        label: "Nature of the request"),
           request_label(field: :details),
           request_label(field: :urls,
                         label: "Relevant URLs"),

@@ -16,10 +16,10 @@ feature "Technical fault reports" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Technical fault report",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => [ "govt_form", "technical_fault", "fault_with_gov_uk_mainstream" ],
+      "tags" => [ "govt_form", "technical_fault", "fault_with_gov_uk_content" ],
       "comment" => { "body" =>
 "[Location of fault]
-GOV.UK: Services and information content
+GOV.UK: content
 
 [What is broken]
 Smart answer
@@ -34,7 +34,7 @@ Broken link
 Should have linked through"})
 
     user_makes_a_technical_fault_report(
-      location_of_fault: "GOV.UK: Services and information content",
+      location_of_fault: "GOV.UK: content",
       what_is_broken: "Smart answer",
       user_action: "Clicked on x",
       what_happened: "Broken link",
