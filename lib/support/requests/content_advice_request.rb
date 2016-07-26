@@ -22,7 +22,7 @@ module Support
       end
 
       def self.description
-        "Ask for help or advice on any content problems"
+        "Ask for help or advice on any content problems. Request short URLs, topical event pages, groups or manuals."
       end
     end
   end
