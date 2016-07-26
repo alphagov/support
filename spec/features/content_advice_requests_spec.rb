@@ -81,8 +81,8 @@ https://www.gov.uk/x, https://www.gov.uk/y
   def user_requests_content_advice(details)
     visit '/'
 
-    click_on "Content advice"
-    expect(page).to have_content("Ask for advice and guidance on Departments and Policy content")
+    click_on "Content advice and help"
+    expect(page).to have_content("Ask for help or advice on any content problems")
 
     fill_in "Title of request", with: details[:title]
     choose details[:nature_of_request]

@@ -48,9 +48,9 @@ Should have linked through"})
   def user_makes_a_technical_fault_report(details)
     visit '/'
 
-    click_on "Report a technical fault"
+    click_on "Report a technical fault to GDS"
 
-    expect(page).to have_content("Report a technical fault to GDS")
+    expect(page).to have_content("Report something that is not working with any publishing application, eg Whitehall, finders or specialist publisher. Also use for any urgent technical changes")
 
     within "#technical-fault-context" do
       choose details[:location_of_fault]

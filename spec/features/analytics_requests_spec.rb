@@ -57,9 +57,9 @@ PDF"})
   def user_makes_an_analytics_request(details)
     visit '/'
 
-    click_on "Analytics"
+    click_on "Analytics access, reports and help"
 
-    expect(page).to have_content("Request analytics reports from GDS")
+    expect(page).to have_content("Request access to Google Analytics or help with analytics or reports")
 
     within "#request-context" do
       choose details[:context]

@@ -16,11 +16,11 @@ module Support
       end
 
       def self.label
-        "Analytics"
+        "Analytics access, reports and help"
       end
 
       def self.description
-        "Request analytics reports from GDS"
+        "Request access to Google Analytics or help with analytics or reports"
       end
     end
   end

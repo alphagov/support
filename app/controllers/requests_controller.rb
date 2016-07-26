@@ -14,8 +14,7 @@ class RequestsController < AuthorisationController
     set_requester_on(@request)
 
     if @request.valid?
-      @request.save! if @request.respond_to?(:save!)
-      save_to_zendesk(@request) if persistence_to_zendesk_necessary?
+      save_to_zendesk(@request)
       respond_to do |format|
         format.html { redirect_to acknowledge_path }
         format.json { render nothing: true, status: 201 }
@@ -46,9 +45,5 @@ class RequestsController < AuthorisationController
     request.requester ||= Support::Requests::Requester.new
     request.requester.name = current_user.name
     request.requester.email = current_user.email
-  end
-
-  def persistence_to_zendesk_necessary?
-    true
   end
 end

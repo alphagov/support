@@ -4,7 +4,7 @@ require 'support/gds/with_request_context'
 
 module Support
   module Requests
-    class NewFeatureRequest < Request
+    class ChangesToPublishingAppsRequest < Request
       include WithTimeConstraint
       include Support::GDS::WithRequestContext
 
@@ -18,11 +18,11 @@ module Support
       end
 
       def self.label
-        "New feature/need"
+        "Changes to publishing applications or technical advice"
       end
 
       def self.description
-        "Request a new feature/need"
+        "Request for changes or new features for any publishing applications or ask for technical advice. Also used for transitioning new sites to GOV.UK"
       end
     end
   end

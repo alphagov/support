@@ -4,7 +4,7 @@ require 'support/gds/requested_user'
 
 module Support
   module Requests
-    class CreateOrChangeUserRequest < Request
+    class AccountsPermissionsAndTrainingRequest < Request
       include Support::GDS::WithUserNeeds
 
       attr_accessor :action, :requested_user, :additional_comments
@@ -15,7 +15,7 @@ module Support
         end
       end
       validates_presence_of :action, :requested_user
-      validates :action, inclusion: { in: ["create_new_user", "change_user"] }
+      validates :action, inclusion: { in: ["create_new_user", "change_user", "unsuspend_user"] }
 
       def requested_user_attributes=(attr)
         self.requested_user = Support::GDS::RequestedUser.new(attr)
@@ -39,15 +39,16 @@ module Support
         [
           ["Create a new user account", "create_new_user"],
           ["Change an existing user's account", "change_user"],
+          ["Unsuspend an existing user's account", "unsuspend_user"],
         ]
       end
 
       def self.label
-        "Create or change user"
+        "Accounts, permissions and training"
       end
 
       def self.description
-        "Create or change a user account"
+        "Request a new account, change an account or unlock an account"
       end
     end
   end

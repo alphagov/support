@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CreateOrChangeUserRequestsController, :type => :controller do
+describe AccountsPermissionsAndTrainingRequestsController, :type => :controller do
   def valid_requested_user_params
     {
       "name" => "subject",
@@ -13,7 +13,7 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
   end
 
   def valid_create_user_request_params
-    { "support_requests_create_or_change_user_request" =>
+    { "support_requests_accounts_permissions_and_training_request" =>
       { "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => valid_requested_user_params,
         "action" => "create_new_user",
@@ -24,7 +24,7 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
   end
 
   def valid_change_user_request_params
-    { "support_requests_create_or_change_user_request" =>
+    { "support_requests_accounts_permissions_and_training_request" =>
       { "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => {
           "name" => "subject",
@@ -93,7 +93,7 @@ describe CreateOrChangeUserRequestsController, :type => :controller do
           hash_including("tags" => ['govt_form', 'change_user', 'inside_government'])
         )
 
-        params = valid_change_user_request_params.tap {|p| p["support_requests_create_or_change_user_request"].merge!("user_needs" => "editor")}
+        params = valid_change_user_request_params.tap {|p| p["support_requests_accounts_permissions_and_training_request"].merge!("user_needs" => "editor")}
 
         post :create, params
 

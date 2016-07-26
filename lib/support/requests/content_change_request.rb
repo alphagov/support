@@ -18,11 +18,11 @@ module Support
       end
 
       def self.label
-        "Content change"
+        "Content changes and new content requests"
       end
 
       def self.description
-        "Request a change to existing GOV.UK content"
+        "Request changes to GOV.UK content managed by GDS content designers"
       end
     end
   end

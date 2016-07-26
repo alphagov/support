@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'support/requests/create_or_change_user_request'
+require 'support/requests/accounts_permissions_and_training_request'
 
 module Support
   module Requests
-    describe CreateOrChangeUserRequest do
+    describe AccountsPermissionsAndTrainingRequest do
       def request(options = {})
-        CreateOrChangeUserRequest.new(options).tap(&:valid?)
+        AccountsPermissionsAndTrainingRequest.new(options).tap(&:valid?)
       end
 
       it { should validate_presence_of(:requester) }
@@ -14,6 +14,7 @@ module Support
 
       it { should allow_value("create_new_user").for(:action) }
       it { should allow_value("change_user").for(:action) }
+      it { should allow_value("unsuspend_user").for(:action) }
       it { should_not allow_value("xxx").for(:action) }
 
       it { should allow_value("a comment").for(:additional_comments) }

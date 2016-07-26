@@ -19,7 +19,7 @@ module Support
       attr_accessor :additional_comments
 
       def self.label
-        "Campaign"
+        "Campaign requests and support"
       end
 
       def self.description

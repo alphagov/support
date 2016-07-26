@@ -1,12 +1,12 @@
 require 'spec_helper'
-require 'zendesk/ticket/new_feature_request_ticket'
+require 'zendesk/ticket/changes_to_publishing_apps_request_ticket'
 
 module Zendesk
   module Ticket
-    describe NewFeatureRequestTicket do
+    describe ChangesToPublishingAppsRequestTicket do
       def ticket(opts)
         defaults = { requester: nil, title: nil }
-        NewFeatureRequestTicket.new(double(defaults.merge(opts)))
+        ChangesToPublishingAppsRequestTicket.new(double(defaults.merge(opts)))
       end
 
       context "an inside government request" do
