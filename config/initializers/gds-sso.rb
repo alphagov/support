@@ -10,6 +10,6 @@ if Rails.env == "development" && ENV['GDS_SSO_STRATEGY'] != 'real'
     "uid" => 'dummy-user',
     "name" => 'Ms Example',
     "email" => 'example@example.com',
-    "permissions" => ['single_points_of_contact', 'api_users']
+    "permissions" => ['single_points_of_contact', 'api_users', 'feedex_exporters']
   )
 end

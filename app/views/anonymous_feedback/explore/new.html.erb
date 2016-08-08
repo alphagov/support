@@ -25,4 +25,29 @@
       <%= f.action :submit, label: "Explore by organisation", button_html: { class: "btn btn-success" } %>
     <% end %>
   </div>
+  <% if can? :request, :global_export_request %>
+    <div class="col-md-8">
+      <h2>Total quantity by day</h2>
+      <%= form_tag anonymous_feedback_global_export_requests_path, class: 'well formtastic' do %>
+        <div class="string input required form-group">
+          <span class="form-label">
+            <label for="from-date" class="control-label">Start date</label>
+          </span>
+          <span class="form-wrapper">
+            <input type="text" name="from_date" id="from-date" class="input-sm form-control add-right-margin" data-module="calendar" data-max-date="0" value="<%= params[:from_date]%>"/>
+          </span>
+        </div>
+
+        <div class="string input required form-group">
+          <span class="form-label">
+            <label for="to-date" class="control-label">End date</label>
+          </span>
+          <span class="form-wrapper">
+            <input type="text" name="to_date" id="to-date" class="form-control input-sm" data-module="calendar" data-max-date="0" value="<%= params[:to_date]%>"/>
+          </span>
+        </div>
+        <input type="submit" value="Export as CSV" class="btn btn-success" />
+      <% end %>
+    </div>
+  <% end %>
 </div>

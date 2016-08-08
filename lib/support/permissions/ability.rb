@@ -17,6 +17,7 @@ module Support
         can :create, [ FoiRequest, NamedContact ] if user.has_permission?('api_users')
 
         can :read, :anonymous_feedback
+        can :request, :global_export_request if user.has_permission?('feedex_exporters')
         can :read, Support::Navigation::EmergencyContactDetailsSection
         can :create, Support::Requests::Anonymous::Explore
         can :create, [GeneralRequest, AnalyticsRequest, ContentAdviceRequest, TechnicalFaultReport, UnpublishContentRequest]
