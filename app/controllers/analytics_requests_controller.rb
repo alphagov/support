@@ -6,7 +6,7 @@ class AnalyticsRequestsController <  RequestsController
 
   protected
   def new_request
-    AnalyticsRequest.new(needed_report: Support::GDS::NeededReport.new)
+    AnalyticsRequest.new
   end
 
   def zendesk_ticket_class
@@ -19,15 +19,14 @@ class AnalyticsRequestsController <  RequestsController
 
   def analytics_request_params
     params.require(:support_requests_analytics_request).permit(
-      :justification_for_needing_report,
-      requester_attributes: [:email, :name, :collaborator_emails],
-      needed_report_attributes: [
-        :reporting_period_start,
-        :reporting_period_end,
-        :pages_or_sections,
-        :non_standard_requirements,
-        :frequency,
-        :format
+      :google_analytics_request_details,
+      :single_point_of_contact_request_details,
+      :report_request_details,
+      :help_request_details,
+      requester_attributes: [
+        :email,
+        :name,
+        :collaborator_emails
       ],
     )
   end

@@ -15,16 +15,26 @@ module Zendesk
       protected
       def comment_snippets
         [
-          LabelledSnippet.new(on: @request.needed_report, field: :reporting_period),
-          LabelledSnippet.new(on: @request.needed_report, field: :pages_or_sections,
-                                                          label: "Requested pages/sections"),
-          LabelledSnippet.new(on: @request,               field: :justification_for_needing_report),
-          LabelledSnippet.new(on: @request.needed_report, field: :non_standard_requirements,
-                                                          label: "More detailed analysis needed?"),
-          LabelledSnippet.new(on: @request.needed_report, field: :formatted_frequency,
-                                                          label: "Reporting frequency"),
-          LabelledSnippet.new(on: @request.needed_report, field: :formatted_format,
-                                                          label: "Report format"),
+          LabelledSnippet.new(
+            on: @request,
+            field: :google_analytics_request_details,
+            label: 'Google Analytics Access'
+          ),
+          LabelledSnippet.new(
+            on: @request,
+            field: :single_point_of_contact_request_details,
+            label: 'Single Point of Contact'
+          ),
+          LabelledSnippet.new(
+            on: @request,
+            field: :report_request_details,
+            label: 'Report Request'
+          ),
+          LabelledSnippet.new(
+            on: @request,
+            field: :help_request_details,
+            label: 'Help'
+          )
         ]
       end
     end

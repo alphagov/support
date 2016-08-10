@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 feature "Analytics requests" do
-  # In order to measure how well my content is meeting user need
-  # As a government content producer
-  # I want a means to request analytics data from GDS
-
   let(:user) { create(:user, name: "John Smith", email: "john.smith@agency.gov.uk") }
 
   background do
@@ -18,65 +14,49 @@ feature "Analytics requests" do
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => [ "govt_form", "analytics" ],
       "comment" => { "body" =>
-"[Reporting period]
-From Start Q4 2012 to End 2012
+"[Google Analytics Access]
+Sarah Jones sarah@example.com some area
 
-[Requested pages/sections]
-https://gov.uk/X
+[Single Point of Contact]
+Government Digital Service
 
-[Justification for needing report]
-To measure campaign success
+[Report Request]
+/my-page
 
-[More detailed analysis needed?]
-I also need KPI Y
+[Help]
+Need help with cats"})
 
-[Reporting frequency]
-One-off
-
-[Report format]
-PDF"})
-
-    user_makes_an_analytics_request(
-      from: "Start Q4 2012",
-      to: "End 2012",
-      which_part_of_govuk: "https://gov.uk/X",
-      justification: "To measure campaign success",
-      more_detailed_analysis: "I also need KPI Y",
-      frequency: "One-off",
-      format: "PDF",
-    )
-
-    expect(request).to have_been_made
-  end
-
-  private
-  def user_makes_an_analytics_request(details)
     visit '/'
 
     click_on "Analytics access, reports and help"
 
     expect(page).to have_content("Request access to Google Analytics or help with analytics or reports")
 
-    fill_in "From", :with => details[:from]
-    fill_in "To", :with => details[:to]
+    fill_in "Access to Google Analytics",
+      with: "Sarah Jones sarah@example.com some area"
 
-    fill_in "Which page(s) or section(s) on GOV.UK do you want data for? (Please provide URLs and, if possible or relevant, Need IDs)",
-      with: details[:which_part_of_govuk]
+    fill_in "Tell me who my Analytics Single Point of Contact (SPOC) is",
+      with: "Government Digital Service"
 
-    fill_in "How will you use the report and what decisions will it help you make?",
-      with: details[:justification]
+    fill_in "Analytics Report Request",
+      with: "/my-page"
 
-    fill_in "Beyond the basic report, what other information are you interested in?",
-      with: details[:more_detailed_analysis]
-
-    within "#frequency" do
-      choose details[:frequency]
-    end
-
-    within "#format" do
-      choose details[:format]
-    end
+    fill_in "Analytics Help",
+      with: "Need help with cats"
 
     user_submits_the_request_successfully
+
+    expect(request).to have_been_made
+  end
+
+  scenario 'submitting a form with no inputs fails and shows a flash message' do
+    visit '/'
+
+    click_on "Analytics access, reports and help"
+
+    click_on "Submit"
+
+    expect(page).to have_content("Request access to Google Analytics or help with analytics or reports")
+    expect(page).to have_content 'Please enter details for at least one type of request'
   end
 end

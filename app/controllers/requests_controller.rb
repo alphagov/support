@@ -21,7 +21,10 @@ class RequestsController < AuthorisationController
       end
     else
       respond_to do |format|
-        format.html { render :new, status: 400 }
+        format.html do
+          flash.now[:alert] = @request.errors.full_messages.join('\n')
+          render :new, status: 400
+        end
         format.json { render json: {"errors" => @request.errors.to_a}, status: 400 }
       end
     end
