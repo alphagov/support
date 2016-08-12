@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.5.1'
+gem 'rails', '4.2.7.1'
 
-gem 'sass-rails', '5.0.3'
+gem 'sass-rails', '5.0.6'
 gem 'uglifier', '2.7.1'
 
 gem "airbrake", "4.1.0"
@@ -53,7 +53,7 @@ end
 
 group :development, :test do
   gem 'pry-byebug'
-  gem 'rspec-rails', '3.3.3'
+  gem 'rspec-rails', '3.5.1'
   gem 'jasmine', '2.3.0'
 end
 
