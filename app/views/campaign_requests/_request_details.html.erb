@@ -14,3 +14,5 @@
 <% end %>
 
 <%= f.input :additional_comments, as: :text, label: "Additional comments", input_html: { class: "input-md-6", rows: 6, cols: 50 } %>
+
+<%= render partial: "support/collaborators", locals: { f: f } %>
