@@ -23,6 +23,7 @@ Support::Application.routes.draw do
     resources :organisations, only: :show, param: :slug, format: false
 
     resources :export_requests, only: [:create, :show], format: false
+    resources :global_export_requests, only: [:create], format: false
   end
 
   get "emergency-contact-details",

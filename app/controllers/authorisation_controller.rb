@@ -1,6 +1,6 @@
 require 'support/permissions/ability'
 
-class AuthorisationController < ApplicationController  
+class AuthorisationController < ApplicationController
   check_authorization
 
   rescue_from CanCan::AccessDenied do |exception|
