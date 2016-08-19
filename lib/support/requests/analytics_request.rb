@@ -4,13 +4,16 @@ require 'support/requests/request'
 module Support
   module Requests
     class AnalyticsRequest < Request
-      attr_accessor :needed_report, :justification_for_needing_report
+      REQUEST_DETAILS_ATTRS = [
+        :google_analytics_request_details,
+        :single_point_of_contact_request_details,
+        :report_request_details,
+        :help_request_details
+      ].freeze
 
-      validates_presence_of :needed_report, :justification_for_needing_report
+      attr_accessor(*REQUEST_DETAILS_ATTRS)
 
-      def needed_report_attributes=(attr)
-        self.needed_report = Support::GDS::NeededReport.new(attr)
-      end
+      validate :one_or_more_request_details_present
 
       def self.label
         "Analytics access, reports and help"
@@ -18,6 +21,16 @@ module Support
 
       def self.description
         "Request access to Google Analytics or help with analytics or reports"
+      end
+
+      def one_or_more_request_details_present
+        request_details = REQUEST_DETAILS_ATTRS.select do |request_details_attribute|
+          !send(request_details_attribute).to_s.empty?
+        end
+
+        if request_details.empty?
+          errors.add(:base, 'Please enter details for at least one type of request')
+        end
       end
     end
   end

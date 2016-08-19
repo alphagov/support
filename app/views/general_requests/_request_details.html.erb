@@ -5,3 +5,5 @@
 
   <%= f.input :url, label: "URL (if applicable)", input_html: { class: "input-md-6" } %>
 <% end %>
+
+<%= render partial: "support/collaborators", locals: { f: f } %>

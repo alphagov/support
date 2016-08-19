@@ -27,3 +27,5 @@
     <%= r.input :time_constraint_reason, label: "Reason for deadline", input_html: { class: "input-md-6" } %>
   <% end %>
 <% end %>
+
+<%= render partial: "support/collaborators", locals: { f: f } %>

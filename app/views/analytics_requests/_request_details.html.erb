@@ -1,32 +1,17 @@
-<%= f.semantic_fields_for :needed_report do |r| %>
-  <%= r.inputs name: "What reporting period are you interested in?" do %>
-    <%= r.input :reporting_period_start, label: "From", required: true, input_html: {:class => "input-md-6", :"aria-required" => true} %>
-    <%= r.input :reporting_period_end, label: "To", required: true, input_html: {:class => "input-md-6", :"aria-required" => true} %>
-    <%= r.input :pages_or_sections, as: :text, label: "Which page(s) or section(s) on GOV.UK do you want data for? (Please provide URLs and, if possible or relevant, Need IDs)", required: true, input_html: {:class => "input-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
-  <% end %>
+<div class="alert alert-info alert-block">
+  <p>Only department/organisation Analytics Single Point of Contact (SPOC) can request access.</p>
+</div>
 
-  <%= f.input :justification_for_needing_report, as: :text, label: "How will you use the report and what decisions will it help you make?", required: true, input_html: {:class => "input-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
+<%= f.input :google_analytics_request_details, as: :text, label: "Access to Google Analytics", placeholder: 'Detail full name, email address and areas of content.', input_html: {:class => "input-md-6", :rows => 6, :cols => 50 } %>
 
-  <div class="alert alert-info">
-    <p>The basic report includes the following metrics:</p>
-    <ul>
-      <li>total pageviews</li>
-      <li>total unique pageviews</li>
-      <li>total unique visitors</li>
-    </ul>
-  </div>
+<%= f.input :single_point_of_contact_request_details, as: :text, label: "Tell me who my Analytics Single Point of Contact (SPOC) is", placeholder: 'Detail information on department/organisation/agency. If you have one include your parent or sponsoring department.', input_html: {:class => "input-md-6", :rows => 6, :cols => 50} %>
 
-  <%= r.input :non_standard_requirements, as: :text, label: "Beyond the basic report, what other information are you interested in?", input_html: {:class => "input-md-6", :rows => 6, :cols => 50} %>
+<div class="alert alert-info alert-block">
+  <p>GDS no longer provide basic analytic reports - you should contact your department/organisation Analytics Single Point of Contact (SPOC) for analytic reporting.</p>
+</div>
+<%= f.input :report_request_details, as: :text, label: "Analytics Report Request", placeholder: 'Detail of report including date range.', input_html: {:class => "input-md-6", :rows => 6, :cols => 50} %>
 
-  <div id="frequency">
-    <%= r.input :frequency, as: :radio, required: true, label: "How often do you need to receive these reports?", collection: r.object.frequency_options, input_html: { :"aria-required" => true } %>
-  </div>
-
-  <div id="format">
-    <%= r.input :format, as: :radio, label: "Do you want a CSV file (so you can manipulate data) or a PDF (which will be more visual)?", collection: r.object.format_options %>
-  </div>
-
-  <div class="alert alert-info">
-    <p>For recurring reports, you will need to renew your request every 6 months.</p>
-  </div>
-<% end %>
+<div class="alert alert-info alert-block">
+  <p>Before contacting the GDS performance analytics team please check the GOV.UK Performance Analytics Basecamp community for tips or post your query there for help.</p>
+</div>
+<%= f.input :help_request_details, as: :text, label: "Analytics Help", placeholder: 'Detail what help you require and be specific in the examples you submit.', input_html: {:class => "input-md-6", :rows => 6, :cols => 50} %>
