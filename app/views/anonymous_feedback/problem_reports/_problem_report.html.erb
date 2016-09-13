@@ -1,0 +1,24 @@
+<tr class="problem-report">
+  <th scope="row" class="table-header-secondary no-wrap">
+    <%= problem_report.created_at.to_date.to_s(:govuk_date_short) %>
+  </th>
+  <td>
+    <%= render partial: "/anonymous_feedback/feedback", locals: { anonymous_contact: problem_report } %>
+  </td>
+  <td>
+    <% if problem_report.path %>
+      <%= link_to problem_report.path, problem_report.url, class: "breakable" %>
+    <% else %>
+      &ndash;
+    <% end %>
+  </td>
+  <td>
+    <% if problem_report.referrer and problem_report.referrer != "unknown" %>
+      <% search_term = extract_search_term(problem_report.referrer) %>
+      <%= link_to friendly_referrer(problem_report.referrer), problem_report.referrer, class: "breakable" %>
+      <% if search_term %>
+        <br /><span title="Search term">“<%= search_term %>”</span>
+      <% end %>
+    <% end %>
+  </td>
+</tr>

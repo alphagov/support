@@ -50,4 +50,13 @@
       <% end %>
     </div>
   <% end %>
+
+  <% if can? :request, :review_feedback %>
+    <div class="col-md-8">
+    <h2>Review Anonymous Feedback for Spam</h2>
+    <%= form_tag anonymous_feedback_problem_reports_path, method: :get, class: 'well formtastic' do %>
+      <input type="submit" value="Review Anonymous Feedback" class="btn btn-success" />
+    <% end %>
+    </div>
+  <% end %>
 </div>
