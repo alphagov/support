@@ -11,12 +11,6 @@ Support::Application.routes.draw do
   resources :named_contacts, only: :create
 
   namespace :anonymous_feedback do
-    get 'problem_reports', to: redirect {|p, req| req.params[:path] ? "/anonymous_feedback?path=" + req.params[:path] : "/anonymous_feedback"}
-
-    namespace :problem_reports do
-      get :explore, to: redirect("/anonymous_feedback/explore"), format: false
-    end
-
     get :explore, to: "explore#new", format: false
     post :explore, to: "explore#create", format: false
 
