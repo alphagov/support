@@ -21,4 +21,11 @@
       <% end %>
     <% end %>
   </td>
+  <td class="mark-as-spam-checkbox">
+    <%# Wrap checkbox in a label in attempt make targeting the box a little easier %>
+    <label for="<%= "mark_as_spam_#{problem_report.id}"%>">
+      <%= hidden_field_tag "mark_as_spam[#{problem_report.id}]", false, { id: '' } %>
+      <%= check_box_tag "mark_as_spam[#{problem_report.id}]", true, problem_report.marked_as_spam %>
+    </label>
+  </td>
 </tr>

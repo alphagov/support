@@ -19,7 +19,9 @@ Support::Application.routes.draw do
     resources :export_requests, only: [:create, :show], format: false
     resources :global_export_requests, only: [:create], format: false
 
-    resources :problem_reports, only: [:index]
+    resources :problem_reports, only: [:index] do
+      put :review, on: :collection
+    end
   end
 
   get "emergency-contact-details",

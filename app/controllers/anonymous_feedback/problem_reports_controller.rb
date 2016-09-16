@@ -10,6 +10,17 @@ class AnonymousFeedback::ProblemReportsController < AuthorisationController
     @dates = present_date_filters(api_response)
   end
 
+  def review
+    authorize! :request, :review_feedback
+
+    if review_params.any? && reviewed_items_successfully?
+      redirect_to anonymous_feedback_problem_reports_path(params.slice(:to_date, :from_date, :include_reviewed))
+    else
+      flash.now[:alert] = 'Something went wrong with this review'
+      render :index, status: 400
+    end
+  end
+
   private
 
   def fetch_problem_reports
@@ -28,7 +39,7 @@ class AnonymousFeedback::ProblemReportsController < AuthorisationController
   end
 
   def support_api
-    @api ||= GdsApi::SupportApi.new(Plek.find("support-api"))
+    GdsApi::SupportApi.new(Plek.find("support-api"))
   end
 
   def index_params
@@ -42,5 +53,13 @@ class AnonymousFeedback::ProblemReportsController < AuthorisationController
       actual_from: api_response.from_date,
       actual_to: api_response.to_date,
     )
+  end
+
+  def review_params
+    params.require(:mark_as_spam)
+  end
+
+  def reviewed_items_successfully?
+    support_api.mark_reviewed_for_spam(review_params).code == 200
   end
 end

@@ -52,3 +52,20 @@ thead {
 .managing_editor_note {
   margin-left: 20px;
 }
+
+
+.review-anonymous-feedback {
+  .mark-all-spam {
+    text-align: center;
+  }
+
+  .table > tbody > tr > td.mark-as-spam-checkbox {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .mark-as-spam-checkbox label {
+    display: block;
+    padding: 12px;
+  }
+}
