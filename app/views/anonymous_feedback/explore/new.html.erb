@@ -26,7 +26,7 @@
     <% end %>
   </div>
   <% if can? :request, :global_export_request %>
-    <div class="col-md-8">
+    <div class="col-md-8 global-export-request">
       <h2>Total quantity by day</h2>
       <%= form_tag anonymous_feedback_global_export_requests_path, class: 'well formtastic' do %>
         <div class="string input required form-group">
@@ -46,6 +46,12 @@
             <input type="text" name="to_date" id="to-date" class="form-control input-sm" data-module="calendar" data-max-date="0" value="<%= params[:to_date]%>"/>
           </span>
         </div>
+
+        <div class="form-group">
+          <%= check_box_tag 'exclude_spam', 1, true %>
+          <%= label_tag 'exclude_spam', 'Exclude requests marked as spam' %>
+        </div>
+
         <input type="submit" value="Export as CSV" class="btn btn-success" />
       <% end %>
     </div>
