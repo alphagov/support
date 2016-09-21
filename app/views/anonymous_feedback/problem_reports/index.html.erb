@@ -3,6 +3,12 @@
 
 <%= paginate @feedback, theme: 'twitter-bootstrap-3' %>
 
+<% if params[:include_reviewed] %>
+  <div class="review-highlight-info">
+    <p>Reports rows highlighted in green have already been reviewed.</p>
+  </div>
+<% end %>
+
 <div class="review-anonymous-feedback">
   <div class="row">
     <div class="col-sm-12">

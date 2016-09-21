@@ -157,6 +157,12 @@ feature 'Reviewing Anonymous Feedback' do
           expect(page.find('input[type="checkbox"]')).to be_checked
         end
       end
+
+      scenario 'Reviewed feedback has a specific class applied' do
+        within(:css, '#review-spam-results tbody .reviewed') do
+          expect(page).to have_content 'Falling'
+        end
+      end
     end
 
     context 'when date filters are applied' do

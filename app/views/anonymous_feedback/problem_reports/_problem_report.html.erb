@@ -1,4 +1,4 @@
-<tr class="problem-report">
+<tr class="<%= 'problem-report' + (problem_report.reviewed ? ' reviewed' : '') %>">
   <th scope="row" class="table-header-secondary no-wrap">
     <%= problem_report.created_at.to_date.to_s(:govuk_date_short) %>
   </th>

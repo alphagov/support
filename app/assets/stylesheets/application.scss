@@ -5,6 +5,8 @@
 @import "breadcrumbs";
 @import "sortable_table";
 
+$light-green: #dbffdb;
+
 thead {
   background-color: $gray-lighter;
 }
@@ -67,5 +69,10 @@ thead {
   .mark-as-spam-checkbox label {
     display: block;
     padding: 12px;
+  }
+
+  .problem-report.reviewed,
+  .problem-report.reviewed .table-header-secondary {
+    background-color: $light-green;
   }
 }
