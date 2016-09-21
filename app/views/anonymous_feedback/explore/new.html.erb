@@ -5,7 +5,7 @@
 
 <div class="row">
   <p class="lead col-md-8">
-    At the bottom of every page on GOV.UK we ask, “is there anything wrong with this page?”. Users can leave comments on what they were doing and what went wrong. Feedback is anonymous and we’ve not removed spam.
+    At the bottom of every page on GOV.UK we ask, “is there anything wrong with this page?”. Users can leave comments on what they were doing and what went wrong. <%= can?(:request, :review_feedback) ? 'Feedback is anonymous.' : 'Feedback is anonymous and we’ve not removed spam.' %>
   </p>
 </div>
 
