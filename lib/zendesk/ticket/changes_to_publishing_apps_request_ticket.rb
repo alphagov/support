@@ -18,7 +18,7 @@ module Zendesk
       def comment_snippets
         [
           LabelledSnippet.new(on: @request,                 field: :user_need),
-          LabelledSnippet.new(on: @request,                 field: :url_of_example),
+          LabelledSnippet.new(on: @request,                 field: :feature_evidence),
         ]
       end
     end

@@ -18,28 +18,16 @@ feature "New feature requests" do
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => [ "govt_form", "new_feature_request" ],
       "comment" => { "body" =>
-"[Needed by date]
-31-12-2020
-
-[Not before date]
-01-12-2020
-
-[Reason for time constraint]
-Legal requirement
-
-[User need]
+"[User need]
 Information on XYZ
 
-[Url of example]
-http://www.example.com"})
+[Feature evidence]
+See here: google.com"})
 
     user_makes_a_new_feature_request(
       title: "Abc",
       user_need: "Information on XYZ",
-      url_of_example: "http://www.example.com",
-      needed_by_date: "31-12-2020",
-      not_before_date: "01-12-2020",
-      reason: "Legal requirement",
+      feature_evidence: "See here: google.com",
     )
 
     expect(request).to have_been_made
@@ -55,10 +43,8 @@ http://www.example.com"})
 
     fill_in "Title of request", with: details[:title]
 
-    fill_in "What is the user need/feature request?", with: details[:user_need]
-    fill_in "Can you provide a link to an example of this feature?", with: details[:url_of_example]
-
-    user_fills_out_time_constraints(details)
+    fill_in "What is the product request or technical advice you need?", with: details[:user_need]
+    fill_in "If this is a request for a new feature, what evidence do you have to support the request?", with: details[:feature_evidence]
 
     user_submits_the_request_successfully
   end

@@ -19,9 +19,8 @@ class ChangesToPublishingAppsRequestsController < RequestsController
 
   def new_changes_to_publishing_apps_request_params
     params.require(:support_requests_changes_to_publishing_apps_request).permit(
-      :title, :user_need, :url_of_example,
+      :title, :user_need, :feature_evidence,
       requester_attributes: [:email, :name, :collaborator_emails],
-      time_constraint_attributes: [:not_before_date, :needed_by_date, :time_constraint_reason],
     )
   end
 end
