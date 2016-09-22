@@ -69,7 +69,7 @@ Out of date XX YY"})
 
     click_on "Content changes and new content requests"
 
-    expect(page).to have_content("Request changes to GOV.UK content managed by GDS content designers")
+    expect(page).to have_content("You'll get an automated response to confirm we've received your request. We'll then review your request within 2 working days.")
 
     fill_in "Title of request", with: details[:title] unless details[:title].nil?
     fill_in "Details of the requested change", with: details[:details_of_change]

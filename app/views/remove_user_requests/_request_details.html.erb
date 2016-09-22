@@ -1,3 +1,7 @@
+<div class="alert alert-info">
+  <p><%= f.object.class.description %></p>
+</div>
+
 <div id="user_details" %>
   <%= f.inputs "User details" do %>
     <%= f.input :user_name, label: "Name", required: true, input_html: {:class => "input-md-6", :"aria-required" => true } %>
