@@ -4,16 +4,8 @@ require 'support/requests/with_time_constraint'
 module Support
   module Requests
     class ChangesToPublishingAppsRequest < Request
-      include WithTimeConstraint
-
-      attr_accessor :title, :user_need, :url_of_example
+      attr_accessor :title, :user_need, :feature_evidence
       validates_presence_of :user_need
-
-      def initialize(attributes = {})
-        self.time_constraint = TimeConstraint.new
-
-        super
-      end
 
       def self.label
         "Changes to publishing applications or technical advice"
