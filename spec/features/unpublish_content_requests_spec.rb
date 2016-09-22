@@ -74,7 +74,7 @@ true"})
 
     click_on "Unpublish content"
 
-    expect(page).to have_content("Request to unpublish content")
+    expect(page).to have_content("Please make a separate request for each target redirect.")
 
     fill_in "Please give the Whitehall URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)", with: details[:url]
 

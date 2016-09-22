@@ -1,3 +1,7 @@
+<div class="alert alert-info">
+  <p><%= f.object.class.description %></p>
+</div>
+
 <%= f.semantic_fields_for :campaign do |r| %>
   <%= r.inputs :name => "Campaign details" do %>
     <%= r.input :title, label: "Campaign title", required: true, input_html: {:class => "input-md-6", :"aria-required" => true} %>

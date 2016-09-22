@@ -30,7 +30,7 @@ Need help with cats"})
 
     click_on "Analytics access, reports and help"
 
-    expect(page).to have_content("Request access to Google Analytics or help with analytics or reports")
+    expect(page).to have_content("Only department/organisation Analytics Single Point of Contact (SPOC) can request access.")
 
     fill_in "Access to Google Analytics",
       with: "Sarah Jones sarah@example.com some area"
@@ -56,7 +56,7 @@ Need help with cats"})
 
     click_on "Submit"
 
-    expect(page).to have_content("Request access to Google Analytics or help with analytics or reports")
+    expect(page).to have_content("Only department/organisation Analytics Single Point of Contact (SPOC) can request access.")
     expect(page).to have_content 'Please enter details for at least one type of request'
   end
 end

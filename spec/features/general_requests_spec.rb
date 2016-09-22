@@ -39,7 +39,7 @@ The site is down"})
 
     click_on "General"
 
-    expect(page).to have_content("Report a problem")
+    expect(page).to have_content("report planned departmental changes that affect GOV.UK and its users")
 
     fill_in "Title of request", with: details[:title]
     fill_in "Details", with: details[:details]

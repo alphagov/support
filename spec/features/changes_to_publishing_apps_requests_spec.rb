@@ -39,7 +39,7 @@ See here: google.com"})
 
     click_on "Changes to publishing applications or technical advice"
 
-    expect(page).to have_content("Request for changes or new features for any publishing applications or ask for technical advice. Also used for transitioning new sites to GOV.UK")
+    expect(page).to have_content("Give as much detail as you can about the user need and evidence for your request.")
 
     fill_in "Title of request", with: details[:title]
 
