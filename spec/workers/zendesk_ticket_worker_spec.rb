@@ -1,40 +1,61 @@
 require 'rails_helper'
 
 describe ZendeskTicketWorker do
-  it "raises a ticket successfully" do
-    zendesk_has_user(email: "a@b.com", suspended: false)
+  context 'normal ticket creation' do
+    before do
+      zendesk_has_user(email: "a@b.com", suspended: false)
+    end
 
-    stub = stub_zendesk_ticket_creation("some" => "options", "requester" => { "email" => "a@b.com" })
+    it "creates a ticket successfully" do
+      stub = stub_zendesk_ticket_creation("some" => "options", "requester" => { "email" => "a@b.com" })
+      ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
 
-    ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
-
-    expect(stub).to have_been_made
+      expect(stub).to have_been_made
+    end
   end
 
-  it "doesn't raise a ticket if the user is suspended" do
-    zendesk_has_user(email: "a@b.com", suspended: true)
+  context 'with a suspended requesting user' do
+    before do
+      zendesk_has_user(email: "a@b.com", suspended: true)
+      ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
+    end
 
-    ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
-
-    expect(a_request(:post, %r{.*/tickets/.*})).to_not have_been_made
+    it 'does not create a ticket' do
+      expect(a_request(:post, %r{.*/tickets/.*})).to_not have_been_made
+    end
   end
 
-  it "discards the ticket if it receives a 409 response" do
-    zendesk_has_user(email: "a@b.com", suspended: false)
+  context 'with a 409 response' do
+    before do
+      zendesk_has_user(email: "a@b.com", suspended: false)
+      zendesk_returns_conflict
+      ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
+    end
 
-    zendesk_returns_conflict
-
-    ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
-
-    expect(a_request(:post, %r{.*/tickets/.*})).to_not have_been_made
+    it "discards the ticket" do
+      expect(a_request(:post, %r{.*/tickets/.*})).to_not have_been_made
+    end
   end
 
-  it "raises the ticket if it receives a 503 response" do
-    zendesk_has_user(email: "a@b.com", suspended: false)
+  context 'with a 503 response' do
+    before do
+      zendesk_has_user(email: "a@b.com", suspended: false)
+      zendesk_is_unavailable
+    end
 
-    zendesk_is_unavailable
-
-    expect{ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })}.to raise_error(ZendeskAPI::Error::NetworkError)
+    it "raises the error" do
+      expect{ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })}.to raise_error(ZendeskAPI::Error::NetworkError)
+    end
   end
 
+  context 'with a 302 response' do
+    before do
+      zendesk_has_user(email: "a@b.com", suspended: false)
+      zendesk_returns_redirect
+    end
+
+    it "raises the error" do
+      expect{ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })}.to raise_error(ZendeskAPI::Error::NetworkError)
+    end
+  end
 end
