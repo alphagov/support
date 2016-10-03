@@ -104,7 +104,7 @@ GEM
       rails (>= 3.0.0)
       warden (~> 1.2)
       warden-oauth2 (~> 0.0.1)
-    gds_zendesk (2.1.0)
+    gds_zendesk (2.3.1)
       null_logger (= 0.0.1)
       zendesk_api (= 1.8.0)
     globalid (0.3.7)
@@ -345,7 +345,7 @@ DEPENDENCIES
   formtastic-bootstrap!
   gds-api-adapters (= 33.1.0)
   gds-sso (= 11.2.0)
-  gds_zendesk (= 2.1.0)
+  gds_zendesk (= 2.3.1)
   govuk_admin_template (= 4.2.0)
   govuk_sidekiq (= 0.0.4)
   gretel (= 3.0.8)
@@ -372,4 +372,4 @@ DEPENDENCIES
   webmock (~> 1.21.0)
 
 BUNDLED WITH
-   1.11.2
+   1.13.2
