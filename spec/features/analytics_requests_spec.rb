@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature "Analytics requests" do
-  let(:user) { create(:user, name: "John Smith", email: "john.smith@agency.gov.uk") }
+  let(:user) { create(:content_requester, name: "John Smith", email: "john.smith@agency.gov.uk") }
 
   background do
     login_as user

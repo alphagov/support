@@ -49,7 +49,7 @@ module Support
 
       context "for content requesters" do
         subject { create(:content_requester) }
-        let(:requests_specific_to_role) { [ ContentChangeRequest, ChangesToPublishingAppsRequest ] }
+        let(:requests_specific_to_role) { [ ChangesToPublishingAppsRequest, ContentChangeRequest, ContentAdviceRequest, UnpublishContentRequest, AnalyticsRequest ] }
         it_behaves_like "a role"
       end
 
