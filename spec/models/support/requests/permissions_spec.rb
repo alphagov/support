@@ -55,7 +55,7 @@ module Support
 
       context "for user managers" do
         subject { create(:user_manager) }
-        let(:requests_specific_to_role) { [ AccountsPermissionsAndTrainingRequest, RemoveUserRequest ] }
+        let(:requests_specific_to_role) { [ AccountsPermissionsAndTrainingRequest, RemoveUserRequest, AnalyticsRequest ] }
         it_behaves_like "a role"
       end
 
