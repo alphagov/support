@@ -1,0 +1,90 @@
+<%= content_for :page_title, "Review Feedback" %>
+<%= content_for :header, "Review Feedback" %>
+
+<%= paginate @feedback, theme: 'twitter-bootstrap-3' %>
+
+<% if params[:include_reviewed] %>
+  <div class="review-highlight-info">
+    <p>Reports rows highlighted in green have already been reviewed.</p>
+  </div>
+<% end %>
+
+<div class="review-anonymous-feedback">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel <% if @dates.invalid_filter? %>panel-warning<% else %>panel-default<% end %>">
+        <% if @dates.invalid_filter? %>
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              Sorry, these don’t look like dates. You can leave these fields blank.
+            </h3>
+          </div>
+        <% end %>
+
+        <form action="<%= anonymous_feedback_problem_reports_path %>" class="form-inline date-filter-form panel-body">
+          <fieldset>
+            <legend class="rm">Filter feedback by date</legend>
+            <label class="add-right-margin" for="start-date">
+              Show feedback between <span class="rm">starting date</span>
+            </label>
+            <input type="text" name="from_date" id="start-date" class="input-sm form-control add-right-margin" data-module="calendar" data-max-date="0" value="<%= params[:from_date]%>"/>
+
+            <label class="add-right-margin" for="end-date">and <span class="rm">end date</span></label>
+            <input type="text" name="to_date" id="end-date" class="form-control input-sm add-right-margin" data-module="calendar" data-max-date="0" value="<%= params[:to_date]%>"/>
+
+            <%= label_tag :include_reviewed, 'Include reviewed feedback?' %>
+            <%= check_box_tag 'include_reviewed', 1, params[:include_reviewed], class: 'form-control' %>
+
+            <input type="submit" value="Filter" class="btn-sm btn btn-default add-left-margin" />
+            <% if @dates.attempted_to_filter? %>
+              <%= link_to anonymous_feedback_problem_reports_path, class: "inherit remove-filter pull-right" do %>
+                <span class="glyphicon glyphicon-remove"></span>
+              <% end %>
+            <% end %>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <%= form_tag review_anonymous_feedback_problem_reports_path, method: 'put' do %>
+    <%= hidden_field_tag 'from_date', params[:from_date] %>
+    <%= hidden_field_tag 'to_date', params[:to_date] %>
+    <%= hidden_field_tag 'include_reviewed', params[:include_reviewed] if params[:include_reviewed] %>
+
+    <table id="review-spam-results" class="table table-bordered">
+      <thead>
+        <tr class="table-header">
+          <th class="no-wrap">Date</th>
+          <th class="col-md-5">Feedback</th>
+          <th class="col-md-3">URL</th>
+          <th class="col-md-3">Referrer</th>
+          <th class="col-md-1 mark-all-spam">Spam<div><%= check_box_tag 'mark-all-spam' %></div></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render partial: "problem_report", collection: @feedback, as: :problem_report %>
+      </tbody>
+    </table>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <% if @feedback.any? %>
+          <%= submit_tag 'Save', class: 'btn btn-success pull-right' %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <%= paginate @feedback, theme: 'twitter-bootstrap-3' %>
+</div>
+
+<script>
+  $(document).ready(function() {
+      $('#mark-all-spam').click(function() {
+          var c = this.checked;
+
+          $('#review-spam-results .mark-as-spam-checkbox :checkbox').prop('checked', c);
+      });
+  });
+</script>

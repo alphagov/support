@@ -20,11 +20,12 @@ describe AnonymousFeedback::GlobalExportRequestsController, type: :controller do
         notification_email: user.email,
         from_date: "1 Aug 2016",
         to_date: "8 Aug 2016",
+        exclude_spam: true
       )
     end
 
     it "makes a successful create request" do
-      post :create, from_date: "1 Aug 2016", to_date: "8 Aug 2016"
+      post :create, from_date: "1 Aug 2016", to_date: "8 Aug 2016", exclude_spam: '1'
       expect(stub_request).to have_been_made
     end
 

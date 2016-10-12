@@ -18,6 +18,7 @@ module Support
 
         can :read, :anonymous_feedback
         can :request, :global_export_request if user.has_permission?('feedex_exporters')
+        can :request, :review_feedback if user.has_permission?('feedex_reviewers')
         can :read, Support::Navigation::EmergencyContactDetailsSection
         can :create, Support::Requests::Anonymous::Explore
         can :create, [GeneralRequest, AnalyticsRequest, ContentAdviceRequest, TechnicalFaultReport, UnpublishContentRequest]

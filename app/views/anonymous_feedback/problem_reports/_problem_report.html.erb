@@ -1,0 +1,31 @@
+<tr class="<%= 'problem-report' + (problem_report.reviewed ? ' reviewed' : '') %>">
+  <th scope="row" class="table-header-secondary no-wrap">
+    <%= problem_report.created_at.to_date.to_s(:govuk_date_short) %>
+  </th>
+  <td>
+    <%= render partial: "/anonymous_feedback/feedback", locals: { anonymous_contact: problem_report } %>
+  </td>
+  <td>
+    <% if problem_report.path %>
+      <%= link_to problem_report.path, problem_report.url, class: "breakable" %>
+    <% else %>
+      &ndash;
+    <% end %>
+  </td>
+  <td>
+    <% if problem_report.referrer and problem_report.referrer != "unknown" %>
+      <% search_term = extract_search_term(problem_report.referrer) %>
+      <%= link_to friendly_referrer(problem_report.referrer), problem_report.referrer, class: "breakable" %>
+      <% if search_term %>
+        <br /><span title="Search term">“<%= search_term %>”</span>
+      <% end %>
+    <% end %>
+  </td>
+  <td class="mark-as-spam-checkbox">
+    <%# Wrap checkbox in a label in attempt make targeting the box a little easier %>
+    <label for="<%= "mark_as_spam_#{problem_report.id}"%>">
+      <%= hidden_field_tag "mark_as_spam[#{problem_report.id}]", false, { id: '' } %>
+      <%= check_box_tag "mark_as_spam[#{problem_report.id}]", true, problem_report.marked_as_spam %>
+    </label>
+  </td>
+</tr>

@@ -11,10 +11,14 @@ class AnonymousFeedback::GlobalExportRequestsController < AuthorisationControlle
 
 private
   def export_request_params
-    params.permit(:from_date, :to_date).merge(notification_email: current_user.email)
+    params.permit(:from_date, :to_date).merge(notification_email: current_user.email, exclude_spam: exclude_spam?)
   end
 
   def support_api
     GdsApi::SupportApi.new(Plek.find("support-api"))
+  end
+
+  def exclude_spam?
+    !!params.permit(:exclude_spam)
   end
 end

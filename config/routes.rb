@@ -11,12 +11,6 @@ Support::Application.routes.draw do
   resources :named_contacts, only: :create
 
   namespace :anonymous_feedback do
-    get 'problem_reports', to: redirect {|p, req| req.params[:path] ? "/anonymous_feedback?path=" + req.params[:path] : "/anonymous_feedback"}
-
-    namespace :problem_reports do
-      get :explore, to: redirect("/anonymous_feedback/explore"), format: false
-    end
-
     get :explore, to: "explore#new", format: false
     post :explore, to: "explore#create", format: false
 
@@ -24,6 +18,10 @@ Support::Application.routes.draw do
 
     resources :export_requests, only: [:create, :show], format: false
     resources :global_export_requests, only: [:create], format: false
+
+    resources :problem_reports, only: [:index] do
+      put :review, on: :collection
+    end
   end
 
   get "emergency-contact-details",
