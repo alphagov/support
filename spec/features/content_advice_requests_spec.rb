@@ -5,7 +5,7 @@ feature "Request for content advice" do
   # As a departmental/agency content designer
   # I want to contact the GOV.UK Content team for advice
 
-  let(:user) { create(:user) }
+  let(:user) { create(:content_requester) }
 
   background do
     login_as user

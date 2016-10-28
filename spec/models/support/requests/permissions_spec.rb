@@ -5,16 +5,16 @@ module Support
   module Requests
     shared_examples_for "a role" do
       let(:requests_anyone_can_make) { [
-        AnalyticsRequest,
-        ContentAdviceRequest,
         GeneralRequest,
         TechnicalFaultReport,
-        UnpublishContentRequest,
       ] }
 
       let(:all_request_types) {
         requests_anyone_can_make + [
           :anonymous_feedback,
+          UnpublishContentRequest,
+          ContentAdviceRequest,
+          AnalyticsRequest,
           CampaignRequest,
           ContentChangeRequest,
           AccountsPermissionsAndTrainingRequest,
@@ -49,13 +49,13 @@ module Support
 
       context "for content requesters" do
         subject { create(:content_requester) }
-        let(:requests_specific_to_role) { [ ContentChangeRequest, ChangesToPublishingAppsRequest ] }
+        let(:requests_specific_to_role) { [ ChangesToPublishingAppsRequest, ContentChangeRequest, ContentAdviceRequest, UnpublishContentRequest, AnalyticsRequest ] }
         it_behaves_like "a role"
       end
 
       context "for user managers" do
         subject { create(:user_manager) }
-        let(:requests_specific_to_role) { [ AccountsPermissionsAndTrainingRequest, RemoveUserRequest ] }
+        let(:requests_specific_to_role) { [ AccountsPermissionsAndTrainingRequest, RemoveUserRequest, AnalyticsRequest ] }
         it_behaves_like "a role"
       end
 
@@ -78,6 +78,9 @@ module Support
         subject { create(:single_point_of_contact) }
         let(:requests_specific_to_role) { [
           :anonymous_feedback,
+          UnpublishContentRequest,
+          ContentAdviceRequest,
+          AnalyticsRequest,
           CampaignRequest,
           ContentChangeRequest,
           AccountsPermissionsAndTrainingRequest,

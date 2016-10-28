@@ -10,18 +10,24 @@ module Support
       include Support::Requests
 
       def initialize(user)
+        can :read, :anonymous_feedback
+        can :create, [GeneralRequest, TechnicalFaultReport, Support::Requests::Anonymous::Explore]
+
         can :create, :all if user.has_permission?('single_points_of_contact')
+
         can :create, CampaignRequest if user.has_permission?('campaign_requesters')
-        can :create, [ ChangesToPublishingAppsRequest, ContentChangeRequest ] if user.has_permission?('content_requesters')
-        can :create, [ AccountsPermissionsAndTrainingRequest, RemoveUserRequest ] if user.has_permission?('user_managers')
+
+        if user.has_permission?('content_requesters')
+          can :create, [ ChangesToPublishingAppsRequest, ContentChangeRequest, ContentAdviceRequest, UnpublishContentRequest, AnalyticsRequest ]
+          can :read, Support::Navigation::EmergencyContactDetailsSection
+        end
+
+        can :create, [ AccountsPermissionsAndTrainingRequest, RemoveUserRequest, AnalyticsRequest ] if user.has_permission?('user_managers')
+
         can :create, [ FoiRequest, NamedContact ] if user.has_permission?('api_users')
 
-        can :read, :anonymous_feedback
         can :request, :global_export_request if user.has_permission?('feedex_exporters')
         can :request, :review_feedback if user.has_permission?('feedex_reviewers')
-        can :read, Support::Navigation::EmergencyContactDetailsSection
-        can :create, Support::Requests::Anonymous::Explore
-        can :create, [GeneralRequest, AnalyticsRequest, ContentAdviceRequest, TechnicalFaultReport, UnpublishContentRequest]
       end
     end
   end

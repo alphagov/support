@@ -5,7 +5,7 @@ feature "Unpublish content requests" do
   # As a government employee
   # I want to ask the Departments and policy team to unpublish content
 
-  let(:user) { create(:user, name: "John Smith", email: "john.smith@agency.gov.uk") }
+  let(:user) { create(:content_requester, name: "John Smith", email: "john.smith@agency.gov.uk") }
 
   background do
     login_as user
