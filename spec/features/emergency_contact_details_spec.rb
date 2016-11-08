@@ -6,7 +6,7 @@ feature "Emergency contact details" do
   # I want to phone somebody at GDS
 
   background do
-    login_as create(:content_requester)
+    login_as create(:user)
   end
 
   scenario "access the emergency contact details" do
