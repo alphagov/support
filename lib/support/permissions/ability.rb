@@ -12,6 +12,7 @@ module Support
       def initialize(user)
         can :read, :anonymous_feedback
         can :read, Support::Navigation::EmergencyContactDetailsSection
+        can :create, AnalyticsRequest
 
         can :create, [GeneralRequest, TechnicalFaultReport, Support::Requests::Anonymous::Explore]
 
@@ -20,10 +21,10 @@ module Support
         can :create, CampaignRequest if user.has_permission?('campaign_requesters')
 
         if user.has_permission?('content_requesters')
-          can :create, [ ChangesToPublishingAppsRequest, ContentChangeRequest, ContentAdviceRequest, UnpublishContentRequest, AnalyticsRequest ]
+          can :create, [ ChangesToPublishingAppsRequest, ContentChangeRequest, ContentAdviceRequest, UnpublishContentRequest ]
         end
 
-        can :create, [ AccountsPermissionsAndTrainingRequest, RemoveUserRequest, AnalyticsRequest ] if user.has_permission?('user_managers')
+        can :create, [ AccountsPermissionsAndTrainingRequest, RemoveUserRequest ] if user.has_permission?('user_managers')
 
         can :create, [ FoiRequest, NamedContact ] if user.has_permission?('api_users')
 

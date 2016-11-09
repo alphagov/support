@@ -7,6 +7,7 @@ module Support
       let(:requests_anyone_can_make) { [
         GeneralRequest,
         TechnicalFaultReport,
+        AnalyticsRequest,
       ] }
 
       let(:all_request_types) {
@@ -14,7 +15,6 @@ module Support
           :anonymous_feedback,
           UnpublishContentRequest,
           ContentAdviceRequest,
-          AnalyticsRequest,
           CampaignRequest,
           ContentChangeRequest,
           AccountsPermissionsAndTrainingRequest,
