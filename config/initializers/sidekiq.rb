@@ -6,7 +6,7 @@ else
   namespace = "support"
 end
 
-redis_details = YAML.load_file(File.join(Rails.root, "config", "redis.yml"))
+redis_details = Rails.application.config_for(:redis)
 redis_config = {
   url: "redis://#{redis_details['host']}:#{redis_details['port']}/0",
   namespace: namespace

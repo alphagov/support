@@ -1,2 +1,7 @@
-config = File.join(Rails.root, "config", "emergency_contact_details.yml")
-EMERGENCY_CONTACT_DETAILS = ActiveSupport::HashWithIndifferentAccess.new(YAML.load(File.open(config)))
+if ENV["EMERGENCY_CONTACT_DETAILS"]
+  config = JSON.parse(ENV["EMERGENCY_CONTACT_DETAILS"])
+else
+  config = JSON.load(Rails.root.join("config", "emergency_contact_details.json"))
+end
+
+EMERGENCY_CONTACT_DETAILS = ActiveSupport::HashWithIndifferentAccess.new(config)

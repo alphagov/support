@@ -9,6 +9,15 @@ feature "Emergency contact details" do
     login_as create(:user)
   end
 
+  before do
+    allow(ENV).to receive(:[]).with(anything)
+    allow(ENV).to receive(:[])
+      .with("EMERGENCY_CONTACT_DETAILS")
+      .and_return(
+        File.read(Rails.root.join("config", "emergency_contact_details.json"))
+      )
+  end
+
   scenario "access the emergency contact details" do
     visit '/'
 
