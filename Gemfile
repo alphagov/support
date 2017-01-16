@@ -56,6 +56,7 @@ group :development, :test do
   gem 'rspec-rails', '3.5.1'
   gem 'jasmine', '2.3.0'
   gem 'govuk-lint'
+  gem 'ci_reporter_rspec'
 end
 
 gem 'unicorn', '4.9.0'
