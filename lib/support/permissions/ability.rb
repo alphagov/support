@@ -21,12 +21,19 @@ module Support
         can :create, CampaignRequest if user.has_permission?('campaign_requesters')
 
         if user.has_permission?('content_requesters')
-          can :create, [ ChangesToPublishingAppsRequest, ContentChangeRequest, ContentAdviceRequest, UnpublishContentRequest ]
+          can :create, [
+            ChangesToPublishingAppsRequest,
+            ContentChangeRequest,
+            ContentAdviceRequest,
+            UnpublishContentRequest,
+            TaxonomyNewTopicRequest,
+            TaxonomyChangeTopicRequest
+          ]
         end
 
-        can :create, [ AccountsPermissionsAndTrainingRequest, RemoveUserRequest ] if user.has_permission?('user_managers')
+        can :create, [AccountsPermissionsAndTrainingRequest, RemoveUserRequest] if user.has_permission?('user_managers')
 
-        can :create, [ FoiRequest, NamedContact ] if user.has_permission?('api_users')
+        can :create, [FoiRequest, NamedContact] if user.has_permission?('api_users')
 
         can :request, :global_export_request if user.has_permission?('feedex_exporters')
         can :request, :review_feedback if user.has_permission?('feedex_reviewers')

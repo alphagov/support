@@ -1,0 +1,21 @@
+<div class="alert alert-info">
+  <p><%= f.object.class.description.html_safe %></p>
+</div>
+
+<%= f.input :title, required: true,
+            label: "Preferred name of new topic",
+            input_html: { class: "input-md-6", :"aria-required" => true } %>
+
+<%= f.input :url, as: :text, required: true,
+            label: "URL(s) of page(s) you want to tag (provide as many as you can)",
+            input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true, placeholder: "https://www.gov.uk/government/..." } %>
+
+<%= f.input :details, as: :text, required: true,
+            label: "Why do you think this new topic is needed? Please provide any evidence you have",
+            input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true } %>
+
+<%= f.input :parent, required: true,
+            label: "Where should this topic fit in the taxonomy? For example, a sub-topic of Early years curriculum",
+            input_html: { class: "input-md-6", :"aria-required" => true } %>
+
+<%= render partial: "support/collaborators", locals: { f: f } %>
