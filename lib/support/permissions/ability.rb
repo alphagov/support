@@ -12,9 +12,10 @@ module Support
       def initialize(user)
         can :read, :anonymous_feedback
         can :read, Support::Navigation::EmergencyContactDetailsSection
-        can :create, AnalyticsRequest
 
+        can :create, AnalyticsRequest
         can :create, [GeneralRequest, TechnicalFaultReport, Support::Requests::Anonymous::Explore]
+        can :create, [TaxonomyNewTopicRequest, TaxonomyChangeTopicRequest]
 
         can :create, :all if user.has_permission?('single_points_of_contact')
 
@@ -25,9 +26,7 @@ module Support
             ChangesToPublishingAppsRequest,
             ContentChangeRequest,
             ContentAdviceRequest,
-            UnpublishContentRequest,
-            TaxonomyNewTopicRequest,
-            TaxonomyChangeTopicRequest
+            UnpublishContentRequest
           ]
         end
 
