@@ -21,32 +21,52 @@ feature "Campaign requests" do
 "[Campaign title]
 Workplace pensions
 
-[ERG reference number]
-123456
+[Other department(s) or agencies running the campaign (if any)]
+Department 1
+
+[Head of Digital who signed off the campaign]
+John Smith
 
 [Start date]
 01-01-2020
 
-[Description]
+[Campaign end date / review date (within 6 months of launch)]
+01-02-2020
+
+[Campaign description]
 Pensions
 
-[Affiliated group or company]
-AXA
+[Call to action]
+Join us in this campaign for pensions
 
-[URL with more information]
-https://www.gov.uk
+[How will you measure success?]
+Surveys
+
+[Proposed URL (in the form of xxxxx.campaign.gov.uk)]
+newcampaign.campaign.gov.uk
+
+[Site metadescription (appears in search results)]
+pensions, campaign, newcampaign
+
+[Cost of campaign]
+1200
 
 [Additional comments]
 Some comment"})
 
     user_makes_a_campaign_request(
-      campaign_title: "Workplace pensions",
-      erg_reference_number: "123456",
+      title: "Workplace pensions",
+      other_dept_or_agency: "Department 1",
+      signed_campaign: "John Smith",
       start_date: "01-01-2020",
+      end_date: "01-02-2020",
       description: "Pensions",
-      affiliated_group: "AXA",
-      info_url: "https://www.gov.uk",
-      additional_comments: "Some comment",
+      call_to_action: "Join us in this campaign for pensions",
+      success_measure: "Surveys",
+      proposed_url: "newcampaign.campaign.gov.uk",
+      site_metadescription: "pensions, campaign, newcampaign",
+      cost_of_campaign: "1200",
+      additional_comments: "Some comment"
     )
 
     expect(request).to have_been_made
@@ -60,12 +80,17 @@ Some comment"})
 
     expect(page).to have_content("Request GDS support for a campaign")
 
-    fill_in "Campaign title", with: details[:campaign_title]
-    fill_in "ERG reference number", with: details[:erg_reference_number]
+    fill_in "Campaign title", with: details[:title]
+    fill_in "Other department(s) or agencies running the campaign (if any)", with: details[:other_dept_or_agency]
+    fill_in "Head of Digital who signed off the campaign", with: details[:signed_campaign]
     fill_in "Start date", with: details[:start_date]
+    fill_in "Campaign end date / review date (within 6 months of launch)", with: details[:end_date]
     fill_in "Campaign description", with: details[:description]
-    fill_in "Group or company affiliated with this campaign", with: details[:affiliated_group]
-    fill_in "URL with more information", with: details[:info_url]
+    fill_in "Call to action", with: details[:call_to_action]
+    fill_in "How will you measure success?", with: details[:success_measure]
+    fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk)", with: details[:proposed_url]
+    fill_in "Site metadescription (appears in search results)", with: details[:site_metadescription]
+    fill_in "Cost of campaign", with: details[:cost_of_campaign]
     fill_in "Additional comments", with: details[:additional_comments]
 
     user_submits_the_request_successfully
