@@ -14,7 +14,7 @@ module Support
           SectionGroup.new("Content request", sections_for(ContentAdviceRequest, ContentChangeRequest, UnpublishContentRequest, TaxonomyNewTopicRequest, TaxonomyChangeTopicRequest)),
           SectionGroup.new("Technical support", sections_for(ChangesToPublishingAppsRequest, TechnicalFaultReport)),
           SectionGroup.new("User access", sections_for(AccountsPermissionsAndTrainingRequest, RemoveUserRequest)),
-          SectionGroup.new("Campaigns", sections_for(CampaignRequest)),
+          SectionGroup.new("Campaigns", sections_for(CampaignRequest, LiveCampaignRequest)),
           SectionGroup.new("Other requests", sections_for(AnalyticsRequest, GeneralRequest)),
         ]
       end
@@ -28,10 +28,11 @@ module Support
       end
 
       def all_request_class_names
-        all_sections.map(&:request_class).map {|request_class| request_class.name.split("::").last }
+        all_sections.map(&:request_class).map { |request_class| request_class.name.split("::").last }
       end
 
-      private
+    private
+
       def sections_for(*request_classes)
         request_classes.map { |request_class| RequestSection.new(request_class, @current_user) }
       end

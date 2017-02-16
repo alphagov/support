@@ -16,6 +16,7 @@ module Support
           UnpublishContentRequest,
           ContentAdviceRequest,
           CampaignRequest,
+          LiveCampaignRequest,
           ContentChangeRequest,
           AccountsPermissionsAndTrainingRequest,
           FoiRequest,
@@ -61,7 +62,7 @@ module Support
 
       context "for campaign requesters" do
         subject { create(:campaign_requester) }
-        let(:requests_specific_to_role) { [ CampaignRequest ] }
+        let(:requests_specific_to_role) { [ CampaignRequest, LiveCampaignRequest ] }
         it_behaves_like "a role"
       end
 
@@ -82,6 +83,7 @@ module Support
           ContentAdviceRequest,
           AnalyticsRequest,
           CampaignRequest,
+          LiveCampaignRequest,
           ContentChangeRequest,
           AccountsPermissionsAndTrainingRequest,
           FoiRequest,

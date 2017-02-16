@@ -11,6 +11,7 @@ module Support
         let(:user_permissions) { ["content_requesters", "campaign_requesters"] }
 
         it { should be_able_to(:create, Support::Requests::CampaignRequest) }
+        it { should be_able_to(:create, Support::Requests::LiveCampaignRequest) }
         it { should be_able_to(:create, Support::Requests::ContentChangeRequest) }
       end
     end
