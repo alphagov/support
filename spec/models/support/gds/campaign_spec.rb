@@ -16,7 +16,6 @@ module Support
                              cost_of_campaign: 1200) }
 
       it { should validate_presence_of(:title) }
-      it { should validate_presence_of(:other_dept_or_agency) }
       it { should validate_presence_of(:signed_campaign) }
       it { should validate_presence_of(:start_date) }
       it { should validate_presence_of(:end_date) }

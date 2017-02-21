@@ -6,7 +6,7 @@
   <%= r.inputs :name => "Campaign details" do %>
     <%= r.input :title, label: "Campaign title", required: true, input_html: {:class => "input-md-6", :"aria-required" => true} %>
 
-    <%= r.input :other_dept_or_agency, label: "Other department(s) or agencies running the campaign (if any)", input_html: {:class => "input-md-6"} %>
+    <%= r.input :other_dept_or_agency, label: "Other department(s) or agencies running the campaign (if any)", required: false, input_html: {:class => "input-md-6"} %>
     <%= r.input :signed_campaign, label: "Head of Digital who signed off the campaign", required: true, input_html: {:class => "input-md-6"} %>
 
     <%= r.input :start_date, label: "Start date", required: true, input_html: { class: "input-md-2", :"data-module" => 'calendar', :"data-format" => 'dd-mm-yy', :"data-min-date" => 0, :placeholder => "dd-mm-yyyy", :value => r.object.start_date} %>
@@ -21,7 +21,7 @@
 
     <%= r.input :site_metadescription, as: :text, label: "Site metadescription (appears in search results)", required: true, input_html: {:class => "input-md-6", :rows => 6, :cols => 50, :"aria-required" => true, :"aria-describedby" => "seoHelpBlock" } %>
 
-    <%= r.input :cost_of_campaign, as: :number, label: "Cost of campaign", required: true, input_html: { class: "input-md-6" } %>
+    <%= r.input :cost_of_campaign, label: "Cost of campaign", required: true, input_html: { class: "input-md-6" } %>
 
     <% end %>
 <% end %>
