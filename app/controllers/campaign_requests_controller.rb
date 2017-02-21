@@ -1,7 +1,7 @@
 require 'zendesk/ticket/campaign_request_ticket'
 require 'support/requests/campaign_request'
 
-class CampaignRequestsController <  RequestsController
+class CampaignRequestsController < RequestsController
   include Support::Requests
 
   protected
@@ -22,7 +22,8 @@ class CampaignRequestsController <  RequestsController
       :additional_comments,
       requester_attributes: [:email, :name, :collaborator_emails],
       campaign_attributes: [
-        :title, :erg_reference_number, :start_date, :description, :affiliated_group_or_company, :info_url
+          :title, :other_dept_or_agency, :signed_campaign, :start_date, :end_date, :description,
+          :call_to_action, :success_measure, :proposed_url, :site_metadescription, :cost_of_campaign
       ]
     )
   end

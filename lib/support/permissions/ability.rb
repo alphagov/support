@@ -19,7 +19,7 @@ module Support
 
         can :create, :all if user.has_permission?('single_points_of_contact')
 
-        can :create, CampaignRequest if user.has_permission?('campaign_requesters')
+        can :create, [CampaignRequest, LiveCampaignRequest] if user.has_permission?('campaign_requesters')
 
         if user.has_permission?('content_requesters')
           can :create, [

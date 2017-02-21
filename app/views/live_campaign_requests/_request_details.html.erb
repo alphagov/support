@@ -1,0 +1,17 @@
+<div class="alert alert-info">
+  <p><%= f.object.class.description %></p>
+</div>
+
+<%= f.semantic_fields_for :live_campaign do |r| %>
+    <%= r.inputs :name => "Campaign details" do %>
+        <%= r.input :title, label: "Campaign title", hint: "The name of the campaign", required: true, input_html: {:class => "input-md-6", :"aria-required" => true} %>
+
+        <%= r.input :proposed_url, label: "Campaign URL", input_html: { class: "input-md-6" } %>
+
+        <%= r.input :description, as: :text, label: "Details of requested support", required: true, input_html: {:class => "input-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
+        <%= r.input :time_constraints, label: "Are there any time constraints for this request?", input_html: {:class => "input-md-6", :rows => 6, :cols => 50 } %>
+        <%= r.input :reason_for_dates, as: :text, label: "Reason for the above dates?", input_html: {:class => "input-md-6", :rows => 6, :cols => 50 } %>
+    <% end %>
+<% end %>
+
+<%= render partial: "support/collaborators", locals: { f: f } %>
