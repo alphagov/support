@@ -44,7 +44,7 @@ private
 
     click_on "Add a topic"
 
-    expect(page).to have_content("Request a new topic for tagging your content to.")
+    expect(page).to have_content("For requesting new topics in the education or parenting and childcare taxonomies.")
 
     fill_in "Preferred name of new topic", with: details[:title]
 

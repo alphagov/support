@@ -32,7 +32,7 @@ module Support
       end
 
       def self.description
-        "Request a change to an existing topic."
+        "For requesting changes to topics from the education or parenting and childcare taxonomies."
       end
     end
   end

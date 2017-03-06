@@ -44,7 +44,7 @@ private
 
     click_on "Change or remove a topic"
 
-    expect(page).to have_content("Request a change to an existing topic.")
+    expect(page).to have_content("For requesting changes to topics from the education or parenting and childcare taxonomies.")
 
     fill_in "Name of topic you'd like changed", with: details[:title]
 
