@@ -12,9 +12,7 @@ gem 'cancan', '1.6.10'
 gem 'jquery-ui-rails', '5.0.1'
 gem 'plek', '1.10.0'
 
-# using github version to pick up unreleased bugfix
-# https://github.com/mjbellantoni/formtastic-bootstrap/pull/119
-gem 'formtastic-bootstrap', github: 'mjbellantoni/formtastic-bootstrap', ref: '8134e3f'
+gem 'formtastic-bootstrap', '3.1.1'
 gem 'select2-rails', '3.5.9.3'
 
 gem 'jc-validates_timeliness', '3.1.1'

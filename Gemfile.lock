@@ -1,11 +1,3 @@
-GIT
-  remote: git://github.com/mjbellantoni/formtastic-bootstrap.git
-  revision: 8134e3fd9af1115ee4fa019d6ef994bdc0045099
-  ref: 8134e3f
-  specs:
-    formtastic-bootstrap (3.1.0)
-      formtastic (>= 3.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -94,8 +86,10 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
-    formtastic (3.1.3)
+    formtastic (3.1.5)
       actionpack (>= 3.2.13)
+    formtastic-bootstrap (3.1.1)
+      formtastic (>= 3.0)
     gds-api-adapters (36.1.0)
       link_header
       lrucache (~> 0.1.1)
@@ -372,7 +366,7 @@ DEPENDENCIES
   capybara (~> 2.4.0)
   ci_reporter_rspec
   factory_girl_rails (~> 4.5.0)
-  formtastic-bootstrap!
+  formtastic-bootstrap (= 3.1.1)
   gds-api-adapters (= 36.1.0)
   gds-sso (= 11.2.0)
   gds_zendesk (= 2.3.1)
@@ -403,4 +397,4 @@ DEPENDENCIES
   webmock (~> 1.21.0)
 
 BUNDLED WITH
-   1.13.2
+   1.14.5
