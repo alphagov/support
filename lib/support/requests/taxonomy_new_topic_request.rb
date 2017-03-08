@@ -17,7 +17,7 @@ module Support
       end
 
       def self.description
-        "Request a new topic for tagging your content to."
+        "For requesting new topics in the education or parenting and childcare taxonomies."
       end
     end
   end
