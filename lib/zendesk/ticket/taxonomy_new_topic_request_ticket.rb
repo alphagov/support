@@ -16,9 +16,10 @@ module Zendesk
 
       def comment_snippets
         [
-          request_label(field: :url),
-          request_label(field: :details),
-          request_label(field: :parent),
+          LabelledSnippet.new(on: @request, field: :title, label: "Requested topic"),
+          LabelledSnippet.new(on: @request, field: :url, label: "URL of new topic"),
+          LabelledSnippet.new(on: @request, field: :details, label: "Evidence"),
+          LabelledSnippet.new(on: @request, field: :parent, label: "Parent topic"),
         ]
       end
     end
