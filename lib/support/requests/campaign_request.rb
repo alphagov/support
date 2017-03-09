@@ -19,11 +19,11 @@ module Support
       attr_accessor :additional_comments
 
       def self.label
-        "Campaign requests and support"
+        "Request a new campaign"
       end
 
       def self.description
-        "Request GDS support for a campaign"
+        "Request GDS support for a new campaign"
       end
     end
   end

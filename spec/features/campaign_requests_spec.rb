@@ -76,9 +76,9 @@ Some comment"})
   def user_makes_a_campaign_request(details)
     visit '/'
 
-    click_on "Campaign requests and support"
+    click_on "Request a new campaign"
 
-    expect(page).to have_content("Request GDS support for a campaign")
+    expect(page).to have_content("Request GDS support for a new campaign")
 
     fill_in "Campaign title", with: details[:title]
     fill_in "Other department(s) or agencies running the campaign (if any)", with: details[:other_dept_or_agency]
