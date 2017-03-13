@@ -21,10 +21,13 @@ feature "Taxonomy topic change requests" do
 "[Type of change]
 Name of topic
 
-[Details]
+[Requested topic]
+Abc
+
+[Details of changes]
 Change the name to \"XYZ\".
 
-[Reasons]
+[Reasons for changes]
 People expect to find it here."})
 
     user_makes_a_taxomomy_change_topic_request(
