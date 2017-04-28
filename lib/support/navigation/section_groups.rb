@@ -11,10 +11,11 @@ module Support
       def initialize(current_user = nil)
         @current_user = current_user
         @groups = [
-          SectionGroup.new("Content request", sections_for(ContentAdviceRequest, ContentChangeRequest, UnpublishContentRequest, TaxonomyNewTopicRequest, TaxonomyChangeTopicRequest)),
+          SectionGroup.new("Content request", sections_for(ContentAdviceRequest, ContentChangeRequest, UnpublishContentRequest)),
           SectionGroup.new("Technical support", sections_for(ChangesToPublishingAppsRequest, TechnicalFaultReport)),
           SectionGroup.new("User access", sections_for(AccountsPermissionsAndTrainingRequest, RemoveUserRequest)),
           SectionGroup.new("Campaigns", sections_for(CampaignRequest, LiveCampaignRequest)),
+          SectionGroup.new("Taxonomy requests", sections_for(TaxonomyNewTopicRequest, TaxonomyChangeTopicRequest)),
           SectionGroup.new("Other requests", sections_for(AnalyticsRequest, GeneralRequest)),
         ]
       end
