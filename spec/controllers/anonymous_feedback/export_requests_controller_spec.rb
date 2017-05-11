@@ -75,7 +75,13 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
       before { stub_support_feedback_export_request(1, ready: true, filename: filename) }
 
       it "sends the relevant file" do
-        expect(controller).to receive(:send_file).with "/data/uploads/support-api/csvs/#{filename}"
+        # NOTE send_file acts as a render call, so to avoid breaking the controller
+        # we need to pretend to do something here, as a nil stub will cause a
+        # ActionController::UnknownFormat error because it is falling throug
+        # to the default render.  Doing `head :ok` is enough.
+        expect(controller).to receive(:send_file).with("/data/uploads/support-api/csvs/#{filename}") do
+          controller.head(:ok)
+        end
         allow(controller).to receive(:render)
 
         get :show, params: { id: 1 }
