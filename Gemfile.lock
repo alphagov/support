@@ -200,8 +200,6 @@ GEM
     pry-byebug (3.2.0)
       byebug (~> 5.0)
       pry (~> 0.10)
-    quiet_assets (1.1.0)
-      railties (>= 3.1, < 5.0)
     rack (1.6.6)
     rack-cache (1.7.0)
       rack (>= 0.4)
@@ -373,7 +371,6 @@ DEPENDENCIES
   logstasher (= 0.4.8)
   plek (= 1.10.0)
   pry-byebug
-  quiet_assets (~> 1.1.0)
   rails (= 4.2.7.1)
   redis (= 3.2.1)
   rspec-collection_matchers (~> 1.1.0)

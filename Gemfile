@@ -35,10 +35,6 @@ else
 end
 gem 'gretel', '3.0.8'
 
-group :development do
-  gem "quiet_assets", "~> 1.1.0"
-end
-
 group :test do
   gem 'shoulda', '~> 3.5.0'
   gem "webmock", "~> 1.21.0"
