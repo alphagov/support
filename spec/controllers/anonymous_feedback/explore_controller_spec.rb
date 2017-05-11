@@ -24,7 +24,7 @@ describe AnonymousFeedback::ExploreController, :type => :controller do
   end
 
   it "shows the new form again for invalid requests" do
-    post :create, { support_requests_anonymous_explore_by_url: { url: "" } }
+    post :create, params: { support_requests_anonymous_explore_by_url: { url: "" } }
     expect(response).to have_http_status(422)
     expect(assigns(:explore_by_url)).to be_present
   end
@@ -49,7 +49,7 @@ describe AnonymousFeedback::ExploreController, :type => :controller do
   context "with a successful request" do
     context "when exploring by URL" do
       it "redirects to the anonymous feedback index page" do
-        post :create, { support_requests_anonymous_explore_by_url: { url: "https://www.gov.uk/tax-disc" } }
+        post :create, params: { support_requests_anonymous_explore_by_url: { url: "https://www.gov.uk/tax-disc" } }
         expect(response).to redirect_to("/anonymous_feedback?path=%2Ftax-disc")
       end
     end
@@ -61,7 +61,7 @@ describe AnonymousFeedback::ExploreController, :type => :controller do
 
       it "redirects to anonymous_feedback/organisations#show" do
         post :create,
-          { support_requests_anonymous_explore_by_organisation: attributes }
+          params: { support_requests_anonymous_explore_by_organisation: attributes }
 
         expect(response).to redirect_to(redirect_path)
       end

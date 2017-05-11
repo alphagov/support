@@ -19,7 +19,7 @@ describe GeneralRequestsController, :type => :controller do
       request.user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2)"
       ticket_request = stub_zendesk_ticket_creation_with_body(/Mozilla\/5.0/)
 
-      post :create, valid_general_request_params
+      post :create, params: valid_general_request_params
 
       expect(ticket_request).to have_been_made
     end

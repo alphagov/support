@@ -32,7 +32,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
                                                       organisation: nil)
       end
 
-      let(:do_request) { post :create, path: "/foo", from: "2015-05-01", to: "2015-06-01" }
+      let(:do_request) { post :create, params: { path: "/foo", from: "2015-05-01", to: "2015-06-01" } }
 
       it_behaves_like "a successful create request"
 
@@ -54,7 +54,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
                                                       organisation: "hm-revenue-customs")
       end
 
-      let(:do_request) { post :create, organisation: "hm-revenue-customs", from: "2015-05-01", to: "2015-06-01" }
+      let(:do_request) { post :create, params: { organisation: "hm-revenue-customs", from: "2015-05-01", to: "2015-06-01" } }
 
       it_behaves_like "a successful create request"
 
@@ -78,7 +78,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
         expect(controller).to receive(:send_file).with "/data/uploads/support-api/csvs/#{filename}"
         allow(controller).to receive(:render)
 
-        get :show, id: 1
+        get :show, params: { id: 1 }
       end
     end
 
@@ -86,7 +86,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
       before { stub_support_feedback_export_request(2, ready: false, filename: filename) }
 
       it "replies with a 404" do
-        get :show, id: 2
+        get :show, params: { id: 2 }
 
         expect(response).to be_not_found
       end
