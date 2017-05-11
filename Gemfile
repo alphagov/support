@@ -10,7 +10,7 @@ gem 'rails', '5.0.2'
 gem 'sass-rails', '5.0.6'
 gem 'uglifier', '2.7.1'
 
-gem "airbrake", "4.1.0"
+gem "airbrake", github: 'alphagov/airbrake', branch: 'silence-dep-warnings-for-rails-5'
 
 gem 'gds-sso', '~> 13.0'
 gem 'cancan', '1.6.10'
