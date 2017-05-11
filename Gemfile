@@ -27,7 +27,7 @@ gem "statsd-ruby", "1.2.1", require: "statsd"
 gem 'logstasher', '0.4.8'
 gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap-kaminari-views', '0.0.5'
-gem 'govuk_admin_template', '4.2.0'
+gem 'govuk_admin_template', '4.4.2'
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else
