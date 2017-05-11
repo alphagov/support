@@ -3,7 +3,7 @@ require 'timeout'
 class ApplicationController < ActionController::Base
   include GDS::SSO::ControllerMethods
 
-  before_filter :authenticate_support_user!
+  before_action :authenticate_support_user!
 
   protect_from_forgery
 

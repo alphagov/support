@@ -6,7 +6,7 @@ class SupportController < AuthorisationController
   include Support::Navigation
 
   skip_authorization_check
-  skip_before_filter :authenticate_support_user!, only: [:queue_status]
+  skip_before_action :authenticate_support_user!, only: [:queue_status]
 
   def landing
     all_sections = SectionGroups.new(current_user).all_sections +
