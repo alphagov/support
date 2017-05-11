@@ -65,7 +65,7 @@ GEM
       sass (>= 3.3.0)
     builder (3.2.3)
     byebug (9.0.6)
-    cancan (1.6.10)
+    cancancan (1.16.0)
     capybara (2.14.0)
       addressable
       mime-types (>= 1.16)
@@ -384,7 +384,7 @@ PLATFORMS
 DEPENDENCIES
   airbrake!
   bootstrap-kaminari-views (= 0.0.5)
-  cancan (= 1.6.10)
+  cancancan (~> 1.16)
   capybara (~> 2.6)
   ci_reporter_rspec
   factory_girl_rails (~> 4.5.0)

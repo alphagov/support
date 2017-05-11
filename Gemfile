@@ -13,7 +13,7 @@ gem 'uglifier', '2.7.1'
 gem "airbrake", github: 'alphagov/airbrake', branch: 'silence-dep-warnings-for-rails-5'
 
 gem 'gds-sso', '~> 13.0'
-gem 'cancan', '1.6.10'
+gem 'cancancan', '~> 1.16'
 gem 'jquery-ui-rails', '5.0.1'
 gem 'plek', '1.10.0'
 
