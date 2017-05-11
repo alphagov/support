@@ -48,7 +48,7 @@ end
 group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails', '3.5.1'
-  gem 'jasmine', '2.3.0'
+  gem 'jasmine', '2.6.0'
   gem 'govuk-lint'
   gem 'ci_reporter_rspec'
 end
