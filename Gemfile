@@ -38,7 +38,7 @@ if ENV['API_DEV']
 else
   gem "gds-api-adapters", '36.1.0'
 end
-gem 'gretel', '3.0.8'
+gem 'gretel', '3.0.9'
 
 group :test do
   gem 'shoulda', '~> 3.5.0'
