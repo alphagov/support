@@ -22,6 +22,6 @@ class UnpublishContentRequestsController < RequestsController
       :urls, :reason_for_unpublishing, :further_explanation, :redirect_url,
       :automatic_redirect,
       requester_attributes: [:email, :name, :collaborator_emails],
-    )
+    ).to_h
   end
 end

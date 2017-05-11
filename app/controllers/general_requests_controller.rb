@@ -23,6 +23,6 @@ class GeneralRequestsController < RequestsController
     params.require(:support_requests_general_request).permit(
       :title, :url, :details,
       requester_attributes: [:email, :name, :collaborator_emails],
-    )
+    ).to_h
   end
 end

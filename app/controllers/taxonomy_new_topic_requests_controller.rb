@@ -22,6 +22,6 @@ protected
     params.require(:support_requests_taxonomy_new_topic_request).permit(
       :title, :url, :details, :parent,
       requester_attributes: [:email, :name, :collaborator_emails],
-    )
+    ).to_h
   end
 end

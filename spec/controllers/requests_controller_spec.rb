@@ -36,7 +36,7 @@ describe RequestsController, :type => :controller do
     end
 
     def parse_request_from_params
-      TestRequest.new(params[:test_request])
+      TestRequest.new(params.require(:test_request).permit!.to_h)
     end
   end
 

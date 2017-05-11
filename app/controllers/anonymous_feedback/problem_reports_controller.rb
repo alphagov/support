@@ -14,7 +14,7 @@ class AnonymousFeedback::ProblemReportsController < AuthorisationController
     authorize! :request, :review_feedback
 
     if review_params.any? && reviewed_items_successfully?
-      redirect_to anonymous_feedback_problem_reports_path(params.slice(:to_date, :from_date, :include_reviewed))
+      redirect_to anonymous_feedback_problem_reports_path(anonymous_feedback_problem_report_params)
     else
       flash.now[:alert] = 'Something went wrong with this review'
       render :index, status: 400
@@ -22,6 +22,10 @@ class AnonymousFeedback::ProblemReportsController < AuthorisationController
   end
 
   private
+
+  def anonymous_feedback_problem_report_params
+    params.permit(:to_date, :from_date, :include_reviewed).to_h
+  end
 
   def fetch_problem_reports
     AnonymousFeedbackApiResponse.new(
@@ -43,7 +47,7 @@ class AnonymousFeedback::ProblemReportsController < AuthorisationController
   end
 
   def index_params
-    params.permit(:page, :from_date, :to_date, :include_reviewed)
+    params.permit(:page, :from_date, :to_date, :include_reviewed).to_h
   end
 
   def present_date_filters(api_response)
@@ -56,7 +60,7 @@ class AnonymousFeedback::ProblemReportsController < AuthorisationController
   end
 
   def review_params
-    params.require(:mark_as_spam)
+    params.require(:mark_as_spam).permit!.to_h
   end
 
   def reviewed_items_successfully?

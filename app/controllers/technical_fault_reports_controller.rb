@@ -1,7 +1,7 @@
 require 'zendesk/ticket/technical_fault_report_ticket'
 require 'support/requests/technical_fault_report'
 
-class TechnicalFaultReportsController <  RequestsController
+class TechnicalFaultReportsController < RequestsController
   include Support::Requests
 
   protected
@@ -23,6 +23,6 @@ class TechnicalFaultReportsController <  RequestsController
       :what_happened, :what_should_have_happened,
       requester_attributes: [:email, :name, :collaborator_emails],
       fault_context_attributes: [:name, :id, :inside_government_related],
-    )
+    ).to_h
   end
 end
