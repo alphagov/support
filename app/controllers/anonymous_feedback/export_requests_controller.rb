@@ -17,7 +17,7 @@ class AnonymousFeedback::ExportRequestsController < AuthorisationController
     if response["ready"]
       send_file "/data/uploads/support-api/csvs/#{response['filename']}"
     else
-      render nothing: true, status: :not_found
+      head :not_found
     end
   end
 

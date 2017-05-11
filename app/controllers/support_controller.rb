@@ -23,7 +23,7 @@ class SupportController < AuthorisationController
   def acknowledge
     respond_to do |format|
       format.html { render :acknowledge }
-      format.json { render nothing: true }
+      format.json { head :ok }
     end
   end
 
@@ -39,7 +39,7 @@ class SupportController < AuthorisationController
         render json: status
       end
       format.any do
-        render nothing: true, status: 406
+        head :not_acceptable
       end
     end
   end
