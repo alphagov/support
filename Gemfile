@@ -25,7 +25,7 @@ gem 'redis', '3.2.1'
 gem "govuk_sidekiq", '~> 1.0'
 gem "statsd-ruby", "1.2.1", require: "statsd"
 gem 'logstasher', '0.4.8'
-gem 'kaminari', '0.16.3'
+gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap-kaminari-views', '0.0.5'
 gem 'govuk_admin_template', '4.2.0'
 if ENV['API_DEV']
