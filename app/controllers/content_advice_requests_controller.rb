@@ -22,6 +22,6 @@ class ContentAdviceRequestsController < RequestsController
       :title, :details, :urls, :contact_number,
       requester_attributes: [:email, :name, :collaborator_emails],
       time_constraint_attributes: [:needed_by_date, :time_constraint_reason],
-    )
+    ).to_h
   end
 end

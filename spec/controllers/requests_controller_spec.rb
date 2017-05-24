@@ -36,7 +36,7 @@ describe RequestsController, :type => :controller do
     end
 
     def parse_request_from_params
-      TestRequest.new(params[:test_request])
+      TestRequest.new(params.require(:test_request).permit!.to_h)
     end
   end
 
@@ -74,13 +74,13 @@ describe RequestsController, :type => :controller do
       params = valid_params_for_test_request.tap {|p| p["test_request"].merge!("a" => "")}
       expect(controller).to receive(:render).with(:new, hash_including(status: 400))
 
-      post :create, params
+      post :create, params: params
     end
 
     it "submits it to Zendesk" do
       ticket_request = stub_zendesk_ticket_creation(hash_including("tags" => ['tag_a', 'tag_b']))
 
-      post :create, valid_params_for_test_request
+      post :create, params: valid_params_for_test_request
 
       expect(response).to redirect_to("/acknowledge")
       expect(ticket_request).to have_been_made
@@ -92,7 +92,7 @@ describe RequestsController, :type => :controller do
         hash_including("requester" => hash_including(requester_details))
       )
 
-      post :create, valid_params_for_test_request
+      post :create, params: valid_params_for_test_request
 
       expect(ticket_request).to have_been_made
     end
@@ -103,7 +103,7 @@ describe RequestsController, :type => :controller do
       end
       ticket_request = stub_zendesk_ticket_creation(hash_including("collaborators" => ["ab@c.com", "def@g.com"]))
 
-      post :create, params
+      post :create, params: params
 
       expect(ticket_request).to have_been_made
     end
@@ -119,12 +119,12 @@ describe RequestsController, :type => :controller do
 
     it "rejects a json request for a new form" do
       expect(controller).to receive(:render).with(json: {"error" => "You have not been granted permission to make these requests."}, status: 403)
-      get :new, format: :json
+      get :new, params: { format: :json }
     end
 
     it "rejects a form submission" do
       expect(controller).to receive(:render).with("support/forbidden", hash_including(status: 403))
-      post :create, valid_params_for_test_request
+      post :create, params: valid_params_for_test_request
     end
   end
 end

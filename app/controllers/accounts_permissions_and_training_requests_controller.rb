@@ -32,7 +32,7 @@ class AccountsPermissionsAndTrainingRequestsController < RequestsController
         :other_training,
         training: []
       ]
-    )
+    ).to_h
   end
 
   def save_to_zendesk(submitted_request)

@@ -3,7 +3,7 @@ require 'timeout'
 class ApplicationController < ActionController::Base
   include GDS::SSO::ControllerMethods
 
-  before_filter :authenticate_support_user!
+  before_action :authenticate_support_user!
 
   protect_from_forgery
 
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
 
   def service_unavailable
     $statsd.increment("#{::STATSD_PREFIX}.authentication_timeout")
-    render nothing: true, status: 503
+    head :service_unavailable
   end
 
   def default_timeout_in_seconds

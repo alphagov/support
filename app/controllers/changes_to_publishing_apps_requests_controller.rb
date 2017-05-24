@@ -21,6 +21,6 @@ class ChangesToPublishingAppsRequestsController < RequestsController
     params.require(:support_requests_changes_to_publishing_apps_request).permit(
       :title, :user_need, :feature_evidence,
       requester_attributes: [:email, :name, :collaborator_emails],
-    )
+    ).to_h
   end
 end

@@ -6,7 +6,7 @@ class SupportController < AuthorisationController
   include Support::Navigation
 
   skip_authorization_check
-  skip_before_filter :authenticate_support_user!, only: [:queue_status]
+  skip_before_action :authenticate_support_user!, only: [:queue_status]
 
   def landing
     all_sections = SectionGroups.new(current_user).all_sections +
@@ -23,7 +23,7 @@ class SupportController < AuthorisationController
   def acknowledge
     respond_to do |format|
       format.html { render :acknowledge }
-      format.json { render nothing: true }
+      format.json { head :ok }
     end
   end
 
@@ -39,7 +39,7 @@ class SupportController < AuthorisationController
         render json: status
       end
       format.any do
-        render nothing: true, status: 406
+        head :not_acceptable
       end
     end
   end

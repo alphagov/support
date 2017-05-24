@@ -25,6 +25,6 @@ class NamedContactsController < RequestsController
     params.require(:named_contact).permit(
       :details, :link, :referrer, :javascript_enabled, :user_agent,
       requester: [:email, :name],
-    )
+    ).to_h
   end
 end

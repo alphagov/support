@@ -47,7 +47,7 @@ class AnonymousFeedbackController < RequestsController
 
 private
   def index_params
-    params.permit(:path, :organisation, :page, :from, :to)
+    params.permit(:path, :organisation, :page, :from, :to).to_h
   end
 
   def present_date_filters(api_response)

@@ -58,7 +58,7 @@ describe AccountsPermissionsAndTrainingRequestsController, :type => :controller 
         verified: true
       )
 
-      post :create, valid_create_user_request_params
+      post :create, params: valid_create_user_request_params
 
       expect(request).to redirect_to("/acknowledge")
       expect(stub_ticket_creation).to have_been_made
@@ -68,7 +68,7 @@ describe AccountsPermissionsAndTrainingRequestsController, :type => :controller 
     it "doesn't make any changes to the Zendesk user for change user requests" do
       zendesk_ticket_request = stub_zendesk_ticket_creation
 
-      post :create, valid_change_user_request_params
+      post :create, params: valid_change_user_request_params
 
       expect(response).to redirect_to("/acknowledge")
       expect(zendesk_ticket_request).to have_been_made
@@ -82,7 +82,7 @@ describe AccountsPermissionsAndTrainingRequestsController, :type => :controller 
       expect(controller).to receive(:notify_airbrake)
         .with(kind_of(ZendeskAPI::Error::ClientError))
 
-      post :create, valid_create_user_request_params
+      post :create, params: valid_create_user_request_params
 
       expect(response).to redirect_to("/acknowledge")
     end
@@ -95,7 +95,7 @@ describe AccountsPermissionsAndTrainingRequestsController, :type => :controller 
 
         params = valid_change_user_request_params.tap {|p| p["support_requests_accounts_permissions_and_training_request"].merge!("user_needs" => "editor")}
 
-        post :create, params
+        post :create, params: params
 
         expect(response).to redirect_to("/acknowledge")
         expect(stub_request).to have_been_made

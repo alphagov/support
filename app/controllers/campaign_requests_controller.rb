@@ -25,6 +25,6 @@ class CampaignRequestsController < RequestsController
           :title, :other_dept_or_agency, :signed_campaign, :start_date, :end_date, :description,
           :call_to_action, :success_measure, :proposed_url, :site_metadescription, :cost_of_campaign
       ]
-    )
+    ).to_h
   end
 end

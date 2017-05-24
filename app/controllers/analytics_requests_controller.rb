@@ -1,7 +1,7 @@
 require 'zendesk/ticket/analytics_request_ticket'
 require 'support/requests/analytics_request'
 
-class AnalyticsRequestsController <  RequestsController
+class AnalyticsRequestsController < RequestsController
   include Support::Requests
 
   protected
@@ -28,6 +28,6 @@ class AnalyticsRequestsController <  RequestsController
         :name,
         :collaborator_emails
       ],
-    )
+    ).to_h
   end
 end

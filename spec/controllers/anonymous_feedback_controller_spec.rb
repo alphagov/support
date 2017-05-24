@@ -17,7 +17,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
     context "JSON" do
       it "returns an error" do
-        get :index, format: :json
+        get :index, params: { format: :json }
         expect(response).to have_http_status(400)
         expect(json_response).to eq("errors" => ["Please set a valid 'path' or 'organisation' parameter"])
       end
@@ -32,7 +32,7 @@ describe AnonymousFeedbackController, :type => :controller do
           { "results" => [], "pages" => 0, "current_page" => 1 },
         )
 
-        get :index, { "path" => "/a", "format" => "json" }
+        get :index, params: { "path" => "/a", "format" => "json" }
 
         expect(json_response).to have(0).items
       end
@@ -45,7 +45,7 @@ describe AnonymousFeedbackController, :type => :controller do
           { "results" => [], "pages" => 3, "current_page" => 4 },
         )
 
-        get :index, path: "/a", page: 4
+        get :index, params: { path: "/a", page: 4 }
 
         expect(response).to redirect_to(anonymous_feedback_index_path(path: "/a", page: 1))
       end
@@ -79,7 +79,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
     context "HTML representation" do
       it "renders the results" do
-        get :index, path: "/tax-disc", from: "13/10/2014", to: "25th November 2014"
+        get :index, params: { path: "/tax-disc", from: "13/10/2014", to: "25th November 2014" }
         expect(response).to have_http_status(:success)
       end
     end
@@ -88,7 +88,7 @@ describe AnonymousFeedbackController, :type => :controller do
       render_views
 
       it "returns the results for problem" do
-        get :index, { "path" => "/tax-disc", "format" => "json", from: "13/10/2014", to: "25th November 2014" }
+        get :index, params: { "path" => "/tax-disc", "format" => "json", from: "13/10/2014", to: "25th November 2014" }
 
         expect(response).to have_http_status(:success)
         expect(json_response).to have(1).item
@@ -130,7 +130,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
     context "HTML representation" do
       it "renders the results for an HTML request" do
-        get :index, path: "/contact/govuk"
+        get :index, params: { path: "/contact/govuk" }
         expect(response).to have_http_status(:success)
       end
     end
@@ -139,7 +139,7 @@ describe AnonymousFeedbackController, :type => :controller do
       render_views
 
       it "returns the results for problem" do
-        get :index, { "path" => "/contact/govuk", "format" => "json" }
+        get :index, params: { "path" => "/contact/govuk", "format" => "json" }
 
         expect(response).to have_http_status(:success)
         expect(json_response).to have(1).item
@@ -181,7 +181,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
     context "HTML representation" do
       it "renders the results" do
-        get :index, path: "/done/apply-carers-allowance"
+        get :index, params: { path: "/done/apply-carers-allowance" }
         expect(response).to have_http_status(:success)
       end
     end
@@ -190,7 +190,7 @@ describe AnonymousFeedbackController, :type => :controller do
       render_views
 
       it "returns the results" do
-        get :index, { "path" => "/done/apply-carers-allowance", "format" => "json" }
+        get :index, params: { "path" => "/done/apply-carers-allowance", "format" => "json" }
 
         expect(response).to have_http_status(:success)
         expect(json_response).to have(1).item
@@ -236,7 +236,7 @@ describe AnonymousFeedbackController, :type => :controller do
     end
 
     it "resolves the slug to a title" do
-      get :index, organisation: "cabinet-office"
+      get :index, params: { organisation: "cabinet-office" }
 
       expect(response.body).to include "Cabinet Office"
     end

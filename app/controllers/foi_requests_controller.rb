@@ -24,6 +24,6 @@ class FoiRequestsController < RequestsController
   def foi_request_params
     params.require(:foi_request).permit(
       :details, { requester: [:email, :name] }
-    )
+    ).to_h
   end
 end

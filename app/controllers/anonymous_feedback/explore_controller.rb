@@ -15,11 +15,11 @@ class AnonymousFeedback::ExploreController < AuthorisationController
   def create
     if params[:support_requests_anonymous_explore_by_url].present?
       @explore = Support::Requests::Anonymous::ExploreByUrl.new(
-        params[:support_requests_anonymous_explore_by_url]
+        explore_by_url_params
       )
     else
       @explore = Support::Requests::Anonymous::ExploreByOrganisation.new(
-        params[:support_requests_anonymous_explore_by_organisation]
+        explore_by_organisation_params
       )
     end
 
@@ -34,6 +34,15 @@ class AnonymousFeedback::ExploreController < AuthorisationController
 private
   def support_api
     GdsApi::SupportApi.new(Plek.find("support-api"))
+  end
+
+  # TODO: explicitly permit the right set of params, rather than everything
+  def explore_by_url_params
+    params.require(:support_requests_anonymous_explore_by_url).permit!.to_h
+  end
+
+  def explore_by_organisation_params
+    params.require(:support_requests_anonymous_explore_by_organisation).permit!.to_h
   end
 
   def organisation_title(organisation)

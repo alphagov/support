@@ -22,6 +22,6 @@ class RemoveUserRequestsController < RequestsController
       :user_name, :user_email, :reason_for_removal,
       requester_attributes: [:email, :name, :collaborator_emails],
       time_constraint_attributes: [:not_before_date, :needed_by_date, :time_constraint_reason],
-    )
+    ).to_h
   end
 end

@@ -17,7 +17,7 @@ class RequestsController < AuthorisationController
       save_to_zendesk(@request)
       respond_to do |format|
         format.html { redirect_to acknowledge_path }
-        format.json { render nothing: true, status: 201 }
+        format.json { head :created }
       end
     else
       respond_to do |format|
