@@ -3,7 +3,7 @@ module Zendesk
     class ContentAdviceRequestTicket < Zendesk::ZendeskTicket
       def subject
         deadline_prefix = (deadline_date ? "Needed by #{deadline_date}: " : "")
-        title_text = if (@request.title.nil? or @request.title.empty?)
+        title_text = if @request.title.nil? || @request.title.empty?
                        "Advice on content"
                      else
                        "#{@request.title} - Advice on content"
@@ -15,7 +15,8 @@ module Zendesk
         super + ["dept_content_advice"]
       end
 
-      protected
+    protected
+
       def comment_snippets
         [
           request_label(field: :details),

@@ -6,12 +6,13 @@ module Zendesk
       end
 
       def tags
-        ["public_form", "foi_request"]
+        %w(public_form foi_request)
       end
 
-      protected
+    protected
+
       def comment_snippets
-        [ 
+        [
           Zendesk::LabelledSnippet.new(on: @request.requester, field: :name),
           Zendesk::LabelledSnippet.new(on: @request.requester, field: :email),
           request_label(field: :details)

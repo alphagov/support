@@ -2,7 +2,7 @@ module Zendesk
   module Ticket
     class ContentChangeRequestTicket < Zendesk::ZendeskTicket
       def subject
-        unless @request.title.nil? or @request.title.empty?
+        if !@request.title.nil? && !@request.title.empty?
           "#{@request.title} - Content change request"
         else
           "Content change request"
@@ -13,7 +13,8 @@ module Zendesk
         super + ["content_amend"]
       end
 
-      protected
+    protected
+
       def comment_snippets
         [
           Zendesk::LabelledSnippet.new(on: @request,                 field: :url,

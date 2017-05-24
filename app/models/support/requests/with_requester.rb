@@ -4,7 +4,7 @@ module Support
       def self.included(base)
         base.validates_presence_of :requester
         base.validate do |request|
-          if request.requester and not request.requester.valid?
+          if request.requester && !request.requester.valid?
             errors[:base] << "Requester details are either not complete or invalid."
           end
         end

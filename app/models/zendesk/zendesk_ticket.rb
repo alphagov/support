@@ -18,18 +18,14 @@ module Zendesk
     end
 
     def not_before_date
-      if has_value?(:time_constraint) and has_value?(:not_before_date, @request.time_constraint)
+      if has_value?(:time_constraint) && has_value?(:not_before_date, @request.time_constraint)
         @request.time_constraint.not_before_date
-      else
-        nil
       end
     end
 
     def needed_by_date
-      if has_value?(:time_constraint) and has_value?(:needed_by_date, @request.time_constraint)
+      if has_value?(:time_constraint) && has_value?(:needed_by_date, @request.time_constraint)
         @request.time_constraint.needed_by_date
-      else
-        nil
       end
     end
 
@@ -65,12 +61,14 @@ module Zendesk
       []
     end
 
-    protected
+  protected
+
     def request_label(attributes)
-      Zendesk::LabelledSnippet.new({on: @request}.merge(attributes))
+      Zendesk::LabelledSnippet.new({ on: @request }.merge(attributes))
     end
 
-    private
+  private
+
     def base_attribute_snippets
       [
         Zendesk::LabelledSnippet.new(on: @requester, field: :name, label: "Requester name"),
@@ -82,7 +80,7 @@ module Zendesk
 
     def has_value?(param, target = nil)
       target ||= @request
-      target.respond_to?(param) and not target.send(param).blank?
+      target.respond_to?(param) && !target.send(param).blank?
     end
   end
 end

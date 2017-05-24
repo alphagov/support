@@ -4,7 +4,7 @@ module Support
       attr_accessor :user_needs, :mainstream_changes, :maslow, :other_details
 
       def self.included(base)
-        base.validates :formatted_user_needs, presence: {message: "must select at least one option"}
+        base.validates :formatted_user_needs, presence: { message: "must select at least one option" }
       end
 
       def formatted_user_needs
@@ -34,7 +34,6 @@ module Support
           ["Access to Maslow database of user needs", "maslow"],
         ]
       end
-
     end
   end
 end

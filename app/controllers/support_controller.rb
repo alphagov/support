@@ -6,7 +6,7 @@ class SupportController < AuthorisationController
 
   def landing
     all_sections = Support::Navigation::SectionGroups.new(current_user).all_sections +
-      [ Support::Navigation::FeedexSection.new(current_user), Support::Navigation::EmergencyContactDetailsSection.new(current_user) ]
+      [Support::Navigation::FeedexSection.new(current_user), Support::Navigation::EmergencyContactDetailsSection.new(current_user)]
     @accessible_sections, @inaccessible_sections = all_sections.partition(&:accessible?)
   end
 

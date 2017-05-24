@@ -1,4 +1,4 @@
-class AnalyticsRequestsController <  RequestsController
+class AnalyticsRequestsController < RequestsController
   protected
   def new_request
     Support::Requests::AnalyticsRequest.new

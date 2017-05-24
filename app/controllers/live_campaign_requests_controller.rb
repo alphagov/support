@@ -1,5 +1,5 @@
 class LiveCampaignRequestsController < RequestsController
-  protected
+protected
 
   def new_request
     Support::Requests::LiveCampaignRequest.new(live_campaign: Support::GDS::LiveCampaign.new)

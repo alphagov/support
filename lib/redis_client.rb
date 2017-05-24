@@ -14,5 +14,4 @@ private
   def config
     Rails.application.config_for(:redis)
   end
-
 end

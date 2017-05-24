@@ -2,7 +2,7 @@ module Zendesk
   module Ticket
     class GeneralRequestTicket < Zendesk::ZendeskTicket
       def subject
-        if (@request.title.nil? or @request.title.empty?)
+        if @request.title.nil? || @request.title.empty?
           "Govt Agency General Issue"
         else
           "#{@request.title} - Govt Agency General Issue"
@@ -13,7 +13,8 @@ module Zendesk
         super + ["govt_agency_general"]
       end
 
-      protected
+    protected
+
       def comment_snippets
         [
           Zendesk::LabelledSnippet.new(on: @request, field: :url),

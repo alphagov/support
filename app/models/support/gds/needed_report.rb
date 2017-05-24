@@ -29,15 +29,15 @@ module Support
       def frequency_options
         [
           ["One-off", "one-off"],
-          ["Weekly", "weekly"],
-          ["Monthly", "monthly"],
+          %w(Weekly weekly),
+          %w(Monthly monthly),
         ]
       end
 
       def format_options
         [
-          ["CSV", "csv"],
-          ["PDF", "pdf"],
+          %w(CSV csv),
+          %w(PDF pdf),
         ]
       end
 

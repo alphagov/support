@@ -9,7 +9,8 @@ module Zendesk
         super + [@request.action] + inside_government_tag_if_needed
       end
 
-      protected
+    protected
+
       def comment_snippets
         [
           Zendesk::LabelledSnippet.new(on: @request,                field: :formatted_action,

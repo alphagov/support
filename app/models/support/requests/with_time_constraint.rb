@@ -3,7 +3,7 @@ module Support
     module WithTimeConstraint
       def self.included(base)
         base.validate do |request|
-          if request.time_constraint and not request.time_constraint.valid?
+          if request.time_constraint && !request.time_constraint.valid?
             errors[:base] << "Time constraint details are invalid."
           end
         end

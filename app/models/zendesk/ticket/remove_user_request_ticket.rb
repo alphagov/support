@@ -9,7 +9,8 @@ module Zendesk
         super + ["remove_user"]
       end
 
-      protected
+    protected
+
       def comment_snippets
         [
           Zendesk::LabelledSnippet.new(on: @request, field: :user_name),

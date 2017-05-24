@@ -15,7 +15,7 @@ module Support
       validate :collaborator_emails_are_all_valid
 
       def email=(new_email)
-        @email = new_email.nil? ? nil : new_email.gsub("\s", "")
+        @email = new_email.nil? ? nil : new_email.delete("\s")
       end
 
       def collaborator_emails
@@ -32,7 +32,8 @@ module Support
         end
       end
 
-      private
+    private
+
       def collaborator_emails_are_all_valid
         unless collaborator_emails.blank?
           collaborator_emails.each do |collaborator_email|

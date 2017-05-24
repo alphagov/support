@@ -9,7 +9,8 @@ module Zendesk
         super + ["analytics"]
       end
 
-      protected
+    protected
+
       def comment_snippets
         [
           Zendesk::LabelledSnippet.new(

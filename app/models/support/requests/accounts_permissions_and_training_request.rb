@@ -6,12 +6,12 @@ module Support
       attr_accessor :action, :requested_user, :additional_comments
 
       validate do |request|
-        if request.requested_user and not request.requested_user.valid?
+        if request.requested_user && !request.requested_user.valid?
           errors[:base] << "The details of the user in question are either incomplete or invalid."
         end
       end
       validates_presence_of :action, :requested_user
-      validates :action, inclusion: { in: ["create_new_user", "change_user", "unsuspend_user"] }
+      validates :action, inclusion: { in: %w(create_new_user change_user unsuspend_user) }
 
       def requested_user_attributes=(attr)
         self.requested_user = Support::GDS::RequestedUser.new(attr)

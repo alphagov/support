@@ -1,5 +1,6 @@
 class TaxonomyNewTopicRequestsController < RequestsController
-  protected
+protected
+
   def new_request
     Support::Requests::TaxonomyNewTopicRequest.new
   end

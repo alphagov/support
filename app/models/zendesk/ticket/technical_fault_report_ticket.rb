@@ -9,7 +9,8 @@ module Zendesk
         super + ["technical_fault", fault_context_tag] + inside_government_tag_if_needed
       end
 
-      protected
+    protected
+
       def fault_context_tag
         "fault_with_#{@request.fault_context.id}"
       end

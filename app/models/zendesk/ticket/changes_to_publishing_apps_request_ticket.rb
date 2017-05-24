@@ -4,14 +4,15 @@ module Zendesk
       attr_reader :time_constraint
 
       def subject
-        (@request.title.nil? or @request.title.empty?) ? "" : "#{@request.title}"
+        (@request.title.nil? || @request.title.empty?) ? "" : "#{@request.title}"
       end
 
       def tags
         super + ["new_feature_request"]
       end
 
-      protected
+    protected
+
       def comment_snippets
         [
           Zendesk::LabelledSnippet.new(on: @request,                 field: :user_need),

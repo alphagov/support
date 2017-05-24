@@ -12,7 +12,7 @@ module Support
       }
 
       validates_presence_of :name, :email
-      validates :email, :format => {:with => /@/}
+      validates :email, format: { with: /@/ }
       validates :other_training, presence: true, if: -> { training.empty? }
       validate :validate_training_options
 
@@ -25,6 +25,7 @@ module Support
       end
 
     private
+
       def validate_training_options
         unless (training - TRAINING_OPTIONS.values).empty?
           errors.add(:training, "must be one of the provided options")

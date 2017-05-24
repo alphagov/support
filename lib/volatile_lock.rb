@@ -40,5 +40,4 @@ private
   def hostname
     Socket.gethostname
   end
-
 end

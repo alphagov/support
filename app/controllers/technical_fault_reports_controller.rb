@@ -1,4 +1,4 @@
-class TechnicalFaultReportsController <  RequestsController
+class TechnicalFaultReportsController < RequestsController
   protected
   def new_request
     Support::Requests::TechnicalFaultReport.new

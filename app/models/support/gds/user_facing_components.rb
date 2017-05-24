@@ -12,7 +12,8 @@ module Support
           all.detect { |component| component.id == attributes["name"] }
         end
 
-        protected
+      protected
+
         def component_options
           [
             { name: "GOV.UK: content", id: "gov_uk_content" },

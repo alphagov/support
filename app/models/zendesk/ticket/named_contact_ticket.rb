@@ -7,7 +7,7 @@ module Zendesk
       end
 
       def tags
-        [ "public_form", "named_contact"]
+        %w(public_form named_contact)
       end
 
       def requester_details
@@ -26,7 +26,8 @@ module Zendesk
         @request.referrer || "Unknown"
       end
 
-      protected
+    protected
+
       def comment_snippets
         [
           Zendesk::LabelledSnippet.new(on: self, field: :requester_details, label: "Requester"),

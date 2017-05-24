@@ -14,7 +14,8 @@ module Zendesk
       !applicable_fields.empty?
     end
 
-    protected
+  protected
+
     def comment_label
       "[#{label_text}]\n"
     end
