@@ -1,13 +1,6 @@
-require 'support/requests/request'
-
-require 'support/gds/user_facing_components'
-require 'support/gds/user_facing_component'
-
 module Support
   module Requests
     class TechnicalFaultReport < Request
-      include Support::GDS
-
       attr_accessor :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened
 
       validates_presence_of :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened
@@ -19,15 +12,15 @@ module Support
 
       def initialize(opts = {})
         super
-        self.fault_context ||= UserFacingComponent.new
+        self.fault_context ||= Support::GDS::UserFacingComponent.new
       end
 
       def fault_context_attributes=(attr)
-        self.fault_context = UserFacingComponents.find(attr)
+        self.fault_context = Support::GDS::UserFacingComponents.find(attr)
       end
 
       def fault_context_options
-        UserFacingComponents.all
+        Support::GDS::UserFacingComponents.all
       end
 
       def inside_government_related?

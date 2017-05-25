@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'zendesk/ticket/content_change_request_ticket'
 
 module Zendesk
   module Ticket

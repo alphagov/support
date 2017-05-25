@@ -1,6 +1,3 @@
-require 'support/gds/needed_report'
-require 'support/requests/request'
-
 module Support
   module Requests
     class AnalyticsRequest < Request

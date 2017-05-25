@@ -1,22 +1,17 @@
-require 'support/requests'
-require 'support/navigation/request_section'
-require 'support/navigation/section_group'
-
 module Support
   module Navigation
     class SectionGroups
       include Enumerable
-      include Support::Requests
 
       def initialize(current_user = nil)
         @current_user = current_user
         @groups = [
-          SectionGroup.new("Content request", sections_for(ContentAdviceRequest, ContentChangeRequest, UnpublishContentRequest)),
-          SectionGroup.new("Technical support", sections_for(ChangesToPublishingAppsRequest, TechnicalFaultReport)),
-          SectionGroup.new("User access", sections_for(AccountsPermissionsAndTrainingRequest, RemoveUserRequest)),
-          SectionGroup.new("Campaigns", sections_for(CampaignRequest, LiveCampaignRequest)),
-          SectionGroup.new("Taxonomy requests", sections_for(TaxonomyNewTopicRequest, TaxonomyChangeTopicRequest)),
-          SectionGroup.new("Other requests", sections_for(AnalyticsRequest, GeneralRequest)),
+          Support::Navigation::SectionGroup.new("Content request", sections_for(Support::Requests::ContentAdviceRequest, Support::Requests::ContentChangeRequest, Support::Requests::UnpublishContentRequest)),
+          Support::Navigation::SectionGroup.new("Technical support", sections_for(Support::Requests::ChangesToPublishingAppsRequest, Support::Requests::TechnicalFaultReport)),
+          Support::Navigation::SectionGroup.new("User access", sections_for(Support::Requests::AccountsPermissionsAndTrainingRequest, Support::Requests::RemoveUserRequest)),
+          Support::Navigation::SectionGroup.new("Campaigns", sections_for(Support::Requests::CampaignRequest, Support::Requests::LiveCampaignRequest)),
+          Support::Navigation::SectionGroup.new("Taxonomy requests", sections_for(Support::Requests::TaxonomyNewTopicRequest, Support::Requests::TaxonomyChangeTopicRequest)),
+          Support::Navigation::SectionGroup.new("Other requests", sections_for(Support::Requests::AnalyticsRequest, Support::Requests::GeneralRequest)),
         ]
       end
 
@@ -35,7 +30,7 @@ module Support
     private
 
       def sections_for(*request_classes)
-        request_classes.map { |request_class| RequestSection.new(request_class, @current_user) }
+        request_classes.map { |request_class| Support::Navigation::RequestSection.new(request_class, @current_user) }
       end
     end
   end

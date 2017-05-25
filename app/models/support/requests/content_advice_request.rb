@@ -1,4 +1,3 @@
-require 'support/requests/request'
 require 'support/requests/with_time_constraint'
 require 'active_support/core_ext'
 

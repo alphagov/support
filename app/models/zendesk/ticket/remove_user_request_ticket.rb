@@ -1,9 +1,6 @@
-require 'zendesk/zendesk_ticket'
-require 'zendesk/labelled_snippet'
-
 module Zendesk
   module Ticket
-    class RemoveUserRequestTicket < ZendeskTicket
+    class RemoveUserRequestTicket < Zendesk::ZendeskTicket
       def subject
         "Remove user"
       end
@@ -15,9 +12,9 @@ module Zendesk
       protected
       def comment_snippets
         [
-          LabelledSnippet.new(on: @request, field: :user_name),
-          LabelledSnippet.new(on: @request, field: :user_email),
-          LabelledSnippet.new(on: @request, field: :reason_for_removal)
+          Zendesk::LabelledSnippet.new(on: @request, field: :user_name),
+          Zendesk::LabelledSnippet.new(on: @request, field: :user_email),
+          Zendesk::LabelledSnippet.new(on: @request, field: :reason_for_removal)
         ]
       end
     end

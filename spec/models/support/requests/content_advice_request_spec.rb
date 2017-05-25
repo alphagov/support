@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/requests/content_advice_request'
 
 module Support
   module Requests

@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'support/requests/anonymous/explore'
 
 module Support
   module Requests

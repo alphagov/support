@@ -1,12 +1,7 @@
-require 'zendesk/ticket/foi_request_ticket'
-require 'support/requests/foi_request'
-
 class FoiRequestsController < RequestsController
-  include Support::Requests
-
   protected
   def new_request
-    FoiRequest.new
+    Support::Requests::FoiRequest.new
   end
 
   def zendesk_ticket_class
@@ -14,7 +9,7 @@ class FoiRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    FoiRequest.new(foi_request_params)
+    Support::Requests::FoiRequest.new(foi_request_params)
   end
 
   def set_requester_on(request)

@@ -1,7 +1,3 @@
-require 'support/navigation/feedex_section'
-require 'support/navigation/emergency_contact_details_section'
-require 'support/navigation/section_groups'
-
 module ApplicationHelper
   def all_section_groups
     Support::Navigation::SectionGroups.new(current_user)

@@ -1,9 +1,6 @@
-require 'zendesk/zendesk_ticket'
-require 'zendesk/labelled_snippet'
-
 module Zendesk
   module Ticket
-    class TaxonomyNewTopicRequestTicket < ZendeskTicket
+    class TaxonomyNewTopicRequestTicket < Zendesk::ZendeskTicket
       def subject
         "Taxonomy new topic request - \"#{@request.title}\""
       end
@@ -16,10 +13,10 @@ module Zendesk
 
       def comment_snippets
         [
-          LabelledSnippet.new(on: @request, field: :title, label: "Requested topic"),
-          LabelledSnippet.new(on: @request, field: :url, label: "URL of new topic"),
-          LabelledSnippet.new(on: @request, field: :details, label: "Evidence"),
-          LabelledSnippet.new(on: @request, field: :parent, label: "Parent topic"),
+          Zendesk::LabelledSnippet.new(on: @request, field: :title, label: "Requested topic"),
+          Zendesk::LabelledSnippet.new(on: @request, field: :url, label: "URL of new topic"),
+          Zendesk::LabelledSnippet.new(on: @request, field: :details, label: "Evidence"),
+          Zendesk::LabelledSnippet.new(on: @request, field: :parent, label: "Parent topic"),
         ]
       end
     end

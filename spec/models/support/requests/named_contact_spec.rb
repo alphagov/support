@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/requests/named_contact'
 
 module Support
   module Requests

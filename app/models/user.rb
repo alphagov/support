@@ -1,5 +1,4 @@
 require 'gds-sso/user'
-require 'support/permissions/ability'
 require 'json'
 require 'redis_client'
 

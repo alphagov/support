@@ -1,13 +1,8 @@
-require 'zendesk/ticket/live_campaign_request_ticket'
-require 'support/requests/live_campaign_request'
-
 class LiveCampaignRequestsController < RequestsController
-  include Support::Requests
-
-protected
+  protected
 
   def new_request
-    LiveCampaignRequest.new(live_campaign: Support::GDS::LiveCampaign.new)
+    Support::Requests::LiveCampaignRequest.new(live_campaign: Support::GDS::LiveCampaign.new)
   end
 
   def zendesk_ticket_class
@@ -15,7 +10,7 @@ protected
   end
 
   def parse_request_from_params
-    LiveCampaignRequest.new(live_campaign_request_params)
+    Support::Requests::LiveCampaignRequest.new(live_campaign_request_params)
   end
 
   def live_campaign_request_params

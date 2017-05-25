@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'zendesk/ticket/taxonomy_change_topic_request_ticket'
 
 module Zendesk
   module Ticket

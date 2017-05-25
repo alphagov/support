@@ -1,6 +1,3 @@
-require 'support/requests/request'
-require 'support/gds/live_campaign'
-
 module Support
   module Requests
     class LiveCampaignRequest < Request

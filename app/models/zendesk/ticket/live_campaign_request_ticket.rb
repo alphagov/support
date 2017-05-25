@@ -1,9 +1,6 @@
-require 'zendesk/zendesk_ticket'
-require 'zendesk/labelled_snippet'
-
 module Zendesk
   module Ticket
-    class LiveCampaignRequestTicket < ZendeskTicket
+    class LiveCampaignRequestTicket < Zendesk::ZendeskTicket
       def subject
         "Live Campaign"
       end
@@ -16,15 +13,15 @@ module Zendesk
 
       def comment_snippets
         [
-            LabelledSnippet.new(on: @request.live_campaign, field: :title,
+            Zendesk::LabelledSnippet.new(on: @request.live_campaign, field: :title,
                                 label: "Campaign Title"),
-            LabelledSnippet.new(on: @request.live_campaign, field: :proposed_url,
+            Zendesk::LabelledSnippet.new(on: @request.live_campaign, field: :proposed_url,
                                 label: "Campaign URL"),
-            LabelledSnippet.new(on: @request.live_campaign, field: :description,
+            Zendesk::LabelledSnippet.new(on: @request.live_campaign, field: :description,
                                 label: "Details of requested support"),
-            LabelledSnippet.new(on: @request.live_campaign, field: :time_constraints,
+            Zendesk::LabelledSnippet.new(on: @request.live_campaign, field: :time_constraints,
                                 label: "Are there any time constraints for this request?"),
-            LabelledSnippet.new(on: @request.live_campaign, field: :reason_for_dates,
+            Zendesk::LabelledSnippet.new(on: @request.live_campaign, field: :reason_for_dates,
                                 label: "Reason for the above dates?")
         ]
       end

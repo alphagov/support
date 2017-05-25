@@ -1,5 +1,3 @@
-require 'support/requests/time_constraint'
-
 module Support
   module Requests
     module WithTimeConstraint

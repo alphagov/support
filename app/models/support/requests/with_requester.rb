@@ -1,5 +1,3 @@
-require 'support/requests/requester'
-
 module Support
   module Requests
     module WithRequester

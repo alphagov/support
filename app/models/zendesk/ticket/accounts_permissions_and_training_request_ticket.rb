@@ -1,9 +1,6 @@
-require 'zendesk/zendesk_ticket'
-require 'zendesk/labelled_snippet'
-
 module Zendesk
   module Ticket
-    class AccountsPermissionsAndTrainingRequestTicket < ZendeskTicket
+    class AccountsPermissionsAndTrainingRequestTicket < Zendesk::ZendeskTicket
       def subject
         @request.formatted_action
       end
@@ -15,23 +12,23 @@ module Zendesk
       protected
       def comment_snippets
         [
-          LabelledSnippet.new(on: @request,                field: :formatted_action,
+          Zendesk::LabelledSnippet.new(on: @request,                field: :formatted_action,
                                                            label: "Action"),
-          LabelledSnippet.new(on: @request,                field: :formatted_user_needs,
+          Zendesk::LabelledSnippet.new(on: @request,                field: :formatted_user_needs,
                                                            label: "User needs"),
-          LabelledSnippet.new(on: @request.requested_user, field: :name,
+          Zendesk::LabelledSnippet.new(on: @request.requested_user, field: :name,
                                                            label: "Requested user's name"),
-          LabelledSnippet.new(on: @request.requested_user, field: :email,
+          Zendesk::LabelledSnippet.new(on: @request.requested_user, field: :email,
                                                            label: "Requested user's email"),
-          LabelledSnippet.new(on: @request.requested_user, field: :job,
+          Zendesk::LabelledSnippet.new(on: @request.requested_user, field: :job,
                                                            label: "Requested user's job title"),
-          LabelledSnippet.new(on: @request.requested_user, field: :phone,
+          Zendesk::LabelledSnippet.new(on: @request.requested_user, field: :phone,
                                                            label: "Requested user's phone number"),
-          LabelledSnippet.new(on: @request.requested_user, field: :formatted_training,
+          Zendesk::LabelledSnippet.new(on: @request.requested_user, field: :formatted_training,
                                                            label: "Requested user's training"),
-          LabelledSnippet.new(on: @request.requested_user, field: :other_training,
+          Zendesk::LabelledSnippet.new(on: @request.requested_user, field: :other_training,
                                                            label: "Requested user's other training"),
-          LabelledSnippet.new(on: @request,                field: :additional_comments)
+          Zendesk::LabelledSnippet.new(on: @request,                field: :additional_comments)
         ]
       end
     end

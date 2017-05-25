@@ -1,9 +1,6 @@
-require 'zendesk/zendesk_ticket'
-require 'zendesk/labelled_snippet'
-
 module Zendesk
   module Ticket
-    class ChangesToPublishingAppsRequestTicket < ZendeskTicket
+    class ChangesToPublishingAppsRequestTicket < Zendesk::ZendeskTicket
       attr_reader :time_constraint
 
       def subject
@@ -17,8 +14,8 @@ module Zendesk
       protected
       def comment_snippets
         [
-          LabelledSnippet.new(on: @request,                 field: :user_need),
-          LabelledSnippet.new(on: @request,                 field: :feature_evidence),
+          Zendesk::LabelledSnippet.new(on: @request,                 field: :user_need),
+          Zendesk::LabelledSnippet.new(on: @request,                 field: :feature_evidence),
         ]
       end
     end

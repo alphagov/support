@@ -1,9 +1,6 @@
-require 'zendesk/zendesk_ticket'
-require 'zendesk/labelled_snippet'
-
 module Zendesk
   module Ticket
-    class UnpublishContentRequestTicket < ZendeskTicket
+    class UnpublishContentRequestTicket < Zendesk::ZendeskTicket
       def subject
         "#{@request.formatted_reason_for_unpublishing} - Unpublish content request"
       end

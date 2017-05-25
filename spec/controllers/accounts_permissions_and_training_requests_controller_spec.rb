@@ -77,7 +77,7 @@ describe AccountsPermissionsAndTrainingRequestsController, :type => :controller 
     it "doesn't expose an error to the user when automatic user creation goes wrong" do
       zendesk_is_unavailable
 
-      allow_any_instance_of(ZendeskTickets).to receive(:raise_ticket)
+      allow_any_instance_of(Zendesk::ZendeskTickets).to receive(:raise_ticket)
 
       expect(controller).to receive(:notify_airbrake)
         .with(kind_of(ZendeskAPI::Error::ClientError))

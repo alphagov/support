@@ -1,14 +1,10 @@
-require 'zendesk/ticket/accounts_permissions_and_training_request_ticket'
-require 'support/requests/accounts_permissions_and_training_request'
 require 'gds_zendesk/users'
 require 'zendesk_api/error'
 
 class AccountsPermissionsAndTrainingRequestsController < RequestsController
-  include Support::Requests
-
   protected
   def new_request
-    AccountsPermissionsAndTrainingRequest.new
+    Support::Requests::AccountsPermissionsAndTrainingRequest.new
   end
 
   def zendesk_ticket_class
@@ -16,7 +12,7 @@ class AccountsPermissionsAndTrainingRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    AccountsPermissionsAndTrainingRequest.new(create_or_change_user_request_params)
+    Support::Requests::AccountsPermissionsAndTrainingRequest.new(create_or_change_user_request_params)
   end
 
   def create_or_change_user_request_params

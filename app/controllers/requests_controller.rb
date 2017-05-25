@@ -1,5 +1,3 @@
-require "zendesk/zendesk_tickets"
-require 'support/requests/requester'
 require 'sidekiq/api'
 
 class RequestsController < AuthorisationController
@@ -34,7 +32,7 @@ class RequestsController < AuthorisationController
   def save_to_zendesk(submitted_request)
     ticket = zendesk_ticket_class.new(submitted_request)
     $statsd.time("#{::STATSD_PREFIX}.timings.querying_sidekiq_stats") { log_queue_sizes }
-    $statsd.time("#{::STATSD_PREFIX}.timings.putting_ticket_on_queue") { ZendeskTickets.new.raise_ticket(ticket) }
+    $statsd.time("#{::STATSD_PREFIX}.timings.putting_ticket_on_queue") { Zendesk::ZendeskTickets.new.raise_ticket(ticket) }
   end
 
   private

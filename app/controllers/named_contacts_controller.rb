@@ -1,12 +1,7 @@
-require 'zendesk/ticket/named_contact_ticket'
-require 'support/requests/named_contact'
-
 class NamedContactsController < RequestsController
-  include Support::Requests
-
   protected
   def new_request
-    NamedContact.new
+    Support::Requests::NamedContact.new
   end
 
   def zendesk_ticket_class
@@ -14,7 +9,7 @@ class NamedContactsController < RequestsController
   end
 
   def parse_request_from_params
-    NamedContact.new(named_contact_params)
+    Support::Requests::NamedContact.new(named_contact_params)
   end
 
   def set_requester_on(request)

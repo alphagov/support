@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/gds/campaign'
 
 module Support
   module GDS

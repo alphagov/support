@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'zendesk/ticket/changes_to_publishing_apps_request_ticket'
 
 module Zendesk
   module Ticket

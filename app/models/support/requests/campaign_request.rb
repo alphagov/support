@@ -1,6 +1,3 @@
-require 'support/requests/request'
-require 'support/gds/campaign'
-
 module Support
   module Requests
     class CampaignRequest < Request

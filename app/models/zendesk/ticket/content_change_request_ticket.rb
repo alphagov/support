@@ -1,9 +1,6 @@
-require 'zendesk/zendesk_ticket'
-require 'zendesk/labelled_snippet'
-
 module Zendesk
   module Ticket
-    class ContentChangeRequestTicket < ZendeskTicket
+    class ContentChangeRequestTicket < Zendesk::ZendeskTicket
       def subject
         unless @request.title.nil? or @request.title.empty?
           "#{@request.title} - Content change request"
@@ -19,11 +16,11 @@ module Zendesk
       protected
       def comment_snippets
         [
-          LabelledSnippet.new(on: @request,                 field: :url,
+          Zendesk::LabelledSnippet.new(on: @request,                 field: :url,
                                                             label: "URL of content to be changed"),
-          LabelledSnippet.new(on: @request,                 field: :related_urls,
+          Zendesk::LabelledSnippet.new(on: @request,                 field: :related_urls,
                                                             label: "Related URLs"),
-          LabelledSnippet.new(on: @request,                 field: :details_of_change,
+          Zendesk::LabelledSnippet.new(on: @request,                 field: :details_of_change,
                                                             label: "Details of what should be added, amended or removed"),
         ]
       end

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'zendesk/ticket/accounts_permissions_and_training_request_ticket'
 
 module Zendesk
   module Ticket

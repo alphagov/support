@@ -1,8 +1,6 @@
 require 'forwardable'
 require 'date'
 require 'active_support'
-require 'zendesk/snippet_collection'
-require 'zendesk/labelled_snippet'
 
 module Zendesk
   class ZendeskTicket
@@ -16,7 +14,7 @@ module Zendesk
     def_delegators :@requester, :email, :name, :collaborator_emails
 
     def comment
-      SnippetCollection.new(base_comment_snippets + comment_snippets).to_s
+      Zendesk::SnippetCollection.new(base_comment_snippets + comment_snippets).to_s
     end
 
     def not_before_date
@@ -44,7 +42,7 @@ module Zendesk
     end
 
     def to_s
-      SnippetCollection.new(base_attribute_snippets + base_comment_snippets + comment_snippets).to_s
+      Zendesk::SnippetCollection.new(base_attribute_snippets + base_comment_snippets + comment_snippets).to_s
     end
 
     def priority
@@ -54,9 +52,9 @@ module Zendesk
     def base_comment_snippets
       if has_value?(:time_constraint)
         [
-          LabelledSnippet.new(on: self, field: :needed_by_date, label: "Needed by date"),
-          LabelledSnippet.new(on: self, field: :not_before_date, label: "Not before date"),
-          LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason, label: "Reason for time constraint")
+          Zendesk::LabelledSnippet.new(on: self, field: :needed_by_date, label: "Needed by date"),
+          Zendesk::LabelledSnippet.new(on: self, field: :not_before_date, label: "Not before date"),
+          Zendesk::LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason, label: "Reason for time constraint")
         ]
       else
         []
@@ -69,16 +67,16 @@ module Zendesk
 
     protected
     def request_label(attributes)
-      LabelledSnippet.new({on: @request}.merge(attributes))
+      Zendesk::LabelledSnippet.new({on: @request}.merge(attributes))
     end
 
     private
     def base_attribute_snippets
       [
-        LabelledSnippet.new(on: @requester, field: :name, label: "Requester name"),
-        LabelledSnippet.new(on: @requester, field: :email, label: "Requester email"),
-        LabelledSnippet.new(on: @requester, field: :collaborator_emails),
-        LabelledSnippet.new(on: self, field: :tags),
+        Zendesk::LabelledSnippet.new(on: @requester, field: :name, label: "Requester name"),
+        Zendesk::LabelledSnippet.new(on: @requester, field: :email, label: "Requester email"),
+        Zendesk::LabelledSnippet.new(on: @requester, field: :collaborator_emails),
+        Zendesk::LabelledSnippet.new(on: self, field: :tags),
       ]
     end
 

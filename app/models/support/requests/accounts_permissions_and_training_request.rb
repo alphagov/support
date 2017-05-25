@@ -1,7 +1,3 @@
-require 'support/requests/request'
-require 'support/gds/with_user_needs'
-require 'support/gds/requested_user'
-
 module Support
   module Requests
     class AccountsPermissionsAndTrainingRequest < Request

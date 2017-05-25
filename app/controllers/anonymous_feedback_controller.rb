@@ -1,8 +1,6 @@
 require "gds_api/support_api"
 
 class AnonymousFeedbackController < RequestsController
-  include Support::Requests
-
   def index
     authorize! :read, :anonymous_feedback
 

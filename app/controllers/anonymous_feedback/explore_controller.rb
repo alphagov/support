@@ -1,4 +1,3 @@
-require 'support/requests/anonymous/explore'
 require 'gds_api/support_api'
 
 class AnonymousFeedback::ExploreController < AuthorisationController

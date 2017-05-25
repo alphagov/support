@@ -1,9 +1,6 @@
-require 'zendesk/zendesk_ticket'
-require 'zendesk/labelled_snippet'
-
 module Zendesk
   module Ticket
-    class NamedContactTicket < ZendeskTicket
+    class NamedContactTicket < Zendesk::ZendeskTicket
       def subject
         suffix = @request.govuk_link_path.nil? ? "" : " about #{@request.govuk_link_path}"
         "Named contact" + suffix
@@ -32,12 +29,12 @@ module Zendesk
       protected
       def comment_snippets
         [
-          LabelledSnippet.new(on: self, field: :requester_details, label: "Requester"),
+          Zendesk::LabelledSnippet.new(on: self, field: :requester_details, label: "Requester"),
           request_label(field: :details),
           request_label(field: :link),
-          LabelledSnippet.new(on: self, field: :referrer),
-          LabelledSnippet.new(on: self, field: :user_agent),
-          LabelledSnippet.new(on: self, field: :javascript_enabled, label: "JavaScript Enabled")
+          Zendesk::LabelledSnippet.new(on: self, field: :referrer),
+          Zendesk::LabelledSnippet.new(on: self, field: :user_agent),
+          Zendesk::LabelledSnippet.new(on: self, field: :javascript_enabled, label: "JavaScript Enabled")
         ]
       end
     end

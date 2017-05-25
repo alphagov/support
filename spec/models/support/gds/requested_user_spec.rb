@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/gds/requested_user'
 
 module Support
   module GDS

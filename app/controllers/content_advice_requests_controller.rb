@@ -1,12 +1,8 @@
-require 'zendesk/ticket/content_advice_request_ticket'
-require 'support/requests/content_advice_request'
-
 class ContentAdviceRequestsController < RequestsController
-  include Support::Requests
 
   protected
   def new_request
-    ContentAdviceRequest.new
+    Support::Requests::ContentAdviceRequest.new
   end
 
   def zendesk_ticket_class
@@ -14,7 +10,7 @@ class ContentAdviceRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    ContentAdviceRequest.new(content_advice_request_params)
+    Support::Requests::ContentAdviceRequest.new(content_advice_request_params)
   end
 
   def content_advice_request_params

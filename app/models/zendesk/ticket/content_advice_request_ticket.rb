@@ -1,9 +1,6 @@
-require 'zendesk/zendesk_ticket'
-require 'zendesk/labelled_snippet'
-
 module Zendesk
   module Ticket
-    class ContentAdviceRequestTicket < ZendeskTicket
+    class ContentAdviceRequestTicket < Zendesk::ZendeskTicket
       def subject
         deadline_prefix = (deadline_date ? "Needed by #{deadline_date}: " : "")
         title_text = if (@request.title.nil? or @request.title.empty?)

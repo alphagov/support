@@ -1,5 +1,3 @@
-require 'support/gds/user_facing_component'
-
 module Support
   module GDS
     class UserFacingComponents

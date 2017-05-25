@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/requests/foi_request'
 
 module Support
   module Requests

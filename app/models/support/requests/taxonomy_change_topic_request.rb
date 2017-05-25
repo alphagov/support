@@ -1,4 +1,3 @@
-require 'support/requests/request'
 require 'active_support/core_ext'
 
 module Support

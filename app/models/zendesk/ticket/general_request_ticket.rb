@@ -1,9 +1,6 @@
-require 'zendesk/zendesk_ticket'
-require 'zendesk/labelled_snippet'
-
 module Zendesk
   module Ticket
-    class GeneralRequestTicket < ZendeskTicket
+    class GeneralRequestTicket < Zendesk::ZendeskTicket
       def subject
         if (@request.title.nil? or @request.title.empty?)
           "Govt Agency General Issue"
@@ -19,9 +16,9 @@ module Zendesk
       protected
       def comment_snippets
         [
-          LabelledSnippet.new(on: @request, field: :url),
-          LabelledSnippet.new(on: @request, field: :user_agent),
-          LabelledSnippet.new(on: @request, field: :details)
+          Zendesk::LabelledSnippet.new(on: @request, field: :url),
+          Zendesk::LabelledSnippet.new(on: @request, field: :user_agent),
+          Zendesk::LabelledSnippet.new(on: @request, field: :details)
         ]
       end
     end

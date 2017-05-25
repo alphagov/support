@@ -1,7 +1,5 @@
 require 'rails_helper'
 require 'active_model/model'
-require 'support/requests/requester'
-require 'zendesk/zendesk_ticket'
 
 describe RequestsController, :type => :controller do
   class TestRequest

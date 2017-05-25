@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'support/requests'
 
 module Support
   module Requests

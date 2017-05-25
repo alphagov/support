@@ -1,12 +1,7 @@
-require 'zendesk/ticket/analytics_request_ticket'
-require 'support/requests/analytics_request'
-
-class AnalyticsRequestsController < RequestsController
-  include Support::Requests
-
+class AnalyticsRequestsController <  RequestsController
   protected
   def new_request
-    AnalyticsRequest.new
+    Support::Requests::AnalyticsRequest.new
   end
 
   def zendesk_ticket_class
@@ -14,7 +9,7 @@ class AnalyticsRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    AnalyticsRequest.new(analytics_request_params)
+    Support::Requests::AnalyticsRequest.new(analytics_request_params)
   end
 
   def analytics_request_params

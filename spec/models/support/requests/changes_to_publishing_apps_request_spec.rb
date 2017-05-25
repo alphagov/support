@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/requests/changes_to_publishing_apps_request'
 
 module Support
   module Requests

@@ -1,9 +1,6 @@
-require 'zendesk/zendesk_ticket'
-require 'zendesk/labelled_snippet'
-
 module Zendesk
   module Ticket
-    class FoiRequestTicket < ZendeskTicket
+    class FoiRequestTicket < Zendesk::ZendeskTicket
       def subject
         "FOI"
       end
@@ -15,8 +12,8 @@ module Zendesk
       protected
       def comment_snippets
         [ 
-          LabelledSnippet.new(on: @request.requester, field: :name),
-          LabelledSnippet.new(on: @request.requester, field: :email),
+          Zendesk::LabelledSnippet.new(on: @request.requester, field: :name),
+          Zendesk::LabelledSnippet.new(on: @request.requester, field: :email),
           request_label(field: :details)
         ]
       end

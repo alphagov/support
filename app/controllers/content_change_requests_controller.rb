@@ -1,12 +1,7 @@
-require 'zendesk/ticket/content_change_request_ticket'
-require 'support/requests/content_change_request'
-
 class ContentChangeRequestsController < RequestsController
-  include Support::Requests
-
   protected
   def new_request
-    ContentChangeRequest.new
+    Support::Requests::ContentChangeRequest.new
   end
 
   def zendesk_ticket_class
@@ -14,7 +9,7 @@ class ContentChangeRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    ContentChangeRequest.new(content_change_request_params)
+    Support::Requests::ContentChangeRequest.new(content_change_request_params)
   end
 
   def content_change_request_params

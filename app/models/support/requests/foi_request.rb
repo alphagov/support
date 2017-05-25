@@ -1,5 +1,3 @@
-require 'support/requests/request'
-
 module Support
   module Requests
     class FoiRequest < Request
