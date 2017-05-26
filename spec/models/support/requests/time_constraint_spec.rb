@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/requests/time_constraint'
 
 module Support
   module Requests

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/requests/remove_user_request'
 
 module Support
   module Requests

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/requests/technical_fault_report'
 
 module Support
   module Requests

@@ -1,6 +1,4 @@
 require 'spec_helper'
-require 'support/requests/technical_fault_report'
-require 'zendesk/ticket/technical_fault_report_ticket'
 
 module Zendesk
   module Ticket

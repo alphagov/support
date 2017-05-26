@@ -1,13 +1,8 @@
-require 'zendesk/ticket/taxonomy_new_topic_request_ticket'
-require 'support/requests/taxonomy_new_topic_request'
-
 class TaxonomyNewTopicRequestsController < RequestsController
-  include Support::Requests
-
 protected
 
   def new_request
-    TaxonomyNewTopicRequest.new
+    Support::Requests::TaxonomyNewTopicRequest.new
   end
 
   def zendesk_ticket_class
@@ -15,7 +10,7 @@ protected
   end
 
   def parse_request_from_params
-    TaxonomyNewTopicRequest.new(taxonomy_new_topic_request_params)
+    Support::Requests::TaxonomyNewTopicRequest.new(taxonomy_new_topic_request_params)
   end
 
   def taxonomy_new_topic_request_params

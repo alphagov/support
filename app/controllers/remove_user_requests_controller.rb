@@ -1,12 +1,7 @@
-require 'zendesk/ticket/remove_user_request_ticket'
-require 'support/requests/remove_user_request'
-
 class RemoveUserRequestsController < RequestsController
-  include Support::Requests
-
   protected
   def new_request
-    RemoveUserRequest.new
+    Support::Requests::RemoveUserRequest.new
   end
 
   def zendesk_ticket_class
@@ -14,7 +9,7 @@ class RemoveUserRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    RemoveUserRequest.new(remove_user_request_params)
+    Support::Requests::RemoveUserRequest.new(remove_user_request_params)
   end
 
   def remove_user_request_params

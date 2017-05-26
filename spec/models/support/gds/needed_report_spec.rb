@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/gds/needed_report'
 
 module Support
   module GDS

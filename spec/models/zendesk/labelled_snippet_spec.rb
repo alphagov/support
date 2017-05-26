@@ -1,6 +1,5 @@
 require 'spec_helper'
 require 'ostruct'
-require 'zendesk/labelled_snippet'
 
 describe Zendesk::LabelledSnippet do
   def snippet(opts)

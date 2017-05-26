@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/gds/user_facing_component'
 
 module Support
   module GDS

@@ -1,6 +1,3 @@
-require 'zendesk/ticket/general_request_ticket'
-require 'support/requests/general_request'
-
 module Zendesk
   module Ticket
     describe GeneralRequestTicket do

@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/gds/live_campaign'
 
 module Support
   module GDS

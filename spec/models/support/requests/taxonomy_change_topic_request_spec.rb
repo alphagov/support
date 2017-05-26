@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/requests/taxonomy_change_topic_request'
 
 module Support
   module Requests

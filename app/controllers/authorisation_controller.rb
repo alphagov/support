@@ -1,5 +1,3 @@
-require 'support/permissions/ability'
-
 class AuthorisationController < ApplicationController
   check_authorization
 

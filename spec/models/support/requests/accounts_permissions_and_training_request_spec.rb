@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'support/requests/accounts_permissions_and_training_request'
 
 module Support
   module Requests

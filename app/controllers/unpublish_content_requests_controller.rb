@@ -1,12 +1,7 @@
-require 'zendesk/ticket/unpublish_content_request_ticket'
-require 'support/requests/unpublish_content_request'
-
 class UnpublishContentRequestsController < RequestsController
-  include Support::Requests
-
   protected
   def new_request
-    UnpublishContentRequest.new
+    Support::Requests::UnpublishContentRequest.new
   end
 
   def zendesk_ticket_class
@@ -14,7 +9,7 @@ class UnpublishContentRequestsController < RequestsController
   end
 
   def parse_request_from_params
-    UnpublishContentRequest.new(unpublish_content_request_params)
+    Support::Requests::UnpublishContentRequest.new(unpublish_content_request_params)
   end
 
   def unpublish_content_request_params

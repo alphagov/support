@@ -1,5 +1,3 @@
-require 'support/navigation/section_groups'
-
 Rails.application.routes.draw do
   mount GovukAdminTemplate::Engine, at: "/style-guide", as: "style_guide"
 
