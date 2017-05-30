@@ -19,7 +19,8 @@ FactoryGirl.define do
 
     factory :user_who_cannot_access_anything do
       after(:create) do |user, _|
-        def user.has_permission?(*args); false; end
+        # They have no permissions other than 'signin'
+        def user.has_permission?(*args); (args.first.to_s == 'signin'); end
         def user.can?(*args); false; end
       end
     end

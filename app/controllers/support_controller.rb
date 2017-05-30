@@ -2,7 +2,7 @@ require 'sidekiq/api'
 
 class SupportController < AuthorisationController
   skip_authorization_check
-  skip_before_action :authenticate_support_user!, only: [:queue_status]
+  skip_before_action :authenticate_support_user!, :require_signin_permission!, only: [:queue_status]
 
   def landing
     all_sections = Support::Navigation::SectionGroups.new(current_user).all_sections +
