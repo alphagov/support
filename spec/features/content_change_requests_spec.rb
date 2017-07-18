@@ -74,7 +74,7 @@ Out of date XX YY"})
     fill_in "Title of request", with: details[:title] unless details[:title].nil?
     fill_in "Details of the requested change", with: details[:details_of_change]
     fill_in "URL", with: details[:url]
-    fill_in "Does this affect any other URLs? (please specify one per line)", with: details[:related_urls]
+    fill_in "Does this affect any other URLs? (including any existing Welsh translations that need to be updated). Put each new URL on a new line.", with: details[:related_urls]
 
     user_fills_out_time_constraints(details)
 
