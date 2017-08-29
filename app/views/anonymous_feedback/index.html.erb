@@ -2,7 +2,7 @@
 <%= content_for :header, @filtered_by %>
 <% breadcrumb :anonymous_feedback_by_filter, @filtered_by %>
 
-<%= form_tag anonymous_feedback_export_requests_path, class: "form-inline" %>
+<%= form_tag(anonymous_feedback_export_requests_path, class: "form-inline") do %>
   <p class="feedback-response-count text-muted">
     <%= total_responses_header(total_count: @feedback.total_count,
                                from: @dates.from,
@@ -11,11 +11,11 @@
                                path: @filtered_by) %>
     <% %i(from to path organisation).each do |attr| %>
       <% next if params[attr].blank? %>
-      <input type="hidden" name="<%= attr%>" value="<%= params[attr]%>" />
+      <%= hidden_field_tag attr, params[attr], id: "export_form_#{attr}" %>
     <% end %>
-    <input type="submit" value="Export as CSV" class="btn-sm btn btn-default add-left-margin" />
+    <%= submit_tag "Export as CSV", class: "btn-sm btn btn-default add-left-margin" %>
   </p>
-</form>
+<% end %>
 
 <div class="row">
   <div class="col-lg-8 col-md-9">
@@ -27,27 +27,27 @@
           </h3>
         </div>
       <% end %>
-      <form action="<%= anonymous_feedback_index_path%>" class="form-inline date-filter-form panel-body">
-        <input type="hidden" name="path" value="<%= params[:path]%>" />
-        <input type="hidden" name="organisation" value="<%= params[:organisation]%>" />
+      <%= form_tag(anonymous_feedback_index_path, class: "form-inline date-filter-form panel-body")do %>
+        <%= hidden_field_tag "path", params[:path] %>
+        <%= hidden_field_tag "organisation", params[:organisation]%>
         <fieldset>
           <legend class="rm">Filter feedback by date</legend>
-          <label class="add-right-margin" for="start-date">
+          <%= label_tag("start-date", class: "add-right-margin") do %>
             Show feedback between <span class="rm">starting date</span>
-          </label>
-          <input type="text" name="from" id="start-date" class="input-sm form-control add-right-margin" data-module="calendar" data-max-date="0" value="<%= params[:from]%>"/>
+          <% end %>
+          <%= text_field_tag "from", params[:from], id: "start-date", class: "input-sm form-control add-right-margin", data: { module: "calendar", max_date: "0"} %>
 
-          <label class="add-right-margin" for="end-date">and <span class="rm">end date</span></label>
-          <input type="text" name="to" id="end-date" class="form-control input-sm" data-module="calendar" data-max-date="0" value="<%= params[:to]%>"/>
+          <%= label_tag("end-date", class: "add-right-margin") do %>and <span class="rm">end date</span><% end %>
+          <%= text_field_tag "to", params[:to], id: "end-date", class: "form-control input-sm", data: { module: "calendar", max_date: "0" } %>
 
-          <input type="submit" value="Filter" class="btn-sm btn btn-default add-left-margin" />
+          <%= submit_tag "Filter", class: "btn-sm btn btn-default add-left-margin" %>
           <% if @dates.attempted_to_filter? %>
             <%= link_to anonymous_feedback_index_path(path:params[:path]), class: "inherit remove-filter pull-right" do %>
               <span class="glyphicon glyphicon-remove"></span>
             <% end %>
           <% end %>
         </fieldset>
-      </form>
+      <% end %>
     </div>
   </div>
 </div>
