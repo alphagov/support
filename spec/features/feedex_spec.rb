@@ -8,7 +8,7 @@ feature "Exploring anonymous feedback" do
   end
 
   scenario "exploring feedback by URL" do
-    stub_anonymous_feedback(
+    stub_support_api_anonymous_feedback(
       { path_prefix: "/vat-rates" },
       {
         "current_page" => 1,
@@ -56,7 +56,7 @@ feature "Exploring anonymous feedback" do
   end
 
   scenario "no feedback found" do
-    stub_anonymous_feedback(
+    stub_support_api_anonymous_feedback(
       { path_prefix: "/non-existent-path" },
       { "results" => [], "pages" => 0, "current_page" => 1 }
     )
@@ -67,14 +67,18 @@ feature "Exploring anonymous feedback" do
   end
 
   scenario "exploring feedback by organisation" do
-    stub_anonymous_feedback_organisation_summary('cabinet-office', 'last_7_days', {
-      "title" => "Cabinet Office",
-      "anonymous_feedback_counts" => [
-        { path: '/done-well', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
-        { path: '/not-bad-my-friend' },
-        { path: '/fair-enough' },
-      ],
-    })
+    stub_support_api_anonymous_feedback_organisation_summary(
+      'cabinet-office',
+      'last_7_days',
+      {
+        "title" => "Cabinet Office",
+        "anonymous_feedback_counts" => [
+          { path: '/done-well', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
+          { path: '/not-bad-my-friend' },
+          { path: '/fair-enough' },
+        ],
+      }
+    )
 
     organisation_summary = [
       {

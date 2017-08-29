@@ -5,7 +5,7 @@ feature 'Exporting Global CSV of Feedback' do
   let(:user) { create :user_who_can_access_everything }
 
   background do
-    stub_organisations_list
+    stub_support_api_organisations_list
 
     login_as user
   end

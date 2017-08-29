@@ -4,7 +4,7 @@ require 'gds_api/test_helpers/support_api'
 describe AnonymousFeedback::ExploreController, :type => :controller do
   include GdsApi::TestHelpers::SupportApi
   before do
-    stub_organisations_list([
+    stub_support_api_organisations_list([
       {
         slug: "cabinet-office",
         web_url: "https://www.gov.uk/government/organisations/cabinet-office",

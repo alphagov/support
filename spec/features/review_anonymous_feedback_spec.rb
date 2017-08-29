@@ -53,7 +53,7 @@ feature 'Reviewing Anonymous Feedback' do
   }
 
   before do
-    stub_organisations_list
+    stub_support_api_organisations_list
   end
 
   context 'Viewing the table of feedback' do
@@ -75,7 +75,7 @@ feature 'Reviewing Anonymous Feedback' do
 
     context 'with default filtering' do
       before do
-        stub_support_problem_reports('', default_problem_report_list)
+        stub_support_api_problem_reports('', default_problem_report_list)
 
         login_as user
 
@@ -118,8 +118,8 @@ feature 'Reviewing Anonymous Feedback' do
       }
 
       before do
-        stub_support_problem_reports('', default_problem_report_list)
-        stub_support_problem_reports('include_reviewed=true', problem_report_list)
+        stub_support_api_problem_reports('', default_problem_report_list)
+        stub_support_api_problem_reports('include_reviewed=true', problem_report_list)
 
         login_as user
 
@@ -181,8 +181,8 @@ feature 'Reviewing Anonymous Feedback' do
       }
 
       before do
-        stub_support_problem_reports('', problem_report_list)
-        stub_support_problem_reports('from_date=1%20Sep%202016&to_date=1%20Sep%202016', problem_report_list)
+        stub_support_api_problem_reports('', problem_report_list)
+        stub_support_api_problem_reports('from_date=1%20Sep%202016&to_date=1%20Sep%202016', problem_report_list)
 
         login_as user
 
@@ -236,8 +236,8 @@ feature 'Reviewing Anonymous Feedback' do
       }
 
       before do
-        stub_support_problem_reports('', first_problem_report_list_page)
-        stub_support_problem_reports('page=2', second_problem_report_list_page)
+        stub_support_api_problem_reports('', first_problem_report_list_page)
+        stub_support_api_problem_reports('page=2', second_problem_report_list_page)
 
         login_as user
 
@@ -322,7 +322,7 @@ feature 'Reviewing Anonymous Feedback' do
 
       click_link "Feedback explorer"
 
-      first_stub_request = stub_support_problem_reports('', first_unreviewed_problem_report_list_page)
+      first_stub_request = stub_support_api_problem_reports('', first_unreviewed_problem_report_list_page)
 
       click_button "Review Anonymous Feedback"
 
@@ -336,8 +336,8 @@ feature 'Reviewing Anonymous Feedback' do
 
       WebMock.reset!
 
-      second_stub_request = stub_support_problem_reports('', second_unreviewed_problem_report_list_page)
-      reviewed_request = stub_support_mark_reviewed_for_spam(params, { "success" => true })
+      second_stub_request = stub_support_api_problem_reports('', second_unreviewed_problem_report_list_page)
+      reviewed_request = stub_support_api_mark_reviewed_for_spam(params, "success" => true)
 
       click_button 'Save'
 
@@ -368,10 +368,10 @@ feature 'Reviewing Anonymous Feedback' do
     }
 
     before do
-      stub_support_problem_reports('', problem_report_list)
-      stub_support_problem_reports('from_date=1%20Sep%202016&to_date=1%20Sep%202016', problem_report_list)
-      stub_support_mark_reviewed_for_spam({ "1" => "true" },{ "success" => "true" })
-      stub_support_problem_reports('include_reviewed=true&from_date=1%20Sep%202016&to_date=1%20Sep%202016', problem_report_list)
+      stub_support_api_problem_reports('', problem_report_list)
+      stub_support_api_problem_reports('from_date=1%20Sep%202016&to_date=1%20Sep%202016', problem_report_list)
+      stub_support_api_mark_reviewed_for_spam({ "1" => "true" }, "success" => "true")
+      stub_support_api_problem_reports('include_reviewed=true&from_date=1%20Sep%202016&to_date=1%20Sep%202016', problem_report_list)
 
       login_as user
 

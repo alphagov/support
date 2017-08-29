@@ -36,7 +36,7 @@ gem 'govuk_admin_template', '4.4.2'
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else
-  gem "gds-api-adapters", '36.1.0'
+  gem "gds-api-adapters", '47.8.0'
 end
 gem 'gretel', '3.0.9'
 
