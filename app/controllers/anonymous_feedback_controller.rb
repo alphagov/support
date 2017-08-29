@@ -27,6 +27,9 @@ class AnonymousFeedbackController < RequestsController
         # api_response rather than user-supplied params (note it's not
         # currently available on the api_response)
         @filtered_by = ScopeFiltersPresenter.new(path: api_params[:path_prefix], organisation_slug: api_params[:organisation_slug])
+        @organisations_list = support_api.organisations_list.map do |org|
+          [organisation_title_for_select(org), org["slug"]]
+        end
       }
       format.json { render json: api_response.results }
     end
@@ -85,5 +88,12 @@ private
 
   def support_api
     GdsApi::SupportApi.new(Plek.find("support-api"))
+  end
+
+  def organisation_title_for_select(organisation)
+    title = organisation["title"]
+    title << " (#{organisation["acronym"]})" if organisation["acronym"].present?
+    title << " [#{organisation["govuk_status"].titleize}]" if organisation["govuk_status"] && organisation["govuk_status"] != "live"
+    title
   end
 end

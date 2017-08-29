@@ -5,6 +5,7 @@ describe AnonymousFeedbackController, :type => :controller do
   include GdsApi::TestHelpers::SupportApi
   before do
     login_as create(:user)
+    stub_support_api_organisations_list
   end
 
   context "when no `path` or `organisation` given" do
