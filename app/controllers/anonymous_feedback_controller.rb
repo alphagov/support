@@ -23,17 +23,10 @@ class AnonymousFeedbackController < RequestsController
       format.html {
         @feedback = AnonymousFeedbackPresenter.new(api_response)
         @dates = present_date_filters(api_response)
-        # TODO: we should decide how to describe filtering by both a path and
-        # an organisation, separately and together
         # TODO: I guess we should determine this filtering information from the
-        # api_response rather than user-supplied params
-        # TODO: this shouldn't be here, it belongs in its own object, possibly
-        # combined with date filters in a more general filters presenter?
-        if index_params[:path].present?
-          @filtered_by = index_params[:path]
-        elsif index_params[:organisation].present?
-          @filtered_by = organisation_title(index_params[:organisation])
-        end
+        # api_response rather than user-supplied params (note it's not
+        # currently available on the api_response)
+        @filtered_by = ScopeFiltersPresenter.new(path: api_params[:path_prefix], organisation_slug: api_params[:organisation_slug])
       }
       format.json { render json: api_response.results }
     end
@@ -88,11 +81,6 @@ private
     AnonymousFeedbackApiResponse.new(
       support_api.anonymous_feedback(api_params).to_hash
     )
-  end
-
-  def organisation_title(slug)
-    org = support_api.organisation(slug)
-    org.present? ? org["title"] : slug
   end
 
   def support_api

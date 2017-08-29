@@ -8,7 +8,7 @@
                                from: @dates.from,
                                to: @dates.to,
                                results_limited: @feedback.results_limited,
-                               path: @filtered_by) %>
+                               scopes: @filtered_by) %>
     <% %i(from to path organisation).each do |attr| %>
       <% next if params[attr].blank? %>
       <%= hidden_field_tag attr, params[attr], id: "export_form_#{attr}" %>

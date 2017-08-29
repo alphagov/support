@@ -10,7 +10,7 @@ describe FeedexHelper, type: :helper do
         from: from,
         to: to,
         results_limited: results_limited,
-        path: path
+        scopes: ScopeFiltersPresenter.new(path: path)
       )
     }
 
