@@ -26,7 +26,7 @@ class AnonymousFeedbackController < RequestsController
         # TODO: I guess we should determine this filtering information from the
         # api_response rather than user-supplied params (note it's not
         # currently available on the api_response)
-        @filtered_by = ScopeFiltersPresenter.new(path: api_params[:path_prefix], organisation_slug: api_params[:organisation_slug])
+        @filtered_by = scope_filters
         @organisations_list = support_api.organisations_list.map do |org|
           [organisation_title_for_select(org), org["slug"]]
         end
@@ -44,6 +44,10 @@ private
     params.permit(:path, :organisation, :page, :from, :to).to_h
   end
 
+  def scope_filters
+    @scope_filters ||= ScopeFiltersPresenter.new(path: index_params[:path], organisation_slug: index_params[:organisation])
+  end
+
   def present_date_filters(api_response)
     DateFiltersPresenter.new(
       requested_from: index_params[:from],
@@ -59,8 +63,8 @@ private
 
   def api_params
     {
-      path_prefix: index_params[:path],
-      organisation_slug: index_params[:organisation],
+      path_prefix: scope_filters.path,
+      organisation_slug: scope_filters.organisation_slug,
       from: index_params[:from],
       to: index_params[:to],
       page: index_params[:page],
@@ -92,8 +96,8 @@ private
 
   def organisation_title_for_select(organisation)
     title = organisation["title"]
-    title << " (#{organisation["acronym"]})" if organisation["acronym"].present?
-    title << " [#{organisation["govuk_status"].titleize}]" if organisation["govuk_status"] && organisation["govuk_status"] != "live"
+    title << " (#{organisation['acronym']})" if organisation["acronym"].present?
+    title << " [#{organisation['govuk_status'].titleize}]" if organisation["govuk_status"] && organisation["govuk_status"] != "live"
     title
   end
 end

@@ -1,6 +1,71 @@
 require 'rails_helper'
 
 describe ScopeFiltersPresenter, type: :presenter do
+  describe '#path' do
+    it "extracts the path from an https URL" do
+      presenter = described_class.new(path: 'https://www.gov.uk/some-path')
+      expect(presenter.path).to eq("/some-path")
+    end
+
+    it "extracts the path from an http URL" do
+      presenter = described_class.new(path: 'http://www.gov.uk/some-path')
+      expect(presenter.path).to eq("/some-path")
+    end
+
+    it "can extract the path from a URL with a malformed protocol" do
+      [
+        "http:///www.gov.uk/abc",
+        "http//:www.gov.uk/abc",
+        "http/:www.gov.uk/abc",
+        "http:/www.gov.uk/abc",
+      ].each do |malformed_protocol_url|
+        presenter = described_class.new(path: malformed_protocol_url)
+        expect(presenter.path).to eq("/abc")
+      end
+    end
+
+    it "can extract the path from short-hand URLs" do
+      [
+        "www.gov.uk/abc",
+        "gov.uk/abc",
+        "/abc",
+        "abc",
+      ].each do |shorthand_url|
+        presenter = described_class.new(path: shorthand_url)
+        expect(presenter.path).to eq("/abc")
+      end
+    end
+
+    it "falls back to the supplied path if it's exceptionally badly formed" do
+      [
+        "123://1345",
+      ].each do |badly_formed_url|
+        presenter = described_class.new(path: badly_formed_url)
+        expect(presenter.path).to eq(badly_formed_url)
+      end
+    end
+
+    it "extracts '/' as the path from a root style URL" do
+      [
+        "/",
+        "http://gov.uk"
+      ].each do |root_style_path|
+        presenter = described_class.new(path: root_style_path)
+        expect(presenter.path).to eq('/')
+      end
+    end
+
+    it "is nil for blank URLs" do
+      [
+        nil,
+        ""
+      ].each do |blank_url|
+        presenter = described_class.new(path: blank_url)
+        expect(presenter.path).to be_nil
+      end
+    end
+  end
+
   describe "#filtered?" do
     it 'is false when path and organisation are blank' do
       presenter = described_class.new(path: nil, organisation_slug: nil)

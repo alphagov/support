@@ -4,7 +4,7 @@ class ScopeFiltersPresenter
   attr_reader :path, :organisation_slug
 
   def initialize(path: nil, organisation_slug: nil)
-    @path = path
+    @path = normalize_path(path)
     @organisation_slug = organisation_slug
   end
 
@@ -40,6 +40,19 @@ class ScopeFiltersPresenter
   end
 
 private
+
+  def normalize_path(path_or_url)
+    return nil unless path_or_url.present?
+    normalized_path = URI.parse(path_or_url).path
+    if normalized_path.present?
+      normalized_path.sub!(/^(http(s)?(:)?(\/)+?(:)?)?((\/)?www.)?gov.uk/, '')
+      normalized_path.start_with?('/') ? normalized_path : "/#{normalized_path}"
+    else
+      '/'
+    end
+  rescue URI::InvalidURIError
+    path_or_url
+  end
 
   def support_api
     GdsApi::SupportApi.new(Plek.find("support-api"))

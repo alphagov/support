@@ -70,15 +70,13 @@ feature "Exploring anonymous feedback" do
     stub_support_api_anonymous_feedback_organisation_summary(
       'cabinet-office',
       'last_7_days',
-      {
-        "title" => "Cabinet Office",
-        "slug" => 'cabinet-office',
-        "anonymous_feedback_counts" => [
-          { path: '/done-well', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
-          { path: '/not-bad-my-friend' },
-          { path: '/fair-enough' },
-        ],
-      }
+      "title" => "Cabinet Office",
+      "slug" => 'cabinet-office',
+      "anonymous_feedback_counts" => [
+        { path: '/done-well', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
+        { path: '/not-bad-my-friend' },
+        { path: '/fair-enough' },
+      ],
     )
 
     organisation_summary = [
@@ -107,7 +105,9 @@ feature "Exploring anonymous feedback" do
 
   scenario "exploring feedback by organisation and URL" do
     stub_support_api_organisation('cabinet-office')
-    org_summary_request = stub_support_api_anonymous_feedback_organisation_summary('cabinet-office', 'last_7_days', {
+    org_summary_request = stub_support_api_anonymous_feedback_organisation_summary(
+      'cabinet-office',
+      'last_7_days',
       "title" => "Cabinet Office",
       "slug" => 'cabinet-office',
       "anonymous_feedback_counts" => [
@@ -115,113 +115,106 @@ feature "Exploring anonymous feedback" do
         { path: '/guidance/doing-fun-things' },
         { path: '/guidance/not-doing-bad-things' },
       ],
-    })
+    )
 
     org_feedback_request = stub_support_api_anonymous_feedback(
       { organisation_slug: "cabinet-office" },
-      {
-        "current_page" => 1,
-        "pages" => 1,
-        "page_size" => 3,
-        "results" => [
-          {
-            type: "problem-report",
-            path: "/vat-rates",
-            url: "http://www.dev.gov.uk/vat-rates",
-            created_at: DateTime.parse("2013-03-01"),
-            what_doing: "looking at 3rd paragraph",
-            what_wrong: "typo in 2rd word",
-            referrer: "https://www.gov.uk/",
-          },
-          {
-            type: "problem-report",
-            path: "/guidance/doing-fun-things",
-            url: "http://www.dev.gov.uk/guidance/doing-fun-things",
-            created_at: DateTime.parse("2013-02-01"),
-            what_doing: "finding out about fun",
-            what_wrong: "no mention of petting a dog",
-            referrer: "https://www.gov.uk/having-fun",
-          },
-          {
-            type: "problem-report",
-            path: "/guidance/doing-bad-things",
-            url: "http://www.dev.gov.uk/guidance/not-doing-bad-things",
-            created_at: DateTime.parse("2013-02-01"),
-            what_doing: "looking at what you consider bad",
-            what_wrong: "so many typos, whoever wrote this must have been angry",
-            referrer: "https://www.gov.uk/having-fun",
-          },
-        ]
-      }
+      "current_page" => 1,
+      "pages" => 1,
+      "page_size" => 3,
+      "results" => [
+        {
+          type: "problem-report",
+          path: "/vat-rates",
+          url: "http://www.dev.gov.uk/vat-rates",
+          created_at: DateTime.parse("2013-03-01"),
+          what_doing: "looking at 3rd paragraph",
+          what_wrong: "typo in 2rd word",
+          referrer: "https://www.gov.uk/",
+        },
+        {
+          type: "problem-report",
+          path: "/guidance/doing-fun-things",
+          url: "http://www.dev.gov.uk/guidance/doing-fun-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "finding out about fun",
+          what_wrong: "no mention of petting a dog",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+        {
+          type: "problem-report",
+          path: "/guidance/doing-bad-things",
+          url: "http://www.dev.gov.uk/guidance/not-doing-bad-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "looking at what you consider bad",
+          what_wrong: "so many typos, whoever wrote this must have been angry",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+      ]
     )
 
     org_and_path_feedback_request = stub_support_api_anonymous_feedback(
       { organisation_slug: "cabinet-office", path_prefix: '/guidance' },
-      {
-        "current_page" => 1,
-        "pages" => 1,
-        "page_size" => 2,
-        "results" => [
-          {
-            type: "problem-report",
-            path: "/guidance/doing-fun-things",
-            url: "http://www.dev.gov.uk/guidance/doing-fun-things",
-            created_at: DateTime.parse("2013-02-01"),
-            what_doing: "finding out about fun",
-            what_wrong: "no mention of petting a dog",
-            referrer: "https://www.gov.uk/having-fun",
-          },
-          {
-            type: "problem-report",
-            path: "/guidance/doing-bad-things",
-            url: "http://www.dev.gov.uk/guidance/doing-bad-things",
-            created_at: DateTime.parse("2013-02-01"),
-            what_doing: "looking at what you consider bad",
-            what_wrong: "so many typos, whoever wrote this must have been angry",
-            referrer: "https://www.gov.uk/having-fun",
-          },
-        ]
-      }
+      "current_page" => 1,
+      "pages" => 1,
+      "page_size" => 2,
+      "results" => [
+        {
+          type: "problem-report",
+          path: "/guidance/doing-fun-things",
+          url: "http://www.dev.gov.uk/guidance/doing-fun-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "finding out about fun",
+          what_wrong: "no mention of petting a dog",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+        {
+          type: "problem-report",
+          path: "/guidance/doing-bad-things",
+          url: "http://www.dev.gov.uk/guidance/doing-bad-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "looking at what you consider bad",
+          what_wrong: "so many typos, whoever wrote this must have been angry",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+      ]
     )
 
     path_feedback_request = stub_support_api_anonymous_feedback(
       { path_prefix: '/guidance' },
-      {
-        "current_page" => 1,
-        "pages" => 1,
-        "page_size" => 2,
-        "results" => [
-          {
-            type: "problem-report",
-            path: "/guidance/doing-fun-things",
-            url: "http://www.dev.gov.uk/guidance/doing-fun-things",
-            created_at: DateTime.parse("2013-02-01"),
-            what_doing: "finding out about fun",
-            what_wrong: "no mention of petting a dog",
-            referrer: "https://www.gov.uk/having-fun",
-          },
-          {
-            type: "problem-report",
-            path: "/guidance/doing-bad-things",
-            url: "http://www.dev.gov.uk/guidance/doing-bad-things",
-            created_at: DateTime.parse("2013-02-01"),
-            what_doing: "looking at what you consider bad",
-            what_wrong: "so many typos, whoever wrote this must have been angry",
-            referrer: "https://www.gov.uk/having-fun",
-          },
-          {
-            type: "problem-report",
-            path: "/guidance/wearing-a-hat",
-            url: "http://www.dev.gov.uk/guidance/wearing-a-hat",
-            created_at: DateTime.parse("2013-02-01"),
-            what_doing: "want to know about balaclavas",
-            what_wrong: "I know they're not really a hat, but would it hurt to mention them",
-            referrer: "https://www.gov.uk/hats",
-          },
-        ]
-      }
+      "current_page" => 1,
+      "pages" => 1,
+      "page_size" => 2,
+      "results" => [
+        {
+          type: "problem-report",
+          path: "/guidance/doing-fun-things",
+          url: "http://www.dev.gov.uk/guidance/doing-fun-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "finding out about fun",
+          what_wrong: "no mention of petting a dog",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+        {
+          type: "problem-report",
+          path: "/guidance/doing-bad-things",
+          url: "http://www.dev.gov.uk/guidance/doing-bad-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "looking at what you consider bad",
+          what_wrong: "so many typos, whoever wrote this must have been angry",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+        {
+          type: "problem-report",
+          path: "/guidance/wearing-a-hat",
+          url: "http://www.dev.gov.uk/guidance/wearing-a-hat",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "want to know about balaclavas",
+          what_wrong: "I know they're not really a hat, but would it hurt to mention them",
+          referrer: "https://www.gov.uk/hats",
+        },
+      ]
     )
-
 
     explore_anonymous_feedback_with(organisation: "Cabinet Office")
 
