@@ -14,7 +14,7 @@
     <h2 class="add-bottom-margin">By URL</h2>
     <%= semantic_form_for @explore_by_url, url: { action: "create" }, html: {class: 'well'} do |f| %>
       <%= f.input :url, label: "URL", required: true, input_html: { class: "input-md-7", :"aria-required" => true, type: "url"} %>
-      <p class="help-block add-bottom-margin">eg <code>/vat-rates</code> or <code>https://www.gov.uk/bank-holidays</code></p>
+      <p class="help-block add-bottom-margin">For example a page like <code>/vat-rates</code> or <code>https://www.gov.uk/bank-holidays</code>, or a partial path like <code>/guidance/</code></p>
       <%= f.action :submit, label: "Explore by URL", button_html: { class: "btn btn-success" } %>
     <% end %>
   </div>
