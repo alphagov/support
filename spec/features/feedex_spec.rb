@@ -10,31 +10,7 @@ feature "Exploring anonymous feedback" do
   scenario "exploring feedback by URL" do
     stub_support_api_anonymous_feedback(
       { path_prefix: "/vat-rates" },
-      {
-        "current_page" => 1,
-        "pages" => 1,
-        "page_size" => 2,
-        "results" => [
-          {
-            type: "problem-report",
-            path: "/vat-rates",
-            url: "http://www.dev.gov.uk/vat-rates",
-            created_at: DateTime.parse("2013-03-01"),
-            what_doing: "looking at 3rd paragraph",
-            what_wrong: "typo in 2rd word",
-            referrer: "https://www.gov.uk/",
-          },
-          {
-            type: "problem-report",
-            path: "/vat-rates",
-            url: "http://www.dev.gov.uk/vat-rates",
-            created_at: DateTime.parse("2013-02-01"),
-            what_doing: "looking at rates",
-            what_wrong: "standard rate is wrong",
-            referrer: "https://www.gov.uk/pay-vat",
-          },
-        ]
-      }
+      vat_rates_path_results
     )
 
     feedback_reports = [
@@ -58,7 +34,7 @@ feature "Exploring anonymous feedback" do
   scenario "no feedback found" do
     stub_support_api_anonymous_feedback(
       { path_prefix: "/non-existent-path" },
-      { "results" => [], "pages" => 0, "current_page" => 1 }
+      no_results
     )
 
     explore_anonymous_feedback_with(url: "https://www.gov.uk/non-existent-path")
@@ -70,28 +46,22 @@ feature "Exploring anonymous feedback" do
     stub_support_api_anonymous_feedback_organisation_summary(
       'cabinet-office',
       'last_7_days',
-      "title" => "Cabinet Office",
-      "slug" => 'cabinet-office',
-      "anonymous_feedback_counts" => [
-        { path: '/done-well', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
-        { path: '/not-bad-my-friend' },
-        { path: '/fair-enough' },
-      ],
+      cabinet_office_last_7_days_summary_results
     )
 
     organisation_summary = [
       {
-        "Page" => "/done-well",
+        "Page" => "/vat-rates",
         "7 days" => "5 items",
         "30 days" => "10 items",
         "90 days" => "20 items",
       }, {
-        "Page" => "/not-bad-my-friend",
+        "Page" => "/guidance/doing-fun-things",
         "7 days" => "0 items",
         "30 days" => "0 items",
         "90 days" => "0 items",
       }, {
-        "Page" => "/fair-enough",
+        "Page" => "/guidance/not-doing-bad-things",
         "7 days" => "0 items",
         "30 days" => "0 items",
         "90 days" => "0 items",
@@ -108,112 +78,22 @@ feature "Exploring anonymous feedback" do
     org_summary_request = stub_support_api_anonymous_feedback_organisation_summary(
       'cabinet-office',
       'last_7_days',
-      "title" => "Cabinet Office",
-      "slug" => 'cabinet-office',
-      "anonymous_feedback_counts" => [
-        { path: '/vat-rates', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
-        { path: '/guidance/doing-fun-things' },
-        { path: '/guidance/not-doing-bad-things' },
-      ],
+      cabinet_office_last_7_days_summary_results
     )
 
     org_feedback_request = stub_support_api_anonymous_feedback(
       { organisation_slug: "cabinet-office" },
-      "current_page" => 1,
-      "pages" => 1,
-      "page_size" => 3,
-      "results" => [
-        {
-          type: "problem-report",
-          path: "/vat-rates",
-          url: "http://www.dev.gov.uk/vat-rates",
-          created_at: DateTime.parse("2013-03-01"),
-          what_doing: "looking at 3rd paragraph",
-          what_wrong: "typo in 2rd word",
-          referrer: "https://www.gov.uk/",
-        },
-        {
-          type: "problem-report",
-          path: "/guidance/doing-fun-things",
-          url: "http://www.dev.gov.uk/guidance/doing-fun-things",
-          created_at: DateTime.parse("2013-02-01"),
-          what_doing: "finding out about fun",
-          what_wrong: "no mention of petting a dog",
-          referrer: "https://www.gov.uk/having-fun",
-        },
-        {
-          type: "problem-report",
-          path: "/guidance/doing-bad-things",
-          url: "http://www.dev.gov.uk/guidance/not-doing-bad-things",
-          created_at: DateTime.parse("2013-02-01"),
-          what_doing: "looking at what you consider bad",
-          what_wrong: "so many typos, whoever wrote this must have been angry",
-          referrer: "https://www.gov.uk/having-fun",
-        },
-      ]
+      cabinet_office_results
     )
 
     org_and_path_feedback_request = stub_support_api_anonymous_feedback(
       { organisation_slug: "cabinet-office", path_prefix: '/guidance' },
-      "current_page" => 1,
-      "pages" => 1,
-      "page_size" => 2,
-      "results" => [
-        {
-          type: "problem-report",
-          path: "/guidance/doing-fun-things",
-          url: "http://www.dev.gov.uk/guidance/doing-fun-things",
-          created_at: DateTime.parse("2013-02-01"),
-          what_doing: "finding out about fun",
-          what_wrong: "no mention of petting a dog",
-          referrer: "https://www.gov.uk/having-fun",
-        },
-        {
-          type: "problem-report",
-          path: "/guidance/doing-bad-things",
-          url: "http://www.dev.gov.uk/guidance/doing-bad-things",
-          created_at: DateTime.parse("2013-02-01"),
-          what_doing: "looking at what you consider bad",
-          what_wrong: "so many typos, whoever wrote this must have been angry",
-          referrer: "https://www.gov.uk/having-fun",
-        },
-      ]
+      cabinet_office_and_guidance_path_results
     )
 
     path_feedback_request = stub_support_api_anonymous_feedback(
       { path_prefix: '/guidance' },
-      "current_page" => 1,
-      "pages" => 1,
-      "page_size" => 2,
-      "results" => [
-        {
-          type: "problem-report",
-          path: "/guidance/doing-fun-things",
-          url: "http://www.dev.gov.uk/guidance/doing-fun-things",
-          created_at: DateTime.parse("2013-02-01"),
-          what_doing: "finding out about fun",
-          what_wrong: "no mention of petting a dog",
-          referrer: "https://www.gov.uk/having-fun",
-        },
-        {
-          type: "problem-report",
-          path: "/guidance/doing-bad-things",
-          url: "http://www.dev.gov.uk/guidance/doing-bad-things",
-          created_at: DateTime.parse("2013-02-01"),
-          what_doing: "looking at what you consider bad",
-          what_wrong: "so many typos, whoever wrote this must have been angry",
-          referrer: "https://www.gov.uk/having-fun",
-        },
-        {
-          type: "problem-report",
-          path: "/guidance/wearing-a-hat",
-          url: "http://www.dev.gov.uk/guidance/wearing-a-hat",
-          created_at: DateTime.parse("2013-02-01"),
-          what_doing: "want to know about balaclavas",
-          what_wrong: "I know they're not really a hat, but would it hurt to mention them",
-          referrer: "https://www.gov.uk/hats",
-        },
-      ]
+      guidance_path_results
     )
 
     explore_anonymous_feedback_with(organisation: "Cabinet Office")
@@ -256,5 +136,151 @@ feature "Exploring anonymous feedback" do
     expect(page).to have_field("URL", with: '/guidance')
 
     expect(path_feedback_request).to have_been_requested
+  end
+
+  let(:vat_rates_path_results) do
+    {
+      "current_page" => 1,
+      "pages" => 1,
+      "page_size" => 2,
+      "results" => [
+        {
+          type: "problem-report",
+          path: "/vat-rates",
+          url: "http://www.dev.gov.uk/vat-rates",
+          created_at: DateTime.parse("2013-03-01"),
+          what_doing: "looking at 3rd paragraph",
+          what_wrong: "typo in 2rd word",
+          referrer: "https://www.gov.uk/",
+        },
+        {
+          type: "problem-report",
+          path: "/vat-rates",
+          url: "http://www.dev.gov.uk/vat-rates",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "looking at rates",
+          what_wrong: "standard rate is wrong",
+          referrer: "https://www.gov.uk/pay-vat",
+        },
+      ]
+    }
+  end
+
+  let(:no_results) do
+    { "results" => [], "pages" => 0, "current_page" => 1 }
+  end
+
+  let(:cabinet_office_results) do
+    {
+      "current_page" => 1,
+      "pages" => 1,
+      "page_size" => 3,
+      "results" => [
+        {
+          type: "problem-report",
+          path: "/vat-rates",
+          url: "http://www.dev.gov.uk/vat-rates",
+          created_at: DateTime.parse("2013-03-01"),
+          what_doing: "looking at 3rd paragraph",
+          what_wrong: "typo in 2rd word",
+          referrer: "https://www.gov.uk/",
+        },
+        {
+          type: "problem-report",
+          path: "/guidance/doing-fun-things",
+          url: "http://www.dev.gov.uk/guidance/doing-fun-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "finding out about fun",
+          what_wrong: "no mention of petting a dog",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+        {
+          type: "problem-report",
+          path: "/guidance/doing-bad-things",
+          url: "http://www.dev.gov.uk/guidance/not-doing-bad-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "looking at what you consider bad",
+          what_wrong: "so many typos, whoever wrote this must have been angry",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+      ]
+    }
+  end
+
+  let(:cabinet_office_and_guidance_path_results) do
+    {
+      "current_page" => 1,
+      "pages" => 1,
+      "page_size" => 2,
+      "results" => [
+        {
+          type: "problem-report",
+          path: "/guidance/doing-fun-things",
+          url: "http://www.dev.gov.uk/guidance/doing-fun-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "finding out about fun",
+          what_wrong: "no mention of petting a dog",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+        {
+          type: "problem-report",
+          path: "/guidance/doing-bad-things",
+          url: "http://www.dev.gov.uk/guidance/doing-bad-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "looking at what you consider bad",
+          what_wrong: "so many typos, whoever wrote this must have been angry",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+      ]
+    }
+  end
+
+  let(:guidance_path_results) do
+    {
+      "current_page" => 1,
+      "pages" => 1,
+      "page_size" => 2,
+      "results" => [
+        {
+          type: "problem-report",
+          path: "/guidance/doing-fun-things",
+          url: "http://www.dev.gov.uk/guidance/doing-fun-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "finding out about fun",
+          what_wrong: "no mention of petting a dog",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+        {
+          type: "problem-report",
+          path: "/guidance/doing-bad-things",
+          url: "http://www.dev.gov.uk/guidance/doing-bad-things",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "looking at what you consider bad",
+          what_wrong: "so many typos, whoever wrote this must have been angry",
+          referrer: "https://www.gov.uk/having-fun",
+        },
+        {
+          type: "problem-report",
+          path: "/guidance/wearing-a-hat",
+          url: "http://www.dev.gov.uk/guidance/wearing-a-hat",
+          created_at: DateTime.parse("2013-02-01"),
+          what_doing: "want to know about balaclavas",
+          what_wrong: "I know they're not really a hat, but would it hurt to mention them",
+          referrer: "https://www.gov.uk/hats",
+        },
+      ]
+    }
+  end
+
+  let(:cabinet_office_last_7_days_summary_results) do
+    {
+      "title" => "Cabinet Office",
+      "slug" => 'cabinet-office',
+      "anonymous_feedback_counts" => [
+        { path: '/vat-rates', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
+        { path: '/guidance/doing-fun-things' },
+        { path: '/guidance/not-doing-bad-things' },
+      ],
+    }
   end
 end
