@@ -5,6 +5,7 @@ describe AnonymousFeedbackController, :type => :controller do
   include GdsApi::TestHelpers::SupportApi
   before do
     login_as create(:user)
+    stub_support_api_organisations_list
   end
 
   context "when no `path` or `organisation` given" do
@@ -27,7 +28,7 @@ describe AnonymousFeedbackController, :type => :controller do
   context "no results" do
     context "on the first page" do
       it "should show no results" do
-        stub_anonymous_feedback(
+        stub_support_api_anonymous_feedback(
           { path_prefix: "/a" },
           { "results" => [], "pages" => 0, "current_page" => 1 },
         )
@@ -40,7 +41,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
     context "user has manually entered a non-existent page" do
       it "should redirect to the first page" do
-        stub_anonymous_feedback(
+        stub_support_api_anonymous_feedback(
           { path_prefix: "/a", page: 4 },
           { "results" => [], "pages" => 3, "current_page" => 4 },
         )
@@ -54,7 +55,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
   context "valid input, problem reports" do
     before do
-      stub_anonymous_feedback(
+      stub_support_api_anonymous_feedback(
         { path_prefix: "/tax-disc", from: "13/10/2014", to: "25th November 2014" },
         {
           "current_page" => 1,
@@ -107,7 +108,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
   context "valid input, long-form feedback" do
     before do
-      stub_anonymous_feedback(
+      stub_support_api_anonymous_feedback(
         { path_prefix: "/contact/govuk" },
         {
           "current_page" => 1,
@@ -157,7 +158,7 @@ describe AnonymousFeedbackController, :type => :controller do
 
   context "valid input, service feedback" do
     before do
-      stub_anonymous_feedback(
+      stub_support_api_anonymous_feedback(
         { path_prefix: "/done/apply-carers-allowance" },
         {
           "current_page" => 1,
@@ -211,7 +212,7 @@ describe AnonymousFeedbackController, :type => :controller do
     render_views
 
     before do
-      stub_anonymous_feedback(
+      stub_support_api_anonymous_feedback(
         { organisation_slug: "cabinet-office" },
         {
           "current_page" => 1,
@@ -232,7 +233,7 @@ describe AnonymousFeedbackController, :type => :controller do
           ],
         }
       )
-      stub_organisation("cabinet-office")
+      stub_support_api_organisation("cabinet-office")
     end
 
     it "resolves the slug to a title" do

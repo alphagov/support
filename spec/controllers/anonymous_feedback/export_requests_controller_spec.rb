@@ -25,7 +25,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
 
     context "with a path" do
       let!(:stub_request) do
-        stub_support_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
+        stub_support_api_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
                                                       path_prefix: "/foo",
                                                       from: "2015-05-01",
                                                       to: "2015-06-01",
@@ -47,7 +47,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
 
     context "with a path" do
       let!(:stub_request) do
-        stub_support_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
+        stub_support_api_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
                                                       path_prefix: nil,
                                                       from: "2015-05-01",
                                                       to: "2015-06-01",
@@ -72,7 +72,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
     let(:filename) { "feedex_0000-00-00_2015-05-28_vat-rates.csv" }
 
     context "with a ready file" do
-      before { stub_support_feedback_export_request(1, ready: true, filename: filename) }
+      before { stub_support_api_feedback_export_request(1, ready: true, filename: filename) }
 
       it "sends the relevant file" do
         # NOTE send_file acts as a render call, so to avoid breaking the controller
@@ -89,7 +89,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
     end
 
     context "with a pending file" do
-      before { stub_support_feedback_export_request(2, ready: false, filename: filename) }
+      before { stub_support_api_feedback_export_request(2, ready: false, filename: filename) }
 
       it "replies with a 404" do
         get :show, params: { id: 2 }

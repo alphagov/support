@@ -23,16 +23,12 @@ class AnonymousFeedbackController < RequestsController
       format.html {
         @feedback = AnonymousFeedbackPresenter.new(api_response)
         @dates = present_date_filters(api_response)
-        # TODO: we should decide how to describe filtering by both a path and
-        # an organisation, separately and together
         # TODO: I guess we should determine this filtering information from the
-        # api_response rather than user-supplied params
-        # TODO: this shouldn't be here, it belongs in its own object, possibly
-        # combined with date filters in a more general filters presenter?
-        if index_params[:path].present?
-          @filtered_by = index_params[:path]
-        elsif index_params[:organisation].present?
-          @filtered_by = organisation_title(index_params[:organisation])
+        # api_response rather than user-supplied params (note it's not
+        # currently available on the api_response)
+        @filtered_by = scope_filters
+        @organisations_list = support_api.organisations_list.map do |org|
+          [organisation_title_for_select(org), org["slug"]]
         end
       }
       format.json { render json: api_response.results }
@@ -46,6 +42,10 @@ class AnonymousFeedbackController < RequestsController
 private
   def index_params
     params.permit(:path, :organisation, :page, :from, :to).to_h
+  end
+
+  def scope_filters
+    @scope_filters ||= ScopeFiltersPresenter.new(path: index_params[:path], organisation_slug: index_params[:organisation])
   end
 
   def present_date_filters(api_response)
@@ -63,8 +63,8 @@ private
 
   def api_params
     {
-      path_prefix: index_params[:path],
-      organisation_slug: index_params[:organisation],
+      path_prefix: scope_filters.path,
+      organisation_slug: scope_filters.organisation_slug,
       from: index_params[:from],
       to: index_params[:to],
       page: index_params[:page],
@@ -90,12 +90,14 @@ private
     )
   end
 
-  def organisation_title(slug)
-    org = support_api.organisation(slug)
-    org.present? ? org["title"] : slug
-  end
-
   def support_api
     GdsApi::SupportApi.new(Plek.find("support-api"))
+  end
+
+  def organisation_title_for_select(organisation)
+    title = organisation["title"]
+    title << " (#{organisation['acronym']})" if organisation["acronym"].present?
+    title << " [#{organisation['govuk_status'].titleize}]" if organisation["govuk_status"] && organisation["govuk_status"] != "live"
+    title
   end
 end

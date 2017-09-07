@@ -36,14 +36,16 @@ feature "Summary of Organisation feedback" do
   end
 
   def stub_summary_sorted_by(ordering)
-    stub_anonymous_feedback_organisation_summary('cabinet-office', ordering, {
+    stub_support_api_anonymous_feedback_organisation_summary(
+      'cabinet-office',
+      ordering,
       "title" => "Cabinet Office",
       "anonymous_feedback_counts" => [
         { path: '/done-well', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
         { path: '/not-bad-my-friend' },
         { path: '/fair-enough' },
       ],
-    })
+    )
   end
 
   def organisation_summary

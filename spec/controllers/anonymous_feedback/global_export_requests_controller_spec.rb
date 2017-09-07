@@ -16,7 +16,7 @@ describe AnonymousFeedback::GlobalExportRequestsController, type: :controller do
 
   describe "#create" do
     let!(:stub_request) do
-      stub_support_global_export_request_creation(
+      stub_support_api_global_export_request_creation(
         notification_email: user.email,
         from_date: "1 Aug 2016",
         to_date: "8 Aug 2016",
