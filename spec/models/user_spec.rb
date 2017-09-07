@@ -10,7 +10,7 @@ describe User, type: :model do
 
   it "supports persistent creation and retrieval" do
     expect(User.where(uid: "12345")).to be_empty
-    user = User.upsert!("uid" => "12345", "name" => "A", "email" => "a@b.com")
+    User.upsert!("uid" => "12345", "name" => "A", "email" => "a@b.com")
 
     u = User.where(uid: "12345").first
     expect(u).to_not be_nil
