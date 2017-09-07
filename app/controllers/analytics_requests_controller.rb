@@ -1,5 +1,6 @@
 class AnalyticsRequestsController < RequestsController
-  protected
+protected
+
   def new_request
     Support::Requests::AnalyticsRequest.new
   end
@@ -18,10 +19,10 @@ class AnalyticsRequestsController < RequestsController
       :single_point_of_contact_request_details,
       :report_request_details,
       :help_request_details,
-      requester_attributes: [
-        :email,
-        :name,
-        :collaborator_emails
+      requester_attributes: %i[
+        email
+        name
+        collaborator_emails
       ],
     ).to_h
   end

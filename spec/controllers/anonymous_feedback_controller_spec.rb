@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'gds_api/test_helpers/support_api'
 
-describe AnonymousFeedbackController, :type => :controller do
+describe AnonymousFeedbackController, type: :controller do
   include GdsApi::TestHelpers::SupportApi
   before do
     login_as create(:user)
@@ -30,7 +30,7 @@ describe AnonymousFeedbackController, :type => :controller do
       it "should show no results" do
         stub_support_api_anonymous_feedback(
           { path_prefix: "/a" },
-          { "results" => [], "pages" => 0, "current_page" => 1 },
+          "results" => [], "pages" => 0, "current_page" => 1,
         )
 
         get :index, params: { "path" => "/a", "format" => "json" }
@@ -43,7 +43,7 @@ describe AnonymousFeedbackController, :type => :controller do
       it "should redirect to the first page" do
         stub_support_api_anonymous_feedback(
           { path_prefix: "/a", page: 4 },
-          { "results" => [], "pages" => 3, "current_page" => 4 },
+          "results" => [], "pages" => 3, "current_page" => 4,
         )
 
         get :index, params: { path: "/a", page: 4 }

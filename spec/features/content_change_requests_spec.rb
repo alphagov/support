@@ -64,6 +64,7 @@ Out of date XX YY"})
   end
 
   private
+
   def user_makes_a_content_change_request(details)
     visit '/'
 

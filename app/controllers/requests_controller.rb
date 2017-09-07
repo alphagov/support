@@ -23,19 +23,21 @@ class RequestsController < AuthorisationController
           flash.now[:alert] = @request.errors.full_messages.join('\n')
           render :new, status: 400
         end
-        format.json { render json: {"errors" => @request.errors.to_a}, status: 400 }
+        format.json { render json: { "errors" => @request.errors.to_a }, status: 400 }
       end
     end
   end
 
-  protected
+protected
+
   def save_to_zendesk(submitted_request)
     ticket = zendesk_ticket_class.new(submitted_request)
     $statsd.time("#{::STATSD_PREFIX}.timings.querying_sidekiq_stats") { log_queue_sizes }
     $statsd.time("#{::STATSD_PREFIX}.timings.putting_ticket_on_queue") { Zendesk::ZendeskTickets.new.raise_ticket(ticket) }
   end
 
-  private
+private
+
   def log_queue_sizes
     Sidekiq::Stats.new.queues.each do |queue_name, queue_size|
       $statsd.gauge("govuk.app.support.queues.#{queue_name}", queue_size)

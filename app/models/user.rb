@@ -15,6 +15,7 @@ class User < OpenStruct
       end
 
     private
+
       def prefixed_key(key)
         "support-#{Rails.env}:users-#{key}"
       end
@@ -25,11 +26,10 @@ class User < OpenStruct
     end
   end
 
-  def self.attr_accessible(*args)
-  end
+  def self.attr_accessible(*_args); end
 
   include GDS::SSO::User
-  delegate :can?, :cannot?, :to => :ability
+  delegate :can?, :cannot?, to: :ability
 
   def ability
     @ability ||= Support::Permissions::Ability.new(self)
@@ -39,14 +39,14 @@ class User < OpenStruct
     uid = options[:uid]
     auth_hash = Store.fetch(uid)
     return [] unless auth_hash && user_matches?(options, User.new(auth_hash))
-    [ User.new(auth_hash) ]
+    [User.new(auth_hash)]
   end
 
   def self.user_matches?(options, user)
     options.all? { |key, value| user.send(key.to_sym) == value }
   end
 
-  def self.upsert!(auth_hash, options={})
+  def self.upsert!(auth_hash, _options = {})
     Store.write(auth_hash["uid"], auth_hash)
     User.new(auth_hash)
   end
@@ -72,7 +72,7 @@ class User < OpenStruct
     send("#{key}=", value)
   end
 
-  def update_attributes(params, hash = nil)
+  def update_attributes(params, _hash = nil)
     params.each do |key, value|
       send("#{key}=", value)
     end

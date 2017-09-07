@@ -23,4 +23,4 @@ module AuthenticationControllerHelpers
   end
 end
 
-RSpec.configuration.include AuthenticationControllerHelpers, :type => :controller
+RSpec.configuration.include AuthenticationControllerHelpers, type: :controller

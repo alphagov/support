@@ -2,7 +2,7 @@ module Zendesk
   module Ticket
     describe GeneralRequestTicket do
       def ticket(opts = {})
-        GeneralRequestTicket.new(Support::Requests::GeneralRequest.new(opts.merge(:requester_attributes => {})))
+        GeneralRequestTicket.new(Support::Requests::GeneralRequest.new(opts.merge(requester_attributes: {})))
       end
 
       it "has the urls in the comments if the url is present" do

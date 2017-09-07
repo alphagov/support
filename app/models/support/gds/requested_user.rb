@@ -9,7 +9,7 @@ module Support
       TRAINING_OPTIONS = {
         "Writing for GOV.UK" => "writing",
         "Using Whitehall Publisher" => "using_publisher",
-      }
+      }.freeze
 
       validates_presence_of :name, :email
       validates :email, format: { with: /@/ }

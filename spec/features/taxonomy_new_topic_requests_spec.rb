@@ -16,7 +16,7 @@ feature "New taxonomy topic requests" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Taxonomy new topic request - \"Abc\"",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => ["govt_form", "taxonomy_new_topic_request"],
+      "tags" => %w[govt_form taxonomy_new_topic_request],
       "comment" => { "body" =>
 "[Requested topic]
 Abc

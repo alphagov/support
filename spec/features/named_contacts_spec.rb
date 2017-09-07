@@ -16,7 +16,7 @@ feature "Named contacts" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Named contact",
       "requester" => hash_including("name" => user.name, "email" => user.email),
-      "tags" => [ "public_form", "named_contact" ],
+      "tags" => %w[public_form named_contact],
       "comment" => { "body" =>
 "[Requester]
 John Smith <john.smith@email.co.uk>
@@ -52,7 +52,7 @@ true"})
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Named contact about /y",
       "requester" => hash_including("name" => user.name, "email" => user.email),
-      "tags" => [ "public_form", "named_contact" ],
+      "tags" => %w[public_form named_contact],
       "comment" => { "body" =>
 "[Requester]
 John Smith <john.smith@email.co.uk>

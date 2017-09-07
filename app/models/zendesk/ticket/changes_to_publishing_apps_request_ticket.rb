@@ -4,7 +4,7 @@ module Zendesk
       attr_reader :time_constraint
 
       def subject
-        (@request.title.nil? || @request.title.empty?) ? "" : "#{@request.title}"
+        @request.title.nil? || @request.title.empty? ? "" : @request.title.to_s
       end
 
       def tags

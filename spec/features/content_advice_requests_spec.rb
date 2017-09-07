@@ -15,7 +15,7 @@ feature "Request for content advice" do
   scenario "successful request" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Needed by 12 Jan: Which format - Advice on content",
-      "tags" => [ "govt_form", "dept_content_advice" ],
+      "tags" => %w[govt_form dept_content_advice],
       "comment" => { "body" =>
 "[Needed by date]
 12-01-2020
@@ -47,7 +47,7 @@ https://www.gov.uk/x, https://www.gov.uk/y
   scenario "successful request with other reaason" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Tricky query - Advice on content",
-      "tags" => [ "govt_form", "dept_content_advice" ],
+      "tags" => %w[govt_form dept_content_advice],
       "comment" => { "body" =>
 "[Details]
 I have a tricky query, here's my content...
@@ -69,6 +69,7 @@ https://www.gov.uk/x, https://www.gov.uk/y
   end
 
   private
+
   def user_requests_content_advice(details)
     visit '/'
 

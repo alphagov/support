@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe FoiRequestsController, :type => :controller do
+describe FoiRequestsController, type: :controller do
   before do
     login_as create(:api_user)
   end
@@ -25,7 +25,7 @@ describe FoiRequestsController, :type => :controller do
     end
 
     it "returns a JSON array of errors for invalid requests" do
-      params = valid_foi_request.tap {|h| h["foi_request"]["requester"]["email"] = "a" }
+      params = valid_foi_request.tap { |h| h["foi_request"]["requester"]["email"] = "a" }
 
       post :create, params: params.merge(format: :json)
 

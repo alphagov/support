@@ -16,7 +16,7 @@ feature "FOI requests" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "FOI",
       "requester" => hash_including("name" => user.name, "email" => user.email),
-      "tags" => [ "public_form", "foi_request" ],
+      "tags" => %w[public_form foi_request],
       "comment" => { "body" =>
 "[Name]
 John Smith

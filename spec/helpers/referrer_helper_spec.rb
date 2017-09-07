@@ -36,5 +36,4 @@ describe(ReferrerHelper) do
       expect(extract_search_term('https://www.gov.uk/search?q=Taxed%20to%2')).to eq(nil)
     end
   end
-
 end

@@ -2,7 +2,8 @@ require 'gds_zendesk/users'
 require 'zendesk_api/error'
 
 class AccountsPermissionsAndTrainingRequestsController < RequestsController
-  protected
+protected
+
   def new_request
     Support::Requests::AccountsPermissionsAndTrainingRequest.new
   end
@@ -19,7 +20,7 @@ class AccountsPermissionsAndTrainingRequestsController < RequestsController
     params.require(:support_requests_accounts_permissions_and_training_request).permit(
       :action, :additional_comments,
       :user_needs, :mainstream_changes, :maslow, :other_details,
-      requester_attributes: [:email, :name, :collaborator_emails],
+      requester_attributes: %i[email name collaborator_emails],
       requested_user_attributes: [
         :name,
         :email,

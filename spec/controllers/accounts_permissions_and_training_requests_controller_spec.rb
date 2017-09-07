@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AccountsPermissionsAndTrainingRequestsController, :type => :controller do
+describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
   def valid_requested_user_params
     {
       "name" => "subject",
@@ -48,7 +48,7 @@ describe AccountsPermissionsAndTrainingRequestsController, :type => :controller 
     it "submits the request to Zendesk and creates a Zendesk user with the requested user details" do
       zendesk_has_no_user_with_email(valid_requested_user_params["email"])
       stub_ticket_creation = stub_zendesk_ticket_creation(
-        hash_including("tags" => ['govt_form', 'create_new_user', "inside_government"])
+        hash_including("tags" => %w[govt_form create_new_user inside_government])
       )
       stub_user_creation = stub_zendesk_user_creation(
         email: "subject@digital.cabinet-office.gov.uk",
@@ -90,10 +90,10 @@ describe AccountsPermissionsAndTrainingRequestsController, :type => :controller 
     context "concerning departments and policy" do
       it "tags the ticket with an inside_government tag" do
         stub_request = stub_zendesk_ticket_creation(
-          hash_including("tags" => ['govt_form', 'change_user', 'inside_government'])
+          hash_including("tags" => %w[govt_form change_user inside_government])
         )
 
-        params = valid_change_user_request_params.tap {|p| p["support_requests_accounts_permissions_and_training_request"].merge!("user_needs" => "editor")}
+        params = valid_change_user_request_params.tap { |p| p["support_requests_accounts_permissions_and_training_request"].merge!("user_needs" => "editor") }
 
         post :create, params: params
 

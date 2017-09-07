@@ -12,7 +12,7 @@ feature "Analytics requests" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Request for analytics",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => [ "govt_form", "analytics" ],
+      "tags" => %w[govt_form analytics],
       "comment" => { "body" =>
 "[Google Analytics Access]
 Sarah Jones sarah@example.com some area

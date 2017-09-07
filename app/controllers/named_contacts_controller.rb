@@ -1,5 +1,6 @@
 class NamedContactsController < RequestsController
-  protected
+protected
+
   def new_request
     Support::Requests::NamedContact.new
   end
@@ -19,7 +20,7 @@ class NamedContactsController < RequestsController
   def named_contact_params
     params.require(:named_contact).permit(
       :details, :link, :referrer, :javascript_enabled, :user_agent,
-      requester: [:email, :name],
+      requester: %i[email name],
     ).to_h
   end
 end

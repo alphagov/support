@@ -21,6 +21,7 @@ class DateFiltersPresenter
   end
 
 private
+
   attr_reader :requested_from, :requested_to
 
   def parse_date(date)

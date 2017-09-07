@@ -16,9 +16,9 @@ protected
   def live_campaign_request_params
     params.require(:support_requests_live_campaign_request).permit(
       :additional_comments,
-        requester_attributes: [:email, :name, :collaborator_emails],
-        live_campaign_attributes: [
-            :title, :proposed_url, :description, :time_constraints, :reason_for_dates
+        requester_attributes: %i[email name collaborator_emails],
+        live_campaign_attributes: %i[
+          title proposed_url description time_constraints reason_for_dates
         ]
     ).to_h
   end

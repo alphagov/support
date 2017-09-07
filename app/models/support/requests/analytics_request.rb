@@ -1,11 +1,11 @@
 module Support
   module Requests
     class AnalyticsRequest < Request
-      REQUEST_DETAILS_ATTRS = [
-        :google_analytics_request_details,
-        :single_point_of_contact_request_details,
-        :report_request_details,
-        :help_request_details
+      REQUEST_DETAILS_ATTRS = %i[
+        google_analytics_request_details
+        single_point_of_contact_request_details
+        report_request_details
+        help_request_details
       ].freeze
 
       attr_accessor(*REQUEST_DETAILS_ATTRS)
@@ -21,8 +21,8 @@ module Support
       end
 
       def one_or_more_request_details_present
-        request_details = REQUEST_DETAILS_ATTRS.select do |request_details_attribute|
-          !send(request_details_attribute).to_s.empty?
+        request_details = REQUEST_DETAILS_ATTRS.reject do |request_details_attribute|
+          send(request_details_attribute).to_s.empty?
         end
 
         if request_details.empty?

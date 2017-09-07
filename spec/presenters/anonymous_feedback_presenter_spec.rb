@@ -36,7 +36,7 @@ describe AnonymousFeedbackPresenter, type: :presenter do
         current_page: 2,
         pages: 9,
         page_size: 50,
-        results: [ {}, {}, {} ],
+        results: [{}, {}, {}],
         total_count: 444,
         results_limited: true
       )

@@ -18,6 +18,7 @@ class ZendeskTicketWorker
   end
 
 private
+
   def create_ticket(ticket_options)
     GDS_ZENDESK_CLIENT.ticket.create!(HashWithIndifferentAccess.new(ticket_options))
   end

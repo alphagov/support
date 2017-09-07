@@ -34,6 +34,7 @@ See here: google.com"})
   end
 
   private
+
   def user_makes_a_new_feature_request(details)
     visit '/'
 

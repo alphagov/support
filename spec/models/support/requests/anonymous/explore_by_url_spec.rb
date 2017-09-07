@@ -18,7 +18,7 @@ module Support
           [
             "https://www.gov.uk/abc",
             "http://www.gov.uk/abc",
-          ].each {|url| expect(extracted_path_from(url)).to eq("/abc")}
+          ].each { |url| expect(extracted_path_from(url)).to eq("/abc") }
         end
 
         it "can extract the path from a URL with a malformed protocol" do
@@ -27,7 +27,7 @@ module Support
             "http//:www.gov.uk/abc",
             "http/:www.gov.uk/abc",
             "http:/www.gov.uk/abc",
-          ].each {|url| expect(extracted_path_from(url)).to eq("/abc")}
+          ].each { |url| expect(extracted_path_from(url)).to eq("/abc") }
         end
 
         it "can extract the path from short hand URLs" do
@@ -36,7 +36,7 @@ module Support
             "gov.uk/abc",
             "/abc",
             "abc",
-          ].each {|url| expect(extracted_path_from(url)).to eq("/abc")}
+          ].each { |url| expect(extracted_path_from(url)).to eq("/abc") }
         end
 
         def extracted_path_from(url)

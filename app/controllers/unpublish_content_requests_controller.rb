@@ -1,5 +1,6 @@
 class UnpublishContentRequestsController < RequestsController
-  protected
+protected
+
   def new_request
     Support::Requests::UnpublishContentRequest.new
   end
@@ -16,7 +17,7 @@ class UnpublishContentRequestsController < RequestsController
     params.require(:support_requests_unpublish_content_request).permit(
       :urls, :reason_for_unpublishing, :further_explanation, :redirect_url,
       :automatic_redirect,
-      requester_attributes: [:email, :name, :collaborator_emails],
+      requester_attributes: %i[email name collaborator_emails],
     ).to_h
   end
 end

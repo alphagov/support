@@ -1,5 +1,6 @@
 class CampaignRequestsController < RequestsController
-  protected
+protected
+
   def new_request
     Support::Requests::CampaignRequest.new(campaign: Support::GDS::Campaign.new)
   end
@@ -15,10 +16,10 @@ class CampaignRequestsController < RequestsController
   def campaign_request_params
     params.require(:support_requests_campaign_request).permit(
       :additional_comments,
-      requester_attributes: [:email, :name, :collaborator_emails],
-      campaign_attributes: [
-          :title, :other_dept_or_agency, :signed_campaign, :start_date, :end_date, :description,
-          :call_to_action, :success_measure, :proposed_url, :site_metadescription, :cost_of_campaign
+      requester_attributes: %i[email name collaborator_emails],
+      campaign_attributes: %i[
+        title other_dept_or_agency signed_campaign start_date end_date description
+        call_to_action success_measure proposed_url site_metadescription cost_of_campaign
       ]
     ).to_h
   end

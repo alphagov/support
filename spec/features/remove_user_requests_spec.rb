@@ -16,7 +16,7 @@ feature "Remove user requests" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Remove user",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => [ "govt_form", "remove_user" ],
+      "tags" => %w[govt_form remove_user],
       "comment" => { "body" =>
 "[Not before date]
 31-12-2020
@@ -41,6 +41,7 @@ User has left the organisation"})
   end
 
   private
+
   def user_requests_removal_of_another_user(details)
     visit '/'
 

@@ -24,7 +24,8 @@ module AppActions
 
   def feedex_results
     all_cells = find('table#results').all('tr').map { |row| row.all('th, td').map { |cell| cell.text.strip } }
-    first_row, results = all_cells[0], all_cells[1..-1]
+    first_row = all_cells[0]
+    results = all_cells[1..-1]
     results.collect { |row| Hash[first_row.zip(row)] }
   end
 
