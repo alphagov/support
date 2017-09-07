@@ -1,11 +1,13 @@
 require 'rails_helper'
 
-describe GeneralRequestsController, :type => :controller do
+describe GeneralRequestsController, type: :controller do
   def valid_general_request_params
-    { "support_requests_general_request" =>
-      { "requester_attributes" => valid_requester_params,
-        "url"=>"testing",
-        "details"=>"something or other" }
+    {
+      "support_requests_general_request" => {
+        "requester_attributes" => valid_requester_params,
+        "url" => "testing",
+        "details" => "something or other"
+      }
     }
   end
 

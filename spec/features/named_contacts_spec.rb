@@ -17,7 +17,8 @@ feature "Named contacts" do
       "subject" => "Named contact",
       "requester" => hash_including("name" => user.name, "email" => user.email),
       "tags" => %w[public_form named_contact],
-      "comment" => { "body" =>
+      "comment" => {
+        "body" =>
 "[Requester]
 John Smith <john.smith@email.co.uk>
 
@@ -31,9 +32,12 @@ https://www.gov.uk/x
 Mozilla/5.0
 
 [JavaScript Enabled]
-true"})
+true"
+      }
+    )
 
-    post_json '/named_contacts', {
+    post_json(
+      '/named_contacts',
       "named_contact" => {
         "requester" => { "name" => user.name, "email" => user.email },
         "details"   => "xyz",
@@ -42,7 +46,7 @@ true"})
         "javascript_enabled" => true,
         "referrer" => "https://www.gov.uk/x",
       }
-    }
+    )
 
     expect(last_response.status).to eq(201)
     expect(request).to have_been_made
@@ -53,7 +57,8 @@ true"})
       "subject" => "Named contact about /y",
       "requester" => hash_including("name" => user.name, "email" => user.email),
       "tags" => %w[public_form named_contact],
-      "comment" => { "body" =>
+      "comment" => {
+        "body" =>
 "[Requester]
 John Smith <john.smith@email.co.uk>
 
@@ -70,9 +75,12 @@ Unknown
 Mozilla/5.0
 
 [JavaScript Enabled]
-true"})
+true"
+      }
+    )
 
-    post_json '/named_contacts', {
+    post_json(
+      '/named_contacts',
       "named_contact" => {
         "requester" => { "name" => user.name, "email" => user.email },
         "details"   => "xyz",
@@ -81,7 +89,7 @@ true"})
         "javascript_enabled" => true,
         "referrer" => nil,
       }
-    }
+    )
 
     expect(last_response.status).to eq(201)
     expect(request).to have_been_made

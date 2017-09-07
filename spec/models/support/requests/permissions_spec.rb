@@ -3,11 +3,13 @@ require 'rails_helper'
 module Support
   module Requests
     shared_examples_for "a role" do
-      let(:requests_anyone_can_make) { [
-        GeneralRequest,
-        TechnicalFaultReport,
-        AnalyticsRequest,
-      ] }
+      let(:requests_anyone_can_make) {
+        [
+          GeneralRequest,
+          TechnicalFaultReport,
+          AnalyticsRequest,
+        ]
+      }
 
       let(:all_request_types) {
         requests_anyone_can_make + [
@@ -22,7 +24,8 @@ module Support
           NamedContact,
           ChangesToPublishingAppsRequest,
           RemoveUserRequest,
-        ] }
+        ]
+      }
 
       let(:allowed_request_types) { requests_anyone_can_make + requests_specific_to_role }
       let(:disallowed_request_types) { all_request_types - allowed_request_types }
@@ -49,47 +52,46 @@ module Support
 
       context "for content requesters" do
         subject { create(:content_requester) }
-        let(:requests_specific_to_role) { [ ChangesToPublishingAppsRequest, ContentChangeRequest, ContentAdviceRequest, UnpublishContentRequest, AnalyticsRequest ] }
+        let(:requests_specific_to_role) { [ChangesToPublishingAppsRequest, ContentChangeRequest, ContentAdviceRequest, UnpublishContentRequest, AnalyticsRequest] }
         it_behaves_like "a role"
       end
 
       context "for user managers" do
         subject { create(:user_manager) }
-        let(:requests_specific_to_role) { [ AccountsPermissionsAndTrainingRequest, RemoveUserRequest, AnalyticsRequest ] }
+        let(:requests_specific_to_role) { [AccountsPermissionsAndTrainingRequest, RemoveUserRequest, AnalyticsRequest] }
         it_behaves_like "a role"
       end
 
       context "for campaign requesters" do
         subject { create(:campaign_requester) }
-        let(:requests_specific_to_role) { [ CampaignRequest, LiveCampaignRequest ] }
+        let(:requests_specific_to_role) { [CampaignRequest, LiveCampaignRequest] }
         it_behaves_like "a role"
       end
 
       context "for API users" do
         subject { create(:api_user) }
-        let(:requests_specific_to_role) { [
-          FoiRequest,
-          NamedContact,
-        ] }
+        let(:requests_specific_to_role) { [FoiRequest, NamedContact] }
         it_behaves_like "a role"
       end
 
       context "for single points of contact" do
         subject { create(:single_point_of_contact) }
-        let(:requests_specific_to_role) { [
-          :anonymous_feedback,
-          UnpublishContentRequest,
-          ContentAdviceRequest,
-          AnalyticsRequest,
-          CampaignRequest,
-          LiveCampaignRequest,
-          ContentChangeRequest,
-          AccountsPermissionsAndTrainingRequest,
-          FoiRequest,
-          NamedContact,
-          ChangesToPublishingAppsRequest,
-          RemoveUserRequest,
-        ] }
+        let(:requests_specific_to_role) {
+          [
+            :anonymous_feedback,
+            UnpublishContentRequest,
+            ContentAdviceRequest,
+            AnalyticsRequest,
+            CampaignRequest,
+            LiveCampaignRequest,
+            ContentChangeRequest,
+            AccountsPermissionsAndTrainingRequest,
+            FoiRequest,
+            NamedContact,
+            ChangesToPublishingAppsRequest,
+            RemoveUserRequest,
+          ]
+        }
         it_behaves_like "a role"
       end
     end

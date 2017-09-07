@@ -16,8 +16,9 @@ feature "Content change requests" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Update X - Content change request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => [ "govt_form", "content_amend" ],
-      "comment" => { "body" =>
+      "tags" => %w[govt_form content_amend],
+      "comment" => {
+        "body" =>
 "[Needed by date]
 31-12-2020
 
@@ -34,7 +35,9 @@ http://gov.uk/X
 XXXXX
 
 [Details of what should be added, amended or removed]
-Out of date XX YY"})
+Out of date XX YY"
+      }
+    )
 
     user_makes_a_content_change_request(
       title: "Update X",
@@ -53,7 +56,8 @@ Out of date XX YY"})
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Content change request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => %w{govt_form content_amend})
+      "tags" => %w{govt_form content_amend}
+    )
 
     user_makes_a_content_change_request(
       context: "Departments and policy",

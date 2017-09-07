@@ -15,25 +15,23 @@ feature "User satisfaction survey submissions" do
   scenario "submission with comment" do
     stub_support_api_anonymous_feedback(
       { path_prefix: "/done/find-court-tribunal" },
-      {
-        "current_page" => 1,
-        "pages" => 1,
-        "page_size" => 1,
-        "results" => [
-          {
-            type: "service-feedback",
-            slug: "find-court-tribunal",
-            path: "/done/find-court-tribunal",
-            url: "http://www.dev.gov.uk/done/find-court-tribunal",
-            service_satisfaction_rating: 3,
-            details: "Make service less 'meh'",
-            user_agent: "Safari",
-            javascript_enabled: true,
-            created_at: Time.now,
-            updated_at: Time.now,
-          }
-        ]
-      }
+      "current_page" => 1,
+      "pages" => 1,
+      "page_size" => 1,
+      "results" => [
+        {
+          type: "service-feedback",
+          slug: "find-court-tribunal",
+          path: "/done/find-court-tribunal",
+          url: "http://www.dev.gov.uk/done/find-court-tribunal",
+          service_satisfaction_rating: 3,
+          details: "Make service less 'meh'",
+          user_agent: "Safari",
+          javascript_enabled: true,
+          created_at: Time.now,
+          updated_at: Time.now,
+        }
+      ]
     )
 
     explore_anonymous_feedback_with(url: "https://www.gov.uk/done/find-court-tribunal")
@@ -51,23 +49,21 @@ feature "User satisfaction survey submissions" do
   scenario "submission without a comment" do
     stub_support_api_anonymous_feedback(
       { path_prefix: "/done/some-service" },
-      {
-        "current_page" => 1,
-        "pages" => 1,
-        "page_size" => 1,
-        "results" => [
-          {
-            type: "service-feedback",
-            slug: "some-service",
-            path: "/done/some-service",
-            url: "http://www.dev.gov.uk/done/some-service",
-            service_satisfaction_rating: 3,
-            details: nil,
-            javascript_enabled: true,
-            created_at: Time.now.to_s,
-          },
-        ]
-      },
+      "current_page" => 1,
+      "pages" => 1,
+      "page_size" => 1,
+      "results" => [
+        {
+          type: "service-feedback",
+          slug: "some-service",
+          path: "/done/some-service",
+          url: "http://www.dev.gov.uk/done/some-service",
+          service_satisfaction_rating: 3,
+          details: nil,
+          javascript_enabled: true,
+          created_at: Time.now.to_s,
+        },
+      ],
     )
 
     explore_anonymous_feedback_with(url: "https://www.gov.uk/done/some-service")

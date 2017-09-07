@@ -5,11 +5,12 @@ describe AnonymousFeedback::GlobalExportRequestsController, type: :controller do
   include GdsApi::TestHelpers::SupportApi
 
   let(:user) do
-    create(:user,
-           organisation_slug: 'cabinet-office',
-           email: 'foo.bar@example.gov.uk',
-           permissions: ['signin', 'feedex_exporters'],
-          )
+    create(
+      :user,
+      organisation_slug: 'cabinet-office',
+      email: 'foo.bar@example.gov.uk',
+      permissions: %w[signin feedex_exporters]
+    )
   end
 
   before { login_as user }

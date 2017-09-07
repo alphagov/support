@@ -17,7 +17,8 @@ feature "FOI requests" do
       "subject" => "FOI",
       "requester" => hash_including("name" => user.name, "email" => user.email),
       "tags" => %w[public_form foi_request],
-      "comment" => { "body" =>
+      "comment" => {
+        "body" =>
 "[Name]
 John Smith
 
@@ -25,14 +26,17 @@ John Smith
 john.smith@email.co.uk
 
 [Details]
-xyz"})
+xyz"
+      }
+    )
 
-    post_json '/foi_requests', {
+    post_json(
+      '/foi_requests',
       "foi_request" => {
         "requester" => { "name" => user.name, "email" => user.email },
         "details"   => "xyz"
       }
-    }
+    )
 
     expect(last_response.status).to eq(201)
     expect(request).to have_been_made

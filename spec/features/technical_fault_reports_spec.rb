@@ -17,7 +17,8 @@ feature "Technical fault reports" do
       "subject" => "Technical fault report",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form technical_fault fault_with_gov_uk_content],
-      "comment" => { "body" =>
+      "comment" => {
+        "body" =>
 "[Location of fault]
 GOV.UK: content
 
@@ -31,7 +32,9 @@ Clicked on x
 Broken link
 
 [What should have happened]
-Should have linked through"})
+Should have linked through"
+      }
+    )
 
     user_makes_a_technical_fault_report(
       location_of_fault: "GOV.UK: content",

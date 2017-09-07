@@ -6,8 +6,8 @@ describe FoiRequestsController, type: :controller do
   end
 
   def valid_foi_request
-    { "foi_request" =>
-      {
+    {
+      "foi_request" => {
         "requester" => { "name" => "A", "email" => "ab@c.com" },
         "details"   => "details"
       }

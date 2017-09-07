@@ -17,7 +17,9 @@ feature "Live Campaign requests" do
       "subject" => "Live Campaign",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form live_campaign],
-      "comment" => { "body" => "[Campaign Title]
+      "comment" => {
+        "body" =>
+"[Campaign Title]
 Workplace pensions
 
 [Campaign URL]
@@ -30,7 +32,9 @@ Pensions
 This is a time constraint
 
 [Reason for the above dates?]
-This is a reason for choosing specific dates"})
+This is a reason for choosing specific dates"
+      }
+    )
 
     user_makes_a_live_campaign_request(
       title: "Workplace pensions",

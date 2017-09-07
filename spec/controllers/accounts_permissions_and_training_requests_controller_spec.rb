@@ -13,8 +13,9 @@ describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
   end
 
   def valid_create_user_request_params
-    { "support_requests_accounts_permissions_and_training_request" =>
-      { "requester_attributes" => valid_requester_params,
+    {
+      "support_requests_accounts_permissions_and_training_request" => {
+        "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => valid_requested_user_params,
         "action" => "create_new_user",
         "user_needs" => "editor",
@@ -24,8 +25,9 @@ describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
   end
 
   def valid_change_user_request_params
-    { "support_requests_accounts_permissions_and_training_request" =>
-      { "requester_attributes" => valid_requester_params,
+    {
+      "support_requests_accounts_permissions_and_training_request" => {
+        "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => {
           "name" => "subject",
           "email" => "subject@digital.cabinet-office.gov.uk",

@@ -17,7 +17,8 @@ feature "Campaign requests" do
       "subject" => "Campaign",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form campaign],
-      "comment" => { "body" =>
+      "comment" => {
+        "body" =>
 "[Campaign title]
 Workplace pensions
 
@@ -52,7 +53,9 @@ pensions, campaign, newcampaign
 1200
 
 [Additional comments]
-Some comment"})
+Some comment"
+      }
+    )
 
     user_makes_a_campaign_request(
       title: "Workplace pensions",

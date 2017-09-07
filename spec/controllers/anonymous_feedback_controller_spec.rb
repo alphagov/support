@@ -57,24 +57,22 @@ describe AnonymousFeedbackController, type: :controller do
     before do
       stub_support_api_anonymous_feedback(
         { path_prefix: "/tax-disc", from: "13/10/2014", to: "25th November 2014" },
-        {
-          "current_page" => 1,
-          "pages" => 1,
-          "page_size" => 1,
-          "results" => [
-            {
-              id: "123",
-              type: "problem-report",
-              path: "/tax-disc",
-              url: "http://www.dev.gov.uk/tax-disc",
-              created_at: DateTime.parse("2013-03-01"),
-              what_doing: "looking at 3rd paragraph",
-              what_wrong: "typo in 2rd word",
-              referrer: "https://www.gov.uk",
-              user_agent: "Safari",
-            },
-          ],
-        }
+        "current_page" => 1,
+        "pages" => 1,
+        "page_size" => 1,
+        "results" => [
+          {
+            id: "123",
+            type: "problem-report",
+            path: "/tax-disc",
+            url: "http://www.dev.gov.uk/tax-disc",
+            created_at: DateTime.parse("2013-03-01"),
+            what_doing: "looking at 3rd paragraph",
+            what_wrong: "typo in 2rd word",
+            referrer: "https://www.gov.uk",
+            user_agent: "Safari",
+          },
+        ]
       )
     end
 
@@ -110,22 +108,20 @@ describe AnonymousFeedbackController, type: :controller do
     before do
       stub_support_api_anonymous_feedback(
         { path_prefix: "/contact/govuk" },
-        {
-          "current_page" => 1,
-          "pages" => 1,
-          "page_size" => 1,
-          "results" => [
-            {
-              id: "123",
-              type: "long-form-contact",
-              url: "http://www.dev.gov.uk/contact/govuk",
-              path: "/contact/govuk",
-              referrer: "https://www.gov.uk/contact",
-              details: "Abc def",
-              user_agent: "Safari",
-            },
-          ],
-        }
+        "current_page" => 1,
+        "pages" => 1,
+        "page_size" => 1,
+        "results" => [
+          {
+            id: "123",
+            type: "long-form-contact",
+            url: "http://www.dev.gov.uk/contact/govuk",
+            path: "/contact/govuk",
+            referrer: "https://www.gov.uk/contact",
+            details: "Abc def",
+            user_agent: "Safari",
+          },
+        ]
       )
     end
 
@@ -160,23 +156,21 @@ describe AnonymousFeedbackController, type: :controller do
     before do
       stub_support_api_anonymous_feedback(
         { path_prefix: "/done/apply-carers-allowance" },
-        {
-          "current_page" => 1,
-          "pages" => 1,
-          "page_size" => 1,
-          "results" => [
-            {
-              id: "123",
-              type: "service-feedback",
-              slug: "apply-carers-allowance",
-              url: "http://www.dev.gov.uk/done/apply-carers-allowance",
-              path: "/done/apply-carers-allowance",
-              details: "It's great",
-              service_satisfaction_rating: 5,
-              user_agent: "Safari",
-            },
-          ],
-        }
+        "current_page" => 1,
+        "pages" => 1,
+        "page_size" => 1,
+        "results" => [
+          {
+            id: "123",
+            type: "service-feedback",
+            slug: "apply-carers-allowance",
+            url: "http://www.dev.gov.uk/done/apply-carers-allowance",
+            path: "/done/apply-carers-allowance",
+            details: "It's great",
+            service_satisfaction_rating: 5,
+            user_agent: "Safari",
+          },
+        ]
       )
     end
 
@@ -214,24 +208,22 @@ describe AnonymousFeedbackController, type: :controller do
     before do
       stub_support_api_anonymous_feedback(
         { organisation_slug: "cabinet-office" },
-        {
-          "current_page" => 1,
-          "pages" => 1,
-          "page_size" => 1,
-          "results" => [
-            {
-              id: "123",
-              type: "problem-report",
-              path: "/government/organisations/cabinet-office",
-              url: "http://www.dev.gov.uk/government/organisations/cabinet-office",
-              created_at: DateTime.parse("2013-03-01"),
-              what_doing: "looking at 3rd paragraph",
-              what_wrong: "typo in 2rd word",
-              referrer: "https://www.gov.uk",
-              user_agent: "Safari",
-            },
-          ],
-        }
+        "current_page" => 1,
+        "pages" => 1,
+        "page_size" => 1,
+        "results" => [
+          {
+            id: "123",
+            type: "problem-report",
+            path: "/government/organisations/cabinet-office",
+            url: "http://www.dev.gov.uk/government/organisations/cabinet-office",
+            created_at: DateTime.parse("2013-03-01"),
+            what_doing: "looking at 3rd paragraph",
+            what_wrong: "typo in 2rd word",
+            referrer: "https://www.gov.uk",
+            user_agent: "Safari",
+          },
+        ]
       )
       stub_support_api_organisation("cabinet-office")
     end

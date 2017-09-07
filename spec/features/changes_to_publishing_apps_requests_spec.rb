@@ -16,13 +16,16 @@ feature "New feature requests" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Abc",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => [ "govt_form", "new_feature_request" ],
-      "comment" => { "body" =>
+      "tags" => %w[govt_form new_feature_request],
+      "comment" => {
+        "body" =>
 "[User need]
 Information on XYZ
 
 [Feature evidence]
-See here: google.com"})
+See here: google.com"
+      }
+    )
 
     user_makes_a_new_feature_request(
       title: "Abc",

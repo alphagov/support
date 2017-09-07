@@ -44,7 +44,8 @@ describe SupportController, type: :controller do
         "queues" => {
           "queue_a" => { "jobs" => 3 },
           "queue_b" => { "jobs" => 5 }
-      })
+        }
+      )
     end
   end
 end
