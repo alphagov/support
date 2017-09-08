@@ -2,13 +2,22 @@
 // Default styles are not included and the source HTML is styled from scratch
 // http://jqueryui.com/datepicker/
 
+// scss-lint:disable QualifyingElement
+// - because we can't target the links with class .ui-state-default without the
+//   element as they have no other attributes or classes to identify them
+// scss-lint:disable PlaceholderInExtend
+// - because we want to inherit styles from bootstrap in some of our rules
+//   and these aren't written using placeholders so we can't obey the rule
+$datepicker-background-color: #fff;
+$datepicker-border-shadown-color: rgba(0, 0, 0, 0.1);
+
 .ui-datepicker {
-  background: #fff;
+  background: $datepicker-background-color;
   margin-top: $default-label-margin;
   border: 1px solid $table-border-color;
   border-radius: $border-radius-base;
   width: 25em;
-  box-shadow: rgba(0, 0, 0, 0.1) 3px 3px 5px;
+  box-shadow: $datepicker-border-shadown-color 3px 3px 5px;
   display: none;
 }
 
@@ -63,7 +72,7 @@
   }
 
   .ui-state-disabled .ui-state-default {
-    background: #fff;
+    background: $datepicker-background-color;
     color: $text-muted;
     border: none;
   }

@@ -1,3 +1,6 @@
+$sortable-table-focused-column-color: #ccc;
+$sortable-table-column-color: #ddd;
+
 .table-sortable {
   .sortable-column {
     padding: 0;
@@ -12,12 +15,12 @@
     text-decoration: none;
 
     div {
-      background-color: #ccc;
+      background-color: $sortable-table-focused-column-color;
     }
   }
 
   .sorted-column div {
-    background-color: #ddd;
+    background-color: $sortable-table-column-color;
   }
 
   .sorted-column .glyphicon {
