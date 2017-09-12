@@ -10,6 +10,7 @@ class AnonymousFeedback::GlobalExportRequestsController < AuthorisationControlle
   end
 
 private
+
   def export_request_params
     params.
       permit(:from_date, :to_date).

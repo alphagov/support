@@ -1,7 +1,6 @@
 require "gds_api/support_api"
 
 class AnonymousFeedback::ExportRequestsController < AuthorisationController
-
   def create
     authorize! :read, :anonymous_feedback
 
@@ -37,6 +36,7 @@ class AnonymousFeedback::ExportRequestsController < AuthorisationController
   end
 
 private
+
   def support_api
     GdsApi::SupportApi.new(Plek.find("support-api"))
   end

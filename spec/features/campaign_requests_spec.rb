@@ -16,8 +16,9 @@ feature "Campaign requests" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Campaign",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => [ "govt_form", "campaign" ],
-      "comment" => { "body" =>
+      "tags" => %w[govt_form campaign],
+      "comment" => {
+        "body" =>
 "[Campaign title]
 Workplace pensions
 
@@ -52,7 +53,9 @@ pensions, campaign, newcampaign
 1200
 
 [Additional comments]
-Some comment"})
+Some comment"
+      }
+    )
 
     user_makes_a_campaign_request(
       title: "Workplace pensions",
@@ -73,6 +76,7 @@ Some comment"})
   end
 
   private
+
   def user_makes_a_campaign_request(details)
     visit '/'
 

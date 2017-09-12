@@ -21,7 +21,7 @@ class AnonymousFeedback::ProblemReportsController < AuthorisationController
     end
   end
 
-  private
+private
 
   def anonymous_feedback_problem_report_params
     params.permit(:to_date, :from_date, :include_reviewed).to_h

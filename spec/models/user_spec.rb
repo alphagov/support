@@ -3,14 +3,14 @@ require 'redis_client'
 
 require 'gds-sso/lint/user_spec'
 
-describe User, :type => :model do
+describe User, type: :model do
   before do
     RedisClient.instance.connection.del "support-test:users-12345"
   end
 
   it "supports persistent creation and retrieval" do
     expect(User.where(uid: "12345")).to be_empty
-    user = User.upsert!("uid" => "12345", "name" => "A", "email" => "a@b.com")
+    User.upsert!("uid" => "12345", "name" => "A", "email" => "a@b.com")
 
     u = User.where(uid: "12345").first
     expect(u).to_not be_nil
@@ -31,7 +31,7 @@ describe User, :type => :model do
   it "supports mass updating of attributes" do
     user = User.upsert!("uid" => "12345", "name" => "A", "email" => "a@b.com")
 
-    user.update_attributes({ "uid" => "12345", "name" => "Z", "email" => "x@y.com" }, { as: :somebody })
+    user.update_attributes({ "uid" => "12345", "name" => "Z", "email" => "x@y.com" }, as: :somebody)
 
     expect(user.name).to eq("Z")
     expect(user.email).to eq("x@y.com")

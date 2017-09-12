@@ -27,7 +27,7 @@ class SupportController < AuthorisationController
     status = { queues: {} }
 
     Sidekiq::Stats.new.queues.each do |queue_name, queue_size|
-      status[:queues][queue_name] = {"jobs" => queue_size}
+      status[:queues][queue_name] = { "jobs" => queue_size }
     end
 
     respond_to do |format|

@@ -1,14 +1,13 @@
 require 'uri'
 
 module ReferrerHelper
-
   def friendly_referrer(referrer)
     uri = URI.parse(referrer)
     if uri.host
-      if (uri.host.match(/www\.gov.uk/))
+      if uri.host =~ /www\.gov.uk/
         uri.path
       else
-        uri.host.sub(/www\./,'')
+        uri.host.sub(/www\./, '')
       end
     else
       referrer

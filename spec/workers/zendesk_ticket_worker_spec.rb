@@ -44,7 +44,7 @@ describe ZendeskTicketWorker do
     end
 
     it "raises the error" do
-      expect{ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })}.to raise_error(ZendeskAPI::Error::NetworkError)
+      expect { ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" }) }.to raise_error(ZendeskAPI::Error::NetworkError)
     end
   end
 
@@ -55,7 +55,7 @@ describe ZendeskTicketWorker do
     end
 
     it "raises the error" do
-      expect{ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })}.to raise_error(ZendeskAPI::Error::NetworkError)
+      expect { ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" }) }.to raise_error(ZendeskAPI::Error::NetworkError)
     end
   end
 end

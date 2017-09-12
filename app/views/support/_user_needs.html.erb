@@ -1,7 +1,7 @@
 <div id="user-needs"<%= ' class="has-error"'.html_safe if f.object.errors[:formatted_user_needs].any? %>>
   <div id="whitehall">
     <%= f.input :user_needs, as: :radio, label: "Whitehall user accounts", collection: f.object.whitehall_account_options %>
-    <div class="managing_editor_note">
+    <div class="managing-editor-note">
       A managing editor can also:
       <ul>
         <li>unpublish and withdraw your organisation’s content</li>

@@ -1,7 +1,7 @@
 module Support
   module Requests
     class UnpublishContentRequest < Request
-      DEFAULTS = { automatic_redirect: "1" }
+      DEFAULTS = { automatic_redirect: "1" }.freeze
 
       attr_accessor :urls, :reason_for_unpublishing, :further_explanation, :redirect_url, :automatic_redirect
       validates_presence_of :urls, :reason_for_unpublishing

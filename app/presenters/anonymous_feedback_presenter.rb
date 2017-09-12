@@ -15,6 +15,7 @@ class AnonymousFeedbackPresenter < SimpleDelegator
   end
 
 private
+
   def present_results(results)
     results.map { |entry| OpenStruct.new(entry) }
   end

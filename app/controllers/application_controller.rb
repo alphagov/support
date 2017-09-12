@@ -9,7 +9,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from Timeout::Error, with: :service_unavailable
 
-  protected
+protected
+
   def exception_notification_for(e)
     exception_class_name = e.class.name.demodulize.downcase
     $statsd.increment("#{::STATSD_PREFIX}.exception.#{exception_class_name}")

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe SupportController, :type => :controller do
+describe SupportController, type: :controller do
   it "renders the landing page" do
     login_as create(:user)
     get :landing
@@ -44,7 +44,8 @@ describe SupportController, :type => :controller do
         "queues" => {
           "queue_a" => { "jobs" => 3 },
           "queue_b" => { "jobs" => 5 }
-      })
+        }
+      )
     end
   end
 end

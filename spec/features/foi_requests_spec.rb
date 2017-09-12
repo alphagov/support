@@ -16,8 +16,9 @@ feature "FOI requests" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "FOI",
       "requester" => hash_including("name" => user.name, "email" => user.email),
-      "tags" => [ "public_form", "foi_request" ],
-      "comment" => { "body" =>
+      "tags" => %w[public_form foi_request],
+      "comment" => {
+        "body" =>
 "[Name]
 John Smith
 
@@ -25,14 +26,17 @@ John Smith
 john.smith@email.co.uk
 
 [Details]
-xyz"})
+xyz"
+      }
+    )
 
-    post_json '/foi_requests', {
+    post_json(
+      '/foi_requests',
       "foi_request" => {
         "requester" => { "name" => user.name, "email" => user.email },
         "details"   => "xyz"
       }
-    }
+    )
 
     expect(last_response.status).to eq(201)
     expect(request).to have_been_made

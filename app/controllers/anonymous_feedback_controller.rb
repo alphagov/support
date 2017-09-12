@@ -7,7 +7,7 @@ class AnonymousFeedbackController < RequestsController
     unless has_required_api_params?
       respond_to do |format|
         format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
-        format.json { render json: {"errors" => ["Please set a valid 'path' or 'organisation' parameter"] }, status: 400 }
+        format.json { render json: { "errors" => ["Please set a valid 'path' or 'organisation' parameter"] }, status: 400 }
       end
       return
     end
@@ -40,6 +40,7 @@ class AnonymousFeedbackController < RequestsController
   end
 
 private
+
   def index_params
     params.permit(:path, :organisation, :page, :from, :to).to_h
   end
@@ -72,9 +73,9 @@ private
   end
 
   def at_least_one_required_api_params
-    [
-      :path_prefix,
-      :organisation_slug,
+    %i[
+      path_prefix
+      organisation_slug
     ]
   end
 

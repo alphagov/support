@@ -9,7 +9,8 @@ module AuthenticationControllerHelpers
   end
 
   def login_as_an_authorised_user
-    @user = double(:user,
+    @user = double(
+      :user,
       name: "A",
       email: "a@b.com",
       remotely_signed_out?: false,
@@ -23,4 +24,4 @@ module AuthenticationControllerHelpers
   end
 end
 
-RSpec.configuration.include AuthenticationControllerHelpers, :type => :controller
+RSpec.configuration.include AuthenticationControllerHelpers, type: :controller

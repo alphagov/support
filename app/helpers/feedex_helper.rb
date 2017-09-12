@@ -1,6 +1,5 @@
 module FeedexHelper
   def total_responses_header(total_count:, from:, to:, results_limited:, scopes:)
-
     response_total = get_response_total(total_count, results_limited, scopes)
 
     if from.present? && to.present?

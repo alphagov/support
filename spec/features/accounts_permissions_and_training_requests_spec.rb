@@ -20,7 +20,8 @@ feature "Accounts, permissions and training requests" do
         "subject" => "Create a new user account",
         "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
         "tags" => %w{govt_form create_new_user inside_government},
-        "comment" => { "body" =>
+        "comment" => {
+          "body" =>
 "[Action]
 Create a new user account
 
@@ -46,7 +47,9 @@ Writing for GOV.UK and Using Whitehall Publisher
 Other training
 
 [Additional comments]
-XXXX"})
+XXXX"
+        }
+      )
 
       user_creation_request = stub_zendesk_user_creation(
         email: "bob@gov.uk",
@@ -80,7 +83,8 @@ XXXX"})
         "subject" => "Change an existing user's account",
         "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
         "tags" => %w{govt_form change_user inside_government},
-        "comment" => { "body" =>
+        "comment" => {
+          "body" =>
 "[Action]
 Change an existing user's account
 
@@ -100,7 +104,9 @@ Writing for GOV.UK and Using Whitehall Publisher
 Other training
 
 [Additional comments]
-XXXX"})
+XXXX"
+        }
+      )
 
       user_requests_a_change_to_whitehall_user_accounts(
         action: "Change an existing user's account",
@@ -125,7 +131,8 @@ XXXX"})
         "subject" => "Create a new user account",
         "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
         "tags" => %w{govt_form create_new_user},
-        "comment" => { "body" =>
+        "comment" => {
+          "body" =>
 "[Action]
 Create a new user account
 
@@ -151,7 +158,9 @@ Writing for GOV.UK and Using Whitehall Publisher
 Other training
 
 [Additional comments]
-XXXX"})
+XXXX"
+        }
+      )
 
       user_creation_request = stub_zendesk_user_creation(
         email: "bob@gov.uk",
@@ -185,7 +194,8 @@ XXXX"})
         "subject" => "Change an existing user's account",
         "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
         "tags" => %w{govt_form change_user},
-        "comment" => { "body" =>
+        "comment" => {
+          "body" =>
 "[Action]
 Change an existing user's account
 
@@ -205,7 +215,9 @@ Writing for GOV.UK and Using Whitehall Publisher
 Other training
 
 [Additional comments]
-XXXX"})
+XXXX"
+        }
+      )
 
       user_requests_a_change_to_other_user_accounts(
         action: "Change an existing user's account",
@@ -223,6 +235,7 @@ XXXX"})
   end
 
   private
+
   def user_requests_a_change_to_whitehall_user_accounts(details)
     visit '/'
 

@@ -4,9 +4,7 @@ describe AnonymousFeedbackApiResponse do
   describe "#beyond_last_page?" do
     context "with 0 pages" do
       let(:api_response) {
-        AnonymousFeedbackApiResponse.new({
-          pages: 0,
-        })
+        described_class.new(pages: 0)
       }
 
       it "isn't beyond last page" do
@@ -17,10 +15,7 @@ describe AnonymousFeedbackApiResponse do
     context "with pages" do
       context "within page limits" do
         let(:api_response) {
-          AnonymousFeedbackApiResponse.new({
-            pages: 100,
-            current_page: 100,
-          })
+          described_class.new(pages: 100, current_page: 100)
         }
 
         it "isn't beyond last page" do
@@ -30,10 +25,7 @@ describe AnonymousFeedbackApiResponse do
 
       context "outside of page limits" do
         let(:api_response) {
-          AnonymousFeedbackApiResponse.new({
-            pages: 1,
-            current_page: 2,
-          })
+          described_class.new(pages: 1, current_page: 2)
         }
 
         it "is beyond last page" do

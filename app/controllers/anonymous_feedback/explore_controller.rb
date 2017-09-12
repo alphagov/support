@@ -12,15 +12,15 @@ class AnonymousFeedback::ExploreController < AuthorisationController
   end
 
   def create
-    if params[:support_requests_anonymous_explore_by_url].present?
-      @explore = Support::Requests::Anonymous::ExploreByUrl.new(
-        explore_by_url_params
-      )
-    else
-      @explore = Support::Requests::Anonymous::ExploreByOrganisation.new(
-        explore_by_organisation_params
-      )
-    end
+    @explore = if params[:support_requests_anonymous_explore_by_url].present?
+                 Support::Requests::Anonymous::ExploreByUrl.new(
+                   explore_by_url_params
+                 )
+               else
+                 Support::Requests::Anonymous::ExploreByOrganisation.new(
+                   explore_by_organisation_params
+                 )
+               end
 
     if @explore.valid?
       redirect_to @explore.redirect_path
@@ -31,6 +31,7 @@ class AnonymousFeedback::ExploreController < AuthorisationController
   end
 
 private
+
   def support_api
     GdsApi::SupportApi.new(Plek.find("support-api"))
   end
@@ -46,8 +47,8 @@ private
 
   def organisation_title(organisation)
     title = organisation["title"]
-    title << " (#{organisation["acronym"]})" if organisation["acronym"].present?
-    title << " [#{organisation["govuk_status"].titleize}]" if organisation["govuk_status"] && organisation["govuk_status"] != "live"
+    title << " (#{organisation['acronym']})" if organisation["acronym"].present?
+    title << " [#{organisation['govuk_status'].titleize}]" if organisation["govuk_status"] && organisation["govuk_status"] != "live"
     title
   end
 end

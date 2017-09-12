@@ -16,13 +16,16 @@ feature "General requests" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Downtime - Govt Agency General Issue",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => [ "govt_form", "govt_agency_general" ],
-      "comment" => { "body" =>
+      "tags" => %w[govt_form govt_agency_general],
+      "comment" => {
+        "body" =>
 "[Url]
 https://www.gov.uk
 
 [Details]
-The site is down"})
+The site is down"
+      }
+    )
 
     user_makes_a_general_request(
       title: "Downtime",
@@ -34,6 +37,7 @@ The site is down"})
   end
 
   private
+
   def user_makes_a_general_request(details)
     visit '/'
 

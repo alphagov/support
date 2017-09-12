@@ -7,12 +7,14 @@ module Support
         date.strftime("%d-%m-%Y")
       end
 
-      subject { Campaign.new(title: 'Test Title', other_dept_or_agency: 'Test Department',
+      subject {
+        Campaign.new(title: 'Test Title', other_dept_or_agency: 'Test Department',
                              signed_campaign: 'Test Signer', start_date: as_str(Date.today),
                              end_date: as_str(Date.tomorrow), description: 'Test Description',
                              call_to_action: 'Test Call to Action', success_measure: 'Test Measure Success',
                              proposed_url: 'example.campaign.gov.uk', site_metadescription: 'tag1, tag2',
-                             cost_of_campaign: 1200) }
+                             cost_of_campaign: 1200)
+      }
 
       it { should validate_presence_of(:title) }
       it { should validate_presence_of(:signed_campaign) }

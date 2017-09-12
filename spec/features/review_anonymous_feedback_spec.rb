@@ -254,7 +254,7 @@ feature 'Reviewing Anonymous Feedback' do
           expect(page).to have_content 'Yeti'
         end
 
-        within (page.first('.pagination')) do
+        within(page.first('.pagination')) do
           click_link '2'
         end
 

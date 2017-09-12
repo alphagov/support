@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'active_model/model'
 
-describe RequestsController, :type => :controller do
+describe RequestsController, type: :controller do
   class TestRequest
     include ActiveModel::Model
     include Support::Requests::WithRequester
@@ -16,7 +16,7 @@ describe RequestsController, :type => :controller do
     end
 
     def tags
-      ["tag_a", "tag_b"]
+      %w[tag_a tag_b]
     end
 
     def comment_snippets
@@ -42,7 +42,7 @@ describe RequestsController, :type => :controller do
     {
       "test_request" => {
         "a" => "A string", "b" => "Another string",
-        "requester_attributes" => {"email" => "abc@d.com"}
+        "requester_attributes" => { "email" => "abc@d.com" }
       }
     }
   end
@@ -69,14 +69,14 @@ describe RequestsController, :type => :controller do
     end
 
     it "rejects form submissions with invalid parameters" do
-      params = valid_params_for_test_request.tap {|p| p["test_request"].merge!("a" => "")}
+      params = valid_params_for_test_request.tap { |p| p["test_request"].merge!("a" => "") }
       expect(controller).to receive(:render).with(:new, hash_including(status: 400))
 
       post :create, params: params
     end
 
     it "submits it to Zendesk" do
-      ticket_request = stub_zendesk_ticket_creation(hash_including("tags" => ['tag_a', 'tag_b']))
+      ticket_request = stub_zendesk_ticket_creation(hash_including("tags" => %w[tag_a tag_b]))
 
       post :create, params: valid_params_for_test_request
 
@@ -116,7 +116,7 @@ describe RequestsController, :type => :controller do
     end
 
     it "rejects a json request for a new form" do
-      expect(controller).to receive(:render).with(json: {"error" => "You have not been granted permission to make these requests."}, status: 403)
+      expect(controller).to receive(:render).with(json: { "error" => "You have not been granted permission to make these requests." }, status: 403)
       get :new, params: { format: :json }
     end
 

@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'gds_api/test_helpers/support_api'
 
-describe AnonymousFeedback::ExploreController, :type => :controller do
+describe AnonymousFeedback::ExploreController, type: :controller do
   include GdsApi::TestHelpers::SupportApi
   before do
     stub_support_api_organisations_list([
@@ -11,7 +11,7 @@ describe AnonymousFeedback::ExploreController, :type => :controller do
         title: "Cabinet Office",
         acronym: "CO",
         govuk_status: "live"
-      },{
+      }, {
         slug: "ministry-of-magic",
         web_url: "https://www.gov.uk/government/organisations/ministry-of-magic",
         title: "Ministry of Magic",
@@ -56,7 +56,7 @@ describe AnonymousFeedback::ExploreController, :type => :controller do
 
     context "when exploring by organisation" do
       let(:org) { "department-of-fair-dos" }
-      let(:attributes) { {organisation: org} }
+      let(:attributes) { { organisation: org } }
       let(:redirect_path) { "/anonymous_feedback/organisations/#{org}" }
 
       it "redirects to anonymous_feedback/organisations#show" do

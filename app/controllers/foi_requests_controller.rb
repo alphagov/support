@@ -1,5 +1,6 @@
 class FoiRequestsController < RequestsController
-  protected
+protected
+
   def new_request
     Support::Requests::FoiRequest.new
   end
@@ -18,7 +19,7 @@ class FoiRequestsController < RequestsController
 
   def foi_request_params
     params.require(:foi_request).permit(
-      :details, { requester: [:email, :name] }
+      :details, requester: %i[email name]
     ).to_h
   end
 end
