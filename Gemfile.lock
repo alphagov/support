@@ -98,7 +98,7 @@ GEM
       actionpack (>= 3.2.13)
     formtastic-bootstrap (3.1.1)
       formtastic (>= 3.0)
-    gds-api-adapters (47.8.0)
+    gds-api-adapters (48.0.0)
       link_header
       lrucache (~> 0.1.1)
       null_logger
@@ -215,7 +215,7 @@ GEM
       byebug (~> 9.0)
       pry (~> 0.10)
     rack (2.0.2)
-    rack-cache (1.7.0)
+    rack-cache (1.7.1)
       rack (>= 0.4)
     rack-protection (2.0.0)
       rack
@@ -320,8 +320,8 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (~> 3.2, >= 3.2.1)
-    sidekiq-logging-json (0.0.16)
-      sidekiq (>= 3, < 5)
+    sidekiq-logging-json (0.0.18)
+      sidekiq (>= 3)
     sidekiq-statsd (0.1.5)
       activesupport
       sidekiq (>= 2.6)
@@ -393,7 +393,7 @@ DEPENDENCIES
   ci_reporter_rspec
   factory_girl_rails (~> 4.5.0)
   formtastic-bootstrap (= 3.1.1)
-  gds-api-adapters (= 47.8.0)
+  gds-api-adapters (~> 48.0)
   gds-sso (~> 13.0)
   gds_zendesk (= 2.4.0)
   govuk-lint
