@@ -14,7 +14,7 @@ protected
   def exception_notification_for(e)
     exception_class_name = e.class.name.demodulize.downcase
     $statsd.increment("#{::STATSD_PREFIX}.exception.#{exception_class_name}")
-    notify_airbrake(e)
+    GovukError.notify(e)
   end
 
   def authenticate_support_user!
