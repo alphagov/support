@@ -81,7 +81,7 @@ describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
 
       allow_any_instance_of(Zendesk::ZendeskTickets).to receive(:raise_ticket)
 
-      expect(controller).to receive(:notify_airbrake)
+      expect(GovukError).to receive(:notify)
         .with(kind_of(ZendeskAPI::Error::ClientError))
 
       post :create, params: valid_create_user_request_params

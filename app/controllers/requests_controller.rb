@@ -32,15 +32,15 @@ protected
 
   def save_to_zendesk(submitted_request)
     ticket = zendesk_ticket_class.new(submitted_request)
-    $statsd.time("#{::STATSD_PREFIX}.timings.querying_sidekiq_stats") { log_queue_sizes }
-    $statsd.time("#{::STATSD_PREFIX}.timings.putting_ticket_on_queue") { Zendesk::ZendeskTickets.new.raise_ticket(ticket) }
+    GovukStatsd.client.time("timings.querying_sidekiq_stats") { log_queue_sizes }
+    GovukStatsd.client.time("timings.putting_ticket_on_queue") { Zendesk::ZendeskTickets.new.raise_ticket(ticket) }
   end
 
 private
 
   def log_queue_sizes
     Sidekiq::Stats.new.queues.each do |queue_name, queue_size|
-      $statsd.gauge("govuk.app.support.queues.#{queue_name}", queue_size)
+      GovukStatsd.client.gauge("govuk.app.support.queues.#{queue_name}", queue_size)
     end
   end
 

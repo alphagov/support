@@ -10,8 +10,6 @@ gem 'rails', '5.0.2'
 gem 'sass-rails', '5.0.6'
 gem 'uglifier', '2.7.1'
 
-gem "airbrake", github: 'alphagov/airbrake', branch: 'silence-dep-warnings-for-rails-5'
-
 gem 'gds-sso', '~> 13.0'
 gem 'cancancan', '~> 1.16'
 gem 'jquery-ui-rails', '5.0.1'
@@ -27,8 +25,7 @@ else
   gem "gds_zendesk", '2.4.0'
 end
 gem 'redis', '3.2.1'
-gem "govuk_sidekiq", '~> 1.0'
-gem "statsd-ruby", "1.2.1", require: "statsd"
+gem "govuk_sidekiq", '~> 2.0'
 gem 'logstasher', '0.4.8'
 gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap-kaminari-views', '0.0.5'
@@ -36,9 +33,10 @@ gem 'govuk_admin_template', '4.4.2'
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else
-  gem "gds-api-adapters", '47.8.0'
+  gem "gds-api-adapters", '~> 48.0'
 end
 gem 'gretel', '3.0.9'
+gem 'govuk_app_config', '~> 0.2.0'
 
 group :test do
   gem 'shoulda', '~> 3.5.0'
