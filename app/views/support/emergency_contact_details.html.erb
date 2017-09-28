@@ -11,43 +11,38 @@
   </blockquote>
 </section>
 <section class="add-bottom-padding add-top-padding">
-  <h2 class="add-bottom-padding">Primary contacts</h2>
 
-  <h4>GOV.UK content support: primary contacts</h4>
+  <h3>GOV.UK content support: office hours</h3>
   <div class="row">
     <div class="col-md-6">
-      <p>Use this number if you’re unable to publish at a critical time, or to make changes to government content managed by GDS. This number will put you in touch with a GOV.UK content designer. You must:</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <ul>
-        <li><%= link_to "submit a support request", new_content_change_request_path %> before you phone</li>
-        <li><%= link_to "read the full guidelines", "https://www.gov.uk/government/publications/govuk-support-requests-our-processes-and-response-times" %></li>
-      </ul>
+      <p>Use this number if you’re unable to publish at a critical time, or to make changes to government content managed by GDS.</p>
     </div>
   </div>
   <div class="row add-bottom-padding add-top-padding">
     <div class="col-md-12">
       <p class="remove-bottom-margin"><strong><%= @primary_contact_details[:urgent_department_content_change][:phone] %></strong></p>
-      <p class="text-muted">Monday to Friday, 9am to 6pm<br>(excluding bank holidays and weekends)</p>
-    </div>
-  </div>
-
-  <h4>Emergency changes to centrally managed content published on GOV.UK</h4>
-  <div class="row">
-    <div class="col-md-6">
-	<p>The GOV.UK content team’s standard hours are 9am to 6pm Monday to Friday. Outside these hours, emergency cover is provided.</p>
-      <p><strong>This should only be used if the public or government is facing immediate and significant financial, legal or physical risk, to request emergency GOV.UK content updates.</strong></p>
+      <p class="text-muted">Monday to Friday, 9am to 6pm<br>(excluding bank holidays)</p>
     </div>
   </div>
   <div class="row">
     <div class="col-md-6">
-      <p>This number will put you in touch with a senior member of the content team. You must:</p>
+      <p>This number will put you in touch with a GOV.UK content designer. You must:</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
       <ul>
         <li><%= link_to "submit a support request", new_content_change_request_path %> before you phone</li>
         <li><%= link_to "read the full guidelines", "https://www.gov.uk/government/publications/govuk-support-requests-our-processes-and-response-times" %></li>
       </ul>
+    </div>
+  </div>
+
+
+  <h3>Emergency GOV.UK content support: out of hours</h3>
+  <div class="row">
+    <div class="col-md-6">
+      <p>Use this only if the public or government is facing immediate and significant financial, legal or physical risk, to request emergency GOV.UK content updates.</p>
     </div>
   </div>
   <div class="row add-bottom-padding add-top-padding">
@@ -56,16 +51,21 @@
       <p class="text-muted">Monday to Sunday, 6pm to 9am</p>
     </div>
   </div>
-
-  <h4>Major technical problems with GOV.UK site</h4>
   <div class="row">
     <div class="col-md-6">
-      <p>Use for critical, high-profile technical issues with the GOV.UK site - eg pages not loading or search not working.</p>
+      <p>Call this number to get in touch with a senior member of the content team, please don't text. You must:</p>
+      <ul>
+        <li><%= link_to "submit a support request", new_content_change_request_path %> before you phone</li>
+        <li><%= link_to "read the full guidelines", "https://www.gov.uk/government/publications/govuk-support-requests-our-processes-and-response-times" %></li>
+      </ul>
     </div>
   </div>
+
+
+  <h3>Major technical problems with GOV.UK site</h3>
   <div class="row">
     <div class="col-md-6">
-      <p>This number will put you in contact with a member of the GOV.UK escalations team, who will advise on next steps.</p>
+      <p>Use for critical, high-profile technical issues with the GOV.UK site - such as pages not loading or search not working.</p>
     </div>
   </div>
   <div class="row add-bottom-padding add-top-padding">
@@ -74,19 +74,17 @@
       <p class="text-muted">24 hours, 7 days a week</p>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-6">
+      <p>This number will put you in contact with a member of the GOV.UK escalations team, who will advise on next steps.</p>
+    </div>
+  </div>
 
-  <h4>National emergencies</h4>
+
+  <h3>National emergencies</h3>
   <div class="row">
     <div class="col-md-6">
       <p>Use for sudden, critical national emergencies such as terrorist attacks.<br>For use only by the communications coordinator in the lead crisis response department.</p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <p>This number will put you in contact with GOV.UK, who will establish your identity and put the GOV.UK site into ‘emergency’ mode.</p>
-      <ul>
-        <li><%= link_to "Further information and guidance", "https://www.gov.uk/guidance/contact-the-government-digital-service/gov-uk-support-requests-processes-and-response-times" %></li>
-      </ul>
     </div>
   </div>
   <div class="row add-bottom-padding add-top-padding">
@@ -95,14 +93,25 @@
       <p class="text-muted">24 hours, 7 days a week</p>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-6">
+      <p>This number will put you in contact with GOV.UK, who will establish your identity and put the GOV.UK site into ‘emergency’ mode.</p>
+      <ul>
+        <li><%= link_to "National emergency publishing process", "https://www.gov.uk/guidance/contact-the-government-digital-service/national-emergency-publishing-guidelines" %></li>
+      </ul>
+    </div>
+  </div>
+
 
 </section>
 
 <section class="add-bottom-padding add-top-padding">
-  <h2>Secondary contacts</h2>
-  <blockquote class="rounded-callout">
-    <p>If you are unable to get an answer on the primary numbers, try the alternative number.</p>
-  </blockquote>
+  <h3>Backup contact</h3>
+  <div class="row">
+    <div class="col-md-6">
+      <p>If you can’t get through on the other numbers, you can call the Head of GOV.UK.</p>
+    </div>
+  </div>
   <div class="row">
     <% @secondary_contact_details.each do |details| %>
       <div class="col-md-6 add-bottom-padding">
