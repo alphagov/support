@@ -6,7 +6,11 @@ class ZendeskTicketWorker
       GovukStatsd.increment("report_a_problem.submission_from_suspended_user")
     else
       begin
-        create_ticket(ticket_options)
+        if ticket_options["requester"]["name"] && ticket_options["requester"]["name"].length > 255
+          GovukStatsd.increment("report_a_problem.zendesk_ticket_name_too_long")
+        else
+          create_ticket(ticket_options)
+        end
       rescue ZendeskAPI::Error::NetworkError => e
         if e.response.status == 409
           GovukStatsd.increment("exception.409_conflict_response") #if Zendesk has already received the ticket, we should stop trying. All we do is record the error in Grafana.
