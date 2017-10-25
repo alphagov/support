@@ -14,6 +14,20 @@ describe ZendeskTicketWorker do
     end
   end
 
+  context 'ticket creation when name length exceeds 255 characters' do
+    before do
+      zendesk_has_user(email: "a@b.com", suspended: false)
+    end
+
+    it "does not create a ticket" do
+      name = "a" * 260
+      stub = stub_zendesk_ticket_creation("some" => "options", "requester" => { "email" => "a@b.com", "name" => name })
+      ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com", "name" => name })
+
+      expect(stub).to_not have_been_made
+    end
+  end
+
   context 'with a suspended requesting user' do
     before do
       zendesk_has_user(email: "a@b.com", suspended: true)
