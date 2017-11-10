@@ -20,22 +20,25 @@ class AnonymousFeedback::ExportRequestsController < AuthorisationController
     end
   end
 
+private
+
   def export_request_params
-    clean_params = anonymous_feedback_params
     {
-      path_prefix: clean_params[:path],
-      from: clean_params[:from],
-      to: clean_params[:to],
-      organisation: clean_params[:organisation],
+      path_prefix: scope_filters.path,
+      organisation: scope_filters.organisation_slug,
+      from: anonymous_feedback_params[:from],
+      to: anonymous_feedback_params[:to],
       notification_email: current_user.email
     }
   end
 
   def anonymous_feedback_params
-    params.permit(:from, :to, :path, :organisation).to_h
+    @anonymous_feedback_params ||= params.permit(:from, :to, :path, :organisation).to_h
   end
 
-private
+  def scope_filters
+    @scope_filters ||= ScopeFiltersPresenter.new(path: anonymous_feedback_params[:path], organisation_slug: anonymous_feedback_params[:organisation])
+  end
 
   def support_api
     GdsApi::SupportApi.new(Plek.find("support-api"))
