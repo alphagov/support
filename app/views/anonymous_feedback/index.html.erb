@@ -9,10 +9,10 @@
                                to: @dates.to,
                                results_limited: @feedback.results_limited,
                                scopes: @filtered_by) %>
-    <% %i(from to path organisation).each do |attr| %>
-      <% next if params[attr].blank? %>
-      <%= hidden_field_tag attr, params[attr], id: "export_form_#{attr}" %>
-    <% end %>
+    <%= hidden_field_tag :from, @dates.from if @dates.from.present? %>
+    <%= hidden_field_tag :to, @dates.to if @dates.to.present? %>
+    <%= hidden_field_tag :path, @filtered_by.path if @filtered_by.path.present? %>
+    <%= hidden_field_tag :organisation, @filtered_by.organisation_slug if @filtered_by.organisation_slug.present? %>
     <%= submit_tag "Export as CSV", class: "btn-sm btn btn-default add-left-margin" %>
   </p>
 <% end %>
