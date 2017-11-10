@@ -42,7 +42,7 @@ class AnonymousFeedbackController < RequestsController
 private
 
   def index_params
-    params.permit(:path, :organisation, :page, :from, :to).to_h
+    @index_params ||= params.permit(:path, :organisation, :page, :from, :to).to_h
   end
 
   def scope_filters
