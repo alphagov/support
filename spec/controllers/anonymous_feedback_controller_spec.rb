@@ -53,152 +53,165 @@ describe AnonymousFeedbackController, type: :controller do
     end
   end
 
-  context "valid input, problem reports" do
-    before do
-      stub_support_api_anonymous_feedback(
-        { path_prefix: "/tax-disc", from: "13/10/2014", to: "25th November 2014" },
-        "current_page" => 1,
-        "pages" => 1,
-        "page_size" => 1,
-        "results" => [
-          {
-            id: "123",
-            type: "problem-report",
-            path: "/tax-disc",
-            url: "http://www.dev.gov.uk/tax-disc",
-            created_at: DateTime.parse("2013-03-01"),
-            what_doing: "looking at 3rd paragraph",
-            what_wrong: "typo in 2rd word",
-            referrer: "https://www.gov.uk",
-            user_agent: "Safari",
-          },
-        ]
-      )
-    end
-
-    context "HTML representation" do
-      it "renders the results" do
-        get :index, params: { path: "/tax-disc", from: "13/10/2014", to: "25th November 2014" }
-        expect(response).to have_http_status(:success)
-      end
-    end
-
-    context "JSON" do
-      render_views
-
-      it "returns the results for problem" do
-        get :index, params: { "path" => "/tax-disc", "format" => "json", from: "13/10/2014", to: "25th November 2014" }
-
-        expect(response).to have_http_status(:success)
-        expect(json_response).to have(1).item
-        expect(json_response.first).to include(
-          "id" => "123",
-          "type" => "problem-report",
-          "what_wrong" => "typo in 2rd word",
-          "what_doing" => "looking at 3rd paragraph",
-          "url" => "http://www.dev.gov.uk/tax-disc",
-          "referrer" => "https://www.gov.uk",
-          "user_agent" => "Safari",
+  context "browsing by path" do
+    context "valid input, problem reports" do
+      before do
+        stub_support_api_anonymous_feedback(
+          { path_prefix: "/tax-disc", from: "13/10/2014", to: "25th November 2014" },
+          "current_page" => 1,
+          "pages" => 1,
+          "page_size" => 1,
+          "results" => [
+            {
+              id: "123",
+              type: "problem-report",
+              path: "/tax-disc",
+              url: "http://www.dev.gov.uk/tax-disc",
+              created_at: DateTime.parse("2013-03-01"),
+              what_doing: "looking at 3rd paragraph",
+              what_wrong: "typo in 2rd word",
+              referrer: "https://www.gov.uk",
+              user_agent: "Safari",
+            },
+          ]
         )
       end
-    end
-  end
 
-  context "valid input, long-form feedback" do
-    before do
-      stub_support_api_anonymous_feedback(
-        { path_prefix: "/contact/govuk" },
-        "current_page" => 1,
-        "pages" => 1,
-        "page_size" => 1,
-        "results" => [
-          {
-            id: "123",
-            type: "long-form-contact",
-            url: "http://www.dev.gov.uk/contact/govuk",
-            path: "/contact/govuk",
-            referrer: "https://www.gov.uk/contact",
-            details: "Abc def",
-            user_agent: "Safari",
-          },
-        ]
-      )
-    end
+      context "HTML representation" do
+        it "renders the results" do
+          get :index, params: { path: "/tax-disc", from: "13/10/2014", to: "25th November 2014" }
+          expect(response).to have_http_status(:success)
+        end
+      end
 
-    context "HTML representation" do
-      it "renders the results for an HTML request" do
-        get :index, params: { path: "/contact/govuk" }
-        expect(response).to have_http_status(:success)
+      context "JSON" do
+        render_views
+
+        it "returns the results for problem" do
+          get :index, params: { "path" => "/tax-disc", "format" => "json", from: "13/10/2014", to: "25th November 2014" }
+
+          expect(response).to have_http_status(:success)
+          expect(json_response).to have(1).item
+          expect(json_response.first).to include(
+            "id" => "123",
+            "type" => "problem-report",
+            "what_wrong" => "typo in 2rd word",
+            "what_doing" => "looking at 3rd paragraph",
+            "url" => "http://www.dev.gov.uk/tax-disc",
+            "referrer" => "https://www.gov.uk",
+            "user_agent" => "Safari",
+          )
+        end
       end
     end
 
-    context "JSON representation" do
-      render_views
-
-      it "returns the results for problem" do
-        get :index, params: { "path" => "/contact/govuk", "format" => "json" }
-
-        expect(response).to have_http_status(:success)
-        expect(json_response).to have(1).item
-        expect(json_response.first).to include(
-          "id" => "123",
-          "type" => "long-form-contact",
-          "details" => "Abc def",
-          "url" => "http://www.dev.gov.uk/contact/govuk",
-          "referrer" => "https://www.gov.uk/contact",
-          "user_agent" => "Safari",
+    context "valid input, long-form feedback" do
+      before do
+        stub_support_api_anonymous_feedback(
+          { path_prefix: "/contact/govuk" },
+          "current_page" => 1,
+          "pages" => 1,
+          "page_size" => 1,
+          "results" => [
+            {
+              id: "123",
+              type: "long-form-contact",
+              url: "http://www.dev.gov.uk/contact/govuk",
+              path: "/contact/govuk",
+              referrer: "https://www.gov.uk/contact",
+              details: "Abc def",
+              user_agent: "Safari",
+            },
+          ]
         )
       end
-    end
-  end
 
-  context "valid input, service feedback" do
-    before do
-      stub_support_api_anonymous_feedback(
-        { path_prefix: "/done/apply-carers-allowance" },
-        "current_page" => 1,
-        "pages" => 1,
-        "page_size" => 1,
-        "results" => [
-          {
-            id: "123",
-            type: "service-feedback",
-            slug: "apply-carers-allowance",
-            url: "http://www.dev.gov.uk/done/apply-carers-allowance",
-            path: "/done/apply-carers-allowance",
-            details: "It's great",
-            service_satisfaction_rating: 5,
-            user_agent: "Safari",
-          },
-        ]
-      )
-    end
+      context "HTML representation" do
+        it "renders the results for an HTML request" do
+          get :index, params: { path: "/contact/govuk" }
+          expect(response).to have_http_status(:success)
+        end
+      end
 
-    context "HTML representation" do
-      it "renders the results" do
-        get :index, params: { path: "/done/apply-carers-allowance" }
-        expect(response).to have_http_status(:success)
+      context "JSON representation" do
+        render_views
+
+        it "returns the results for problem" do
+          get :index, params: { "path" => "/contact/govuk", "format" => "json" }
+
+          expect(response).to have_http_status(:success)
+          expect(json_response).to have(1).item
+          expect(json_response.first).to include(
+            "id" => "123",
+            "type" => "long-form-contact",
+            "details" => "Abc def",
+            "url" => "http://www.dev.gov.uk/contact/govuk",
+            "referrer" => "https://www.gov.uk/contact",
+            "user_agent" => "Safari",
+          )
+        end
       end
     end
 
-    context "JSON representation" do
-      render_views
-
-      it "returns the results" do
-        get :index, params: { "path" => "/done/apply-carers-allowance", "format" => "json" }
-
-        expect(response).to have_http_status(:success)
-        expect(json_response).to have(1).item
-        expect(json_response.first).to include(
-          "id" => "123",
-          "type" => "service-feedback",
-          "slug" => "apply-carers-allowance",
-          "details" => "It's great",
-          "url" => "http://www.dev.gov.uk/done/apply-carers-allowance",
-          "service_satisfaction_rating" => 5,
-          "user_agent" => "Safari",
+    context "valid input, service feedback" do
+      before do
+        stub_support_api_anonymous_feedback(
+          { path_prefix: "/done/apply-carers-allowance" },
+          "current_page" => 1,
+          "pages" => 1,
+          "page_size" => 1,
+          "results" => [
+            {
+              id: "123",
+              type: "service-feedback",
+              slug: "apply-carers-allowance",
+              url: "http://www.dev.gov.uk/done/apply-carers-allowance",
+              path: "/done/apply-carers-allowance",
+              details: "It's great",
+              service_satisfaction_rating: 5,
+              user_agent: "Safari",
+            },
+          ]
         )
       end
+
+      context "HTML representation" do
+        it "renders the results" do
+          get :index, params: { path: "/done/apply-carers-allowance" }
+          expect(response).to have_http_status(:success)
+        end
+      end
+
+      context "JSON representation" do
+        render_views
+
+        it "returns the results" do
+          get :index, params: { "path" => "/done/apply-carers-allowance", "format" => "json" }
+
+          expect(response).to have_http_status(:success)
+          expect(json_response).to have(1).item
+          expect(json_response.first).to include(
+            "id" => "123",
+            "type" => "service-feedback",
+            "slug" => "apply-carers-allowance",
+            "details" => "It's great",
+            "url" => "http://www.dev.gov.uk/done/apply-carers-allowance",
+            "service_satisfaction_rating" => 5,
+            "user_agent" => "Safari",
+          )
+        end
+      end
+    end
+
+    it "normalises the path before talking to the api" do
+      api_request = stub_support_api_anonymous_feedback(
+        hash_including("path_prefix" => '/done/apply-carers-allowance'),
+        "results" => [], "pages" => 0, "current_page" => 1
+      )
+
+      get :index, params: { path: 'done/apply-carers-allowance' }
+
+      expect(api_request).to have_been_made
     end
   end
 

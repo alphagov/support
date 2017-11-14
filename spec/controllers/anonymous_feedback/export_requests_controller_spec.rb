@@ -43,9 +43,15 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
                                                                       from: "2015-05-01",
                                                                       to: "2015-06-01"))
       end
+
+      it "normalises the path before sending it to the api" do
+        post :create, params: { path: "foo", from: "2015-05-01", to: "2015-06-01" }
+
+        expect(stub_request).to have_been_made
+      end
     end
 
-    context "with a path" do
+    context "with an organisation" do
       let!(:stub_request) do
         stub_support_api_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
                                                       path_prefix: nil,
