@@ -1,6 +1,4 @@
-require 'spec_helper'
-require 'active_model/model'
-require 'support/gds/with_user_needs'
+require 'rails_helper'
 
 module Support
   module GDS
@@ -43,6 +41,15 @@ module Support
             it "returns the long text of the permission" do
               expect(request(maslow: "1").formatted_user_needs).
                 to eq("Access to Maslow database of user needs")
+
+              expect(request(mainstream_changes: "1").formatted_user_needs).
+                  to eq("Request changes to your organisation’s mainstream content")
+
+              expect(request(become_organisation_admin: "1").formatted_user_needs).
+                  to eq("Request permission to be your organisation admin")
+
+              expect(request(become_super_organisation_admin: "1").formatted_user_needs).
+                  to eq("Request permission to be a super organisation admin")
             end
           end
 

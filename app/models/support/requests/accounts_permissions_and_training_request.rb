@@ -11,7 +11,7 @@ module Support
         end
       end
       validates_presence_of :action, :requested_user
-      validates :action, inclusion: { in: %w(create_new_user change_user unsuspend_user) }
+      validates :action, inclusion: { in: %w(create_new_user change_user) }
 
       def requested_user_attributes=(attr)
         self.requested_user = Support::GDS::RequestedUser.new(attr)
