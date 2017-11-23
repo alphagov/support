@@ -35,7 +35,6 @@ module Support
         [
           ["Create a new user account", "create_new_user"],
           ["Change an existing user's account", "change_user"],
-          ["Unsuspend an existing user's account", "unsuspend_user"],
         ]
       end
 
