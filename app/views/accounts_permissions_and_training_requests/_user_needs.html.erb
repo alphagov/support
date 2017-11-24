@@ -12,11 +12,11 @@
   </div>
   <div id="other_permissions">
     <%= f.label :other_permissions, "Other GOV.UK permissions", class: "control-label" %>
-    <%= f.input :mainstream_changes, as: :boolean, label: "Request changes to your organisation’s mainstream content" %>
-    <%= f.input :maslow, as: :boolean, label: "Access to Maslow database of user needs" %>
+    <%= f.input :mainstream_changes, as: :boolean, label: f.object.other_permissions_options.key('mainstream_changes') %>
+    <%= f.input :maslow, as: :boolean, label: f.object.other_permissions_options.key('maslow') %>
 
     <%= f.label :sigon_permissions, "Signon permissions", class: "control-label" %>
-    <%= f.input :become_organisation_admin, as: :boolean, label: "Request permission to be your organisation admin" %>
+    <%= f.input :become_organisation_admin, as: :boolean, label: f.object.other_permissions_options.key('become_organisation_admin') %>
     <div class="request-permissions-note">
       As an organisation admin you can:
       <ul>
@@ -24,7 +24,7 @@
         <li>unsuspend or unlock your organisation's accounts</li>
       </ul>
     </div>
-    <%= f.input :become_super_organisation_admin, as: :boolean, label: "Request permission to be a super organisation admin" %>
+    <%= f.input :become_super_organisation_admin, as: :boolean, label: f.object.other_permissions_options.key('become_super_organisation_admin') %>
     <div class="request-permissions-note">
       As a super organisation admin you can manage accounts like an organisation admin for both:
       <ul>

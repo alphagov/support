@@ -18,15 +18,24 @@ module Support
 
       it { should allow_value("a comment").for(:additional_comments) }
 
-      it "provides action choices" do
+      it "provides action options" do
         expect(request.action_options).to_not be_empty
       end
 
       it "provides formatted action" do
         expect(request(action: "create_new_user").formatted_action).to eq("Create a new user account")
+        expect(request(action: "change_user").formatted_action).to eq("Change an existing user's account")
+      end
 
-        expect(request(action: "create_new_user").for_new_user?).to be_truthy
-        expect(request(action: "change_user").for_new_user?).to be_falsey
+      context '#for_new_user?' do
+        it "is true when the action is `create_new_user`" do
+          expect(request(action: "create_new_user").for_new_user?).to be_truthy
+        end
+
+        it "is false for other actions" do
+          expect(request(action: "change_user").for_new_user?).to be_falsey
+          expect(request(action: "not_a_valid_action").for_new_user?).to be_falsey
+        end
       end
 
       it "validates that the requested user is valid" do
@@ -48,6 +57,12 @@ module Support
           it "returns the long text of the user need" do
             expect(request(user_needs: "writer").formatted_user_needs).
               to eq("Writer - can create content")
+
+            expect(request(user_needs: "editor").formatted_user_needs).
+              to eq("Editor - can create, review and publish content")
+
+            expect(request(user_needs: "managing_editor").formatted_user_needs).
+              to eq("Managing editor - can create, review and publish content, and has admin rights")
           end
         end
 
@@ -90,6 +105,7 @@ module Support
               expect(request(other_details: "special permission request").formatted_user_needs).
                 to eq("Other: special permission request")
             end
+
             context "and when another permission is ticked" do
               it "returns long text of the permissions and the text of the other field" do
                 expect(request(mainstream_changes: "1", other_details: "special permission request").formatted_user_needs).
