@@ -19,7 +19,8 @@ protected
   def create_or_change_user_request_params
     params.require(:support_requests_accounts_permissions_and_training_request).permit(
       :action, :additional_comments,
-      :user_needs, :mainstream_changes, :maslow, :other_details,
+      :user_needs, :mainstream_changes, :maslow, :become_organisation_admin,
+      :become_super_organisation_admin, :other_details,
       requester_attributes: %i[email name collaborator_emails],
       requested_user_attributes: [
         :name,

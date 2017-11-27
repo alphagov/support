@@ -6,9 +6,7 @@
    <%= f.input :action, as: :radio, required: true, label: "What would you like to do?", collection: f.object.action_options, input_html: { :"aria-required" => true } %>
 </div>
 
-<br/>
-
-<%= render partial: 'support/user_needs', locals: { f: f } %>
+<%= render partial: 'user_needs', locals: { f: f } %>
 
 <div id="user_details">
   <%= render partial: 'requested_user_details', locals: { f: f } %>

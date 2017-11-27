@@ -1,0 +1,43 @@
+<div id="user-needs"<%= ' class="has-error"'.html_safe if f.object.errors[:formatted_user_needs].any? %>>
+  <div id="whitehall">
+    <%= f.input :user_needs, as: :radio, label: "Whitehall user accounts", collection: f.object.whitehall_account_options %>
+    <div class="request-permissions-note">
+      A managing editor can also:
+      <ul>
+        <li>unpublish and withdraw your organisation’s content</li>
+        <li>request changes to user accounts</li>
+        <li>request new campaigns, organisations and groups</li>
+      </ul>
+    </div>
+  </div>
+  <div id="other_permissions">
+    <%= f.label :other_permissions, "Other GOV.UK permissions", class: "control-label" %>
+    <%= f.input :mainstream_changes, as: :boolean, label: f.object.other_permissions_options.key('mainstream_changes') %>
+    <%= f.input :maslow, as: :boolean, label: f.object.other_permissions_options.key('maslow') %>
+
+    <%= f.label :sigon_permissions, "Signon permissions", class: "control-label" %>
+    <%= f.input :become_organisation_admin, as: :boolean, label: f.object.other_permissions_options.key('become_organisation_admin') %>
+    <div class="request-permissions-note">
+      As an organisation admin you can:
+      <ul>
+        <li>grant and revoke permissions for some applications to users in your organisation</li>
+        <li>unsuspend or unlock your organisation's accounts</li>
+      </ul>
+    </div>
+    <%= f.input :become_super_organisation_admin, as: :boolean, label: f.object.other_permissions_options.key('become_super_organisation_admin') %>
+    <div class="request-permissions-note">
+      As a super organisation admin you can manage accounts like an organisation admin for both:
+      <ul>
+        <li>your own organisation</li>
+        <li>for all related organisations that are modelled under your organisation</li>
+      </ul>
+    </div>
+    <%= f.input :other_details, label: "Other, give details", input_html: { class: "input-md-6" } %>
+  </div>
+  <% if f.object.errors[:formatted_user_needs].any? %>
+    <span class="help-block">
+      <%= f.object.errors[:formatted_user_needs].to_sentence %>
+    </span>
+  <% end %>
+</div>
+
