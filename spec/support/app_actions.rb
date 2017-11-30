@@ -3,7 +3,7 @@ require 'gds_api/test_helpers/support_api'
 module AppActions
   include GdsApi::TestHelpers::SupportApi
 
-  def explore_anonymous_feedback_with(options)
+  def explore_anonymous_feedback_by_urls(list_of_urls: nil, uploaded_list: nil)
     visit "/"
 
     stub_support_api_organisations_list
@@ -11,13 +11,27 @@ module AppActions
     click_on "Feedback explorer"
     assert page.has_title?("Anonymous Feedback"), page.html
 
-    if options[:url].present?
-      fill_in 'URL', with: options[:url]
+    if list_of_urls
+      fill_in 'URL(s)', with: list_of_urls
       click_on "Explore by URL"
-    else
-      select options[:organisation], from: 'Organisation'
-      click_on "Explore by organisation"
+    elsif uploaded_list
+      attach_file("Upload list of URLs", uploaded_list)
+      click_on "Upload list of urls"
     end
+
+    expect(page).to have_content("Feedback for")
+  end
+
+  def explore_anonymous_feedback_by_organisation(organisation)
+    visit "/"
+
+    stub_support_api_organisations_list
+
+    click_on "Feedback explorer"
+    assert page.has_title?("Anonymous Feedback"), page.html
+
+    select organisation, from: 'Organisation'
+    click_on "Explore by organisation"
 
     expect(page).to have_content("Feedback for")
   end

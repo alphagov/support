@@ -4,7 +4,7 @@ class AnonymousFeedback::ExploreController < AuthorisationController
   authorize_resource class: Support::Requests::Anonymous::Explore
 
   def new
-    @explore_by_url = Support::Requests::Anonymous::ExploreByUrl.new
+    @explore_by_multiple_paths = Support::Requests::Anonymous::ExploreByMultiplePaths.new
     @explore_by_organisation = Support::Requests::Anonymous::ExploreByOrganisation.new(organisation: current_user.organisation_slug)
     @organisations_list = support_api.organisations_list.map do |org|
       [organisation_title(org), org["slug"]]
@@ -12,9 +12,9 @@ class AnonymousFeedback::ExploreController < AuthorisationController
   end
 
   def create
-    @explore = if params[:support_requests_anonymous_explore_by_url].present?
-                 Support::Requests::Anonymous::ExploreByUrl.new(
-                   explore_by_url_params
+    @explore = if params[:support_requests_anonymous_explore_by_multiple_paths].present?
+                 Support::Requests::Anonymous::ExploreByMultiplePaths.new(
+                   explore_by_multiple_path_params
                  )
                else
                  Support::Requests::Anonymous::ExploreByOrganisation.new(
@@ -37,8 +37,8 @@ private
   end
 
   # TODO: explicitly permit the right set of params, rather than everything
-  def explore_by_url_params
-    params.require(:support_requests_anonymous_explore_by_url).permit!.to_h
+  def explore_by_multiple_path_params
+    params.require(:support_requests_anonymous_explore_by_multiple_paths).permit!.to_h
   end
 
   def explore_by_organisation_params

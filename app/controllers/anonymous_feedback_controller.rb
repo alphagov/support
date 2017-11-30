@@ -7,7 +7,7 @@ class AnonymousFeedbackController < RequestsController
     unless has_required_api_params?
       respond_to do |format|
         format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
-        format.json { render json: { "errors" => ["Please set a valid 'path' or 'organisation' parameter"] }, status: 400 }
+        format.json { render json: { "errors" => ["Please provide a valid 'paths', 'path' or 'organisation' parameter"] }, status: 400 }
       end
       return
     end
@@ -42,11 +42,20 @@ class AnonymousFeedbackController < RequestsController
 private
 
   def index_params
-    @index_params ||= params.permit(:path, :organisation, :page, :from, :to).to_h
+    clean_paths
+    @index_params ||= params.permit(:organisation, :page, :from, :to, paths: []).to_h
+  end
+
+  def clean_paths
+    if params[:path].present?
+      params[:paths] = [params[:path]]
+    elsif params[:paths] && params[:paths].instance_of?(String)
+      params[:paths] = params[:paths].split(',').map(&:strip)
+    end
   end
 
   def scope_filters
-    @scope_filters ||= ScopeFiltersPresenter.new(path: index_params[:path], organisation_slug: index_params[:organisation])
+    @scope_filters ||= ScopeFiltersPresenter.new(paths: index_params[:paths], organisation_slug: index_params[:organisation])
   end
 
   def present_date_filters(api_response)
@@ -64,7 +73,7 @@ private
 
   def api_params
     {
-      path_prefix: scope_filters.path,
+      path_prefixes: scope_filters.paths_for_api,
       organisation_slug: scope_filters.organisation_slug,
       from: index_params[:from],
       to: index_params[:to],
@@ -74,7 +83,7 @@ private
 
   def at_least_one_required_api_params
     %i[
-      path_prefix
+      path_prefixes
       organisation_slug
     ]
   end

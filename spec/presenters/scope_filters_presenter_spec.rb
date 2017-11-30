@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 describe ScopeFiltersPresenter, type: :presenter do
-  describe '#path' do
+  describe '#paths' do
     it "extracts the path from an https URL" do
-      presenter = described_class.new(path: 'https://www.gov.uk/some-path')
-      expect(presenter.path).to eq("/some-path")
+      presenter = described_class.new(paths: ['https://www.gov.uk/some-path', 'https://www.gov.uk/other-path'])
+      expect(presenter.paths).to eq('/some-path, /other-path')
     end
 
     it "extracts the path from an http URL" do
-      presenter = described_class.new(path: 'http://www.gov.uk/some-path')
-      expect(presenter.path).to eq("/some-path")
+      presenter = described_class.new(paths: ['http://www.gov.uk/some-path', 'http://www.gov.uk/other-path'])
+      expect(presenter.paths).to eq('/some-path, /other-path')
     end
 
     it "can extract the path from a URL with a malformed protocol" do
@@ -19,8 +19,8 @@ describe ScopeFiltersPresenter, type: :presenter do
         "http/:www.gov.uk/abc",
         "http:/www.gov.uk/abc",
       ].each do |malformed_protocol_url|
-        presenter = described_class.new(path: malformed_protocol_url)
-        expect(presenter.path).to eq("/abc")
+        presenter = described_class.new(paths: [malformed_protocol_url])
+        expect(presenter.paths).to eq("/abc")
       end
     end
 
@@ -31,8 +31,8 @@ describe ScopeFiltersPresenter, type: :presenter do
         "/abc",
         "abc",
       ].each do |shorthand_url|
-        presenter = described_class.new(path: shorthand_url)
-        expect(presenter.path).to eq("/abc")
+        presenter = described_class.new(paths: [shorthand_url])
+        expect(presenter.paths).to eq("/abc")
       end
     end
 
@@ -40,8 +40,8 @@ describe ScopeFiltersPresenter, type: :presenter do
       [
         "123://1345",
       ].each do |badly_formed_url|
-        presenter = described_class.new(path: badly_formed_url)
-        expect(presenter.path).to eq(badly_formed_url)
+        presenter = described_class.new(paths: [badly_formed_url])
+        expect(presenter.paths).to eq(badly_formed_url)
       end
     end
 
@@ -50,90 +50,126 @@ describe ScopeFiltersPresenter, type: :presenter do
         "/",
         "http://gov.uk"
       ].each do |root_style_path|
-        presenter = described_class.new(path: root_style_path)
-        expect(presenter.path).to eq('/')
+        presenter = described_class.new(paths: [root_style_path])
+        expect(presenter.paths).to eq('/')
       end
     end
 
-    it "is nil for blank URLs" do
+    it "is root path for blank URLs" do
       [
         nil,
         ""
       ].each do |blank_url|
-        presenter = described_class.new(path: blank_url)
-        expect(presenter.path).to be_nil
+        presenter = described_class.new(paths: [blank_url])
+        expect(presenter.paths).to eq "/"
       end
+    end
+
+    it "is root path for multiple blank URLs" do
+      presenter = described_class.new(paths: [nil, ''])
+      expect(presenter.paths).to eq '/'
+    end
+
+    it "is root path for missing URLs in a list" do
+      missing_urls = [' ', ' ', 'http://www.gov.uk/some-path']
+
+      presenter = described_class.new(paths: missing_urls)
+      expect(presenter.paths).to eq '/, /some-path'
     end
   end
 
-  describe "#filtered?" do
-    it 'is false when path and organisation are blank' do
-      presenter = described_class.new(path: nil, organisation_slug: nil)
+  describe '#filtered?' do
+    it 'is false when `paths` and `organisation_slug` are blank' do
+      presenter = described_class.new(paths: nil, organisation_slug: nil)
       expect(presenter).not_to be_filtered
     end
 
-    it 'is true when path is provided and organisation is blank' do
-      presenter = described_class.new(path: '/done/buying-a-new-hat', organisation_slug: nil)
+    it 'is true when `paths` is provided and `organisation_slug` is blank' do
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat'], organisation_slug: nil)
       expect(presenter).to be_filtered
     end
 
-    it 'is true when organisation is provided and path is blank' do
-      presenter = described_class.new(path: nil, organisation_slug: 'department-of-hats')
+    it 'is true when `organisation_slug` is provided and `paths` is blank' do
+      presenter = described_class.new(paths: nil, organisation_slug: 'department-of-hats')
       expect(presenter).to be_filtered
     end
 
-    it 'is true when both organisation and path are provided' do
-      presenter = described_class.new(path: '/done/buying-a-new-hat', organisation_slug: 'department-of-hats')
+    it 'is true when both `organisation_slug` and `path` are provided' do
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat'], organisation_slug: 'department-of-hats')
       expect(presenter).to be_filtered
     end
   end
 
-  describe "#invalid_filter?" do
-    it 'is true when path and organisation are blank' do
-      presenter = described_class.new(path: nil, organisation_slug: nil)
+  describe '#invalid_filter?' do
+    it 'is true when `path` and `organisation_slug` are blank' do
+      presenter = described_class.new(paths: nil, organisation_slug: nil)
       expect(presenter).to be_invalid_filter
     end
 
-    it 'is false when path is provided and organisation is blank' do
-      presenter = described_class.new(path: '/done/buying-a-new-hat', organisation_slug: nil)
+    it 'is false when `paths` is provided and `organisation_slug` is blank' do
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat'], organisation_slug: nil)
       expect(presenter).not_to be_invalid_filter
     end
 
-    it 'is false when organisation is provided and path is blank' do
-      presenter = described_class.new(path: nil, organisation_slug: 'department-of-hats')
+    it 'is false when `organisation_slug` is provided and `paths` is blank' do
+      presenter = described_class.new(paths: nil, organisation_slug: 'department-of-hats')
       expect(presenter).not_to be_invalid_filter
     end
 
-    it 'is false when both organisation and path are provided' do
-      presenter = described_class.new(path: '/done/buying-a-new-hat', organisation_slug: 'department-of-hats')
+    it 'is false when both `organisation_slug` and `paths` are provided' do
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat'], organisation_slug: 'department-of-hats')
       expect(presenter).not_to be_invalid_filter
     end
   end
 
   describe "#done_page?" do
     it "is false when no path was provided" do
-      presenter = described_class.new(path: nil)
+      presenter = described_class.new(paths: nil)
       expect(presenter).not_to be_done_page
     end
 
-    it 'is true when the provided path starts with "/done"' do
-      presenter = described_class.new(path: "/done/buying-a-new-hat")
-      expect(presenter).to be_done_page
+    context "with one single path" do
+      it 'is true when the provided paths starts with "/done"' do
+        presenter = described_class.new(paths: ['/done/buying-a-new-hat'])
+        expect(presenter).to be_done_page
+      end
+
+      it 'is true when the provided paths starts with "done"' do
+        presenter = described_class.new(paths: ['done/buying-a-new-hat'])
+        expect(presenter).to be_done_page
+      end
+
+      it 'is false when the provided paths starts with anything else' do
+        presenter = described_class.new(paths: ['/start/buying-a-new-hat'])
+        expect(presenter).not_to be_done_page
+      end
+
+      it 'is false when the provided paths has done somewhere other than the start' do
+        presenter = described_class.new(paths: ['/start/getting-things-done'])
+        expect(presenter).not_to be_done_page
+      end
     end
 
-    it 'is true when the provided path starts with "done"' do
-      presenter = described_class.new(path: "done/buying-a-new-hat")
-      expect(presenter).to be_done_page
-    end
+    context "with multiple paths" do
+      it 'is true when one of the provided paths starts with "/done"' do
+        presenter = described_class.new(paths: ['vat-rates', '/guidance/', '/done/buying-a-new-hat'])
+        expect(presenter).to be_done_page
+      end
 
-    it 'is false when the provided path starts with anything else' do
-      presenter = described_class.new(path: "/start/buying-a-new-hat")
-      expect(presenter).not_to be_done_page
-    end
+      it 'is true when one of the provided paths starts with "done"' do
+        presenter = described_class.new(paths: ['vat-rates', '/guidance/', '/done/buying-a-new-hat'])
+        expect(presenter).to be_done_page
+      end
 
-    it 'is false when the provided path has done somewhere other than the start' do
-      presenter = described_class.new(path: "/start/getting-things-done")
-      expect(presenter).not_to be_done_page
+      it 'is false when all of the provided paths start with anything else' do
+        presenter = described_class.new(paths: ['vat-rates', '/guidance/', '/start/buying-a-new-hat'])
+        expect(presenter).not_to be_done_page
+      end
+
+      it 'is false when one of the provided paths has done somewhere other than the start' do
+        presenter = described_class.new(paths: ['vat-rates', '/guidance/', '/start/getting-things-done'])
+        expect(presenter).not_to be_done_page
+      end
     end
   end
 
@@ -199,18 +235,40 @@ describe ScopeFiltersPresenter, type: :presenter do
     end
   end
 
+  describe '#paths_title' do
+    it 'is nil if no paths were provided' do
+      presenter = described_class.new(paths: nil)
+      expect(presenter.paths_title).to eq nil
+    end
+
+    it 'it is the single path of only one is provided' do
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat'])
+      expect(presenter.paths_title).to eq '/done/buying-a-new-hat'
+    end
+
+    it 'it shortens the title if an extra path is provided' do
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat', '/done/selling-an-old-hat'])
+      expect(presenter.paths_title).to eq '/done/buying-a-new-hat and 1 other path'
+    end
+
+    it 'it shortens the title if more than one extra path is provided' do
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat', '/done/selling-an-old-hat', '/done/selling-a-newish-hat'])
+      expect(presenter.paths_title).to eq '/done/buying-a-new-hat and 2 other paths'
+    end
+  end
+
   describe '#to_s' do
-    it 'is "Everything" when path and organisation are omitted' do
-      presenter = described_class.new(path: nil, organisation_slug: nil)
+    it 'is "Everything" when paths and organisation are omitted' do
+      presenter = described_class.new(paths: nil, organisation_slug: nil)
       expect(presenter.to_s).to eq 'Everything'
     end
 
-    it 'is the path when path is provided and organisation is blank' do
-      presenter = described_class.new(path: '/done/buying-a-new-hat', organisation_slug: nil)
+    it 'is the path when paths is provided and organisation is blank' do
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat'], organisation_slug: nil)
       expect(presenter.to_s).to eq '/done/buying-a-new-hat'
     end
 
-    it 'is the organisation title when organisation is provided and path is blank' do
+    it 'is the organisation title when organisation is provided and paths is blank' do
       stub_support_api_organisation(
         "department-of-hats",
         slug: 'department-of-hats',
@@ -220,11 +278,11 @@ describe ScopeFiltersPresenter, type: :presenter do
         govuk_status: "live"
       )
 
-      presenter = described_class.new(path: nil, organisation_slug: 'department-of-hats')
+      presenter = described_class.new(paths: nil, organisation_slug: 'department-of-hats')
       expect(presenter.to_s).to eq 'Department of Hats'
     end
 
-    it 'is the organistion title and path when both organisation and path are provided' do
+    it 'is the organisation title and paths when 1 paths is provided' do
       stub_support_api_organisation(
         "department-of-hats",
         slug: 'department-of-hats',
@@ -234,8 +292,36 @@ describe ScopeFiltersPresenter, type: :presenter do
         govuk_status: "live"
       )
 
-      presenter = described_class.new(path: '/done/buying-a-new-hat', organisation_slug: 'department-of-hats')
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat'], organisation_slug: 'department-of-hats')
       expect(presenter.to_s).to eq 'Department of Hats on /done/buying-a-new-hat'
+    end
+
+    it 'is the organisation title and paths when 2 paths are provided' do
+      stub_support_api_organisation(
+        "department-of-hats",
+        slug: 'department-of-hats',
+        web_url: "https://www.gov.uk/government/organisations/department-of-hats",
+        title: "Department of Hats",
+        acronym: "DoH",
+        govuk_status: "live"
+      )
+
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat', '/done/selling-an-old-hat'], organisation_slug: 'department-of-hats')
+      expect(presenter.to_s).to eq 'Department of Hats on /done/buying-a-new-hat and 1 other path'
+    end
+
+    it 'is the organisation title and paths when more than 2 paths are provided' do
+      stub_support_api_organisation(
+        "department-of-hats",
+          slug: 'department-of-hats',
+          web_url: "https://www.gov.uk/government/organisations/department-of-hats",
+          title: "Department of Hats",
+          acronym: "DoH",
+          govuk_status: "live"
+      )
+
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat', '/done/selling-an-old-hat', '/done/selling-a-newish-hat'], organisation_slug: 'department-of-hats')
+      expect(presenter.to_s).to eq 'Department of Hats on /done/buying-a-new-hat and 2 other paths'
     end
   end
 end

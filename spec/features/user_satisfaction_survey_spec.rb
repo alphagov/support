@@ -14,7 +14,7 @@ feature "User satisfaction survey submissions" do
 
   scenario "submission with comment" do
     stub_support_api_anonymous_feedback(
-      { path_prefix: "/done/find-court-tribunal" },
+      { path_prefixes: ["/done/find-court-tribunal"] },
       "current_page" => 1,
       "pages" => 1,
       "page_size" => 1,
@@ -34,7 +34,7 @@ feature "User satisfaction survey submissions" do
       ]
     )
 
-    explore_anonymous_feedback_with(url: "https://www.gov.uk/done/find-court-tribunal")
+    explore_anonymous_feedback_by_urls(list_of_urls: "https://www.gov.uk/done/find-court-tribunal")
 
     expect(feedex_results).to eq([
       {
@@ -48,7 +48,7 @@ feature "User satisfaction survey submissions" do
 
   scenario "submission without a comment" do
     stub_support_api_anonymous_feedback(
-      { path_prefix: "/done/some-service" },
+      { path_prefixes: ["/done/some-service"] },
       "current_page" => 1,
       "pages" => 1,
       "page_size" => 1,
@@ -66,7 +66,7 @@ feature "User satisfaction survey submissions" do
       ],
     )
 
-    explore_anonymous_feedback_with(url: "https://www.gov.uk/done/some-service")
+    explore_anonymous_feedback_by_urls(list_of_urls: "https://www.gov.uk/done/some-service")
 
     expect(feedex_results.first["Feedback"]).to eq("rating: 3")
   end

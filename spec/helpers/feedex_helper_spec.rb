@@ -10,12 +10,12 @@ describe FeedexHelper, type: :helper do
         from: from,
         to: to,
         results_limited: results_limited,
-        scopes: ScopeFiltersPresenter.new(path: path)
+        scopes: ScopeFiltersPresenter.new(paths: paths)
       )
     }
 
     let(:results_limited) { false }
-    let(:path) { "/vat-rates" }
+    let(:paths) { ["/vat-rates"] }
 
     context "when the page has no ratings" do
       context "with no dates and a total_count of 1" do
@@ -32,7 +32,7 @@ describe FeedexHelper, type: :helper do
       let(:total_count) { 1 }
       let(:from) { nil }
       let(:to) { nil }
-      let(:path) { "/done/register-to-vote" }
+      let(:paths) { ["/done/register-to-vote"] }
 
       context "with no dates and a total_count of 1" do
         it "doesn't output the responses" do
