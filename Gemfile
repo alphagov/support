@@ -22,7 +22,7 @@ gem 'jc-validates_timeliness', '3.1.1'
 if ENV['GDS_ZENDESK_DEV']
   gem "gds_zendesk", :path => '../gds_zendesk'
 else
-  gem "gds_zendesk", '2.4.0'
+  gem "gds_zendesk", '3.0.0'
 end
 gem 'redis', '3.2.1'
 gem "govuk_sidekiq", '~> 2.0'
@@ -40,7 +40,7 @@ gem 'govuk_app_config', '~> 0.2.0'
 
 group :test do
   gem 'shoulda', '~> 3.5.0'
-  gem "webmock", "~> 1.21.0"
+  gem "webmock", "~> 2.3.0"
   gem 'capybara', '~> 2.6'
   gem 'timecop', '~> 0.7.1'
   gem 'rspec-collection_matchers', '~> 1.1.0'
