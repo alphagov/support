@@ -47,6 +47,14 @@
     <% end %>
   </div>
 
+  <div class="col-md-8">
+    <h2>By document type</h2>
+    <%= semantic_form_for @explore_by_document_type, url: { action: "create" }, html: {class: 'well'} do |f| %>
+      <%= f.input :document_type, label: "Document Type", required: true, collection: @document_type_list, :as => :select, :input_html => { :multiple => false, class: "input-md-7 select2", :"aria-required" => true, type: "organisation"} %>
+      <%= f.action :submit, label: "Explore by document type", button_html: { class: "btn btn-success" } %>
+    <% end %>
+  </div>
+
   <% if can? :request, :global_export_request %>
     <div class="col-md-8 global-export-request">
       <h2>Total quantity by day</h2>

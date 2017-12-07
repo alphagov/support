@@ -97,6 +97,7 @@ feature 'Exploring anonymous feedback' do
       'last_7_days',
       cabinet_office_last_7_days_summary_results
     )
+    stub_support_api_document_type_list
 
     organisation_summary = [
       {
@@ -122,7 +123,40 @@ feature 'Exploring anonymous feedback' do
     expect(organisation_summary_results).to eq(organisation_summary)
   end
 
-  scenario 'exploring feedback by organisation and list of urls' do
+  scenario 'exploring feedback by document type' do
+    stub_support_api_anonymous_feedback_doc_type_summary(
+      'smart_answer',
+      'last_7_days',
+      smart_answer_last_7_days_summary_results
+    )
+    stub_support_api_organisations_list
+
+    doctype_summary = [
+      {
+        'Page' => '/vat-rates',
+        '7 days' => '5 items',
+        '30 days' => '10 items',
+        '90 days' => '20 items',
+      }, {
+        'Page' => '/done',
+        '7 days' => '0 items',
+        '30 days' => '0 items',
+        '90 days' => '0 items',
+      }, {
+        'Page' => '/vehicle-tax',
+        '7 days' => '0 items',
+        '30 days' => '0 items',
+        '90 days' => '0 items',
+      }
+    ]
+
+    explore_anonymous_feedback_by_document_type('Smart Answer')
+    expect(page).to have_content('Feedback for documents of type smart_answer')
+    expect(doctype_summary_results).to eq(doctype_summary)
+  end
+
+  scenario 'exploring feedback by organisation, list of urls and document_type' do
+    stub_support_api_document_type_list
     stub_support_api_organisation('cabinet-office')
     org_summary_request = stub_support_api_anonymous_feedback_organisation_summary(
       'cabinet-office',
@@ -142,6 +176,19 @@ feature 'Exploring anonymous feedback' do
 
     path_feedback_request = stub_support_api_anonymous_feedback(
       { path_prefixes: ['/vat-rates', '/done', '/vehicle-tax'] },
+      list_of_urls_path_results
+    )
+
+    doctype_org_and_path_request = stub_support_api_anonymous_feedback(
+      { path_prefixes: ['/vat-rates', '/done', '/vehicle-tax'],
+        organisation_slug: 'cabinet-office',
+        document_type: 'smart_answer' },
+      list_of_urls_path_results
+    )
+
+    doctype_and_path_request = stub_support_api_anonymous_feedback(
+      { path_prefixes: ['/vat-rates', '/done', '/vehicle-tax'],
+        document_type: 'smart_answer' },
       list_of_urls_path_results
     )
 
@@ -179,10 +226,28 @@ feature 'Exploring anonymous feedback' do
     expect(page).to have_select('Organisation', selected: 'Cabinet Office (CO)')
     expect(page).to have_field('paths', with: '/vat-rates, /done, /vehicle-tax')
 
+    select 'Smart Answer', from: 'Document Type'
+    click_on 'Filter'
+
+    expect(doctype_org_and_path_request).to have_been_requested
+    expect(page).to have_title('“Cabinet Office on /vat-rates and 2 other paths - Document type: smart answer”')
+    expect(page).to have_select('Organisation', selected: 'Cabinet Office (CO)')
+    expect(page).to have_select('Document Type', selected: 'Smart Answer')
+    expect(page).to have_field('paths', with: '/vat-rates, /done, /vehicle-tax')
+
     click_on 'Remove organisation filter'
+
+    expect(doctype_and_path_request).to have_been_requested
+    expect(page).to have_title('Feedback for “/vat-rates and 2 other paths - Document type: smart answer”')
+    expect(page).to have_select('Organisation', selected: [])
+    expect(page).to have_select('Document Type', selected: ['Smart Answer'])
+    expect(page).to have_field('paths', with: '/vat-rates, /done, /vehicle-tax')
+
+    click_on 'Remove document type filter'
 
     expect(page).to have_title('Feedback for “/vat-rates and 2 other paths”')
     expect(page).to have_select('Organisation', selected: [])
+    expect(page).to have_select('Document Type', selected: [])
     expect(page).to have_field('paths', with: '/vat-rates, /done, /vehicle-tax')
 
     expect(path_feedback_request).to have_been_requested
@@ -233,6 +298,18 @@ feature 'Exploring anonymous feedback' do
     {
       'title' => 'Cabinet Office',
       'slug' => 'cabinet-office',
+      'anonymous_feedback_counts' => [
+        { path: '/vat-rates', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
+        { path: '/done' },
+        { path: '/vehicle-tax' },
+      ],
+    }
+  end
+
+  let(:smart_answer_last_7_days_summary_results) do
+    {
+      'title' => 'Smart Survey',
+      'document_type' => 'smart_answer',
       'anonymous_feedback_counts' => [
         { path: '/vat-rates', last_7_days: 5, last_30_days: 10, last_90_days: 20 },
         { path: '/done' },

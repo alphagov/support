@@ -1,11 +1,12 @@
 require 'gds_api/support_api'
 
 class ScopeFiltersPresenter
-  attr_reader :organisation_slug
+  attr_reader :organisation_slug, :document_type
 
-  def initialize(paths: nil, organisation_slug: nil)
+  def initialize(paths: nil, organisation_slug: nil, document_type: nil)
     @parsed_paths = normalize_paths(paths)
     @organisation_slug = organisation_slug
+    @document_type = document_type
   end
 
   def paths
@@ -17,7 +18,7 @@ class ScopeFiltersPresenter
   end
 
   def filtered?
-    paths.present? || organisation_slug.present?
+    paths.present? || organisation_slug.present? || document_type.present?
   end
 
   def invalid_filter?
@@ -30,6 +31,10 @@ class ScopeFiltersPresenter
 
   def organisation_title
     organisation["title"] if organisation.present?
+  end
+
+  def document_type_title
+    "Document type: #{document_type.titleize.downcase}" if document_type.present?
   end
 
   def paths_title
@@ -51,11 +56,18 @@ class ScopeFiltersPresenter
   def to_s
     if invalid_filter?
       "Everything"
-    else
-      [
+    elsif paths.present?
+      result = [
         organisation_title,
         paths_title
       ].compact.join(' on ')
+      document_type_title.present? ? "#{result} - #{document_type_title}" : result
+    elsif organisation_title.present?
+      document_type_title.present? ? "#{organisation_title} - #{document_type_title}" : organisation_title
+    elsif document_type_title.present?
+      document_type_title
+    else
+      ""
     end
   end
 

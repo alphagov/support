@@ -24,7 +24,7 @@
         <fieldset class="form-group" data-edit-feedback-explorer-form-target>
           <legend class="rm">Filter feedback by path</legend>
           <% if @filtered_by.paths.present? %>
-            <%= link_to anonymous_feedback_index_path(organisation: @filtered_by.organisation_slug, from: @dates.from, to: @dates.to), class: "inherit remove-filter pull-right" do %>
+            <%= link_to anonymous_feedback_index_path(organisation: @filtered_by.organisation_slug, from: @dates.from, to: @dates.to, document_type: @filtered_by.document_type), class: "inherit remove-filter pull-right" do %>
               <span class="glyphicon glyphicon-remove"><span class="rm">Remove path filter</span></span>
             <% end %>
           <% end %>
@@ -35,12 +35,22 @@
         <fieldset class="form-group" data-edit-feedback-explorer-form-target>
           <legend class="rm">Filter feedback by organisation</legend>
           <% if @filtered_by.organisation_slug.present? %>
-            <%= link_to anonymous_feedback_index_path(paths: @filtered_by.paths, from: @dates.from, to: @dates.to), class: "inherit remove-filter pull-right" do %>
+            <%= link_to anonymous_feedback_index_path(paths: @filtered_by.paths, from: @dates.from, to: @dates.to, document_type: @filtered_by.document_type), class: "inherit remove-filter pull-right" do %>
               <span class="glyphicon glyphicon-remove"><span class="rm">Remove organisation filter</span></span>
             <% end %>
           <% end %>
           <%= label_tag('organisation', "Organisation") %>
           <%= select_tag :organisation, options_for_select(@organisations_list, @filtered_by.organisation_slug), include_blank: true, multiple: false, class: "form-control select2" %>
+        </fieldset>
+        <fieldset class="form-group" data-edit-feedback-explorer-form-target>
+          <legend class="rm">Filter feedback by document type</legend>
+          <% if @filtered_by.document_type.present? %>
+            <%= link_to anonymous_feedback_index_path(paths: @filtered_by.paths, from: @dates.from, to: @dates.to, organisation: @filtered_by.organisation_slug), class: "inherit remove-filter pull-right" do %>
+              <span class="glyphicon glyphicon-remove"><span class="rm">Remove document type filter</span></span>
+            <% end %>
+          <% end %>
+          <%= label_tag('document_type', "Document Type") %>
+          <%= select_tag :document_type, options_for_select(@document_type_list, @filtered_by.document_type), include_blank: true, multiple: false, class: "form-control select2" %>
         </fieldset>
         <fieldset class="form-group form-inline <%= 'has-warning' if @dates.invalid_filter? %>">
           <legend class="rm">Filter feedback by date</legend>

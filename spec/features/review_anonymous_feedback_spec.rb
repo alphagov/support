@@ -54,6 +54,7 @@ feature 'Reviewing Anonymous Feedback' do
 
   before do
     stub_support_api_organisations_list
+    stub_support_api_document_type_list
   end
 
   context 'Viewing the table of feedback' do

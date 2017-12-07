@@ -6,6 +6,7 @@ describe AnonymousFeedbackController, type: :controller do
   before do
     login_as create(:user)
     stub_support_api_organisations_list
+    stub_support_api_document_type_list
   end
 
   context "when no `paths` or `organisation` given" do

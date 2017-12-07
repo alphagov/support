@@ -1,0 +1,64 @@
+<%= content_for :page_title, "Anonymous Feedback" %>
+<%= content_for :sub_header, "Feedback for documents of type" %>
+<%= content_for :header, @document_type.document_type %>
+
+<% breadcrumb :document_type, @document_type.document_type %>
+
+<table class="table table-bordered table-sortable" data-module="filterable-table">
+  <thead>
+  <tr class="table-header">
+    <% {
+           path: 'Page',
+           last_7_days: '7 days',
+           last_30_days: '30 days',
+           last_90_days: '90 days',
+       }.each do |param, name| %>
+      <% sorted = @ordering == param.to_s %>
+      <th class="<% unless param == :path %>item-count-column <% end %>sortable-column<% if sorted %> sorted-column<% end %>">
+        <% if sorted %>
+          <div>
+            <%= name %><span class="glyphicon glyphicon-arrow-down"></span>
+          </div>
+        <% else %>
+          <a href="?ordering=<%= param %>" class="link-inherit" title="Sort table by this column">
+            <div>
+              <%= name %>
+            </div>
+          </a>
+        <% end %>
+      </th>
+    <% end %>
+  </tr>
+  <tr class="if-no-js-hide table-header-secondary">
+    <td colspan="4">
+      <form>
+        <label for="table-filter" class="rm">Filter pages</label>
+        <input id="table-filter" type="text" class="form-control normal js-filter-table-input" placeholder="Filter pages">
+      </form>
+    </td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td colspan="4">
+      <%= link_to "All feedback for documents of type #{@document_type.document_type.titleize.downcase}", anonymous_feedback_index_path(document_type: @document_type.document_type), class: "breakable" %>
+    </td>
+  </tr>
+  <% @content_items.each do |content_item| %>
+    <tr class="doctype-summary">
+      <td>
+        <%= link_to content_item.path, anonymous_feedback_index_path(path: content_item.path), class: "breakable" %>
+      </td>
+      <td>
+        <%= pluralize(content_item.last_7_days, "item") %>
+      </td>
+      <td>
+        <%= pluralize(content_item.last_30_days, "item") %>
+      </td>
+      <td>
+        <%= pluralize(content_item.last_90_days, "item") %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

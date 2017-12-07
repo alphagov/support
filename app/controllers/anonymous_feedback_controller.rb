@@ -1,6 +1,8 @@
 require "gds_api/support_api"
 
 class AnonymousFeedbackController < RequestsController
+  include ExploreHelper
+
   def index
     authorize! :read, :anonymous_feedback
 
@@ -27,9 +29,8 @@ class AnonymousFeedbackController < RequestsController
         # api_response rather than user-supplied params (note it's not
         # currently available on the api_response)
         @filtered_by = scope_filters
-        @organisations_list = support_api.organisations_list.map do |org|
-          [organisation_title_for_select(org), org["slug"]]
-        end
+        @organisations_list = parse_organisations(support_api.organisations_list)
+        @document_type_list = parse_doctypes(support_api.document_type_list)
       }
       format.json { render json: api_response.results }
     end
@@ -43,7 +44,7 @@ private
 
   def index_params
     clean_paths
-    @index_params ||= params.permit(:organisation, :page, :from, :to, paths: []).to_h
+    @index_params ||= params.permit(:organisation, :document_type, :page, :from, :to, paths: []).to_h
   end
 
   def clean_paths
@@ -55,7 +56,7 @@ private
   end
 
   def scope_filters
-    @scope_filters ||= ScopeFiltersPresenter.new(paths: index_params[:paths], organisation_slug: index_params[:organisation])
+    @scope_filters ||= ScopeFiltersPresenter.new(paths: index_params[:paths], organisation_slug: index_params[:organisation], document_type: index_params[:document_type])
   end
 
   def present_date_filters(api_response)
@@ -75,6 +76,7 @@ private
     {
       path_prefixes: scope_filters.paths_for_api,
       organisation_slug: scope_filters.organisation_slug,
+      document_type: scope_filters.document_type,
       from: index_params[:from],
       to: index_params[:to],
       page: index_params[:page],
@@ -85,6 +87,7 @@ private
     %i[
       path_prefixes
       organisation_slug
+      document_type
     ]
   end
 
@@ -102,12 +105,5 @@ private
 
   def support_api
     GdsApi::SupportApi.new(Plek.find("support-api"))
-  end
-
-  def organisation_title_for_select(organisation)
-    title = organisation["title"]
-    title << " (#{organisation['acronym']})" if organisation["acronym"].present?
-    title << " [#{organisation['govuk_status'].titleize}]" if organisation["govuk_status"] && organisation["govuk_status"] != "live"
-    title
   end
 end

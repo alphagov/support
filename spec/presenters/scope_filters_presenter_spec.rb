@@ -257,71 +257,76 @@ describe ScopeFiltersPresenter, type: :presenter do
     end
   end
 
+  describe "#document_type_title" do
+    include GdsApi::TestHelpers::SupportApi
+
+    it "delegates to the org from the support api using the supplied slug" do
+      stub_support_api_anonymous_feedback_doc_type_summary(document_type: 'smart_answer')
+      presenter = described_class.new(document_type: 'smart_answer')
+      expect(presenter.document_type_title).to eq 'Document type: smart answer'
+    end
+
+    it "is nil if no document_type was provided" do
+      presenter = described_class.new(document_type: nil)
+      expect(presenter.document_type_title).to eq nil
+    end
+  end
+
   describe '#to_s' do
-    it 'is "Everything" when paths and organisation are omitted' do
-      presenter = described_class.new(paths: nil, organisation_slug: nil)
+    before do
+      stub_support_api_organisation(
+        "department-of-hats",
+        slug: 'department-of-hats',
+        web_url: "https://www.gov.uk/government/organisations/department-of-hats",
+        title: "Department of Hats",
+        acronym: "DoH",
+        govuk_status: "live"
+      )
+
+      stub_support_api_anonymous_feedback_doc_type_summary(document_type: 'smart_answer')
+    end
+    it 'is "Everything" when paths, organisation and document_type are omitted' do
+      presenter = described_class.new(paths: nil, organisation_slug: nil, document_type: nil)
       expect(presenter.to_s).to eq 'Everything'
     end
 
-    it 'is the path when paths is provided and organisation is blank' do
-      presenter = described_class.new(paths: ['/done/buying-a-new-hat'], organisation_slug: nil)
+    it 'is the paths when paths is provided and organisation and document type are blank' do
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat'], organisation_slug: nil, document_type: nil)
       expect(presenter.to_s).to eq '/done/buying-a-new-hat'
     end
 
-    it 'is the organisation title when organisation is provided and paths is blank' do
-      stub_support_api_organisation(
-        "department-of-hats",
-        slug: 'department-of-hats',
-        web_url: "https://www.gov.uk/government/organisations/department-of-hats",
-        title: "Department of Hats",
-        acronym: "DoH",
-        govuk_status: "live"
-      )
-
-      presenter = described_class.new(paths: nil, organisation_slug: 'department-of-hats')
+    it 'is the organisation title when organisation is provided and paths and document_type are blank' do
+      presenter = described_class.new(paths: nil, organisation_slug: 'department-of-hats', document_type: nil)
       expect(presenter.to_s).to eq 'Department of Hats'
     end
 
-    it 'is the organisation title and paths when 1 paths is provided' do
-      stub_support_api_organisation(
-        "department-of-hats",
-        slug: 'department-of-hats',
-        web_url: "https://www.gov.uk/government/organisations/department-of-hats",
-        title: "Department of Hats",
-        acronym: "DoH",
-        govuk_status: "live"
-      )
+    it 'is the document type title when document_type is provided and path and organisation are blank' do
+      presenter = described_class.new(paths: nil, organisation_slug: nil, document_type: 'smart_answer')
+      expect(presenter.to_s).to eq 'Document type: smart answer'
+    end
 
+    it 'is the organisation title and path and document type when all three are provided' do
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat'],
+                                      organisation_slug: 'department-of-hats',
+                                      document_type: 'smart_answer')
+      expect(presenter.to_s).to eq 'Department of Hats on /done/buying-a-new-hat - Document type: smart answer'
+    end
+
+    it 'is the organisation title and paths when 1 path is provided' do
       presenter = described_class.new(paths: ['/done/buying-a-new-hat'], organisation_slug: 'department-of-hats')
       expect(presenter.to_s).to eq 'Department of Hats on /done/buying-a-new-hat'
     end
 
     it 'is the organisation title and paths when 2 paths are provided' do
-      stub_support_api_organisation(
-        "department-of-hats",
-        slug: 'department-of-hats',
-        web_url: "https://www.gov.uk/government/organisations/department-of-hats",
-        title: "Department of Hats",
-        acronym: "DoH",
-        govuk_status: "live"
-      )
-
       presenter = described_class.new(paths: ['/done/buying-a-new-hat', '/done/selling-an-old-hat'], organisation_slug: 'department-of-hats')
       expect(presenter.to_s).to eq 'Department of Hats on /done/buying-a-new-hat and 1 other path'
     end
 
-    it 'is the organisation title and paths when more than 2 paths are provided' do
-      stub_support_api_organisation(
-        "department-of-hats",
-          slug: 'department-of-hats',
-          web_url: "https://www.gov.uk/government/organisations/department-of-hats",
-          title: "Department of Hats",
-          acronym: "DoH",
-          govuk_status: "live"
-      )
-
-      presenter = described_class.new(paths: ['/done/buying-a-new-hat', '/done/selling-an-old-hat', '/done/selling-a-newish-hat'], organisation_slug: 'department-of-hats')
-      expect(presenter.to_s).to eq 'Department of Hats on /done/buying-a-new-hat and 2 other paths'
+    it 'is the organisation title, document type and paths when more than 2 paths are provided' do
+      presenter = described_class.new(paths: ['/done/buying-a-new-hat', '/done/selling-an-old-hat', '/done/selling-a-newish-hat'],
+                                      organisation_slug: 'department-of-hats',
+                                      document_type: 'smart_answer')
+      expect(presenter.to_s).to eq 'Department of Hats on /done/buying-a-new-hat and 2 other paths - Document type: smart answer'
     end
   end
 end

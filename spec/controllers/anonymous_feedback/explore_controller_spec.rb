@@ -20,6 +20,8 @@ describe AnonymousFeedback::ExploreController, type: :controller do
       }
     ])
 
+    stub_support_api_document_type_list(%w[case_study smart_answer])
+
     login_as create(:user, organisation_slug: "cabinet-office")
   end
 
@@ -27,6 +29,18 @@ describe AnonymousFeedback::ExploreController, type: :controller do
     post :create, params: { support_requests_anonymous_explore_by_multiple_paths: { list_of_urls: "" } }
     expect(response).to have_http_status(422)
     expect(assigns(:explore_by_multiple_paths)).to be_present
+  end
+
+  it "shows the new form again for invalid organisation requests" do
+    post :create, params: { support_requests_anonymous_explore_by_organisation: { organisation: "" } }
+    expect(response).to have_http_status(422)
+    expect(assigns(:explore_by_document_type)).to be_present
+  end
+
+  it "shows the new form again for invalid document type requests" do
+    post :create, params: { support_requests_anonymous_explore_by_document_type: { document_type: "" } }
+    expect(response).to have_http_status(422)
+    expect(assigns(:explore_by_document_type)).to be_present
   end
 
   context "#new" do
@@ -43,6 +57,10 @@ describe AnonymousFeedback::ExploreController, type: :controller do
         ["Cabinet Office (CO)", "cabinet-office"],
         ["Ministry of Magic [Transitioning]", "ministry-of-magic"]
       ])
+    end
+
+    it "lists the available document types" do
+      expect(assigns(:document_type_list)).to eq([["Case Study", "case_study"], ["Smart Answer", "smart_answer"]])
     end
   end
 
@@ -71,6 +89,13 @@ describe AnonymousFeedback::ExploreController, type: :controller do
           params: { support_requests_anonymous_explore_by_organisation: attributes }
 
         expect(response).to redirect_to(redirect_path)
+      end
+    end
+
+    context "when exploring by document type" do
+      it "redirects to the anonymous feedback index page" do
+        post :create, params: { support_requests_anonymous_explore_by_document_type: { document_type: "smart_answer" } }
+        expect(response).to redirect_to("/anonymous_feedback/document_types/smart_answer")
       end
     end
   end

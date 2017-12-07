@@ -80,6 +80,17 @@ module Support
           )
         end
       end
+
+      class ExploreByDocumentType < Explore
+        attr_accessor :document_type
+        validates_presence_of :document_type
+
+        def redirect_path
+          Rails.application.routes.url_helpers.anonymous_feedback_document_type_path(
+            document_type: document_type
+          )
+        end
+      end
     end
   end
 end
