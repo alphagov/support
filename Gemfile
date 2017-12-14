@@ -11,7 +11,7 @@ gem 'sass-rails', '5.0.6'
 gem 'uglifier', '2.7.1'
 
 gem 'gds-sso', '~> 13.0'
-gem 'cancancan', '~> 1.16'
+gem 'cancancan', '~> 2.1'
 gem 'jquery-ui-rails', '5.0.1'
 gem 'plek', '1.10.0'
 
