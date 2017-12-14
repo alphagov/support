@@ -36,7 +36,7 @@ else
   gem "gds-api-adapters", '~> 48.0'
 end
 gem 'gretel', '3.0.9'
-gem 'govuk_app_config', '~> 0.2.0'
+gem 'govuk_app_config', '~> 0.3.0'
 
 group :test do
   gem 'shoulda', '~> 3.5.0'
