@@ -44,7 +44,7 @@ group :test do
   gem 'capybara', '~> 2.6'
   gem 'timecop', '~> 0.9.1'
   gem 'rspec-collection_matchers', '~> 1.1.0'
-  gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'factory_girl_rails', '~> 4.9.0'
   gem 'rspec-its', '~> 1.2.0'
 end
 
