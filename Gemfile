@@ -66,4 +66,4 @@ group :development, :test do
   gem 'ci_reporter_rspec'
 end
 
-gem 'unicorn', '4.9.0'
+gem 'unicorn', '5.4.0'
