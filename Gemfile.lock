@@ -254,7 +254,7 @@ GEM
     rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    redis (3.2.1)
+    redis (3.3.5)
     redis-namespace (1.5.3)
       redis (~> 3.0, >= 3.0.4)
     rest-client (2.0.2)
@@ -416,7 +416,7 @@ DEPENDENCIES
   pry-byebug
   rails (= 5.0.2)
   rails-controller-testing
-  redis (= 3.2.1)
+  redis (= 3.3.5)
   rspec-collection_matchers (~> 1.1.0)
   rspec-its (~> 1.2.0)
   rspec-rails (= 3.5.2)

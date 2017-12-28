@@ -24,7 +24,7 @@ if ENV['GDS_ZENDESK_DEV']
 else
   gem "gds_zendesk", '3.0.0'
 end
-gem 'redis', '3.2.1'
+gem 'redis', '3.3.5'
 gem "govuk_sidekiq", '~> 2.0'
 gem 'logstasher', '0.4.8'
 gem 'kaminari', '~> 0.17.0'
