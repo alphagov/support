@@ -136,8 +136,8 @@ GEM
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
     inflection (1.0.0)
-    jasmine (2.6.0)
-      jasmine-core (>= 2.6.0, < 3.0.0)
+    jasmine (2.8.0)
+      jasmine-core (>= 2.8.0, < 3.0.0)
       phantomjs
       rack (>= 1.2.1)
       rake
@@ -406,7 +406,7 @@ DEPENDENCIES
   govuk_app_config (~> 0.2.0)
   govuk_sidekiq (~> 2.0)
   gretel (= 3.0.9)
-  jasmine (= 2.6.0)
+  jasmine (= 2.8.0)
   jc-validates_timeliness (= 3.1.1)
   jquery-ui-rails (= 5.0.1)
   kaminari (~> 0.17.0)
