@@ -207,7 +207,7 @@ GEM
     parser (2.4.0.2)
       ast (~> 2.3)
     phantomjs (2.1.1.0)
-    plek (1.10.0)
+    plek (2.0.0)
     powerpack (0.1.1)
     pry (0.11.3)
       coderay (~> 1.1.0)
@@ -417,7 +417,7 @@ DEPENDENCIES
   kaminari (~> 0.17.0)
   listen (~> 3.1.5)
   logstasher (= 1.2.2)
-  plek (= 1.10.0)
+  plek (= 2.0.0)
   pry-byebug
   rails (= 5.0.2)
   rails-controller-testing
