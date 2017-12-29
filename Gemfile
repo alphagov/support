@@ -29,7 +29,7 @@ gem "govuk_sidekiq", '~> 2.0'
 gem 'logstasher', '1.2.2'
 gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap-kaminari-views', '0.0.5'
-gem 'govuk_admin_template', '4.4.2'
+gem 'govuk_admin_template', '6.4.0'
 if ENV['API_DEV']
   gem "gds-api-adapters", :path => '../gds-api-adapters'
 else
