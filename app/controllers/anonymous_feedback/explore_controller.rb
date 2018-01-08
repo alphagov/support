@@ -1,20 +1,26 @@
 require 'gds_api/support_api'
 
 class AnonymousFeedback::ExploreController < AuthorisationController
+  include ExploreHelper
+
   authorize_resource class: Support::Requests::Anonymous::Explore
 
   def new
-    @explore_by_url = Support::Requests::Anonymous::ExploreByUrl.new
+    @explore_by_multiple_paths = Support::Requests::Anonymous::ExploreByMultiplePaths.new
     @explore_by_organisation = Support::Requests::Anonymous::ExploreByOrganisation.new(organisation: current_user.organisation_slug)
-    @organisations_list = support_api.organisations_list.map do |org|
-      [organisation_title(org), org["slug"]]
-    end
+    @organisations_list = parse_organisations(support_api.organisations_list)
+    @explore_by_document_type = Support::Requests::Anonymous::ExploreByDocumentType.new
+    @document_type_list = parse_doctypes(support_api.document_type_list)
   end
 
   def create
-    @explore = if params[:support_requests_anonymous_explore_by_url].present?
-                 Support::Requests::Anonymous::ExploreByUrl.new(
-                   explore_by_url_params
+    @explore = if params[:support_requests_anonymous_explore_by_multiple_paths].present?
+                 Support::Requests::Anonymous::ExploreByMultiplePaths.new(
+                   explore_by_multiple_path_params
+                 )
+               elsif params[:support_requests_anonymous_explore_by_document_type].present?
+                 Support::Requests::Anonymous::ExploreByDocumentType.new(
+                   explore_by_document_type_params
                  )
                else
                  Support::Requests::Anonymous::ExploreByOrganisation.new(
@@ -37,18 +43,15 @@ private
   end
 
   # TODO: explicitly permit the right set of params, rather than everything
-  def explore_by_url_params
-    params.require(:support_requests_anonymous_explore_by_url).permit!.to_h
+  def explore_by_multiple_path_params
+    params.require(:support_requests_anonymous_explore_by_multiple_paths).permit!.to_h
   end
 
   def explore_by_organisation_params
     params.require(:support_requests_anonymous_explore_by_organisation).permit!.to_h
   end
 
-  def organisation_title(organisation)
-    title = organisation["title"]
-    title << " (#{organisation['acronym']})" if organisation["acronym"].present?
-    title << " [#{organisation['govuk_status'].titleize}]" if organisation["govuk_status"] && organisation["govuk_status"] != "live"
-    title
+  def explore_by_document_type_params
+    params.require(:support_requests_anonymous_explore_by_document_type).permit!.to_h
   end
 end

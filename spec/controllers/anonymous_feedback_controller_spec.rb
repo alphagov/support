@@ -6,9 +6,10 @@ describe AnonymousFeedbackController, type: :controller do
   before do
     login_as create(:user)
     stub_support_api_organisations_list
+    stub_support_api_document_type_list
   end
 
-  context "when no `path` or `organisation` given" do
+  context "when no `paths` or `organisation` given" do
     context "HTML representation" do
       it "redirects to the explore endpoint" do
         get :index
@@ -20,7 +21,7 @@ describe AnonymousFeedbackController, type: :controller do
       it "returns an error" do
         get :index, params: { format: :json }
         expect(response).to have_http_status(400)
-        expect(json_response).to eq("errors" => ["Please set a valid 'path' or 'organisation' parameter"])
+        expect(json_response).to eq("errors" => ["Please provide a valid 'paths', 'path' or 'organisation' parameter"])
       end
     end
   end
@@ -29,11 +30,11 @@ describe AnonymousFeedbackController, type: :controller do
     context "on the first page" do
       it "should show no results" do
         stub_support_api_anonymous_feedback(
-          { path_prefix: "/a" },
+          { path_prefixes: ["/a"] },
           "results" => [], "pages" => 0, "current_page" => 1,
         )
 
-        get :index, params: { "path" => "/a", "format" => "json" }
+        get :index, params: { "paths" => "/a", "format" => "json" }
 
         expect(json_response).to have(0).items
       end
@@ -42,13 +43,13 @@ describe AnonymousFeedbackController, type: :controller do
     context "user has manually entered a non-existent page" do
       it "should redirect to the first page" do
         stub_support_api_anonymous_feedback(
-          { path_prefix: "/a", page: 4 },
+          { path_prefixes: ["/a"], page: 4 },
           "results" => [], "pages" => 3, "current_page" => 4,
         )
 
-        get :index, params: { path: "/a", page: 4 }
+        get :index, params: { paths: "/a", page: 4 }
 
-        expect(response).to redirect_to(anonymous_feedback_index_path(path: "/a", page: 1))
+        expect(response).to redirect_to(anonymous_feedback_index_path(paths: ["/a"], page: 1))
       end
     end
   end
@@ -57,7 +58,7 @@ describe AnonymousFeedbackController, type: :controller do
     context "valid input, problem reports" do
       before do
         stub_support_api_anonymous_feedback(
-          { path_prefix: "/tax-disc", from: "13/10/2014", to: "25th November 2014" },
+          { path_prefixes: ["/tax-disc"], from: "13/10/2014", to: "25th November 2014" },
           "current_page" => 1,
           "pages" => 1,
           "page_size" => 1,
@@ -79,7 +80,7 @@ describe AnonymousFeedbackController, type: :controller do
 
       context "HTML representation" do
         it "renders the results" do
-          get :index, params: { path: "/tax-disc", from: "13/10/2014", to: "25th November 2014" }
+          get :index, params: { paths: "/tax-disc", from: "13/10/2014", to: "25th November 2014" }
           expect(response).to have_http_status(:success)
         end
       end
@@ -88,7 +89,7 @@ describe AnonymousFeedbackController, type: :controller do
         render_views
 
         it "returns the results for problem" do
-          get :index, params: { "path" => "/tax-disc", "format" => "json", from: "13/10/2014", to: "25th November 2014" }
+          get :index, params: { "paths" => "/tax-disc", "format" => "json", from: "13/10/2014", to: "25th November 2014" }
 
           expect(response).to have_http_status(:success)
           expect(json_response).to have(1).item
@@ -108,7 +109,7 @@ describe AnonymousFeedbackController, type: :controller do
     context "valid input, long-form feedback" do
       before do
         stub_support_api_anonymous_feedback(
-          { path_prefix: "/contact/govuk" },
+          { path_prefixes: ["/contact/govuk"] },
           "current_page" => 1,
           "pages" => 1,
           "page_size" => 1,
@@ -128,7 +129,7 @@ describe AnonymousFeedbackController, type: :controller do
 
       context "HTML representation" do
         it "renders the results for an HTML request" do
-          get :index, params: { path: "/contact/govuk" }
+          get :index, params: { paths: "/contact/govuk" }
           expect(response).to have_http_status(:success)
         end
       end
@@ -137,7 +138,7 @@ describe AnonymousFeedbackController, type: :controller do
         render_views
 
         it "returns the results for problem" do
-          get :index, params: { "path" => "/contact/govuk", "format" => "json" }
+          get :index, params: { "paths" => "/contact/govuk", "format" => "json" }
 
           expect(response).to have_http_status(:success)
           expect(json_response).to have(1).item
@@ -156,7 +157,7 @@ describe AnonymousFeedbackController, type: :controller do
     context "valid input, service feedback" do
       before do
         stub_support_api_anonymous_feedback(
-          { path_prefix: "/done/apply-carers-allowance" },
+          { path_prefixes: ["/done/apply-carers-allowance"] },
           "current_page" => 1,
           "pages" => 1,
           "page_size" => 1,
@@ -177,7 +178,7 @@ describe AnonymousFeedbackController, type: :controller do
 
       context "HTML representation" do
         it "renders the results" do
-          get :index, params: { path: "/done/apply-carers-allowance" }
+          get :index, params: { paths: "/done/apply-carers-allowance" }
           expect(response).to have_http_status(:success)
         end
       end
@@ -186,7 +187,7 @@ describe AnonymousFeedbackController, type: :controller do
         render_views
 
         it "returns the results" do
-          get :index, params: { "path" => "/done/apply-carers-allowance", "format" => "json" }
+          get :index, params: { "paths" => "/done/apply-carers-allowance", "format" => "json" }
 
           expect(response).to have_http_status(:success)
           expect(json_response).to have(1).item
@@ -205,11 +206,22 @@ describe AnonymousFeedbackController, type: :controller do
 
     it "normalises the path before talking to the api" do
       api_request = stub_support_api_anonymous_feedback(
-        hash_including("path_prefix" => '/done/apply-carers-allowance'),
+        hash_including("path_prefixes" => ["/done/apply-carers-allowance"]),
         "results" => [], "pages" => 0, "current_page" => 1
       )
 
-      get :index, params: { path: 'done/apply-carers-allowance' }
+      get :index, params: { paths: "done/apply-carers-allowance" }
+
+      expect(api_request).to have_been_made
+    end
+
+    it "normalises all paths before talking to the api" do
+      api_request = stub_support_api_anonymous_feedback(
+        hash_including("path_prefixes" => ["/done/apply-carers-allowance", "/start/vat-rates"]),
+        "results" => [], "pages" => 0, "current_page" => 1
+      )
+
+      get :index, params: { paths: "/done/apply-carers-allowance, https://gov.uk/start/vat-rates" }
 
       expect(api_request).to have_been_made
     end

@@ -3,7 +3,27 @@ require 'gds_api/test_helpers/support_api'
 module AppActions
   include GdsApi::TestHelpers::SupportApi
 
-  def explore_anonymous_feedback_with(options)
+  def explore_anonymous_feedback_by_urls(list_of_urls: nil, uploaded_list: nil)
+    visit "/"
+
+    stub_support_api_organisations_list
+    stub_support_api_document_type_list
+
+    click_on "Feedback explorer"
+    assert page.has_title?("Anonymous Feedback"), page.html
+
+    if list_of_urls
+      fill_in 'URL(s)', with: list_of_urls
+      click_on "Explore by URL"
+    elsif uploaded_list
+      attach_file("Upload list of URLs", uploaded_list)
+      click_on "Upload list of urls"
+    end
+
+    expect(page).to have_content("Feedback for")
+  end
+
+  def explore_anonymous_feedback_by_organisation(organisation)
     visit "/"
 
     stub_support_api_organisations_list
@@ -11,13 +31,22 @@ module AppActions
     click_on "Feedback explorer"
     assert page.has_title?("Anonymous Feedback"), page.html
 
-    if options[:url].present?
-      fill_in 'URL', with: options[:url]
-      click_on "Explore by URL"
-    else
-      select options[:organisation], from: 'Organisation'
-      click_on "Explore by organisation"
-    end
+    select organisation, from: 'Organisation'
+    click_on "Explore by organisation"
+
+    expect(page).to have_content("Feedback for")
+  end
+
+  def explore_anonymous_feedback_by_document_type(document_type)
+    visit "/"
+
+    stub_support_api_document_type_list
+
+    click_on "Feedback explorer"
+    assert page.has_title?("Anonymous Feedback"), page.html
+
+    select document_type, from: 'Document Type'
+    click_on "Explore by document type"
 
     expect(page).to have_content("Feedback for")
   end
@@ -33,6 +62,15 @@ module AppActions
     column_headings = find("table tr.table-header").all("th").
       map { |cell| cell.text.strip }
     summary_rows = find("table").all("tr.organisation-summary").
+      map { |row| row.all("td").map { |cell| cell.text.strip } }
+
+    summary_rows.map { |row| Hash[column_headings.zip(row)] }
+  end
+
+  def doctype_summary_results
+    column_headings = find("table tr.table-header").all("th").
+      map { |cell| cell.text.strip }
+    summary_rows = find("table").all("tr.doctype-summary").
       map { |row| row.all("td").map { |cell| cell.text.strip } }
 
     summary_rows.map { |row| Hash[column_headings.zip(row)] }

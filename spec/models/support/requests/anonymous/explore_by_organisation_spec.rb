@@ -5,6 +5,8 @@ module Support
     module Anonymous
       describe ExploreByOrganisation do
         describe "validations" do
+          it { should validate_presence_of(:organisation) }
+
           context "with an `organisation`" do
             let(:org) { "Department of Fair Do's" }
 

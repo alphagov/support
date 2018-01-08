@@ -1,13 +1,15 @@
 require "gds_api/support_api"
 
 class AnonymousFeedbackController < RequestsController
+  include ExploreHelper
+
   def index
     authorize! :read, :anonymous_feedback
 
     unless has_required_api_params?
       respond_to do |format|
         format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
-        format.json { render json: { "errors" => ["Please set a valid 'path' or 'organisation' parameter"] }, status: 400 }
+        format.json { render json: { "errors" => ["Please provide a valid 'paths', 'path' or 'organisation' parameter"] }, status: 400 }
       end
       return
     end
@@ -27,9 +29,8 @@ class AnonymousFeedbackController < RequestsController
         # api_response rather than user-supplied params (note it's not
         # currently available on the api_response)
         @filtered_by = scope_filters
-        @organisations_list = support_api.organisations_list.map do |org|
-          [organisation_title_for_select(org), org["slug"]]
-        end
+        @organisations_list = parse_organisations(support_api.organisations_list)
+        @document_type_list = parse_doctypes(support_api.document_type_list)
       }
       format.json { render json: api_response.results }
     end
@@ -42,11 +43,20 @@ class AnonymousFeedbackController < RequestsController
 private
 
   def index_params
-    @index_params ||= params.permit(:path, :organisation, :page, :from, :to).to_h
+    clean_paths
+    @index_params ||= params.permit(:organisation, :document_type, :page, :from, :to, paths: []).to_h
+  end
+
+  def clean_paths
+    if params[:path].present?
+      params[:paths] = [params[:path]]
+    elsif params[:paths] && params[:paths].instance_of?(String)
+      params[:paths] = params[:paths].split(',').map(&:strip)
+    end
   end
 
   def scope_filters
-    @scope_filters ||= ScopeFiltersPresenter.new(path: index_params[:path], organisation_slug: index_params[:organisation])
+    @scope_filters ||= ScopeFiltersPresenter.new(paths: index_params[:paths], organisation_slug: index_params[:organisation], document_type: index_params[:document_type])
   end
 
   def present_date_filters(api_response)
@@ -64,8 +74,9 @@ private
 
   def api_params
     {
-      path_prefix: scope_filters.path,
+      path_prefixes: scope_filters.paths_for_api,
       organisation_slug: scope_filters.organisation_slug,
+      document_type: scope_filters.document_type,
       from: index_params[:from],
       to: index_params[:to],
       page: index_params[:page],
@@ -74,8 +85,9 @@ private
 
   def at_least_one_required_api_params
     %i[
-      path_prefix
+      path_prefixes
       organisation_slug
+      document_type
     ]
   end
 
@@ -93,12 +105,5 @@ private
 
   def support_api
     GdsApi::SupportApi.new(Plek.find("support-api"))
-  end
-
-  def organisation_title_for_select(organisation)
-    title = organisation["title"]
-    title << " (#{organisation['acronym']})" if organisation["acronym"].present?
-    title << " [#{organisation['govuk_status'].titleize}]" if organisation["govuk_status"] && organisation["govuk_status"] != "live"
-    title
   end
 end

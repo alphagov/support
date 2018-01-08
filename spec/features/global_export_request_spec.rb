@@ -6,6 +6,7 @@ feature 'Exporting Global CSV of Feedback' do
 
   background do
     stub_support_api_organisations_list
+    stub_support_api_document_type_list
 
     login_as user
   end

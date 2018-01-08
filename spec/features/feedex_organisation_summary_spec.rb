@@ -8,8 +8,9 @@ feature "Summary of Organisation feedback" do
   end
 
   before do
+    stub_support_api_document_type_list
     stub_summary_sorted_by('last_7_days')
-    explore_anonymous_feedback_with(organisation: "Cabinet Office")
+    explore_anonymous_feedback_by_organisation("Cabinet Office")
   end
 
   scenario "defaults to sorting feedback by last 7 days" do

@@ -17,6 +17,11 @@ crumb :organisation do |organisation_name|
   parent :feedex
 end
 
+crumb :document_type do |document_type|
+  link document_type, anonymous_feedback_document_type_path
+  parent :feedex
+end
+
 crumb :anonymous_feedback_by_filter do |filter|
   link "Feedback for “#{filter}”"
   parent :feedex

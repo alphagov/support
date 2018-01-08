@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     post :explore, to: "explore#create", format: false
 
     resources :organisations, only: :show, param: :slug, format: false
+    resources :document_types, only: :show, param: :document_type, format: false
 
     resources :export_requests, only: [:create, :show], format: false
     resources :global_export_requests, only: [:create], format: false

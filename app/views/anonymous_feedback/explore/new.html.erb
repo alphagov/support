@@ -12,12 +12,33 @@
 <div class="row">
   <div class="col-md-8">
     <h2 class="add-bottom-margin">By URL</h2>
-    <%= semantic_form_for @explore_by_url, url: { action: "create" }, html: {class: 'well'} do |f| %>
-      <%= f.input :url, label: "URL", required: true, input_html: { class: "input-md-7", :"aria-required" => true, type: "url"} %>
-      <p class="help-block add-bottom-margin">For example a page like <code>/vat-rates</code> or <code>https://www.gov.uk/bank-holidays</code>, or a partial path like <code>/guidance/</code></p>
+    <%= semantic_form_for @explore_by_multiple_paths, url: { action: "create" }, html: {class: 'well'} do |f| %>
+      <%= f.input :list_of_urls, label: "URL(s)", required: true, input_html: { class: "input-md-7", :"aria-required" => true } %>
+      <p class="help-block add-bottom-margin">
+        For example a page like <code>/vat-rates</code> or <code>https://www.gov.uk/bank-holidays</code>, or a partial path like <code>/guidance/</code>
+        <br/>
+        You can also search by a comma separated list: <code>/vat-rates, https://www.gov.uk/bank-holidays, /guidance/</code>
+        <br/>
+        For longer lists, please upload a file with the comma separated list (see below in "Upload a URL List").
+      </p>
       <%= f.action :submit, label: "Explore by URL", button_html: { class: "btn btn-success" } %>
     <% end %>
   </div>
+
+  <div class="col-md-8">
+    <h2 class="add-bottom-margin">Upload a URL List</h2>
+    <%= semantic_form_for @explore_by_multiple_paths, url: { action: "create" }, html: { class: 'well', multipart: true } do |f| %>
+      <%= f.inputs do %>
+        <%= f.input :uploaded_list, as: :file, label: "Upload list of URLs", required: true, input_html: { class: "input-md-7", :"aria-required" => true, type: "file"} %>
+      <% end %>
+      <p class="help-block add-bottom-margin">
+        The contents of the file should be a comma separated list:
+        <code>/vat-rates, https://www.gov.uk/bank-holidays, /guidance/</code>
+      </p>
+      <%= f.action :submit, label: "Upload list of urls", button_html: { class: "btn btn-success" } %>
+    <% end %>
+  </div>
+
   <div class="col-md-8">
     <h2>By organisation</h2>
     <%= semantic_form_for @explore_by_organisation, url: { action: "create" }, html: {class: 'well'} do |f| %>
@@ -25,6 +46,15 @@
       <%= f.action :submit, label: "Explore by organisation", button_html: { class: "btn btn-success" } %>
     <% end %>
   </div>
+
+  <div class="col-md-8">
+    <h2>By document type</h2>
+    <%= semantic_form_for @explore_by_document_type, url: { action: "create" }, html: {class: 'well'} do |f| %>
+      <%= f.input :document_type, label: "Document Type", required: true, collection: @document_type_list, :as => :select, :input_html => { :multiple => false, class: "input-md-7 select2", :"aria-required" => true, type: "organisation"} %>
+      <%= f.action :submit, label: "Explore by document type", button_html: { class: "btn btn-success" } %>
+    <% end %>
+  </div>
+
   <% if can? :request, :global_export_request %>
     <div class="col-md-8 global-export-request">
       <h2>Total quantity by day</h2>
