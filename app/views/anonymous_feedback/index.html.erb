@@ -13,7 +13,7 @@
     <%= hidden_field_tag :to, @dates.to if @dates.to.present? %>
     <%= hidden_field_tag :path, @filtered_by.path if @filtered_by.path.present? %>
     <%= hidden_field_tag :organisation, @filtered_by.organisation_slug if @filtered_by.organisation_slug.present? %>
-    <%= submit_tag "Export as CSV", class: "btn-sm btn btn-default add-left-margin" %>
+    <%= submit_tag "Export as CSV", class: "btn-sm btn btn-default add-left-margin", data: { confirm: confirmation_message(@feedback.total_count, @feedback.results_limited) } %>
   </p>
 <% end %>
 
