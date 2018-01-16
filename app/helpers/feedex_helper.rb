@@ -23,4 +23,12 @@ module FeedexHelper
     response_total = "Over #{response_total}" if results_limited
     response_total
   end
+
+  def confirmation_message(total_count, results_limited)
+    if results_limited
+      "This is a large number of records (more than #{total_count}) and may take some time.\n\nAre you sure you want to export?"
+    else
+      "This will export #{total_count} records.\n\nAre you sure you want to export?"
+    end
+  end
 end
