@@ -26,7 +26,6 @@ else
 end
 gem 'redis', '3.3.5'
 gem "govuk_sidekiq", '~> 2.0'
-gem 'logstasher', '1.2.2'
 gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap-kaminari-views', '0.0.5'
 gem 'govuk_admin_template', '6.4.0'
@@ -36,7 +35,7 @@ else
   gem "gds-api-adapters", '~> 51.0'
 end
 gem 'gretel', '3.0.9'
-gem 'govuk_app_config', '~> 0.2.0'
+gem 'govuk_app_config', '~> 1.2.1'
 
 group :test do
   gem 'shoulda', '~> 3.5.0'
@@ -65,5 +64,3 @@ group :development, :test do
   gem 'govuk-lint'
   gem 'ci_reporter_rspec'
 end
-
-gem 'unicorn', '5.4.0'
