@@ -13,15 +13,20 @@ module Zendesk
 
       def comment_snippets
         [
-          Zendesk::LabelledSnippet.new(on: @request.campaign, field: :title, label: "Campaign title"),
-          Zendesk::LabelledSnippet.new(on: @request.campaign, field: :other_dept_or_agency,
-                                                     label: "Other department(s) or agencies running the campaign (if any)"),
+          Zendesk::LabelledSnippet.new(on: @request.campaign, field: :type_of_site,
+                                                     label: "Are you applying for the campaign platform or a bespoke microsite?"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :signed_campaign,
-                                                     label: "Head of Digital who signed off the campaign"),
+                                                     label: "Name of the head of digital who signed off the campaign website application"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :start_date,
-                                                     label: "Start date"),
+                                                     label: "Start date of campaign site"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :end_date,
-                                                     label: "Campaign end date / review date (within 6 months of launch)"),
+                                                     label: "Proposed end date of campaign site"),
+          Zendesk::LabelledSnippet.new(on: @request.campaign, field: :development_start_date,
+                                                     label: "Site build to commence on"),
+          Zendesk::LabelledSnippet.new(on: @request.campaign, field: :performance_review_contact_email,
+                                                     label: "Contact email/s for website performance review every 6 months"),
+          Zendesk::LabelledSnippet.new(on: @request.campaign, field: :government_theme,
+                                                     label: "Which of the current government priority themes does this campaign website support and how?"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :description,
                                                      label: "Campaign description"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :call_to_action,
@@ -29,12 +34,14 @@ module Zendesk
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :success_measure,
                                                      label: "How will you measure success?"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :proposed_url,
-                                                     label: "Proposed URL (in the form of xxxxx.campaign.gov.uk)"),
+                                                     label: "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :site_metadescription,
                                                      label: "Site metadescription (appears in search results)"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :cost_of_campaign,
-                                                     label: "Cost of campaign"),
-          Zendesk::LabelledSnippet.new(on: @request,          field: :additional_comments)
+                                                     label: "Site build budget / costs (and overall campaign cost, if applicable)"),
+          Zendesk::LabelledSnippet.new(on: @request.campaign, field: :ga_contact_email,
+                                                     label: "Contact details for Google Analytics leads (Gmail accounts only)"),
+          Zendesk::LabelledSnippet.new(on: @request, field: :additional_comments)
         ]
       end
     end
