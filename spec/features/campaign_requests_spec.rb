@@ -19,20 +19,26 @@ feature "Campaign requests" do
       "tags" => %w[govt_form campaign],
       "comment" => {
         "body" =>
-"[Campaign title]
-Workplace pensions
+"[Are you applying for the campaign platform or a bespoke microsite?]
+Campaign platform
 
-[Other department(s) or agencies running the campaign (if any)]
-Department 1
-
-[Head of Digital who signed off the campaign]
+[Name of the head of digital who signed off the campaign website application]
 John Smith
 
-[Start date]
+[Start date of campaign site]
 01-01-2020
 
-[Campaign end date / review date (within 6 months of launch)]
+[Proposed end date of campaign site]
 01-02-2020
+
+[Site build to commence on]
+02-01-2020
+
+[Contact email/s for website performance review every 6 months]
+john.smith@example.com
+
+[Which of the current government priority themes does this campaign website support and how?]
+Example government theme
 
 [Campaign description]
 Pensions
@@ -40,17 +46,17 @@ Pensions
 [Call to action]
 Join us in this campaign for pensions
 
-[How will you measure success?]
-Surveys
-
-[Proposed URL (in the form of xxxxx.campaign.gov.uk)]
+[Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)]
 newcampaign.campaign.gov.uk
 
 [Site metadescription (appears in search results)]
 pensions, campaign, newcampaign
 
-[Cost of campaign]
+[Site build budget / costs (and overall campaign cost, if applicable)]
 1200
+
+[Contact details for Google Analytics leads (Gmail accounts only)]
+ga.contact@example.com
 
 [Additional comments]
 Some comment"
@@ -58,19 +64,23 @@ Some comment"
     )
 
     user_makes_a_campaign_request(
-      title: "Workplace pensions",
-      other_dept_or_agency: "Department 1",
+      type_of_site: "Campaign platform",
+      has_read_guidance: true,
+      has_read_oasis_guidance: true,
       signed_campaign: "John Smith",
       start_date: "01-01-2020",
       end_date: "01-02-2020",
+      development_start_date: "02-01-2020",
+      performance_review_contact_email: "john.smith@example.com",
+      government_theme: "Example government theme",
       description: "Pensions",
       call_to_action: "Join us in this campaign for pensions",
-      success_measure: "Surveys",
       proposed_url: "newcampaign.campaign.gov.uk",
       site_metadescription: "pensions, campaign, newcampaign",
       cost_of_campaign: "1200",
+      ga_contact_email: "ga.contact@example.com",
       additional_comments: "Some comment"
-    )
+      )
 
     expect(request).to have_been_made
   end
@@ -84,17 +94,21 @@ Some comment"
 
     expect(page).to have_content("Request GDS support for a new campaign")
 
-    fill_in "Campaign title", with: details[:title]
-    fill_in "Other department(s) or agencies running the campaign (if any)", with: details[:other_dept_or_agency]
-    fill_in "Head of Digital who signed off the campaign", with: details[:signed_campaign]
-    fill_in "Start date", with: details[:start_date]
-    fill_in "Campaign end date / review date (within 6 months of launch)", with: details[:end_date]
-    fill_in "Campaign description", with: details[:description]
-    fill_in "Call to action", with: details[:call_to_action]
-    fill_in "How will you measure success?", with: details[:success_measure]
-    fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk)", with: details[:proposed_url]
-    fill_in "Site metadescription (appears in search results)", with: details[:site_metadescription]
-    fill_in "Cost of campaign", with: details[:cost_of_campaign]
+    choose details[:type_of_site]
+    check "Have you read the the GCS guidance on campaign websites and accept the requirements for a Campaign Platform website?" if details[:has_read_guidance]
+    check "Have you followed the GCS guidance for OASIS planning and are using the GCS website recommended OASIS template?" if details[:has_read_oasis_guidance]
+    fill_in "Name of the head of digital who signed off the campaign website application*", with: details[:signed_campaign]
+    fill_in "Start date of campaign site*", with: details[:start_date]
+    fill_in "Proposed end date of campaign site*", with: details[:end_date]
+    fill_in "Site build to commence on", with: details[:development_start_date]
+    fill_in "Contact email/s for website performance review every 6 months*", with: details[:performance_review_contact_email]
+    fill_in "Which of the current government priority themes does this campaign website support and how?*", with: details[:government_theme]
+    fill_in "Campaign description*", with: details[:description]
+    fill_in "Call to action*", with: details[:call_to_action]
+    fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)*", with: details[:proposed_url]
+    fill_in "Site metadescription (appears in search results)*", with: details[:site_metadescription]
+    fill_in "Site build budget / costs (and overall campaign cost, if applicable)*", with: details[:cost_of_campaign]
+    fill_in "Contact details for Google Analytics leads (Gmail accounts only)*", with: details[:ga_contact_email]
     fill_in "Additional comments", with: details[:additional_comments]
 
     user_submits_the_request_successfully
