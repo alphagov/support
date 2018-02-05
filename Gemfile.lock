@@ -43,7 +43,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (7.1.4)
     ast (2.3.0)
-    autoprefixer-rails (7.2.3)
+    autoprefixer-rails (7.2.5)
       execjs
     bindex (0.5.0)
     bootstrap-kaminari-views (0.0.5)
@@ -115,7 +115,7 @@ GEM
       rubocop (~> 0.51.0)
       rubocop-rspec (~> 1.19.0)
       scss_lint
-    govuk_admin_template (6.4.0)
+    govuk_admin_template (6.5.0)
       bootstrap-sass (= 3.3.5.1)
       jquery-rails (~> 4.3.1)
       rails (>= 3.2.0)
@@ -182,7 +182,7 @@ GEM
     mime-types-data (3.2016.0521)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
-    minitest (5.11.1)
+    minitest (5.11.3)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
@@ -410,7 +410,7 @@ DEPENDENCIES
   gds-sso (~> 13.5)
   gds_zendesk (= 3.0.0)
   govuk-lint
-  govuk_admin_template (= 6.4.0)
+  govuk_admin_template (= 6.5.0)
   govuk_app_config (~> 1.2.1)
   govuk_sidekiq (~> 2.0)
   gretel (= 3.0.9)
