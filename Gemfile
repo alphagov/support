@@ -13,7 +13,7 @@ gem 'uglifier', '2.7.1'
 gem 'gds-sso', '~> 13.5'
 gem 'cancancan', '~> 2.1'
 gem 'jquery-ui-rails', '5.0.1'
-gem 'plek', '2.1.0'
+gem 'plek', '2.1.1'
 
 gem 'formtastic-bootstrap', '3.1.1'
 gem 'select2-rails', '3.5.9.3'
