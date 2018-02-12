@@ -2,29 +2,153 @@
   <p><%= f.object.class.description %></p>
 </div>
 
+<p>
+  Use this form for : Campaign Platform site or microsite
+<ul>
+  <li>A campaign platform site is a one page website on campaign.gov.uk</li>
+  <li>Microsite websites are not built on GOV.UK and may or may not have
+    a gov.uk url.
+    Microsite websites <%= link_to 'fall under Cabinet Office digital service expenditure', 'https://www.google.com/url?q=https://www.gov.uk/service-manual/agile-delivery/spend-controls-check-if-you-need-approval-to-spend-money-on-a-service%23when-your-service-is-considered-a-digital-service&sa=D&ust=1518444538536000&usg=AFQjCNFvnZ81hn7cqJnGHgcgQ0V0bdwCBQ'%>
+    therefore GDS spend approval must be sought following approval from GCS to develop a campaign microsite.
+  </li>
+</ul>
+  For either type of site, please answer the questions below.
+</p>
+
 <%= f.semantic_fields_for :campaign do |r| %>
   <%= r.inputs :name => "Campaign details" do %>
-    <%= r.input :title, label: "Campaign title", required: true, input_html: {:class => "input-md-6", :"aria-required" => true} %>
+    <%= r.input :type_of_site,
+                label: "Are you applying for the campaign platform or a bespoke microsite?",
+                as: :radio,
+                :collection => ["Campaign platform", "Bespoke microsite"],
+                required: true,
+                input_html: {:class => "input-md-6"} %>
+    <%= r.input :has_read_guidance_confirmation,
+                label: "<b>Have you read the the #{link_to('GCS guidance on campaign websites', 'https://gcs.civilservice.gov.uk/guidance/campaigns/websites-government-campaigns/')} and accept the requirements for a Campaign Platform website?</b>".html_safe,
+                as: :boolean,
+                input_html: {:class => "input-md-6"} %>
+    <%= r.input :has_read_oasis_guidance_confirmation,
+                label: "<b>Have you followed the #{link_to('GCS guidance for OASIS planning', 'https://gcs.civilservice.gov.uk/wp-content/uploads/2015/09/6.3938_CO_GCS-Campaign-Planning_FINAL_A4_111017.pdf')} and are using the #{link_to('GCS website recommended OASIS template?', 'https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/')}</b>".html_safe,
+                as: :boolean,
+                input_html: {:class => "input-md-6"} %>
+    <%= r.input :signed_campaign,
+                label: "Name of the head of digital who signed off the campaign website application",
+                required: true,
+                input_html: {:class => "input-md-6"} %>
+    <%= r.input :start_date,
+                label: "Start date of campaign site",
+                required: true,
+                input_html: { class: "input-md-2",
+                              :"data-module" => 'calendar',
+                              :"data-format" => 'dd-mm-yy',
+                              :"data-min-date" => 0,
+                              :placeholder => "dd-mm-yyyy",
+                              :value => r.object.start_date} %>
+    <%= r.input :end_date,
+                label: "Proposed end date of campaign site",
+                required: true,
+                input_html: { class: "input-md-2",
+                              :"data-module" => 'calendar',
+                              :"data-format" => 'dd-mm-yy',
+                              :"data-min-date" => 0,
+                              :placeholder => "dd-mm-yyyy",
+                              :value => r.object.end_date} %>
+    <%= r.input :development_start_date,
+                label: "Site build to commence on",
+                required: true,
+                input_html: { class: "input-md-2",
+                              :"data-module" => 'calendar',
+                              :"data-format" => 'dd-mm-yy',
+                              :"data-min-date" => 0,
+                              :placeholder => "dd-mm-yyyy",
+                              :value => r.object.development_start_date} %>
+    <p class="help-block">
+      We expect the website to go live within 1 month of approval
+    </p>
 
-    <%= r.input :other_dept_or_agency, label: "Other department(s) or agencies running the campaign (if any)", required: false, input_html: {:class => "input-md-6"} %>
-    <%= r.input :signed_campaign, label: "Head of Digital who signed off the campaign", required: true, input_html: {:class => "input-md-6"} %>
+    <%= r.input :performance_review_contact_email,
+                label: "Contact email/s for website performance review every 6 months",
+                required: true,
+                input_html: {:class => "input-md-6"} %>
+    <p class="help-block">
+      Every 6 months after your site goes live you will be required to provide performance data
+      for the site based on your digital KPIs.
+    </p>
 
-    <%= r.input :start_date, label: "Start date", required: true, input_html: { class: "input-md-2", :"data-module" => 'calendar', :"data-format" => 'dd-mm-yy', :"data-min-date" => 0, :placeholder => "dd-mm-yyyy", :value => r.object.start_date} %>
-    <%= r.input :end_date, label: "Campaign end date / review date (within 6 months of launch)", required: true, input_html: { class: "input-md-2", :"data-module" => 'calendar', :"data-format" => 'dd-mm-yy', :"data-min-date" => 0, :placeholder => "dd-mm-yyyy", :value => r.object.end_date} %>
+    <%= r.input :government_theme,
+                label: "Which of the current government priority themes does this campaign website support and how?",
+                required: true,
+                input_html: {:class => "input-md-6",
+                             :rows => 6,
+                             :cols => 50,
+                             :"aria-required" => true } %>
 
-    <%= r.input :description, as: :text, label: "Campaign description", required: true, input_html: {:class => "input-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
+    <%= r.input :description,
+                as: :text,
+                label: "Campaign description",
+                required: true,
+                input_html: {:class => "input-md-6",
+                             :rows => 6,
+                             :cols => 50,
+                             :"aria-required" => true } %>
+    <p class="help-block">
+      Brief description
+    </p>
 
-    <%= r.input :call_to_action, as: :text, label: "Call to action", required: true, input_html: {:class => "input-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
-    <%= r.input :success_measure, as: :text, label: "How will you measure success?", required: true, input_html: {:class => "input-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
+    <%= r.input :call_to_action,
+                as: :text,
+                label: "Call to action",
+                required: true,
+                input_html: {:class => "input-md-6",
+                             :rows => 6,
+                             :cols => 50,
+                             :"aria-required" => true } %>
 
-    <%= r.input :proposed_url, label: "Proposed URL (in the form of xxxxx.campaign.gov.uk)", required: true, input_html: { class: "input-md-6", :"aria-describedby" => "urlHelpBlock", :"aria-required" => true } %>
+    <%= r.input :proposed_url,
+                label: "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)",
+                required: true, input_html: { class: "input-md-6",
+                                              :"aria-describedby" => "urlHelpBlock",
+                                              :"aria-required" => true } %>
+    <p class="help-block">
+      If applying for Campaigns Platform it is in the form of xxxxx.campaign.gov.uk, or otherwise
+      if a microsite, standard format is  in the form of xxxxxx.gov.uk.
+    </p>
 
-    <%= r.input :site_metadescription, as: :text, label: "Site metadescription (appears in search results)", required: true, input_html: {:class => "input-md-6", :rows => 6, :cols => 50, :"aria-required" => true, :"aria-describedby" => "seoHelpBlock" } %>
+    <%= r.input :site_metadescription,
+                as: :text,
+                label: "Site metadescription (appears in search results)",
+                required: true,
+                input_html: {:class => "input-md-6",
+                             :rows => 6,
+                             :cols => 50,
+                             :"aria-required" => true,
+                             :"aria-describedby" => "seoHelpBlock" } %>
+    <p class="help-block">
+      The meta description is a short, clear sentence how you want the site described as it appears
+      in Google search
+    </p>
 
-    <%= r.input :cost_of_campaign, label: "Cost of campaign", required: true, input_html: { class: "input-md-6" } %>
+    <%= r.input :cost_of_campaign, label: "Site build budget / costs (and overall campaign cost, if applicable)", required: true, input_html: { class: "input-md-6" } %>
+    <p class="help-block">
+      If you are applying for the Campaign Platform page, this is free of any build charge
+    </p>
+
+    <%= r.input :ga_contact_email, label: "Contact details for Google Analytics leads (Gmail accounts only)", required: true, input_html: {:class => "input-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
+    <p class="help-block">
+      GCS centralise and coordinate access to Google Analytics, although departments will themselves
+      be responsible for analysing their site’s performance.
+    </p>
+    <p class="help-block">
+      If you need to set up a bespoke analytics package independent of centralised/GCS GA for the purposes
+      of your marketing, please provide the following with access webmaster@cabinetoffice.gov.uk and
+      microsites@cabinetoffice.gov.uk.
+    </p>
 
     <% end %>
 <% end %>
 
 <%= f.input :additional_comments, as: :text, label: "Additional comments", input_html: { class: "input-md-6", rows: 6, cols: 50 } %>
 
+<p class="help-block">
+  Please note that in the next stage you will also need to provide an OASIS plan using this template (<%= link_to 'OASIS template from the GCS website', 'https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/' %>). In particular you need to demonstrate how the digital / website element of the campaign integrates into your overall OASIS plan and we will need to see <u>specific digital KPIs</u> in the evaluation section.
+</p>

@@ -18,8 +18,11 @@ protected
       :additional_comments,
       requester_attributes: %i[email name collaborator_emails],
       campaign_attributes: %i[
-        title other_dept_or_agency signed_campaign start_date end_date description
-        call_to_action success_measure proposed_url site_metadescription cost_of_campaign
+        type_of_site signed_campaign
+        has_read_guidance_confirmation has_read_oasis_guidance_confirmation
+        start_date end_date development_start_date performance_review_contact_email
+        government_theme description call_to_action proposed_url site_metadescription
+        cost_of_campaign ga_contact_email
       ]
     ).to_h
   end
