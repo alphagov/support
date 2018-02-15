@@ -16,7 +16,7 @@ gem 'jquery-ui-rails', '6.0.1'
 gem 'plek', '2.1.1'
 
 gem 'formtastic-bootstrap', '3.1.1'
-gem 'select2-rails', '3.5.9.3'
+gem 'select2-rails', '4.0.3'
 
 gem 'jc-validates_timeliness', '3.1.1'
 if ENV['GDS_ZENDESK_DEV']
