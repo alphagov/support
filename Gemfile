@@ -40,7 +40,7 @@ gem 'govuk_app_config', '~> 1.3.0'
 group :test do
   gem 'shoulda', '~> 3.5.0'
   gem "webmock", "~> 3.3.0"
-  gem 'capybara', '~> 2.17'
+  gem 'capybara', '~> 2.18'
   gem 'timecop', '~> 0.9.1'
   gem 'rspec-collection_matchers', '~> 1.1.0'
   gem 'factory_girl_rails', '~> 4.9.0'
