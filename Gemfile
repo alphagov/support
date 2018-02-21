@@ -8,7 +8,7 @@ end
 gem 'rails', '5.0.2'
 
 gem 'sass-rails', '5.0.7'
-gem 'uglifier', '4.1.5'
+gem 'uglifier', '4.1.6'
 
 gem 'gds-sso', '~> 13.6'
 gem 'cancancan', '~> 2.1'
