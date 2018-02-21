@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery-ui/datepicker
+//= require jquery-ui/widgets/datepicker
 //= require_directory ./modules
 //= require select2
 
