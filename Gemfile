@@ -26,7 +26,7 @@ else
 end
 gem 'redis', '3.3.5'
 gem "govuk_sidekiq", '~> 3.0'
-gem 'kaminari', '~> 0.17.0'
+gem 'kaminari', '~> 1.1.1'
 gem 'bootstrap-kaminari-views', '0.0.5'
 gem 'govuk_admin_template', '6.5.0'
 if ENV['API_DEV']
