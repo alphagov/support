@@ -25,7 +25,7 @@ else
   gem "gds_zendesk", '3.0.0'
 end
 gem 'redis', '3.3.5'
-gem "govuk_sidekiq", '~> 2.0'
+gem "govuk_sidekiq", '~> 3.0'
 gem 'kaminari', '~> 0.17.0'
 gem 'bootstrap-kaminari-views', '0.0.5'
 gem 'govuk_admin_template', '6.5.0'
