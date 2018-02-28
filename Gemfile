@@ -60,7 +60,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails', '3.5.2'
   gem 'rails-controller-testing'
-  gem 'jasmine', '2.9.0'
+  gem 'jasmine', '3.1.0'
   gem 'govuk-lint'
   gem 'ci_reporter_rspec'
 end
