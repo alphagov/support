@@ -49,7 +49,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'ci_reporter_rspec'
   gem 'govuk-lint'
   gem 'jasmine', '3.1.0'
   gem 'pry-byebug'
