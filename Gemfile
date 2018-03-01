@@ -14,6 +14,9 @@ gem 'gretel', '3.0.9'
 gem 'jc-validates_timeliness', '3.1.1'
 gem 'jquery-ui-rails', '6.0.1'
 gem 'kaminari', '~> 1.1.1'
+# Redis is marked as an explicit dependency even though we'd get it
+# implicitly from using govuk_sidekiq.  This is because we store user
+# objects in it directly as the app has no access to any other database.
 gem 'redis', '4.0.1'
 gem 'sass-rails', '5.0.7'
 gem 'select2-rails', '4.0.3'
