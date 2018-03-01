@@ -78,10 +78,10 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubis (2.7.0)
     execjs (2.7.0)
-    factory_girl (4.9.0)
+    factory_bot (4.8.2)
       activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
+    factory_bot_rails (4.8.2)
+      factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
@@ -413,7 +413,7 @@ DEPENDENCIES
   cancancan (~> 2.1)
   capybara (~> 2.18)
   ci_reporter_rspec
-  factory_girl_rails (~> 4.9.0)
+  factory_bot_rails
   formtastic-bootstrap (= 3.1.1)
   gds-api-adapters (~> 51.4)
   gds-sso (~> 13.6)
@@ -447,4 +447,4 @@ DEPENDENCIES
   webmock (~> 3.3.0)
 
 BUNDLED WITH
-   1.15.1
+   1.16.1
