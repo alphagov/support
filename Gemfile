@@ -65,3 +65,4 @@ group :test do
   gem 'timecop', '~> 0.9.1'
   gem 'webmock', '~> 3.3.0'
 end
+gem 'rack-protection', '>= 2.0.1'
