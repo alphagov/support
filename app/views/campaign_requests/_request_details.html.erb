@@ -28,7 +28,7 @@
                 as: :boolean,
                 input_html: {:class => "input-md-6"} %>
     <%= r.input :has_read_oasis_guidance_confirmation,
-                label: "<b>Have you followed the #{link_to('GCS guidance for OASIS planning', 'https://gcs.civilservice.gov.uk/wp-content/uploads/2015/09/6.3938_CO_GCS-Campaign-Planning_FINAL_A4_111017.pdf')} and are using the #{link_to('GCS website recommended OASIS template?', 'https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/')}</b>".html_safe,
+                label: "<b>Have you followed the #{link_to('GCS guidance for OASIS planning', 'https://gcs.civilservice.gov.uk/wp-content/uploads/2015/09/6.3938_CO_GCS-Campaign-Planning_FINAL_A4_111017.pdf')} and are using the #{link_to('mandatory GCS OASIS template?', 'https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/')}</b>".html_safe,
                 as: :boolean,
                 input_html: {:class => "input-md-6"} %>
     <%= r.input :signed_campaign,
@@ -76,7 +76,7 @@
     </p>
 
     <%= r.input :government_theme,
-                label: "Which of the current government priority themes does this campaign website support and how?",
+                label: "Which of the current Government Communications Plan priority themes does this campaign website support and how?",
                 required: true,
                 input_html: {:class => "input-md-6",
                              :rows => 6,
