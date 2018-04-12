@@ -37,7 +37,7 @@ John Smith
 [Contact email/s for website performance review every 6 months]
 john.smith@example.com
 
-[Which of the current government priority themes does this campaign website support and how?]
+[Which of the current Government Communications Plan priority themes does this campaign website support and how?]
 Example government theme
 
 [Campaign description]
@@ -96,13 +96,13 @@ Some comment"
 
     choose details[:type_of_site]
     check "Have you read the the GCS guidance on campaign websites and accept the requirements for a Campaign Platform website?" if details[:has_read_guidance]
-    check "Have you followed the GCS guidance for OASIS planning and are using the GCS website recommended OASIS template?" if details[:has_read_oasis_guidance]
+    check "Have you followed the GCS guidance for OASIS planning and are using the mandatory GCS OASIS template?" if details[:has_read_oasis_guidance]
     fill_in "Name of the head of digital who signed off the campaign website application*", with: details[:signed_campaign]
     fill_in "Start date of campaign site*", with: details[:start_date]
     fill_in "Proposed end date of campaign site*", with: details[:end_date]
     fill_in "Site build to commence on", with: details[:development_start_date]
     fill_in "Contact email/s for website performance review every 6 months*", with: details[:performance_review_contact_email]
-    fill_in "Which of the current government priority themes does this campaign website support and how?*", with: details[:government_theme]
+    fill_in "Which of the current Government Communications Plan priority themes does this campaign website support and how?*", with: details[:government_theme]
     fill_in "Campaign description*", with: details[:description]
     fill_in "Call to action*", with: details[:call_to_action]
     fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)*", with: details[:proposed_url]

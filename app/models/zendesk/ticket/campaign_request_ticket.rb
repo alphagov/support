@@ -26,7 +26,7 @@ module Zendesk
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :performance_review_contact_email,
                                                      label: "Contact email/s for website performance review every 6 months"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :government_theme,
-                                                     label: "Which of the current government priority themes does this campaign website support and how?"),
+                                                     label: "Which of the current Government Communications Plan priority themes does this campaign website support and how?"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :description,
                                                      label: "Campaign description"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :call_to_action,
