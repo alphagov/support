@@ -18,18 +18,18 @@ feature 'Exploring anonymous feedback' do
     feedback_reports = [
       {
         'Date' => '1 Mar 2013',
-        'Feedback' => 'Action: Looking at 3rd paragraph Problem: Typo in 2rd word',
+        'Feedback' => "Action: Looking at 3rd paragraph\nProblem: Typo in 2rd word",
         'URL' => '/vat-rates',
         'Referrer' => '/'
       }, {
         'Date' => '1 Feb 2013',
-        'Feedback' => 'Action: Looking at done page Problem: A paragraph is misaligned',
+        'Feedback' => "Action: Looking at done page\nProblem: A paragraph is misaligned",
         'URL' => '/done',
         'Referrer' => '/pay-vat'
       },
       {
         'Date' => '1 Feb 2013',
-        'Feedback' => 'Action: Looking at vehicle tax page Problem: Not enough detail about how to get in contact',
+        'Feedback' => "Action: Looking at vehicle tax page\nProblem: Not enough detail about how to get in contact",
         'URL' => '/vehicle-tax',
         'Referrer' => '/pay-vehicle-tax'
       }
@@ -48,18 +48,18 @@ feature 'Exploring anonymous feedback' do
     feedback_reports = [
       {
         'Date' => '1 Mar 2013',
-        'Feedback' => 'Action: Looking at 3rd paragraph Problem: Typo in 2rd word',
+        'Feedback' => "Action: Looking at 3rd paragraph\nProblem: Typo in 2rd word",
         'URL' => '/vat-rates',
         'Referrer' => '/'
       }, {
         'Date' => '1 Feb 2013',
-        'Feedback' => 'Action: Looking at done page Problem: A paragraph is misaligned',
+        'Feedback' => "Action: Looking at done page\nProblem: A paragraph is misaligned",
         'URL' => '/done',
         'Referrer' => '/pay-vat'
       },
       {
         'Date' => '1 Feb 2013',
-        'Feedback' => 'Action: Looking at vehicle tax page Problem: Not enough detail about how to get in contact',
+        'Feedback' => "Action: Looking at vehicle tax page\nProblem: Not enough detail about how to get in contact",
         'URL' => '/vehicle-tax',
         'Referrer' => '/pay-vehicle-tax'
       }
