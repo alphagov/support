@@ -48,9 +48,9 @@ private
   def user_makes_a_taxomomy_change_topic_request(details)
     visit '/'
 
-    click_on "Change or remove a topic"
+    click_on "Suggest a change to a topic"
 
-    expect(page).to have_content("For requesting changes to topics from the education or parenting and childcare taxonomies.")
+    expect(page).to have_content("Suggest a change to a topic or the removal of a topic in the GOV.UK taxonomy.")
 
     fill_in "Name of topic you'd like changed", with: details[:title]
 
