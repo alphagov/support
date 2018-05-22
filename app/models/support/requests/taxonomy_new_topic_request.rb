@@ -12,11 +12,11 @@ module Support
       end
 
       def self.label
-        "Add a topic"
+        "Suggest a new topic"
       end
 
       def self.description
-        "For requesting new topics in the education or parenting and childcare taxonomies."
+        "Suggest a new topic for the GOV.UK taxonomy."
       end
     end
   end

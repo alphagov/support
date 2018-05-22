@@ -39,8 +39,8 @@ The types of forms and their purpose are listed below:
 - "Remove user": Request to remove user access
 - "Request a new campaign": Request GDS supoort for a new campaign
 - "Support for live campaign": Request GDS support for a live campaign
-- "Add a topic": For requesting new topics in the education or parenting and childcare taxonomies
-- "Change or remove a topic": For requesting changes to topics from the education or parenting and childcare taxonomies
+- "Suggest a new topic": Suggest a new topic for the GOV.UK taxonomy
+- "Suggest a change to a topic": Suggest a change to a topic or the removal of a topic in the GOV.UK taxonomy
 - "Analytics access, reports and help": Request access to Google Analytics or help with analytics and reports
 - "General": Report a problem, request GDS support, or make a suggestion
 - "Feedback explorer": GOV.UK Anonymous Feedback

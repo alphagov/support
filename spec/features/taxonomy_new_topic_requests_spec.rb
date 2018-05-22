@@ -48,9 +48,9 @@ private
   def user_makes_a_taxomomy_new_topic_request(details)
     visit '/'
 
-    click_on "Add a topic"
+    click_on "Suggest a new topic"
 
-    expect(page).to have_content("For requesting new topics in the education or parenting and childcare taxonomies.")
+    expect(page).to have_content("Suggest a new topic for the GOV.UK taxonomy.")
 
     fill_in "Preferred name of new topic", with: details[:title]
 

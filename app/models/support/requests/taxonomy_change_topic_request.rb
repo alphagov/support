@@ -27,11 +27,11 @@ module Support
       end
 
       def self.label
-        "Change or remove a topic"
+        "Suggest a change to a topic"
       end
 
       def self.description
-        "For requesting changes to topics from the education or parenting and childcare taxonomies."
+        "Suggest a change to a topic or the removal of a topic in the GOV.UK taxonomy."
       end
     end
   end
