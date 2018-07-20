@@ -59,7 +59,7 @@ GEM
     builder (3.2.3)
     byebug (10.0.0)
     cancancan (2.2.0)
-    capybara (3.3.1)
+    capybara (3.4.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -200,7 +200,7 @@ GEM
     multipart-post (2.0.0)
     netrc (0.11.0)
     nio4r (2.3.0)
-    nokogiri (1.8.3)
+    nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     null_logger (0.0.1)
     oauth2 (1.4.0)
@@ -410,7 +410,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-kaminari-views (= 0.0.5)
   cancancan (~> 2.2)
-  capybara (~> 3.3)
+  capybara (~> 3.4)
   factory_bot_rails
   formtastic-bootstrap (= 3.1.1)
   gds-api-adapters (~> 52.6)
