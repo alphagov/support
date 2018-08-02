@@ -1,0 +1,44 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "2979c2043ab74cd70eaf7297b8e52e7aadcbcad0ec9fe5b3461d496a1620e1c9",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in link_to href",
+      "file": "app/views/anonymous_feedback/_anonymous-contact.html.erb",
+      "line": 10,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to((Unresolved Model).new.path, (Unresolved Model).new.url, :class => \"breakable\")",
+      "render_path": [{"type":"template","name":"anonymous_feedback/_results","line":13,"file":"app/views/anonymous_feedback/_results.html.erb"}],
+      "location": {
+        "type": "template",
+        "template": "anonymous_feedback/_anonymous-contact"
+      },
+      "user_input": "(Unresolved Model).new.url",
+      "confidence": "Weak",
+      "note": "This is not an issue as it comes from a new instance of a model."
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "2abcbad51ae3d92c7adff358b1377404d2bb1545d5d4703a3f76764f5e0f5a2a",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in link_to href",
+      "file": "app/views/anonymous_feedback/problem_reports/_problem_report.html.erb",
+      "line": 10,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to((Unresolved Model).new.path, (Unresolved Model).new.url, :class => \"breakable\")",
+      "render_path": [{"type":"template","name":"anonymous_feedback/problem_reports/index","line":66,"file":"app/views/anonymous_feedback/problem_reports/index.html.erb"}],
+      "location": {
+        "type": "template",
+        "template": "anonymous_feedback/problem_reports/_problem_report"
+      },
+      "user_input": "(Unresolved Model).new.url",
+      "confidence": "Weak",
+      "note": "This is not an issue as it comes from a new instance of a model."
+    }
+  ],
+  "updated": "2018-08-02 15:27:18 +0100",
+  "brakeman_version": "4.3.1"
+}
