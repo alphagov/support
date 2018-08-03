@@ -3,6 +3,5 @@
 library("govuk")
 
 node {
-
-  govuk.buildProject()
+  govuk.buildProject(brakeman: true)
 }

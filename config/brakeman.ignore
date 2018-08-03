@@ -1,0 +1,64 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "2979c2043ab74cd70eaf7297b8e52e7aadcbcad0ec9fe5b3461d496a1620e1c9",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in link_to href",
+      "file": "app/views/anonymous_feedback/_anonymous-contact.html.erb",
+      "line": 10,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to((Unresolved Model).new.path, (Unresolved Model).new.url, :class => \"breakable\")",
+      "render_path": [{"type":"template","name":"anonymous_feedback/_results","line":13,"file":"app/views/anonymous_feedback/_results.html.erb"}],
+      "location": {
+        "type": "template",
+        "template": "anonymous_feedback/_anonymous-contact"
+      },
+      "user_input": "(Unresolved Model).new.url",
+      "confidence": "Weak",
+      "note": "This is not an issue as it comes from a new instance of a model."
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 4,
+      "fingerprint": "2abcbad51ae3d92c7adff358b1377404d2bb1545d5d4703a3f76764f5e0f5a2a",
+      "check_name": "LinkToHref",
+      "message": "Potentially unsafe model attribute in link_to href",
+      "file": "app/views/anonymous_feedback/problem_reports/_problem_report.html.erb",
+      "line": 10,
+      "link": "https://brakemanscanner.org/docs/warning_types/link_to_href",
+      "code": "link_to((Unresolved Model).new.path, (Unresolved Model).new.url, :class => \"breakable\")",
+      "render_path": [{"type":"template","name":"anonymous_feedback/problem_reports/index","line":66,"file":"app/views/anonymous_feedback/problem_reports/index.html.erb"}],
+      "location": {
+        "type": "template",
+        "template": "anonymous_feedback/problem_reports/_problem_report"
+      },
+      "user_input": "(Unresolved Model).new.url",
+      "confidence": "Weak",
+      "note": "This is not an issue as it comes from a new instance of a model."
+    },
+    {
+      "warning_type": "File Access",
+      "warning_code": 16,
+      "fingerprint": "9e73fe0915c1416875f85b7e5dc3b1b436fd3e2a16c915c7072b502d1c4f12a5",
+      "check_name": "SendFile",
+      "message": "Parameter value used in file name",
+      "file": "app/controllers/anonymous_feedback/export_requests_controller.rb",
+      "line": 18,
+      "link": "https://brakemanscanner.org/docs/warning_types/file_access/",
+      "code": "send_file(\"/data/uploads/support-api/csvs/#{support_api.feedback_export_request(params[:id])[\"filename\"]}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "AnonymousFeedback::ExportRequestsController",
+        "method": "show"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": "It doesn't come directly from a parameter, instead it comes from a reponse from the Support API which we can trust."
+    }
+  ],
+  "updated": "2018-08-02 15:31:34 +0100",
+  "brakeman_version": "4.3.1"
+}
