@@ -53,7 +53,7 @@ group :development, :test do
   gem 'jasmine', '3.1.0'
   gem 'pry-byebug'
   gem 'rails-controller-testing'
-  gem 'rspec-rails', '3.7.2'
+  gem 'rspec-rails', '3.8.0'
 end
 
 group :test do
