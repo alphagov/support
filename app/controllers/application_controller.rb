@@ -11,10 +11,10 @@ class ApplicationController < ActionController::Base
 
 protected
 
-  def exception_notification_for(e)
-    exception_class_name = e.class.name.demodulize.downcase
+  def exception_notification_for(exception)
+    exception_class_name = exception.class.name.demodulize.downcase
     GovukStatsd.increment("exception.#{exception_class_name}")
-    GovukError.notify(e)
+    GovukError.notify(exception)
   end
 
   def authenticate_support_user!
