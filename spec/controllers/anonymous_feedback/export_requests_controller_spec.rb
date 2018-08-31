@@ -44,7 +44,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
       end
 
       it "normalises the paths before sending them to the api" do
-        post :create, params: { paths: ["foo"], from: "2015-05-01", to: "2015-06-01" }
+        post :create, params: { paths: %w[foo], from: "2015-05-01", to: "2015-06-01" }
 
         expect(stub_request).to have_been_made
       end
@@ -100,7 +100,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
       end
 
       it "normalises the paths before sending them to the api" do
-        post :create, params: { paths: ["foo"], from: "2015-05-01", to: "2015-06-01" }
+        post :create, params: { paths: %w[foo], from: "2015-05-01", to: "2015-06-01" }
 
         expect(stub_request).to have_been_made
       end

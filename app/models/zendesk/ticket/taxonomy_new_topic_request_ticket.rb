@@ -6,7 +6,7 @@ module Zendesk
       end
 
       def tags
-        super + ["taxonomy_new_topic_request"]
+        super + %w[taxonomy_new_topic_request]
       end
 
     protected

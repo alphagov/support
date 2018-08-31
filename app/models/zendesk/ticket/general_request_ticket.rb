@@ -10,7 +10,7 @@ module Zendesk
       end
 
       def tags
-        super + ["govt_agency_general"]
+        super + %w[govt_agency_general]
       end
 
     protected

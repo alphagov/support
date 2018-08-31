@@ -56,7 +56,7 @@ module Support
       end
 
       def inside_government_related?
-        whitehall_account_options.values.include?(user_needs)
+        whitehall_account_options.value?(user_needs)
       end
 
       def self.whitehall_account_options

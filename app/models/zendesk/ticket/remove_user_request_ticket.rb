@@ -6,7 +6,7 @@ module Zendesk
       end
 
       def tags
-        super + ["remove_user"]
+        super + %w[remove_user]
       end
 
     protected

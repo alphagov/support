@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :user do
     name "Stub User"
     sequence(:email) { |n| "person-#{n}@example.com" }
-    permissions { ["signin"] }
+    permissions { %w[signin] }
 
     factory :api_user do permissions { %w[signin api_users] } end
     factory :user_manager do permissions { %w[signin user_managers] } end

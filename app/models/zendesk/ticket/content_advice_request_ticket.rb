@@ -12,7 +12,7 @@ module Zendesk
       end
 
       def tags
-        super + ["dept_content_advice"]
+        super + %w[dept_content_advice]
       end
 
     protected
