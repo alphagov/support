@@ -6,10 +6,14 @@ GDS::SSO.config do |config|
 end
 
 if Rails.env == "development" && ENV['GDS_SSO_STRATEGY'] != 'real'
-  GDS::SSO.test_user = User.upsert!(
-    "uid" => 'dummy-user',
-    "name" => 'Ms Example',
-    "email" => 'example@example.com',
-    "permissions" => ['single_points_of_contact', 'api_users', 'feedex_exporters']
-  )
+  begin
+    GDS::SSO.test_user = User.upsert!(
+      "uid" => 'dummy-user',
+      "name" => 'Ms Example',
+      "email" => 'example@example.com',
+      "permissions" => ['single_points_of_contact', 'api_users', 'feedex_exporters']
+    )
+  rescue Redis::CannotConnectError
+    puts "Redis::CannotConnectError: Unable to create dummy user"
+  end
 end
