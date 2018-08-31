@@ -4,7 +4,8 @@ module Support
   module GDS
     class RequestedUser
       include ActiveModel::Model
-      attr_accessor :name, :email, :job, :phone, :training, :other_training
+      attr_accessor :name, :email, :job, :phone, :other_training
+      attr_writer :training
 
       TRAINING_OPTIONS = {
         "Writing for GOV.UK" => "writing",

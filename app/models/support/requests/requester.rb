@@ -4,7 +4,8 @@ module Support
   module Requests
     class Requester
       include ActiveModel::Model
-      attr_accessor :email, :name
+      attr_accessor :name
+      attr_reader :email
 
       validates_presence_of :email
 
