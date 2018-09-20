@@ -72,6 +72,7 @@ class ScopeFiltersPresenter
   end
 
 private
+
   attr_reader :parsed_paths
 
   def normalize_path(path_or_url)

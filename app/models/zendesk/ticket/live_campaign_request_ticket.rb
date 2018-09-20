@@ -6,7 +6,7 @@ module Zendesk
       end
 
       def tags
-        super + ["live_campaign"]
+        super + %w[live_campaign]
       end
 
     protected

@@ -30,11 +30,11 @@ module Zendesk
     end
 
     def tags
-      ["govt_form"]
+      %w[govt_form]
     end
 
     def inside_government_tag_if_needed
-      @request.inside_government_related? ? ["inside_government"] : []
+      @request.inside_government_related? ? %w[inside_government] : []
     end
 
     def to_s

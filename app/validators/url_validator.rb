@@ -8,7 +8,7 @@ class UrlValidator < ActiveModel::EachValidator
   def url_valid?(url)
     url = URI.parse(url)
     url.is_a?(URI::HTTP) || url.is_a?(URI::HTTPS) || url.relative?
-  rescue
+  rescue StandardError
     false
   end
 end

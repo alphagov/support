@@ -6,7 +6,7 @@ module Zendesk
       end
 
       def tags
-        super + ["campaign"]
+        super + %w[campaign]
       end
 
     protected

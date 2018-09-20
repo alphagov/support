@@ -6,7 +6,7 @@ module Zendesk
       end
 
       def tags
-        super + ["analytics"]
+        super + %w[analytics]
       end
 
     protected

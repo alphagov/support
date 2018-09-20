@@ -10,7 +10,7 @@ module Zendesk
       end
 
       def tags
-        super + ["content_amend"]
+        super + %w[content_amend]
       end
 
     protected

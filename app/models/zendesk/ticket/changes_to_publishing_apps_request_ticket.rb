@@ -8,7 +8,7 @@ module Zendesk
       end
 
       def tags
-        super + ["new_feature_request"]
+        super + %w[new_feature_request]
       end
 
     protected
