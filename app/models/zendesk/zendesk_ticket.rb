@@ -61,6 +61,11 @@ module Zendesk
       []
     end
 
+    def assignee_id
+      # temporary while Content Publisher is in private beta
+      @request.assignee_id if has_value?(:assignee_id)
+    end
+
   protected
 
     def request_label(attributes)

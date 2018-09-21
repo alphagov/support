@@ -47,6 +47,43 @@ Should have linked through"
     expect(request).to have_been_made
   end
 
+  scenario "successful Content Publisher report" do
+    request = expect_zendesk_to_receive_ticket(
+      "subject" => "Technical fault report",
+      "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
+      "collaborators" => [],
+      "tags" => %w[govt_form technical_fault fault_with_content_publisher],
+      "comment" => {
+        "body" =>
+"[Location of fault]
+Content Publisher (beta)
+
+[What is broken]
+News story
+
+[Actions leading to problem]
+Clicked on x
+
+[What happened]
+Broken link
+
+[What should have happened]
+Should have linked through",
+      },
+      "assignee_id" => 3512638809,
+    )
+
+    user_makes_a_technical_fault_report(
+      location_of_fault: "Content Publisher (beta)",
+      what_is_broken: "News story",
+      user_action: "Clicked on x",
+      what_happened: "Broken link",
+      what_should_have_happened: "Should have linked through",
+    )
+
+    expect(request).to have_been_made
+  end
+
   private
 
   def user_makes_a_technical_fault_report(details)

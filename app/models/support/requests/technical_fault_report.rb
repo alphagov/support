@@ -10,6 +10,10 @@ module Support
         end
       end
 
+      # This is temporary while Content Publisher is in private beta.
+      # Content Publisher tickets will be assigned to Humin Miah.
+      CONTENT_PUBLISHER_ASSIGNEE = 3512638809
+
       def initialize(opts = {})
         super
         self.fault_context ||= Support::GDS::UserFacingComponent.new
@@ -33,6 +37,12 @@ module Support
 
       def self.description
         "Report something that is not working with any publishing application, eg Whitehall, finders or specialist publisher. Also use for any urgent technical changes"
+      end
+
+      def assignee_id
+        # temporary while Content Publisher is in private beta
+        return unless fault_context.id == "content_publisher"
+        CONTENT_PUBLISHER_ASSIGNEE
       end
     end
   end
