@@ -34,7 +34,7 @@ gem 'govuk_app_config', '~> 1.10.0'
 if ENV['API_DEV']
   gem 'gds-api-adapters', :path => '../gds-api-adapters'
 else
-  gem 'gds-api-adapters', '~> 53.2'
+  gem 'gds-api-adapters', '~> 54.0'
 end
 gem 'govuk_sidekiq', '~> 3.0'
 gem 'plek', '2.1.1'
