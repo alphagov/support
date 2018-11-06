@@ -50,7 +50,7 @@ end
 
 group :development, :test do
   gem 'govuk-lint'
-  gem 'jasmine', '3.2.0'
+  gem 'jasmine', '3.3.0'
   gem 'pry-byebug'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '3.8.1'
