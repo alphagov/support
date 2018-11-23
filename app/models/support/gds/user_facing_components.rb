@@ -21,6 +21,7 @@ module Support
             { name: "Mainstream Publisher", id: "mainstream_publisher" },
             { name: "Travel Advice Publisher", id: "travel_advice_publisher" },
             { name: "Specialist Publisher", id: "specialist_publisher" },
+            { name: "Content Publisher (beta)", id: "content_publisher" },
           ]
         end
       end
