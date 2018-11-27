@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 require 'active_model/model'
 require 'support/gds/with_request_context'
 
