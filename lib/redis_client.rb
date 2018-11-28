@@ -6,12 +6,6 @@ class RedisClient
   attr_reader :connection
 
   def initialize
-    @connection = Redis.new(config.symbolize_keys)
-  end
-
-private
-
-  def config
-    Rails.application.config_for(:redis)
+    @connection = Redis.new
   end
 end
