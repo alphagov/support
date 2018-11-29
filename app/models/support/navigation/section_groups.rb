@@ -10,7 +10,7 @@ module Support
           Support::Navigation::SectionGroup.new("Technical support", sections_for(Support::Requests::ChangesToPublishingAppsRequest, Support::Requests::TechnicalFaultReport)),
           Support::Navigation::SectionGroup.new("User access", sections_for(Support::Requests::AccountsPermissionsAndTrainingRequest, Support::Requests::RemoveUserRequest)),
           Support::Navigation::SectionGroup.new("Campaigns", sections_for(Support::Requests::CampaignRequest, Support::Requests::LiveCampaignRequest)),
-          Support::Navigation::SectionGroup.new("Feedback for tools in Beta", sections_for(Support::Requests::ContentPublisherFeedbackRequest)),
+          Support::Navigation::SectionGroup.new("Feedback for tools in Beta", sections_for(Support::Requests::ContentPublisherFeedbackRequest, Support::Requests::ContentDataFeedback)),
           Support::Navigation::SectionGroup.new("Taxonomy requests", sections_for(Support::Requests::TaxonomyNewTopicRequest, Support::Requests::TaxonomyChangeTopicRequest)),
           Support::Navigation::SectionGroup.new("Other requests", sections_for(Support::Requests::AnalyticsRequest, Support::Requests::GeneralRequest)),
         ]

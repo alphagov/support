@@ -1,0 +1,37 @@
+<p class="alert alert-info">
+  Content Data is in private beta. With this form you can tell us
+  about your experience using the new data tool, so we can make it
+  better.
+</p>
+<div id="feedback-type">
+  <%= f.input(
+    :feedback_type,
+    as: :radio,
+    required: true,
+    label: "Your feedback is about",
+    collection: f.object.feedback_type_options,
+    input_html: { :"aria-required" => true }
+  ) %>
+  <%= f.input(
+    :feedback_details,
+    as: :text,
+    required: true,
+    label: "Tell us a bit more",
+    input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true }
+  ) %>
+  <%= f.input(
+    :impact_on_work,
+    as: :text,
+    required: false,
+    label: "What's the impact on your work if we don't do anything about it?",
+    hint: "This information will help us prioritise changes and future work",
+    input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => false }
+  ) %>
+</div>
+
+<p class="alert alert-info">
+  To add screenshots to this feedback, reply to the acknowledgement
+  email you receive and attach them.
+</p>
+
+<%= render partial: "support/collaborators", locals: { f: f } %>
