@@ -12,6 +12,7 @@ module Support
         can :create, [Support::Requests::GeneralRequest, Support::Requests::TechnicalFaultReport, Support::Requests::Anonymous::Explore]
         can :create, [Support::Requests::TaxonomyNewTopicRequest, Support::Requests::TaxonomyChangeTopicRequest]
         can :create, Support::Requests::ContentPublisherFeedbackRequest
+        can :create, Support::Requests::ContentDataFeedback
         can :create, :all if user.has_permission?('single_points_of_contact')
         can :create, [Support::Requests::CampaignRequest, Support::Requests::LiveCampaignRequest] if user.has_permission?('campaign_requesters')
         if user.has_permission?('content_requesters')
