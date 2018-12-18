@@ -23,7 +23,7 @@ gem 'select2-rails', '4.0.3'
 gem 'uglifier', '4.1.20'
 
 # GDS/gov.uk gems
-gem 'gds-sso', '~> 13.6'
+gem 'gds-sso', '~> 14.0'
 if ENV['GDS_ZENDESK_DEV']
   gem 'gds_zendesk', :path => '../gds_zendesk'
 else
