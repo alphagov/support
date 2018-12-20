@@ -3,7 +3,7 @@ require 'active_support/core_ext'
 module Support
   module Requests
     class EuExitBusinessReadinessRequest < Request
-      attr_accessor :type, :url, :sector, :business_activity,
+      attr_accessor :type, :url, :explanation, :sector, :business_activity,
         :employing_eu_citizens, :personal_data, :intellectual_property,
         :funding_schemes, :public_sector_procurement
 

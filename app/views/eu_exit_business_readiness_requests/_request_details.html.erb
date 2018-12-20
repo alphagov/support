@@ -9,7 +9,7 @@
   action and prepare for EU Exit.
 </p>
 
-<h3>Adding content to the finder</h3>
+<h4>Adding content to the finder</h4>
 
 <p>
   Content must be in a GOV.UK guidance format (such as a detailed guide or a
@@ -48,6 +48,12 @@
   Please don’t submit a Whitehall admin URL or a full GOV.UK URL, only
   /government/… or /guidance/…
 </p>
+
+<%= f.input(
+  :explanation,
+  as: :text,
+  label: "If you’re requesting an update to tagging or removing content, please explain your request.",
+) %>
 
 <h2>Sector and business activity</h2>
 

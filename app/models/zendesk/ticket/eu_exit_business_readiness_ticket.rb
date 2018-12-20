@@ -19,8 +19,9 @@ module Zendesk
 
       def fields
         %w(
-          type url sector business_activity employing_eu_citizens personal_data
-          intellectual_property funding_schemes public_sector_procurement
+          type url explanation sector business_activity employing_eu_citizens
+          personal_data intellectual_property funding_schemes
+          public_sector_procurement
         )
       end
     end
