@@ -14,6 +14,7 @@ module Support
       }.freeze
 
       SECTOR_OPTIONS = {
+        "all" => "All sectors",
         "accommodation-restaurants-and-catering-services" => "Accommodation, restaurants and catering services",
         "aerospace" => "Aerospace",
         "agriculture" => "Agriculture",
