@@ -92,7 +92,7 @@ module Support
       validates_presence_of :url
 
       def self.label
-        "Submit content for the EU Exit business readiness finder"
+        "Request updates to content in the EU Exit business readiness finder"
       end
 
       def self.description
