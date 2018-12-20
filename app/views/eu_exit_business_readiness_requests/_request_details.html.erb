@@ -1,0 +1,102 @@
+<p class="alert alert-info">
+  Request content to be tagged and included in the EU Exit business readiness finder.
+  <br />
+  We'll review your request within 2 working days.
+</p>
+
+<p>
+  The business readiness tool helps businesses find content so they can take
+  action and prepare for EU Exit.
+</p>
+
+<p>
+  Content must be in a GOV.UK guidance format (such as a detailed guide or a
+  guidance publication) to be included in the finder. You can submit content
+  which is either in draft or has been published.
+</p>
+
+<p>
+  Formats such as news stories or press releases cannot be added to the tool.
+  We’d also not recommend adding policy papers or correspondence as this is not
+  a guidance format.
+</p>
+
+<p>
+  If you’re unsure, please <a href="/content_advice_request/new">contact GOV.UK
+  content support</a> before completing this form.
+</p>
+
+<%= f.input(
+  :url,
+  required: true,
+  label: "URL of content",
+  placeholder: "/government/… or /guidance/…",
+  input_html: { :"aria-required" => true }
+) %>
+
+<p>
+  Please don’t submit a Whitehall admin URL or a full GOV.UK URL, only
+  /government/… or /guidance/…
+</p>
+
+<h2>Sector and business activity</h2>
+
+<%= f.input(
+  :sector,
+  as: :check_boxes,
+  label: "What sector(s) is the content is about?",
+  collection: f.object.sector_options,
+  required: false,
+) %>
+
+<%= f.input(
+  :business_activity,
+  as: :check_boxes,
+  label: "Is the content about selling goods in the UK, importing or doing business abroad?",
+  collection: f.object.business_activity_options,
+  required: false,
+) %>
+
+<h2>Additional Tagging</h2>
+
+<%= f.input(
+  :employing_eu_citizens,
+  as: :radio,
+  label: "Is the content specifically about employing EU citizens?",
+  collection: f.object.employing_eu_citizens_options,
+  required: false,
+) %>
+
+<%= f.input(
+  :personal_data,
+  as: :radio,
+  label: "Is the content specifically about the use of personal data or data protection?",
+  collection: f.object.personal_data_options,
+  required: false,
+) %>
+
+<%= f.input(
+  :intellectual_property,
+  as: :check_boxes,
+  label: "Is the content about a specific type of intellectual property?",
+  collection: f.object.intellectual_property_options,
+  required: false,
+) %>
+
+<%= f.input(
+  :funding_schemes,
+  as: :check_boxes,
+  label: "Is the content about EU or UK government funding schemes?",
+  collection: f.object.funding_schemes_options,
+  required: false,
+) %>
+
+<%= f.input(
+  :public_sector_procurement,
+  as: :check_boxes,
+  label: "Is the content about public sector procurement?",
+  collection: f.object.public_sector_procurement_options,
+  required: false,
+) %>
+
+<%= render partial: "support/collaborators", locals: { f: f } %>
