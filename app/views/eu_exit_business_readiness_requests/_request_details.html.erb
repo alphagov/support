@@ -29,6 +29,14 @@
 </p>
 
 <%= f.input(
+  :type,
+  as: :radio,
+  label: "What are you requesting?",
+  collection: f.object.type_options,
+  required: true,
+) %>
+
+<%= f.input(
   :url,
   required: true,
   label: "URL of content",

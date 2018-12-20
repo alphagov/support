@@ -3,9 +3,15 @@ require 'active_support/core_ext'
 module Support
   module Requests
     class EuExitBusinessReadinessRequest < Request
-      attr_accessor :url, :sector, :business_activity, :employing_eu_citizens,
-        :personal_data, :intellectual_property, :funding_schemes,
-        :public_sector_procurement
+      attr_accessor :type, :url, :sector, :business_activity,
+        :employing_eu_citizens, :personal_data, :intellectual_property,
+        :funding_schemes, :public_sector_procurement
+
+      TYPE_OPTIONS = {
+        "adding content" => "Adding content to the finder",
+        "update tagging" => "Update to tagging",
+        "removing content" => "Removing content from the finder",
+      }.freeze
 
       SECTOR_OPTIONS = {
         "accommodation-restaurants-and-catering-services" => "Accommodation, restaurants and catering services",
@@ -97,6 +103,10 @@ module Support
 
       def self.description
         "Request content to be added to the EU Exit business readiness finder."
+      end
+
+      def type_options
+        TYPE_OPTIONS.map { |key, value| [value, key] }
       end
 
       def sector_options
