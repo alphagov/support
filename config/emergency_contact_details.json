@@ -27,5 +27,9 @@
       "phone": "05555 555 556",
       "email": "bob.manager@email.uk"
     }
-  ]
+  ],
+  "verify_contacts": {
+    "ida_support_email": "idasupport@email.uk",
+    "out_of_hours_email": "outofhours@email.uk"
+  }
 }
