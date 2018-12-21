@@ -19,6 +19,7 @@ module FeedexHelper
 
   def get_response_total(total_count, results_limited, scopes)
     return "Responses" if scopes.done_page?
+
     response_total = pluralize(number_with_delimiter(total_count), "response")
     response_total = "Over #{response_total}" if results_limited
     response_total
