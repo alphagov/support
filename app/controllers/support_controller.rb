@@ -13,6 +13,7 @@ class SupportController < AuthorisationController
   def emergency_contact_details
     @primary_contact_details = EMERGENCY_CONTACT_DETAILS[:primary_contacts]
     @secondary_contact_details = EMERGENCY_CONTACT_DETAILS[:secondary_contacts]
+    @verify_contact_details = EMERGENCY_CONTACT_DETAILS[:verify_contacts]
     @current_at = Date.parse(EMERGENCY_CONTACT_DETAILS[:current_at])
   end
 

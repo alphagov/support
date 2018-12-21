@@ -124,4 +124,24 @@
     <% end %>
   </div>
 </section>
+
+<section class="add-bottom-padding add-top-padding">
+  <h2>GOV.UK Verify contacts</h2>
+  <h3>Non-urgent support and feedback</h3>
+  <div class="row">
+    <div class="col-md-6">
+      <p>IDA Support</p>
+      <p><%= mail_to @verify_contact_details[:ida_support_email] %></p>
+    </div>
+  </div>
+  <h3>Emergency support</h3>
+  <div class="row">
+    <div class="col-md-6">
+      <p><a href="https://verifystatus.digital.cabinet-office.gov.uk/">Check the GOV.UK Verify status page</a> to see if the issue has already been reported.</p>
+      <p>Out of hours GOV.UK Verify support</p>
+      <p><%= mail_to @verify_contact_details[:out_of_hours_email] %></p>
+    </div>
+  </div>
+</section>
+
 </main>
