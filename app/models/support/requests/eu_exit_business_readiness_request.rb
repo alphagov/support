@@ -103,7 +103,7 @@ module Support
       end
 
       def self.description
-        "Request content to be added to the EU Exit business readiness finder."
+        "Request to add content, update content tags or remove content from the EU Exit business readiness finder."
       end
 
       def type_options
