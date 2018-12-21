@@ -61,11 +61,11 @@ module Support
       }.freeze
 
       BUSINESS_ACTIVITY_OPTIONS = {
-        "products-or-goods" => "I sell products or goods in the UK",
-        "buying" => "I buy products or goods from abroad",
-        "selling" => "I sell products or goods abroad",
-        "other-eu" => "I do other types of business in the EU",
-        "transporting" => "My business transports goods abroad",
+        "products-or-goods" => "Selling products or goods in the UK",
+        "buying" => "Buying products or goods from abroad",
+        "selling" => "Selling products or goods abroad",
+        "other-eu" => "Doing other types of business in the EU",
+        "transporting" => "Businesses transporting goods abroad",
       }.freeze
 
       EMPLOYING_EU_CITIZENS_OPTIONS = {
