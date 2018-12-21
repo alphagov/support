@@ -17,7 +17,9 @@ protected
     params.require(
       :support_requests_eu_exit_business_readiness_request
     ).permit(
+      :type,
       :url,
+      :explanation,
       :employing_eu_citizens,
       :personal_data,
       requester_attributes: %i[email name collaborator_emails],

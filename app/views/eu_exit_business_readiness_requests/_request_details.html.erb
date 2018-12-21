@@ -1,5 +1,5 @@
 <p class="alert alert-info">
-  Request content to be tagged and included in the EU Exit business readiness finder.
+  Request content to be added, updated or removed in the EU Exit business readiness finder.
   <br />
   We'll review your request within 2 working days.
 </p>
@@ -8,6 +8,8 @@
   The business readiness tool helps businesses find content so they can take
   action and prepare for EU Exit.
 </p>
+
+<h4>Adding content to the finder</h4>
 
 <p>
   Content must be in a GOV.UK guidance format (such as a detailed guide or a
@@ -27,6 +29,14 @@
 </p>
 
 <%= f.input(
+  :type,
+  as: :radio,
+  label: "What are you requesting?",
+  collection: f.object.type_options,
+  required: true,
+) %>
+
+<%= f.input(
   :url,
   required: true,
   label: "URL of content",
@@ -38,6 +48,13 @@
   Please don’t submit a Whitehall admin URL or a full GOV.UK URL, only
   /government/… or /guidance/…
 </p>
+
+<%= f.input(
+  :explanation,
+  as: :text,
+  label: "If you’re requesting an update to tagging or removing content, please explain your request.",
+  input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => false }
+) %>
 
 <h2>Sector and business activity</h2>
 
