@@ -39,6 +39,7 @@ class User < OpenStruct
     uid = options[:uid]
     auth_hash = Store.fetch(uid)
     return [] unless auth_hash && user_matches?(options, User.new(auth_hash))
+
     [User.new(auth_hash)]
   end
 

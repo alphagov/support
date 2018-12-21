@@ -23,7 +23,7 @@ module Support
 
       validates_numericality_of :cost_of_campaign
 
-      VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+      VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i.freeze
       validates :performance_review_contact_email, :ga_contact_email, format: { with: VALID_EMAIL_REGEX }
     end
   end
