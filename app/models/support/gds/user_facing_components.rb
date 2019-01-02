@@ -22,6 +22,7 @@ module Support
             { name: "Travel Advice Publisher", id: "travel_advice_publisher" },
             { name: "Specialist Publisher", id: "specialist_publisher" },
             { name: "Content Publisher (beta)", id: "content_publisher" },
+            { name: "data.gov.uk", id: "datagovuk" },
           ]
         end
       end
