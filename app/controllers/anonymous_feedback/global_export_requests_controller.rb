@@ -22,7 +22,10 @@ private
   end
 
   def support_api
-    GdsApi::SupportApi.new(Plek.find("support-api"))
+    GdsApi::SupportApi.new(
+      Plek.find("support-api"),
+      bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"],
+    )
   end
 
   def exclude_spam?

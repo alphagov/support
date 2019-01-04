@@ -39,7 +39,10 @@ class AnonymousFeedback::ExploreController < AuthorisationController
 private
 
   def support_api
-    GdsApi::SupportApi.new(Plek.find("support-api"))
+    GdsApi::SupportApi.new(
+      Plek.find("support-api"),
+      bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"],
+    )
   end
 
   # TODO: explicitly permit the right set of params, rather than everything
