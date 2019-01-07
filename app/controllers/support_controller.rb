@@ -1,5 +1,5 @@
 require 'sidekiq/api'
-
+require 'emergency_contact_details'
 class SupportController < AuthorisationController
   skip_authorization_check
   skip_before_action :authenticate_support_user!, only: [:queue_status]
@@ -11,10 +11,11 @@ class SupportController < AuthorisationController
   end
 
   def emergency_contact_details
-    @primary_contact_details = EMERGENCY_CONTACT_DETAILS[:primary_contacts]
-    @secondary_contact_details = EMERGENCY_CONTACT_DETAILS[:secondary_contacts]
-    @verify_contact_details = EMERGENCY_CONTACT_DETAILS[:verify_contacts]
-    @current_at = Date.parse(EMERGENCY_CONTACT_DETAILS[:current_at])
+    emergency_contact_details = EmergencyContactDetails.fetch
+    @primary_contact_details = emergency_contact_details[:primary_contacts]
+    @secondary_contact_details = emergency_contact_details[:secondary_contacts]
+    @verify_contact_details = emergency_contact_details[:verify_contacts]
+    @current_at = Date.parse(emergency_contact_details[:current_at])
   end
 
   def acknowledge
