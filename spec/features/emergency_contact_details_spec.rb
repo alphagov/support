@@ -13,17 +13,37 @@ feature "Emergency contact details" do
     allow(ENV).to receive(:[]).with(anything)
     allow(ENV).to receive(:[])
       .with("EMERGENCY_CONTACT_DETAILS")
-      .and_return(
-        File.read(Rails.root.join("config", "emergency_contact_details.json"))
-      )
+      .and_return(contacts_json)
   end
 
-  scenario "access the emergency contact details" do
-    visit '/'
+  context 'with all contacts supplied' do
+    let(:contacts_json) do
+      File.read(Rails.root.join("config", "emergency_contact_details.json"))
+    end
 
-    click_on "Emergency contact details"
+    scenario "access the emergency contact details" do
+      visit '/'
 
-    expect(page).to have_content("05555 555 555") # Billy Director
-    expect(page).to have_content("05555 555 556") # Bob Manager
+      click_on "Emergency contact details"
+
+      expect(page).to have_content("05555 555 555") # Billy Director
+      expect(page).to have_content("05555 555 556") # Bob Manager
+    end
+  end
+
+  context 'when secondary contacts are missing' do
+    let(:contacts_json) do
+      contacts = JSON.parse File.read(Rails.root.join("config", "emergency_contact_details.json"))
+      contacts.reject { |k, _| k == 'secondary_contacts' }.to_json
+    end
+
+    scenario "access the emergency contact details" do
+      visit '/'
+
+      click_on "Emergency contact details"
+
+      expect(page).to have_content("National emergency publishing")
+      expect(page).not_to have_content("05555 555 556") # Bob Manager
+    end
   end
 end

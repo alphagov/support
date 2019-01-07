@@ -104,26 +104,28 @@
 
 </section>
 
-<section class="add-bottom-padding add-top-padding">
-  <h3>Backup contact</h3>
-  <div class="row">
-    <div class="col-md-6">
-      <p>If you can’t get through on the other numbers, you can call the Head of GOV.UK.</p>
+<% if @secondary_contact_details %>
+    <section class="add-bottom-padding add-top-padding">
+    <h3>Backup contact</h3>
+    <div class="row">
+        <div class="col-md-6">
+        <p>If you can’t get through on the other numbers, you can call the Head of GOV.UK.</p>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <% @secondary_contact_details.each do |details| %>
-      <div class="col-md-6 add-bottom-padding">
-        <p>
-          <%= details[:name] %><br>
-          <span class="text-muted"><%= details[:role] %></span>
-        </p>
-        <%= mail_to details[:email] %>
-        <p><strong><%= details[:phone] %></strong></p>
-      </div>
-    <% end %>
-  </div>
-</section>
+    <div class="row">
+        <% @secondary_contact_details.each do |details| %>
+        <div class="col-md-6 add-bottom-padding">
+            <p>
+            <%= details[:name] %><br>
+            <span class="text-muted"><%= details[:role] %></span>
+            </p>
+            <%= mail_to details[:email] %>
+            <p><strong><%= details[:phone] %></strong></p>
+        </div>
+        <% end %>
+    </div>
+    </section>
+<% end %>
 
 <section class="add-bottom-padding add-top-padding">
   <h2>GOV.UK Verify contacts</h2>
