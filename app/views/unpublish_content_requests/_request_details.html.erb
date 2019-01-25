@@ -2,7 +2,7 @@
   <p>Please make a separate request for each target redirect.</p>
 </div>
 
-<%= f.input :urls, as: :text, required: true, label: "Please give the Whitehall URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)", input_html: { class: "input-md-8", placeholder: "https://whitehall-admin.production.alphagov.co.uk/government/admin/...", rows: 6, cols: 50, :"aria-required" => true } %>
+<%= f.input :urls, as: :text, required: true, label: "Please give the Whitehall or Content Publisher URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)", input_html: { class: "input-md-8", placeholder: "https://whitehall-admin.production.alphagov.co.uk/government/admin/...", rows: 6, cols: 50, :"aria-required" => true } %>
 
 <div class="alert alert-info">
   <p>You may also wish to send this information in a spreadsheet, by attaching it to the Zendesk confirmation email.
