@@ -19,6 +19,7 @@ protected
     ).permit(
       :type,
       :url,
+      :pinned_content,
       :explanation,
       :employing_eu_citizens,
       :personal_data,

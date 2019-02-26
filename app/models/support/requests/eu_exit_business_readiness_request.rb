@@ -5,12 +5,17 @@ module Support
     class EuExitBusinessReadinessRequest < Request
       attr_accessor :type, :url, :explanation, :sector, :business_activity,
         :employing_eu_citizens, :personal_data, :intellectual_property,
-        :funding_schemes, :public_sector_procurement
+        :funding_schemes, :public_sector_procurement, :pinned_content
 
       TYPE_OPTIONS = {
         "adding content" => "Adding content to the finder",
         "update tagging" => "Update to tagging",
         "removing content" => "Removing content from the finder",
+      }.freeze
+
+      PINNED_CONTENT_OPTIONS = {
+        "yes" => "Yes",
+        "no" => "No",
       }.freeze
 
       SECTOR_OPTIONS = {
@@ -108,6 +113,10 @@ module Support
 
       def type_options
         TYPE_OPTIONS.map { |key, value| [value, key] }
+      end
+
+      def pinned_content_options
+        PINNED_CONTENT_OPTIONS.map { |key, value| [value, key] }
       end
 
       def sector_options
