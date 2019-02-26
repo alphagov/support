@@ -6,4 +6,10 @@ require File.expand_path('../config/application', __FILE__)
 
 Support::Application.load_tasks
 
-task :default => [:spec, 'jasmine:ci']
+Rake::Task['default'].clear
+
+task :default do
+  Rake::Task['lint'].invoke
+  Rake::Task['spec'].invoke
+  Rake::Task['jasmine:ci'].invoke
+end
