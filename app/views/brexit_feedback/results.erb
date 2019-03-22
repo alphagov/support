@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <% if @results.empty? %>
+      <p>Nothing to show</p>
+    <% else %>
+      <table>
+        <tr>
+          <% @results[0].keys.each do |key| %>
+            <th>
+              <%= key %>
+            </th>
+          <% end %>
+        </tr>
+        <% @results.each do |response| %>
+          <tr>
+            <% response.each do |question, answer| %>
+              <td><%= answer %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </table>
+    <% end %>
+  </body>
+</html>

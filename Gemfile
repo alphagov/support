@@ -23,6 +23,10 @@ gem 'sass-rails', '5.0.7'
 gem 'select2-rails', '4.0.3'
 gem 'uglifier', '4.1.20'
 
+gem 'dotenv', '~> 2.6.0'
+gem 'google-api-client'
+gem 'signet'
+
 # GDS/gov.uk gems
 gem 'gds-sso', '~> 14.0'
 if ENV['GDS_ZENDESK_DEV']

@@ -29,6 +29,10 @@ Rails.application.routes.draw do
     format: false,
     as: "emergency_contact_details"
 
+  get "brexit" => 'brexit_feedback#home'
+  get "brexit/authenticate/" => 'brexit_feedback#auth'
+  get "brexit/results/" => 'brexit_feedback#results'
+
   resources :anonymous_feedback, only: :index, format: false
 
   get "acknowledge" => "support#acknowledge"

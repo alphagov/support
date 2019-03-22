@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag "application", :media => "all" %>
+<% breadcrumb :anonymous_feedback_by_filter, "Brexit" %>
+
+<!DOCTYPE html>
+<html lang="en" class="govuk-template ">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Collate Brexit Feedback</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0c0c" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta property="og:image" content="/assets/images/govuk-opengraph-image.png">
+  </head>
+
+  <body class="govuk-template__body ">
+    <h2>Collate Brexit Feedback</h2>
+      
+      <div class="col-md-8 global-export-request">
+        <form class='well formtastic' method="GET" action="/brexit/authenticate">
+        <div class="string input required form-group">
+          <span class="form-label">
+            <label for="from-date" class="control-label">Start date</label>
+          </span>
+          <span class="form-wrapper">
+            <input type="text" name="from_date" id="from-date" class="input-sm form-control add-right-margin" data-module="calendar" data-max-date="0" value="<%= params[:from_date]%>"/>
+          </span>
+        </div>
+
+        <div class="string input required form-group">
+          <span class="form-label">
+            <label for="to-date" class="control-label">End date</label>
+          </span>
+          <span class="form-wrapper">
+            <input type="text" name="to_date" id="to-date" class="form-control input-sm" data-module="calendar" data-max-date="0" value="<%= params[:to_date]%>"/>
+          </span>
+        </div>
+
+        <input type="submit" value="Get Feedback" class="btn btn-success" />
+        </form>
+      </div>
+  </body>
+</html>

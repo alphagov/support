@@ -22,3 +22,6 @@
 config/zendesk.yml
 
 .DS_Store
+
+client_secrets.json
+variables.env
