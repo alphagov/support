@@ -93,10 +93,7 @@ module Support
         "Businesses transporting goods abroad",
       ].freeze
 
-      EMPLOYING_EU_CITIZENS_OPTIONS = {
-        "yes" => "Yes",
-        "no" => "No",
-      }.freeze
+      EMPLOYING_EU_CITIZENS_OPTIONS = %w(Yes No).freeze
 
       PERSONAL_DATA_OPTIONS = {
         "yes" => "Yes",
@@ -137,10 +134,6 @@ module Support
 
       def pinned_content_options
         PINNED_CONTENT_OPTIONS.map { |key, value| [value, key] }
-      end
-
-      def employing_eu_citizens_options
-        EMPLOYING_EU_CITIZENS_OPTIONS.map { |key, value| [value, key] }
       end
 
       def personal_data_options
