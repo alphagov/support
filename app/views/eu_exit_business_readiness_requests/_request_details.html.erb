@@ -100,7 +100,7 @@
   :intellectual_property,
   as: :check_boxes,
   label: "Is the content about a specific type of intellectual property?",
-  collection: f.object.intellectual_property_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::INTELLECTUAL_PROPERTY_OPTIONS,
   required: false,
 ) %>
 

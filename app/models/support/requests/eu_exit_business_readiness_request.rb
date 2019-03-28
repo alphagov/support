@@ -94,13 +94,13 @@ module Support
 
       PERSONAL_DATA_OPTIONS = %w(Yes No).freeze
 
-      INTELLECTUAL_PROPERTY_OPTIONS = {
-        "copyright" => "Copyright",
-        "trademarks" => "Trade Marks",
-        "designs" => "Designs",
-        "patents" => "Patents",
-        "exhaustion-of-rights" => "Exhaustion of Rights",
-      }.freeze
+      INTELLECTUAL_PROPERTY_OPTIONS = [
+        "Copyright",
+        "Trade Marks",
+        "Designs",
+        "Patents",
+        "Exhaustion of Rights",
+      ].freeze
 
       FUNDING_SCHEMES_OPTIONS = {
         "receiving-eu-funding" => "Receiving EU funding",
@@ -120,10 +120,6 @@ module Support
 
       def self.description
         "Request to add content, update content tags or remove content from the EU Exit business readiness finder."
-      end
-
-      def intellectual_property_options
-        INTELLECTUAL_PROPERTY_OPTIONS.map { |key, value| [value, key] }
       end
 
       def funding_schemes_options
