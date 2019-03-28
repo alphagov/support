@@ -102,10 +102,10 @@ module Support
         "Exhaustion of Rights",
       ].freeze
 
-      FUNDING_SCHEMES_OPTIONS = {
-        "receiving-eu-funding" => "Receiving EU funding",
-        "receiving-uk-government-funding" => "Receiving UK government funding",
-      }.freeze
+      FUNDING_SCHEMES_OPTIONS = [
+        "Receiving EU funding",
+        "Receiving UK government funding",
+      ].freeze
 
       PUBLIC_SECTOR_PROCUREMENT_OPTIONS = {
         "civil-government-contracts" => "Civil government contracts",
@@ -120,10 +120,6 @@ module Support
 
       def self.description
         "Request to add content, update content tags or remove content from the EU Exit business readiness finder."
-      end
-
-      def funding_schemes_options
-        FUNDING_SCHEMES_OPTIONS.map { |key, value| [value, key] }
       end
 
       def public_sector_procurement_options
