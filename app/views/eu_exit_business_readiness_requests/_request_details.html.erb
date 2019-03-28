@@ -92,7 +92,7 @@
   :personal_data,
   as: :radio,
   label: "Is the content specifically about the use of personal data or data protection?",
-  collection: f.object.personal_data_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::PERSONAL_DATA_OPTIONS,
   required: false,
 ) %>
 

@@ -92,10 +92,7 @@ module Support
 
       EMPLOYING_EU_CITIZENS_OPTIONS = %w(Yes No).freeze
 
-      PERSONAL_DATA_OPTIONS = {
-        "yes" => "Yes",
-        "no" => "No",
-      }.freeze
+      PERSONAL_DATA_OPTIONS = %w(Yes No).freeze
 
       INTELLECTUAL_PROPERTY_OPTIONS = {
         "copyright" => "Copyright",
@@ -123,10 +120,6 @@ module Support
 
       def self.description
         "Request to add content, update content tags or remove content from the EU Exit business readiness finder."
-      end
-
-      def personal_data_options
-        PERSONAL_DATA_OPTIONS.map { |key, value| [value, key] }
       end
 
       def intellectual_property_options
