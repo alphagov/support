@@ -47,7 +47,7 @@ Yes
 
 [Public sector procurement]
 
-civil-government-contracts"
+Civil government contracts"
       }
     )
 

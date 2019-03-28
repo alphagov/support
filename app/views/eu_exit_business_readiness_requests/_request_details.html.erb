@@ -116,7 +116,7 @@
   :public_sector_procurement,
   as: :check_boxes,
   label: "Is the content about public sector procurement?",
-  collection: f.object.public_sector_procurement_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::PUBLIC_SECTOR_PROCUREMENT_OPTIONS,
   required: false,
 ) %>
 

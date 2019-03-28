@@ -107,10 +107,10 @@ module Support
         "Receiving UK government funding",
       ].freeze
 
-      PUBLIC_SECTOR_PROCUREMENT_OPTIONS = {
-        "civil-government-contracts" => "Civil government contracts",
-        "defence-contracts" => "Defence contracts",
-      }.freeze
+      PUBLIC_SECTOR_PROCUREMENT_OPTIONS = [
+        "Civil government contracts",
+        "Defence contracts",
+      ].freeze
 
       validates_presence_of :url
 
@@ -120,10 +120,6 @@ module Support
 
       def self.description
         "Request to add content, update content tags or remove content from the EU Exit business readiness finder."
-      end
-
-      def public_sector_procurement_options
-        PUBLIC_SECTOR_PROCUREMENT_OPTIONS.map { |key, value| [value, key] }
       end
     end
   end
