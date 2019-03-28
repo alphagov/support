@@ -36,7 +36,7 @@
   :type,
   as: :radio,
   label: "What are you requesting?",
-  collection: f.object.type_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::TYPE_OPTIONS,
   required: true,
 ) %>
 

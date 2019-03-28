@@ -19,7 +19,7 @@ feature 'New EU Exit Business Readiness Finder request' do
       'comment' => {
         'body' =>
 "[Type]
-adding content
+Adding content to the finder
 
 [Url]
 /some/base/path

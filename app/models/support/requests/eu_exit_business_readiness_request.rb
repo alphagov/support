@@ -7,11 +7,11 @@ module Support
         :employing_eu_citizens, :personal_data, :intellectual_property,
         :funding_schemes, :public_sector_procurement, :pinned_content
 
-      TYPE_OPTIONS = {
-        "adding content" => "Adding content to the finder",
-        "update tagging" => "Update to tagging",
-        "removing content" => "Removing content from the finder",
-      }.freeze
+      TYPE_OPTIONS = [
+        "Adding content to the finder",
+        "Update to tagging",
+        "Removing content from the finder",
+      ].freeze
 
       PINNED_CONTENT_OPTIONS = {
         "yes" => "Yes",
@@ -126,10 +126,6 @@ module Support
 
       def self.description
         "Request to add content, update content tags or remove content from the EU Exit business readiness finder."
-      end
-
-      def type_options
-        TYPE_OPTIONS.map { |key, value| [value, key] }
       end
 
       def pinned_content_options
