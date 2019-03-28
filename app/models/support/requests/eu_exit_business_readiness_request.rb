@@ -85,13 +85,13 @@ module Support
         "Warehouses, services and pipelines",
       ].freeze
 
-      BUSINESS_ACTIVITY_OPTIONS = {
-        "products-or-goods" => "Selling products or goods in the UK",
-        "buying" => "Buying products or goods from abroad",
-        "selling" => "Selling products or goods abroad",
-        "other-eu" => "Doing other types of business in the EU",
-        "transporting" => "Businesses transporting goods abroad",
-      }.freeze
+      BUSINESS_ACTIVITY_OPTIONS = [
+        "Selling products or goods in the UK",
+        "Buying products or goods from abroad",
+        "Selling products or goods abroad",
+        "Doing other types of business in the EU",
+        "Businesses transporting goods abroad",
+      ].freeze
 
       EMPLOYING_EU_CITIZENS_OPTIONS = {
         "yes" => "Yes",
@@ -137,10 +137,6 @@ module Support
 
       def pinned_content_options
         PINNED_CONTENT_OPTIONS.map { |key, value| [value, key] }
-      end
-
-      def business_activity_options
-        BUSINESS_ACTIVITY_OPTIONS.map { |key, value| [value, key] }
       end
 
       def employing_eu_citizens_options

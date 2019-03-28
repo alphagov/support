@@ -74,7 +74,7 @@
   :business_activity,
   as: :check_boxes,
   label: "Is the content about selling goods in the UK, importing or doing business abroad?",
-  collection: f.object.business_activity_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::BUSINESS_ACTIVITY_OPTIONS,
   required: false,
 ) %>
 

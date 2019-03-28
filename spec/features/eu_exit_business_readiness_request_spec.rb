@@ -33,8 +33,8 @@ Aerospace
 
 [Business activity]
 
-buying
-selling
+Buying products or goods from abroad
+Selling products or goods abroad
 
 [Employing eu citizens]
 yes
