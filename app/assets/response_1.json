@@ -1,0 +1,15 @@
+{
+  "results": [{
+    "id": 10000001,
+    "type": "problem-report",
+    "what_doing": "doing 1",
+    "what_wrong": "wrong 1",
+    "user_agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 12_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) GSA/65.0.225212226 Mobile/15E148 Safari/605.1",
+    "referrer": "https://www.google.com/",
+    "created_at": "2019-01-10T15:46:44.620Z",
+    "path": "/asylum-support/what-youll-get",
+    "marked_as_spam": false,
+    "reviewed": false,
+    "url": "https://www.integration.publishing.service.gov.uk/asylum-support/what-youll-get"
+  }], "total_count": 3, "current_page": 1, "pages": 3, "page_size": 1, "from_date": "2019-01-10", "to_date": "2019-03-11"
+}

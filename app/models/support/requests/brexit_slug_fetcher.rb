@@ -25,11 +25,11 @@ module Support
         service.client_options.application_name = APPLICATION_NAME
         service.authorization = @auth_client
 
-        spreadsheet_id = ENV.fetch("SPREADSHEET_1")
+        spreadsheet_id = "1bFSDYFT5fBpDQTvAeqw4j7QhYXTnFmDuGCLGDwx-wYk"
         range = 'List of documents with facets!A2:A'
         response = service.get_spreadsheet_values(spreadsheet_id, range)
 
-        spreadsheet_id = ENV.fetch("SPREADSHEET_2")
+        spreadsheet_id = "1Pzjeae33PQKzekCJfx95VYlNNPH6ePhsQSMFEIrsY5g"
         range = 'Brexit docs!A4:A'
         response2 = service.get_spreadsheet_values(spreadsheet_id, range)
 

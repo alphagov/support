@@ -1,13 +1,15 @@
+require 'browser'
+require 'time'
+
 module Support
   module Requests
     class BrexitFeedbackRequest < Request
       attr_accessor :formatted_results
       attr_reader :from_date, :to_date
-      def initialize(auth_client, from_date, to_date)
-        Dotenv.load("variables.env")
+      def initialize(from_date, to_date, slugs)
         @from_date = from_date
         @to_date = to_date
-        @brexit_slugs = Support::Requests::BrexitSlugFetcher.new(auth_client).slugs
+        @brexit_slugs = slugs
         @support_api = support_api
         @first_page = get_first_page
         @formatted_results = format_results(@first_page).reject do |res|

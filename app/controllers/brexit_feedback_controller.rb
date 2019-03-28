@@ -1,4 +1,3 @@
-require 'dotenv'
 require 'date'
 
 require 'google/apis/drive_v2'
@@ -28,7 +27,8 @@ class BrexitFeedbackController < ApplicationController
 
     auth_client.code = params['code']
     auth_client.additional_parameters = { access_type: 'offline', include_granted_scopes: 'true' }
-    @results = Support::Requests::BrexitFeedbackRequest.new(auth_client, Date.parse(session['from_date']), Date.parse(session['to_date'])).formatted_results
+    brexit_slugs = Support::Requests::BrexitSlugFetcher.new(auth_client).slugs
+    @results = Support::Requests::BrexitFeedbackRequest.new(Date.parse(session['from_date']), Date.parse(session['to_date']), brexit_slugs).formatted_results
   end
 
   def auth

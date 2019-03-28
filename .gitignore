@@ -25,3 +25,4 @@ config/zendesk.yml
 
 client_secrets.json
 variables.env
+/spec/examples.txt

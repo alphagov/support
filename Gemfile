@@ -8,9 +8,11 @@ end
 gem 'rails', '5.2.2.1'
 
 gem 'bootstrap-kaminari-views', '0.0.5'
+gem 'browser', '2.5.3'
 gem 'cancancan', '~> 2.3'
 gem 'fog-aws', '~> 3.3'
 gem 'formtastic-bootstrap', '3.1.1'
+gem 'google-api-client', '0.28.4'
 gem 'gretel', '3.0.9'
 gem 'jc-validates_timeliness', '3.1.1'
 gem 'jquery-ui-rails', '6.0.1'
@@ -21,11 +23,9 @@ gem 'kaminari', '~> 1.1.1'
 gem 'redis', '4.1.0'
 gem 'sass-rails', '5.0.7'
 gem 'select2-rails', '4.0.3'
+gem 'signet', '0.11.0'
 gem 'uglifier', '4.1.20'
 
-gem 'dotenv', '~> 2.6.0'
-gem 'google-api-client'
-gem 'signet'
 
 # GDS/gov.uk gems
 gem 'gds-sso', '~> 14.0'
