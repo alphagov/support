@@ -29,7 +29,7 @@ yes
 
 [Sector]
 
-aerospace
+Aerospace
 
 [Business activity]
 
