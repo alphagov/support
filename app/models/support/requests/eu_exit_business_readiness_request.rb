@@ -13,10 +13,7 @@ module Support
         "Removing content from the finder",
       ].freeze
 
-      PINNED_CONTENT_OPTIONS = {
-        "yes" => "Yes",
-        "no" => "No",
-      }.freeze
+      PINNED_CONTENT_OPTIONS = %w(Yes No).freeze
 
       SECTOR_OPTIONS = [
         "All sectors",
@@ -126,10 +123,6 @@ module Support
 
       def self.description
         "Request to add content, update content tags or remove content from the EU Exit business readiness finder."
-      end
-
-      def pinned_content_options
-        PINNED_CONTENT_OPTIONS.map { |key, value| [value, key] }
       end
 
       def personal_data_options

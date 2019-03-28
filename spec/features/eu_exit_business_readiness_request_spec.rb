@@ -25,7 +25,7 @@ Adding content to the finder
 /some/base/path
 
 [Pinned content]
-yes
+Yes
 
 [Sector]
 

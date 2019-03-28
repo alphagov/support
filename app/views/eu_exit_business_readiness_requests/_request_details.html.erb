@@ -132,7 +132,7 @@
     :pinned_content,
     as: :radio,
     label: 'Does this content need to be pinned at the top of the results list?',
-    collection: f.object.pinned_content_options
+    collection: Support::Requests::EuExitBusinessReadinessRequest::PINNED_CONTENT_OPTIONS
 ) %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
