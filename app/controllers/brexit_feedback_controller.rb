@@ -8,7 +8,6 @@ require 'signet/oauth_2/client'
 class BrexitFeedbackController < ApplicationController
   def home
     session.destroy
-    @session = session
   end
 
   def results
@@ -32,11 +31,18 @@ class BrexitFeedbackController < ApplicationController
   end
 
   def auth
+    secrets = JSON.parse(File.read('client_secrets.json'))
+    secrets["web"]["client_id"] = ENV["google_client_id"]
+    secrets["web"]["client_secret"] = ENV["google_client_secret"]
+    File.open("client_secrets.json", "w+") do |f|
+      f.write(JSON.generate(secrets))
+    end
     client_secrets = Google::APIClient::ClientSecrets.load
+
     auth_client = client_secrets.to_authorization
     auth_client.update!(
       scope: 'https://www.googleapis.com/auth/spreadsheets.readonly',
-      redirect_uri: 'http://support.dev.gov.uk/brexit/results',
+      redirect_uri: "#{Plek.new.find('support')}/brexit/results",
       additional_parameters: {
         'access_type': 'offline',
         'include_granted_scopes': 'true',

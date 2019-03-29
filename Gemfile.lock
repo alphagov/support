@@ -467,7 +467,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-kaminari-views (= 0.0.5)
-  browser
+  browser (= 2.5.3)
   cancancan (~> 2.3)
   capybara (~> 3.16)
   factory_bot_rails
@@ -476,7 +476,7 @@ DEPENDENCIES
   gds-api-adapters (~> 57.5)
   gds-sso (~> 14.0)
   gds_zendesk (= 3.0.0)
-  google-api-client
+  google-api-client (= 0.28.4)
   govuk-lint
   govuk_admin_template (= 6.7.0)
   govuk_app_config (~> 1.13.1)
@@ -498,7 +498,7 @@ DEPENDENCIES
   sass-rails (= 5.0.7)
   select2-rails (= 4.0.3)
   shoulda (~> 3.5.0)
-  signet
+  signet (= 0.11.0)
   spring
   spring-watcher-listen (~> 2.0.0)
   timecop (~> 0.9.1)
