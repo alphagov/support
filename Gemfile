@@ -58,7 +58,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.15'
+  gem 'capybara', '~> 3.16'
   gem 'factory_bot_rails'
   gem 'rspec-collection_matchers', '~> 1.1.0'
   gem 'rspec-its', '~> 1.2.0'
