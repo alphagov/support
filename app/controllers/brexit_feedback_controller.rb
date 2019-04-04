@@ -1,8 +1,6 @@
 require 'date'
-
 require 'google/apis/drive_v2'
 require 'google/api_client/client_secrets'
-
 require 'signet/oauth_2/client'
 
 class BrexitFeedbackController < ApplicationController
@@ -11,48 +9,27 @@ class BrexitFeedbackController < ApplicationController
   end
 
   def results
-    client_hash = session['auth_client']
-
-    opts = {
-            authorization_uri: "#{client_hash['authorization_uri']['scheme']}://#{client_hash['authorization_uri']['host']}#{client_hash['authorization_uri']['path']}",
-            token_credential_uri: "#{client_hash['token_credential_uri']['scheme']}://#{client_hash['token_credential_uri']['host']}#{client_hash['token_credential_uri']['path']}",
-            client_id: client_hash['client_id'],
-            client_secret: client_hash['client_secret'],
-            scope: client_hash["scope"][0],
-            redirect_uri: "#{client_hash['redirect_uri']['scheme']}://#{client_hash['redirect_uri']['host']}#{client_hash['redirect_uri']['path']}"
-           }
-
-    auth_client = Signet::OAuth2::Client.new(opts)
-
+    auth_client = Signet::OAuth2::Client.new(
+      OAuthOptionsCreator.new(
+        session['auth_client']
+      ).options_hash
+    )
     auth_client.code = params['code']
     auth_client.additional_parameters = { access_type: 'offline', include_granted_scopes: 'true' }
     brexit_slugs = Support::Requests::BrexitSlugFetcher.new(auth_client).slugs
-    @results = Support::Requests::BrexitFeedbackRequest.new(Date.parse(session['from_date']), Date.parse(session['to_date']), brexit_slugs).formatted_results
+    raw_results = Support::Requests::BrexitFeedbackRequest.new(Date.parse(session['from_date']), Date.parse(session['to_date']), brexit_slugs).brexity_results
+    @results = Support::Requests::BrexitFeebackFormatter.new(raw_results).formatted_results
   end
 
   def auth
-    secrets = JSON.parse(File.read('client_secrets.json'))
-    secrets["web"]["client_id"] = ENV["google_client_id"]
-    secrets["web"]["client_secret"] = ENV["google_client_secret"]
-    File.open("client_secrets.json", "w+") do |f|
-      f.write(JSON.generate(secrets))
-    end
-    client_secrets = Google::APIClient::ClientSecrets.load
+    client_secrets = ClientSecretsLoader.load
+    authentication = GoogleAuthenticator.new(client_secrets)
+    auth_uri = authentication.auth_client.authorization_uri.to_s
 
-    auth_client = client_secrets.to_authorization
-    auth_client.update!(
-      scope: 'https://www.googleapis.com/auth/spreadsheets.readonly',
-      redirect_uri: "#{Plek.new.find('support')}/brexit/results",
-      additional_parameters: {
-        'access_type': 'offline',
-        'include_granted_scopes': 'true',
-        'prompt': 'consent',
-      }
-    )
     session['from_date'] = params['from_date']
     session['to_date'] = params['to_date']
-    auth_uri = auth_client.authorization_uri.to_s
-    session['auth_client'] = auth_client
+    session['auth_client'] = authentication.auth_client
+
     redirect_to auth_uri
   end
 end
