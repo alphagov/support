@@ -3,7 +3,7 @@ module Support
     class BrexitFeedbackFormatter < Request
       attr_reader :formatted_results
       def initialize(raw_results)
-        @formatted_results = format(raw_results)
+        @formatted_results = format(raw_results).flatten
       end
 
       def format(raw_results)

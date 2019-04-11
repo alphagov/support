@@ -6,10 +6,9 @@ require 'yaml'
 module Support
   module Requests
     class BrexitSlugFetcher < Request
-      APPLICATION_NAME = 'Managing Smart Survey Feedback'.freeze
-      attr_accessor :slugs, :auth_client
+      attr_accessor :slugs
       def initialize(auth_client)
-        @auth_client = auth_client
+        @service = SheetsRequester.new(auth_client)
         @slugs = get_taxon_slugs + get_google_sheets_slugs
       end
 
@@ -22,19 +21,15 @@ module Support
       end
 
       def get_google_sheets_slugs
-        service = Google::Apis::SheetsV4::SheetsService.new
-        service.client_options.application_name = APPLICATION_NAME
-        service.authorization = @auth_client
-
         config = YAML.load_file("config/google_config.yaml")
 
         spreadsheet_id = config["spreadsheet_id_1"]
         range = 'List of documents with facets!A2:A'
-        response = service.get_spreadsheet_values(spreadsheet_id, range).values.flatten
+        response = @service.get_sheet_values(spreadsheet_id, range).values.flatten
 
         spreadsheet_id = config["spreadsheet_id_2"]
         range = 'Brexit docs!A4:A'
-        response2 = service.get_spreadsheet_values(spreadsheet_id, range).values.flatten
+        response2 = @service.get_sheet_values(spreadsheet_id, range).values.flatten
 
         (response + response2).uniq
       end
