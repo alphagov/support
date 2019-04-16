@@ -74,7 +74,7 @@ https://www.gov.uk/x, https://www.gov.uk/y
     expect(request).to have_been_made
   end
 
-  private
+private
 
   def user_requests_content_advice(details)
     visit '/'

@@ -85,7 +85,7 @@ Some comment"
     expect(request).to have_been_made
   end
 
-  private
+private
 
   def user_makes_a_campaign_request(details)
     visit '/'

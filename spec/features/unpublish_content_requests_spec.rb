@@ -74,7 +74,7 @@ true"
     expect(request).to have_been_made
   end
 
-  private
+private
 
   def user_makes_a_request_to_unpublish_content(details)
     visit '/'

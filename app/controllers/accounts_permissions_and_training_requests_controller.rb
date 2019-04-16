@@ -2,7 +2,7 @@ require 'gds_zendesk/users'
 require 'zendesk_api/error'
 
 class AccountsPermissionsAndTrainingRequestsController < RequestsController
-protected
+protected # rubocop:disable Layout/IndentationWidth https://github.com/rubocop-hq/rubocop/issues/6861
 
   def new_request
     Support::Requests::AccountsPermissionsAndTrainingRequest.new

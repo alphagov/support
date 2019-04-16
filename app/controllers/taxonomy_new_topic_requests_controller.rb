@@ -1,5 +1,5 @@
 class TaxonomyNewTopicRequestsController < RequestsController
-protected
+protected # rubocop:disable Layout/IndentationWidth https://github.com/rubocop-hq/rubocop/issues/6861
 
   def new_request
     Support::Requests::TaxonomyNewTopicRequest.new

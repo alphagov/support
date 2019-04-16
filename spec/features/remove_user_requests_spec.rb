@@ -43,7 +43,7 @@ User has left the organisation"
     expect(request).to have_been_made
   end
 
-  private
+private
 
   def user_requests_removal_of_another_user(details)
     visit '/'

@@ -7,7 +7,7 @@ describe ApplicationController, type: :controller do
       raise "should never reach this point because authentication should time out"
     end
 
-    private
+  private
 
     def authenticate_user!
       sleep 1
