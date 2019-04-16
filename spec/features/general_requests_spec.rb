@@ -36,7 +36,7 @@ The site is down"
     expect(request).to have_been_made
   end
 
-  private
+private
 
   def user_makes_a_general_request(details)
     visit '/'

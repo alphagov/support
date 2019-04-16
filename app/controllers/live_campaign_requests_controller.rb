@@ -1,5 +1,5 @@
 class LiveCampaignRequestsController < RequestsController
-protected
+protected # rubocop:disable Layout/IndentationWidth https://github.com/rubocop-hq/rubocop/issues/6861
 
   def new_request
     Support::Requests::LiveCampaignRequest.new(live_campaign: Support::GDS::LiveCampaign.new)

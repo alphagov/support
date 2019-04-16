@@ -43,7 +43,7 @@ describe AnonymousFeedbackController, type: :controller do
     context "user has manually entered a non-existent page" do
       it "should redirect to the first page" do
         stub_support_api_anonymous_feedback(
-          { path_prefixes: ["/a"], page: 4 },
+          { path_prefixes: ["/a"], page: "4" },
           "results" => [], "pages" => 3, "current_page" => 4,
         )
 

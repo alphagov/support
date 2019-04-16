@@ -36,7 +36,7 @@ See here: google.com"
     expect(request).to have_been_made
   end
 
-  private
+private
 
   def user_makes_a_new_feature_request(details)
     visit '/'

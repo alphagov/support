@@ -47,7 +47,7 @@ This is a reason for choosing specific dates"
     expect(request).to have_been_made
   end
 
-  private
+private
 
   def user_makes_a_live_campaign_request(details)
     visit '/'

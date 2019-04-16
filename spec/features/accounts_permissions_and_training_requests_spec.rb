@@ -234,7 +234,7 @@ XXXX"
     end
   end
 
-  private
+private
 
   def user_requests_a_change_to_whitehall_user_accounts(details)
     visit '/'
