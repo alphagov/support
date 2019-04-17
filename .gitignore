@@ -22,3 +22,6 @@
 config/zendesk.yml
 
 .DS_Store
+
+# Ignore RSpec state file
+/spec/examples.txt

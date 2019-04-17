@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '5.2.3'
 
 gem 'bootstrap-kaminari-views', '0.0.5'
-gem 'cancancan', '~> 2.3'
+gem 'cancancan', '~> 3.0'
 gem 'fog-aws', '~> 3.3'
 gem 'formtastic-bootstrap', '3.1.1'
 gem 'gretel', '3.0.9'
@@ -21,14 +21,14 @@ gem 'uglifier', '4.1.20'
 # GDS/gov.uk gems
 gem 'gds-sso', '~> 14.0'
 if ENV['GDS_ZENDESK_DEV']
-  gem 'gds_zendesk', :path => '../gds_zendesk'
+  gem 'gds_zendesk', path: '../gds_zendesk'
 else
   gem 'gds_zendesk', '3.0.0'
 end
 gem 'govuk_admin_template', '6.7.0'
 gem 'govuk_app_config', '~> 1.15.1'
 if ENV['API_DEV']
-  gem 'gds-api-adapters', :path => '../gds-api-adapters'
+  gem 'gds-api-adapters', path: '../gds-api-adapters'
 else
   gem 'gds-api-adapters', '~> 59.0'
 end
@@ -53,8 +53,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.16'
   gem 'factory_bot_rails'
+  gem 'govuk_test'
   gem 'rspec-collection_matchers', '~> 1.1.0'
   gem 'rspec-its', '~> 1.3.0'
   gem 'shoulda', '~> 3.5.0'
