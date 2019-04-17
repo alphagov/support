@@ -21,14 +21,14 @@ gem 'uglifier', '4.1.20'
 # GDS/gov.uk gems
 gem 'gds-sso', '~> 14.0'
 if ENV['GDS_ZENDESK_DEV']
-  gem 'gds_zendesk', :path => '../gds_zendesk'
+  gem 'gds_zendesk', path: '../gds_zendesk'
 else
   gem 'gds_zendesk', '3.0.0'
 end
 gem 'govuk_admin_template', '6.7.0'
 gem 'govuk_app_config', '~> 1.15.1'
 if ENV['API_DEV']
-  gem 'gds-api-adapters', :path => '../gds-api-adapters'
+  gem 'gds-api-adapters', path: '../gds-api-adapters'
 else
   gem 'gds-api-adapters', '~> 59.0'
 end
