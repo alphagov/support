@@ -51,7 +51,8 @@ private
     if params[:path].present?
       params[:paths] = [params[:path]]
     elsif params[:paths] && params[:paths].instance_of?(String)
-      params[:paths] = params[:paths].split(',').map(&:strip)
+      saved_paths = Support::Requests::Anonymous::Paths.find(params[:paths])
+      params[:paths] = saved_paths&.paths || params[:paths].split(',').map(&:strip)
     end
   end
 
