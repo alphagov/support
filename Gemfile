@@ -53,8 +53,8 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara', '~> 3.16'
   gem 'factory_bot_rails'
+  gem 'govuk_test'
   gem 'rspec-collection_matchers', '~> 1.1.0'
   gem 'rspec-its', '~> 1.3.0'
   gem 'shoulda', '~> 3.5.0'
