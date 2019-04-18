@@ -16,7 +16,10 @@ module Support
         validate :urls_are_well_formed
 
         def redirect_path
-          Rails.application.routes.url_helpers.anonymous_feedback_index_path(paths: paths_from_urls)
+          saved_paths = Paths.new(paths_from_urls)
+          saved_paths.save
+
+          Rails.application.routes.url_helpers.anonymous_feedback_index_path(paths: saved_paths.id)
         end
 
         # correct user's URL entries to give them what they're after
@@ -32,7 +35,7 @@ module Support
             path = URI(url).path.sub(/^(http(s)?(:)?(\/)+?(:)?)?((\/)?www.)?gov.uk/, '')
             urls << (path.start_with?('/') ? path : "/#{path}")
           end
-          urls.uniq.join(', ')
+          urls.uniq
         end
 
         def parsed_urls
