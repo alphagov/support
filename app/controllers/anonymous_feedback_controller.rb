@@ -6,13 +6,7 @@ class AnonymousFeedbackController < RequestsController
   def index
     authorize! :read, :anonymous_feedback
 
-    unless has_required_api_params?
-      respond_to do |format|
-        format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
-        format.json { render json: { "errors" => ["Please provide a valid 'paths', 'path' or 'organisation' parameter"] }, status: 400 }
-      end
-      return
-    end
+    return unless validate_required_api_params
 
     api_response = fetch_anonymous_feedback_from_support_api
 
@@ -36,11 +30,34 @@ class AnonymousFeedbackController < RequestsController
     end
   end
 
+  def create
+    authorize! :read, :anonymous_feedback
+
+    return unless validate_required_api_params
+
+    saved_paths = Support::Requests::Anonymous::Paths.new(scope_filters.paths_for_api)
+    saved_paths.save
+
+    index_params[:paths] = saved_paths.id
+    redirect_to anonymous_feedback_index_path(index_params)
+  end
+
   def set_requester_on(request)
     # this is anonymous feedback, so requester doesn't need to be set
   end
 
 private
+
+  def validate_required_api_params
+    return true if has_required_api_params?
+
+    respond_to do |format|
+      format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
+      format.json { render json: { "errors" => ["Please provide a valid 'paths', 'path' or 'organisation' parameter"] }, status: 400 }
+    end
+
+    false
+  end
 
   def index_params
     clean_paths
@@ -52,7 +69,7 @@ private
       params[:paths] = [params[:path]]
     elsif params[:paths] && params[:paths].instance_of?(String)
       saved_paths = Support::Requests::Anonymous::Paths.find(params[:paths])
-      params[:paths] = saved_paths&.paths || params[:paths].split(',').map(&:strip)
+      params[:paths] = saved_paths.try(:paths) || params[:paths].split(',').map(&:strip)
     end
   end
 

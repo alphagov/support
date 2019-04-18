@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     format: false,
     as: "emergency_contact_details"
 
-  resources :anonymous_feedback, only: :index, format: false
+  resources :anonymous_feedback, only: %i(index create), format: false
 
   get "acknowledge" => "support#acknowledge"
   get "_status" => "support#queue_status"

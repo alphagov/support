@@ -20,7 +20,7 @@
 <div class="row">
   <div class="col-lg-8 col-md-9">
     <div class="panel panel-default">
-      <%= form_tag(anonymous_feedback_index_path, class: "date-filter-form panel-body", novalidate: true, method: :get) do %>
+      <%= form_tag(anonymous_feedback_index_path, class: "date-filter-form panel-body", novalidate: true, method: :post) do %>
         <fieldset class="form-group" data-edit-feedback-explorer-form-target>
           <legend class="rm">Filter feedback by path</legend>
           <% if @filtered_by.paths.present? %>
