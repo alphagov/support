@@ -18,49 +18,55 @@ module Support
           expect(@explore_by_multiple_paths.errors[:base]).to include("Please provide a valid list of urls.")
         end
 
-        it "works out the path to redirect to from the URL" do
-          expect(ExploreByMultiplePaths.new(list_of_urls: "https://www.gov.uk/some-path").redirect_path).
-            to eq("/anonymous_feedback?paths=%2Fsome-path")
+        def paths_from_saved_paths(list_of_urls: nil, uploaded_list: nil)
+          redirect_path = described_class.new(list_of_urls: list_of_urls, uploaded_list: uploaded_list).redirect_path
+          id = URI.parse(redirect_path).query.split('=')[1]
+          Paths.find(id).paths
         end
 
         it "works out the path to redirect to from the URL" do
-          expect(ExploreByMultiplePaths.new(list_of_urls: "https://www.gov.uk/some-path, /vat-rates").redirect_path).
-            to eq("/anonymous_feedback?paths=%2Fsome-path%2C+%2Fvat-rates")
+          expect(paths_from_saved_paths(list_of_urls: "https://www.gov.uk/some-path"))
+            .to eq(%w(/some-path))
+        end
+
+        it "works out the path to redirect to from the URL" do
+          expect(paths_from_saved_paths(list_of_urls: "https://www.gov.uk/some-path, /vat-rates"))
+            .to eq(%w(/some-path /vat-rates))
         end
 
         it "works out the path to redirect to from the uploaded list of URLs" do
-          expect(ExploreByMultiplePaths.new(uploaded_list: fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls.csv", 'text/plain')).redirect_path).
-            to eq("/anonymous_feedback?paths=%2Fvat-rates%2C+%2Fdone%2C+%2Fvehicle-tax")
+          expect(paths_from_saved_paths(uploaded_list: fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls.csv", 'text/plain')))
+            .to eq(%w(/vat-rates /done /vehicle-tax))
         end
 
         it "can extract the path from a valid URL" do
           list_of_urls = "https://www.gov.uk/abc, http://www.gov.uk/abc"
-          expect(extracted_paths_from(list_of_urls: list_of_urls)).to eq("/abc")
+          expect(extracted_paths_from(list_of_urls: list_of_urls)).to eq(%w(/abc))
         end
 
         it "can extract the path from an uploaded list of valid URLs" do
           uploaded_list = fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_valid_urls.csv", 'text/plain')
-          expect(extracted_paths_from(uploaded_list: uploaded_list)).to eq("/abc")
+          expect(extracted_paths_from(uploaded_list: uploaded_list)).to eq(%w(/abc))
         end
 
         it "can extract the path from a URL with a malformed protocol" do
           list_of_urls = "http:///www.gov.uk/abc, http//:www.gov.uk/abc, http/:www.gov.uk/abc, http:/www.gov.uk/abc"
-          expect(extracted_paths_from(list_of_urls: list_of_urls)).to eq("/abc")
+          expect(extracted_paths_from(list_of_urls: list_of_urls)).to eq(%w(/abc))
         end
 
         it "can extract the path from an uploaded list of URLs with a malformed protocol" do
           uploaded_list = fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls_with_malformed_protocol.csv", 'text/plain')
-          expect(extracted_paths_from(uploaded_list: uploaded_list)).to eq("/abc")
+          expect(extracted_paths_from(uploaded_list: uploaded_list)).to eq(%w(/abc))
         end
 
         it "can extract the path from short hand URLs" do
           list_of_urls = "www.gov.uk/abc, gov.uk/abc, /abc, abc"
-          expect(extracted_paths_from(list_of_urls: list_of_urls)).to eq("/abc")
+          expect(extracted_paths_from(list_of_urls: list_of_urls)).to eq(%w(/abc))
         end
 
         it "can extract the path from uploaded list of short hand URLs" do
           uploaded_list = fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_shorthand_urls.csv", 'text/plain')
-          expect(extracted_paths_from(uploaded_list: uploaded_list)).to eq("/abc")
+          expect(extracted_paths_from(uploaded_list: uploaded_list)).to eq(%w(/abc))
         end
 
         def extracted_paths_from(list_of_urls: nil, uploaded_list: nil)

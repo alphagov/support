@@ -79,8 +79,17 @@ describe AnonymousFeedbackController, type: :controller do
       end
 
       context "HTML representation" do
-        it "renders the results" do
+        it "renders the results given raw paths" do
           get :index, params: { paths: "/tax-disc", from: "13/10/2014", to: "25th November 2014" }
+          expect(response).to have_http_status(:success)
+        end
+
+        it "renders the results given a saved paths ID" do
+          saved_paths = Support::Requests::Anonymous::Paths.new(%w(/tax-disc))
+          saved_paths.save
+
+          get :index, params: { paths: saved_paths.id, from: "13/10/2014", to: "25th November 2014" }
+
           expect(response).to have_http_status(:success)
         end
       end

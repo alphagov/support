@@ -4,10 +4,6 @@ require 'redis_client'
 require 'gds-sso/lint/user_spec'
 
 describe User, type: :model do
-  before do
-    RedisClient.instance.connection.del "support-test:users-12345"
-  end
-
   it "supports persistent creation and retrieval" do
     expect(User.where(uid: "12345")).to be_empty
     User.upsert!("uid" => "12345", "name" => "A", "email" => "a@b.com")
