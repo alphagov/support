@@ -36,7 +36,7 @@
   :type,
   as: :radio,
   label: "What are you requesting?",
-  collection: f.object.type_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::TYPE_OPTIONS,
   required: true,
 ) %>
 
@@ -66,7 +66,7 @@
   :sector,
   as: :check_boxes,
   label: "What sector(s) is the content is about?",
-  collection: f.object.sector_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::SECTOR_OPTIONS,
   required: false,
 ) %>
 
@@ -74,7 +74,7 @@
   :business_activity,
   as: :check_boxes,
   label: "Is the content about selling goods in the UK, importing or doing business abroad?",
-  collection: f.object.business_activity_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::BUSINESS_ACTIVITY_OPTIONS,
   required: false,
 ) %>
 
@@ -84,7 +84,7 @@
   :employing_eu_citizens,
   as: :radio,
   label: "Is the content specifically about employing EU citizens?",
-  collection: f.object.employing_eu_citizens_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::EMPLOYING_EU_CITIZENS_OPTIONS,
   required: false,
 ) %>
 
@@ -92,7 +92,7 @@
   :personal_data,
   as: :radio,
   label: "Is the content specifically about the use of personal data or data protection?",
-  collection: f.object.personal_data_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::PERSONAL_DATA_OPTIONS,
   required: false,
 ) %>
 
@@ -100,7 +100,7 @@
   :intellectual_property,
   as: :check_boxes,
   label: "Is the content about a specific type of intellectual property?",
-  collection: f.object.intellectual_property_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::INTELLECTUAL_PROPERTY_OPTIONS,
   required: false,
 ) %>
 
@@ -108,7 +108,7 @@
   :funding_schemes,
   as: :check_boxes,
   label: "Is the content about EU or UK government funding schemes?",
-  collection: f.object.funding_schemes_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::FUNDING_SCHEMES_OPTIONS,
   required: false,
 ) %>
 
@@ -116,7 +116,7 @@
   :public_sector_procurement,
   as: :check_boxes,
   label: "Is the content about public sector procurement?",
-  collection: f.object.public_sector_procurement_options,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::PUBLIC_SECTOR_PROCUREMENT_OPTIONS,
   required: false,
 ) %>
 
@@ -132,7 +132,7 @@
     :pinned_content,
     as: :radio,
     label: 'Does this content need to be pinned at the top of the results list?',
-    collection: f.object.pinned_content_options
+    collection: Support::Requests::EuExitBusinessReadinessRequest::PINNED_CONTENT_OPTIONS
 ) %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>

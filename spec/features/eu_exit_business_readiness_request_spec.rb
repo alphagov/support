@@ -19,25 +19,25 @@ feature 'New EU Exit Business Readiness Finder request' do
       'comment' => {
         'body' =>
 "[Type]
-adding content
+Adding content to the finder
 
 [Url]
 /some/base/path
 
 [Pinned content]
-yes
+Yes
 
 [Sector]
 
-aerospace
+Aerospace
 
 [Business activity]
 
-buying
-selling
+Buying products or goods from abroad
+Selling products or goods abroad
 
 [Employing eu citizens]
-yes
+Yes
 
 [Intellectual property]
 
@@ -47,7 +47,7 @@ yes
 
 [Public sector procurement]
 
-civil-government-contracts"
+Civil government contracts"
       }
     )
 
