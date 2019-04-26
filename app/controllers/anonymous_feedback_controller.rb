@@ -68,13 +68,19 @@ private
     if params[:path].present?
       params[:paths] = [params[:path]]
     elsif params[:paths] && params[:paths].instance_of?(String)
-      saved_paths = Support::Requests::Anonymous::Paths.find(params[:paths])
-      params[:paths] = saved_paths.try(:paths) || params[:paths].split(',').map(&:strip)
+      params[:paths] = params[:paths].split(',').map(&:strip)
     end
   end
 
+  def paths
+    return [] unless index_params[:paths].present?
+
+    saved_paths = Support::Requests::Anonymous::Paths.find(index_params[:paths].first)
+    saved_paths.try(:paths) || index_params[:paths]
+  end
+
   def scope_filters
-    @scope_filters ||= ScopeFiltersPresenter.new(paths: index_params[:paths], organisation_slug: index_params[:organisation], document_type: index_params[:document_type])
+    @scope_filters ||= ScopeFiltersPresenter.new(paths: paths, organisation_slug: index_params[:organisation], document_type: index_params[:document_type])
   end
 
   def present_date_filters(api_response)
