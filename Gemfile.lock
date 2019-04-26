@@ -95,7 +95,7 @@ GEM
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
-    fog-aws (3.4.0)
+    fog-aws (3.5.0)
       fog-core (~> 2.1)
       fog-json (~> 1.1)
       fog-xml (~> 0.1)
@@ -457,7 +457,7 @@ DEPENDENCIES
   bootstrap-kaminari-views (= 0.0.5)
   cancancan (~> 2.3)
   factory_bot_rails
-  fog-aws (~> 3.3)
+  fog-aws (~> 3.5)
   formtastic-bootstrap (= 3.1.1)
   gds-api-adapters (~> 59.0)
   gds-sso (~> 14.0)

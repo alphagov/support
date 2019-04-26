@@ -4,7 +4,7 @@ gem 'rails', '5.2.3'
 
 gem 'bootstrap-kaminari-views', '0.0.5'
 gem 'cancancan', '~> 2.3'
-gem 'fog-aws', '~> 3.3'
+gem 'fog-aws', '~> 3.5'
 gem 'formtastic-bootstrap', '3.1.1'
 gem 'gretel', '3.0.9'
 gem 'jc-validates_timeliness', '3.1.1'
