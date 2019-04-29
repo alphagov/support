@@ -56,11 +56,13 @@ describe AnonymousFeedbackController, type: :controller do
 
   context "browsing by path" do
     context "valid input, problem reports" do
+      render_views
+
       before do
         stub_support_api_anonymous_feedback(
           { path_prefixes: ["/tax-disc"], from: "13/10/2014", to: "25th November 2014" },
           "current_page" => 1,
-          "pages" => 1,
+          "pages" => 2,
           "page_size" => 1,
           "results" => [
             {
@@ -84,19 +86,25 @@ describe AnonymousFeedbackController, type: :controller do
           expect(response).to have_http_status(:success)
         end
 
-        it "renders the results given a saved paths ID" do
-          saved_paths = Support::Requests::Anonymous::Paths.new(%w(/tax-disc))
-          saved_paths.save
+        context "with saved paths" do
+          let(:saved_paths) { Support::Requests::Anonymous::Paths.new(%w(/tax-disc)) }
+          before do
+            saved_paths.save
+            get :index, params: { paths: saved_paths.id, from: "13/10/2014", to: "25th November 2014" }
+          end
 
-          get :index, params: { paths: saved_paths.id, from: "13/10/2014", to: "25th November 2014" }
+          it "renders the results" do
+            expect(response).to have_http_status(:success)
+          end
 
-          expect(response).to have_http_status(:success)
+          it "paginates correctly" do
+            next_a = "<a rel=\"next\" href=\"/anonymous_feedback?from=13%2F10%2F2014&amp;page=2&amp;paths%5B%5D=#{saved_paths.id}&amp;to=25th+November+2014\">Next &rsaquo;</a>"
+            expect(response.body).to include(next_a)
+          end
         end
       end
 
       context "JSON" do
-        render_views
-
         it "returns the results for problem" do
           get :index, params: { "paths" => "/tax-disc", "format" => "json", from: "13/10/2014", to: "25th November 2014" }
 
