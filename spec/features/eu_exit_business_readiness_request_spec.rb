@@ -31,10 +31,10 @@ Yes
 
 Aerospace
 
-[Business activity]
+[Organisation activity]
 
-Buying products or goods from abroad
-Selling products or goods abroad
+Buy products or goods from abroad
+Sell products or goods abroad
 
 [Employing eu citizens]
 Yes
@@ -74,9 +74,9 @@ private
     within '#support_requests_eu_exit_business_readiness_request_sector_input' do
       check 'Aerospace'
     end
-    within '#support_requests_eu_exit_business_readiness_request_business_activity_input' do
-      check 'Buying products or goods from abroad'
-      check 'Selling products or goods abroad'
+    within '#support_requests_eu_exit_business_readiness_request_organisation_activity_input' do
+      check 'Buy products or goods from abroad'
+      check 'Sell products or goods abroad'
     end
     within '#support_requests_eu_exit_business_readiness_request_employing_eu_citizens_input' do
       choose 'Yes'

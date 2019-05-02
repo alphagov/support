@@ -3,10 +3,9 @@ require 'active_support/core_ext'
 module Support
   module Requests
     class EuExitBusinessReadinessRequest < Request
-      attr_accessor :type, :url, :explanation, :sector, :business_activity,
-                    :employing_eu_citizens, :personal_data,
-                    :intellectual_property, :funding_schemes,
-                    :public_sector_procurement, :pinned_content
+      attr_accessor :type, :url, :explanation, :sector, :organisation_activity,
+        :employing_eu_citizens, :personal_data, :intellectual_property,
+        :funding_schemes, :public_sector_procurement, :pinned_content
 
       TYPE_OPTIONS = [
         "Adding content to the finder",
@@ -30,9 +29,9 @@ module Support
         "Clothing and consumer goods",
         "Clothing and consumer goods manufacture",
         "Construction",
-        "Digital, technology and computer services",
         "Creative industries",
         "Defence",
+        "Digital, technology and computer services",
         "Education",
         "Electricity",
         "Electronics, parts and machinery",
@@ -64,16 +63,16 @@ module Support
         "Pharmaceuticals",
         "Ports and airports",
         "Postal and courier services",
-        "Professional business services",
+        "Professional and business services",
         "Public administration",
         "Rail",
-        "Road (passengers and freight)",
         "Rail (passengers and freight)",
         "Real estate",
         "Repair of computers and consumer goods",
         "Research",
         "Restaurants, bars and catering",
         "Retail and wholesale (excluding motor trade, food and drink)",
+        "Road (passengers and freight)",
         "Space",
         "Sports and recreation",
         "Telecoms and information services",
@@ -83,12 +82,12 @@ module Support
         "Warehouses, services and pipelines",
       ].freeze
 
-      BUSINESS_ACTIVITY_OPTIONS = [
-        "Selling products or goods in the UK",
-        "Buying products or goods from abroad",
-        "Selling products or goods abroad",
-        "Doing other types of business in the EU",
-        "Businesses transporting goods abroad",
+      ORGANISATION_ACTIVITY_OPTIONS = [
+        "Sell products or goods in the UK",
+        "Buy products or goods from abroad",
+        "Sell products or goods abroad",
+        "Do other types of business in the EU",
+        "Transport goods abroad",
       ].freeze
 
       EMPLOYING_EU_CITIZENS_OPTIONS = %w(Yes No).freeze
@@ -97,10 +96,10 @@ module Support
 
       INTELLECTUAL_PROPERTY_OPTIONS = [
         "Copyright",
-        "Trade Marks",
+        "Trade marks",
         "Designs",
         "Patents",
-        "Exhaustion of Rights",
+        "Exhaustion of rights",
       ].freeze
 
       FUNDING_SCHEMES_OPTIONS = [

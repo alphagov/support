@@ -25,7 +25,7 @@ protected # rubocop:disable Layout/IndentationWidth https://github.com/rubocop-h
       :personal_data,
       requester_attributes: %i[email name collaborator_emails],
       sector: [],
-      business_activity: [],
+      organisation_activity: [],
       intellectual_property: [],
       funding_schemes: [],
       public_sector_procurement: [],

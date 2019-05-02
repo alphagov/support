@@ -60,7 +60,7 @@
   input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => false }
 ) %>
 
-<h2>Sector and business activity</h2>
+<h2>Sector and organisation activity</h2>
 
 <%= f.input(
   :sector,
@@ -71,10 +71,10 @@
 ) %>
 
 <%= f.input(
-  :business_activity,
+  :organisation_activity,
   as: :check_boxes,
   label: "Is the content about selling goods in the UK, importing or doing business abroad?",
-  collection: Support::Requests::EuExitBusinessReadinessRequest::BUSINESS_ACTIVITY_OPTIONS,
+  collection: Support::Requests::EuExitBusinessReadinessRequest::ORGANISATION_ACTIVITY_OPTIONS,
   required: false,
 ) %>
 
