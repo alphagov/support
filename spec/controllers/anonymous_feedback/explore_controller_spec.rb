@@ -86,7 +86,7 @@ describe AnonymousFeedback::ExploreController, type: :controller do
 
       it "redirects to anonymous_feedback/organisations#show" do
         post :create,
-          params: { support_requests_anonymous_explore_by_organisation: attributes }
+             params: { support_requests_anonymous_explore_by_organisation: attributes }
 
         expect(response).to redirect_to(redirect_path)
       end

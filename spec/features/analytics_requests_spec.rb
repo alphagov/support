@@ -36,16 +36,16 @@ Need help with cats"
     expect(page).to have_content("Only department/organisation Analytics Single Point of Contact (SPOC) can request access.")
 
     fill_in "Access to Google Analytics",
-      with: "Sarah Jones sarah@example.com some area"
+            with: "Sarah Jones sarah@example.com some area"
 
     fill_in "Tell me who my Analytics Single Point of Contact (SPOC) is",
-      with: "Government Digital Service"
+            with: "Government Digital Service"
 
     fill_in "Analytics Report Request",
-      with: "/my-page"
+            with: "/my-page"
 
     fill_in "Analytics Help",
-      with: "Need help with cats"
+            with: "Need help with cats"
 
     user_submits_the_request_successfully
 
