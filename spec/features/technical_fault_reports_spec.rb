@@ -61,16 +61,16 @@ private
     end
 
     fill_in "How much is it affecting? (the whole thing, a specific feature or specific URLs)",
-      with: details[:what_is_broken]
+            with: details[:what_is_broken]
 
     fill_in "What were you trying to do?",
-      with: details[:user_action]
+            with: details[:user_action]
 
     fill_in "What happened?",
-      with: details[:what_happened]
+            with: details[:what_happened]
 
     fill_in "What should have happened?",
-      with: details[:what_should_have_happened]
+            with: details[:what_should_have_happened]
 
     user_submits_the_request_successfully
   end

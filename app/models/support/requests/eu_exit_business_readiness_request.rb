@@ -4,8 +4,9 @@ module Support
   module Requests
     class EuExitBusinessReadinessRequest < Request
       attr_accessor :type, :url, :explanation, :sector, :business_activity,
-        :employing_eu_citizens, :personal_data, :intellectual_property,
-        :funding_schemes, :public_sector_procurement, :pinned_content
+                    :employing_eu_citizens, :personal_data,
+                    :intellectual_property, :funding_schemes,
+                    :public_sector_procurement, :pinned_content
 
       TYPE_OPTIONS = [
         "Adding content to the finder",

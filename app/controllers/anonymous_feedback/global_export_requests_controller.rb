@@ -6,7 +6,7 @@ class AnonymousFeedback::GlobalExportRequestsController < AuthorisationControlle
 
     support_api.create_global_export_request(export_request_params)
     redirect_to anonymous_feedback_explore_path,
-      notice: "We are sending your CSV file to #{current_user.email}. If you don't see it in a few minutes, check your spam folder."
+                notice: "We are sending your CSV file to #{current_user.email}. If you don't see it in a few minutes, check your spam folder."
   end
 
 private

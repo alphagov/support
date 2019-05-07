@@ -89,7 +89,7 @@ private
     fill_in "Is there a date you need to have a response by?", with: details[:needed_by]
     fill_in "Reason for deadline", with: details[:reason_for_deadline]
     fill_in "Contact telephone number (in case we need to call you to discuss the content)",
-      with: details[:contact_number]
+            with: details[:contact_number]
 
     user_submits_the_request_successfully
   end
