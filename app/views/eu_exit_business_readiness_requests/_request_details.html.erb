@@ -65,8 +65,8 @@
 <%= f.input(
   :sector,
   as: :check_boxes,
-  label: "What sector(s) is the content is about?",
-  collection: Support::Requests::EuExitBusinessReadinessRequest::SECTOR_OPTIONS,
+  label: "What sector(s) is the content about?",
+  collection: @eu_exit_business_readiness_request.sector_options,
   required: false,
 ) %>
 
@@ -74,33 +74,33 @@
   :organisation_activity,
   as: :check_boxes,
   label: "Is the content about selling goods in the UK, importing or doing business abroad?",
-  collection: Support::Requests::EuExitBusinessReadinessRequest::ORGANISATION_ACTIVITY_OPTIONS,
+  collection: @eu_exit_business_readiness_request.organisation_activity_options,
   required: false,
 ) %>
 
-<h2>Additional Tagging</h2>
+<h2>Additional tagging</h2>
 
 <%= f.input(
   :employing_eu_citizens,
   as: :radio,
-  label: "Is the content specifically about employing EU citizens?",
+  label: "Is the content specifically about employing people from other European countries?",
   collection: Support::Requests::EuExitBusinessReadinessRequest::EMPLOYING_EU_CITIZENS_OPTIONS,
   required: false,
 ) %>
 
 <%= f.input(
   :personal_data,
-  as: :radio,
-  label: "Is the content specifically about the use of personal data or data protection?",
-  collection: Support::Requests::EuExitBusinessReadinessRequest::PERSONAL_DATA_OPTIONS,
+  as: :check_boxes,
+  label: "Is the content about exchanging personal data with organisations in Europe?",
+  collection: @eu_exit_business_readiness_request.personal_data_options,
   required: false,
 ) %>
 
 <%= f.input(
   :intellectual_property,
   as: :check_boxes,
-  label: "Is the content about a specific type of intellectual property?",
-  collection: Support::Requests::EuExitBusinessReadinessRequest::INTELLECTUAL_PROPERTY_OPTIONS,
+  label: "Is the content about intellectual property?",
+  collection: @eu_exit_business_readiness_request.intellectual_property_options,
   required: false,
 ) %>
 
@@ -108,7 +108,7 @@
   :funding_schemes,
   as: :check_boxes,
   label: "Is the content about EU or UK government funding schemes?",
-  collection: Support::Requests::EuExitBusinessReadinessRequest::FUNDING_SCHEMES_OPTIONS,
+  collection: @eu_exit_business_readiness_request.founding_schemes_options,
   required: false,
 ) %>
 
@@ -116,7 +116,7 @@
   :public_sector_procurement,
   as: :check_boxes,
   label: "Is the content about public sector procurement?",
-  collection: Support::Requests::EuExitBusinessReadinessRequest::PUBLIC_SECTOR_PROCUREMENT_OPTIONS,
+  collection: @eu_exit_business_readiness_request.public_sector_procurement_options,
   required: false,
 ) %>
 
