@@ -2,7 +2,7 @@ class EuExitBusinessReadinessRequestsController < RequestsController
 protected # rubocop:disable Layout/IndentationWidth https://github.com/rubocop-hq/rubocop/issues/6861
 
   def new_request
-    Support::Requests::EuExitBusinessReadinessRequest.new
+    @eu_exit_business_readiness_request = Support::Requests::EuExitBusinessReadinessRequest.new
   end
 
   def zendesk_ticket_class
@@ -25,7 +25,7 @@ protected # rubocop:disable Layout/IndentationWidth https://github.com/rubocop-h
       :personal_data,
       requester_attributes: %i[email name collaborator_emails],
       sector: [],
-      business_activity: [],
+      organisation_activity: [],
       intellectual_property: [],
       funding_schemes: [],
       public_sector_procurement: [],
