@@ -33,7 +33,7 @@ else
   gem 'gds-api-adapters', '~> 59.2'
 end
 gem 'govuk_sidekiq', '~> 3.0'
-gem 'plek', '2.1.1'
+gem 'plek', '3.0.0'
 
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
