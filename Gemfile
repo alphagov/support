@@ -59,5 +59,5 @@ group :test do
   gem 'rspec-its', '~> 1.3.0'
   gem 'shoulda', '~> 3.5.0'
   gem 'timecop', '~> 0.9.1'
-  gem 'webmock', '~> 3.5.1'
+  gem 'webmock', '~> 3.6.0'
 end
