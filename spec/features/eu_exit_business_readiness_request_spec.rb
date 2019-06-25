@@ -34,7 +34,7 @@ Buy products or goods from abroad
 Sell products or goods abroad
 
 [Employing eu citizens]
-Yes
+Employing EU or EEA citizens
 
 [Intellectual property]
 
@@ -73,7 +73,7 @@ private
       check 'Sell products or goods abroad'
     end
     within '#support_requests_eu_exit_business_readiness_request_employing_eu_citizens_input' do
-      choose 'Yes'
+      choose 'Employing EU or EEA citizens'
     end
     within '#support_requests_eu_exit_business_readiness_request_public_sector_procurement_input' do
       check 'Civil government contracts'

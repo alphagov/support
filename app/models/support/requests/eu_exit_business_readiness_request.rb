@@ -15,7 +15,10 @@ module Support
 
       EU_EXIT_BUSINESS_FINDER_CONTENT_ID = "52435175-82ed-4a04-adef-74c0199d0f46".freeze
 
-      EMPLOYING_EU_CITIZENS_OPTIONS = %w(Yes No).freeze
+      EMPLOYING_EU_CITIZENS_OPTIONS = [
+        "Employing EU or EEA citizens",
+        "Employing UK citizens or people not from the EU or EEA",
+      ].freeze
 
       validates_presence_of :url
 
