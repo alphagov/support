@@ -43,12 +43,12 @@
   Be as specific as you can, especially when choosing sectors.
 </p>
 
-<h2>Sector and organisation activity</h2>
+<h2>Sector tagging</h2>
 
 <%= f.input(
   :sector,
   as: :check_boxes,
-  label: "What sector(s) is the content about?",
+  label: "What sector(s) is the content for?",
   collection: @eu_exit_business_readiness_request.sector_options,
   required: false,
 ) %>
