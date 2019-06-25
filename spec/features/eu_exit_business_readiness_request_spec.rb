@@ -12,10 +12,10 @@ feature 'New EU Exit Business Readiness Finder request' do
 
   scenario 'sucessful request for adding content' do
     request = expect_zendesk_to_receive_ticket(
-      'subject' => 'EU Exit Business Readiness - /some/base/path',
+      'subject' => 'Brexit business finder - /some/base/path',
       'priority' => 'normal',
       'requester' => hash_including('name' => 'John Smith', 'email' => 'john.smith@agency.gov.uk'),
-      'tags' =>  %w[govt_form business_readiness dapper govt_form eu_exit],
+      'tags' =>  %w[govt_form business_readiness dapper govt_form eu_exit brexit],
       'comment' => {
         'body' =>
 "[Type]
