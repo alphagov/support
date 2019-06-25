@@ -48,7 +48,7 @@ module Support
       end
 
       def self.description
-        "Request to add content, update content tags or remove content from the EU Exit business readiness finder."
+        "Ask for content to be added or removed, or change content tags"
       end
 
     private
