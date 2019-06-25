@@ -44,7 +44,7 @@ module Support
       end
 
       def self.label
-        "Request updates to content in the EU Exit business readiness finder"
+        "Request a change to the Brexit business finder"
       end
 
       def self.description

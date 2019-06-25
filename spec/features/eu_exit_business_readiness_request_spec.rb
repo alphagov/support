@@ -58,7 +58,7 @@ Civil government contracts"
 private
 
   def user_requests_update(details)
-    page_title = 'Request updates to content in the EU Exit business readiness finder'
+    page_title = 'Request a change to the Brexit business finder'
     visit '/'
     click_on page_title
     expect(page).to have_content(page_title)
