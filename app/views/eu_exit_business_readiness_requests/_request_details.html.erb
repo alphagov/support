@@ -26,15 +26,9 @@
 <%= f.input(
   :url,
   required: true,
-  label: "URL of content",
-  placeholder: "/government/… or /guidance/…",
+  label: "Which page is this about? Add the full URL",
   input_html: { :"aria-required" => true }
 ) %>
-
-<p>
-  Please don’t submit a Whitehall admin URL or a full GOV.UK URL, only
-  /government/… or /guidance/…
-</p>
 
 <%= f.input(
   :explanation,

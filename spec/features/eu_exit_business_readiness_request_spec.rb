@@ -78,7 +78,7 @@ private
     within '#support_requests_eu_exit_business_readiness_request_public_sector_procurement_input' do
       check 'Civil government contracts'
     end
-    fill_in 'URL of content', with: '/some/base/path'
+    fill_in 'support_requests_eu_exit_business_readiness_request_url', with: '/some/base/path'
     user_submits_the_request_successfully
   end
 
