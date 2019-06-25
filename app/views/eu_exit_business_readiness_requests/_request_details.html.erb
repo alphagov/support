@@ -53,10 +53,12 @@
   required: false,
 ) %>
 
+<h2>Organisation activity tagging</h2>
+
 <%= f.input(
   :organisation_activity,
   as: :check_boxes,
-  label: "Is the content about selling goods in the UK, importing or doing business abroad?",
+  label: "Does the content relate to any of these activities?",
   collection: @eu_exit_business_readiness_request.organisation_activity_options,
   required: false,
 ) %>
