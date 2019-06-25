@@ -19,7 +19,7 @@ module Zendesk
 
       def fields
         %w(
-          type url pinned_content explanation sector organisation_activity employing_eu_citizens
+          type url explanation sector organisation_activity employing_eu_citizens
           personal_data intellectual_property funding_schemes
           public_sector_procurement
         )

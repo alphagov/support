@@ -5,7 +5,7 @@ module Support
     class EuExitBusinessReadinessRequest < Request
       attr_accessor :type, :url, :explanation, :sector, :organisation_activity,
                     :employing_eu_citizens, :personal_data, :intellectual_property,
-                    :funding_schemes, :public_sector_procurement, :pinned_content
+                    :funding_schemes, :public_sector_procurement
 
       TYPE_OPTIONS = [
         "Adding content to the finder",
@@ -16,8 +16,6 @@ module Support
       EU_EXIT_BUSINESS_FINDER_CONTENT_ID = "52435175-82ed-4a04-adef-74c0199d0f46".freeze
 
       EMPLOYING_EU_CITIZENS_OPTIONS = %w(Yes No).freeze
-
-      PINNED_CONTENT_OPTIONS = %w(Yes No).freeze
 
       validates_presence_of :url
 

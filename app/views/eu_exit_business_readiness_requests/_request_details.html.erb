@@ -120,19 +120,4 @@
   required: false,
 ) %>
 
-<h2>Pinned content</h2>
-<p>
-    Pinned content is shown at the top of the results in the business readiness finder
-    when certain filters are selected and the content has been tagged to that filter.
-</p>
-<p>
-    Content should only be pinned if it gives a high level summary of what the sector or policy area is about.
-</p>
-<%= f.input(
-    :pinned_content,
-    as: :radio,
-    label: 'Does this content need to be pinned at the top of the results list?',
-    collection: Support::Requests::EuExitBusinessReadinessRequest::PINNED_CONTENT_OPTIONS
-) %>
-
 <%= render partial: "support/collaborators", locals: { f: f } %>
