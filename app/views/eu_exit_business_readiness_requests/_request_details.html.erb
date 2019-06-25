@@ -33,8 +33,10 @@
 <%= f.input(
   :explanation,
   as: :text,
-  label: "If you’re requesting an update to tagging or removing content, please explain your request.",
-  input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => false }
+  label: "Why does this content need adding, updating or removing?",
+  required: true,
+  hint: "You can also add other information or questions here.",
+  input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true }
 ) %>
 
 <h2>Sector and organisation activity</h2>
