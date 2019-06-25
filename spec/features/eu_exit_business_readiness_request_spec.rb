@@ -24,9 +24,6 @@ Adding content to the finder
 [Url]
 /some/base/path
 
-[Pinned content]
-Yes
-
 [Sector]
 
 Aerospace
@@ -67,9 +64,6 @@ private
     expect(page).to have_content(page_title)
     within '#support_requests_eu_exit_business_readiness_request_type_input' do
       choose details[:request_type]
-    end
-    within '#support_requests_eu_exit_business_readiness_request_pinned_content_input' do
-      choose 'Yes'
     end
     within '#support_requests_eu_exit_business_readiness_request_sector_input' do
       check 'Aerospace'

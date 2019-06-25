@@ -19,7 +19,6 @@ protected # rubocop:disable Layout/IndentationWidth https://github.com/rubocop-h
     ).permit(
       :type,
       :url,
-      :pinned_content,
       :explanation,
       :employing_eu_citizens,
       :personal_data,
