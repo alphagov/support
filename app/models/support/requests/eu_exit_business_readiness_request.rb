@@ -15,7 +15,10 @@ module Support
 
       EU_EXIT_BUSINESS_FINDER_CONTENT_ID = "52435175-82ed-4a04-adef-74c0199d0f46".freeze
 
-      EMPLOYING_EU_CITIZENS_OPTIONS = %w(Yes No).freeze
+      EMPLOYING_EU_CITIZENS_OPTIONS = [
+        "Employing EU or EEA citizens",
+        "Employing UK citizens or people not from the EU or EEA",
+      ].freeze
 
       validates_presence_of :url
 
@@ -44,11 +47,11 @@ module Support
       end
 
       def self.label
-        "Request updates to content in the EU Exit business readiness finder"
+        "Request a change to the Brexit business finder"
       end
 
       def self.description
-        "Request to add content, update content tags or remove content from the EU Exit business readiness finder."
+        "Ask for content to be added or removed, or change content tags"
       end
 
     private

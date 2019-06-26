@@ -1,36 +1,19 @@
 <p class="alert alert-info">
-  Request content to be added, updated or removed in the EU Exit business readiness finder.
-  <br />
   We'll review your request within 2 working days.
 </p>
 
 <p>
-  The <a href="https://www.gov.uk/business-uk-leaving-eu">EU Exit business
-  readiness</a> tool aims to help businesses find content that gives them
-  actionable steps to prepare for EU Exit. It asks users a series of questions
-  before showing them links to relevant content in a
-  <a href="https://www.gov.uk/find-eu-exit-guidance-business">finder</a>.
-  Content shown in the finder is already published on GOV.UK.
+  Content tagged to the <a href="https://www.gov.uk/find-eu-exit-guidance-business">Brexit business
+  finder</a> must:
 </p>
-
-<h4>Adding content to the finder</h4>
-
+<ul>
+  <li>give businesses and organisations actionable steps to prepare for Brexit</li>
+  <li>be in a guidance format, for example detailed guide, publication or step by step</li>
+</ul>
 <p>
-  Content must be in a GOV.UK guidance format (such as a detailed guide or a
-  guidance publication) to be included in the finder. You can submit content
-  which is either in draft or has been published.
+  Do not add news stories, policy papers, press releases or correspondence.
 </p>
 
-<p>
-  Formats such as news stories or press releases cannot be added to the tool.
-  We’d also not recommend adding policy papers or correspondence as this is not
-  a guidance format.
-</p>
-
-<p>
-  If you’re unsure, please <a href="/content_advice_request/new">contact GOV.UK
-  content support</a> before completing this form.
-</p>
 
 <%= f.input(
   :type,
@@ -43,37 +26,39 @@
 <%= f.input(
   :url,
   required: true,
-  label: "URL of content",
-  placeholder: "/government/… or /guidance/…",
+  label: "Which page is this about? Add the full URL",
   input_html: { :"aria-required" => true }
 ) %>
-
-<p>
-  Please don’t submit a Whitehall admin URL or a full GOV.UK URL, only
-  /government/… or /guidance/…
-</p>
 
 <%= f.input(
   :explanation,
   as: :text,
-  label: "If you’re requesting an update to tagging or removing content, please explain your request.",
-  input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => false }
+  label: "Why does this content need adding, updating or removing?",
+  required: true,
+  hint: "You can also add other information or questions here.",
+  input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true }
 ) %>
 
-<h2>Sector and organisation activity</h2>
+<p class="alert alert-info">
+  Be as specific as you can, especially when choosing sectors.
+</p>
+
+<h2>Sector tagging</h2>
 
 <%= f.input(
   :sector,
   as: :check_boxes,
-  label: "What sector(s) is the content about?",
+  label: "What sector(s) is the content for?",
   collection: @eu_exit_business_readiness_request.sector_options,
   required: false,
 ) %>
 
+<h2>Organisation activity tagging</h2>
+
 <%= f.input(
   :organisation_activity,
   as: :check_boxes,
-  label: "Is the content about selling goods in the UK, importing or doing business abroad?",
+  label: "Does the content relate to any of these activities?",
   collection: @eu_exit_business_readiness_request.organisation_activity_options,
   required: false,
 ) %>
@@ -83,7 +68,7 @@
 <%= f.input(
   :employing_eu_citizens,
   as: :radio,
-  label: "Is the content specifically about employing people from other European countries?",
+  label: "Is the content about employing people?",
   collection: Support::Requests::EuExitBusinessReadinessRequest::EMPLOYING_EU_CITIZENS_OPTIONS,
   required: false,
 ) %>

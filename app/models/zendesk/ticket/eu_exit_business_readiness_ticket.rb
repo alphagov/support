@@ -2,11 +2,11 @@ module Zendesk
   module Ticket
     class EuExitBusinessReadinessTicket < Zendesk::ZendeskTicket
       def subject
-        "EU Exit Business Readiness - #{@request.url}"
+        "Brexit business finder - #{@request.url}"
       end
 
       def tags
-        super + %w[business_readiness dapper govt_form eu_exit]
+        super + %w[business_readiness dapper govt_form eu_exit brexit]
       end
 
     protected
