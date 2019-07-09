@@ -65,7 +65,7 @@ feature 'Exploring anonymous feedback' do
       }
     ]
 
-    explore_anonymous_feedback_by_urls(uploaded_list: "#{Rails.root}/spec/fixtures/list_of_urls.csv")
+    explore_anonymous_feedback_by_urls(uploaded_list: Rails.root.join("spec", "fixtures", "list_of_urls.csv"))
     expect(feedex_results).to eq(feedback_reports)
   end
 
@@ -86,7 +86,7 @@ feature 'Exploring anonymous feedback' do
       no_results
     )
 
-    explore_anonymous_feedback_by_urls(uploaded_list: "#{Rails.root}/spec/fixtures/list_of_nonexistent_urls.csv")
+    explore_anonymous_feedback_by_urls(uploaded_list: Rails.root.join("spec", "fixtures", "list_of_nonexistent_urls.csv"))
 
     expect(page).to have_content('There’s no feedback for the URL(s) requested.')
   end
