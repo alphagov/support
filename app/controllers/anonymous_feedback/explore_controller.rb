@@ -32,7 +32,7 @@ class AnonymousFeedback::ExploreController < AuthorisationController
       redirect_to @explore.redirect_path
     else
       new
-      render :new, status: 422
+      render :new, status: :unprocessable_entity
     end
   end
 

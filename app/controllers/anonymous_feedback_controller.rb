@@ -52,8 +52,8 @@ private
     return true if has_required_api_params?
 
     respond_to do |format|
-      format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
-      format.json { render json: { "errors" => ["Please provide a valid 'paths', 'path' or 'organisation' parameter"] }, status: 400 }
+      format.html { redirect_to anonymous_feedback_explore_url, status: :moved_permanently }
+      format.json { render json: { "errors" => ["Please provide a valid 'paths', 'path' or 'organisation' parameter"] }, status: :bad_request }
     end
 
     false
@@ -73,7 +73,7 @@ private
   end
 
   def paths
-    return [] unless index_params[:paths].present?
+    return [] if index_params[:paths].blank?
 
     saved_paths = Support::Requests::Anonymous::Paths.find(index_params[:paths].first)
     saved_paths.try(:paths) || index_params[:paths]

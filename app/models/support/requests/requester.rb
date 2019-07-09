@@ -36,7 +36,7 @@ module Support
     private
 
       def collaborator_emails_are_all_valid
-        unless collaborator_emails.blank?
+        if collaborator_emails.present?
           collaborator_emails.each do |collaborator_email|
             unless collaborator_email =~ /@/
               errors.add(:collaborator_emails, "#{collaborator_email} is not a valid email")

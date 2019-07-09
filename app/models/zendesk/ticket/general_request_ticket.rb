@@ -2,7 +2,7 @@ module Zendesk
   module Ticket
     class GeneralRequestTicket < Zendesk::ZendeskTicket
       def subject
-        if @request.title.nil? || @request.title.empty?
+        if @request.title.blank?
           "Govt Agency General Issue"
         else
           "#{@request.title} - Govt Agency General Issue"

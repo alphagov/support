@@ -19,7 +19,7 @@ module ReferrerHelper
   def extract_search_term(referrer)
     uri = URI.parse(referrer)
     params = Rack::Utils.parse_query(uri.query)
-    params['q'] if params['q'].present?
+    params['q'].presence
   rescue URI::InvalidURIError, ArgumentError
     nil
   end

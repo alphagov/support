@@ -80,7 +80,7 @@ module Zendesk
 
     def has_value?(param, target = nil)
       target ||= @request
-      target.respond_to?(param) && !target.send(param).blank?
+      target.respond_to?(param) && target.send(param).present?
     end
   end
 end
