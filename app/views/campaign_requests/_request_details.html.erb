@@ -83,6 +83,11 @@
                              :cols => 50,
                              :"aria-required" => true } %>
 
+    <%= r.input :site_title,
+               label: 'The short campaign title, approx 1 - 3 words, eg "Action Counters Terrorism"',
+               required: true,
+               input_html: {class: 'input-md-6'} %>
+
     <%= r.input :description,
                 as: :text,
                 label: "Campaign description",

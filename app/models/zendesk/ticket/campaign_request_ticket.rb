@@ -35,6 +35,8 @@ module Zendesk
                                                      label: "How will you measure success?"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :proposed_url,
                                                      label: "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)"),
+          Zendesk::LabelledSnippet.new(on: @request.campaign, field: :site_title,
+                                                     label: 'The short campaign title, approx 1 - 3 words'),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :site_metadescription,
                                                      label: "Site metadescription (appears in search results)"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :cost_of_campaign,
