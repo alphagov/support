@@ -7,11 +7,11 @@ module Support
       attr_accessor :type_of_site, :has_read_guidance_confirmation, :has_read_oasis_guidance_confirmation,
                     :signed_campaign, :start_date, :end_date, :development_start_date,
                     :performance_review_contact_email, :government_theme, :description, :call_to_action,
-                    :proposed_url, :site_metadescription, :cost_of_campaign, :ga_contact_email
+                    :proposed_url, :site_title, :site_metadescription, :cost_of_campaign, :ga_contact_email
 
       validates_presence_of :type_of_site, :signed_campaign, :start_date, :end_date, :development_start_date,
                             :performance_review_contact_email, :government_theme, :description, :call_to_action,
-                            :proposed_url, :site_metadescription, :cost_of_campaign, :ga_contact_email
+                            :proposed_url, :site_title, :site_metadescription, :cost_of_campaign, :ga_contact_email
 
       validates_acceptance_of :has_read_guidance_confirmation, :has_read_oasis_guidance_confirmation, allow_nil: false
       validates_inclusion_of :type_of_site, in: ['Campaign platform', 'Bespoke microsite']
