@@ -52,6 +52,9 @@ newcampaign.campaign.gov.uk
 [The short campaign title, approx 1 - 3 words]
 New campaign
 
+[Explain what this site is about, approx 7 - 8 words]
+A new one about a new thing
+
 [Site metadescription (appears in search results)]
 pensions, campaign, newcampaign
 
@@ -80,6 +83,7 @@ Some comment"
       call_to_action: "Join us in this campaign for pensions",
       proposed_url: "newcampaign.campaign.gov.uk",
       site_title: 'New campaign',
+      site_tagline: 'A new one about a new thing',
       site_metadescription: "pensions, campaign, newcampaign",
       cost_of_campaign: "1200",
       ga_contact_email: "ga.contact@example.com",
@@ -111,6 +115,7 @@ private
     fill_in "Call to action*", with: details[:call_to_action]
     fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)*", with: details[:proposed_url]
     fill_in "The short campaign title, approx 1 - 3 words, eg \"Action Counters Terrorism\"*", with: details[:site_title]
+    fill_in "Explain what this site is about, approx 7 - 8 words, eg \"Report terrorist or extremist content online\"*", with: details[:site_tagline]
     fill_in "Site metadescription (appears in search results)*", with: details[:site_metadescription]
     fill_in "Site build budget / costs (and overall campaign cost, if applicable)*", with: details[:cost_of_campaign]
     fill_in "Contact details for Google Analytics leads (Gmail accounts only)*", with: details[:ga_contact_email]

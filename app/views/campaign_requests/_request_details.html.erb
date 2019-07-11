@@ -86,7 +86,12 @@
     <%= r.input :site_title,
                label: 'The short campaign title, approx 1 - 3 words, eg "Action Counters Terrorism"',
                required: true,
-               input_html: {class: 'input-md-6'} %>
+               input_html: {class: 'input-md-6', 'aria-required': true} %>
+
+    <%= r.input :site_tagline,
+                label: 'Explain what this site is about, approx 7 - 8 words, eg "Report terrorist or extremist content online"',
+                required: true,
+                input_html: {class: 'input-md-6', 'aria-required': true} %>
 
     <%= r.input :description,
                 as: :text,
