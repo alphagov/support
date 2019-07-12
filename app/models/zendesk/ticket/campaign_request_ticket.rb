@@ -40,7 +40,7 @@ module Zendesk
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :site_tagline,
                                                      label: 'Explain what this site is about, approx 7 - 8 words'),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :site_metadescription,
-                                                     label: "Site metadescription (appears in search results)"),
+                                                     label: 'Approx 20-30 words. A more detailed description or call to action'),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :cost_of_campaign,
                                                      label: "Site build budget / costs (and overall campaign cost, if applicable)"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :ga_contact_email,
