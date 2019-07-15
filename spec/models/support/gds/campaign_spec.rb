@@ -30,6 +30,8 @@ module Support
       it { should validate_presence_of(:description) }
       it { should validate_presence_of(:call_to_action) }
       it { should validate_presence_of(:proposed_url) }
+      it { should validate_presence_of(:site_title) }
+      it { should validate_presence_of(:site_tagline) }
       it { should validate_presence_of(:site_metadescription) }
       it { should validate_presence_of(:cost_of_campaign) }
       it { should validate_presence_of(:ga_contact_email) }
