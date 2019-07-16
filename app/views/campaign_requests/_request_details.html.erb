@@ -84,14 +84,19 @@
                              :"aria-required" => true } %>
 
     <%= r.input :site_title,
-               label: 'The short campaign title, approx 1 - 3 words, eg "Action Counters Terrorism"',
+               label: 'Site title',
                required: true,
                input_html: {class: 'input-md-6', 'aria-required': true} %>
-
+    <p class="help-block">
+        The short campaign title, approx 1 - 3 words, eg "Action Counters Terrorism
+    </p>
     <%= r.input :site_tagline,
-                label: 'Explain what this site is about, approx 7 - 8 words, eg "Report terrorist or extremist content online"',
+                label: 'Site tagline',
                 required: true,
                 input_html: {class: 'input-md-6', 'aria-required': true} %>
+    <p class="help-block">
+        Explain what this site is about, approx 7 - 8 words, eg "Report terrorist or extremist content online"
+    </p>
 
     <%= r.input :description,
                 as: :text,
@@ -126,7 +131,7 @@
 
     <%= r.input :site_metadescription,
                 as: :text,
-                label: 'Approx 20-30 words. A more detailed description or call to action, e.g. "Report terrorism activity online. If you\'ve seen or heard something that is suspicious and may be terrorism related - report it anonymously."',
+                label: 'Site metadescription (appears in search results)',
                 required: true,
                 input_html: {:class => "input-md-6",
                              :rows => 6,
@@ -134,8 +139,9 @@
                              :"aria-required" => true,
                              :"aria-describedby" => "seoHelpBlock" } %>
     <p class="help-block">
-      The meta description is a short, clear sentence how you want the site described as it appears
-      in Google search
+        Approx 20-30 words. A more detailed description or call to action,
+        e.g. "Report terrorism activity online. If you've seen or heard something
+        that is suspicious and may be terrorism related - report it anonymously."
     </p>
 
     <%= r.input :cost_of_campaign, label: "Site build budget / costs (and overall campaign cost, if applicable)", required: true, input_html: { class: "input-md-6" } %>

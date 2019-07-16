@@ -49,13 +49,13 @@ Join us in this campaign for pensions
 [Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)]
 newcampaign.campaign.gov.uk
 
-[The short campaign title, approx 1 - 3 words]
+[Site title]
 New campaign
 
-[Explain what this site is about, approx 7 - 8 words]
+[Site tagline]
 A new one about a new thing
 
-[Approx 20-30 words. A more detailed description or call to action]
+[Site metadescription (appears in search results)]
 pensions, campaign, newcampaign
 
 [Site build budget / costs (and overall campaign cost, if applicable)]
@@ -114,9 +114,9 @@ private
     fill_in "Campaign description*", with: details[:description]
     fill_in "Call to action*", with: details[:call_to_action]
     fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)*", with: details[:proposed_url]
-    fill_in "The short campaign title, approx 1 - 3 words, eg \"Action Counters Terrorism\"*", with: details[:site_title]
-    fill_in "Explain what this site is about, approx 7 - 8 words, eg \"Report terrorist or extremist content online\"*", with: details[:site_tagline]
-    fill_in 'Approx 20-30 words. A more detailed description or call to action, e.g. "Report terrorism activity online. If you\'ve seen or heard something that is suspicious and may be terrorism related - report it anonymously."*', with: details[:site_metadescription]
+    fill_in "Site title*", with: details[:site_title]
+    fill_in "Site tagline*", with: details[:site_tagline]
+    fill_in 'Site metadescription (appears in search results)*', with: details[:site_metadescription]
     fill_in "Site build budget / costs (and overall campaign cost, if applicable)*", with: details[:cost_of_campaign]
     fill_in "Contact details for Google Analytics leads (Gmail accounts only)*", with: details[:ga_contact_email]
     fill_in "Additional comments", with: details[:additional_comments]
