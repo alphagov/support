@@ -1,5 +1,5 @@
 class EuExitBusinessReadinessRequestsController < RequestsController
-protected # rubocop:disable Layout/IndentationWidth https://github.com/rubocop-hq/rubocop/issues/6861
+protected
 
   def new_request
     @eu_exit_business_readiness_request = Support::Requests::EuExitBusinessReadinessRequest.new
