@@ -1,5 +1,5 @@
 class CampaignRequestsController < RequestsController
-protected # rubocop:disable Layout/IndentationWidth https://github.com/rubocop-hq/rubocop/issues/6861
+protected
 
   def new_request
     Support::Requests::CampaignRequest.new(campaign: Support::GDS::Campaign.new)

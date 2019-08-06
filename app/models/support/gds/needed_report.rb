@@ -28,7 +28,7 @@ module Support
 
       def frequency_options
         [
-          ["One-off", "one-off"],
+          %w[One-off one-off],
           %w(Weekly weekly),
           %w(Monthly monthly),
         ]
