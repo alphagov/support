@@ -1,5 +1,3 @@
-AllCops:
-  TargetRubyVersion: 2.2
 Metrics/BlockLength:
   Enabled: true
   Exclude:
