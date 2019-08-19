@@ -14,7 +14,7 @@ gem 'kaminari', '~> 1.1.1'
 # implicitly from using govuk_sidekiq.  This is because we store user
 # objects in it directly as the app has no access to any other database.
 gem 'redis', '4.1.2'
-gem 'sass-rails', '5.0.7'
+gem 'sass-rails', '6.0.0'
 gem 'select2-rails', '4.0.3'
 gem 'uglifier', '4.1.20'
 
