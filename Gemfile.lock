@@ -111,7 +111,7 @@ GEM
       actionpack (>= 3.2.13)
     formtastic-bootstrap (3.1.1)
       formtastic (>= 3.0)
-    gds-api-adapters (59.6.0)
+    gds-api-adapters (60.0.0)
       addressable
       link_header
       null_logger
@@ -163,6 +163,7 @@ GEM
       rails (>= 3.1.0)
     hashdiff (1.0.0)
     hashie (3.6.0)
+    http-accept (1.7.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (1.6.0)
@@ -307,7 +308,8 @@ GEM
     regexp_parser (1.5.1)
     request_store (1.4.1)
       rack (>= 1.4)
-    rest-client (2.0.2)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
@@ -458,7 +460,7 @@ DEPENDENCIES
   factory_bot_rails
   fog-aws (~> 3.5)
   formtastic-bootstrap (= 3.1.1)
-  gds-api-adapters (~> 59.6)
+  gds-api-adapters (~> 60.0)
   gds-sso (~> 14.1)
   gds_zendesk (= 3.0.0)
   govuk-lint
