@@ -6,7 +6,7 @@ module Support
       def initialize(current_user = nil)
         @current_user = current_user
         @groups = [
-          Support::Navigation::SectionGroup.new("Content request", sections_for(Support::Requests::ContentAdviceRequest, Support::Requests::ContentChangeRequest, Support::Requests::UnpublishContentRequest, Support::Requests::EuExitBusinessReadinessRequest)),
+          Support::Navigation::SectionGroup.new("Content request", content_requests),
           Support::Navigation::SectionGroup.new("Technical support", sections_for(Support::Requests::ChangesToPublishingAppsRequest, Support::Requests::TechnicalFaultReport)),
           Support::Navigation::SectionGroup.new("User access", sections_for(Support::Requests::AccountsPermissionsAndTrainingRequest, Support::Requests::RemoveUserRequest)),
           Support::Navigation::SectionGroup.new("Campaigns", sections_for(Support::Requests::CampaignRequest, Support::Requests::LiveCampaignRequest)),
@@ -32,6 +32,14 @@ module Support
 
       def sections_for(*request_classes)
         request_classes.map { |request_class| Support::Navigation::RequestSection.new(request_class, @current_user) }
+      end
+
+      def content_requests
+        sections_for(Support::Requests::ContentAdviceRequest,
+                     Support::Requests::ContentChangeRequest,
+                     Support::Requests::UnpublishContentRequest,
+                     Support::Requests::EuExitBusinessReadinessRequest,
+                     Support::Requests::BrexitCheckerRequest)
       end
     end
   end
