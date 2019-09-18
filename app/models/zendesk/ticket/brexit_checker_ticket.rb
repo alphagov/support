@@ -5,6 +5,10 @@ module Zendesk
         "Get ready for Brexit checker"
       end
 
+      def tags
+        super << "brexit_checker"
+      end
+
     private
 
       def comment_snippets

@@ -14,6 +14,7 @@ feature "Brexit checker request" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Get ready for Brexit checker",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
+      "tags" => %w(govt_form brexit_checker),
       "comment" => {
         "body" =>
 "[Action to change]
@@ -32,6 +33,7 @@ Action description"
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Get ready for Brexit checker",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
+      "tags" => %w(govt_form brexit_checker),
       "comment" => {
         "body" =>
 "[New action users]
