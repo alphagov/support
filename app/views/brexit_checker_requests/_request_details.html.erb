@@ -29,4 +29,57 @@
   ) %>
 </div>
 
+<div id="new_action_title">
+  <h2>Add a new action</h2>
+  <%= f.input(
+    :new_action_users,
+    label: "Who needs to know?",
+    hint: "Specify who, where they are, and what they’re doing. For example, an Irish citizen who lives in the UK taking a pet to the EU.",
+  ) %>
+
+  <%= f.input(
+    :new_action_title,
+    label: "What is the action?",
+    hint: "What does the user need to do to prepare for no deal Brexit?",
+    ) %>
+
+  <%= f.input(
+    :new_action_consequence,
+    label: "Consequence",
+    hint: "What is the problem for the user if they don’t act?",
+    ) %>
+
+  <%= f.input(
+    :new_action_service_link,
+    label: "Service link",
+    hint: "Provide a link to any application process or service, if there is one.",
+    ) %>
+
+  <%= f.input(
+    :new_action_guidance_link,
+    label: "Guidance link",
+    hint: "Provide a link to the page that explains things in detail. It does not have to be on GOV.UK.",
+    ) %>
+
+  <%= f.input(
+    :new_action_lead_time,
+    label: "Lead time",
+    hint: "How long does the process take, if applicable?",
+    ) %>
+
+  <%= f.input(
+    :new_action_deadline,
+    label: "Deadline",
+    hint: "Does the user need to act before a certain date?",
+    ) %>
+
+  <%= f.input(
+    :new_action_comments,
+    as: :text,
+    label: "Other comments",
+    hint: "Explain any concerns or complications.",
+    input_html: { class: "input-md-6", rows: 6, cols: 50 }
+  ) %>
+</div>
+
 <%= render partial: "support/collaborators", locals: { f: f } %>
