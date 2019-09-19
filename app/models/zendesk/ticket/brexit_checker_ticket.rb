@@ -27,7 +27,8 @@ module Zendesk
            new_action_guidance_link
            new_action_lead_time
            new_action_deadline
-           new_action_comments)
+           new_action_comments
+           new_action_priority)
       end
     end
   end

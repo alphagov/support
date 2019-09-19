@@ -88,6 +88,15 @@
     hint: "Explain any concerns or complications.",
     input_html: { class: "input-md-6", rows: 6, cols: 50 }
   ) %>
+
+  <%= f.input(
+    :new_action_priority,
+    as: :select,
+    collection: %w(High Medium Low),
+    label: "Priority",
+    hint: "How high up the list of results this action should appear.",
+    input_html: { class: "input-md-6" },
+  ) %>
 </div>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>

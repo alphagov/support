@@ -26,6 +26,7 @@ protected
             :new_action_lead_time,
             :new_action_deadline,
             :new_action_comments,
+            :new_action_priority,
             requester_attributes: %i[email name collaborator_emails],
           )
           .to_h

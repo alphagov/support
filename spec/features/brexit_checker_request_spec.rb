@@ -58,7 +58,10 @@ Four weeks
 End of October
 
 [New action comments]
-Comments"
+Comments
+
+[New action priority]
+High"
       }
     )
     user_requests_to_add_a_result
@@ -88,6 +91,7 @@ private
     fill_in "support_requests_brexit_checker_request_new_action_lead_time", with: "Four weeks"
     fill_in "support_requests_brexit_checker_request_new_action_deadline", with: "End of October"
     fill_in "support_requests_brexit_checker_request_new_action_comments", with: "Comments"
+    select "High", from: "support_requests_brexit_checker_request_new_action_priority"
 
     user_submits_the_request_successfully
   end
