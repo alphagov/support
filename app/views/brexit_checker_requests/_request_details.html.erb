@@ -1,0 +1,32 @@
+<div class="alert alert-info">
+  <p>
+    Use this form to request an update to the Brexit checker.
+    https://www.gov.uk/get-ready-brexit-check
+  </p>
+  <p>
+    The checker tells users actions they may need to take.
+    You can request a change to an existing action or suggest where a new action is needed.
+  </p>
+  <p>
+    Once a request is made GDS will agree any changes directly with the nominated policy expert and DExEU.
+  </p>
+</div>
+
+<div id="change_action">
+  <h2>Change an action</h2>
+  <%= f.input(
+    :action_to_change,
+    label: "Action title",
+    hint: "What content are you referring to? It helps to paste the action title from the checker and a link to the results where it appears.",
+  ) %>
+
+  <%= f.input(
+    :description_of_change,
+    as: :text,
+    label: "Describe the change",
+    hint: "Explain the user need and who the users are, what the problem is for the user, and suggest how we could improve.",
+    input_html: { class: "input-md-6", rows: 6, cols: 50 }
+  ) %>
+</div>
+
+<%= render partial: "support/collaborators", locals: { f: f } %>

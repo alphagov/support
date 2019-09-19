@@ -20,5 +20,9 @@ private
     page_title = "Get ready for Brexit checker: change request"
     visit "/"
     click_on page_title
+    expect(page).to have_content(page_title)
+
+    fill_in "support_requests_brexit_checker_request_action_to_change", with: "Action title"
+    fill_in "support_requests_brexit_checker_request_description_of_change", with: "Action description"
   end
 end
