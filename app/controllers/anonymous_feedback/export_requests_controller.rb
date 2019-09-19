@@ -6,6 +6,7 @@ class AnonymousFeedback::ExportRequestsController < AuthorisationController
     authorize! :read, :anonymous_feedback
 
     support_api.create_feedback_export_request(export_request_params)
+
     redirect_to anonymous_feedback_index_path(anonymous_feedback_params),
                 notice: "We are sending your CSV file to #{current_user.email}. If you don't see it in a few minutes, check your spam folder."
   end
@@ -36,20 +37,25 @@ private
   end
 
   def anonymous_feedback_params
-    clean_paths
-    @anonymous_feedback_params ||= params.permit(:from, :to, :organisation, :path, paths: []).to_h
+    @anonymous_feedback_params ||= params.permit(:from, :to, :organisation, :path_set_id).to_h
   end
 
-  def clean_paths
-    if params[:path]
-      params[:paths] = [params[:path]]
-    elsif params[:paths] && params[:paths].instance_of?(String)
-      params[:paths] = params[:paths].split(",").map(&:strip)
-    end
+  def saved_paths
+    @saved_paths ||= Support::Requests::Anonymous::Paths.find(anonymous_feedback_params[:path_set_id])
+  end
+
+  def paths
+    return [] if anonymous_feedback_params[:path_set_id].blank?
+
+    saved_paths.try(:paths)
   end
 
   def scope_filters
-    @scope_filters ||= ScopeFiltersPresenter.new(paths: anonymous_feedback_params[:paths], organisation_slug: anonymous_feedback_params[:organisation])
+    @scope_filters ||= ScopeFiltersPresenter.new(
+      paths: paths,
+      path_set_id: saved_paths.try(:id),
+      organisation_slug: anonymous_feedback_params[:organisation],
+    )
   end
 
   def support_api

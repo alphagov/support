@@ -173,6 +173,20 @@ describe ScopeFiltersPresenter, type: :presenter do
     end
   end
 
+  describe "#path_set_id" do
+    include GdsApi::TestHelpers::SupportApi
+
+    it "path_set_id is present" do
+      presenter = described_class.new(path_set_id: "123")
+      expect(presenter.path_set_id).to eq "123"
+    end
+
+    it "is nil when path_set_id is not present" do
+      presenter = described_class.new
+      expect(presenter.path_set_id).to eq nil
+    end
+  end
+
   describe "#organisation" do
     include GdsApi::TestHelpers::SupportApi
 
