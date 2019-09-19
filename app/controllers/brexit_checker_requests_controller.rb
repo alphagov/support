@@ -4,4 +4,22 @@ protected
   def new_request
     @get_ready_for_brexit_checker_request = Support::Requests::BrexitCheckerRequest.new
   end
+
+  def zendesk_ticket_class
+    Zendesk::Ticket::BrexitCheckerTicket
+  end
+
+  def parse_request_from_params
+    Support::Requests::BrexitCheckerRequest.new(brexit_checker_params)
+  end
+
+  def brexit_checker_params
+    params.require(:support_requests_brexit_checker_request)
+          .permit(
+            :action_to_change,
+            :description_of_change,
+            requester_attributes: %i[email name collaborator_emails],
+          )
+          .to_h
+  end
 end
