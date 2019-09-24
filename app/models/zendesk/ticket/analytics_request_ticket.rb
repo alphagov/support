@@ -16,23 +16,23 @@ module Zendesk
           Zendesk::LabelledSnippet.new(
             on: @request,
             field: :google_analytics_request_details,
-            label: 'Google Analytics Access'
+            label: "Google Analytics Access",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,
             field: :single_point_of_contact_request_details,
-            label: 'Single Point of Contact'
+            label: "Single Point of Contact",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,
             field: :report_request_details,
-            label: 'Report Request'
+            label: "Report Request",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,
             field: :help_request_details,
-            label: 'Help'
-          )
+            label: "Help",
+          ),
         ]
       end
     end

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Named contacts" do
   # In order to resolve my GOV.UK-related issue
@@ -32,12 +32,12 @@ https://www.gov.uk/x
 Mozilla/5.0
 
 [JavaScript Enabled]
-true"
-      }
+true",
+      },
     )
 
     post_json(
-      '/named_contacts',
+      "/named_contacts",
       "named_contact" => {
         "requester" => { "name" => user.name, "email" => user.email },
         "details"   => "xyz",
@@ -45,7 +45,7 @@ true"
         "user_agent" => "Mozilla/5.0",
         "javascript_enabled" => true,
         "referrer" => "https://www.gov.uk/x",
-      }
+      },
     )
 
     expect(last_response.status).to eq(201)
@@ -75,12 +75,12 @@ Unknown
 Mozilla/5.0
 
 [JavaScript Enabled]
-true"
-      }
+true",
+      },
     )
 
     post_json(
-      '/named_contacts',
+      "/named_contacts",
       "named_contact" => {
         "requester" => { "name" => user.name, "email" => user.email },
         "details"   => "xyz",
@@ -88,7 +88,7 @@ true"
         "user_agent" => "Mozilla/5.0",
         "javascript_enabled" => true,
         "referrer" => nil,
-      }
+      },
     )
 
     expect(last_response.status).to eq(201)

@@ -17,7 +17,7 @@ protected
     params.require(:support_requests_remove_user_request).permit(
       :user_name, :user_email, :reason_for_removal,
       requester_attributes: %i[email name collaborator_emails],
-      time_constraint_attributes: %i[not_before_date needed_by_date time_constraint_reason],
+      time_constraint_attributes: %i[not_before_date needed_by_date time_constraint_reason]
     ).to_h
   end
 end

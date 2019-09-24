@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'gds_api/test_helpers/support_api'
+require "rails_helper"
+require "gds_api/test_helpers/support_api"
 
 describe AnonymousFeedback::ExportRequestsController, type: :controller do
   include GdsApi::TestHelpers::SupportApi
@@ -136,24 +136,24 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
       before do
         stub_support_api_feedback_export_request(1, ready: true, filename: filename)
         Fog.mock!
-        ENV['AWS_REGION'] = 'eu-west-1'
-        ENV['AWS_ACCESS_KEY_ID'] = 'test'
-        ENV['AWS_SECRET_ACCESS_KEY'] = 'test'
-        ENV['AWS_S3_BUCKET_NAME'] = 'test-bucket'
+        ENV["AWS_REGION"] = "eu-west-1"
+        ENV["AWS_ACCESS_KEY_ID"] = "test"
+        ENV["AWS_SECRET_ACCESS_KEY"] = "test"
+        ENV["AWS_S3_BUCKET_NAME"] = "test-bucket"
 
         # Create an S3 bucket and file so the code being tested can find it
         connection = Fog::Storage.new(
-          provider: 'AWS',
-          region: ENV['AWS_REGION'],
-          aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-          aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+          provider: "AWS",
+          region: ENV["AWS_REGION"],
+          aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+          aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
         )
         directory = connection.directories.create(
-          key: ENV['AWS_S3_BUCKET_NAME']
+          key: ENV["AWS_S3_BUCKET_NAME"],
         )
         directory.files.create(
           key: filename,
-          body: 'This is a test file.'
+          body: "This is a test file.",
         )
       end
 
@@ -162,7 +162,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
         # we need to pretend to do something here, as a nil stub will cause a
         # ActionController::UnknownFormat error because it is falling throug
         # to the default render.  Doing `head :ok` is enough.
-        expect(controller).to receive(:send_data).with('This is a test file.', filename: filename) do
+        expect(controller).to receive(:send_data).with("This is a test file.", filename: filename) do
           controller.head(:ok)
         end
         allow(controller).to receive(:render)

@@ -15,7 +15,7 @@ protected
 
   def eu_exit_business_readiness_params
     params.require(
-      :support_requests_eu_exit_business_readiness_request
+      :support_requests_eu_exit_business_readiness_request,
     ).permit(
       :type,
       :url,

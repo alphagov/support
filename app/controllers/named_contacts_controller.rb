@@ -20,7 +20,7 @@ protected
   def named_contact_params
     params.require(:named_contact).permit(
       :details, :link, :referrer, :javascript_enabled, :user_agent,
-      requester: %i[email name],
+      requester: %i[email name]
     ).to_h
   end
 end

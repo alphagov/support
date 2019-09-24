@@ -7,7 +7,7 @@ class AnonymousFeedback::DocumentTypesController < AuthorisationController
     @ordering = if %w(path last_7_days last_30_days last_90_days).include? params[:ordering]
                   params[:ordering]
                 else
-                  'last_7_days'
+                  "last_7_days"
                 end
 
     api_response = fetch_document_type_summary_from_support_api(@ordering)

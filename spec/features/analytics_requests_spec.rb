@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Analytics requests" do
   let(:user) { create(:user, name: "John Smith", email: "john.smith@agency.gov.uk") }
@@ -25,11 +25,11 @@ Government Digital Service
 /my-page
 
 [Help]
-Need help with cats"
-      }
+Need help with cats",
+      },
     )
 
-    visit '/'
+    visit "/"
 
     click_on "Analytics access, reports and help"
 
@@ -52,14 +52,14 @@ Need help with cats"
     expect(request).to have_been_made
   end
 
-  scenario 'submitting a form with no inputs fails and shows a flash message' do
-    visit '/'
+  scenario "submitting a form with no inputs fails and shows a flash message" do
+    visit "/"
 
     click_on "Analytics access, reports and help"
 
     click_on "Submit"
 
     expect(page).to have_content("Only department/organisation Analytics Single Point of Contact (SPOC) can request access.")
-    expect(page).to have_content 'Please enter details for at least one type of request'
+    expect(page).to have_content "Please enter details for at least one type of request"
   end
 end

@@ -1,4 +1,4 @@
-require 'ostruct'
+require "ostruct"
 
 class DocumentTypeSummaryPresenter < SimpleDelegator
   def initialize(api_response)

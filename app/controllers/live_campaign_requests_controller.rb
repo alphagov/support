@@ -19,7 +19,7 @@ protected
       requester_attributes: %i[email name collaborator_emails],
       live_campaign_attributes: %i[
         title proposed_url description time_constraints reason_for_dates
-      ]
+      ],
     ).to_h
   end
 end

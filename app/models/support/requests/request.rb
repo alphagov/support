@@ -1,5 +1,5 @@
-require 'active_model/model'
-require 'support/requests/with_requester'
+require "active_model/model"
+require "support/requests/with_requester"
 
 module Support
   module Requests

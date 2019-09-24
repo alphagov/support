@@ -36,16 +36,16 @@ module Zendesk
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :proposed_url,
                                                      label: "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :site_title,
-                                                     label: 'Site title'),
+                                                     label: "Site title"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :site_tagline,
-                                                     label: 'Site tagline'),
+                                                     label: "Site tagline"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :site_metadescription,
-                                                     label: 'Site metadescription (appears in search results)'),
+                                                     label: "Site metadescription (appears in search results)"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :cost_of_campaign,
                                                      label: "Site build budget / costs (and overall campaign cost, if applicable)"),
           Zendesk::LabelledSnippet.new(on: @request.campaign, field: :ga_contact_email,
                                                      label: "Contact details for Google Analytics leads (Gmail accounts only)"),
-          Zendesk::LabelledSnippet.new(on: @request, field: :additional_comments)
+          Zendesk::LabelledSnippet.new(on: @request, field: :additional_comments),
         ]
       end
     end

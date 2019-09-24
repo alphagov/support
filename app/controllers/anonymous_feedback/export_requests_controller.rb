@@ -1,5 +1,5 @@
-require 'gds_api/support_api'
-require 'csv'
+require "gds_api/support_api"
+require "csv"
 
 class AnonymousFeedback::ExportRequestsController < AuthorisationController
   def create
@@ -15,7 +15,7 @@ class AnonymousFeedback::ExportRequestsController < AuthorisationController
 
     response = support_api.feedback_export_request(params[:id])
     if response["ready"]
-      filename = response['filename']
+      filename = response["filename"]
       file = get_csv_file_from_s3(filename)
       send_data(file, filename: filename)
     else
@@ -31,7 +31,7 @@ private
       organisation: scope_filters.organisation_slug,
       from: anonymous_feedback_params[:from],
       to: anonymous_feedback_params[:to],
-      notification_email: current_user.email
+      notification_email: current_user.email,
     }
   end
 
@@ -44,7 +44,7 @@ private
     if params[:path]
       params[:paths] = [params[:path]]
     elsif params[:paths] && params[:paths].instance_of?(String)
-      params[:paths] = params[:paths].split(',').map(&:strip)
+      params[:paths] = params[:paths].split(",").map(&:strip)
     end
   end
 
@@ -61,13 +61,13 @@ private
 
   def get_csv_file_from_s3(filename)
     connection = Fog::Storage.new(
-      provider: 'AWS',
-      region: ENV['AWS_REGION'],
-      aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-      aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+      provider: "AWS",
+      region: ENV["AWS_REGION"],
+      aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
+      aws_secret_access_key: ENV["AWS_SECRET_ACCESS_KEY"],
     )
 
-    directory = connection.directories.get(ENV['AWS_S3_BUCKET_NAME'])
+    directory = connection.directories.get(ENV["AWS_S3_BUCKET_NAME"])
 
     file = directory.files.get(filename)
 

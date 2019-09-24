@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Campaign requests" do
   # In order to run a successful campaign
@@ -65,8 +65,8 @@ pensions, campaign, newcampaign
 ga.contact@example.com
 
 [Additional comments]
-Some comment"
-      }
+Some comment",
+      },
     )
 
     user_makes_a_campaign_request(
@@ -82,12 +82,12 @@ Some comment"
       description: "Pensions",
       call_to_action: "Join us in this campaign for pensions",
       proposed_url: "newcampaign.campaign.gov.uk",
-      site_title: 'New campaign',
-      site_tagline: 'A new one about a new thing',
+      site_title: "New campaign",
+      site_tagline: "A new one about a new thing",
       site_metadescription: "pensions, campaign, newcampaign",
       cost_of_campaign: "1200",
       ga_contact_email: "ga.contact@example.com",
-      additional_comments: "Some comment"
+      additional_comments: "Some comment",
       )
 
     expect(request).to have_been_made
@@ -96,7 +96,7 @@ Some comment"
 private
 
   def user_makes_a_campaign_request(details)
-    visit '/'
+    visit "/"
 
     click_on "Request a new campaign"
 
@@ -116,7 +116,7 @@ private
     fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)*", with: details[:proposed_url]
     fill_in "Site title*", with: details[:site_title]
     fill_in "Site tagline*", with: details[:site_tagline]
-    fill_in 'Site metadescription (appears in search results)*', with: details[:site_metadescription]
+    fill_in "Site metadescription (appears in search results)*", with: details[:site_metadescription]
     fill_in "Site build budget / costs (and overall campaign cost, if applicable)*", with: details[:cost_of_campaign]
     fill_in "Contact details for Google Analytics leads (Gmail accounts only)*", with: details[:ga_contact_email]
     fill_in "Additional comments", with: details[:additional_comments]

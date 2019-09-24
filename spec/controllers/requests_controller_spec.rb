@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'active_model/model'
+require "rails_helper"
+require "active_model/model"
 
 describe RequestsController, type: :controller do
   class TestRequest
@@ -43,7 +43,7 @@ describe RequestsController, type: :controller do
       "test_request" => {
         "a" => "A string", "b" => "Another string",
         "requester_attributes" => { "email" => "abc@d.com" }
-      }
+      },
     }
   end
 
@@ -87,7 +87,7 @@ describe RequestsController, type: :controller do
     it "reads the signed-in user's details as the requester" do
       requester_details = { "email" => @user[:email], "name" => @user[:name] }
       ticket_request = stub_zendesk_ticket_creation(
-        hash_including("requester" => hash_including(requester_details))
+        hash_including("requester" => hash_including(requester_details)),
       )
 
       post :create, params: valid_params_for_test_request

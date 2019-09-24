@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Request for content advice" do
   # In order to publish my department or agency's content in a way that best meets user need
@@ -31,8 +31,8 @@ I need help to choose a format, here's my content...
 https://www.gov.uk/x, https://www.gov.uk/y
 
 [Contact number]
-0121 111111"
-      }
+0121 111111",
+      },
     )
 
     user_requests_content_advice(
@@ -60,8 +60,8 @@ I have a tricky query, here's my content...
 https://www.gov.uk/x, https://www.gov.uk/y
 
 [Contact number]
-0121 111111"
-      }
+0121 111111",
+      },
     )
 
     user_requests_content_advice(
@@ -77,7 +77,7 @@ https://www.gov.uk/x, https://www.gov.uk/y
 private
 
   def user_requests_content_advice(details)
-    visit '/'
+    visit "/"
 
     click_on "Content advice and help"
     expect(page).to have_content("Ask for help or advice on any content problems")

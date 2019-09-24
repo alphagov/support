@@ -15,7 +15,7 @@ protected
 
   def content_data_feedback_params
     params.require(
-      :support_requests_content_data_feedback
+      :support_requests_content_data_feedback,
     ).permit(
       :feedback_type,
       :feedback_details,

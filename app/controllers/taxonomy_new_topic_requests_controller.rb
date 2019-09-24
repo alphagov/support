@@ -16,7 +16,7 @@ protected
   def taxonomy_new_topic_request_params
     params.require(:support_requests_taxonomy_new_topic_request).permit(
       :title, :url, :details, :parent,
-      requester_attributes: %i[email name collaborator_emails],
+      requester_attributes: %i[email name collaborator_emails]
     ).to_h
   end
 end

@@ -17,7 +17,7 @@ protected
     params.require(:support_requests_content_advice_request).permit(
       :title, :details, :urls, :contact_number,
       requester_attributes: %i[email name collaborator_emails],
-      time_constraint_attributes: %i[needed_by_date time_constraint_reason],
+      time_constraint_attributes: %i[needed_by_date time_constraint_reason]
     ).to_h
   end
 end

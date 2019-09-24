@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe SupportController, type: :controller do
   it "renders the landing page" do
@@ -25,7 +25,7 @@ describe SupportController, type: :controller do
 
   context "GET /_status" do
     it "is accessible without SSO" do
-      @request.env['HTTP_ACCEPT'] = 'application/json'
+      @request.env["HTTP_ACCEPT"] = "application/json"
 
       get :queue_status
 
@@ -34,17 +34,17 @@ describe SupportController, type: :controller do
 
     it "return the status of the queues" do
       expect(Sidekiq::Stats).to receive(:new).and_return(
-        double("stats", queues: [["queue_a", 3], ["queue_b", 5]])
+        double("stats", queues: [["queue_a", 3], ["queue_b", 5]]),
       )
-      @request.env['HTTP_ACCEPT'] = 'application/json'
+      @request.env["HTTP_ACCEPT"] = "application/json"
 
       get :queue_status
 
       expect(json_response).to eq(
         "queues" => {
           "queue_a" => { "jobs" => 3 },
-          "queue_b" => { "jobs" => 5 }
-        }
+          "queue_b" => { "jobs" => 5 },
+        },
       )
     end
   end

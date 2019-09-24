@@ -1,4 +1,4 @@
-require 'gds_zendesk/test_helpers'
+require "gds_zendesk/test_helpers"
 
 module JsonHelpers
   def json_response
@@ -9,9 +9,9 @@ module JsonHelpers
     get(
       url,
       "",
-      'CONTENT_TYPE' => 'application/json',
-      'HTTP_ACCEPT' => 'application/json',
-      'HTTP_AUTHORIZATION' => 'Bearer 12345678'
+      "CONTENT_TYPE" => "application/json",
+      "HTTP_ACCEPT" => "application/json",
+      "HTTP_AUTHORIZATION" => "Bearer 12345678",
     )
   end
 
@@ -19,9 +19,9 @@ module JsonHelpers
     post(
       url,
       payload.to_json,
-      'CONTENT_TYPE' => 'application/json',
-      'HTTP_ACCEPT' => 'application/json',
-      'HTTP_AUTHORIZATION' => 'Bearer 12345678'
+      "CONTENT_TYPE" => "application/json",
+      "HTTP_ACCEPT" => "application/json",
+      "HTTP_AUTHORIZATION" => "Bearer 12345678",
     )
   end
 end

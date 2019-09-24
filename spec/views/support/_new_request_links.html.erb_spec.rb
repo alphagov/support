@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 
-describe 'support/_new_request_links' do
+describe "support/_new_request_links" do
   let(:user) { build(:user) }
   let(:section_groups) { Support::Navigation::SectionGroups.new(user) }
 

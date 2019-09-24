@@ -1,7 +1,7 @@
-require 'rails_helper'
-require 'redis_client'
+require "rails_helper"
+require "redis_client"
 
-require 'gds-sso/lint/user_spec'
+require "gds-sso/lint/user_spec"
 
 describe User, type: :model do
   it "supports persistent creation and retrieval" do

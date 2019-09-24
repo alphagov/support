@@ -22,7 +22,7 @@ module Zendesk
             Zendesk::LabelledSnippet.new(on: @request.live_campaign, field: :time_constraints,
                                 label: "Are there any time constraints for this request?"),
             Zendesk::LabelledSnippet.new(on: @request.live_campaign, field: :reason_for_dates,
-                                label: "Reason for the above dates?")
+                                label: "Reason for the above dates?"),
         ]
       end
     end

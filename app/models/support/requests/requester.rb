@@ -1,4 +1,4 @@
-require 'active_model/model'
+require "active_model/model"
 
 module Support
   module Requests

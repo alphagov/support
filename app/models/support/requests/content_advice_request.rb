@@ -1,5 +1,5 @@
-require 'support/requests/with_time_constraint'
-require 'active_support/core_ext'
+require "support/requests/with_time_constraint"
+require "active_support/core_ext"
 
 module Support
   module Requests

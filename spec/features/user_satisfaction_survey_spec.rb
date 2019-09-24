@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'gds_api/test_helpers/support_api'
+require "rails_helper"
+require "gds_api/test_helpers/support_api"
 
 feature "User satisfaction survey submissions" do
   include GdsApi::TestHelpers::SupportApi
@@ -30,8 +30,8 @@ feature "User satisfaction survey submissions" do
           javascript_enabled: true,
           created_at: Time.now,
           updated_at: Time.now,
-        }
-      ]
+        },
+      ],
     )
 
     explore_anonymous_feedback_by_urls(list_of_urls: "https://www.gov.uk/done/find-court-tribunal")
@@ -41,8 +41,8 @@ feature "User satisfaction survey submissions" do
         "Date" => "28 Feb 2013",
         "Feedback" => "rating: 3 comment: Make service less 'meh'",
         "URL" => "/done/find-court-tribunal",
-        "Referrer" => ""
-      }
+        "Referrer" => "",
+      },
     ])
   end
 

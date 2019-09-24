@@ -1,4 +1,4 @@
-require 'ostruct'
+require "ostruct"
 
 class AnonymousFeedbackApiResponse < OpenStruct
   def beyond_last_page?

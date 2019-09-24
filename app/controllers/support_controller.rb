@@ -1,4 +1,4 @@
-require 'sidekiq/api'
+require "sidekiq/api"
 class SupportController < AuthorisationController
   skip_authorization_check
   skip_before_action :authenticate_support_user!, only: [:queue_status]

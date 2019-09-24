@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Remove user requests" do
   # In order to reduce the risk of a disgruntled ex-employee doing something damaging
@@ -29,15 +29,15 @@ Bob
 bob@someagency.gov.uk
 
 [Reason for removal]
-User has left the organisation"
-      }
+User has left the organisation",
+      },
     )
 
     user_requests_removal_of_another_user(
       user_name: "Bob",
       user_email: "bob@someagency.gov.uk",
       reason_for_removal: "User has left the organisation",
-      not_before_date: "31-12-2020"
+      not_before_date: "31-12-2020",
     )
 
     expect(request).to have_been_made
@@ -46,7 +46,7 @@ User has left the organisation"
 private
 
   def user_requests_removal_of_another_user(details)
-    visit '/'
+    visit "/"
 
     click_on "Remove user"
 

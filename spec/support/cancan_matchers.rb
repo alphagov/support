@@ -1,6 +1,6 @@
 # the rspec matchers that ship with cancan now throw deprecation warnigs with rspec3
 
-require 'rspec/expectations'
+require "rspec/expectations"
 
 RSpec::Matchers.define :be_able_to do |*args|
   match do |ability|

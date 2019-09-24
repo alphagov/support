@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "New taxonomy topic requests" do
   # In order to be able to tag my content to the most relevant part of the taxonomy on gov.uk
@@ -29,8 +29,8 @@ https://www.gov.uk/government
 People expect to find it here.
 
 [Parent topic]
-Education, training and skills"
-      }
+Education, training and skills",
+      },
     )
 
     user_makes_a_taxomomy_new_topic_request(
@@ -46,7 +46,7 @@ Education, training and skills"
 private
 
   def user_makes_a_taxomomy_new_topic_request(details)
-    visit '/'
+    visit "/"
 
     click_on "Suggest a new topic"
 

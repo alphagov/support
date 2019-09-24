@@ -29,7 +29,7 @@ module Zendesk
                                                            label: "Requested user's training"),
           Zendesk::LabelledSnippet.new(on: @request.requested_user, field: :other_training,
                                                            label: "Requested user's other training"),
-          Zendesk::LabelledSnippet.new(on: @request,                field: :additional_comments)
+          Zendesk::LabelledSnippet.new(on: @request,                field: :additional_comments),
         ]
       end
     end

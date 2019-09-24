@@ -15,7 +15,7 @@ module Zendesk
         [
           Zendesk::LabelledSnippet.new(on: @request, field: :user_name),
           Zendesk::LabelledSnippet.new(on: @request, field: :user_email),
-          Zendesk::LabelledSnippet.new(on: @request, field: :reason_for_removal)
+          Zendesk::LabelledSnippet.new(on: @request, field: :reason_for_removal),
         ]
       end
     end

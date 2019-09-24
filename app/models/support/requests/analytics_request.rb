@@ -26,7 +26,7 @@ module Support
         end
 
         if request_details.empty?
-          errors.add(:base, 'Please enter details for at least one type of request')
+          errors.add(:base, "Please enter details for at least one type of request")
         end
       end
     end

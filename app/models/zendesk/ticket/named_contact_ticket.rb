@@ -35,7 +35,7 @@ module Zendesk
           request_label(field: :link),
           Zendesk::LabelledSnippet.new(on: self, field: :referrer),
           Zendesk::LabelledSnippet.new(on: self, field: :user_agent),
-          Zendesk::LabelledSnippet.new(on: self, field: :javascript_enabled, label: "JavaScript Enabled")
+          Zendesk::LabelledSnippet.new(on: self, field: :javascript_enabled, label: "JavaScript Enabled"),
         ]
       end
     end

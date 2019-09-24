@@ -16,7 +16,7 @@ class AnonymousFeedback::ProblemReportsController < AuthorisationController
     if review_params.any? && reviewed_items_successfully?
       redirect_to anonymous_feedback_problem_reports_path(anonymous_feedback_problem_report_params)
     else
-      flash.now[:alert] = 'Something went wrong with this review'
+      flash.now[:alert] = "Something went wrong with this review"
       render :index, status: 400
     end
   end
@@ -29,7 +29,7 @@ private
 
   def fetch_problem_reports
     AnonymousFeedbackApiResponse.new(
-      support_api.problem_reports(api_params).to_hash
+      support_api.problem_reports(api_params).to_hash,
     )
   end
 
@@ -38,7 +38,7 @@ private
       include_reviewed: !!index_params[:include_reviewed],
       page: index_params[:page],
       from_date: index_params[:from_date],
-      to_date: index_params[:to_date]
+      to_date: index_params[:to_date],
     }.select { |_, value| value.present? }
   end
 

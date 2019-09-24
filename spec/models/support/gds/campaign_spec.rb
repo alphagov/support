@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 module Support
   module GDS
@@ -8,16 +8,16 @@ module Support
       end
 
       subject {
-        Campaign.new(type_of_site: 'Campaign platform', signed_campaign: 'Test Signer',
+        Campaign.new(type_of_site: "Campaign platform", signed_campaign: "Test Signer",
                      has_read_guidance_confirmation: "1",
                      has_read_oasis_guidance_confirmation: "1",
                      start_date: as_str(Date.today), end_date: as_str(Date.tomorrow),
                      development_start_date: as_str(Date.today),
-                     performance_review_contact_email: 'test@digital.cabinet-office.gov.uk',
-                     government_theme: 'Test theme', description: 'Test Description',
-                     call_to_action: 'Test Call to Action', proposed_url: 'example.campaign.gov.uk',
-                     site_metadescription: 'tag1, tag2', cost_of_campaign: 1200,
-                     ga_contact_email: 'ga_test@digital.cabinet-office.gov.uk')
+                     performance_review_contact_email: "test@digital.cabinet-office.gov.uk",
+                     government_theme: "Test theme", description: "Test Description",
+                     call_to_action: "Test Call to Action", proposed_url: "example.campaign.gov.uk",
+                     site_metadescription: "tag1, tag2", cost_of_campaign: 1200,
+                     ga_contact_email: "ga_test@digital.cabinet-office.gov.uk")
       }
 
       it { should validate_presence_of(:type_of_site) }
@@ -39,26 +39,26 @@ module Support
       it { should validate_acceptance_of(:has_read_guidance_confirmation) }
       it { should validate_acceptance_of(:has_read_oasis_guidance_confirmation) }
 
-      it { should validate_inclusion_of(:type_of_site).in?(['Campaign platform', 'Bespoke microsite']) }
+      it { should validate_inclusion_of(:type_of_site).in?(["Campaign platform", "Bespoke microsite"]) }
 
       it { should validate_acceptance_of(:has_read_guidance_confirmation) }
       it { should validate_acceptance_of(:has_read_oasis_guidance_confirmation) }
 
-      it { should allow_value('example.gov.uk').for(:proposed_url) }
-      it { should allow_value('example.campaign.gov.uk').for(:proposed_url) }
-      it { should_not allow_value('Non Campaign platform').for(:proposed_url) }
+      it { should allow_value("example.gov.uk").for(:proposed_url) }
+      it { should allow_value("example.campaign.gov.uk").for(:proposed_url) }
+      it { should_not allow_value("Non Campaign platform").for(:proposed_url) }
 
-      it { should_not allow_value('xxx').for(:start_date) }
-      it { should_not allow_value('xxx').for(:end_date) }
-      it { should_not allow_value('xxx').for(:development_start_date) }
+      it { should_not allow_value("xxx").for(:start_date) }
+      it { should_not allow_value("xxx").for(:end_date) }
+      it { should_not allow_value("xxx").for(:development_start_date) }
 
-      it { should allow_value('test@digital.cabinet-office.gov.uk').for(:performance_review_contact_email) }
-      it { should allow_value('test@test.com').for(:performance_review_contact_email) }
-      it { should allow_value('test@test.co.uk').for(:performance_review_contact_email) }
+      it { should allow_value("test@digital.cabinet-office.gov.uk").for(:performance_review_contact_email) }
+      it { should allow_value("test@test.com").for(:performance_review_contact_email) }
+      it { should allow_value("test@test.co.uk").for(:performance_review_contact_email) }
       it { should_not allow_value(1234).for(:performance_review_contact_email) }
-      it { should_not allow_value('1234').for(:performance_review_contact_email) }
-      it { should_not allow_value('test').for(:performance_review_contact_email) }
-      it { should_not allow_value('test@').for(:performance_review_contact_email) }
+      it { should_not allow_value("1234").for(:performance_review_contact_email) }
+      it { should_not allow_value("test").for(:performance_review_contact_email) }
+      it { should_not allow_value("test@").for(:performance_review_contact_email) }
 
       it { should_not allow_value(as_str(Date.tomorrow)).for(:start_date) }
       it { should allow_value(as_str(Date.today)).for(:start_date) }
@@ -71,13 +71,13 @@ module Support
 
       it { should validate_numericality_of(:cost_of_campaign) }
 
-      it { should allow_value('test@digital.cabinet-office.gov.uk').for(:ga_contact_email) }
-      it { should allow_value('test@test.com').for(:ga_contact_email) }
-      it { should allow_value('test@test.co.uk').for(:ga_contact_email) }
+      it { should allow_value("test@digital.cabinet-office.gov.uk").for(:ga_contact_email) }
+      it { should allow_value("test@test.com").for(:ga_contact_email) }
+      it { should allow_value("test@test.co.uk").for(:ga_contact_email) }
       it { should_not allow_value(1234).for(:ga_contact_email) }
-      it { should_not allow_value('1234').for(:ga_contact_email) }
-      it { should_not allow_value('test').for(:ga_contact_email) }
-      it { should_not allow_value('test@').for(:ga_contact_email) }
+      it { should_not allow_value("1234").for(:ga_contact_email) }
+      it { should_not allow_value("test").for(:ga_contact_email) }
+      it { should_not allow_value("test@").for(:ga_contact_email) }
     end
   end
 end

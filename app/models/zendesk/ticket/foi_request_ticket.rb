@@ -15,7 +15,7 @@ module Zendesk
         [
           Zendesk::LabelledSnippet.new(on: @request.requester, field: :name),
           Zendesk::LabelledSnippet.new(on: @request.requester, field: :email),
-          request_label(field: :details)
+          request_label(field: :details),
         ]
       end
     end

@@ -1,4 +1,4 @@
-require 'govuk_sidekiq/testing'
-require 'sidekiq/testing/inline'
+require "govuk_sidekiq/testing"
+require "sidekiq/testing/inline"
 
 Sidekiq::Logging.logger = nil

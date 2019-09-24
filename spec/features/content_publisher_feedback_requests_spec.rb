@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "New Content Publisher feedback requests" do
   let(:user) { create(:content_requester, name: "John Smith", email: "john.smith@agency.gov.uk") }
@@ -22,14 +22,14 @@ accessibility or usability
 I am having trouble reading the screen
 
 [What's the impact on your work if we don't do anything about it?]
-Cannot work"
-      }
+Cannot work",
+      },
     )
 
     user_provides_feedback(
       feedback_type: "accessibility or usability",
       description: "I am having trouble reading the screen",
-      impact_on_work: "Cannot work"
+      impact_on_work: "Cannot work",
     )
 
     expect(request).to have_been_made
@@ -38,7 +38,7 @@ Cannot work"
 private
 
   def user_provides_feedback(details)
-    visit '/'
+    visit "/"
     click_on "Give feedback on Content Publisher (Beta)"
     expect(page).to have_content("Give feedback on Content Publisher (Beta)")
     within "#feedback-type" do

@@ -16,7 +16,7 @@ protected
   def new_changes_to_publishing_apps_request_params
     params.require(:support_requests_changes_to_publishing_apps_request).permit(
       :title, :user_need, :feature_evidence,
-      requester_attributes: %i[email name collaborator_emails],
+      requester_attributes: %i[email name collaborator_emails]
     ).to_h
   end
 end

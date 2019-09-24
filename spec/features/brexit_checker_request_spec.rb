@@ -21,8 +21,8 @@ feature "Brexit checker request" do
 Action title
 
 [Description of change]
-Action description"
-      }
+Action description",
+      },
     )
     user_requests_change_to_result
 
@@ -61,8 +61,8 @@ End of October
 Comments
 
 [New action priority]
-High"
-      }
+High",
+      },
     )
     user_requests_to_add_a_result
 

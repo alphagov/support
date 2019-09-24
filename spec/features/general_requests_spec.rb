@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "General requests" do
   # In order to request something that doesn't fit into any other GOV.UK support contact route
@@ -23,8 +23,8 @@ feature "General requests" do
 https://www.gov.uk
 
 [Details]
-The site is down"
-      }
+The site is down",
+      },
     )
 
     user_makes_a_general_request(
@@ -39,7 +39,7 @@ The site is down"
 private
 
   def user_makes_a_general_request(details)
-    visit '/'
+    visit "/"
 
     click_on "General"
 

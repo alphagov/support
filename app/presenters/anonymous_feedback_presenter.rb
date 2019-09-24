@@ -1,4 +1,4 @@
-require 'ostruct'
+require "ostruct"
 
 class AnonymousFeedbackPresenter < SimpleDelegator
   attr_reader :current_page, :total_pages, :limit_value, :total_count, :results_limited

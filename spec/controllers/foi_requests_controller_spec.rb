@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe FoiRequestsController, type: :controller do
   before do
@@ -9,8 +9,8 @@ describe FoiRequestsController, type: :controller do
     {
       "foi_request" => {
         "requester" => { "name" => "A", "email" => "ab@c.com" },
-        "details"   => "details"
-      }
+        "details"   => "details",
+      },
     }
   end
 
@@ -30,7 +30,7 @@ describe FoiRequestsController, type: :controller do
       post :create, params: params.merge(format: :json)
 
       expect(response).to have_http_status(400)
-      expect(json_response['errors']).to_not be_empty
+      expect(json_response["errors"]).to_not be_empty
     end
   end
 end

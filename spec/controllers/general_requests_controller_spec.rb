@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe GeneralRequestsController, type: :controller do
   def valid_general_request_params
@@ -6,8 +6,8 @@ describe GeneralRequestsController, type: :controller do
       "support_requests_general_request" => {
         "requester_attributes" => valid_requester_params,
         "url" => "testing",
-        "details" => "something or other"
-      }
+        "details" => "something or other",
+      },
     }
   end
 

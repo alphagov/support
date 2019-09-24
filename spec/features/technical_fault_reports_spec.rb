@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Technical fault reports" do
   # In order to minimise user inconvenience and damage to government reputation
@@ -32,8 +32,8 @@ Clicked on x
 Broken link
 
 [What should have happened]
-Should have linked through"
-      }
+Should have linked through",
+      },
     )
 
     user_makes_a_technical_fault_report(
@@ -50,7 +50,7 @@ Should have linked through"
 private
 
   def user_makes_a_technical_fault_report(details)
-    visit '/'
+    visit "/"
 
     click_on "Report a technical fault to GDS"
 

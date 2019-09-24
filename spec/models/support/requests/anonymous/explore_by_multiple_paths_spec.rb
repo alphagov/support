@@ -1,18 +1,18 @@
-require 'rails_helper'
+require "rails_helper"
 
 module Support
   module Requests
     module Anonymous
       describe ExploreByMultiplePaths do
         include ActionDispatch::TestProcess
-        it { should allow_value('https://www.gov.uk/test').for(:list_of_urls) }
-        it { should allow_value('/vat-rates, https://www.gov.uk/bank-holidays, /guidance/').for(:list_of_urls) }
-        it { should allow_value(fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls.csv", 'text/plain')).for(:uploaded_list) }
-        it { should_not allow_value('https:aaaa').for(:list_of_urls).with_message("https:aaaa is not valid. Must contain only valid URLs") }
-        it { should_not allow_value('/vat-rates, https:aaaa, /guidance/').for(:list_of_urls).with_message("https:aaaa is not valid. Must contain only valid URLs") }
-        it { should_not allow_value(fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_bad_urls.csv", 'text/plain')).for(:uploaded_list).with_message("https:aaaa is not valid. Must contain only valid URLs") }
+        it { should allow_value("https://www.gov.uk/test").for(:list_of_urls) }
+        it { should allow_value("/vat-rates, https://www.gov.uk/bank-holidays, /guidance/").for(:list_of_urls) }
+        it { should allow_value(fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls.csv", "text/plain")).for(:uploaded_list) }
+        it { should_not allow_value("https:aaaa").for(:list_of_urls).with_message("https:aaaa is not valid. Must contain only valid URLs") }
+        it { should_not allow_value("/vat-rates, https:aaaa, /guidance/").for(:list_of_urls).with_message("https:aaaa is not valid. Must contain only valid URLs") }
+        it { should_not allow_value(fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_bad_urls.csv", "text/plain")).for(:uploaded_list).with_message("https:aaaa is not valid. Must contain only valid URLs") }
 
-        it 'raises an error if `uploaded_list` and `list_of_urls` are blank' do
+        it "raises an error if `uploaded_list` and `list_of_urls` are blank" do
           @explore_by_multiple_paths = ExploreByMultiplePaths.new(uploaded_list: nil, list_of_urls: nil)
           @explore_by_multiple_paths.valid?
           expect(@explore_by_multiple_paths.errors[:base]).to include("Please provide a valid list of urls.")
@@ -20,7 +20,7 @@ module Support
 
         def paths_from_saved_paths(list_of_urls: nil, uploaded_list: nil)
           redirect_path = described_class.new(list_of_urls: list_of_urls, uploaded_list: uploaded_list).redirect_path
-          id = URI.parse(redirect_path).query.split('=')[1]
+          id = URI.parse(redirect_path).query.split("=")[1]
           Paths.find(id).paths
         end
 
@@ -35,7 +35,7 @@ module Support
         end
 
         it "works out the path to redirect to from the uploaded list of URLs" do
-          expect(paths_from_saved_paths(uploaded_list: fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls.csv", 'text/plain')))
+          expect(paths_from_saved_paths(uploaded_list: fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls.csv", "text/plain")))
             .to eq(%w(/vat-rates /done /vehicle-tax))
         end
 
@@ -45,7 +45,7 @@ module Support
         end
 
         it "can extract the path from an uploaded list of valid URLs" do
-          uploaded_list = fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_valid_urls.csv", 'text/plain')
+          uploaded_list = fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_valid_urls.csv", "text/plain")
           expect(extracted_paths_from(uploaded_list: uploaded_list)).to eq(%w(/abc))
         end
 
@@ -55,7 +55,7 @@ module Support
         end
 
         it "can extract the path from an uploaded list of URLs with a malformed protocol" do
-          uploaded_list = fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls_with_malformed_protocol.csv", 'text/plain')
+          uploaded_list = fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls_with_malformed_protocol.csv", "text/plain")
           expect(extracted_paths_from(uploaded_list: uploaded_list)).to eq(%w(/abc))
         end
 
@@ -65,7 +65,7 @@ module Support
         end
 
         it "can extract the path from uploaded list of short hand URLs" do
-          uploaded_list = fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_shorthand_urls.csv", 'text/plain')
+          uploaded_list = fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_shorthand_urls.csv", "text/plain")
           expect(extracted_paths_from(uploaded_list: uploaded_list)).to eq(%w(/abc))
         end
 

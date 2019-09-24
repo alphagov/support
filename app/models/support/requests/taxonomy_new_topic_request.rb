@@ -1,4 +1,4 @@
-require 'active_support/core_ext'
+require "active_support/core_ext"
 
 module Support
   module Requests

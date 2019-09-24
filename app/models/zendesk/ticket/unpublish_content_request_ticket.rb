@@ -20,7 +20,7 @@ module Zendesk
         if @request.another_page_involved?
           labels += [
             request_label(field: :redirect_url, label: "Redirect URL"),
-            request_label(field: :formatted_automatic_redirect, label: "Automatic redirect?")
+            request_label(field: :formatted_automatic_redirect, label: "Automatic redirect?"),
           ]
         end
         labels
