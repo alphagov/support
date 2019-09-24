@@ -23,7 +23,7 @@ protected
         start_date end_date development_start_date performance_review_contact_email
         government_theme description call_to_action proposed_url site_title site_tagline
         site_metadescription cost_of_campaign ga_contact_email
-      ]
+      ],
     ).to_h
   end
 end

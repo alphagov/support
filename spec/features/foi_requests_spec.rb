@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "FOI requests" do
   # In order to learn about government actions that aren't openly documented yet
@@ -26,16 +26,16 @@ John Smith
 john.smith@email.co.uk
 
 [Details]
-xyz"
-      }
+xyz",
+      },
     )
 
     post_json(
-      '/foi_requests',
+      "/foi_requests",
       "foi_request" => {
         "requester" => { "name" => user.name, "email" => user.email },
-        "details"   => "xyz"
-      }
+        "details"   => "xyz",
+      },
     )
 
     expect(last_response.status).to eq(201)

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Emergency contact details" do
   # In order to recover from an emergency
@@ -16,13 +16,13 @@ feature "Emergency contact details" do
       .and_return(contacts_json)
   end
 
-  context 'with all contacts supplied' do
+  context "with all contacts supplied" do
     let(:contacts_json) do
       File.read(Rails.root.join("config", "emergency_contact_details.json"))
     end
 
     scenario "access the emergency contact details" do
-      visit '/'
+      visit "/"
 
       click_on "Emergency contact details"
 
@@ -31,14 +31,14 @@ feature "Emergency contact details" do
     end
   end
 
-  context 'when secondary contacts are missing' do
+  context "when secondary contacts are missing" do
     let(:contacts_json) do
       contacts = JSON.parse File.read(Rails.root.join("config", "emergency_contact_details.json"))
-      contacts.reject { |k, _| k == 'secondary_contacts' }.to_json
+      contacts.reject { |k, _| k == "secondary_contacts" }.to_json
     end
 
     scenario "access the emergency contact details" do
-      visit '/'
+      visit "/"
 
       click_on "Emergency contact details"
 

@@ -1,10 +1,10 @@
 module AuthenticationControllerHelpers
   def login_as(user)
     @user = user
-    request.env['warden'] = double(
+    request.env["warden"] = double(
       authenticate!: true,
       authenticated?: true,
-      user: user
+      user: user,
     )
   end
 
@@ -14,9 +14,9 @@ module AuthenticationControllerHelpers
       name: "A",
       email: "a@b.com",
       remotely_signed_out?: false,
-      has_permission?: true
+      has_permission?: true,
     )
-    request.env['warden'] = double(
+    request.env["warden"] = double(
       user: @user,
       authenticate!: true,
       authenticated?: true,

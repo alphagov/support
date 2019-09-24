@@ -1,4 +1,4 @@
-require 'uri'
+require "uri"
 
 module ReferrerHelper
   def friendly_referrer(referrer)
@@ -7,7 +7,7 @@ module ReferrerHelper
       if uri.host =~ /www\.gov.uk/
         uri.path
       else
-        uri.host.sub(/www\./, '')
+        uri.host.sub(/www\./, "")
       end
     else
       referrer
@@ -19,7 +19,7 @@ module ReferrerHelper
   def extract_search_term(referrer)
     uri = URI.parse(referrer)
     params = Rack::Utils.parse_query(uri.query)
-    params['q'] if params['q'].present?
+    params["q"] if params["q"].present?
   rescue URI::InvalidURIError, ArgumentError
     nil
   end

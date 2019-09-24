@@ -1,6 +1,6 @@
-require 'rails_helper'
-require 'active_model/model'
-require 'support/gds/with_request_context'
+require "rails_helper"
+require "active_model/model"
+require "support/gds/with_request_context"
 
 module Support
   module GDS

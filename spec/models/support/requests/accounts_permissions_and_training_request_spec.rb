@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 module Support
   module Requests
@@ -27,7 +27,7 @@ module Support
         expect(request(action: "change_user").formatted_action).to eq("Change an existing user's account")
       end
 
-      context '#for_new_user?' do
+      context "#for_new_user?" do
         it "is true when the action is `create_new_user`" do
           expect(request(action: "create_new_user").for_new_user?).to be_truthy
         end
@@ -41,7 +41,7 @@ module Support
       it "validates that the requested user is valid" do
         request = request(
           requester: double("user", valid?: true),
-          requested_user: double("user", valid?: false)
+          requested_user: double("user", valid?: false),
         )
         expect(request).to have_at_least(1).error_on(:base)
       end

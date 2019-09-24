@@ -1,6 +1,6 @@
-require 'forwardable'
-require 'date'
-require 'active_support'
+require "forwardable"
+require "date"
+require "active_support"
 
 module Zendesk
   class ZendeskTicket
@@ -50,7 +50,7 @@ module Zendesk
         [
           Zendesk::LabelledSnippet.new(on: self, field: :needed_by_date, label: "Needed by date"),
           Zendesk::LabelledSnippet.new(on: self, field: :not_before_date, label: "Not before date"),
-          Zendesk::LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason, label: "Reason for time constraint")
+          Zendesk::LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason, label: "Reason for time constraint"),
         ]
       else
         []

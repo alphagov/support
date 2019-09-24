@@ -1,4 +1,4 @@
-require 'active_model/model'
+require "active_model/model"
 
 module Support
   module GDS
@@ -18,12 +18,12 @@ module Support
 
       validates :frequency, inclusion: {
           in: %w(one-off weekly monthly),
-          message: "%{value} is not a valid option"
+          message: "%{value} is not a valid option",
         }
 
       validates :format, inclusion: {
           in: %w(pdf csv),
-          message: "%{value} is not a valid option"
+          message: "%{value} is not a valid option",
         }, allow_blank: true
 
       def frequency_options

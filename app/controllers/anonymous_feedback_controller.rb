@@ -68,7 +68,7 @@ private
     if params[:path].present?
       params[:paths] = [params[:path]]
     elsif params[:paths] && params[:paths].instance_of?(String)
-      params[:paths] = params[:paths].split(',').map(&:strip)
+      params[:paths] = params[:paths].split(",").map(&:strip)
     end
   end
 
@@ -123,7 +123,7 @@ private
 
   def fetch_anonymous_feedback_from_support_api
     AnonymousFeedbackApiResponse.new(
-      support_api.anonymous_feedback(api_params).to_hash
+      support_api.anonymous_feedback(api_params).to_hash,
     )
   end
 

@@ -12,16 +12,16 @@ module ApplicationHelper
   end
 
   def in_feedex?
-    current_page?('/anonymous_feedback/explore')
+    current_page?("/anonymous_feedback/explore")
   end
 
   def nav_link_to(section, options = { is_active: false })
     list_class = if options[:is_active]
-                   'active'
+                   "active"
                  elsif !section.accessible?
-                   'disabled'
+                   "disabled"
                  else
-                   ''
+                   ""
                  end
 
     content_tag(:li, class: list_class, id: options[:id]) do

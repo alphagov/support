@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Accounts, permissions and training requests" do
   # In order to allow departments to shift responsibilities around
@@ -47,8 +47,8 @@ Writing for GOV.UK and Using Whitehall Publisher
 Other training
 
 [Additional comments]
-XXXX"
-        }
+XXXX",
+        },
       )
 
       user_creation_request = stub_zendesk_user_creation(
@@ -104,8 +104,8 @@ Writing for GOV.UK and Using Whitehall Publisher
 Other training
 
 [Additional comments]
-XXXX"
-        }
+XXXX",
+        },
       )
 
       user_requests_a_change_to_whitehall_user_accounts(
@@ -158,8 +158,8 @@ Writing for GOV.UK and Using Whitehall Publisher
 Other training
 
 [Additional comments]
-XXXX"
-        }
+XXXX",
+        },
       )
 
       user_creation_request = stub_zendesk_user_creation(
@@ -215,8 +215,8 @@ Writing for GOV.UK and Using Whitehall Publisher
 Other training
 
 [Additional comments]
-XXXX"
-        }
+XXXX",
+        },
       )
 
       user_requests_a_change_to_other_user_accounts(
@@ -237,7 +237,7 @@ XXXX"
 private
 
   def user_requests_a_change_to_whitehall_user_accounts(details)
-    visit '/'
+    visit "/"
 
     click_on "Accounts, permissions and training"
 
@@ -267,7 +267,7 @@ private
   end
 
   def user_requests_a_change_to_other_user_accounts(details)
-    visit '/'
+    visit "/"
 
     click_on "Accounts, permissions and training"
 

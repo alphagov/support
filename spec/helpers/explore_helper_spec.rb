@@ -1,6 +1,6 @@
-require 'rails_helper'
+require "rails_helper"
 require "gds_api/support_api"
-require 'gds_api/test_helpers/support_api'
+require "gds_api/test_helpers/support_api"
 
 describe ExploreHelper, type: :helper do
   include ExploreHelper

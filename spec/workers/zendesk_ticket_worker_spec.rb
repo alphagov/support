@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe ZendeskTicketWorker do
-  context 'normal ticket creation' do
+  context "normal ticket creation" do
     before do
       zendesk_has_user(email: "a@b.com", suspended: false)
     end
@@ -14,7 +14,7 @@ describe ZendeskTicketWorker do
     end
   end
 
-  context 'ticket creation when name length exceeds 255 characters' do
+  context "ticket creation when name length exceeds 255 characters" do
     before do
       zendesk_has_user(email: "a@b.com", suspended: false)
     end
@@ -28,18 +28,18 @@ describe ZendeskTicketWorker do
     end
   end
 
-  context 'with a suspended requesting user' do
+  context "with a suspended requesting user" do
     before do
       zendesk_has_user(email: "a@b.com", suspended: true)
       ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
     end
 
-    it 'does not create a ticket' do
+    it "does not create a ticket" do
       expect(a_request(:post, %r{.*/tickets/.*})).to_not have_been_made
     end
   end
 
-  context 'with a 409 response' do
+  context "with a 409 response" do
     before do
       zendesk_has_user(email: "a@b.com", suspended: false)
       zendesk_returns_conflict
@@ -51,7 +51,7 @@ describe ZendeskTicketWorker do
     end
   end
 
-  context 'with a 503 response' do
+  context "with a 503 response" do
     before do
       zendesk_has_user(email: "a@b.com", suspended: false)
       zendesk_is_unavailable
@@ -62,7 +62,7 @@ describe ZendeskTicketWorker do
     end
   end
 
-  context 'with a 302 response' do
+  context "with a 302 response" do
     before do
       zendesk_has_user(email: "a@b.com", suspended: false)
       zendesk_returns_redirect

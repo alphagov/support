@@ -1,4 +1,4 @@
-require 'gds_api/base'
+require "gds_api/base"
 
 GdsApi::Base.default_options = { timeout: 30 }
 

@@ -1,4 +1,4 @@
-require 'active_model/model'
+require "active_model/model"
 
 module Support
   module GDS
@@ -16,7 +16,7 @@ module Support
                             :ga_contact_email
 
       validates_acceptance_of :has_read_guidance_confirmation, :has_read_oasis_guidance_confirmation, allow_nil: false
-      validates_inclusion_of :type_of_site, in: ['Campaign platform', 'Bespoke microsite']
+      validates_inclusion_of :type_of_site, in: ["Campaign platform", "Bespoke microsite"]
 
       validates_date :start_date, on_or_after: :today, before: :end_date
       validates_date :end_date, after: :start_date

@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'ostruct'
+require "rails_helper"
+require "ostruct"
 
 describe Zendesk::LabelledSnippet do
   def snippet(opts)

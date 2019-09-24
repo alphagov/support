@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'gds_api/test_helpers/support_api'
+require "rails_helper"
+require "gds_api/test_helpers/support_api"
 
 describe AnonymousFeedbackController, type: :controller do
   include GdsApi::TestHelpers::SupportApi
@@ -76,7 +76,7 @@ describe AnonymousFeedbackController, type: :controller do
               referrer: "https://www.gov.uk",
               user_agent: "Safari",
             },
-          ]
+          ],
         )
       end
 
@@ -140,7 +140,7 @@ describe AnonymousFeedbackController, type: :controller do
               details: "Abc def",
               user_agent: "Safari",
             },
-          ]
+          ],
         )
       end
 
@@ -189,7 +189,7 @@ describe AnonymousFeedbackController, type: :controller do
               service_satisfaction_rating: 5,
               user_agent: "Safari",
             },
-          ]
+          ],
         )
       end
 
@@ -224,7 +224,7 @@ describe AnonymousFeedbackController, type: :controller do
     it "normalises the path before talking to the api" do
       api_request = stub_support_api_anonymous_feedback(
         hash_including("path_prefixes" => ["/done/apply-carers-allowance"]),
-        "results" => [], "pages" => 0, "current_page" => 1
+        "results" => [], "pages" => 0, "current_page" => 1,
       )
 
       get :index, params: { paths: "done/apply-carers-allowance" }
@@ -235,7 +235,7 @@ describe AnonymousFeedbackController, type: :controller do
     it "normalises all paths before talking to the api" do
       api_request = stub_support_api_anonymous_feedback(
         hash_including("path_prefixes" => ["/done/apply-carers-allowance", "/start/vat-rates"]),
-        "results" => [], "pages" => 0, "current_page" => 1
+        "results" => [], "pages" => 0, "current_page" => 1,
       )
 
       get :index, params: { paths: "/done/apply-carers-allowance, https://gov.uk/start/vat-rates" }
@@ -265,7 +265,7 @@ describe AnonymousFeedbackController, type: :controller do
             referrer: "https://www.gov.uk",
             user_agent: "Safari",
           },
-        ]
+        ],
       )
       stub_support_api_organisation("cabinet-office")
     end

@@ -1,4 +1,4 @@
-require 'sidekiq/api'
+require "sidekiq/api"
 
 class RequestsController < AuthorisationController
   def new

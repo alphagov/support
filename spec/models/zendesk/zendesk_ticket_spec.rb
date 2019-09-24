@@ -1,6 +1,6 @@
-require 'rails_helper'
-require 'ostruct'
-require 'date'
+require "rails_helper"
+require "ostruct"
+require "date"
 
 describe Zendesk::ZendeskTicket do
   def new_ticket(attributes)

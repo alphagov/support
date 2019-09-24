@@ -1,6 +1,6 @@
-require 'uri'
-require 'active_model/model'
-require 'csv'
+require "uri"
+require "active_model/model"
+require "csv"
 
 module Support
   module Requests
@@ -32,8 +32,8 @@ module Support
         def paths_from_urls
           urls = []
           parsed_urls.each do |url|
-            path = URI(url).path.sub(/^(http(s)?(:)?(\/)+?(:)?)?((\/)?www.)?gov.uk/, '')
-            urls << (path.start_with?('/') ? path : "/#{path}")
+            path = URI(url).path.sub(/^(http(s)?(:)?(\/)+?(:)?)?((\/)?www.)?gov.uk/, "")
+            urls << (path.start_with?("/") ? path : "/#{path}")
           end
           urls.uniq
         end
@@ -42,7 +42,7 @@ module Support
           @parsed_urls ||= if uploaded_list.present?
                              CSV.parse(uploaded_list.read).flatten.map(&:strip)
                            elsif list_of_urls.present?
-                             list_of_urls.split(',').map(&:strip)
+                             list_of_urls.split(",").map(&:strip)
                            else
                              []
                            end
@@ -52,7 +52,7 @@ module Support
 
         def url_list_should_be_present
           if uploaded_list.blank? && list_of_urls.blank?
-            errors.add(:base, 'Please provide a valid list of urls.')
+            errors.add(:base, "Please provide a valid list of urls.")
           end
         end
 
@@ -79,7 +79,7 @@ module Support
 
         def redirect_path
           Rails.application.routes.url_helpers.anonymous_feedback_organisation_path(
-            slug: organisation
+            slug: organisation,
           )
         end
       end
@@ -90,7 +90,7 @@ module Support
 
         def redirect_path
           Rails.application.routes.url_helpers.anonymous_feedback_document_type_path(
-            document_type: document_type
+            document_type: document_type,
           )
         end
       end

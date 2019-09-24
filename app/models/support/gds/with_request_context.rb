@@ -7,7 +7,7 @@ module Support
         base.validates_presence_of :request_context
         base.validates :request_context, inclusion: {
           in: %w(mainstream inside_government detailed_guidance),
-          message: "%{value} is not a valid option"
+          message: "%{value} is not a valid option",
         }
       end
 

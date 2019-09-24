@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Unpublish content requests" do
   # In order to reduce user confusion and damage to government reputation
@@ -26,8 +26,8 @@ https://www.gov.uk/X
 Published in error
 
 [Further explanation]
-Typo in slug name"
-      }
+Typo in slug name",
+      },
     )
 
     user_makes_a_request_to_unpublish_content(
@@ -59,8 +59,8 @@ Some reason
 https://www.gov.uk/Y
 
 [Automatic redirect?]
-true"
-      }
+true",
+      },
     )
 
     user_makes_a_request_to_unpublish_content(
@@ -68,7 +68,7 @@ true"
       reason: "Duplicate of another page",
       further_explanation: "Some reason",
       redirect_url: "https://www.gov.uk/Y",
-      automatic_redirect: true
+      automatic_redirect: true,
     )
 
     expect(request).to have_been_made
@@ -77,7 +77,7 @@ true"
 private
 
   def user_makes_a_request_to_unpublish_content(details)
-    visit '/'
+    visit "/"
 
     click_on "Unpublish content"
 

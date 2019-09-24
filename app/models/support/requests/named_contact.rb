@@ -1,4 +1,4 @@
-require 'uri'
+require "uri"
 
 module Support
   module Requests
@@ -11,7 +11,7 @@ module Support
       def govuk_link_path
         begin
           uri = URI.parse(link)
-          uri.host == 'www.gov.uk' ? uri.path : nil
+          uri.host == "www.gov.uk" ? uri.path : nil
         rescue URI::InvalidURIError
           nil
         end

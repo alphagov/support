@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe FeedexHelper, type: :helper do
   include FeedexHelper
@@ -10,7 +10,7 @@ describe FeedexHelper, type: :helper do
         from: from,
         to: to,
         results_limited: results_limited,
-        scopes: ScopeFiltersPresenter.new(paths: paths)
+        scopes: ScopeFiltersPresenter.new(paths: paths),
       )
     }
 

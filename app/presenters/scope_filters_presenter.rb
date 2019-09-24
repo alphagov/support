@@ -1,4 +1,4 @@
-require 'gds_api/support_api'
+require "gds_api/support_api"
 
 class ScopeFiltersPresenter
   attr_reader :organisation_slug, :document_type
@@ -10,7 +10,7 @@ class ScopeFiltersPresenter
   end
 
   def paths
-    @paths ||= parsed_paths.join(', ') if parsed_paths.present?
+    @paths ||= parsed_paths.join(", ") if parsed_paths.present?
   end
 
   def paths_for_api
@@ -59,8 +59,8 @@ class ScopeFiltersPresenter
     elsif paths.present?
       result = [
         organisation_title,
-        paths_title
-      ].compact.join(' on ')
+        paths_title,
+      ].compact.join(" on ")
       document_type_title.present? ? "#{result} - #{document_type_title}" : result
     elsif organisation_title.present?
       document_type_title.present? ? "#{organisation_title} - #{document_type_title}" : organisation_title
@@ -80,13 +80,13 @@ private
       normalized_path = URI.parse(path_or_url).path
 
       if normalized_path.present?
-        normalized_path.sub!(/^(http(s)?(:)?(\/)+?(:)?)?((\/)?www.)?gov.uk/, '')
-        normalized_path.start_with?('/') ? normalized_path : "/#{normalized_path}"
+        normalized_path.sub!(/^(http(s)?(:)?(\/)+?(:)?)?((\/)?www.)?gov.uk/, "")
+        normalized_path.start_with?("/") ? normalized_path : "/#{normalized_path}"
       else
-        '/'
+        "/"
       end
     else
-      '/'
+      "/"
     end
   rescue URI::InvalidURIError
     path_or_url
@@ -96,7 +96,7 @@ private
     return nil unless paths_or_urls.present?
 
     result = paths_or_urls.compact.map(&:strip).map { |path_or_url| normalize_path(path_or_url) }.uniq
-    result.empty? ? ['/'] : result
+    result.empty? ? ["/"] : result
   end
 
   def support_api

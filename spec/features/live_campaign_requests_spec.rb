@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Live Campaign requests" do
   # In order to run a successful live campaign
@@ -32,8 +32,8 @@ Pensions
 This is a time constraint
 
 [Reason for the above dates?]
-This is a reason for choosing specific dates"
-      }
+This is a reason for choosing specific dates",
+      },
     )
 
     user_makes_a_live_campaign_request(
@@ -50,7 +50,7 @@ This is a reason for choosing specific dates"
 private
 
   def user_makes_a_live_campaign_request(details)
-    visit '/'
+    visit "/"
 
     click_on "Support for live campaign"
 

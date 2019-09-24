@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Taxonomy topic change requests" do
   # In order to be able to tag my content to the most relevant part of the taxonomy on gov.uk
@@ -29,8 +29,8 @@ Abc
 Change the name to \"XYZ\".
 
 [Reasons for changes]
-People expect to find it here."
-      }
+People expect to find it here.",
+      },
     )
 
     user_makes_a_taxomomy_change_topic_request(
@@ -46,7 +46,7 @@ People expect to find it here."
 private
 
   def user_makes_a_taxomomy_change_topic_request(details)
-    visit '/'
+    visit "/"
 
     click_on "Suggest a change to a topic"
 

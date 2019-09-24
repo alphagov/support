@@ -1,4 +1,4 @@
-require 'gds_zendesk/test_helpers'
+require "gds_zendesk/test_helpers"
 
 module ZendeskRequestMockingExtensions
   def expect_zendesk_to_receive_ticket(opts)

@@ -1,4 +1,4 @@
-require 'gds_api/support_api'
+require "gds_api/support_api"
 
 class AnonymousFeedback::ExploreController < AuthorisationController
   include ExploreHelper
@@ -16,15 +16,15 @@ class AnonymousFeedback::ExploreController < AuthorisationController
   def create
     @explore = if params[:support_requests_anonymous_explore_by_multiple_paths].present?
                  Support::Requests::Anonymous::ExploreByMultiplePaths.new(
-                   explore_by_multiple_path_params
+                   explore_by_multiple_path_params,
                  )
                elsif params[:support_requests_anonymous_explore_by_document_type].present?
                  Support::Requests::Anonymous::ExploreByDocumentType.new(
-                   explore_by_document_type_params
+                   explore_by_document_type_params,
                  )
                else
                  Support::Requests::Anonymous::ExploreByOrganisation.new(
-                   explore_by_organisation_params
+                   explore_by_organisation_params,
                  )
                end
 

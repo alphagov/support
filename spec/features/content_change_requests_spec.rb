@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "Content change requests" do
   # In order to update or correct the information on GOV.UK
@@ -35,8 +35,8 @@ http://gov.uk/X
 XXXXX
 
 [Details of what should be added, amended or removed]
-Out of date XX YY"
-      }
+Out of date XX YY",
+      },
     )
 
     user_makes_a_content_change_request(
@@ -56,7 +56,7 @@ Out of date XX YY"
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Content change request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => %w{govt_form content_amend}
+      "tags" => %w{govt_form content_amend},
     )
 
     user_makes_a_content_change_request(
@@ -70,7 +70,7 @@ Out of date XX YY"
 private
 
   def user_makes_a_content_change_request(details)
-    visit '/'
+    visit "/"
 
     click_on "Content changes and new content requests"
 

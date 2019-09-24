@@ -36,7 +36,7 @@ module Support
       def self.action_options
         @action_options ||= {
           "Create a new user account" => "create_new_user",
-          "Change an existing user's account" => "change_user"
+          "Change an existing user's account" => "change_user",
         }
       end
 

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 feature "New feature requests" do
   # In order to fulfill user needs not currently met by gov.uk
@@ -23,8 +23,8 @@ feature "New feature requests" do
 Information on XYZ
 
 [Feature evidence]
-See here: google.com"
-      }
+See here: google.com",
+      },
     )
 
     user_makes_a_new_feature_request(
@@ -39,7 +39,7 @@ See here: google.com"
 private
 
   def user_makes_a_new_feature_request(details)
-    visit '/'
+    visit "/"
 
     click_on "Changes to publishing applications or technical advice"
 

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe ApplicationController, type: :controller do
   # this controller is set up so that the auth always times out

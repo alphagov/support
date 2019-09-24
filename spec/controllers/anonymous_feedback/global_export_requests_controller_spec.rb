@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'gds_api/test_helpers/support_api'
+require "rails_helper"
+require "gds_api/test_helpers/support_api"
 
 describe AnonymousFeedback::GlobalExportRequestsController, type: :controller do
   include GdsApi::TestHelpers::SupportApi
@@ -7,9 +7,9 @@ describe AnonymousFeedback::GlobalExportRequestsController, type: :controller do
   let(:user) do
     create(
       :user,
-      organisation_slug: 'cabinet-office',
-      email: 'foo.bar@example.gov.uk',
-      permissions: %w[signin feedex_exporters]
+      organisation_slug: "cabinet-office",
+      email: "foo.bar@example.gov.uk",
+      permissions: %w[signin feedex_exporters],
     )
   end
 
@@ -21,18 +21,18 @@ describe AnonymousFeedback::GlobalExportRequestsController, type: :controller do
         notification_email: user.email,
         from_date: "1 Aug 2016",
         to_date: "8 Aug 2016",
-        exclude_spam: true
+        exclude_spam: true,
       )
     end
 
     it "makes a successful create request" do
-      post :create, params: { from_date: "1 Aug 2016", to_date: "8 Aug 2016", exclude_spam: '1' }
+      post :create, params: { from_date: "1 Aug 2016", to_date: "8 Aug 2016", exclude_spam: "1" }
       expect(stub_request).to have_been_made
     end
 
     it "sets the flash" do
       post :create, params: { from_date: "1 Aug 2016", to_date: "8 Aug 2016" }
-      expect(flash[:notice]).to include 'foo.bar@example.gov.uk'
+      expect(flash[:notice]).to include "foo.bar@example.gov.uk"
     end
 
     it "redirects to the feedback explore page" do

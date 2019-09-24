@@ -17,7 +17,7 @@ private
       to_h.
       merge(
         notification_email: current_user.email,
-        exclude_spam: exclude_spam?
+        exclude_spam: exclude_spam?,
       )
   end
 

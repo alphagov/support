@@ -1,6 +1,6 @@
-require 'gds-sso/user'
-require 'json'
-require 'redis_client'
+require "gds-sso/user"
+require "json"
+require "redis_client"
 
 class User < OpenStruct
   class Store

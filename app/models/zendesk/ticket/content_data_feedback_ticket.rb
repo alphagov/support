@@ -16,17 +16,17 @@ module Zendesk
           Zendesk::LabelledSnippet.new(
             on: @request,
             field: :feedback_type,
-            label: "Your feedback is about"
+            label: "Your feedback is about",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,
             field: :feedback_details,
-            label: "Tell us a bit more"
+            label: "Tell us a bit more",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,
             field: :impact_on_work,
-            label: "What's the impact on your work if we don't do anything about it?"
+            label: "What's the impact on your work if we don't do anything about it?",
           ),
         ]
       end

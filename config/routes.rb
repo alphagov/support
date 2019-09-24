@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   get "emergency-contact-details",
-    to: 'support#emergency_contact_details',
+    to: "support#emergency_contact_details",
     format: false,
     as: "emergency_contact_details"
 
@@ -33,5 +33,5 @@ Rails.application.routes.draw do
 
   get "acknowledge" => "support#acknowledge"
   get "_status" => "support#queue_status"
-  root to: 'support#landing'
+  root to: "support#landing"
 end

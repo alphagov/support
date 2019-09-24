@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Facets::FacetGroupPresenter do
   let(:raw_data) do
@@ -15,16 +15,16 @@ RSpec.describe Facets::FacetGroupPresenter do
             "links" => {
               "facet_values" => [
                 {
-                  "details" => { "label" => "Facet value 1" }
+                  "details" => { "label" => "Facet value 1" },
                 },
                 {
-                  "details" => { "label" => "Facet value 2" }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                  "details" => { "label" => "Facet value 2" },
+                },
+              ],
+            },
+          },
+        ],
+      },
     }
   end
 
@@ -46,7 +46,7 @@ RSpec.describe Facets::FacetGroupPresenter do
   describe "grouped_facet_values" do
     it "creates a facet values hash" do
       expect(instance.grouped_facet_values).to eq(
-        "facet_1" => ["Facet value 1", "Facet value 2"]
+        "facet_1" => ["Facet value 1", "Facet value 2"],
       )
     end
   end

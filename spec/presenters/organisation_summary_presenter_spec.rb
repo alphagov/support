@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe OrganisationSummaryPresenter, type: :presenter do
   context "when api_response has no `anonymous_feedback_counts`" do

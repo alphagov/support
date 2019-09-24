@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'gds_api/test_helpers/support_api'
+require "rails_helper"
+require "gds_api/test_helpers/support_api"
 
 describe AnonymousFeedback::ExploreController, type: :controller do
   include GdsApi::TestHelpers::SupportApi
@@ -10,13 +10,13 @@ describe AnonymousFeedback::ExploreController, type: :controller do
         web_url: "https://www.gov.uk/government/organisations/cabinet-office",
         title: "Cabinet Office",
         acronym: "CO",
-        govuk_status: "live"
+        govuk_status: "live",
       }, {
         slug: "ministry-of-magic",
         web_url: "https://www.gov.uk/government/organisations/ministry-of-magic",
         title: "Ministry of Magic",
         acronym: "",
-        govuk_status: "transitioning"
+        govuk_status: "transitioning",
       }
     ])
 
@@ -55,7 +55,7 @@ describe AnonymousFeedback::ExploreController, type: :controller do
     it "lists the available organisations" do
       expect(assigns(:organisations_list)).to eq([
         ["Cabinet Office (CO)", "cabinet-office"],
-        ["Ministry of Magic [Transitioning]", "ministry-of-magic"]
+        ["Ministry of Magic [Transitioning]", "ministry-of-magic"],
       ])
     end
 
@@ -74,7 +74,7 @@ describe AnonymousFeedback::ExploreController, type: :controller do
 
     context "when exploring by uploaded URL list" do
       it "redirects to the anonymous feedback index page" do
-        post :create, params: { support_requests_anonymous_explore_by_multiple_paths: { uploaded_list: fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls.csv", 'text/plain') } }
+        post :create, params: { support_requests_anonymous_explore_by_multiple_paths: { uploaded_list: fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls.csv", "text/plain") } }
         expect(response.location).to start_with("http://test.host/anonymous_feedback?paths=")
       end
     end

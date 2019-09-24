@@ -1,4 +1,4 @@
-require 'services'
+require "services"
 
 class RemoteFacetGroupService
   def find(content_id)

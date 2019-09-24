@@ -1,5 +1,5 @@
-require 'gds_zendesk/users'
-require 'zendesk_api/error'
+require "gds_zendesk/users"
+require "zendesk_api/error"
 
 class AccountsPermissionsAndTrainingRequestsController < RequestsController
 protected
@@ -28,7 +28,7 @@ protected
         :job,
         :phone,
         :other_training,
-        training: []
+        training: [],
       ]
     ).to_h
   end

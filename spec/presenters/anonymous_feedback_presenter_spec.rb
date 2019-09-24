@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe AnonymousFeedbackPresenter, type: :presenter do
   context "when api_response has no `results`" do
@@ -38,7 +38,7 @@ describe AnonymousFeedbackPresenter, type: :presenter do
         page_size: 50,
         results: [{}, {}, {}],
         total_count: 444,
-        results_limited: true
+        results_limited: true,
       )
     }
     subject(:presenter) { AnonymousFeedbackPresenter.new(api_response) }
