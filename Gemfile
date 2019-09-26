@@ -16,7 +16,7 @@ gem 'kaminari', '~> 1.1.1'
 gem 'redis', '4.1.3'
 gem 'sass-rails', '6.0.0'
 gem 'select2-rails', '4.0.3'
-gem 'uglifier', '4.1.20'
+gem 'uglifier', '4.2.0'
 
 # GDS/gov.uk gems
 gem 'gds-sso', '~> 14.1'
