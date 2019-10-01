@@ -11,7 +11,7 @@ if Rails.env == "development" && ENV["GDS_SSO_STRATEGY"] != "real"
       "uid" => "dummy-user",
       "name" => "Ms Example",
       "email" => "example@example.com",
-      "permissions" => ["single_points_of_contact", "api_users", "feedex_exporters"],
+      "permissions" => %w[single_points_of_contact api_users feedex_exporters],
     )
   rescue Redis::CannotConnectError
     puts "Redis::CannotConnectError: Unable to create dummy user"

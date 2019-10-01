@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount GovukAdminTemplate::Engine, at: "/style-guide", as: "style_guide"
 
   Support::Navigation::SectionGroups.new.all_request_class_names.each do |request_class_name|
-    resource request_class_name.underscore, only: [:new, :create]
+    resource request_class_name.underscore, only: %i[new create]
   end
 
   resources :foi_requests, only: :create
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :organisations, only: :show, param: :slug, format: false
     resources :document_types, only: :show, param: :document_type, format: false
 
-    resources :export_requests, only: [:create, :show], format: false
+    resources :export_requests, only: %i[create show], format: false
     resources :global_export_requests, only: [:create], format: false
 
     resources :problem_reports, only: [:index] do
@@ -25,9 +25,9 @@ Rails.application.routes.draw do
   end
 
   get "emergency-contact-details",
-    to: "support#emergency_contact_details",
-    format: false,
-    as: "emergency_contact_details"
+      to: "support#emergency_contact_details",
+      format: false,
+      as: "emergency_contact_details"
 
   resources :anonymous_feedback, only: %i(index create), format: false
 
