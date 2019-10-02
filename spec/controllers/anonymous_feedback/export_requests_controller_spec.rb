@@ -22,7 +22,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
       end
     end
 
-    context "with a `paths` parameter" do
+    context "with a 'path_set_id' parameter" do
       let!(:stub_request) do
         stub_support_api_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
                                                       path_prefixes: ["/foo"],
@@ -31,78 +31,22 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
                                                       organisation: nil)
       end
 
-      let(:do_request) { post :create, params: { paths: ["/foo"], from: "2015-05-01", to: "2015-06-01" } }
+      let(:saved_paths) { Support::Requests::Anonymous::Paths.new(%w(/foo)) }
+
+      let(:do_request) { post :create, params: { path_set_id: saved_paths.id, from: "2015-05-01", to: "2015-06-01" } }
+
+      before do
+        saved_paths.save
+      end
 
       it_behaves_like "a successful create request"
 
       it "redirects back to the list" do
         do_request
 
-        expect(response).to redirect_to(anonymous_feedback_index_path(paths: ["/foo"],
+        expect(response).to redirect_to(anonymous_feedback_index_path(path_set_id: saved_paths.id,
                                                                       from: "2015-05-01",
                                                                       to: "2015-06-01"))
-      end
-
-      it "normalises the paths before sending them to the api" do
-        post :create, params: { paths: %w[foo], from: "2015-05-01", to: "2015-06-01" }
-
-        expect(stub_request).to have_been_made
-      end
-    end
-
-    context "with a `paths` parameter that has a comma separated String value" do
-      let!(:stub_request) do
-        stub_support_api_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
-                                                          path_prefixes: ["/foo", "/bar", "/baz"],
-                                                          from: "2015-05-01",
-                                                          to: "2015-06-01",
-                                                          organisation: nil)
-      end
-
-      let(:do_request) { post :create, params: { paths: "/foo, /bar, /baz", from: "2015-05-01", to: "2015-06-01" } }
-
-      it_behaves_like "a successful create request"
-
-      it "redirects back to the list" do
-        do_request
-
-        expect(response).to redirect_to(anonymous_feedback_index_path(paths: ["/foo", "/bar", "/baz"],
-                                                                      from: "2015-05-01",
-                                                                      to: "2015-06-01"))
-      end
-
-      it "normalises the paths before sending them to the api" do
-        post :create, params: { paths: %w[foo bar baz], from: "2015-05-01", to: "2015-06-01" }
-
-        expect(stub_request).to have_been_made
-      end
-    end
-
-    context "with a `paths` parameter that has a single path as a String value" do
-      let!(:stub_request) do
-        stub_support_api_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
-                                                          path_prefixes: ["/foo"],
-                                                          from: "2015-05-01",
-                                                          to: "2015-06-01",
-                                                          organisation: nil)
-      end
-
-      let(:do_request) { post :create, params: { paths: "/foo", from: "2015-05-01", to: "2015-06-01" } }
-
-      it_behaves_like "a successful create request"
-
-      it "redirects back to the list" do
-        do_request
-
-        expect(response).to redirect_to(anonymous_feedback_index_path(paths: ["/foo"],
-                                                                      from: "2015-05-01",
-                                                                      to: "2015-06-01"))
-      end
-
-      it "normalises the paths before sending them to the api" do
-        post :create, params: { paths: %w[foo], from: "2015-05-01", to: "2015-06-01" }
-
-        expect(stub_request).to have_been_made
       end
     end
 

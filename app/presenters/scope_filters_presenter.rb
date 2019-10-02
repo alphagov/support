@@ -1,12 +1,13 @@
 require "gds_api/support_api"
 
 class ScopeFiltersPresenter
-  attr_reader :organisation_slug, :document_type
+  attr_reader :organisation_slug, :document_type, :path_set_id
 
-  def initialize(paths: nil, organisation_slug: nil, document_type: nil)
+  def initialize(paths: nil, path_set_id: nil, organisation_slug: nil, document_type: nil)
     @parsed_paths = normalize_paths(paths)
     @organisation_slug = organisation_slug
     @document_type = document_type
+    @path_set_id = path_set_id
   end
 
   def paths

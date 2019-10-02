@@ -61,7 +61,7 @@ private
 
   def index_params
     clean_paths
-    @index_params ||= params.permit(:organisation, :document_type, :page, :from, :to, paths: []).to_h
+    @index_params ||= params.permit(:organisation, :document_type, :page, :from, :to, :path_set_id, paths: []).to_h
   end
 
   def clean_paths
@@ -72,15 +72,28 @@ private
     end
   end
 
-  def paths
-    return [] unless index_params[:paths].present?
+  def saved_paths
+    @saved_paths ||= begin
+      id = if index_params[:path_set_id].present?
+             index_params[:path_set_id]
+           else
+             index_params[:paths].try(:first)
+           end
+      Support::Requests::Anonymous::Paths.find(id)
+    end
+  end
 
-    saved_paths = Support::Requests::Anonymous::Paths.find(index_params[:paths].first)
+  def paths
     saved_paths.try(:paths) || index_params[:paths]
   end
 
   def scope_filters
-    @scope_filters ||= ScopeFiltersPresenter.new(paths: paths, organisation_slug: index_params[:organisation], document_type: index_params[:document_type])
+    @scope_filters ||= ScopeFiltersPresenter.new(
+      paths: paths,
+      path_set_id: saved_paths.try(:id),
+      organisation_slug: index_params[:organisation],
+      document_type: index_params[:document_type],
+    )
   end
 
   def present_date_filters(api_response)
