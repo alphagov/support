@@ -181,12 +181,6 @@ GEM
     inflection (1.0.0)
     ipaddress (0.8.3)
     jaro_winkler (1.5.3)
-    jasmine (3.5.0)
-      jasmine-core (~> 3.5.0)
-      phantomjs
-      rack (>= 1.2.1)
-      rake
-    jasmine-core (3.5.0)
     jc-validates_timeliness (3.1.1)
       timeliness (~> 0.3.7)
     jquery-rails (4.3.3)
@@ -259,7 +253,6 @@ GEM
     parallel (1.17.0)
     parser (2.6.5.0)
       ast (~> 2.4.0)
-    phantomjs (2.1.1.0)
     plek (3.0.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
@@ -479,7 +472,6 @@ DEPENDENCIES
   govuk_sidekiq (~> 3.0)
   govuk_test
   gretel (= 3.0.9)
-  jasmine (= 3.5.0)
   jc-validates_timeliness (= 3.1.1)
   jquery-ui-rails (= 6.0.1)
   kaminari (~> 1.1.1)
