@@ -11,5 +11,4 @@ Rake::Task['default'].clear
 task :default do
   Rake::Task['lint'].invoke
   Rake::Task['spec'].invoke
-  Rake::Task['jasmine:ci'].invoke
 end

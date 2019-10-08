@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "5.2.3"
+gem "rails", "6.0.0"
 
 gem "bootstrap-kaminari-views", "0.0.5"
 gem "cancancan", "~> 2.3"
@@ -46,10 +46,9 @@ end
 
 group :development, :test do
   gem "govuk-lint"
-  gem "jasmine", "3.5.0"
   gem "pry-byebug"
   gem "rails-controller-testing"
-  gem "rspec-rails", "3.8.2"
+  gem "rspec-rails", "4.0.0.beta2"
 end
 
 group :test do
