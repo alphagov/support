@@ -48,7 +48,7 @@ group :development, :test do
   gem "govuk-lint"
   gem "pry-byebug"
   gem "rails-controller-testing"
-  gem "rspec-rails", "4.0.0.beta2"
+  gem "rspec-rails", "4.0.0.beta3"
 end
 
 group :test do
