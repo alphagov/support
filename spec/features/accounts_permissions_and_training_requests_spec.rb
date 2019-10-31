@@ -241,7 +241,7 @@ private
 
     click_on "Accounts, permissions and training"
 
-    expect(page).to have_content("Request a new account, change an account or unlock an account")
+    expect(page).to have_content("Request a new Whitehall account or change permissions.")
 
     within "#action" do
       choose details[:action]
@@ -271,7 +271,7 @@ private
 
     click_on "Accounts, permissions and training"
 
-    expect(page).to have_content("Request a new account, change an account or unlock an account")
+    expect(page).to have_content("Request a new Whitehall account or change permissions.")
 
     within "#action" do
       choose details[:action]
