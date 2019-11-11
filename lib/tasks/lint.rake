@@ -1,4 +1,4 @@
-desc "Run govuk-lint-ruby on all files"
+desc "Run rubocop on all files"
 task :lint do
-  system "govuk-lint-ruby --parallel app spec lib Gemfile"
+  system "rubocop --parallel app spec lib Gemfile"
 end
