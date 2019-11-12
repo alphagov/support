@@ -45,10 +45,10 @@ group :development do
 end
 
 group :development, :test do
-  gem "govuk-lint"
   gem "pry-byebug"
   gem "rails-controller-testing"
   gem "rspec-rails", "4.0.0.beta3"
+  gem "rubocop-govuk"
 end
 
 group :test do
