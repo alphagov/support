@@ -2,6 +2,8 @@
 // Default styles are not included and the source HTML is styled from scratch
 // http://jqueryui.com/datepicker/
 
+@import "govuk_admin_template";
+
 // scss-lint:disable QualifyingElement
 // - because we can't target the links with class .ui-state-default without the
 //   element as they have no other attributes or classes to identify them
