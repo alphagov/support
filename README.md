@@ -65,21 +65,6 @@ a wrapper around the Zendesk API.
 - [alphagov/support-api](https://github.com/alphagov/feedback) - provides an API for storing
 and fetching anonymous feedback about pages on GOV.UK.
 
-### Running the application
-
-To start the app using `bowler`:
-
-    bowl support
-
-To start the app directly:
-
-    ./startup.sh
-
-This will start the app on port `3031`.
-
-Default url for development: `https://support.dev.gov.uk/`, for production:
-`https://support.publishing.service.gov.uk`
-
 ### Running the test suite
 
 To run the specs, execute:
