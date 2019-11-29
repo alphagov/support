@@ -11,7 +11,7 @@ module Support
           errors[:base] << "The details of the user in question are either incomplete or invalid."
         end
       end
-      validates_presence_of :action, :requested_user
+      validates :action, :requested_user, presence: true
       validates :action, inclusion: { in: ->(request) { request.action_options.values } }
       validates :formatted_user_needs, presence: { message: "must select at least one option" }
 

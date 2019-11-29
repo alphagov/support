@@ -12,7 +12,7 @@ module Support
         "other" => "something else",
       }.freeze
 
-      validates_presence_of :feedback_type, :feedback_details
+      validates :feedback_type, :feedback_details, presence: true
       validates :feedback_type, inclusion: { in: OPTIONS.keys }
 
       def self.label

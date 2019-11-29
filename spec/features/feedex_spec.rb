@@ -65,7 +65,7 @@ feature "Exploring anonymous feedback" do
       }
     ]
 
-    explore_anonymous_feedback_by_urls(uploaded_list: "#{Rails.root}/spec/fixtures/list_of_urls.csv")
+    explore_anonymous_feedback_by_urls(uploaded_list: Rails.root.join("spec/fixtures/list_of_urls.csv"))
     expect(feedex_results).to eq(feedback_reports)
   end
 
@@ -86,7 +86,7 @@ feature "Exploring anonymous feedback" do
       no_results,
     )
 
-    explore_anonymous_feedback_by_urls(uploaded_list: "#{Rails.root}/spec/fixtures/list_of_nonexistent_urls.csv")
+    explore_anonymous_feedback_by_urls(uploaded_list: Rails.root.join("spec/fixtures/list_of_nonexistent_urls.csv"))
 
     expect(page).to have_content("There’s no feedback for the URL(s) requested.")
   end
@@ -263,7 +263,7 @@ feature "Exploring anonymous feedback" do
           type: "problem-report",
           path: "/vat-rates",
           url: "http://www.dev.gov.uk/vat-rates",
-          created_at: Time.parse("2013-03-01"),
+          created_at: Time.zone.parse("2013-03-01"),
           what_doing: "looking at 3rd paragraph",
           what_wrong: "typo in 2rd word",
           referrer: "https://www.gov.uk/",
@@ -272,7 +272,7 @@ feature "Exploring anonymous feedback" do
           type: "problem-report",
           path: "/done",
           url: "http://www.dev.gov.uk/done",
-          created_at: Time.parse("2013-02-01"),
+          created_at: Time.zone.parse("2013-02-01"),
           what_doing: "looking at done page",
           what_wrong: "a paragraph is misaligned",
           referrer: "https://www.gov.uk/pay-vat",
@@ -281,7 +281,7 @@ feature "Exploring anonymous feedback" do
           type: "problem-report",
           path: "/vehicle-tax",
           url: "http://www.dev.gov.uk/vehicle-tax",
-          created_at: Time.parse("2013-02-01"),
+          created_at: Time.zone.parse("2013-02-01"),
           what_doing: "looking at vehicle tax page",
           what_wrong: "not enough detail about how to get in contact",
           referrer: "https://www.gov.uk/pay-vehicle-tax",

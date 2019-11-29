@@ -94,7 +94,7 @@ private
   end
 
   def normalize_paths(paths_or_urls)
-    return nil unless paths_or_urls.present?
+    return nil if paths_or_urls.blank?
 
     result = paths_or_urls.compact.map(&:strip).map { |path_or_url| normalize_path(path_or_url) }.uniq
     result.empty? ? ["/"] : result

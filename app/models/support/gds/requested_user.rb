@@ -12,7 +12,7 @@ module Support
         "Using Whitehall Publisher" => "using_publisher",
       }.freeze
 
-      validates_presence_of :name, :email
+      validates :name, :email, presence: true
       validates :email, format: { with: /@/ }
       validates :other_training, presence: true, if: -> { training.empty? }
       validate :validate_training_options

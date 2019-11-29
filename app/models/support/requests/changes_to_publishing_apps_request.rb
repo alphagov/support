@@ -4,7 +4,7 @@ module Support
   module Requests
     class ChangesToPublishingAppsRequest < Request
       attr_accessor :title, :user_need, :feature_evidence
-      validates_presence_of :user_need
+      validates :user_need, presence: true
 
       def self.label
         "Changes to publishing applications or technical advice"

@@ -75,7 +75,7 @@ module Support
 
       class ExploreByOrganisation < Explore
         attr_accessor :organisation
-        validates_presence_of :organisation
+        validates :organisation, presence: true
 
         def redirect_path
           Rails.application.routes.url_helpers.anonymous_feedback_organisation_path(
@@ -86,7 +86,7 @@ module Support
 
       class ExploreByDocumentType < Explore
         attr_accessor :document_type
-        validates_presence_of :document_type
+        validates :document_type, presence: true
 
         def redirect_path
           Rails.application.routes.url_helpers.anonymous_feedback_document_type_path(

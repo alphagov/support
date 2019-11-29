@@ -70,7 +70,7 @@ describe RequestsController, type: :controller do
 
     it "rejects form submissions with invalid parameters" do
       params = valid_params_for_test_request.tap { |p| p["test_request"].merge!("a" => "") }
-      expect(controller).to receive(:render).with(:new, hash_including(status: 400))
+      expect(controller).to receive(:render).with(:new, hash_including(status: :bad_request))
 
       post :create, params: params
     end
@@ -111,17 +111,17 @@ describe RequestsController, type: :controller do
     let(:user) { create(:user_who_cannot_access_anything) }
 
     it "rejects an text/html request for a new form" do
-      expect(controller).to receive(:render).with("support/forbidden", hash_including(status: 403))
+      expect(controller).to receive(:render).with("support/forbidden", hash_including(status: :forbidden))
       get :new
     end
 
     it "rejects a json request for a new form" do
-      expect(controller).to receive(:render).with(json: { "error" => "You have not been granted permission to make these requests." }, status: 403)
+      expect(controller).to receive(:render).with(json: { "error" => "You have not been granted permission to make these requests." }, status: :forbidden)
       get :new, params: { format: :json }
     end
 
     it "rejects a form submission" do
-      expect(controller).to receive(:render).with("support/forbidden", hash_including(status: 403))
+      expect(controller).to receive(:render).with("support/forbidden", hash_including(status: :forbidden))
       post :create, params: valid_params_for_test_request
     end
   end

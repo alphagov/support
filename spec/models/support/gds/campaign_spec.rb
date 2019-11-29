@@ -11,8 +11,8 @@ module Support
         Campaign.new(type_of_site: "Campaign platform", signed_campaign: "Test Signer",
                      has_read_guidance_confirmation: "1",
                      has_read_oasis_guidance_confirmation: "1",
-                     start_date: as_str(Date.today), end_date: as_str(Date.tomorrow),
-                     development_start_date: as_str(Date.today),
+                     start_date: as_str(Time.zone.today), end_date: as_str(Date.tomorrow),
+                     development_start_date: as_str(Time.zone.today),
                      performance_review_contact_email: "test@digital.cabinet-office.gov.uk",
                      government_theme: "Test theme", description: "Test Description",
                      call_to_action: "Test Call to Action", proposed_url: "example.campaign.gov.uk",
@@ -61,13 +61,13 @@ module Support
       it { should_not allow_value("test@").for(:performance_review_contact_email) }
 
       it { should_not allow_value(as_str(Date.tomorrow)).for(:start_date) }
-      it { should allow_value(as_str(Date.today)).for(:start_date) }
+      it { should allow_value(as_str(Time.zone.today)).for(:start_date) }
 
       it { should allow_value(as_str(Date.tomorrow)).for(:end_date) }
-      it { should_not(allow_value(as_str(Date.today)).for(:end_date)) }
+      it { should_not(allow_value(as_str(Time.zone.today)).for(:end_date)) }
 
       it { should allow_value(as_str(Date.tomorrow)).for(:development_start_date) }
-      it { should allow_value(as_str(Date.today)).for(:development_start_date) }
+      it { should allow_value(as_str(Time.zone.today)).for(:development_start_date) }
 
       it { should validate_numericality_of(:cost_of_campaign) }
 

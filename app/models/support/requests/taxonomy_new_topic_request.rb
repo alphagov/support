@@ -5,7 +5,7 @@ module Support
     class TaxonomyNewTopicRequest < Request
       attr_accessor :title, :url, :details, :parent
 
-      validates_presence_of :title, :url, :details, :parent
+      validates :title, :url, :details, :parent, presence: true
 
       def initialize(attrs = {})
         super

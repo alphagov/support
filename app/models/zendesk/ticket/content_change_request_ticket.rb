@@ -2,7 +2,7 @@ module Zendesk
   module Ticket
     class ContentChangeRequestTicket < Zendesk::ZendeskTicket
       def subject
-        if !@request.title.nil? && !@request.title.empty?
+        if @request.title.present?
           "#{@request.title} - Content change request"
         else
           "Content change request"

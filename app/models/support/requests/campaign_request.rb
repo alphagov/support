@@ -2,7 +2,7 @@ module Support
   module Requests
     class CampaignRequest < Request
       attr_accessor :campaign
-      validates_presence_of :campaign
+      validates :campaign, presence: true
       validate do |request|
         if request.campaign && !request.campaign.valid?
           errors[:base] << "Campaign details are either not complete or invalid."

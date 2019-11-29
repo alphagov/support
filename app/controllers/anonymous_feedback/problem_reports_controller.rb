@@ -17,7 +17,7 @@ class AnonymousFeedback::ProblemReportsController < AuthorisationController
       redirect_to anonymous_feedback_problem_reports_path(anonymous_feedback_problem_report_params)
     else
       flash.now[:alert] = "Something went wrong with this review"
-      render :index, status: 400
+      render :index, status: :bad_request
     end
   end
 

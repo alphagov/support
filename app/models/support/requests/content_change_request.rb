@@ -6,7 +6,7 @@ module Support
       include WithTimeConstraint
 
       attr_accessor :title, :details_of_change, :url, :related_urls
-      validates_presence_of :details_of_change
+      validates :details_of_change, presence: true
 
       def initialize(attrs = {})
         self.time_constraint = TimeConstraint.new

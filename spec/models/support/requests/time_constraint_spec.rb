@@ -10,13 +10,13 @@ module Support
       it { should_not allow_value("xxx").for(:needed_by_date) }
 
       it { should allow_value(as_str(Date.tomorrow)).for(:needed_by_date) }
-      it { should allow_value(as_str(Date.today)).for(:needed_by_date) }
+      it { should allow_value(as_str(Time.zone.today)).for(:needed_by_date) }
       it { should_not allow_value(as_str(Date.yesterday)).for(:needed_by_date) }
 
       it { should_not allow_value("xxx").for(:not_before_date) }
 
       it { should allow_value(as_str(Date.tomorrow)).for(:not_before_date) }
-      it { should allow_value(as_str(Date.today)).for(:not_before_date) }
+      it { should allow_value(as_str(Time.zone.today)).for(:not_before_date) }
       it { should_not allow_value(as_str(Date.yesterday)).for(:not_before_date) }
 
       it "allows the 'not before' and 'needed by' dates to be blank" do

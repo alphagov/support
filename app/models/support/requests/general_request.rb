@@ -3,7 +3,7 @@ module Support
     class GeneralRequest < Request
       attr_accessor :title, :url, :details, :user_agent
 
-      validates_presence_of :details
+      validates :details, presence: true
 
       def self.label
         "General"

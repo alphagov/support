@@ -5,7 +5,7 @@ module Support
     class TaxonomyChangeTopicRequest < Request
       attr_accessor :title, :type_of_change, :details, :reasons
 
-      validates_presence_of :title, :type_of_change, :details, :reasons
+      validates :title, :type_of_change, :details, :reasons, presence: true
       validates :type_of_change, inclusion: { in: %w(name_of_topic position_of_topic merge_split_topic remove_topic other) }
 
       def initialize(attrs = {})
