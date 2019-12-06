@@ -8,7 +8,7 @@ module Support
 
       attr_accessor :title, :details, :urls, :contact_number
 
-      validates_presence_of :details
+      validates :details, presence: true
 
       def initialize(attrs = {})
         self.time_constraint = TimeConstraint.new

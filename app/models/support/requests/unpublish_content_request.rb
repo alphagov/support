@@ -4,9 +4,9 @@ module Support
       DEFAULTS = { automatic_redirect: "1" }.freeze
 
       attr_accessor :urls, :reason_for_unpublishing, :further_explanation, :redirect_url, :automatic_redirect
-      validates_presence_of :urls, :reason_for_unpublishing
+      validates :urls, :reason_for_unpublishing, presence: true
 
-      validates_presence_of :redirect_url, :automatic_redirect, if: :another_page_involved?
+      validates :redirect_url, :automatic_redirect, presence: { if: :another_page_involved? }
       validates :automatic_redirect, inclusion: { in: ["1", "0", nil] }
 
       def initialize(attr = {})

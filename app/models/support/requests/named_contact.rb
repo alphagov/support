@@ -5,8 +5,8 @@ module Support
     class NamedContact < Request
       attr_accessor :link, :details, :referrer, :javascript_enabled, :user_agent
 
-      validates_presence_of :details
-      validates_inclusion_of :javascript_enabled, in: [true, false]
+      validates :details, presence: true
+      validates :javascript_enabled, inclusion: { in: [true, false] }
 
       def govuk_link_path
         begin

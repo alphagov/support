@@ -28,8 +28,8 @@ feature "User satisfaction survey submissions" do
           details: "Make service less 'meh'",
           user_agent: "Safari",
           javascript_enabled: true,
-          created_at: Time.now,
-          updated_at: Time.now,
+          created_at: Time.zone.now,
+          updated_at: Time.zone.now,
         },
       ],
     )
@@ -61,7 +61,7 @@ feature "User satisfaction survey submissions" do
           service_satisfaction_rating: 3,
           details: nil,
           javascript_enabled: true,
-          created_at: Time.now.to_s,
+          created_at: Time.zone.now.to_s,
         },
       ],
     )

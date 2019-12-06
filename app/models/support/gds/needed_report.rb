@@ -11,10 +11,10 @@ module Support
                     :frequency,
                     :format
 
-      validates_presence_of :reporting_period_start,
-                            :reporting_period_end,
-                            :pages_or_sections,
-                            :frequency
+      validates :reporting_period_start,
+                :reporting_period_end,
+                :pages_or_sections,
+                :frequency, presence: true
 
       validates :frequency, inclusion: {
           in: %w(one-off weekly monthly),

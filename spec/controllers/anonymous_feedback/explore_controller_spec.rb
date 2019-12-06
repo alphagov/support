@@ -74,7 +74,7 @@ describe AnonymousFeedback::ExploreController, type: :controller do
 
     context "when exploring by uploaded URL list" do
       it "redirects to the anonymous feedback index page" do
-        post :create, params: { support_requests_anonymous_explore_by_multiple_paths: { uploaded_list: fixture_file_upload("#{Rails.root}/spec/fixtures/list_of_urls.csv", "text/plain") } }
+        post :create, params: { support_requests_anonymous_explore_by_multiple_paths: { uploaded_list: fixture_file_upload(Rails.root.join("spec/fixtures/list_of_urls.csv"), "text/plain") } }
         expect(response.location).to start_with("http://test.host/anonymous_feedback?paths=")
       end
     end

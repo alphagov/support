@@ -1,5 +1,6 @@
 require "gds_zendesk/test_helpers"
 
+# rubocop:disable Rails/HttpPositionalArguments
 module JsonHelpers
   def json_response
     JSON.parse(response.body)
@@ -25,5 +26,6 @@ module JsonHelpers
     )
   end
 end
+# rubocop:enable Rails/HttpPositionalArguments
 
 RSpec.configure { |c| c.include JsonHelpers }

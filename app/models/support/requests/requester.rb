@@ -7,11 +7,11 @@ module Support
       attr_accessor :name
       attr_reader :email
 
-      validates_presence_of :email
+      validates :email, presence: true
 
       validates :email, format: { with: /@/ }
 
-      validates_presence_of :name
+      validates :name, presence: true
 
       validate :collaborator_emails_are_all_valid
 
@@ -36,9 +36,9 @@ module Support
     private
 
       def collaborator_emails_are_all_valid
-        unless collaborator_emails.blank?
+        if collaborator_emails.present?
           collaborator_emails.each do |collaborator_email|
-            unless collaborator_email =~ /@/
+            unless /@/.match?(collaborator_email)
               errors.add(:collaborator_emails, "#{collaborator_email} is not a valid email")
             end
           end

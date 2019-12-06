@@ -6,7 +6,7 @@ module Support
       include WithTimeConstraint
 
       attr_accessor :user_name, :user_email, :reason_for_removal
-      validates_presence_of :user_name, :user_email
+      validates :user_name, :user_email, presence: true
       validates :user_email, format: { with: /@/ }
 
       def initialize(attributes = {})

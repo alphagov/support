@@ -52,8 +52,8 @@ private
     return true if has_required_api_params?
 
     respond_to do |format|
-      format.html { redirect_to anonymous_feedback_explore_url, status: 301 }
-      format.json { render json: { "errors" => ["Please provide a valid 'paths', 'path' or 'organisation' parameter"] }, status: 400 }
+      format.html { redirect_to anonymous_feedback_explore_url, status: :moved_permanently }
+      format.json { render json: { "errors" => ["Please provide a valid 'paths', 'path' or 'organisation' parameter"] }, status: :bad_request }
     end
 
     false
@@ -74,11 +74,7 @@ private
 
   def saved_paths
     @saved_paths ||= begin
-      id = if index_params[:path_set_id].present?
-             index_params[:path_set_id]
-           else
-             index_params[:paths].try(:first)
-           end
+      id = index_params[:path_set_id].presence || index_params[:paths].try(:first)
       Support::Requests::Anonymous::Paths.find(id)
     end
   end

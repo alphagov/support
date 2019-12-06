@@ -20,7 +20,7 @@ module Support
         "Employing UK citizens or people not from the EU or EEA",
       ].freeze
 
-      validates_presence_of :url
+      validates :url, presence: true
 
       def sector_options
         grouped_facet_values.fetch("sector_business_area")

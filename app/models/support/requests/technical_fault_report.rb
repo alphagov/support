@@ -3,7 +3,7 @@ module Support
     class TechnicalFaultReport < Request
       attr_accessor :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened
 
-      validates_presence_of :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened
+      validates :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened, presence: true
       validate do |report|
         if report.fault_context && !report.fault_context.valid?
           errors[:base] << "The source of the fault is not set."

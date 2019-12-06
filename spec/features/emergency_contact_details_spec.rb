@@ -18,7 +18,7 @@ feature "Emergency contact details" do
 
   context "with all contacts supplied" do
     let(:contacts_json) do
-      File.read(Rails.root.join("config", "emergency_contact_details.json"))
+      File.read(Rails.root.join("config/emergency_contact_details.json"))
     end
 
     scenario "access the emergency contact details" do
@@ -33,7 +33,7 @@ feature "Emergency contact details" do
 
   context "when secondary contacts are missing" do
     let(:contacts_json) do
-      contacts = JSON.parse File.read(Rails.root.join("config", "emergency_contact_details.json"))
+      contacts = JSON.parse File.read(Rails.root.join("config/emergency_contact_details.json"))
       contacts.reject { |k, _| k == "secondary_contacts" }.to_json
     end
 

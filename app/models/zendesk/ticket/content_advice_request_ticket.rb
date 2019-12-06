@@ -3,7 +3,7 @@ module Zendesk
     class ContentAdviceRequestTicket < Zendesk::ZendeskTicket
       def subject
         deadline_prefix = (deadline_date ? "Needed by #{deadline_date}: " : "")
-        title_text = if @request.title.nil? || @request.title.empty?
+        title_text = if @request.title.blank?
                        "Advice on content"
                      else
                        "#{@request.title} - Advice on content"
@@ -27,7 +27,7 @@ module Zendesk
       end
 
       def deadline_date
-        if needed_by_date && !needed_by_date.empty?
+        if needed_by_date.present?
           Date.parse(needed_by_date).strftime("%-d %b")
         end
       end
