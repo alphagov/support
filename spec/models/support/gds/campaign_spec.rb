@@ -66,10 +66,9 @@ module Support
       it { should allow_value(as_str(Date.tomorrow)).for(:end_date) }
       it { should_not(allow_value(as_str(Time.zone.today)).for(:end_date)) }
 
-      it { should allow_value(as_str(Date.tomorrow)).for(:development_start_date) }
+      it { should_not allow_value(as_str(Date.tomorrow)).for(:development_start_date) }
+      it { should allow_value(as_str(Time.zone.today - 1)).for(:development_start_date) }
       it { should allow_value(as_str(Time.zone.today)).for(:development_start_date) }
-
-      it { should validate_numericality_of(:cost_of_campaign) }
 
       it { should allow_value("test@digital.cabinet-office.gov.uk").for(:ga_contact_email) }
       it { should allow_value("test@test.com").for(:ga_contact_email) }
