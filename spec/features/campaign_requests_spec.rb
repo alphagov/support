@@ -32,7 +32,7 @@ John Smith
 01-02-2020
 
 [Site build to commence on]
-02-01-2020
+31-12-2019
 
 [Contact email/s for website performance review every 6 months]
 john.smith@example.com
@@ -59,7 +59,7 @@ A new one about a new thing
 pensions, campaign, newcampaign
 
 [Site build budget / costs (and overall campaign cost, if applicable)]
-1200
+£1200 and tuppence
 
 [Contact details for Google Analytics leads (Gmail accounts only)]
 ga.contact@example.com
@@ -76,7 +76,7 @@ Some comment",
       signed_campaign: "John Smith",
       start_date: "01-01-2020",
       end_date: "01-02-2020",
-      development_start_date: "02-01-2020",
+      development_start_date: "31-12-2019",
       performance_review_contact_email: "john.smith@example.com",
       government_theme: "Example government theme",
       description: "Pensions",
@@ -85,7 +85,7 @@ Some comment",
       site_title: "New campaign",
       site_tagline: "A new one about a new thing",
       site_metadescription: "pensions, campaign, newcampaign",
-      cost_of_campaign: "1200",
+      cost_of_campaign: "£1200 and tuppence",
       ga_contact_email: "ga.contact@example.com",
       additional_comments: "Some comment",
       )
