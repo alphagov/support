@@ -88,14 +88,14 @@
                required: true,
                input_html: {class: 'input-md-6', 'aria-required': true} %>
     <p class="help-block">
-        The short campaign title, approx 1 - 3 words, eg "Action Counters Terrorism"
+        The short campaign title, as appears in (for example) Google Search
     </p>
     <%= r.input :site_tagline,
                 label: 'Site tagline',
                 required: true,
                 input_html: {class: 'input-md-6', 'aria-required': true} %>
     <p class="help-block">
-        Explain what this site is about, approx 7 - 8 words, eg "Report terrorist or extremist content online"
+        Explain what this site is about, as appears in (for example) Google Search
     </p>
 
     <%= r.input :site_metadescription,
@@ -108,9 +108,7 @@
                   :"aria-required" => true,
                   :"aria-describedby" => "seoHelpBlock" } %>
     <p class="help-block">
-        Approx 20-30 words. A more detailed description or call to action,
-        e.g. "Report terrorism activity online. If you've seen or heard something
-        that is suspicious and may be terrorism related - report it anonymously."
+        Approx 20-30 words, as appears in (for example) Google Search
     </p>
 
     <%= r.input :description,
