@@ -60,8 +60,9 @@ module Support
       it { should_not allow_value("test").for(:performance_review_contact_email) }
       it { should_not allow_value("test@").for(:performance_review_contact_email) }
 
-      it { should_not allow_value(as_str(Date.tomorrow)).for(:start_date) }
+      it { should allow_value(as_str(Date.tomorrow)).for(:start_date) }
       it { should allow_value(as_str(Time.zone.today)).for(:start_date) }
+      it { should_not allow_value(as_str(Time.zone.today - 1)).for(:start_date) }
 
       it { should allow_value(as_str(Date.tomorrow)).for(:end_date) }
       it { should_not(allow_value(as_str(Time.zone.today)).for(:end_date)) }
