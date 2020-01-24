@@ -6,6 +6,7 @@ feature "Campaign requests" do
   # I want to request GDS support for a campaign
 
   let(:user) { create(:campaign_requester, name: "John Smith", email: "john.smith@agency.gov.uk") }
+  let(:next_year) { Time.current.year.succ }
 
   background do
     login_as user
@@ -26,10 +27,10 @@ Campaign platform
 John Smith
 
 [Start date of campaign site]
-01-01-2020
+01-01-#{next_year}
 
 [Proposed end date of campaign site]
-01-02-2020
+01-02-#{next_year}
 
 [Site build to commence on]
 31-12-2019
@@ -74,8 +75,8 @@ Some comment",
       has_read_guidance: true,
       has_read_oasis_guidance: true,
       signed_campaign: "John Smith",
-      start_date: "01-01-2020",
-      end_date: "01-02-2020",
+      start_date: "01-01-#{next_year}",
+      end_date: "01-02-#{next_year}",
       development_start_date: "31-12-2019",
       performance_review_contact_email: "john.smith@example.com",
       government_theme: "Example government theme",
