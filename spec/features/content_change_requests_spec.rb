@@ -6,6 +6,7 @@ feature "Content change requests" do
   # I want to inform GDS about what needs changing and why
 
   let(:user) { create(:content_requester, name: "John Smith", email: "john.smith@agency.gov.uk") }
+  let(:next_year) { Time.current.year.succ }
 
   background do
     login_as user
@@ -20,10 +21,10 @@ feature "Content change requests" do
       "comment" => {
         "body" =>
 "[Needed by date]
-31-12-2020
+31-12-#{next_year}
 
 [Not before date]
-01-12-2020
+01-12-#{next_year}
 
 [Reason for time constraint]
 New law
@@ -44,8 +45,8 @@ Out of date XX YY",
       details_of_change: "Out of date XX YY",
       url: "http://gov.uk/X",
       related_urls: "XXXXX",
-      needed_by_date: "31-12-2020",
-      not_before_date: "01-12-2020",
+      needed_by_date: "31-12-#{next_year}",
+      not_before_date: "01-12-#{next_year}",
       reason: "New law",
     )
 

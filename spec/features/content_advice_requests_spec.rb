@@ -6,6 +6,7 @@ feature "Request for content advice" do
   # I want to contact the GOV.UK Content team for advice
 
   let(:user) { create(:content_requester) }
+  let(:next_year) { Time.current.year.succ }
 
   background do
     login_as user
@@ -19,7 +20,7 @@ feature "Request for content advice" do
       "comment" => {
         "body" =>
 "[Needed by date]
-12-01-2020
+12-01-#{next_year}
 
 [Reason for time constraint]
 Ministerial announcement Z
@@ -39,7 +40,7 @@ https://www.gov.uk/x, https://www.gov.uk/y
       title: "Which format",
       details: "I need help to choose a format, here's my content...",
       urls: "https://www.gov.uk/x, https://www.gov.uk/y",
-      needed_by: "12-01-2020",
+      needed_by: "12-01-#{next_year}",
       reason_for_deadline: "Ministerial announcement Z",
       contact_number: "0121 111111",
     )
