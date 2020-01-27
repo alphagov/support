@@ -16,12 +16,13 @@
 !/log/.keep
 !/tmp/.keep
 
+# Ignore the generated assets
+public/assets
+
 # Ignore Byebug command history file.
 .byebug_history
 
 config/zendesk.yml
-
-.DS_Store
 
 # Ignore RSpec state file
 /spec/examples.txt
