@@ -2,11 +2,11 @@ module Zendesk
   module Ticket
     class BrexitCheckerTicket < Zendesk::ZendeskTicket
       def subject
-        "Get ready for Brexit checker"
+        "Get ready for new rules in 2021"
       end
 
       def tags
-        super << "brexit_checker"
+        super << "transition_checker"
       end
 
     private

@@ -9,11 +9,11 @@ module Support
                     :new_action_deadline, :new_action_comments, :new_action_priority
 
       def self.label
-        "Get ready for Brexit checker: change request"
+        "Get ready for new rules in 2021 checker: change request"
       end
 
       def self.description
-        "Request a change to the Brexit checker"
+        "Request a change to the tool for helping people find out how to get ready for new rules in 2021"
       end
     end
   end
