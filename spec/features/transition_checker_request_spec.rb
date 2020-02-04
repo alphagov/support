@@ -77,9 +77,9 @@ private
   def user_requests_change_to_result
     visit_transition_checker_request_page
 
-    fill_in "support_requests_brexit_checker_request_action_to_change", with: "Action title"
-    fill_in "support_requests_brexit_checker_request_description_of_change", with: "Action description"
-    fill_in "support_requests_brexit_checker_request_change_link_to", with: "https://www.example.com"
+    fill_in "support_requests_transition_checker_request_action_to_change", with: "Action title"
+    fill_in "support_requests_transition_checker_request_description_of_change", with: "Action description"
+    fill_in "support_requests_transition_checker_request_change_link_to", with: "https://www.example.com"
 
     user_submits_the_request_successfully
   end
@@ -87,15 +87,15 @@ private
   def user_requests_to_add_a_result
     visit_transition_checker_request_page
 
-    fill_in "support_requests_brexit_checker_request_new_action_users", with: "Audience"
-    fill_in "support_requests_brexit_checker_request_new_action_title", with: "Action"
-    fill_in "support_requests_brexit_checker_request_new_action_consequence", with: "Consequence"
-    fill_in "support_requests_brexit_checker_request_new_action_service_link", with: "https://www.gov.uk/service-link"
-    fill_in "support_requests_brexit_checker_request_new_action_guidance_link", with: "https://www.gov.uk/guidance-link"
-    fill_in "support_requests_brexit_checker_request_new_action_lead_time", with: "Four weeks"
-    fill_in "support_requests_brexit_checker_request_new_action_deadline", with: "End of October"
-    fill_in "support_requests_brexit_checker_request_new_action_comments", with: "Comments"
-    select "High", from: "support_requests_brexit_checker_request_new_action_priority"
+    fill_in "support_requests_transition_checker_request_new_action_users", with: "Audience"
+    fill_in "support_requests_transition_checker_request_new_action_title", with: "Action"
+    fill_in "support_requests_transition_checker_request_new_action_consequence", with: "Consequence"
+    fill_in "support_requests_transition_checker_request_new_action_service_link", with: "https://www.gov.uk/service-link"
+    fill_in "support_requests_transition_checker_request_new_action_guidance_link", with: "https://www.gov.uk/guidance-link"
+    fill_in "support_requests_transition_checker_request_new_action_lead_time", with: "Four weeks"
+    fill_in "support_requests_transition_checker_request_new_action_deadline", with: "End of October"
+    fill_in "support_requests_transition_checker_request_new_action_comments", with: "Comments"
+    select "High", from: "support_requests_transition_checker_request_new_action_priority"
 
     user_submits_the_request_successfully
   end

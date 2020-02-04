@@ -1,6 +1,6 @@
 module Zendesk
   module Ticket
-    class BrexitCheckerTicket < Zendesk::ZendeskTicket
+    class TransitionCheckerTicket < Zendesk::ZendeskTicket
       def subject
         "Get ready for new rules in 2021"
       end

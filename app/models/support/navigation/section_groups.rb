@@ -39,7 +39,7 @@ module Support
                      Support::Requests::ContentChangeRequest,
                      Support::Requests::UnpublishContentRequest,
                      Support::Requests::EuExitBusinessReadinessRequest,
-                     Support::Requests::BrexitCheckerRequest)
+                     Support::Requests::TransitionCheckerRequest)
       end
 
       def technical_support_requests
