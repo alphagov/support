@@ -10,7 +10,7 @@ feature "Transition checker request" do
     zendesk_has_no_user_with_email(user.email)
   end
 
-  scenario "sucessful request for changing a result" do
+  scenario "successful request for changing a result" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Get ready for new rules in 2021",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
@@ -21,7 +21,10 @@ feature "Transition checker request" do
 Action title
 
 [Description of change]
-Action description",
+Action description
+
+[Change link to]
+https://www.example.com",
       },
     )
     user_requests_change_to_result
@@ -29,7 +32,7 @@ Action description",
     expect(request).to have_been_made
   end
 
-  scenario "sucessful request for adding a result" do
+  scenario "successful request for adding a result" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Get ready for new rules in 2021",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
@@ -76,6 +79,7 @@ private
 
     fill_in "support_requests_brexit_checker_request_action_to_change", with: "Action title"
     fill_in "support_requests_brexit_checker_request_description_of_change", with: "Action description"
+    fill_in "support_requests_brexit_checker_request_change_link_to", with: "https://www.example.com"
 
     user_submits_the_request_successfully
   end

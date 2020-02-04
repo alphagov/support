@@ -28,6 +28,13 @@
     hint: "Explain the user need and who the users are, what the problem is for the user, and suggest how we could improve.",
     input_html: { class: "input-md-6", rows: 6, cols: 50 }
   ) %>
+
+  <%= f.input(
+    :change_link_to,
+    label: "Change link to",
+    hint: "If the link to the relevant service or guidance has changed, provide the new link",
+    input_html: { class: "input-md-6" },
+  ) %>
 </div>
 
 <div id="new_action_title">
