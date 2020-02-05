@@ -22,7 +22,7 @@ module Support
             Support::Requests::ContentAdviceRequest,
             Support::Requests::UnpublishContentRequest,
             Support::Requests::EuExitBusinessReadinessRequest,
-            Support::Requests::BrexitCheckerRequest,
+            Support::Requests::TransitionCheckerRequest,
           ]
         end
         can :create, [Support::Requests::AccountsPermissionsAndTrainingRequest, Support::Requests::RemoveUserRequest] if user.has_permission?("user_managers")
