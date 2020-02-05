@@ -12,6 +12,10 @@ feature "User satisfaction survey submissions" do
     Timecop.travel Date.parse("2013-02-28")
   end
 
+  after do
+    Timecop.return
+  end
+
   scenario "submission with comment" do
     stub_support_api_anonymous_feedback(
       { path_prefixes: ["/done/find-court-tribunal"] },
