@@ -38,7 +38,6 @@ module Support
         sections_for(Support::Requests::ContentAdviceRequest,
                      Support::Requests::ContentChangeRequest,
                      Support::Requests::UnpublishContentRequest,
-                     Support::Requests::EuExitBusinessReadinessRequest,
                      Support::Requests::TransitionCheckerRequest)
       end
 
