@@ -21,7 +21,6 @@ module Support
             Support::Requests::ContentChangeRequest,
             Support::Requests::ContentAdviceRequest,
             Support::Requests::UnpublishContentRequest,
-            Support::Requests::EuExitBusinessReadinessRequest,
             Support::Requests::TransitionCheckerRequest,
           ]
         end
