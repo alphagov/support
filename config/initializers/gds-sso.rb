@@ -5,7 +5,7 @@ GDS::SSO.config do |config|
   config.oauth_root_url = Plek.new.external_url_for("signon")
 end
 
-if Rails.env == "development" && ENV["GDS_SSO_STRATEGY"] != "real"
+if Rails.env.development? && ENV["GDS_SSO_STRATEGY"] != "real"
   begin
     GDS::SSO.test_user = User.upsert!(
       "uid" => "dummy-user",
