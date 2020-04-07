@@ -3,7 +3,7 @@ source "https://rubygems.org"
 gem "rails", "6.0.2.2"
 
 gem "bootstrap-kaminari-views", "0.0.5"
-gem "cancancan", "~> 3.0"
+gem "cancancan", "~> 3.1"
 gem "fog-aws", "~> 3.6"
 gem "formtastic-bootstrap", "3.1.1"
 gem "gretel", "3.0.9"
