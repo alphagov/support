@@ -5,6 +5,8 @@ class AnonymousFeedback::ExportRequestsController < AuthorisationController
   def create
     authorize! :read, :anonymous_feedback
 
+    set_path_set_id_param
+
     support_api.create_feedback_export_request(export_request_params)
 
     redirect_to anonymous_feedback_index_path(anonymous_feedback_params),
@@ -26,6 +28,17 @@ class AnonymousFeedback::ExportRequestsController < AuthorisationController
 
 private
 
+  def set_path_set_id_param
+    return if anonymous_feedback_params[:path_set_id].present?
+
+    paths = anonymous_feedback_params[:paths].presence
+    return unless paths
+
+    saved_paths = Support::Requests::Anonymous::Paths.new([paths])
+    saved_paths.save
+    anonymous_feedback_params[:path_set_id] = saved_paths.id
+  end
+
   def export_request_params
     {
       path_prefixes: scope_filters.paths_for_api,
@@ -37,7 +50,7 @@ private
   end
 
   def anonymous_feedback_params
-    @anonymous_feedback_params ||= params.permit(:from, :to, :organisation, :path_set_id).to_h
+    @anonymous_feedback_params ||= params.permit(:from, :to, :organisation, :path_set_id, :paths).to_h
   end
 
   def saved_paths

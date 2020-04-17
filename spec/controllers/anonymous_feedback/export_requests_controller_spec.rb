@@ -50,6 +50,33 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
       end
     end
 
+    context "with a 'paths' parameter" do
+      let(:path_prefixes) { "/foo" }
+      let(:path_set_id)   { "id123" }
+      let!(:stub_request) do
+        stub_support_api_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
+                                                      path_prefixes: [path_prefixes],
+                                                      from: "2015-05-01",
+                                                      to: "2015-06-01",
+                                                      organisation: nil)
+      end
+
+      let(:do_request) { post :create, params: { paths: path_prefixes, from: "2015-05-01", to: "2015-06-01" } }
+
+      it_behaves_like "a successful create request"
+
+      it "redirects back to the list" do
+        allow_any_instance_of(Support::Requests::Anonymous::Paths).to receive(:id).and_return(path_set_id)
+
+        do_request
+
+        expect(response).to redirect_to(anonymous_feedback_index_path(path_set_id: path_set_id,
+                                                                      paths: path_prefixes,
+                                                                      from: "2015-05-01",
+                                                                      to: "2015-06-01"))
+      end
+    end
+
     context "with an organisation" do
       let!(:stub_request) do
         stub_support_api_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
