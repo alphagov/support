@@ -122,7 +122,7 @@ GEM
       actionpack (>= 3.2.13)
     formtastic-bootstrap (3.1.1)
       formtastic (>= 3.0)
-    gds-api-adapters (63.5.1)
+    gds-api-adapters (63.6.0)
       addressable
       link_header
       null_logger
@@ -256,11 +256,11 @@ GEM
     pry-byebug (3.9.0)
       byebug (~> 11.0)
       pry (~> 0.13.0)
-    public_suffix (4.0.3)
+    public_suffix (4.0.4)
     puma (4.3.3)
       nio4r (~> 2.0)
     rack (2.2.2)
-    rack-cache (1.11.0)
+    rack-cache (1.11.1)
       rack (>= 0.4)
     rack-protection (2.0.8.1)
       rack
@@ -417,7 +417,7 @@ GEM
       execjs (>= 0.3.0, < 3)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.6)
+    unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
     unicorn (5.5.3)
       kgio (~> 2.6)
@@ -461,7 +461,7 @@ DEPENDENCIES
   factory_bot_rails
   fog-aws (~> 3.6)
   formtastic-bootstrap (= 3.1.1)
-  gds-api-adapters (~> 63.5)
+  gds-api-adapters (~> 63.6)
   gds-sso (~> 14.3)
   gds_zendesk (= 3.0.0)
   govuk_admin_template (= 6.7.0)
