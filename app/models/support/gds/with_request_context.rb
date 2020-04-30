@@ -6,7 +6,7 @@ module Support
       def self.included(base)
         base.validates_presence_of :request_context
         base.validates :request_context, inclusion: {
-          in: %w(mainstream inside_government detailed_guidance),
+          in: %w[mainstream inside_government detailed_guidance],
           message: "%{value} is not a valid option",
         }
       end
@@ -16,7 +16,7 @@ module Support
       end
 
       def inside_government_related?
-        %w{inside_government detailed_guidance}.include?(request_context)
+        %w[inside_government detailed_guidance].include?(request_context)
       end
 
       def request_context_options

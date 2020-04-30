@@ -47,11 +47,11 @@ module Support
       def formatted_user_needs
         needs_list = []
         needs_list << whitehall_account_options.key(user_needs)
-        needs_list << other_permissions_options.key("mainstream_changes") if self.mainstream_changes == "1"
-        needs_list << other_permissions_options.key("maslow") if self.maslow == "1"
-        needs_list << other_permissions_options.key("become_organisation_admin") if self.become_organisation_admin == "1"
-        needs_list << other_permissions_options.key("become_super_organisation_admin") if self.become_super_organisation_admin == "1"
-        needs_list << "Other: #{self.other_details}" if self.other_details.present?
+        needs_list << other_permissions_options.key("mainstream_changes") if mainstream_changes == "1"
+        needs_list << other_permissions_options.key("maslow") if maslow == "1"
+        needs_list << other_permissions_options.key("become_organisation_admin") if become_organisation_admin == "1"
+        needs_list << other_permissions_options.key("become_super_organisation_admin") if become_super_organisation_admin == "1"
+        needs_list << "Other: #{other_details}" if other_details.present?
         needs_list.reject(&:blank?).compact.join("\n")
       end
 

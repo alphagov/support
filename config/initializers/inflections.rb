@@ -10,7 +10,7 @@
 #   inflect.uncountable %w( fish sheep )
 # end
 ActiveSupport::Inflector.inflections(:en) do |inflect|
-  inflect.uncountable %w(feedback)
+  inflect.uncountable %w[feedback]
   inflect.irregular "feedback", "feedback"
 end
 

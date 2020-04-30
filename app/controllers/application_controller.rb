@@ -18,7 +18,7 @@ protected
   end
 
   def authenticate_support_user!
-    Timeout::timeout(default_timeout_in_seconds) {
+    Timeout.timeout(default_timeout_in_seconds) {
       GovukStatsd.client.time("timings.authentication") { authenticate_user! }
     }
   end

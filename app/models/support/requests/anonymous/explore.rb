@@ -58,17 +58,15 @@ module Support
 
         def urls_are_well_formed
           parsed_urls.each do |path_or_url|
-            begin
-              uri = URI.parse(path_or_url)
-              valid = !uri.path.nil?
-              if list_of_urls.present?
-                errors.add(:list_of_urls, "#{path_or_url} is not valid. Must contain only valid URLs") unless valid
-              else
-                errors.add(:uploaded_list, "#{path_or_url} is not valid. Must contain only valid URLs") unless valid
-              end
-            rescue URI::InvalidURIError
-              errors.add(:base, "#{path_or_url} is not valid. Must contain only valid URLs")
+            uri = URI.parse(path_or_url)
+            valid = !uri.path.nil?
+            if list_of_urls.present?
+              errors.add(:list_of_urls, "#{path_or_url} is not valid. Must contain only valid URLs") unless valid
+            else
+              errors.add(:uploaded_list, "#{path_or_url} is not valid. Must contain only valid URLs") unless valid
             end
+          rescue URI::InvalidURIError
+            errors.add(:base, "#{path_or_url} is not valid. Must contain only valid URLs")
           end
         end
       end

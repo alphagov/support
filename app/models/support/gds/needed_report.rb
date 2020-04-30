@@ -17,27 +17,27 @@ module Support
                 :frequency, presence: true
 
       validates :frequency, inclusion: {
-          in: %w(one-off weekly monthly),
+          in: %w[one-off weekly monthly],
           message: "%{value} is not a valid option",
         }
 
       validates :format, inclusion: {
-          in: %w(pdf csv),
+          in: %w[pdf csv],
           message: "%{value} is not a valid option",
         }, allow_blank: true
 
       def frequency_options
         [
           %w[One-off one-off],
-          %w(Weekly weekly),
-          %w(Monthly monthly),
+          %w[Weekly weekly],
+          %w[Monthly monthly],
         ]
       end
 
       def format_options
         [
-          %w(CSV csv),
-          %w(PDF pdf),
+          %w[CSV csv],
+          %w[PDF pdf],
         ]
       end
 

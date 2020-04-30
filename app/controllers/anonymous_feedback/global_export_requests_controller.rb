@@ -12,10 +12,10 @@ class AnonymousFeedback::GlobalExportRequestsController < AuthorisationControlle
 private
 
   def export_request_params
-    params.
-      permit(:from_date, :to_date).
-      to_h.
-      merge(
+    params
+      .permit(:from_date, :to_date)
+      .to_h
+      .merge(
         notification_email: current_user.email,
         exclude_spam: exclude_spam?,
       )

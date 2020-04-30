@@ -59,19 +59,19 @@ module AppActions
   end
 
   def organisation_summary_results
-    column_headings = find("table tr.table-header").all("th").
-      map { |cell| cell.text.strip }
-    summary_rows = find("table").all("tr.organisation-summary").
-      map { |row| row.all("td").map { |cell| cell.text.strip } }
+    column_headings = find("table tr.table-header").all("th")
+      .map { |cell| cell.text.strip }
+    summary_rows = find("table").all("tr.organisation-summary")
+      .map { |row| row.all("td").map { |cell| cell.text.strip } }
 
     summary_rows.map { |row| Hash[column_headings.zip(row)] }
   end
 
   def doctype_summary_results
-    column_headings = find("table tr.table-header").all("th").
-      map { |cell| cell.text.strip }
-    summary_rows = find("table").all("tr.doctype-summary").
-      map { |row| row.all("td").map { |cell| cell.text.strip } }
+    column_headings = find("table tr.table-header").all("th")
+      .map { |cell| cell.text.strip }
+    summary_rows = find("table").all("tr.doctype-summary")
+      .map { |row| row.all("td").map { |cell| cell.text.strip } }
 
     summary_rows.map { |row| Hash[column_headings.zip(row)] }
   end

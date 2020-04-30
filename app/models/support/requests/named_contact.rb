@@ -9,12 +9,10 @@ module Support
       validates :javascript_enabled, inclusion: { in: [true, false] }
 
       def govuk_link_path
-        begin
-          uri = URI.parse(link)
-          uri.host == "www.gov.uk" ? uri.path : nil
-        rescue URI::InvalidURIError
-          nil
-        end
+        uri = URI.parse(link)
+        uri.host == "www.gov.uk" ? uri.path : nil
+      rescue URI::InvalidURIError
+        nil
       end
     end
   end

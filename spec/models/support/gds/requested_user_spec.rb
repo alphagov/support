@@ -26,7 +26,7 @@ module Support
         end
 
         context "when one or more options were provided" do
-          subject { described_class.new(training: %w(using_publisher)) }
+          subject { described_class.new(training: %w[using_publisher]) }
 
           it "does not require 'other' to be specified" do
             subject.validate

@@ -87,7 +87,7 @@ describe AnonymousFeedbackController, type: :controller do
         end
 
         context "with saved paths" do
-          let(:saved_paths) { Support::Requests::Anonymous::Paths.new(%w(/tax-disc)) }
+          let(:saved_paths) { Support::Requests::Anonymous::Paths.new(%w[/tax-disc]) }
           before do
             saved_paths.save
             get :index, params: { paths: saved_paths.id, from: "13/10/2014", to: "25th November 2014" }

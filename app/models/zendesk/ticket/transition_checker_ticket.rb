@@ -18,7 +18,7 @@ module Zendesk
       end
 
       def fields
-        %w(action_to_change
+        %w[action_to_change
            description_of_change
            change_link_to
            new_action_users
@@ -29,7 +29,7 @@ module Zendesk
            new_action_lead_time
            new_action_deadline
            new_action_comments
-           new_action_priority)
+           new_action_priority]
       end
     end
   end

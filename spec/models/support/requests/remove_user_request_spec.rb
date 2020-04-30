@@ -13,8 +13,8 @@ module Support
       it { should allow_value("was fired").for(:reason_for_removal) }
 
       it "allows time constraints" do
-        request = RemoveUserRequest.new(time_constraint: double("time constraint", valid?: true)).
-          tap(&:valid?)
+        request = RemoveUserRequest.new(time_constraint: double("time constraint", valid?: true))
+          .tap(&:valid?)
 
         expect(request.time_constraint).to_not be_nil
         expect(request).to have(0).errors_on(:time_constraint)

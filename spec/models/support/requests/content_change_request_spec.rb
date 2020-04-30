@@ -14,8 +14,8 @@ module Support
 
       it "allows time constraints" do
         request =
-          ContentChangeRequest.new(time_constraint: double("time constraint", valid?: true)).
-          tap(&:valid?)
+          ContentChangeRequest.new(time_constraint: double("time constraint", valid?: true))
+          .tap(&:valid?)
 
         expect(request).to have(0).errors_on(:time_constraint)
       end

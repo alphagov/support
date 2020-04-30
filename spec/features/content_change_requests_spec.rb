@@ -57,7 +57,7 @@ Out of date XX YY",
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Content change request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => %w{govt_form content_amend},
+      "tags" => %w[govt_form content_amend],
     )
 
     user_makes_a_content_change_request(

@@ -48,7 +48,11 @@ describe VolatileLock do
       expect(redis).to receive(:del).with("foo")
       allow_any_instance_of(VolatileLock).to receive(:redis).and_return(redis)
 
-      volatile_lock("foo").obtained? rescue VolatileLock::FailedToSetExpiration
+      begin
+        volatile_lock("foo").obtained?
+      rescue StandardError
+        VolatileLock::FailedToSetExpiration
+      end
     end
   end
 

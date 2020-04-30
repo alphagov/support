@@ -25,13 +25,13 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
     context "with a 'path_set_id' parameter" do
       let!(:stub_request) do
         stub_support_api_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
-                                                      path_prefixes: ["/foo"],
-                                                      from: "2015-05-01",
-                                                      to: "2015-06-01",
-                                                      organisation: nil)
+                                                          path_prefixes: ["/foo"],
+                                                          from: "2015-05-01",
+                                                          to: "2015-06-01",
+                                                          organisation: nil)
       end
 
-      let(:saved_paths) { Support::Requests::Anonymous::Paths.new(%w(/foo)) }
+      let(:saved_paths) { Support::Requests::Anonymous::Paths.new(%w[/foo]) }
 
       let(:do_request) { post :create, params: { path_set_id: saved_paths.id, from: "2015-05-01", to: "2015-06-01" } }
 
@@ -55,10 +55,10 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
       let(:path_set_id)   { "id123" }
       let!(:stub_request) do
         stub_support_api_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
-                                                      path_prefixes: [path_prefixes],
-                                                      from: "2015-05-01",
-                                                      to: "2015-06-01",
-                                                      organisation: nil)
+                                                          path_prefixes: [path_prefixes],
+                                                          from: "2015-05-01",
+                                                          to: "2015-06-01",
+                                                          organisation: nil)
       end
 
       let(:do_request) { post :create, params: { paths: path_prefixes, from: "2015-05-01", to: "2015-06-01" } }
@@ -80,10 +80,10 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
     context "with an organisation" do
       let!(:stub_request) do
         stub_support_api_feedback_export_request_creation(notification_email: "foo.bar@example.gov.uk",
-                                                      path_prefixes: nil,
-                                                      from: "2015-05-01",
-                                                      to: "2015-06-01",
-                                                      organisation: "hm-revenue-customs")
+                                                          path_prefixes: nil,
+                                                          from: "2015-05-01",
+                                                          to: "2015-06-01",
+                                                          organisation: "hm-revenue-customs")
       end
 
       let(:do_request) { post :create, params: { organisation: "hm-revenue-customs", from: "2015-05-01", to: "2015-06-01" } }
