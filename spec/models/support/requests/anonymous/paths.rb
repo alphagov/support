@@ -1,5 +1,5 @@
 RSpec.describe Support::Requests::Anonymous::Paths do
-  let(:paths) { %w(/test-1 /test-2) }
+  let(:paths) { %w[/test-1 /test-2] }
   let(:id) { nil }
 
   subject { described_class.new(paths, id) }

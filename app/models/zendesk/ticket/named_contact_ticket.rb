@@ -7,7 +7,7 @@ module Zendesk
       end
 
       def tags
-        %w(public_form named_contact)
+        %w[public_form named_contact]
       end
 
       def requester_details

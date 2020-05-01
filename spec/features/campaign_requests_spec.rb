@@ -89,7 +89,7 @@ Some comment",
       cost_of_campaign: "£1200 and tuppence",
       ga_contact_email: "ga.contact@example.com",
       additional_comments: "Some comment",
-      )
+    )
 
     expect(request).to have_been_made
   end

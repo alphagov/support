@@ -38,7 +38,7 @@ module Support
       end
 
       def another_page_involved?
-        %w(duplicate_publication superseded_publication).include? reason_for_unpublishing
+        %w[duplicate_publication superseded_publication].include? reason_for_unpublishing
       end
     end
   end

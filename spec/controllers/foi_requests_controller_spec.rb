@@ -9,7 +9,7 @@ describe FoiRequestsController, type: :controller do
     {
       "foi_request" => {
         "requester" => { "name" => "A", "email" => "ab@c.com" },
-        "details"   => "details",
+        "details" => "details",
       },
     }
   end

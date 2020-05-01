@@ -39,10 +39,8 @@ protected
   end
 
   def create_or_update_user_in_zendesk(requested_user)
-    begin
-      GDS_ZENDESK_CLIENT.users.create_or_update_user(requested_user)
-    rescue ZendeskAPI::Error::ClientError => e
-      exception_notification_for(e)
-    end
+    GDS_ZENDESK_CLIENT.users.create_or_update_user(requested_user)
+  rescue ZendeskAPI::Error::ClientError => e
+    exception_notification_for(e)
   end
 end

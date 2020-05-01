@@ -14,7 +14,7 @@ feature "Transition checker request" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Get ready for new rules in 2021",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => %w(govt_form transition_checker),
+      "tags" => %w[govt_form transition_checker],
       "comment" => {
         "body" =>
 "[Action to change]
@@ -36,7 +36,7 @@ https://www.example.com",
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Get ready for new rules in 2021",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => %w(govt_form transition_checker),
+      "tags" => %w[govt_form transition_checker],
       "comment" => {
         "body" =>
 "[New action users]

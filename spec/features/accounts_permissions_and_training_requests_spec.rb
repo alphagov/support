@@ -19,7 +19,7 @@ feature "Accounts, permissions and training requests" do
       ticket_request = expect_zendesk_to_receive_ticket(
         "subject" => "Create a new user account",
         "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-        "tags" => %w{govt_form create_new_user inside_government},
+        "tags" => %w[govt_form create_new_user inside_government],
         "comment" => {
           "body" =>
 "[Action]
@@ -82,7 +82,7 @@ XXXX",
       ticket_request = expect_zendesk_to_receive_ticket(
         "subject" => "Change an existing user's account",
         "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-        "tags" => %w{govt_form change_user inside_government},
+        "tags" => %w[govt_form change_user inside_government],
         "comment" => {
           "body" =>
 "[Action]
@@ -130,7 +130,7 @@ XXXX",
       ticket_request = expect_zendesk_to_receive_ticket(
         "subject" => "Create a new user account",
         "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-        "tags" => %w{govt_form create_new_user},
+        "tags" => %w[govt_form create_new_user],
         "comment" => {
           "body" =>
 "[Action]
@@ -193,7 +193,7 @@ XXXX",
       ticket_request = expect_zendesk_to_receive_ticket(
         "subject" => "Change an existing user's account",
         "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-        "tags" => %w{govt_form change_user},
+        "tags" => %w[govt_form change_user],
         "comment" => {
           "body" =>
 "[Action]

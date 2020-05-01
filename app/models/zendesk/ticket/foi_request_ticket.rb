@@ -6,7 +6,7 @@ module Zendesk
       end
 
       def tags
-        %w(public_form foi_request)
+        %w[public_form foi_request]
       end
 
     protected

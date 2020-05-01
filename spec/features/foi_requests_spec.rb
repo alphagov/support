@@ -34,7 +34,7 @@ xyz",
       "/foi_requests",
       "foi_request" => {
         "requester" => { "name" => user.name, "email" => user.email },
-        "details"   => "xyz",
+        "details" => "xyz",
       },
     )
 

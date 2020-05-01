@@ -4,7 +4,7 @@ class AnonymousFeedback::DocumentTypesController < AuthorisationController
   def show
     authorize! :read, :anonymous_feedback
 
-    @ordering = if %w(path last_7_days last_30_days last_90_days).include? params[:ordering]
+    @ordering = if %w[path last_7_days last_30_days last_90_days].include? params[:ordering]
                   params[:ordering]
                 else
                   "last_7_days"
