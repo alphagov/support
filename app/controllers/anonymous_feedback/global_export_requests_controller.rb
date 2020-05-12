@@ -29,6 +29,6 @@ private
   end
 
   def exclude_spam?
-    !!params.permit(:exclude_spam)
+    params[:exclude_spam].present?
   end
 end

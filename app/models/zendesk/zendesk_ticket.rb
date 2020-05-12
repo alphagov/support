@@ -18,13 +18,13 @@ module Zendesk
     end
 
     def not_before_date
-      if value?(:time_constraint) && has_value?(:not_before_date, @request.time_constraint)
+      if value?(:time_constraint) && value?(:not_before_date, @request.time_constraint)
         @request.time_constraint.not_before_date
       end
     end
 
     def needed_by_date
-      if value?(:time_constraint) && has_value?(:needed_by_date, @request.time_constraint)
+      if value?(:time_constraint) && value?(:needed_by_date, @request.time_constraint)
         @request.time_constraint.needed_by_date
       end
     end
@@ -78,7 +78,7 @@ module Zendesk
       ]
     end
 
-    def has_value?(param, target = nil)
+    def value?(param, target = nil)
       target ||= @request
       target.respond_to?(param) && target.send(param).present?
     end
