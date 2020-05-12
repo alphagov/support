@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe AnonymousFeedbackPresenter, type: :presenter do
   context "when api_response has no `results`" do
-    let(:api_response) {
+    let(:api_response) do
       double(
         results: [],
         current_page: 1,
@@ -10,7 +10,7 @@ describe AnonymousFeedbackPresenter, type: :presenter do
         page_size: 50,
         total_count: 11,
       )
-    }
+    end
     subject(:presenter) { AnonymousFeedbackPresenter.new(api_response) }
 
     it "should be empty" do
@@ -31,7 +31,7 @@ describe AnonymousFeedbackPresenter, type: :presenter do
   end
 
   context "when api_response has `results`" do
-    let(:api_response) {
+    let(:api_response) do
       double(
         current_page: 2,
         pages: 9,
@@ -40,7 +40,7 @@ describe AnonymousFeedbackPresenter, type: :presenter do
         total_count: 444,
         results_limited: true,
       )
-    }
+    end
     subject(:presenter) { AnonymousFeedbackPresenter.new(api_response) }
 
     it "should match api_response's `results`" do

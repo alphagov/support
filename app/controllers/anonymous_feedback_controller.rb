@@ -16,7 +16,7 @@ class AnonymousFeedbackController < RequestsController
     end
 
     respond_to do |format|
-      format.html {
+      format.html do
         @feedback = AnonymousFeedbackPresenter.new(api_response)
         @dates = present_date_filters(api_response)
         # TODO: I guess we should determine this filtering information from the
@@ -25,7 +25,7 @@ class AnonymousFeedbackController < RequestsController
         @filtered_by = scope_filters
         @organisations_list = parse_organisations(support_api.organisations_list)
         @document_type_list = parse_doctypes(support_api.document_type_list)
-      }
+      end
       format.json { render json: api_response.results }
     end
   end
@@ -125,9 +125,9 @@ private
   end
 
   def has_required_api_params?
-    at_least_one_required_api_params.any? { |required_param|
+    at_least_one_required_api_params.any? do |required_param|
       api_params[required_param].present?
-    }
+    end
   end
 
   def fetch_anonymous_feedback_from_support_api

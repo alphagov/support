@@ -18,13 +18,13 @@ module Zendesk
     end
 
     def not_before_date
-      if has_value?(:time_constraint) && has_value?(:not_before_date, @request.time_constraint)
+      if value?(:time_constraint) && has_value?(:not_before_date, @request.time_constraint)
         @request.time_constraint.not_before_date
       end
     end
 
     def needed_by_date
-      if has_value?(:time_constraint) && has_value?(:needed_by_date, @request.time_constraint)
+      if value?(:time_constraint) && has_value?(:needed_by_date, @request.time_constraint)
         @request.time_constraint.needed_by_date
       end
     end
@@ -46,7 +46,7 @@ module Zendesk
     end
 
     def base_comment_snippets
-      if has_value?(:time_constraint)
+      if value?(:time_constraint)
         [
           Zendesk::LabelledSnippet.new(on: self, field: :needed_by_date, label: "Needed by date"),
           Zendesk::LabelledSnippet.new(on: self, field: :not_before_date, label: "Not before date"),
