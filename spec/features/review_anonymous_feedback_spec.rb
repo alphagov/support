@@ -5,7 +5,7 @@ feature "Reviewing Anonymous Feedback" do
 
   let(:user) { create :user_who_can_access_everything }
 
-  let(:unreviewed_problem_report_1) {
+  let(:unreviewed_problem_report_1) do
     {
       "id" => 1,
       "type" => "problem-report",
@@ -19,9 +19,9 @@ feature "Reviewing Anonymous Feedback" do
       "reviewed" => false,
       "created_at" => "2015-01-01T16:00:00.000Z",
     }
-  }
+  end
 
-  let(:unreviewed_problem_report_2) {
+  let(:unreviewed_problem_report_2) do
     {
       "id" => 2,
       "type" => "problem-report",
@@ -35,9 +35,9 @@ feature "Reviewing Anonymous Feedback" do
       "reviewed" => false,
       "created_at" => "2015-01-02T16:00:00.000Z",
     }
-  }
+  end
 
-  let(:default_problem_report_list) {
+  let(:default_problem_report_list) do
     {
       "total_count" => 1,
       "current_page" => 1,
@@ -50,7 +50,7 @@ feature "Reviewing Anonymous Feedback" do
         unreviewed_problem_report_2,
       ],
     }
-  }
+  end
 
   before do
     stub_support_api_organisations_list
@@ -58,7 +58,7 @@ feature "Reviewing Anonymous Feedback" do
   end
 
   context "Viewing the table of feedback" do
-    let(:reviewed_problem_report_3) {
+    let(:reviewed_problem_report_3) do
       {
         "id" => 3,
         "type" => "problem-report",
@@ -72,7 +72,7 @@ feature "Reviewing Anonymous Feedback" do
         "reviewed" => true,
         "created_at" => "2015-01-03T16:00:00.000Z",
       }
-    }
+    end
 
     context "with default filtering" do
       before do
@@ -102,7 +102,7 @@ feature "Reviewing Anonymous Feedback" do
     end
 
     context "when filtered to include reviewed feedback" do
-      let(:problem_report_list) {
+      let(:problem_report_list) do
         {
           "total_count" => 1,
           "current_page" => 1,
@@ -116,7 +116,7 @@ feature "Reviewing Anonymous Feedback" do
             reviewed_problem_report_3,
           ],
         }
-      }
+      end
 
       before do
         stub_support_api_problem_reports("", default_problem_report_list)
@@ -167,7 +167,7 @@ feature "Reviewing Anonymous Feedback" do
     end
 
     context "when date filters are applied" do
-      let(:problem_report_list) {
+      let(:problem_report_list) do
         {
           "total_count" => 1,
           "current_page" => 1,
@@ -179,7 +179,7 @@ feature "Reviewing Anonymous Feedback" do
             unreviewed_problem_report_1,
           ],
         }
-      }
+      end
 
       before do
         stub_support_api_problem_reports("", problem_report_list)
@@ -208,7 +208,7 @@ feature "Reviewing Anonymous Feedback" do
     end
 
     context "when there are multiple pages of results" do
-      let(:first_problem_report_list_page) {
+      let(:first_problem_report_list_page) do
         {
           "total_count" => 1,
           "current_page" => 1,
@@ -220,9 +220,9 @@ feature "Reviewing Anonymous Feedback" do
             unreviewed_problem_report_1,
           ],
         }
-      }
+      end
 
-      let(:second_problem_report_list_page) {
+      let(:second_problem_report_list_page) do
         {
           "total_count" => 1,
           "current_page" => 2,
@@ -234,7 +234,7 @@ feature "Reviewing Anonymous Feedback" do
             unreviewed_problem_report_2,
           ],
         }
-      }
+      end
 
       before do
         stub_support_api_problem_reports("", first_problem_report_list_page)
@@ -269,7 +269,7 @@ feature "Reviewing Anonymous Feedback" do
   end
 
   context "when marking feedback items as spam" do
-    let(:unreviewed_problem_report_3) {
+    let(:unreviewed_problem_report_3) do
       {
         "id" => 3,
         "type" => "problem-report",
@@ -283,9 +283,9 @@ feature "Reviewing Anonymous Feedback" do
         "reviewed" => true,
         "created_at" => "2015-01-03T16:00:00.000Z",
       }
-    }
+    end
 
-    let(:first_unreviewed_problem_report_list_page) {
+    let(:first_unreviewed_problem_report_list_page) do
       {
         "total_count" => 3,
         "current_page" => 1,
@@ -298,9 +298,9 @@ feature "Reviewing Anonymous Feedback" do
           unreviewed_problem_report_2,
         ],
       }
-    }
+    end
 
-    let(:second_unreviewed_problem_report_list_page) {
+    let(:second_unreviewed_problem_report_list_page) do
       {
         "total_count" => 3,
         "current_page" => 2,
@@ -312,7 +312,7 @@ feature "Reviewing Anonymous Feedback" do
           unreviewed_problem_report_3,
         ],
       }
-    }
+    end
 
     let(:params) { { "1" => "true", "2" => "false" } }
 
@@ -354,7 +354,7 @@ feature "Reviewing Anonymous Feedback" do
   end
 
   context "when filters are applied at the same time as reviewing" do
-    let(:problem_report_list) {
+    let(:problem_report_list) do
       {
         "total_count" => 1,
         "current_page" => 1,
@@ -366,7 +366,7 @@ feature "Reviewing Anonymous Feedback" do
           unreviewed_problem_report_1,
         ],
       }
-    }
+    end
 
     before do
       stub_support_api_problem_reports("", problem_report_list)

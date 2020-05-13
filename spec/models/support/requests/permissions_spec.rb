@@ -3,15 +3,15 @@ require "rails_helper"
 module Support
   module Requests
     shared_examples_for "a role" do
-      let(:requests_anyone_can_make) {
+      let(:requests_anyone_can_make) do
         [
           GeneralRequest,
           TechnicalFaultReport,
           AnalyticsRequest,
         ]
-      }
+      end
 
-      let(:all_request_types) {
+      let(:all_request_types) do
         requests_anyone_can_make + [
           :anonymous_feedback,
           UnpublishContentRequest,
@@ -25,7 +25,7 @@ module Support
           ChangesToPublishingAppsRequest,
           RemoveUserRequest,
         ]
-      }
+      end
 
       let(:allowed_request_types) { requests_anyone_can_make + requests_specific_to_role }
       let(:disallowed_request_types) { all_request_types - allowed_request_types }
@@ -76,7 +76,7 @@ module Support
 
       context "for single points of contact" do
         subject { create(:single_point_of_contact) }
-        let(:requests_specific_to_role) {
+        let(:requests_specific_to_role) do
           [
             :anonymous_feedback,
             UnpublishContentRequest,
@@ -91,7 +91,7 @@ module Support
             ChangesToPublishingAppsRequest,
             RemoveUserRequest,
           ]
-        }
+        end
         it_behaves_like "a role"
       end
     end

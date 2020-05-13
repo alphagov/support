@@ -2,12 +2,12 @@ require "rails_helper"
 
 describe DocumentTypeSummaryPresenter, type: :presenter do
   context "when api_response has no `anonymous_feedback_counts`" do
-    let(:api_response) {
+    let(:api_response) do
       {
         "document_type" => "smart_answer",
         "anonymous_feedback_counts" => [],
       }
-    }
+    end
     subject(:presenter) { DocumentTypeSummaryPresenter.new(api_response) }
 
     it "should be empty" do
@@ -27,7 +27,7 @@ describe DocumentTypeSummaryPresenter, type: :presenter do
     let(:path_a) { "/path-a" }
     let(:path_b) { "/path-b" }
     let(:path_c) { "/path-c" }
-    let(:api_response) {
+    let(:api_response) do
       {
         "document_type" => "smart_answer",
         "anonymous_feedback_counts" => [
@@ -36,7 +36,7 @@ describe DocumentTypeSummaryPresenter, type: :presenter do
           { "path" => path_b },
         ],
       }
-    }
+    end
     subject(:presenter) { DocumentTypeSummaryPresenter.new(api_response) }
 
     it "should match api_response's `anonymous_feedback_counts`" do

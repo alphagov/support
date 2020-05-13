@@ -4,7 +4,7 @@ describe FeedexHelper, type: :helper do
   include FeedexHelper
 
   context "#total_responses_header" do
-    let(:header) {
+    let(:header) do
       total_responses_header(
         total_count: total_count,
         from: from,
@@ -12,7 +12,7 @@ describe FeedexHelper, type: :helper do
         results_limited: results_limited,
         scopes: ScopeFiltersPresenter.new(paths: paths),
       )
-    }
+    end
 
     let(:results_limited) { false }
     let(:paths) { ["/vat-rates"] }

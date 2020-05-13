@@ -35,7 +35,7 @@ private
 
   def api_params
     {
-      include_reviewed: !!index_params[:include_reviewed],
+      include_reviewed: index_params[:include_reviewed].present?,
       page: index_params[:page],
       from_date: index_params[:from_date],
       to_date: index_params[:to_date],

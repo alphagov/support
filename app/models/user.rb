@@ -53,7 +53,7 @@ class User < OpenStruct
   end
 
   class << self
-    alias :create! :upsert!
+    alias_method :create!, :upsert!
   end
 
   def disabled?
