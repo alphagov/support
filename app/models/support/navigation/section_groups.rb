@@ -53,6 +53,7 @@ module Support
       def user_access_requests
         sections_for(
           Support::Requests::AccountsPermissionsAndTrainingRequest,
+          Support::Requests::WhitehallAccountsPermissionsAndTrainingRequest,
           Support::Requests::RemoveUserRequest,
         )
       end
