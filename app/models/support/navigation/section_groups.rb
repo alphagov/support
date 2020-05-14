@@ -35,40 +35,54 @@ module Support
       end
 
       def content_requests
-        sections_for(Support::Requests::ContentAdviceRequest,
-                     Support::Requests::ContentChangeRequest,
-                     Support::Requests::UnpublishContentRequest,
-                     Support::Requests::TransitionCheckerRequest)
+        sections_for(
+          Support::Requests::ContentAdviceRequest,
+          Support::Requests::ContentChangeRequest,
+          Support::Requests::UnpublishContentRequest,
+          Support::Requests::TransitionCheckerRequest,
+        )
       end
 
       def technical_support_requests
-        sections_for(Support::Requests::ChangesToPublishingAppsRequest,
-                     Support::Requests::TechnicalFaultReport)
+        sections_for(
+          Support::Requests::ChangesToPublishingAppsRequest,
+          Support::Requests::TechnicalFaultReport,
+        )
       end
 
       def user_access_requests
-        sections_for(Support::Requests::AccountsPermissionsAndTrainingRequest,
-                     Support::Requests::RemoveUserRequest)
+        sections_for(
+          Support::Requests::AccountsPermissionsAndTrainingRequest,
+          Support::Requests::RemoveUserRequest,
+        )
       end
 
       def campaign_requests
-        sections_for(Support::Requests::CampaignRequest,
-                     Support::Requests::LiveCampaignRequest)
+        sections_for(
+          Support::Requests::CampaignRequest,
+          Support::Requests::LiveCampaignRequest,
+        )
       end
 
       def feedback_requests
-        sections_for(Support::Requests::ContentPublisherFeedbackRequest,
-                     Support::Requests::ContentDataFeedback)
+        sections_for(
+          Support::Requests::ContentPublisherFeedbackRequest,
+          Support::Requests::ContentDataFeedback,
+        )
       end
 
       def taxonomy_requests
-        sections_for(Support::Requests::TaxonomyNewTopicRequest,
-                     Support::Requests::TaxonomyChangeTopicRequest)
+        sections_for(
+          Support::Requests::TaxonomyNewTopicRequest,
+          Support::Requests::TaxonomyChangeTopicRequest,
+        )
       end
 
       def other_requests
-        sections_for(Support::Requests::AnalyticsRequest,
-                     Support::Requests::GeneralRequest)
+        sections_for(
+          Support::Requests::AnalyticsRequest,
+          Support::Requests::GeneralRequest,
+        )
       end
     end
   end

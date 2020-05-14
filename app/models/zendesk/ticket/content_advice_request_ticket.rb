@@ -20,8 +20,10 @@ module Zendesk
       def comment_snippets
         [
           request_label(field: :details),
-          request_label(field: :urls,
-                        label: "Relevant URLs"),
+          request_label(
+            field: :urls,
+            label: "Relevant URLs",
+          ),
           request_label(field: :contact_number),
         ]
       end

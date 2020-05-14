@@ -16,13 +16,14 @@ module Support
         can :create, :all if user.has_permission?("single_points_of_contact")
         can :create, [Support::Requests::CampaignRequest, Support::Requests::LiveCampaignRequest] if user.has_permission?("campaign_requesters")
         if user.has_permission?("content_requesters")
-          can :create, [
-            Support::Requests::ChangesToPublishingAppsRequest,
-            Support::Requests::ContentChangeRequest,
-            Support::Requests::ContentAdviceRequest,
-            Support::Requests::UnpublishContentRequest,
-            Support::Requests::TransitionCheckerRequest,
-          ]
+          can :create,
+              [
+                Support::Requests::ChangesToPublishingAppsRequest,
+                Support::Requests::ContentChangeRequest,
+                Support::Requests::ContentAdviceRequest,
+                Support::Requests::UnpublishContentRequest,
+                Support::Requests::TransitionCheckerRequest,
+              ]
         end
         can :create, [Support::Requests::AccountsPermissionsAndTrainingRequest, Support::Requests::RemoveUserRequest] if user.has_permission?("user_managers")
         can :create, [Support::Requests::FoiRequest, Support::Requests::NamedContact] if user.has_permission?("api_users")

@@ -15,10 +15,13 @@ protected
 
   def technical_fault_report_params
     params.require(:support_requests_technical_fault_report).permit(
-      :fault_context, :fault_specifics, :actions_leading_to_problem,
-      :what_happened, :what_should_have_happened,
+      :fault_context,
+      :fault_specifics,
+      :actions_leading_to_problem,
+      :what_happened,
+      :what_should_have_happened,
       requester_attributes: %i[email name collaborator_emails],
-      fault_context_attributes: %i[name id inside_government_related]
+      fault_context_attributes: %i[name id inside_government_related],
     ).to_h
   end
 end

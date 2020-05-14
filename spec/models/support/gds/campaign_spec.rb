@@ -8,16 +8,23 @@ module Support
       end
 
       subject do
-        Campaign.new(type_of_site: "Campaign platform", signed_campaign: "Test Signer",
-                     has_read_guidance_confirmation: "1",
-                     has_read_oasis_guidance_confirmation: "1",
-                     start_date: as_str(Time.zone.today), end_date: as_str(Date.tomorrow),
-                     development_start_date: as_str(Time.zone.today),
-                     performance_review_contact_email: "test@digital.cabinet-office.gov.uk",
-                     government_theme: "Test theme", description: "Test Description",
-                     call_to_action: "Test Call to Action", proposed_url: "example.campaign.gov.uk",
-                     site_metadescription: "tag1, tag2", cost_of_campaign: 1200,
-                     ga_contact_email: "ga_test@digital.cabinet-office.gov.uk")
+        Campaign.new(
+          type_of_site: "Campaign platform",
+          signed_campaign: "Test Signer",
+          has_read_guidance_confirmation: "1",
+          has_read_oasis_guidance_confirmation: "1",
+          start_date: as_str(Time.zone.today),
+          end_date: as_str(Date.tomorrow),
+          development_start_date: as_str(Time.zone.today),
+          performance_review_contact_email: "test@digital.cabinet-office.gov.uk",
+          government_theme: "Test theme",
+          description: "Test Description",
+          call_to_action: "Test Call to Action",
+          proposed_url: "example.campaign.gov.uk",
+          site_metadescription: "tag1, tag2",
+          cost_of_campaign: 1200,
+          ga_contact_email: "ga_test@digital.cabinet-office.gov.uk",
+        )
       end
 
       it { should validate_presence_of(:type_of_site) }

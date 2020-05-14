@@ -1,9 +1,14 @@
 module Support
   module Requests
     class AccountsPermissionsAndTrainingRequest < Request
-      attr_accessor :action, :requested_user, :additional_comments,
-                    :user_needs, :mainstream_changes, :maslow,
-                    :other_details, :become_organisation_admin,
+      attr_accessor :action,
+                    :requested_user,
+                    :additional_comments,
+                    :user_needs,
+                    :mainstream_changes,
+                    :maslow,
+                    :other_details,
+                    :become_organisation_admin,
                     :become_super_organisation_admin
 
       validate do |request|

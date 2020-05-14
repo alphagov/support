@@ -56,17 +56,19 @@ feature "Summary of Organisation feedback" do
         "7 days" => "5 items",
         "30 days" => "10 items",
         "90 days" => "20 items",
-      }, {
+      },
+      {
         "Page" => "/not-bad-my-friend",
         "7 days" => "0 items",
         "30 days" => "0 items",
         "90 days" => "0 items",
-      }, {
+      },
+      {
         "Page" => "/fair-enough",
         "7 days" => "0 items",
         "30 days" => "0 items",
         "90 days" => "0 items",
-      }
+      },
     ]
   end
 end

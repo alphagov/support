@@ -14,17 +14,21 @@ module Support
       validates :reporting_period_start,
                 :reporting_period_end,
                 :pages_or_sections,
-                :frequency, presence: true
+                :frequency,
+                presence: true
 
-      validates :frequency, inclusion: {
-        in: %w[one-off weekly monthly],
-        message: "%{value} is not a valid option",
-      }
+      validates :frequency,
+                inclusion: {
+                  in: %w[one-off weekly monthly],
+                  message: "%{value} is not a valid option",
+                }
 
-      validates :format, inclusion: {
-        in: %w[pdf csv],
-        message: "%{value} is not a valid option",
-      }, allow_blank: true
+      validates :format,
+                inclusion: {
+                  in: %w[pdf csv],
+                  message: "%{value} is not a valid option",
+                },
+                allow_blank: true
 
       def frequency_options
         [

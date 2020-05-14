@@ -21,7 +21,8 @@ feature "Exploring anonymous feedback" do
         "Feedback" => "Action: Looking at 3rd paragraph\nProblem: Typo in 2rd word",
         "URL" => "/vat-rates",
         "Referrer" => "/",
-      }, {
+      },
+      {
         "Date" => "1 Feb 2013",
         "Feedback" => "Action: Looking at done page\nProblem: A paragraph is misaligned",
         "URL" => "/done",
@@ -32,7 +33,7 @@ feature "Exploring anonymous feedback" do
         "Feedback" => "Action: Looking at vehicle tax page\nProblem: Not enough detail about how to get in contact",
         "URL" => "/vehicle-tax",
         "Referrer" => "/pay-vehicle-tax",
-      }
+      },
     ]
 
     explore_anonymous_feedback_by_urls(list_of_urls: "www.gov.uk/vat-rates, www.gov.uk/done, /vehicle-tax")
@@ -51,7 +52,8 @@ feature "Exploring anonymous feedback" do
         "Feedback" => "Action: Looking at 3rd paragraph\nProblem: Typo in 2rd word",
         "URL" => "/vat-rates",
         "Referrer" => "/",
-      }, {
+      },
+      {
         "Date" => "1 Feb 2013",
         "Feedback" => "Action: Looking at done page\nProblem: A paragraph is misaligned",
         "URL" => "/done",
@@ -62,7 +64,7 @@ feature "Exploring anonymous feedback" do
         "Feedback" => "Action: Looking at vehicle tax page\nProblem: Not enough detail about how to get in contact",
         "URL" => "/vehicle-tax",
         "Referrer" => "/pay-vehicle-tax",
-      }
+      },
     ]
 
     explore_anonymous_feedback_by_urls(uploaded_list: Rails.root.join("spec/fixtures/list_of_urls.csv"))
@@ -105,17 +107,19 @@ feature "Exploring anonymous feedback" do
         "7 days" => "5 items",
         "30 days" => "10 items",
         "90 days" => "20 items",
-      }, {
+      },
+      {
         "Page" => "/done",
         "7 days" => "0 items",
         "30 days" => "0 items",
         "90 days" => "0 items",
-      }, {
+      },
+      {
         "Page" => "/vehicle-tax",
         "7 days" => "0 items",
         "30 days" => "0 items",
         "90 days" => "0 items",
-      }
+      },
     ]
 
     explore_anonymous_feedback_by_organisation("Cabinet Office")
@@ -137,17 +141,19 @@ feature "Exploring anonymous feedback" do
         "7 days" => "5 items",
         "30 days" => "10 items",
         "90 days" => "20 items",
-      }, {
+      },
+      {
         "Page" => "/done",
         "7 days" => "0 items",
         "30 days" => "0 items",
         "90 days" => "0 items",
-      }, {
+      },
+      {
         "Page" => "/vehicle-tax",
         "7 days" => "0 items",
         "30 days" => "0 items",
         "90 days" => "0 items",
-      }
+      },
     ]
 
     explore_anonymous_feedback_by_document_type("Smart Answer")

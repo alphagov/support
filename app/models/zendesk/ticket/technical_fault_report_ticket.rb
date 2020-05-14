@@ -17,10 +17,16 @@ module Zendesk
 
       def comment_snippets
         [
-          Zendesk::LabelledSnippet.new(on: @request.fault_context, field: :name,
-                                       label: "Location of fault"),
-          Zendesk::LabelledSnippet.new(on: @request,               field: :fault_specifics,
-                                       label: "What is broken"),
+          Zendesk::LabelledSnippet.new(
+            on: @request.fault_context,
+            field: :name,
+            label: "Location of fault",
+          ),
+          Zendesk::LabelledSnippet.new(
+            on: @request,
+            field: :fault_specifics,
+            label: "What is broken",
+          ),
           Zendesk::LabelledSnippet.new(on: @request,               field: :actions_leading_to_problem),
           Zendesk::LabelledSnippet.new(on: @request,               field: :what_happened),
           Zendesk::LabelledSnippet.new(on: @request,               field: :what_should_have_happened),

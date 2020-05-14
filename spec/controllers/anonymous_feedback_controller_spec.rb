@@ -31,7 +31,9 @@ describe AnonymousFeedbackController, type: :controller do
       it "should show no results" do
         stub_support_api_anonymous_feedback(
           { path_prefixes: ["/a"] },
-          "results" => [], "pages" => 0, "current_page" => 1,
+          "results" => [],
+          "pages" => 0,
+          "current_page" => 1,
         )
 
         get :index, params: { "paths" => "/a", "format" => "json" }
@@ -44,7 +46,9 @@ describe AnonymousFeedbackController, type: :controller do
       it "should redirect to the first page" do
         stub_support_api_anonymous_feedback(
           { path_prefixes: ["/a"], page: "4" },
-          "results" => [], "pages" => 3, "current_page" => 4,
+          "results" => [],
+          "pages" => 3,
+          "current_page" => 4,
         )
 
         get :index, params: { paths: "/a", page: 4 }
@@ -224,7 +228,9 @@ describe AnonymousFeedbackController, type: :controller do
     it "normalises the path before talking to the api" do
       api_request = stub_support_api_anonymous_feedback(
         hash_including("path_prefixes" => ["/done/apply-carers-allowance"]),
-        "results" => [], "pages" => 0, "current_page" => 1,
+        "results" => [],
+        "pages" => 0,
+        "current_page" => 1,
       )
 
       get :index, params: { paths: "done/apply-carers-allowance" }
@@ -235,7 +241,9 @@ describe AnonymousFeedbackController, type: :controller do
     it "normalises all paths before talking to the api" do
       api_request = stub_support_api_anonymous_feedback(
         hash_including("path_prefixes" => ["/done/apply-carers-allowance", "/start/vat-rates"]),
-        "results" => [], "pages" => 0, "current_page" => 1,
+        "results" => [],
+        "pages" => 0,
+        "current_page" => 1,
       )
 
       get :index, params: { paths: "/done/apply-carers-allowance, https://gov.uk/start/vat-rates" }

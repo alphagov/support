@@ -320,9 +320,11 @@ describe ScopeFiltersPresenter, type: :presenter do
     end
 
     it "is the organisation title and path and document type when all three are provided" do
-      presenter = described_class.new(paths: ["/done/buying-a-new-hat"],
-                                      organisation_slug: "department-of-hats",
-                                      document_type: "smart_answer")
+      presenter = described_class.new(
+        paths: ["/done/buying-a-new-hat"],
+        organisation_slug: "department-of-hats",
+        document_type: "smart_answer",
+      )
       expect(presenter.to_s).to eq "Department of Hats on /done/buying-a-new-hat - Document type: smart answer"
     end
 
@@ -337,9 +339,11 @@ describe ScopeFiltersPresenter, type: :presenter do
     end
 
     it "is the organisation title, document type and paths when more than 2 paths are provided" do
-      presenter = described_class.new(paths: ["/done/buying-a-new-hat", "/done/selling-an-old-hat", "/done/selling-a-newish-hat"],
-                                      organisation_slug: "department-of-hats",
-                                      document_type: "smart_answer")
+      presenter = described_class.new(
+        paths: ["/done/buying-a-new-hat", "/done/selling-an-old-hat", "/done/selling-a-newish-hat"],
+        organisation_slug: "department-of-hats",
+        document_type: "smart_answer",
+      )
       expect(presenter.to_s).to eq "Department of Hats on /done/buying-a-new-hat and 2 other paths - Document type: smart answer"
     end
   end
