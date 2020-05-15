@@ -15,9 +15,12 @@ protected
 
   def content_change_request_params
     params.require(:support_requests_content_change_request).permit(
-      :title, :details_of_change, :url, :related_urls,
+      :title,
+      :details_of_change,
+      :url,
+      :related_urls,
       requester_attributes: %i[email name collaborator_emails],
-      time_constraint_attributes: %i[not_before_date needed_by_date time_constraint_reason]
+      time_constraint_attributes: %i[not_before_date needed_by_date time_constraint_reason],
     ).to_h
   end
 end

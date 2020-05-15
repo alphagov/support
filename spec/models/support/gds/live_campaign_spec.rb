@@ -8,9 +8,13 @@ module Support
       end
 
       subject do
-        LiveCampaign.new(title: "Test Title", proposed_url: "example.campaign.gov.uk",
-                         description: "Test description", time_constraints: "Time constraints",
-                         reason_for_dates: "Reason for dates")
+        LiveCampaign.new(
+          title: "Test Title",
+          proposed_url: "example.campaign.gov.uk",
+          description: "Test description",
+          time_constraints: "Time constraints",
+          reason_for_dates: "Reason for dates",
+        )
       end
 
       it { should validate_presence_of(:title) }

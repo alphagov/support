@@ -11,13 +11,14 @@ describe AnonymousFeedback::ExploreController, type: :controller do
         title: "Cabinet Office",
         acronym: "CO",
         govuk_status: "live",
-      }, {
+      },
+      {
         slug: "ministry-of-magic",
         web_url: "https://www.gov.uk/government/organisations/ministry-of-magic",
         title: "Ministry of Magic",
         acronym: "",
         govuk_status: "transitioning",
-      }
+      },
     ])
 
     stub_support_api_document_type_list(%w[case_study smart_answer])

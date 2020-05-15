@@ -24,8 +24,10 @@ module Support
       end
 
       it "doesn't allow the 'not before' date to be set after the 'needed by' date" do
-        constraint = TimeConstraint.new(not_before_date: as_str(Date.tomorrow + 1.day),
-                                        needed_by_date: as_str(Date.tomorrow))
+        constraint = TimeConstraint.new(
+          not_before_date: as_str(Date.tomorrow + 1.day),
+          needed_by_date: as_str(Date.tomorrow),
+        )
         expect(constraint).to_not be_valid
         expect(constraint).to have_at_least(1).error_on(:not_before_date)
       end
@@ -35,8 +37,10 @@ module Support
       end
 
       it "allows launch dates (i.e. not_before_date = needed_by_date)" do
-        constraint = TimeConstraint.new(not_before_date: as_str(Date.tomorrow),
-                                        needed_by_date: as_str(Date.tomorrow))
+        constraint = TimeConstraint.new(
+          not_before_date: as_str(Date.tomorrow),
+          needed_by_date: as_str(Date.tomorrow),
+        )
         expect(constraint).to be_valid
       end
     end

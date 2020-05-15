@@ -17,8 +17,10 @@ protected
 
   def general_request_params
     params.require(:support_requests_general_request).permit(
-      :title, :url, :details,
-      requester_attributes: %i[email name collaborator_emails]
+      :title,
+      :url,
+      :details,
+      requester_attributes: %i[email name collaborator_emails],
     ).to_h
   end
 end

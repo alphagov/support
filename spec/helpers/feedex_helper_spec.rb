@@ -92,7 +92,7 @@ describe FeedexHelper, type: :helper do
     end
 
     context "with limited results" do
-      let(:total_count) { 10000 }
+      let(:total_count) { 10_000 }
       let(:from) { nil }
       let(:to) { nil }
       let(:results_limited) { true }
@@ -103,7 +103,7 @@ describe FeedexHelper, type: :helper do
     end
 
     context "with limited results and dates" do
-      let(:total_count) { 10000 }
+      let(:total_count) { 10_000 }
       let(:from) { "10 May 2015" }
       let(:to) { "11 May 2015" }
       let(:results_limited) { true }

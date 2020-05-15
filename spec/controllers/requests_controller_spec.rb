@@ -41,8 +41,9 @@ describe RequestsController, type: :controller do
   def valid_params_for_test_request
     {
       "test_request" => {
-        "a" => "A string", "b" => "Another string",
-        "requester_attributes" => { "email" => "abc@d.com" }
+        "a" => "A string",
+        "b" => "Another string",
+        "requester_attributes" => { "email" => "abc@d.com" },
       },
     }
   end
