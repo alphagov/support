@@ -1,6 +1,4 @@
-<div class="alert alert-info">
-  <p><%= f.object.class.description %></p>
-</div>
+<p><%= f.object.class.detailed_description %></p>
 
 <div id="action">
    <%= f.input :action, as: :radio, required: true, label: "What would you like to do?", collection: f.object.action_options, input_html: { :"aria-required" => true } %>

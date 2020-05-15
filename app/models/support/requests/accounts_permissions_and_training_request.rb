@@ -90,11 +90,19 @@ module Support
       end
 
       def self.label
-        "Accounts, permissions and training"
+        "New accounts (non-Whitehall) and changing permissions"
       end
 
       def self.description
-        "Request a new Whitehall account or change permissions."
+        "Request a change to existing accounts and new accounts (non-Whitehall)."
+      end
+
+      def self.detailed_description
+        <<~TEXT
+          Request a change of permissions for an existing account, or a new account for a non-Whitehall user.
+          New Whitehall users must first complete training.
+          If this is what you need, please go back a step and select the ‘New accounts (Whitehall) and training’ option.
+        TEXT
       end
 
       def self.suspension

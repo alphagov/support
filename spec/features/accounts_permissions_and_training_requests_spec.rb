@@ -239,9 +239,9 @@ private
   def user_requests_a_change_to_whitehall_user_accounts(details)
     visit "/"
 
-    click_on "Accounts, permissions and training"
+    click_on "New accounts (non-Whitehall) and changing permissions"
 
-    expect(page).to have_content("Request a new Whitehall account or change permissions.")
+    expect(page).to have_content("Request a change of permissions for an existing account, or a new account for a non-Whitehall user.")
 
     within "#action" do
       choose details[:action]
@@ -269,9 +269,9 @@ private
   def user_requests_a_change_to_other_user_accounts(details)
     visit "/"
 
-    click_on "Accounts, permissions and training"
+    click_on "New accounts (non-Whitehall) and changing permissions"
 
-    expect(page).to have_content("Request a new Whitehall account or change permissions.")
+    expect(page).to have_content("Request a change of permissions for an existing account, or a new account for a non-Whitehall user.")
 
     within "#action" do
       choose details[:action]
