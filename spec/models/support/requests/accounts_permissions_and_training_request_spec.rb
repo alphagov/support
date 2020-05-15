@@ -23,7 +23,7 @@ module Support
       end
 
       it "provides formatted action" do
-        expect(request(action: "create_new_user").formatted_action).to eq("Create a new user account")
+        expect(request(action: "create_new_user").formatted_action).to eq("Create a new user account (non-Whitehall only)")
         expect(request(action: "change_user").formatted_action).to eq("Change an existing user's account")
       end
 

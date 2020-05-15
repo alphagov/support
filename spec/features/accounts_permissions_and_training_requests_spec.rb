@@ -17,13 +17,13 @@ feature "Accounts, permissions and training requests" do
       zendesk_has_no_user_with_email("bob@gov.uk")
 
       ticket_request = expect_zendesk_to_receive_ticket(
-        "subject" => "Create a new user account",
+        "subject" => "Create a new user account (non-Whitehall only)",
         "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
         "tags" => %w[govt_form create_new_user inside_government],
         "comment" => {
           "body" =>
 "[Action]
-Create a new user account
+Create a new user account (non-Whitehall only)
 
 [User needs]
 Editor - can create, review and publish content
@@ -128,13 +128,13 @@ XXXX",
       zendesk_has_no_user_with_email("bob@gov.uk")
 
       ticket_request = expect_zendesk_to_receive_ticket(
-        "subject" => "Create a new user account",
+        "subject" => "Create a new user account (non-Whitehall only)",
         "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
         "tags" => %w[govt_form create_new_user],
         "comment" => {
           "body" =>
 "[Action]
-Create a new user account
+Create a new user account (non-Whitehall only)
 
 [User needs]
 Request changes to your organisation’s mainstream content
