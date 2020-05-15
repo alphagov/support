@@ -32,7 +32,16 @@
         <li>for all related organisations that are modelled under your organisation</li>
       </ul>
     </div>
-    <%= f.input :other_details, label: "Other, give details", input_html: { class: "input-md-6" } %>
+    <%= f.input :other_details, label: "Any other permissions, give details", input_html: { class: "input-md-6" } %>
+    <div id="new_accounts">
+      <h2 class="add-bottom-margin"> Requesting new accounts for non-Whitehall users</h2>
+      <%= f.label :new_accounts, "Account permissions", class: "control-label" %>
+      <%= f.input :manuals_publisher, as: :boolean, label: f.object.new_account_options.key('manuals_publisher') %>
+      <%= f.input :specialist_publisher, as: :boolean, label: f.object.new_account_options.key('specialist_publisher') %>
+      <%= f.input :travel_advice_publisher, as: :boolean, label: f.object.new_account_options.key('travel_advice_publisher') %>
+      <%= f.input :content_data, as: :boolean, label: f.object.new_account_options.key('content_data') %>
+      <%= f.input :feedex, as: :boolean, label: f.object.new_account_options.key('feedex') %>
+    </div>
   </div>
   <% if f.object.errors[:formatted_user_needs].any? %>
     <span class="help-block">
