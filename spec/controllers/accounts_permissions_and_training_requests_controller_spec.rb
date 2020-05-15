@@ -7,7 +7,6 @@ describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
       "email" => "subject@digital.cabinet-office.gov.uk",
       "job" => "editor",
       "phone" => nil,
-      "training" => %w[writing using_publisher],
       "other_training" => "Various other forms of training",
     }
   end
@@ -31,7 +30,6 @@ describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
         "requested_user_attributes" => {
           "name" => "subject",
           "email" => "subject@digital.cabinet-office.gov.uk",
-          "training" => %w[writing using_publisher],
           "other_training" => "Various other forms of training",
         },
         "action" => "change_user",

@@ -3,7 +3,6 @@
     <%= r.input :name, label: "Name", required: true, input_html: { :"aria-required" => true, :class => "input-md-6" } %>
     <%= r.input :email, label: "Email", as: :email, required: true, input_html: { :"aria-required" => true, :class => "input-md-6" } %>
     <%= r.input :job, label: "Job title", input_html: { class: "input-md-6" } %>
-    <%= r.input :training, as: :check_boxes, collection: Support::GDS::RequestedUser::TRAINING_OPTIONS, label: "Which GOV.UK training has this user had?" %>
-    <%= r.input :other_training, label: "Other, give details", input_html: { class: "input-md-6" }, required: false %>
+    <%= r.input :other_training, label: "Which GOV.UK training has this user had?", input_html: { class: "input-md-6" }, required: false %>
   <% end %>
 <% end %>

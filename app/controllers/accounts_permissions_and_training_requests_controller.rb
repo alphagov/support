@@ -32,13 +32,7 @@ protected
       :content_data,
       :feedex,
       requester_attributes: %i[email name collaborator_emails],
-      requested_user_attributes: [
-        :name,
-        :email,
-        :job,
-        :other_training,
-        training: [],
-      ],
+      requested_user_attributes: %i[name email job other_training],
     ).to_h
   end
 

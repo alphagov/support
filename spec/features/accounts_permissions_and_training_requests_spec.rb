@@ -34,9 +34,6 @@ Bob Fields
 [Requested user's email]
 bob@gov.uk
 
-[Requested user's training]
-Writing for GOV.UK and Using Whitehall Publisher
-
 [Requested user's other training]
 Other training
 
@@ -50,8 +47,6 @@ XXXX",
         user_needs: "Writer - can create content",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
-        writing: true,
-        using_publisher: true,
         other_training: "Other training",
         additional_comments: "XXXX",
       )
@@ -85,9 +80,6 @@ bob@gov.uk
 [Requested user's job title]
 Editor
 
-[Requested user's training]
-Writing for GOV.UK and Using Whitehall Publisher
-
 [Requested user's other training]
 Other training
 
@@ -110,8 +102,6 @@ XXXX",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         user_job_title: "Editor",
-        writing: true,
-        using_publisher: true,
         other_training: "Other training",
         additional_comments: "XXXX",
       )
@@ -141,9 +131,6 @@ Bob Fields
 [Requested user's email]
 bob@gov.uk
 
-[Requested user's training]
-Writing for GOV.UK and Using Whitehall Publisher
-
 [Requested user's other training]
 Other training
 
@@ -157,8 +144,6 @@ XXXX",
         user_needs: ["Request changes to your organisation’s mainstream content", "Access to Maslow database of user needs", "Request permission to be a super organisation admin"],
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
-        writing: true,
-        using_publisher: true,
         other_training: "Other training",
         additional_comments: "XXXX",
       )
@@ -192,9 +177,6 @@ bob@gov.uk
 [Requested user's job title]
 Editor
 
-[Requested user's training]
-Writing for GOV.UK and Using Whitehall Publisher
-
 [Requested user's other training]
 Other training
 
@@ -217,8 +199,6 @@ XXXX",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         user_job_title: "Editor",
-        writing: true,
-        using_publisher: true,
         other_training: "Other training",
         additional_comments: "XXXX",
       )
@@ -249,9 +229,7 @@ private
       fill_in "Name", with: details[:user_name]
       fill_in "Email", with: details[:user_email]
       fill_in "Job title", with: details[:user_job_title] if details[:user_job_title]
-      check "Writing for GOV.UK" if details[:writing]
-      check "Using Whitehall Publisher" if details[:using_publisher]
-      fill_in "Other, give details", with: details[:other_training]
+      fill_in "Which GOV.UK training has this user had?", with: details[:other_training]
     end
 
     fill_in "Additional comments", with: details[:additional_comments]
@@ -280,9 +258,7 @@ private
       fill_in "Name", with: details[:user_name]
       fill_in "Email", with: details[:user_email]
       fill_in "Job title", with: details[:user_job_title] if details[:user_job_title]
-      check "Writing for GOV.UK" if details[:writing]
-      check "Using Whitehall Publisher" if details[:using_publisher]
-      fill_in "Other, give details", with: details[:other_training]
+      fill_in "Which GOV.UK training has this user had?", with: details[:other_training]
     end
 
     fill_in "Additional comments", with: details[:additional_comments]
@@ -311,9 +287,7 @@ private
       fill_in "Name", with: details[:user_name]
       fill_in "Email", with: details[:user_email]
       fill_in "Job title", with: details[:user_job_title] if details[:user_job_title]
-      check "Writing for GOV.UK" if details[:writing]
-      check "Using Whitehall Publisher" if details[:using_publisher]
-      fill_in "Other, give details", with: details[:other_training]
+      fill_in "Which GOV.UK training has this user had?", with: details[:other_training]
     end
 
     fill_in "Additional comments", with: details[:additional_comments]

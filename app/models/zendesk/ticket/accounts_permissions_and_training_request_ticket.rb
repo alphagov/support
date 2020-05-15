@@ -40,11 +40,6 @@ module Zendesk
           ),
           Zendesk::LabelledSnippet.new(
             on: @request.requested_user,
-            field: :formatted_training,
-            label: "Requested user's training",
-          ),
-          Zendesk::LabelledSnippet.new(
-            on: @request.requested_user,
             field: :other_training,
             label: "Requested user's other training",
           ),
