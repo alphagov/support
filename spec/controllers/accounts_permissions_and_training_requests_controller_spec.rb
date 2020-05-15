@@ -6,7 +6,7 @@ describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
       "name" => "subject",
       "email" => "subject@digital.cabinet-office.gov.uk",
       "job" => "editor",
-      "phone" => "12345",
+      "phone" => nil,
       "training" => %w[writing using_publisher],
       "other_training" => "Various other forms of training",
     }
@@ -55,8 +55,8 @@ describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
       stub_user_creation = stub_zendesk_user_creation(
         email: "subject@digital.cabinet-office.gov.uk",
         name: "subject",
+        phone: nil,
         details: "Job title: editor",
-        phone: "12345",
         verified: true,
       )
 

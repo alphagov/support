@@ -85,9 +85,6 @@ bob@gov.uk
 [Requested user's job title]
 Editor
 
-[Requested user's phone number]
-12345
-
 [Requested user's training]
 Writing for GOV.UK and Using Whitehall Publisher
 
@@ -103,7 +100,7 @@ XXXX",
         email: "bob@gov.uk",
         name: "Bob Fields",
         details: "Job title: Editor",
-        phone: "12345",
+        phone: nil,
         verified: true,
       )
 
@@ -113,7 +110,6 @@ XXXX",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         user_job_title: "Editor",
-        user_phone: "12345",
         writing: true,
         using_publisher: true,
         other_training: "Other training",
@@ -196,9 +192,6 @@ bob@gov.uk
 [Requested user's job title]
 Editor
 
-[Requested user's phone number]
-12345
-
 [Requested user's training]
 Writing for GOV.UK and Using Whitehall Publisher
 
@@ -214,7 +207,7 @@ XXXX",
         email: "bob@gov.uk",
         name: "Bob Fields",
         details: "Job title: Editor",
-        phone: "12345",
+        phone: nil,
         verified: true,
       )
 
@@ -224,7 +217,6 @@ XXXX",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         user_job_title: "Editor",
-        user_phone: "12345",
         writing: true,
         using_publisher: true,
         other_training: "Other training",
@@ -257,7 +249,6 @@ private
       fill_in "Name", with: details[:user_name]
       fill_in "Email", with: details[:user_email]
       fill_in "Job title", with: details[:user_job_title] if details[:user_job_title]
-      fill_in "Phone number", with: details[:user_phone] if details[:user_phone]
       check "Writing for GOV.UK" if details[:writing]
       check "Using Whitehall Publisher" if details[:using_publisher]
       fill_in "Other, give details", with: details[:other_training]
@@ -289,7 +280,6 @@ private
       fill_in "Name", with: details[:user_name]
       fill_in "Email", with: details[:user_email]
       fill_in "Job title", with: details[:user_job_title] if details[:user_job_title]
-      fill_in "Phone number", with: details[:user_phone] if details[:user_phone]
       check "Writing for GOV.UK" if details[:writing]
       check "Using Whitehall Publisher" if details[:using_publisher]
       fill_in "Other, give details", with: details[:other_training]
@@ -321,7 +311,6 @@ private
       fill_in "Name", with: details[:user_name]
       fill_in "Email", with: details[:user_email]
       fill_in "Job title", with: details[:user_job_title] if details[:user_job_title]
-      fill_in "Phone number", with: details[:user_phone] if details[:user_phone]
       check "Writing for GOV.UK" if details[:writing]
       check "Using Whitehall Publisher" if details[:using_publisher]
       fill_in "Other, give details", with: details[:other_training]

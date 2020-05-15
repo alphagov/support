@@ -40,11 +40,6 @@ module Zendesk
           ),
           Zendesk::LabelledSnippet.new(
             on: @request.requested_user,
-            field: :phone,
-            label: "Requested user's phone number",
-          ),
-          Zendesk::LabelledSnippet.new(
-            on: @request.requested_user,
             field: :formatted_training,
             label: "Requested user's training",
           ),

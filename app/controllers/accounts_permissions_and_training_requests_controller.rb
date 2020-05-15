@@ -36,7 +36,6 @@ protected
         :name,
         :email,
         :job,
-        :phone,
         :other_training,
         training: [],
       ],
