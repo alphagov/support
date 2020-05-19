@@ -147,7 +147,7 @@ GEM
       jquery-rails (~> 4.3.1)
       plek (>= 2.1.0)
       rails (>= 3.2.0)
-    govuk_app_config (2.1.2)
+    govuk_app_config (2.2.0)
       logstasher (>= 1.2.2, < 1.4.0)
       sentry-raven (>= 2.7.1, < 3.1.0)
       statsd-ruby (~> 1.4.0)
@@ -417,7 +417,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.7)
     unicode-display_width (1.7.0)
-    unicorn (5.5.3)
+    unicorn (5.5.5)
       kgio (~> 2.6)
       raindrops (~> 0.7)
     warden (1.2.8)
@@ -463,7 +463,7 @@ DEPENDENCIES
   gds-sso (~> 14.3)
   gds_zendesk (= 3.0.0)
   govuk_admin_template (= 6.7.0)
-  govuk_app_config (~> 2.1.2)
+  govuk_app_config (~> 2.2.0)
   govuk_sidekiq (~> 3.0)
   govuk_test
   gretel (= 3.0.9)
