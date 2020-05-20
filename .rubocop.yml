@@ -6,3 +6,11 @@ inherit_gem:
 inherit_mode:
   merge:
     - Exclude
+
+# This repo does not use ActiveRecord
+Rails/SkipsModelValidations:
+  Enabled: false
+
+# This repo does not use ActiveRecord
+Rails/ActiveRecordAliases:
+  Enabled: false

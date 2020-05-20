@@ -26,10 +26,7 @@ describe User, type: :model do
 
   it "supports mass updating of attributes" do
     user = User.upsert!("uid" => "12345", "name" => "A", "email" => "a@b.com")
-
-    # rubocop:disable Rails/ActiveRecordAliases
     user.update_attributes({ "uid" => "12345", "name" => "Z", "email" => "x@y.com" }, as: :somebody)
-    # rubocop:enable Rails/ActiveRecordAliases
 
     expect(user.name).to eq("Z")
     expect(user.email).to eq("x@y.com")
