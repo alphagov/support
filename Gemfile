@@ -13,27 +13,17 @@ gem "kaminari", "~> 1.2.1"
 # Redis is marked as an explicit dependency even though we'd get it
 # implicitly from using govuk_sidekiq.  This is because we store user
 # objects in it directly as the app has no access to any other database.
+gem "gds-api-adapters", "~> 63.6"
+gem "gds-sso", "~> 14.3"
+gem "gds_zendesk", "3.0.0"
+gem "govuk_admin_template", "6.7.0"
+gem "govuk_app_config", "~> 2.2.0"
+gem "govuk_sidekiq", "~> 3.0"
+gem "plek", "3.0.0"
 gem "redis", "4.1.4"
 gem "sass-rails", "6.0.0"
 gem "select2-rails", "4.0.3"
 gem "uglifier", "4.2.0"
-
-# GDS/gov.uk gems
-gem "gds-sso", "~> 14.3"
-if ENV["GDS_ZENDESK_DEV"]
-  gem "gds_zendesk", path: "../gds_zendesk"
-else
-  gem "gds_zendesk", "3.0.0"
-end
-gem "govuk_admin_template", "6.7.0"
-gem "govuk_app_config", "~> 2.2.0"
-if ENV["API_DEV"]
-  gem "gds-api-adapters", path: "../gds-api-adapters"
-else
-  gem "gds-api-adapters", "~> 63.6"
-end
-gem "govuk_sidekiq", "~> 3.0"
-gem "plek", "3.0.0"
 
 group :development do
   gem "listen", ">= 3.0.5", "< 3.3"
