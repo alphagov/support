@@ -24,7 +24,7 @@ module ApplicationHelper
                    ""
                  end
 
-    content_tag(:li, class: list_class, id: options[:id]) do
+    tag.li(class: list_class, id: options[:id]) do
       link_to section.label, section.link
     end
   end
