@@ -15,7 +15,7 @@ to the `support` app.
 ## Technical documentation
 
 This is a Ruby on Rails application which collects feedback and creates tickets based on it.
-It collects data from two sources: 
+It collects data from two sources:
 - its own forms which can be accessed by [signon](https://github.com/alphagov/signon) users
 - contact forms from the [feedback app](https://github.com/alphagov/feedback)
 
@@ -62,7 +62,7 @@ a wrapper around the Zendesk API.
 
 ### Dependencies
 
-- [alphagov/support-api](https://github.com/alphagov/feedback) - provides an API for storing
+- [alphagov/support-api](https://github.com/alphagov/support-api) - provides an API for storing
 and fetching anonymous feedback about pages on GOV.UK.
 
 ### Running the test suite
