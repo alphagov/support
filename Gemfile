@@ -46,7 +46,7 @@ group :test do
   gem "govuk_test"
   gem "rspec-collection_matchers", "~> 1.2.0"
   gem "rspec-its", "~> 1.3.0"
-  gem "shoulda", "~> 3.5.0"
+  gem "shoulda", "~> 4.0.0"
   gem "timecop", "~> 0.9.1"
   gem "webmock", "~> 3.8.3"
 end
