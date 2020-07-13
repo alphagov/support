@@ -22,7 +22,7 @@ gem "govuk_sidekiq", "~> 3.0"
 gem "plek", "3.0.0"
 gem "redis", "4.1.4"
 gem "sass-rails", "6.0.0"
-gem "select2-rails", "4.0.3"
+gem "select2-rails", "4.0.13"
 gem "uglifier", "4.2.0"
 
 group :development do
