@@ -1,9 +1,9 @@
 require "rails_helper"
-require "services"
 require "remote_facet_group_service"
 
 RSpec.describe RemoteFacetGroupService do
-  let(:publishing_api) { Services.publishing_api }
+  let(:publishing_api) { double }
+  before { allow(GdsApi).to receive(:publishing_api).and_return(publishing_api) }
 
   describe "find" do
     let(:api_response) { double(:response, to_hash: "Yeah!") }
