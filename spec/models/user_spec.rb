@@ -26,7 +26,7 @@ describe User, type: :model do
 
   it "supports mass updating of attributes" do
     user = User.upsert!("uid" => "12345", "name" => "A", "email" => "a@b.com")
-    user.update_attributes({ "uid" => "12345", "name" => "Z", "email" => "x@y.com" }, as: :somebody)
+    user.update!({ "uid" => "12345", "name" => "Z", "email" => "x@y.com" }, as: :somebody)
 
     expect(user.name).to eq("Z")
     expect(user.email).to eq("x@y.com")
