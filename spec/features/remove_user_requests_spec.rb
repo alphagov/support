@@ -6,7 +6,7 @@ feature "Remove user requests" do
   # I want to request to revoke the user's access (usually after they've left the org)
 
   let(:user) { create(:user_manager, name: "John Smith", email: "john.smith@agency.gov.uk") }
-  let(:next_year) { Time.current.year.succ }
+  let(:next_year) { Time.zone.now.year.succ }
 
   background do
     login_as user

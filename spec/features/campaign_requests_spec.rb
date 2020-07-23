@@ -6,7 +6,7 @@ feature "Campaign requests" do
   # I want to request GDS support for a campaign
 
   let(:user) { create(:campaign_requester, name: "John Smith", email: "john.smith@agency.gov.uk") }
-  let(:next_year) { Time.current.year.succ }
+  let(:next_year) { Time.zone.now.year.succ }
 
   background do
     login_as user
