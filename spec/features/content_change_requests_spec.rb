@@ -6,7 +6,7 @@ feature "Content change requests" do
   # I want to inform GDS about what needs changing and why
 
   let(:user) { create(:content_requester, name: "John Smith", email: "john.smith@agency.gov.uk") }
-  let(:next_year) { Time.current.year.succ }
+  let(:next_year) { Time.zone.now.year.succ }
 
   background do
     login_as user

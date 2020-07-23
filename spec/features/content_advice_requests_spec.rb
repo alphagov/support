@@ -6,7 +6,7 @@ feature "Request for content advice" do
   # I want to contact the GOV.UK Content team for advice
 
   let(:user) { create(:content_requester) }
-  let(:next_year) { Time.current.year.succ }
+  let(:next_year) { Time.zone.now.year.succ }
 
   background do
     login_as user
