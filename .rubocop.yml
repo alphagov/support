@@ -14,3 +14,7 @@ Rails/SkipsModelValidations:
 # This repo does not use ActiveRecord
 Rails/ActiveRecordAliases:
   Enabled: false
+
+# This repo does not use a DB
+Rails/SaveBang:
+  Enabled: false
