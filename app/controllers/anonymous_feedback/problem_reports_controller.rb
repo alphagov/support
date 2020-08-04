@@ -63,7 +63,7 @@ private
   end
 
   def review_params
-    params.require(:mark_as_spam).permit!.to_h
+    params.require(:mark_as_spam).permit(:"1", :"2").to_h
   end
 
   def reviewed_items_successfully?
