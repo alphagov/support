@@ -20,17 +20,5 @@ module Support
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
-
-    # Disable per-form CSRF tokens.
-    config.action_controller.per_form_csrf_tokens = false
-
-    # Disable origin-checking CSRF mitigation.
-    config.action_controller.forgery_protection_origin_check = false
-
-    # Don't make Ruby 2.4 preserve the timezone of the receiver when calling `to_time`.
-    ActiveSupport.to_time_preserves_timezone = false
-
-    # Don't make `form_with` generate non-remote forms.
-    config.action_view.form_with_generates_remote_forms = false
   end
 end
