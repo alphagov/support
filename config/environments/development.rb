@@ -55,4 +55,8 @@ Rails.application.configure do
 
   # Allow requests for all domains e.g. <app>.dev.gov.uk
   config.hosts.clear
+
+  config.hosts += [
+    "support.dev.gov.uk",
+  ]
 end
