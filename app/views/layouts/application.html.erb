@@ -1,8 +1,9 @@
 <% content_for :page_title, ' | GOV.UK Support' %>
 <% content_for :head do %>
+  <%= csrf_meta_tag %>
+  <%= csp_meta_tag %>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tag %>
 <% end %>
 
 <% content_for :favicon do %>
