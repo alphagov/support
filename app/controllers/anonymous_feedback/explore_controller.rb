@@ -45,16 +45,15 @@ private
     )
   end
 
-  # TODO: explicitly permit the right set of params, rather than everything
   def explore_by_multiple_path_params
-    params.require(:support_requests_anonymous_explore_by_multiple_paths).permit!.to_h
+    params.require(:support_requests_anonymous_explore_by_multiple_paths).permit(:list_of_urls, :uploaded_list)
   end
 
   def explore_by_organisation_params
-    params.require(:support_requests_anonymous_explore_by_organisation).permit!.to_h
+    params.require(:support_requests_anonymous_explore_by_organisation).permit(:organisation)
   end
 
   def explore_by_document_type_params
-    params.require(:support_requests_anonymous_explore_by_document_type).permit!.to_h
+    params.require(:support_requests_anonymous_explore_by_document_type).permit(:document_type)
   end
 end

@@ -15,6 +15,7 @@ Rails.application.configure do
   # Enable/disable caching. By default caching is disabled.
   if Rails.root.join("tmp/caching-dev.txt").exist?
     config.action_controller.perform_caching = true
+    config.action_controller.enable_fragment_cache_logging = true
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
@@ -54,4 +55,8 @@ Rails.application.configure do
 
   # Allow requests for all domains e.g. <app>.dev.gov.uk
   config.hosts.clear
+
+  config.hosts += [
+    "support.dev.gov.uk",
+  ]
 end

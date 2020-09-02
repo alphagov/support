@@ -12,6 +12,7 @@
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.uncountable %w[feedback]
   inflect.irregular "feedback", "feedback"
+  inflect.acronym "GDS"
 end
 
 # These inflection rules are supported but not enabled by default:
