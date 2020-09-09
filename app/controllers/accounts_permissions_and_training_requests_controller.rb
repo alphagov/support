@@ -26,15 +26,13 @@ protected
       :become_organisation_admin,
       :become_super_organisation_admin,
       :other_details,
+      :manuals_publisher,
+      :specialist_publisher,
+      :travel_advice_publisher,
+      :content_data,
+      :feedex,
       requester_attributes: %i[email name collaborator_emails],
-      requested_user_attributes: [
-        :name,
-        :email,
-        :job,
-        :phone,
-        :other_training,
-        training: [],
-      ],
+      requested_user_attributes: %i[name email job other_training],
     ).to_h
   end
 

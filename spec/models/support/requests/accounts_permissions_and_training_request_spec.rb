@@ -23,7 +23,7 @@ module Support
       end
 
       it "provides formatted action" do
-        expect(request(action: "create_new_user").formatted_action).to eq("Create a new user account")
+        expect(request(action: "create_new_user").formatted_action).to eq("Create a new user account (non-Whitehall only)")
         expect(request(action: "change_user").formatted_action).to eq("Change an existing user's account")
       end
 
@@ -111,6 +111,34 @@ module Support
                 expect(request(mainstream_changes: "1", other_details: "special permission request").formatted_user_needs)
                   .to eq("Request changes to your organisation’s mainstream content\nOther: special permission request")
               end
+            end
+          end
+        end
+
+        context "for new account permissions" do
+          context "when one is ticked" do
+            it "returns the name of the application" do
+              expect(request(manuals_publisher: "1").formatted_user_needs)
+                .to eq("Manuals Publisher")
+
+              expect(request(specialist_publisher: "1").formatted_user_needs)
+                  .to eq("Specialist Publisher")
+
+              expect(request(travel_advice_publisher: "1").formatted_user_needs)
+                  .to eq("Travel Advice Publisher (FCO)")
+
+              expect(request(content_data: "1").formatted_user_needs)
+                  .to eq("Content Data")
+
+              expect(request(feedex: "1").formatted_user_needs)
+              .to eq("Feedex")
+            end
+          end
+
+          context "when several are ticked" do
+            it "returns the name of each application, with one per line" do
+              expect(request(manuals_publisher: "1", travel_advice_publisher: "1").formatted_user_needs)
+                .to eq("Manuals Publisher\nTravel Advice Publisher (FCO)")
             end
           end
         end

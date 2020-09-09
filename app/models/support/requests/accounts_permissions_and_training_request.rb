@@ -9,7 +9,12 @@ module Support
                     :maslow,
                     :other_details,
                     :become_organisation_admin,
-                    :become_super_organisation_admin
+                    :become_super_organisation_admin,
+                    :manuals_publisher,
+                    :specialist_publisher,
+                    :travel_advice_publisher,
+                    :content_data,
+                    :feedex
 
       validate do |request|
         if request.requested_user && !request.requested_user.valid?
@@ -40,8 +45,8 @@ module Support
 
       def self.action_options
         @action_options ||= {
-          "Create a new user account" => "create_new_user",
           "Change an existing user's account" => "change_user",
+          "Create a new user account (non-Whitehall only)" => "create_new_user",
         }
       end
 
@@ -57,6 +62,9 @@ module Support
         needs_list << other_permissions_options.key("become_organisation_admin") if become_organisation_admin == "1"
         needs_list << other_permissions_options.key("become_super_organisation_admin") if become_super_organisation_admin == "1"
         needs_list << "Other: #{other_details}" if other_details.present?
+        new_account_options.each do |account_name, account_code|
+          needs_list << account_name if send(account_code) == "1"
+        end
         needs_list.reject(&:blank?).compact.join("\n")
       end
 
@@ -85,16 +93,38 @@ module Support
         }
       end
 
+      def self.new_account_options
+        @new_account_options ||= {
+          "Manuals Publisher" => "manuals_publisher",
+          "Specialist Publisher" => "specialist_publisher",
+          "Travel Advice Publisher (FCO)" => "travel_advice_publisher",
+          "Content Data" => "content_data",
+          "Feedex" => "feedex",
+        }
+      end
+
       def other_permissions_options
         self.class.other_permissions_options
       end
 
+      def new_account_options
+        self.class.new_account_options
+      end
+
       def self.label
-        "Accounts, permissions and training"
+        "New accounts (non-Whitehall) and changing permissions"
       end
 
       def self.description
-        "Request a new Whitehall account or change permissions."
+        "Request a change to existing accounts and new accounts (non-Whitehall)."
+      end
+
+      def self.detailed_description
+        <<~TEXT
+          Request a change of permissions for an existing account, or a new account for a non-Whitehall user.
+          New Whitehall users must first complete training.
+          If this is what you need, please go back a step and select the ‘New accounts (Whitehall) and training’ option.
+        TEXT
       end
 
       def self.suspension

@@ -13,69 +13,6 @@ feature "Accounts, permissions and training requests" do
   end
 
   context "Whitehall user permissions" do
-    scenario "user creation request" do
-      zendesk_has_no_user_with_email("bob@gov.uk")
-
-      ticket_request = expect_zendesk_to_receive_ticket(
-        "subject" => "Create a new user account",
-        "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-        "tags" => %w[govt_form create_new_user inside_government],
-        "comment" => {
-          "body" =>
-"[Action]
-Create a new user account
-
-[User needs]
-Editor - can create, review and publish content
-
-[Requested user's name]
-Bob Fields
-
-[Requested user's email]
-bob@gov.uk
-
-[Requested user's job title]
-Editor
-
-[Requested user's phone number]
-12345
-
-[Requested user's training]
-Writing for GOV.UK and Using Whitehall Publisher
-
-[Requested user's other training]
-Other training
-
-[Additional comments]
-XXXX",
-        },
-      )
-
-      user_creation_request = stub_zendesk_user_creation(
-        email: "bob@gov.uk",
-        name: "Bob Fields",
-        details: "Job title: Editor",
-        phone: "12345",
-        verified: true,
-      )
-
-      user_requests_a_change_to_whitehall_user_accounts(
-        action: "Create a new user account",
-        user_needs: "Editor - can create, review and publish content",
-        user_name: "Bob Fields",
-        user_email: "bob@gov.uk",
-        user_job_title: "Editor",
-        user_phone: "12345",
-        writing: true,
-        using_publisher: true,
-        other_training: "Other training",
-        additional_comments: "XXXX",
-      )
-
-      expect(ticket_request).to have_been_made
-      expect(user_creation_request).to have_been_made
-    end
-
     scenario "changing user permissions" do
       zendesk_has_user(email: "bob@gov.uk", name: "Bob Fields")
 
@@ -97,9 +34,6 @@ Bob Fields
 [Requested user's email]
 bob@gov.uk
 
-[Requested user's training]
-Writing for GOV.UK and Using Whitehall Publisher
-
 [Requested user's other training]
 Other training
 
@@ -113,8 +47,6 @@ XXXX",
         user_needs: "Writer - can create content",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
-        writing: true,
-        using_publisher: true,
         other_training: "Other training",
         additional_comments: "XXXX",
       )
@@ -128,13 +60,13 @@ XXXX",
       zendesk_has_no_user_with_email("bob@gov.uk")
 
       ticket_request = expect_zendesk_to_receive_ticket(
-        "subject" => "Create a new user account",
+        "subject" => "Create a new user account (non-Whitehall only)",
         "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
         "tags" => %w[govt_form create_new_user],
         "comment" => {
           "body" =>
 "[Action]
-Create a new user account
+Create a new user account (non-Whitehall only)
 
 [User needs]
 Request changes to your organisation’s mainstream content
@@ -148,12 +80,6 @@ bob@gov.uk
 [Requested user's job title]
 Editor
 
-[Requested user's phone number]
-12345
-
-[Requested user's training]
-Writing for GOV.UK and Using Whitehall Publisher
-
 [Requested user's other training]
 Other training
 
@@ -166,19 +92,16 @@ XXXX",
         email: "bob@gov.uk",
         name: "Bob Fields",
         details: "Job title: Editor",
-        phone: "12345",
+        phone: nil,
         verified: true,
       )
 
       user_requests_a_change_to_other_user_accounts(
-        action: "Create a new user account",
+        action: "Create a new user account (non-Whitehall only)",
         user_needs: ["Request changes to your organisation’s mainstream content"],
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         user_job_title: "Editor",
-        user_phone: "12345",
-        writing: true,
-        using_publisher: true,
         other_training: "Other training",
         additional_comments: "XXXX",
       )
@@ -208,9 +131,6 @@ Bob Fields
 [Requested user's email]
 bob@gov.uk
 
-[Requested user's training]
-Writing for GOV.UK and Using Whitehall Publisher
-
 [Requested user's other training]
 Other training
 
@@ -224,8 +144,6 @@ XXXX",
         user_needs: ["Request changes to your organisation’s mainstream content", "Access to Maslow database of user needs", "Request permission to be a super organisation admin"],
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
-        writing: true,
-        using_publisher: true,
         other_training: "Other training",
         additional_comments: "XXXX",
       )
@@ -234,14 +152,70 @@ XXXX",
     end
   end
 
+  context "Non-Whitehall user accounts" do
+    scenario "user creation request" do
+      zendesk_has_no_user_with_email("bob@gov.uk")
+
+      ticket_request = expect_zendesk_to_receive_ticket(
+        "subject" => "Create a new user account (non-Whitehall only)",
+        "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
+        "tags" => %w[govt_form create_new_user],
+        "comment" => {
+          "body" =>
+"[Action]
+Create a new user account (non-Whitehall only)
+
+[User needs]
+Manuals Publisher\nSpecialist Publisher\nTravel Advice Publisher (FCO)\nContent Data\nFeedex
+
+[Requested user's name]
+Bob Fields
+
+[Requested user's email]
+bob@gov.uk
+
+[Requested user's job title]
+Editor
+
+[Requested user's other training]
+Other training
+
+[Additional comments]
+XXXX",
+        },
+      )
+
+      user_creation_request = stub_zendesk_user_creation(
+        email: "bob@gov.uk",
+        name: "Bob Fields",
+        details: "Job title: Editor",
+        phone: nil,
+        verified: true,
+      )
+
+      user_requests_access_to_other_user_accounts(
+        action: "Create a new user account (non-Whitehall only)",
+        user_needs: ["Manuals Publisher", "Specialist Publisher", "Travel Advice Publisher (FCO)", "Content Data", "Feedex"],
+        user_name: "Bob Fields",
+        user_email: "bob@gov.uk",
+        user_job_title: "Editor",
+        other_training: "Other training",
+        additional_comments: "XXXX",
+      )
+
+      expect(ticket_request).to have_been_made
+      expect(user_creation_request).to have_been_made
+    end
+  end
+
 private
 
   def user_requests_a_change_to_whitehall_user_accounts(details)
     visit "/"
 
-    click_on "Accounts, permissions and training"
+    click_on "New accounts (non-Whitehall) and changing permissions"
 
-    expect(page).to have_content("Request a new Whitehall account or change permissions.")
+    expect(page).to have_content("Request a change of permissions for an existing account, or a new account for a non-Whitehall user.")
 
     within "#action" do
       choose details[:action]
@@ -255,10 +229,7 @@ private
       fill_in "Name", with: details[:user_name]
       fill_in "Email", with: details[:user_email]
       fill_in "Job title", with: details[:user_job_title] if details[:user_job_title]
-      fill_in "Phone number", with: details[:user_phone] if details[:user_phone]
-      check "Writing for GOV.UK" if details[:writing]
-      check "Using Whitehall Publisher" if details[:using_publisher]
-      fill_in "Other, give details", with: details[:other_training]
+      fill_in "Which GOV.UK training has this user had?", with: details[:other_training]
     end
 
     fill_in "Additional comments", with: details[:additional_comments]
@@ -269,9 +240,9 @@ private
   def user_requests_a_change_to_other_user_accounts(details)
     visit "/"
 
-    click_on "Accounts, permissions and training"
+    click_on "New accounts (non-Whitehall) and changing permissions"
 
-    expect(page).to have_content("Request a new Whitehall account or change permissions.")
+    expect(page).to have_content("Request a change of permissions for an existing account, or a new account for a non-Whitehall user.")
 
     within "#action" do
       choose details[:action]
@@ -287,10 +258,36 @@ private
       fill_in "Name", with: details[:user_name]
       fill_in "Email", with: details[:user_email]
       fill_in "Job title", with: details[:user_job_title] if details[:user_job_title]
-      fill_in "Phone number", with: details[:user_phone] if details[:user_phone]
-      check "Writing for GOV.UK" if details[:writing]
-      check "Using Whitehall Publisher" if details[:using_publisher]
-      fill_in "Other, give details", with: details[:other_training]
+      fill_in "Which GOV.UK training has this user had?", with: details[:other_training]
+    end
+
+    fill_in "Additional comments", with: details[:additional_comments]
+
+    user_submits_the_request_successfully
+  end
+
+  def user_requests_access_to_other_user_accounts(details)
+    visit "/"
+
+    click_on "New accounts (non-Whitehall) and changing permissions"
+
+    expect(page).to have_content("Request a change of permissions for an existing account, or a new account for a non-Whitehall user.")
+
+    within "#action" do
+      choose details[:action]
+    end
+
+    within "#new_accounts" do
+      details[:user_needs].each do |user_need|
+        check user_need
+      end
+    end
+
+    within("#user_details") do
+      fill_in "Name", with: details[:user_name]
+      fill_in "Email", with: details[:user_email]
+      fill_in "Job title", with: details[:user_job_title] if details[:user_job_title]
+      fill_in "Which GOV.UK training has this user had?", with: details[:other_training]
     end
 
     fill_in "Additional comments", with: details[:additional_comments]
