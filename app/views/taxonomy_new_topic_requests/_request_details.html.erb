@@ -2,20 +2,48 @@
   <p><%= f.object.class.description.html_safe %></p>
 </div>
 
-<%= f.input :title, required: true,
-            label: "Preferred name of new topic",
-            input_html: { class: "input-md-6", :"aria-required" => true } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :title do %>
+      Preferred name of new topic<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_field :title, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+  </span>
+</div>
 
-<%= f.input :url, as: :text, required: true,
-            label: "URL(s) of page(s) you want to tag (provide as many as you can)",
-            input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true, placeholder: "https://www.gov.uk/government/..." } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :url do %>
+      URL(s) of page(s) you want to tag (provide as many as you can)<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_area :url, required: true, placeholder: "https://www.gov.uk/government/...", aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+  </span>
+</div>
 
-<%= f.input :details, as: :text, required: true,
-            label: "Why do you think this new topic is needed? Please provide any evidence you have",
-            input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :details do %>
+      Why do you think this new topic is needed? Please provide any evidence you have<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_area :details, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+  </span>
+</div>
 
-<%= f.input :parent, required: true,
-            label: "Where should this topic fit in the taxonomy? For example, a sub-topic of Early years curriculum",
-            input_html: { class: "input-md-6", :"aria-required" => true } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :parent do %>
+      Where should this topic fit in the taxonomy? For example, a sub-topic of Early years curriculum<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_field :parent, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+  </span>
+</div>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>

@@ -4,17 +4,51 @@
 <p><a href="https://www.gov.uk/guidance/contact-the-government-digital-service/request-a-thing#change-govuk-content">How to write a request that will get resolved quickly</a>.</p>
 </div>
 
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :title, "Title of request" %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_field :title, placeholder: "Content change request", class: "input-md-6 form-control" %>
+  </span>
+</div>
 
-<%= f.input :title, label: "Title of request", input_html: { class: "input-md-6", placeholder: "Content change request" } %>
+<fieldset>
+  <legend>
+    <span>URL affected</span>
+  </legend>
 
-<%= f.inputs name: "URL affected" do %>
-  <%= f.input :url, label: "URL", input_html: { class: "input-md-6", placeholder: "https://www.gov.uk/" } %>
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :url, "URL" %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.text_field :url, placeholder: "https://www.gov.uk/", class: "input-md-6 form-control" %>
+    </span>
+  </div>
 
-  <%= f.input :details_of_change, as: :text, label: "Details of the requested change", required: true, input_html: { :class => "input-md-6", :rows => 16, :cols => 50, :"aria-required" => true } %>
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :details_of_change do %>
+        Details of the requested change<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.text_area :details_of_change, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 16, cols: 50 %>
+    </span>
+  </div>
 
-  <%= f.input :related_urls, as: :text, label: "Does this affect any other URLs (including any existing Welsh translations that need to be updated)? Put each new URL on a new line.", input_html: { class: "input-md-6", rows: 4, cols: 50 } %>
-
-<% end %>
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :related_urls do %>
+        Does this affect any other URLs (including any existing Welsh translations that need to be updated)? Put each new URL on a new line.<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.text_area :related_urls, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 4, cols: 50 %>
+    </span>
+  </div>
+</fieldset>
 
 <%= render partial: "support/attachment_instructions" %>
 

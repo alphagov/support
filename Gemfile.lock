@@ -118,10 +118,6 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
-    formtastic (3.1.5)
-      actionpack (>= 3.2.13)
-    formtastic-bootstrap (3.1.1)
-      formtastic (>= 3.0)
     gds-api-adapters (67.0.1)
       addressable
       link_header
@@ -457,7 +453,6 @@ DEPENDENCIES
   cancancan
   factory_bot_rails
   fog-aws
-  formtastic-bootstrap
   gds-api-adapters
   gds-sso
   gds_zendesk

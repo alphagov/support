@@ -1,3 +1,19 @@
 <div id="request-context">
-   <%= f.input :request_context, as: :radio, required: true, label: "Which part of GOV.UK is this about?", collection: f.object.request_context_options, input_html: { :"aria-required" => true } %>
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :request_context do %>
+        Which part of GOV.UK is this about?<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.collection_radio_buttons :request_context, f.object.request_context_options, :last, :last, required: true, aria: { required: true } do |builder| %>
+        <div class="radio">
+          <%= builder.label(class: "custom-control-label") do %>
+            <%= builder.radio_button(class: "custom-control-input") %>
+            <%= builder.object.first %>
+          <% end %>
+        </div>
+      <% end %>
+    </span>
+  </div>
 </div>

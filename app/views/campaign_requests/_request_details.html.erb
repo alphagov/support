@@ -15,139 +15,227 @@
   For either type of site, please answer the questions below.
 </p>
 
-<%= f.semantic_fields_for :campaign do |r| %>
-  <%= r.inputs :name => "Campaign details" do %>
-    <%= r.input :type_of_site,
-                label: "Are you applying for the campaign platform or a bespoke microsite?",
-                as: :radio,
-                :collection => ["Campaign platform", "Bespoke microsite"],
-                required: true,
-                input_html: {:class => "input-md-6"} %>
-    <%= r.input :has_read_guidance_confirmation,
-                label: "<b>Have you read the the #{link_to('GCS guidance on campaign websites', 'https://gcs.civilservice.gov.uk/guidance/campaigns/websites-government-campaigns/')} and accept the requirements for a Campaign Platform website?</b>".html_safe,
-                as: :boolean,
-                input_html: {:class => "input-md-6"} %>
-    <%= r.input :has_read_oasis_guidance_confirmation,
-                label: "<b>Have you followed the #{link_to('GCS guidance for OASIS planning', 'https://gcs.civilservice.gov.uk/wp-content/uploads/2015/09/6.3938_CO_GCS-Campaign-Planning_FINAL_A4_111017.pdf')} and are using the #{link_to('mandatory GCS OASIS template?', 'https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/')}</b>".html_safe,
-                as: :boolean,
-                input_html: {:class => "input-md-6"} %>
-    <%= r.input :signed_campaign,
-                label: "Name of the Head of Digital Communications who signed off the campaign website application",
-                required: true,
-                input_html: {:class => "input-md-6"} %>
-    <%= r.input :start_date,
-                label: "Start date of campaign site",
-                required: true,
-                input_html: { class: "input-md-2",
-                              :"data-module" => 'calendar',
-                              :"data-format" => 'dd-mm-yy',
-                              :"data-min-date" => 0,
-                              :placeholder => "dd-mm-yyyy",
-                              :value => r.object.start_date} %>
-    <%= r.input :end_date,
-                label: "Proposed end date of campaign site",
-                required: true,
-                input_html: { class: "input-md-2",
-                              :"data-module" => 'calendar',
-                              :"data-format" => 'dd-mm-yy',
-                              :"data-min-date" => 0,
-                              :placeholder => "dd-mm-yyyy",
-                              :value => r.object.end_date} %>
-    <%= r.input :development_start_date,
-                label: "Site build to commence on",
-                required: true,
-                input_html: { class: "input-md-2",
-                              :"data-module" => 'calendar',
-                              :"data-format" => 'dd-mm-yy',
-                              :"data-min-date" => 0,
-                              :placeholder => "dd-mm-yyyy",
-                              :value => r.object.development_start_date} %>
+<%= f.fields_for :campaign do |r| %>
+  <fieldset>
+    <legend>
+      <span>Campaign details</span>
+    </legend>
+
+    <div class="form-group">
+      <span class="form-label control-label">
+        <%= r.label :type_of_site do %>
+          Are you applying for the campaign platform or a bespoke microsite?<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.collection_radio_buttons :type_of_site, ["Campaign platform", "Bespoke microsite"], :itself, :itself, required: true, aria: { required: true } do |builder| %>
+          <div class="radio">
+            <%= builder.label(class: "custom-control-label") do %>
+              <%= builder.radio_button(class: "custom-control-input") %>
+              <%= builder.value %>
+            <% end %>
+          </div>
+        <% end %>
+      </span>
+    </div>
+
+    <div class="form-group checkbox">
+      <span class="form-wrapper">
+        <%= r.label :has_read_guidance_confirmation, class: "control-label" do %>
+          <%= r.check_box :has_read_guidance_confirmation %>
+          <b>Have you read the the <%= link_to('GCS guidance on campaign websites', 'https://gcs.civilservice.gov.uk/guidance/campaigns/websites-government-campaigns/') %> and accept the requirements for a Campaign Platform website?</b>
+        <% end %>
+      </span>
+    </div>
+
+    <div class="form-group checkbox">
+      <span class="form-wrapper">
+        <%= r.label :has_read_oasis_guidance_confirmation, class: "control-label" do %>
+          <%= r.check_box :has_read_oasis_guidance_confirmation %>
+          <b>Have you followed the <%= link_to('GCS guidance for OASIS planning', 'https://gcs.civilservice.gov.uk/wp-content/uploads/2015/09/6.3938_CO_GCS-Campaign-Planning_FINAL_A4_111017.pdf') %> and are using the <%= link_to('mandatory GCS OASIS template?', 'https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/') %></b>
+        <% end %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label control-label">
+        <%= r.label :signed_campaign do %>
+          Name of the Head of Digital Communications who signed off the campaign website application<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :signed_campaign, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :start_date do %>
+          Start date of campaign site<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :start_date, required: true, aria: { required: true }, placeholder: "dd-mm-yyyy", value: r.object.start_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :end_date do %>
+          Proposed end date of campaign site<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :end_date, required: true, aria: { required: true }, placeholder: "dd-mm-yyyy", value: r.object.end_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :development_start_date do %>
+          Site build to commence on<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :development_start_date, required: true, aria: { required: true }, placeholder: "dd-mm-yyyy", value: r.object.development_start_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+      </span>
+    </div>
     <p class="help-block">
       We expect the website to go live within 1 month of approval
     </p>
 
-    <%= r.input :performance_review_contact_email,
-                label: "Contact email/s for website performance review every 6 months",
-                required: true,
-                input_html: {:class => "input-md-6"} %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :performance_review_contact_email do %>
+          Contact email/s for website performance review every 6 months<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :performance_review_contact_email, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
     <p class="help-block">
       Every 6 months after your site goes live you will be required to provide performance data
       for the site based on your digital KPIs.
     </p>
 
-    <%= r.input :government_theme,
-                label: "Which of the current Government Communications Plan priority themes does this campaign website support and how?",
-                required: true,
-                input_html: {:class => "input-md-6",
-                             :rows => 6,
-                             :cols => 50,
-                             :"aria-required" => true } %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :government_theme do %>
+          Which of the current Government Communications Plan priority themes does this campaign website support and how?<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_area :government_theme, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      </span>
+    </div>
 
-    <%= r.input :site_title,
-               label: 'Site title',
-               required: true,
-               input_html: {class: 'input-md-6', 'aria-required': true} %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :site_title do %>
+          Site title<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :site_title, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
     <p class="help-block">
-        The short campaign title, as appears in (for example) Google Search
-    </p>
-    <%= r.input :site_tagline,
-                label: 'Site tagline',
-                required: true,
-                input_html: {class: 'input-md-6', 'aria-required': true} %>
-    <p class="help-block">
-        Explain what this site is about, as appears in (for example) Google Search
-    </p>
-
-    <%= r.input :site_metadescription,
-         as: :text,
-         label: 'Site metadescription (appears in search results)',
-     required: true,
-     input_html: {:class => "input-md-6",
-                  :rows => 6,
-                  :cols => 50,
-                  :"aria-required" => true,
-                  :"aria-describedby" => "seoHelpBlock" } %>
-    <p class="help-block">
-        Approx 20-30 words, as appears in (for example) Google Search
+      The short campaign title, as appears in (for example) Google Search
     </p>
 
-    <%= r.input :description,
-                as: :text,
-                label: "Campaign description",
-                required: true,
-                input_html: {:class => "input-md-6",
-                             :rows => 6,
-                             :cols => 50,
-                             :"aria-required" => true } %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :site_tagline do %>
+          Site tagline<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :site_tagline, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
     <p class="help-block">
-        Brief description of the campaign, for internal use only
+      Explain what this site is about, as appears in (for example) Google Search
     </p>
 
-    <%= r.input :call_to_action,
-                as: :text,
-                label: "Call to action",
-                required: true,
-                input_html: {:class => "input-md-6",
-                             :rows => 6,
-                             :cols => 50,
-                             :"aria-required" => true } %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :site_metadescription do %>
+          Site metadescription (appears in search results)<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_area :site_metadescription, required: true, aria: { required: true, describedby: "seoHelpBlock" }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      </span>
+    </div>
+    <p class="help-block">
+      Approx 20-30 words, as appears in (for example) Google Search
+    </p>
 
-    <%= r.input :proposed_url,
-                label: "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)",
-                required: true, input_html: { class: "input-md-6",
-                                              :"aria-describedby" => "urlHelpBlock",
-                                              :"aria-required" => true } %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :description do %>
+          Campaign description<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_area :description, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      </span>
+    </div>
+    <p class="help-block">
+      Brief description of the campaign, for internal use only
+    </p>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :call_to_action do %>
+          Call to action<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_area :call_to_action, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :proposed_url do %>
+          Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :proposed_url, required: true, aria: { required: true, describedby: "urlHelpBlock" }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
     <p class="help-block">
       If applying for Campaigns Platform it is in the form of xxxxx.campaign.gov.uk, or otherwise
       if a microsite, standard format is  in the form of xxxxxx.gov.uk.
     </p>
 
-    <%= r.input :cost_of_campaign, label: "Site build budget / costs (and overall campaign cost, if applicable)", required: true, input_html: { class: "input-md-6" } %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :cost_of_campaign do %>
+          Site build budget / costs (and overall campaign cost, if applicable)<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :cost_of_campaign, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
     <p class="help-block">
       If you are applying for the Campaign Platform page, this is free of any build charge
     </p>
 
-    <%= r.input :ga_contact_email, label: "Contact details for Google Analytics leads (Gmail accounts only)", required: true, input_html: {:class => "input-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :ga_contact_email do %>
+          Contact details for Google Analytics leads (Gmail accounts only)<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_area :ga_contact_email, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      </span>
+    </div>
     <p class="help-block">
       GCS centralise and coordinate access to Google Analytics, although departments will themselves
       be responsible for analysing their site’s performance.
@@ -157,12 +245,19 @@
       of your marketing, please provide the following with access webmaster@cabinetoffice.gov.uk and
       microsites@cabinetoffice.gov.uk.
     </p>
-
-    <% end %>
+  </fieldset>
 <% end %>
 
-<%= f.input :additional_comments, as: :text, label: "Additional comments", input_html: { class: "input-md-6", rows: 6, cols: 50 } %>
-
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :additional_comments do %>
+      Additional comments<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_area :additional_comments, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+  </span>
+</div>
 <p class="help-block">
   Please note that in the next stage you will also need to provide an OASIS plan using this template (<%= link_to 'OASIS template from the GCS website', 'https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/' %>). In particular you need to demonstrate how the digital / website element of the campaign integrates into your overall OASIS plan and we will need to see <u>specific digital KPIs</u> in the evaluation section.
 </p>

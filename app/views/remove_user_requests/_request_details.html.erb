@@ -3,17 +3,53 @@
 </div>
 
 <div id="user_details" %>
-  <%= f.inputs "User details" do %>
-    <%= f.input :user_name, label: "Name", required: true, input_html: {:class => "input-md-6", :"aria-required" => true } %>
+  <fieldset>
+    <legend>
+      <span>User details</span>
+    </legend>
 
-    <%= f.input :user_email, as: :email, label: "Email", required: true, input_html: { :class => "input-md-6", :"aria-required" => true } %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= f.label :user_name, class: "control-label" do %>
+          Name<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= f.text_field :user_name, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
 
-    <%= f.semantic_fields_for :time_constraint do |r| %>
-      <%= r.input :not_before_date, label: "MUST NOT be removed BEFORE", required: false, input_html: { class: "input-md-2", :"data-module" => 'calendar', :"data-format" => 'dd-mm-yy', :"data-min-date" => 0, :placeholder => "dd-mm-yyyy", :value => r.object.not_before_date } %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= f.label :user_email do %>
+          Email<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= f.email_field :user_email, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
+
+    <%= f.fields_for :time_constraint do |r| %>
+      <div class="form-group">
+        <span class="form-label">
+          <%= r.label :not_before_date, "MUST NOT be removed BEFORE" %>
+        </span>
+        <span class="form-wrapper">
+          <%= r.text_field :not_before_date, required: false, placeholder: "dd-mm-yyyy", value: r.object.not_before_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+        </span>
+      </div>
     <% end %>
 
-    <%= f.input :reason_for_removal, as: :text, label: "Reason for removal", input_html: { class: "input-md-6", rows: 6, cols: 50 } %>
-  <% end %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= f.label :reason_for_removal, "Reason for removal" %>
+      </span>
+      <span class="form-wrapper">
+        <%= f.text_area :reason_for_removal, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      </span>
+    </div>
+  </fieldset>
 </div>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
