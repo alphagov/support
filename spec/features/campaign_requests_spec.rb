@@ -23,7 +23,7 @@ feature "Campaign requests" do
 "[Are you applying for the campaign platform or a bespoke microsite?]
 Campaign platform
 
-[Name of the head of digital who signed off the campaign website application]
+[Name of the Head of Digital Communications who signed off the campaign website application]
 John Smith
 
 [Start date of campaign site]
@@ -106,7 +106,7 @@ private
     choose details[:type_of_site]
     check "Have you read the the GCS guidance on campaign websites and accept the requirements for a Campaign Platform website?" if details[:has_read_guidance]
     check "Have you followed the GCS guidance for OASIS planning and are using the mandatory GCS OASIS template?" if details[:has_read_oasis_guidance]
-    fill_in "Name of the head of digital who signed off the campaign website application*", with: details[:signed_campaign]
+    fill_in "Name of the Head of Digital Communications who signed off the campaign website application*", with: details[:signed_campaign]
     fill_in "Start date of campaign site*", with: details[:start_date]
     fill_in "Proposed end date of campaign site*", with: details[:end_date]
     fill_in "Site build to commence on", with: details[:development_start_date]
