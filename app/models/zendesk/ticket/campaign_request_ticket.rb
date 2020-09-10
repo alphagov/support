@@ -21,7 +21,7 @@ module Zendesk
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,
             field: :signed_campaign,
-            label: "Name of the head of digital who signed off the campaign website application",
+            label: "Name of the Head of Digital Communications who signed off the campaign website application",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,
