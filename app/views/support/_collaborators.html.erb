@@ -1,3 +1,10 @@
-<%= f.semantic_fields_for :requester do |r| %>
-  <%= r.input :collaborator_emails, label: "Should anybody else be copied in on this request? (comma-separated list of emails)", required: false, input_html: { class: "input-md-6", value: r.object.collaborator_emails.join(", ") } %>
+<%= f.fields_for :requester do |r| %>
+  <div class="form-group">
+    <span class="form-label">
+      <%= r.label :collaborator_emails, "Should anybody else be copied in on this request? (comma-separated list of emails)" %>
+    </span>
+    <span class="form-wrapper">
+      <%= r.text_field :collaborator_emails, required: false, class: "input-md-6 form-control", value: r.object.collaborator_emails.join(", ") %>
+    </span>
+  </div>
 <% end %>

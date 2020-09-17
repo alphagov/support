@@ -2,16 +2,66 @@
   <p><%= f.object.class.description %></p>
 </div>
 
-<%= f.semantic_fields_for :live_campaign do |r| %>
-    <%= r.inputs :name => "Campaign details" do %>
-        <%= r.input :title, label: "Campaign title", hint: "The name of the campaign", required: true, input_html: {:class => "input-md-6", :"aria-required" => true} %>
+<%= f.fields_for :live_campaign do |r| %>
+  <fieldset>
+    <legend>
+      <span>Campaign details</span>
+    </legend>
 
-        <%= r.input :proposed_url, label: "Campaign URL", input_html: { class: "input-md-6" } %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :title do %>
+          Campaign title<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :title, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+      </span>
+      <span class="help-block">
+        The name of the campaign
+      </span>
+    </div>
 
-        <%= r.input :description, as: :text, label: "Details of requested support", required: true, input_html: {:class => "input-md-6", :rows => 6, :cols => 50, :"aria-required" => true } %>
-        <%= r.input :time_constraints, label: "Are there any time constraints for this request?", input_html: {:class => "input-md-6", :rows => 6, :cols => 50 } %>
-        <%= r.input :reason_for_dates, as: :text, label: "Reason for the above dates?", input_html: {:class => "input-md-6", :rows => 6, :cols => 50 } %>
-    <% end %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :proposed_url do %>
+          Campaign URL<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :proposed_url, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :description do %>
+          Details of requested support<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_area :description, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :time_constraints, "Are there any time constraints for this request?" %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :time_constraints, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :reason_for_dates, "Reason for the above dates?" %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_area :reason_for_dates, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      </span>
+    </div>
+  </fieldset>
 <% end %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>

@@ -2,34 +2,78 @@
   <p><%= f.object.class.description %></p>
 </div>
 
-<%= f.input :title, label: "Title of request", input_html: { class: "input-md-6", placeholder: "Advice on content" } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :title, "Title of request" %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_field :title, placeholder: "Advice on content", class: "input-md-6 form-control" %>
+  </span>
+</div>
 
-<%= f.inputs name: "Details of your request" do %>
-  <%= f.input :details, as: :text, required: true,
-              label: "Please explain what you would like help with",
-              input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true } %>
+<fieldset>
+  <legend>
+    <span>Details of your request</span>
+  </legend>
+
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :details do %>
+        Please explain what you would like help with<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.text_area :details, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+    </span>
+  </div>
 
   <div class="alert alert-info alert-block">
     <p>If you have relevant supporting documents, please send them as attachments in reply to the acknowledgement email you will receive shortly.</p>
   </div>
 
-  <%= f.input :urls, as: :text,
-              label: "Relevant URLs (if applicable)",
-              input_html: { class: "input-md-6", rows: 6, cols: 50 } %>
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :urls, "Relevant URLs (if applicable)" %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.text_area :urls, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+    </span>
+  </div>
 
-  <%= f.input :contact_number,
-              label: "Contact telephone number (in case we need to call you to discuss the content)",
-              input_html: { class: "input-md-6" } %>
-<% end %>
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :contact_number, "Contact telephone number (in case we need to call you to discuss the content)" %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.text_field :contact_number, class: "input-md-6 form-control" %>
+    </span>
+  </div>
+</fieldset>
 
-<%= f.semantic_fields_for :time_constraint do |r| %>
-  <%= r.inputs name: "Time constraints" do %>
-    <%= r.input :needed_by_date,
-                label: "Is there a date you need to have a response by?",
-                input_html: { class: "input-md-2", :"data-module" => 'calendar', :"data-format" => 'dd-mm-yy', :"data-min-date" => 0, :placeholder => "dd-mm-yyyy", :value => r.object.needed_by_date } %>
+<%= f.fields_for :time_constraint do |r| %>
+  <fieldset>
+    <legend>
+      <span>Time constraints</span>
+    </legend>
 
-    <%= r.input :time_constraint_reason, label: "Reason for deadline", input_html: { class: "input-md-6" } %>
-  <% end %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :needed_by_date, "Is there a date you need to have a response by?" %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :needed_by_date, placeholder: "dd-mm-yyyy", value: r.object.needed_by_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :time_constraint_reason, "Reason for deadline" %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :time_constraint_reason, class: "input-md-6 form-control" %>
+      </span>
+    </div>
+  </fieldset>
 <% end %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>

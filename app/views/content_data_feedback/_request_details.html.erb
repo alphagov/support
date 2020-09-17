@@ -4,29 +4,48 @@
   better.
 </p>
 <div id="feedback-type">
-  <%= f.input(
-    :feedback_type,
-    as: :radio,
-    required: true,
-    label: "Your feedback is about",
-    collection: f.object.feedback_type_options,
-    input_html: { :"aria-required" => true }
-  ) %>
-  <%= f.input(
-    :feedback_details,
-    as: :text,
-    required: true,
-    label: "Tell us a bit more",
-    input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true }
-  ) %>
-  <%= f.input(
-    :impact_on_work,
-    as: :text,
-    required: false,
-    label: "What's the impact on your work if we don't do anything about it?",
-    hint: "This information will help us prioritise changes and future work",
-    input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => false }
-  ) %>
+  <div class="form-group">
+    <span class="form-label control-label">
+      <%= f.label :feedback_type do %>
+        Your feedback is about<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.collection_radio_buttons :feedback_type, f.object.feedback_type_options, :last, :last, required: true, aria: { required: true } do |builder| %>
+        <div class="radio">
+          <%= builder.label class: "custom-control-label" do %>
+            <%= builder.radio_button(class: "custom-control-input") %>
+            <%= builder.object.first %>
+          <% end %>
+        </div>
+      <% end %>
+    </span>
+  </div>
+
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :feedback_details do %>
+        Tell us a bit more<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.text_area :feedback_details, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+    </span>
+  </div>
+
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :impact_on_work do %>
+        What's the impact on your work if we don't do anything about it?<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.text_area :impact_on_work, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      <span class="help-block">
+        This information will help us prioritise changes and future work
+      </span>
+    </span>
+  </div>
 </div>
 
 <p class="alert alert-info">

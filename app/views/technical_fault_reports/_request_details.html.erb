@@ -3,20 +3,70 @@
 </div>
 
 <div id="technical-fault-context">
-  <%= f.semantic_fields_for :fault_context do |r| %>
-    <%= r.input :name, as: :radio, required: true, label: "What isn't working properly?", collection: f.object.fault_context_options, input_html: { :"aria-required" => true } %>
+  <%= f.fields_for :fault_context do |r| %>
+    <div class="form-group">
+      <span class="form-label control-label">
+        <%= r.label :name do %>
+          What isn't working properly?<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.collection_radio_buttons :name, f.object.fault_context_options, :id, :name, required: true, aria: { required: true } do |builder| %>
+          <div class="radio">
+            <%= builder.label(class: "custom-control-label") do %>
+              <%= builder.radio_button(class: "custom-control-input") %>
+              <%= builder.object.name %>
+          <% end %>
+          </div>
+        <% end %>
+      </span>
+    </div>
   <% end %>
 </div>
 
-<%= f.input :fault_specifics, as: :text, required: true,
-            label: "How much is it affecting? (the whole thing, a specific feature or specific URLs)",
-            input_html: { :"aria-required" => true, :class => "input-md-6", :rows => 6, :cols => 50 } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :fault_specifics do %>
+      How much is it affecting? (the whole thing, a specific feature or specific URLs)<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_area :fault_specifics, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+  </span>
+</div>
 
-<%= f.input :actions_leading_to_problem, as: :text, required: true, label: "What were you trying to do?", input_html: { :"aria-required" => true, :class => "input-md-6", :rows => 6, :cols => 50 } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :actions_leading_to_problem do %>
+      What were you trying to do?<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_area :actions_leading_to_problem, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+  </span>
+</div>
 
-<%= f.input :what_happened, as: :text, required: true, label: "What happened?", input_html: { :"aria-required" => true, :class => "input-md-6", :rows => 6, :cols => 50 } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :what_happened do %>
+      What happened?<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_area :what_happened, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+  </span>
+</div>
 
-<%= f.input :what_should_have_happened, as: :text, required: true, label: "What should have happened?", input_html: { :"aria-required" => true, :class => "input-md-6", :rows => 6, :cols => 50 } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :what_should_have_happened do %>
+      What should have happened?<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_area :what_should_have_happened, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+  </span>
+</div>
 
 <div class="alert alert-info alert-block">
   <p>If you have screenshots please send them as attachments in reply to the acknowledgement email you will receive shortly.</p>

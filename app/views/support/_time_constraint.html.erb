@@ -1,7 +1,34 @@
-<%= f.semantic_fields_for :time_constraint do |r| %>
-  <%= r.inputs name: "Are there any time constraints? (Optional)" do %>
-    <%= r.input :needed_by_date, label: "MUST be published by", required: false, input_html: { class: "input-md-2", :"data-module" => 'calendar', :"data-format" => 'dd-mm-yy', :"data-min-date" => 0, :placeholder => "dd-mm-yyyy", :value => r.object.needed_by_date } %>
-    <%= r.input :not_before_date, label: "MUST NOT be published BEFORE", required: false, input_html: { class: "input-md-2", :"data-module" => 'calendar', :"data-format" => 'dd-mm-yy', :"data-min-date" => 0, :placeholder => "dd-mm-yyyy", :value => r.object.not_before_date } %>
-    <%= r.input :time_constraint_reason, as: :text, label: "Reason for the above dates", required: false, input_html: { class: "input-md-6", rows: 6, cols: 50 } %>
-  <% end %>
+<%= f.fields_for :time_constraint do |r| %>
+  <fieldset>
+    <legend>
+      <span>Are there any time constraints? (Optional)</span>
+    </legend>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :needed_by_date, "MUST be published by" %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :needed_by_date, required: false, placeholder: "dd-mm-yyyy", value: r.object.needed_by_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :not_before_date, "MUST NOT be published BEFORE" %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :not_before_date, required: false, placeholder: "dd-mm-yyyy", value: r.object.not_before_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :time_constraint_reason, "Reason for the above dates" %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_area :time_constraint_reason, required: false, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      </span>
+    </div>
+  </fieldset>
 <% end %>

@@ -2,21 +2,55 @@
   <p><%= f.object.class.description.html_safe %></p>
 </div>
 
-<%= f.input :title, required: true,
-            label: "Name of topic you'd like changed",
-            input_html: { class: "input-md-6", :"aria-required" => true } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :title do %>
+      Name of topic you'd like changed<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_field :title, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+  </span>
+</div>
 
-<%= f.input :type_of_change, as: :radio, required: true,
-            label: "What would you like to change?",
-            collection: f.object.type_of_change_options,
-            input_html: { :"aria-required" => true } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :type_of_change do %>
+      What would you like to change?<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.collection_radio_buttons :type_of_change, f.object.type_of_change_options, :last, :last, required: true, aria: { required: true } do |builder| %>
+      <div class="radio">
+        <%= builder.label(class: "custom-control-label") do %>
+          <%= builder.radio_button(class: "custom-control-input") %>
+          <%= builder.object.first %>
+        <% end %>
+      </div>
+    <% end %>
+  </span>
+</div>
 
-<%= f.input :details, as: :text, required: true,
-            label: "Please give details of how you'd like the topic changed",
-            input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :details do %>
+      Please give details of how you'd like the topic changed<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_area :details, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+  </span>
+</div>
 
-<%= f.input :reasons, as: :text, required: true,
-            label: "Why do you think this change is needed? Please provide any evidence you have",
-            input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :reasons do %>
+      Why do you think this change is needed? Please provide any evidence you have<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_area :reasons, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+  </span>
+</div>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>

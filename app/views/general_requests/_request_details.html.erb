@@ -6,12 +6,33 @@
   </ul>
 </div>
 
-<%= f.input :title, label: "Title of request", input_html: { class: "input-md-6", placeholder: "General request" } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :title, "Title of request" %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_field :title, placeholder: "General request", class: "input-md-6 form-control" %>
+  </span>
+</div>
 
-<%= f.inputs "Details of your problem, request or suggestion" do %>
-  <%= f.input :details, as: :text, label: "Details", required: true, input_html: { class: "input-md-6", rows: 6, cols: 50, :"aria-required" => true } %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :details do %>
+      Details<abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_area :details, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+  </span>
+</div>
 
-  <%= f.input :url, label: "URL (if applicable)", input_html: { class: "input-md-6" } %>
-<% end %>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :url, "URL (if applicable)" %>
+  </span>
+  <span class="form-wrapper">
+    <%= f.text_field :url, class: "input-md-6 form-control" %>
+  </span>
+</div>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
