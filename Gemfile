@@ -47,6 +47,7 @@ group :test do
   gem "rspec-collection_matchers"
   gem "rspec-its"
   gem "shoulda"
+  gem "simplecov"
   gem "timecop"
   gem "webmock"
 end
