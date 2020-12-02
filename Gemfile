@@ -21,7 +21,7 @@ gem "plek"
 # implicitly from using govuk_sidekiq.  This is because we store user
 # objects in it directly as the app has no access to any other database.
 gem "redis"
-gem "sass-rails"
+gem "sassc-rails"
 gem "select2-rails"
 gem "uglifier"
 
