@@ -27,3 +27,7 @@ config/zendesk.yml
 
 # Ignore RSpec state file
 /spec/examples.txt
+
+# Yarn
+node_modules
+yarn-error.log
