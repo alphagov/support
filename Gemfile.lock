@@ -358,8 +358,6 @@ GEM
     ruby-progressbar (1.10.1)
     rubyzip (2.3.0)
     safe_yaml (1.0.5)
-    sass-rails (6.0.0)
-      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -481,7 +479,7 @@ DEPENDENCIES
   rspec-its
   rspec-rails
   rubocop-govuk
-  sass-rails
+  sassc-rails
   select2-rails
   shoulda
   simplecov
