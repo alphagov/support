@@ -40,3 +40,7 @@ To start the background worker:
 ```
 bundle exec rake jobs:work
 ```
+
+## Licence
+
+[MIT License](LICENCE)
