@@ -1,6 +1,12 @@
 # Support
 
-Forms that create tickets for requests coming from government agencies or from GOV.UK contact forms. Tickets are created using the [gds_zendesk gem](https://github.com/alphagov/gds_zendesk).
+This app:
+
+- Presents anonymous feedback about pages on GOV.UK in a "feedback explorer". Anonymous feedback is collected via the [Feedback app](https://github.com/alphagov/feedback) and retrieved from the [Support API](https://github.com/alphagov/support-api).
+
+- Exposes [internal APIs](https://github.com/alphagov/gds-api-adapters/blob/master/lib/gds_api/support.rb) to create Zendesk tickets e.g. [via the Feedback app](https://github.com/alphagov/feedback/blob/7e6893c0e80d9c98f6cea27d1bd089621054b177/app/models/contact_ticket.rb#L35). Tickets are created using the [gds_zendesk gem](https://github.com/alphagov/gds_zendesk).
+
+- Hosts internal forms for publishers to create Zendesk tickets, as well as emergency contact info. Emergency contacts are secret and retrieved from an [environment variable](https://github.com/alphagov/govuk-puppet/blob/941373ab48ae50a9d1929caee73a52390004bf81/modules/govuk/manifests/apps/support.pp#L129) at runtime.
 
 ## Nomenclature
 
@@ -9,35 +15,11 @@ of some form or other and relates to pages published on GOV.UK.
 - **Anonymous Contact**: Part of the feedback collected by this app is anonymous, when it's
 submitted via an anonymous contact form in the [feedback app](https://github.com/alphagov/feedback).
 - **Named Contact**: In contrast with the `Anonymous Contact` feedback, this is submitted
-via a form that will require you to identify yourself. This data is sent directly
-to the `support` app.
+via a form that will require you to identify yourself.
 
 ## Technical documentation
 
-This is a Ruby on Rails application which collects feedback and creates tickets based on it.
-It collects data from two sources:
-- its own forms which can be accessed by [signon](https://github.com/alphagov/signon) users
-- contact forms from the [feedback app](https://github.com/alphagov/feedback)
-
-The data collected from either the `feedback` app or its own forms is then used to create
-and submit Zendesk tickets.
-
-Even though it is not public facing, the `support` app does receive data from the [feedback app](https://github.com/alphagov/feedback),
-which collects data via contact forms rendered on GOV.UK.
-
-#### Feedback explorer
-
-At the bottom of every page on GOV.UK we ask: “Is there anything wrong with this page?”.
-Users can leave comments on what they were doing and what went wrong. Feedback is anonymous
-and is collected via the `feedback` app.
-
-The Feedback explorer in the `support` app allows users to browse the feedback submitted from GOV.UK pages,
-and to export CSVs of the same for further analysis.
-
-### Dependencies
-
-- [alphagov/support-api](https://github.com/alphagov/support-api) - provides an API for storing
-and fetching anonymous feedback about pages on GOV.UK.
+This is a Ruby on Rails application.
 
 ### Running the test suite
 
