@@ -1,6 +1,6 @@
 # Support
 
-Forms that create tickets for requests coming from government agencies or from GOV.UK contact forms.
+Forms that create tickets for requests coming from government agencies or from GOV.UK contact forms. Tickets are created using the [gds_zendesk gem](https://github.com/alphagov/gds_zendesk).
 
 ## Nomenclature
 
@@ -33,11 +33,6 @@ and is collected via the `feedback` app.
 
 The Feedback explorer in the `support` app allows users to browse the feedback submitted from GOV.UK pages,
 and to export CSVs of the same for further analysis.
-
-#### Zendesk
-
-Currently we use Zendesk to register our support tickets, via the `gds_zendesk` gem which is
-a wrapper around the Zendesk API.
 
 ### Dependencies
 
