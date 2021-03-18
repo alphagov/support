@@ -31,10 +31,12 @@ You can use the [GOV.UK Docker environment](https://github.com/alphagov/govuk-do
 bundle exec rake
 ```
 
-### Starting the background processing queues
+### Running the worker
 
-Zendesk tickets are raised in the background using a redis-backed queue called [sidekiq](http://sidekiq.org/).
+Zendesk tickets are raised in the background using a [Sidekiq](http://sidekiq.org/) worker.
 
-To start the background workers:
+To start the background worker:
 
-    rake jobs:work
+```
+bundle exec rake jobs:work
+```
