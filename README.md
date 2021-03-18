@@ -19,13 +19,17 @@ via a form that will require you to identify yourself.
 
 ## Technical documentation
 
-This is a Ruby on Rails application.
+This is a Ruby on Rails app, and should follow [our Rails app conventions](https://docs.publishing.service.gov.uk/manual/conventions-for-rails-applications.html).
+
+You can use the [GOV.UK Docker environment](https://github.com/alphagov/govuk-docker) to run the application and its tests with all the necessary dependencies. Follow [the usage instructions](https://github.com/alphagov/govuk-docker#usage) to get started.
+
+**Use GOV.UK Docker to run any commands that follow.**
 
 ### Running the test suite
 
-To run the specs, execute:
-
-    bundle exec rake
+```
+bundle exec rake
+```
 
 ### Starting the background processing queues
 
