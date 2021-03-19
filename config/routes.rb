@@ -34,4 +34,10 @@ Rails.application.routes.draw do
   get "acknowledge" => "support#acknowledge"
   get "_status" => "support#queue_status"
   root to: "support#landing"
+
+  get "/healthcheck",
+      to: GovukHealthcheck.rack_response(
+        GovukHealthcheck::RailsCache,
+        GovukHealthcheck::SidekiqRedis,
+      )
 end
