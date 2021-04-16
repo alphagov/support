@@ -20,8 +20,8 @@ feature "Campaign requests" do
       "tags" => %w[govt_form campaign],
       "comment" => {
         "body" =>
-"[Are you applying for the campaign platform or a bespoke microsite?]
-Campaign platform
+"[Are you applying for the single page campaign platform or a bespoke multi page site?]
+Single page campaign platform site
 
 [Name of the Head of Digital Communications who signed off the campaign website application]
 John Smith
@@ -71,7 +71,7 @@ Some comment",
     )
 
     user_makes_a_campaign_request(
-      type_of_site: "Campaign platform",
+      type_of_site: "Single page campaign platform site",
       has_read_guidance: true,
       has_read_oasis_guidance: true,
       signed_campaign: "John Smith",

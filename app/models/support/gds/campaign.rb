@@ -40,7 +40,7 @@ module Support
                 presence: true
 
       validates :has_read_guidance_confirmation, :has_read_oasis_guidance_confirmation, acceptance: { allow_nil: false }
-      validates :type_of_site, inclusion: { in: ["Campaign platform", "Bespoke microsite"] }
+      validates :type_of_site, inclusion: { in: ["Single page campaign platform site", "Multi page site"] }
 
       validates_date :start_date, on_or_after: :today
       validates_date :end_date, after: :start_date
