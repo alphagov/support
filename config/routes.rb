@@ -35,12 +35,6 @@ Rails.application.routes.draw do
   get "_status" => "support#queue_status"
   root to: "support#landing"
 
-  get "/healthcheck",
-      to: GovukHealthcheck.rack_response(
-        GovukHealthcheck::RailsCache,
-        GovukHealthcheck::SidekiqRedis,
-      )
-
   get "/healthcheck/live", to: proc { [200, {}, %w[OK]] }
   get "/healthcheck/ready", to: GovukHealthcheck.rack_response(
     GovukHealthcheck::RailsCache,
