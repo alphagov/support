@@ -16,7 +16,7 @@ module Zendesk
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,
             field: :type_of_site,
-            label: "Are you applying for the campaign platform or a bespoke microsite?",
+            label: "Are you applying for the single page campaign platform or a bespoke multi page site?",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,

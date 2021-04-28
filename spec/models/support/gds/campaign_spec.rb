@@ -9,7 +9,7 @@ module Support
 
       subject do
         Campaign.new(
-          type_of_site: "Campaign platform",
+          type_of_site: "Single page campaign platform site",
           signed_campaign: "Test Signer",
           has_read_guidance_confirmation: "1",
           has_read_oasis_guidance_confirmation: "1",
@@ -46,7 +46,7 @@ module Support
       it { should validate_acceptance_of(:has_read_guidance_confirmation) }
       it { should validate_acceptance_of(:has_read_oasis_guidance_confirmation) }
 
-      it { should validate_inclusion_of(:type_of_site).in?(["Campaign platform", "Bespoke microsite"]) }
+      it { should validate_inclusion_of(:type_of_site).in?(["Single page campaign platform site", "Multi page site"]) }
 
       it { should validate_acceptance_of(:has_read_guidance_confirmation) }
       it { should validate_acceptance_of(:has_read_oasis_guidance_confirmation) }
