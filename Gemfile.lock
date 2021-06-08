@@ -119,7 +119,7 @@ GEM
       fog-core
       nokogiri (>= 1.5.11, < 2.0.0)
     formatador (0.2.5)
-    gds-api-adapters (71.2.0)
+    gds-api-adapters (71.3.0)
       addressable
       link_header
       null_logger
@@ -167,7 +167,7 @@ GEM
     hashdiff (1.0.1)
     hashie (3.6.0)
     http-accept (1.7.0)
-    http-cookie (1.0.3)
+    http-cookie (1.0.4)
       domain_name (~> 0.5)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
