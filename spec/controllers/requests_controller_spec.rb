@@ -2,27 +2,40 @@ require "rails_helper"
 require "active_model/model"
 
 describe RequestsController, type: :controller do
-  class TestRequest
-    include ActiveModel::Model
-    include Support::Requests::WithRequester
+  let(:test_request_class) do
+    Class.new do
+      include ActiveModel::Model
+      include Support::Requests::WithRequester
 
-    attr_accessor :a, :b
+      attr_accessor :a, :b
 
-    validates_presence_of :a
+      validates_presence_of :a
+    end
   end
 
-  class TestZendeskTicket < Zendesk::ZendeskTicket
-    def subject
-      "Test request"
-    end
+  let(:test_zendesk_ticket_class) do
+    Class.new(Zendesk::ZendeskTicket) do
+      def subject
+        "Test request"
+      end
 
-    def tags
-      %w[tag_a tag_b]
-    end
+      def tags
+        %w[tag_a tag_b]
+      end
 
-    def comment_snippets
-      []
+      def comment_snippets
+        []
+      end
     end
+  end
+
+  before do
+    stub_const("TestRequest", test_request_class)
+    stub_const("TestZendeskTicket", test_zendesk_ticket_class)
+    login_as user
+    zendesk_has_no_user_with_email(user.email)
+
+    prevent_implicit_rendering
   end
 
   controller do
@@ -53,13 +66,6 @@ describe RequestsController, type: :controller do
     # we're not testing view rendering here,
     # so prevent rendering by stubbing out default_render
     allow(controller).to receive(:default_render)
-  end
-
-  before do
-    login_as user
-    zendesk_has_no_user_with_email(user.email)
-
-    prevent_implicit_rendering
   end
 
   context "for an authorised user" do
