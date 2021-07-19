@@ -7,6 +7,7 @@ describe RequestsController, type: :controller do
     include Support::Requests::WithRequester
 
     attr_accessor :a, :b
+
     validates_presence_of :a
   end
 
