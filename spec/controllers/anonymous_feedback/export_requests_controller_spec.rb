@@ -141,7 +141,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
       end
 
       it "sends the relevant file" do
-        # NOTE send_data acts as a render call, so to avoid breaking the controller
+        # NOTE: send_data acts as a render call, so to avoid breaking the controller
         # we need to pretend to do something here, as a nil stub will cause a
         # ActionController::UnknownFormat error because it is falling throug
         # to the default render.  Doing `head :ok` is enough.

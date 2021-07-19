@@ -3,7 +3,7 @@ module Zendesk
     class NamedContactTicket < Zendesk::ZendeskTicket
       def subject
         suffix = @request.govuk_link_path.nil? ? "" : " about #{@request.govuk_link_path}"
-        "Named contact" + suffix
+        "Named contact#{suffix}"
       end
 
       def tags

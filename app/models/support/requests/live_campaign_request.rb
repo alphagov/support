@@ -2,6 +2,7 @@ module Support
   module Requests
     class LiveCampaignRequest < Request
       attr_accessor :live_campaign
+
       validates :live_campaign, presence: true
       validate do |request|
         if request.live_campaign && !request.live_campaign.valid?

@@ -12,6 +12,7 @@ module Support
 
       class ExploreByMultiplePaths < Explore
         attr_accessor :uploaded_list, :list_of_urls
+
         validate :url_list_should_be_present
         validate :urls_are_well_formed
 
@@ -73,6 +74,7 @@ module Support
 
       class ExploreByOrganisation < Explore
         attr_accessor :organisation
+
         validates :organisation, presence: true
 
         def redirect_path
@@ -84,6 +86,7 @@ module Support
 
       class ExploreByDocumentType < Explore
         attr_accessor :document_type
+
         validates :document_type, presence: true
 
         def redirect_path
