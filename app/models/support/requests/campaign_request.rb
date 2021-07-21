@@ -1,7 +1,8 @@
 module Support
   module Requests
     class CampaignRequest < Request
-      attr_accessor :campaign
+      attr_accessor :campaign, :additional_comments
+
       validates :campaign, presence: true
       validate do |request|
         if request.campaign && !request.campaign.valid?
@@ -12,8 +13,6 @@ module Support
       def campaign_attributes=(attr)
         self.campaign = Support::GDS::Campaign.new(attr)
       end
-
-      attr_accessor :additional_comments
 
       def self.label
         "Request a new campaign"

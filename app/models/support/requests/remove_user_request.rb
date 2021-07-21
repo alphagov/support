@@ -6,6 +6,7 @@ module Support
       include WithTimeConstraint
 
       attr_accessor :user_name, :user_email, :reason_for_removal
+
       validates :user_name, :user_email, presence: true
       validates :user_email, format: { with: /@/ }
 

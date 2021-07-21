@@ -4,6 +4,7 @@ module Support
       DEFAULTS = { automatic_redirect: "1" }.freeze
 
       attr_accessor :urls, :reason_for_unpublishing, :further_explanation, :redirect_url, :automatic_redirect
+
       validates :urls, :reason_for_unpublishing, presence: true
 
       validates :redirect_url, :automatic_redirect, presence: { if: :another_page_involved? }

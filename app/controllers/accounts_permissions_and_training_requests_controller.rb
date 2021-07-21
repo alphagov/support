@@ -33,7 +33,7 @@ protected
         :job,
         :phone,
         :other_training,
-        training: [],
+        { training: [] },
       ],
     ).to_h
   end
