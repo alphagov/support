@@ -42,7 +42,7 @@ feature "Emergency contact details" do
 
       click_on "Emergency contact details"
 
-      expect(page).to have_content("National emergency publishing")
+      expect(page).to have_content("national emergency publishing")
       expect(page).not_to have_content("05555 555 556") # Bob Manager
     end
   end
