@@ -10,22 +10,22 @@
   </blockquote>
 </section>
 
-<section class="add-bottom-padding add-top-padding">
+<section class="add-top-padding">
   <div class="row">
     <div class="col-md-6">
       <p>What you need to do depends on whether you want to:</p>
       <ul>
-        <li>request a change to GOV.UK content</li>
-        <li>report a major technical problem</li>
-        <li>update GOV.UK following a national emergency</li>
-        <li>get help with GOV.UK Verify</li>
+        <li><%= link_to "request a change to GOV.UK content", anchor: "request-change" %></li>
+        <li><%= link_to "report a major technical problem" , anchor: "report-problem" %></li>
+        <li><%= link_to "update GOV.UK following a national emergency", anchor: "national-emergency" %></li>
+        <li><%= link_to "get help with GOV.UK Verify", anchor: "govuk-verify" %></li>
       </ul>
     </div>
   </div>
 </section>
 
 <section class="add-bottom-padding add-top-padding">
-  <h2>Request a change to GOV.UK content</h2>
+  <h2 id="request-change">Request a change to GOV.UK content</h2>
   <div class="row">
     <div class="col-md-6">
       <p>Before you call, you must first:</p>
@@ -37,8 +37,8 @@
       <p>The phone number you need and what counts as an emergency depends on whether you are calling within office hours.</p>
       <p>Both phone numbers will put you in contact with a member of the GOV.UK content team.</p>
     </div>
+  </div>
 
-    
   <h3>Office hours (Monday to Friday, 9am to 6pm)</h3>
   <div class="row">
     <div class="col-md-6">
@@ -56,7 +56,6 @@
     </div>
   </div>
 
-  
   <h3>Outside office hours, including bank holidays</h3>
   <div class="row">
     <div class="col-md-6">
@@ -70,8 +69,7 @@
     </div>
   </div>
 
-  
-  <h2>Report a major technical problem with GOV.UK</h2>
+  <h2 id="report-problem">Report a major technical problem with GOV.UK</h2>
   <div class="row">
     <div class="col-md-6">
       <p>Use only for critical, high-profile technical issues with the GOV.UK site - such as pages not loading or search not working.</p>
@@ -89,15 +87,14 @@
     </div>
   </div>
 
-
-  <h3>Update GOV.UK following a national emergency</h3>
+  <h2 id="national-emergency">Update GOV.UK following a national emergency</h3>
   <div class="row">
     <div class="col-md-6">
       <p>Use only if both:</p>
       <ul>
         <li>there’s been a sudden, critical national emergency such as a terrorist attack</li>
         <li>you’re the communications coordinator in the lead crisis response department for sudden, critical national emergencies such as terrorist attacks
-</li>
+        </li>
       </ul>
     </div>
   </div>
@@ -113,8 +110,6 @@
       <p>Find out more about the <%= link_to "national emergency publishing process", "https://www.gov.uk/guidance/contact-the-government-digital-service/national-emergency-publishing-guidelines" %>.</p>
     </div>
   </div>
-
-
 </section>
 
 <% if @secondary_contact_details %>
@@ -141,7 +136,7 @@
 <% end %>
 
 <section class="add-bottom-padding add-top-padding">
-  <h2>GOV.UK Verify contacts</h2>
+  <h2 id="govuk-verify">GOV.UK Verify contacts</h2>
   <h3>Non-urgent support and feedback</h3>
   <div class="row">
     <div class="col-md-6">
@@ -158,5 +153,4 @@
     </div>
   </div>
 </section>
-
 </main>
