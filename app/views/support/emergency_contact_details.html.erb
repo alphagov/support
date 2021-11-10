@@ -4,153 +4,152 @@
 <% breadcrumb :emergency_contact_details %>
 
 <main class="add-bottom-padding">
-<section>
-  <blockquote class="bg-danger danger-callout">
-    <p>First read the guidance on <%= link_to "publishing procedures for national emergencies", "https://www.gov.uk/guidance/contact-the-government-digital-service/gov-uk-support-requests-processes-and-response-times" %> and <%= link_to "GOV.UK contact procedures", "https://www.gov.uk/guidance/contact-the-government-digital-service/how-to-contact-gds" %>.</p>
-  </blockquote>
-</section>
+  <section>
+    <blockquote class="bg-danger danger-callout">
+      <p>First read the guidance on <%= link_to "publishing procedures for national emergencies", "https://www.gov.uk/guidance/contact-the-government-digital-service/gov-uk-support-requests-processes-and-response-times" %> and <%= link_to "GOV.UK contact procedures", "https://www.gov.uk/guidance/contact-the-government-digital-service/how-to-contact-gds" %>.</p>
+    </blockquote>
+  </section>
 
-<section class="add-top-padding">
-  <div class="row">
-    <div class="col-md-6">
-      <p>What you need to do depends on whether you want to:</p>
-      <ul>
-        <li><%= link_to "request a change to GOV.UK content", anchor: "request-change" %></li>
-        <li><%= link_to "report a major technical problem" , anchor: "report-problem" %></li>
-        <li><%= link_to "update GOV.UK following a national emergency", anchor: "national-emergency" %></li>
-        <li><%= link_to "get help with GOV.UK Verify", anchor: "govuk-verify" %></li>
-      </ul>
+  <section class="add-top-padding">
+    <div class="row">
+      <div class="col-md-6">
+        <p>What you need to do depends on whether you want to:</p>
+        <ul>
+          <li><%= link_to "request a change to GOV.UK content", anchor: "request-change" %></li>
+          <li><%= link_to "report a major technical problem" , anchor: "report-problem" %></li>
+          <li><%= link_to "update GOV.UK following a national emergency", anchor: "national-emergency" %></li>
+          <li><%= link_to "get help with GOV.UK Verify", anchor: "govuk-verify" %></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="add-bottom-padding add-top-padding">
-  <h2 id="request-change">Request a change to GOV.UK content</h2>
-  <div class="row">
-    <div class="col-md-6">
-      <p>Before you call, you must first:</p>
-      <ul>
-        <li><%= link_to "submit a support request", new_content_change_request_path %> before you phone</li>
-        <li><%= link_to "read the full guidelines", "https://www.gov.uk/government/publications/govuk-support-requests-our-processes-and-response-times" %></li>
-        <li>leave a message and a contact number if the phone is not answered - please do not text</li>
-      </ul>
-      <p>The phone number you need and what counts as an emergency depends on whether you are calling within office hours.</p>
-      <p>Both phone numbers will put you in contact with a member of the GOV.UK content team.</p>
+  <section class="add-bottom-padding add-top-padding">
+    <h2 id="request-change">Request a change to GOV.UK content</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <p>Before you call, you must first:</p>
+        <ul>
+          <li><%= link_to "submit a support request", new_content_change_request_path %> before you phone</li>
+          <li><%= link_to "read the full guidelines", "https://www.gov.uk/government/publications/govuk-support-requests-our-processes-and-response-times" %></li>
+          <li>leave a message and a contact number if the phone is not answered - please do not text</li>
+        </ul>
+        <p>The phone number you need and what counts as an emergency depends on whether you are calling within office hours.</p>
+        <p>Both phone numbers will put you in contact with a member of the GOV.UK content team.</p>
+      </div>
     </div>
-  </div>
 
-  <h3>Office hours (Monday to Friday, 9am to 6pm)</h3>
-  <div class="row">
-    <div class="col-md-6">
-      <p>Use only if either:</p>
-      <ul>
-        <li>you’re unable to publish at a critical time</li>
-        <li>you need to make emergency changes to government content managed by GDS</li>
-      </ul>
+    <h3>Office hours (Monday to Friday, 9am to 6pm)</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <p>Use only if either:</p>
+        <ul>
+          <li>you’re unable to publish at a critical time</li>
+          <li>you need to make emergency changes to government content managed by GDS</li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="row add-bottom-padding add-top-padding">
-    <div class="col-md-12">
-      <p class="remove-bottom-margin"><%= @primary_contact_details[:urgent_department_content_change][:phone] %></p>
-      <p>Monday to Friday, 9am to 6pm<br>(excluding bank holidays)</p>
+    <div class="row add-bottom-padding add-top-padding">
+      <div class="col-md-12">
+        <p class="remove-bottom-margin"><%= @primary_contact_details[:urgent_department_content_change][:phone] %></p>
+        <p>Monday to Friday, 9am to 6pm<br>(excluding bank holidays)</p>
+      </div>
     </div>
-  </div>
 
-  <h3>Outside office hours, including bank holidays</h3>
-  <div class="row">
-    <div class="col-md-6">
-      <p>Use only if the public or government is facing immediate and significant financial, legal or physical risk.</p>
+    <h3>Outside office hours, including bank holidays</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <p>Use only if the public or government is facing immediate and significant financial, legal or physical risk.</p>
+      </div>
     </div>
-  </div>
-  <div class="row add-bottom-padding add-top-padding">
-    <div class="col-md-12">
-      <p class="remove-bottom-margin"><%= @primary_contact_details[:urgent_mainstream_content_change][:phone] %></p>
-      <p>Monday to Friday, 6pm to 9am<br>Weekends and bank holidays, 24 hours</p>
+    <div class="row add-bottom-padding add-top-padding">
+      <div class="col-md-12">
+        <p class="remove-bottom-margin"><%= @primary_contact_details[:urgent_mainstream_content_change][:phone] %></p>
+        <p>Monday to Friday, 6pm to 9am<br>Weekends and bank holidays, 24 hours</p>
+      </div>
     </div>
-  </div>
 
-  <h2 id="report-problem">Report a major technical problem with GOV.UK</h2>
-  <div class="row">
-    <div class="col-md-6">
-      <p>Use only for critical, high-profile technical issues with the GOV.UK site - such as pages not loading or search not working.</p>
+    <h2 id="report-problem">Report a major technical problem with GOV.UK</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <p>Use only for critical, high-profile technical issues with the GOV.UK site - such as pages not loading or search not working.</p>
+      </div>
     </div>
-  </div>
-  <div class="row add-bottom-padding add-top-padding">
-    <div class="col-md-12">
-      <p class="remove-bottom-margin"><%= @primary_contact_details[:major_technical_problems][:phone] %></p>
-      <p>24 hours, 7 days a week</p>
+    <div class="row add-bottom-padding add-top-padding">
+      <div class="col-md-12">
+        <p class="remove-bottom-margin"><%= @primary_contact_details[:major_technical_problems][:phone] %></p>
+        <p>24 hours, 7 days a week</p>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <p>This number will put you in contact with a member of the GOV.UK escalations team, who will advise on next steps.</p>
+    <div class="row">
+      <div class="col-md-6">
+        <p>This number will put you in contact with a member of the GOV.UK escalations team, who will advise on next steps.</p>
+      </div>
     </div>
-  </div>
 
-  <h2 id="national-emergency">Update GOV.UK following a national emergency</h3>
-  <div class="row">
-    <div class="col-md-6">
-      <p>Use only if both:</p>
-      <ul>
-        <li>there’s been a sudden, critical national emergency such as a terrorist attack</li>
-        <li>you’re the communications coordinator in the lead crisis response department for sudden, critical national emergencies such as terrorist attacks
-        </li>
-      </ul>
+    <h2 id="national-emergency">Update GOV.UK following a national emergency</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <p>Use only if both:</p>
+        <ul>
+          <li>there’s been a sudden, critical national emergency such as a terrorist attack</li>
+          <li>you’re the communications coordinator in the lead crisis response department for sudden, critical national emergencies such as terrorist attacks</li>
+        </ul>
+      </div>
     </div>
-  </div>
-  <div class="row add-bottom-padding add-top-padding">
-    <div class="col-md-12">
-      <p class="remove-bottom-margin"><%= @primary_contact_details[:national_emergencies][:phone] %></p>
-      <p>24 hours, 7 days a week</p>
+    <div class="row add-bottom-padding add-top-padding">
+      <div class="col-md-12">
+        <p class="remove-bottom-margin"><%= @primary_contact_details[:national_emergencies][:phone] %></p>
+        <p>24 hours, 7 days a week</p>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-6">
-      <p>This number will put you in contact with GOV.UK, who will establish your identity and put the GOV.UK site into ‘emergency’ mode.</p>
-      <p>Find out more about the <%= link_to "national emergency publishing process", "https://www.gov.uk/guidance/contact-the-government-digital-service/national-emergency-publishing-guidelines" %>.</p>
+    <div class="row">
+      <div class="col-md-6">
+        <p>This number will put you in contact with GOV.UK, who will establish your identity and put the GOV.UK site into ‘emergency’ mode.</p>
+        <p>Find out more about the <%= link_to "national emergency publishing process", "https://www.gov.uk/guidance/contact-the-government-digital-service/national-emergency-publishing-guidelines" %>.</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<% if @secondary_contact_details %>
+  <% if @secondary_contact_details %>
     <section class="add-bottom-padding add-top-padding">
-    <h3>Backup contact</h3>
-    <div class="row">
+      <h3>Backup contact</h3>
+      <div class="row">
         <div class="col-md-6">
-        <p>If you cannot get through on the other numbers, you can call the Head of GOV.UK.</p>
+          <p>If you cannot get through on the other numbers, you can call the Head of GOV.UK.</p>
         </div>
-    </div>
-    <div class="row">
+      </div>
+      <div class="row">
         <% @secondary_contact_details.each do |details| %>
-        <div class="col-md-6 add-bottom-padding">
+          <div class="col-md-6 add-bottom-padding">
             <p>
             <%= details[:name] %><br>
             <%= details[:role] %>
             </p>
             <%= mail_to details[:email] %>
             <p><%= details[:phone] %></p>
-        </div>
+          </div>
         <% end %>
-    </div>
+      </div>
     </section>
-<% end %>
+  <% end %>
 
-<section class="add-bottom-padding add-top-padding">
-  <h2 id="govuk-verify">GOV.UK Verify contacts</h2>
-  <h3>Non-urgent support and feedback</h3>
-  <div class="row">
-    <div class="col-md-6">
-      <p>IDA Support</p>
-      <p><%= mail_to @verify_contact_details[:ida_support_email] %></p>
+  <section class="add-bottom-padding add-top-padding">
+    <h2 id="govuk-verify">GOV.UK Verify contacts</h2>
+    <h3>Non-urgent support and feedback</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <p>IDA Support</p>
+        <p><%= mail_to @verify_contact_details[:ida_support_email] %></p>
+      </div>
     </div>
-  </div>
-  <h3>Emergency support</h3>
-  <div class="row">
-    <div class="col-md-6">
-      <p><a href="https://verifystatus.digital.cabinet-office.gov.uk/">Check the GOV.UK Verify status page</a> to see if the issue has already been reported.</p>
-      <p>Out of hours GOV.UK Verify support</p>
-      <p><%= mail_to @verify_contact_details[:out_of_hours_email] %></p>
+    <h3>Emergency support</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <p><a href="https://verifystatus.digital.cabinet-office.gov.uk/">Check the GOV.UK Verify status page</a> to see if the issue has already been reported.</p>
+        <p>Out of hours GOV.UK Verify support</p>
+        <p><%= mail_to @verify_contact_details[:out_of_hours_email] %></p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 </main>
