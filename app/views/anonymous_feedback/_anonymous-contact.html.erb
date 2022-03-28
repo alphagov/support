@@ -1,6 +1,6 @@
 <tr class="anonymous-contact">
   <th scope="row" class="table-header-secondary no-wrap">
-    <%= anonymous_contact.created_at.to_date.to_s(:govuk_date_short) %>
+    <%= anonymous_contact.created_at.to_date.to_fs(:govuk_date_short) %>
   </th>
   <td>
     <%= render partial: "/anonymous_feedback/feedback", locals: { anonymous_contact: anonymous_contact } %>
