@@ -19,6 +19,7 @@ gem "plek"
 gem "redis"
 gem "sassc-rails"
 gem "select2-rails"
+gem "sprockets-rails"
 gem "uglifier"
 
 group :development do
