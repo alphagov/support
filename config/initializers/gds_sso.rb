@@ -1,3 +1,5 @@
+require "user"
+
 if Rails.env.development? && ENV["GDS_SSO_STRATEGY"] != "real"
   GDS::SSO.test_user = User.upsert!(
     "uid" => "dummy-user",

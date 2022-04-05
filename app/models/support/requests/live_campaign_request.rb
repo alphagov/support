@@ -6,7 +6,7 @@ module Support
       validates :live_campaign, presence: true
       validate do |request|
         if request.live_campaign && !request.live_campaign.valid?
-          errors[:base] << "Campaign details are either not complete or invalid."
+          errors.add :base, message: "Campaign details are either not complete or invalid."
         end
       end
 

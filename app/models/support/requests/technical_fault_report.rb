@@ -6,7 +6,7 @@ module Support
       validates :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened, presence: true
       validate do |report|
         if report.fault_context && !report.fault_context.valid?
-          errors[:base] << "The source of the fault is not set."
+          errors.add :base, message: "The source of the fault is not set."
         end
       end
 
