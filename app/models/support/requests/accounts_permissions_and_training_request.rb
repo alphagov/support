@@ -13,7 +13,7 @@ module Support
 
       validate do |request|
         if request.requested_user && !request.requested_user.valid?
-          errors[:base] << "The details of the user in question are either incomplete or invalid."
+          errors.add :base, message: "The details of the user in question are either incomplete or invalid."
         end
       end
       validates :action, :requested_user, presence: true

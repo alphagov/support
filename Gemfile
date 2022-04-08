@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "6.1.4.3"
+gem "rails", "7.0.2"
 
 gem "bootstrap-kaminari-views"
 gem "cancancan"
@@ -19,12 +19,12 @@ gem "plek"
 gem "redis"
 gem "sassc-rails"
 gem "select2-rails"
+gem "sprockets-rails"
 gem "uglifier"
 
 group :development do
   gem "listen"
   gem "spring"
-  gem "spring-watcher-listen"
   gem "web-console"
 end
 

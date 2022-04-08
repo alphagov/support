@@ -1,6 +1,6 @@
 <tr class="<%= 'problem-report' + (problem_report.reviewed ? ' reviewed' : '') %>">
   <th scope="row" class="table-header-secondary no-wrap">
-    <%= problem_report.created_at.to_date.to_s(:govuk_date_short) %>
+    <%= problem_report.created_at.to_date.to_fs(:govuk_date_short) %>
   </th>
   <td>
     <%= render partial: "/anonymous_feedback/feedback", locals: { anonymous_contact: problem_report } %>

@@ -25,6 +25,6 @@ private
   attr_reader :requested_from, :requested_to
 
   def parse_date(date)
-    Date.parse(date).to_s(:govuk_date_short)
+    Date.parse(date).to_fs(:govuk_date_short)
   end
 end

@@ -5,7 +5,7 @@ module Support
         base.validates_presence_of :requester
         base.validate do |request|
           if request.requester && !request.requester.valid?
-            errors[:base] << "Requester details are either not complete or invalid."
+            errors.add :base, message: "Requester details are either not complete or invalid."
           end
         end
       end
