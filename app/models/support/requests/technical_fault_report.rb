@@ -16,11 +16,15 @@ module Support
       end
 
       def fault_context_attributes=(attr)
-        self.fault_context = Support::GDS::UserFacingComponents.find(attr)
+        self.fault_context = if attr[:name] == "do_not_know"
+                               Support::GDS::UserFacingComponent.new(name: "Do not know", id: "do_not_know")
+                             else
+                               Support::GDS::UserFacingComponents.find(attr)
+                             end
       end
 
       def fault_context_options
-        Support::GDS::UserFacingComponents.all
+        Support::GDS::UserFacingComponents.all + [Support::GDS::UserFacingComponent.new(name: "Do not know", id: "do_not_know")]
       end
 
       def inside_government_related?
