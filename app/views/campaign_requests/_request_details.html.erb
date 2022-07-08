@@ -3,10 +3,10 @@
 </div>
 
 <p>
-  Use this form for: Wordpress “single page” Campaign Platform site, or bespoke “multi page” site
+  Use this for: A single or multi page site on the GOV.UK Campaigns Platform
 </p>
 <p>
-  For either type of site, please answer the questions below.
+  Please answer the questions below.
 </p>
 
 <%= f.fields_for :campaign do |r| %>
@@ -15,29 +15,11 @@
       <span>Campaign details</span>
     </legend>
 
-    <div class="form-group">
-      <span class="form-label control-label">
-        <%= r.label :type_of_site do %>
-          Are you applying for the single page campaign platform or a bespoke multi page site?<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.collection_radio_buttons :type_of_site, ["Single page campaign platform site", "Multi page site"], :itself, :itself, required: true, aria: { required: true } do |builder| %>
-          <div class="radio">
-            <%= builder.label(class: "custom-control-label") do %>
-              <%= builder.radio_button(class: "custom-control-input") %>
-              <%= builder.value %>
-            <% end %>
-          </div>
-        <% end %>
-      </span>
-    </div>
-
     <div class="form-group checkbox">
       <span class="form-wrapper">
         <%= r.label :has_read_guidance_confirmation, class: "control-label" do %>
           <%= r.check_box :has_read_guidance_confirmation %>
-          <b>Have you read the the <%= link_to('GCS guidance on campaign websites', 'https://gcs.civilservice.gov.uk/guidance/campaigns/websites-government-campaigns/') %> and accept the requirements for a Campaign Platform website?</b>
+          <b>Have you read the <%= link_to('GCS guidance on campaign websites', 'https://gcs.civilservice.gov.uk/guidance/campaigns/websites-government-campaigns/') %> and accepted the requirements for a Campaign Platform website?</b>
         <% end %>
       </span>
     </div>
@@ -54,7 +36,7 @@
     <div class="form-group">
       <span class="form-label control-label">
         <%= r.label :signed_campaign do %>
-          Name of the Head of Digital Communications who signed off the campaign website application<abbr title="required">*</abbr>
+          Name of the Head of Communications who signed off the campaign website application<abbr title="required">*</abbr>
         <% end %>
       </span>
       <span class="form-wrapper">
@@ -194,31 +176,13 @@
     <div class="form-group">
       <span class="form-label">
         <%= r.label :proposed_url do %>
-          Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)<abbr title="required">*</abbr>
+          Proposed URL (in the form of xxxxx.campaign.gov.uk)<abbr title="required">*</abbr>
         <% end %>
       </span>
       <span class="form-wrapper">
         <%= r.text_field :proposed_url, required: true, aria: { required: true, describedby: "urlHelpBlock" }, class: "input-md-6 form-control" %>
       </span>
     </div>
-    <p class="help-block">
-      If applying for Campaigns Platform it is in the form of xxxxx.campaign.gov.uk, or otherwise
-      if a bespoke multi page site, standard format is in the form of xxxxxx.gov.uk.
-    </p>
-
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :cost_of_campaign do %>
-          Site build budget / costs (and overall campaign cost, if applicable)<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :cost_of_campaign, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
-      </span>
-    </div>
-    <p class="help-block">
-      If you are applying for the Campaign Platform page, this is free of any build charge
-    </p>
 
     <div class="form-group">
       <span class="form-label">
@@ -233,11 +197,6 @@
     <p class="help-block">
       GCS centralise and coordinate access to Google Analytics, although departments will themselves
       be responsible for analysing their site’s performance.
-    </p>
-    <p class="help-block">
-      If you need to set up a bespoke analytics package independent of centralised/GCS GA for the purposes
-      of your marketing, please provide the following with access webmaster@cabinetoffice.gov.uk and
-      microsites@cabinetoffice.gov.uk.
     </p>
   </fieldset>
 <% end %>

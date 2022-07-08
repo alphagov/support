@@ -18,7 +18,6 @@ protected
       :additional_comments,
       requester_attributes: %i[email name collaborator_emails],
       campaign_attributes: %i[
-        type_of_site
         signed_campaign
         has_read_guidance_confirmation
         has_read_oasis_guidance_confirmation
@@ -33,7 +32,6 @@ protected
         site_title
         site_tagline
         site_metadescription
-        cost_of_campaign
         ga_contact_email
       ],
     ).to_h

@@ -15,11 +15,6 @@ module Zendesk
         [
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,
-            field: :type_of_site,
-            label: "Are you applying for the single page campaign platform or a bespoke multi page site?",
-          ),
-          Zendesk::LabelledSnippet.new(
-            on: @request.campaign,
             field: :signed_campaign,
             label: "Name of the Head of Digital Communications who signed off the campaign website application",
           ),
@@ -66,7 +61,7 @@ module Zendesk
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,
             field: :proposed_url,
-            label: "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)",
+            label: "Proposed URL (in the form of xxxxx.campaign.gov.uk)",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,
@@ -82,11 +77,6 @@ module Zendesk
             on: @request.campaign,
             field: :site_metadescription,
             label: "Site metadescription (appears in search results)",
-          ),
-          Zendesk::LabelledSnippet.new(
-            on: @request.campaign,
-            field: :cost_of_campaign,
-            label: "Site build budget / costs (and overall campaign cost, if applicable)",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,

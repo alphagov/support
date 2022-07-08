@@ -20,10 +20,7 @@ feature "Campaign requests" do
       "tags" => %w[govt_form campaign],
       "comment" => {
         "body" =>
-"[Are you applying for the single page campaign platform or a bespoke multi page site?]
-Single page campaign platform site
-
-[Name of the Head of Digital Communications who signed off the campaign website application]
+"[Name of the Head of Digital Communications who signed off the campaign website application]
 John Smith
 
 [Start date of campaign site]
@@ -47,7 +44,7 @@ Pensions
 [Call to action]
 Join us in this campaign for pensions
 
-[Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)]
+[Proposed URL (in the form of xxxxx.campaign.gov.uk)]
 newcampaign.campaign.gov.uk
 
 [Site title]
@@ -59,9 +56,6 @@ A new one about a new thing
 [Site metadescription (appears in search results)]
 pensions, campaign, newcampaign
 
-[Site build budget / costs (and overall campaign cost, if applicable)]
-£1200 and tuppence
-
 [Contact details for Google Analytics leads (Gmail accounts only)]
 ga.contact@example.com
 
@@ -71,7 +65,6 @@ Some comment",
     )
 
     user_makes_a_campaign_request(
-      type_of_site: "Single page campaign platform site",
       has_read_guidance: true,
       has_read_oasis_guidance: true,
       signed_campaign: "John Smith",
@@ -86,7 +79,6 @@ Some comment",
       site_title: "New campaign",
       site_tagline: "A new one about a new thing",
       site_metadescription: "pensions, campaign, newcampaign",
-      cost_of_campaign: "£1200 and tuppence",
       ga_contact_email: "ga.contact@example.com",
       additional_comments: "Some comment",
     )
@@ -103,10 +95,9 @@ private
 
     expect(page).to have_content("Request GDS support for a new campaign")
 
-    choose details[:type_of_site]
-    check "Have you read the the GCS guidance on campaign websites and accept the requirements for a Campaign Platform website?" if details[:has_read_guidance]
+    check "Have you read the GCS guidance on campaign websites and accepted the requirements for a Campaign Platform website?" if details[:has_read_guidance]
     check "Have you followed the GCS guidance for OASIS planning and are using the mandatory GCS OASIS template?" if details[:has_read_oasis_guidance]
-    fill_in "Name of the Head of Digital Communications who signed off the campaign website application*", with: details[:signed_campaign]
+    fill_in "Name of the Head of Communications who signed off the campaign website application*", with: details[:signed_campaign]
     fill_in "Start date of campaign site*", with: details[:start_date]
     fill_in "Proposed end date of campaign site*", with: details[:end_date]
     fill_in "Site build to commence on", with: details[:development_start_date]
@@ -114,11 +105,10 @@ private
     fill_in "Which of the current Government Communications Plan priority themes does this campaign website support and how?*", with: details[:government_theme]
     fill_in "Campaign description*", with: details[:description]
     fill_in "Call to action*", with: details[:call_to_action]
-    fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk or xxxxx.gov.uk)*", with: details[:proposed_url]
+    fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk)*", with: details[:proposed_url]
     fill_in "Site title*", with: details[:site_title]
     fill_in "Site tagline*", with: details[:site_tagline]
     fill_in "Site metadescription (appears in search results)*", with: details[:site_metadescription]
-    fill_in "Site build budget / costs (and overall campaign cost, if applicable)*", with: details[:cost_of_campaign]
     fill_in "Contact details for Google Analytics leads (Gmail accounts only)*", with: details[:ga_contact_email]
     fill_in "Additional comments", with: details[:additional_comments]
 
