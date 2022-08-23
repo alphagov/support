@@ -57,14 +57,16 @@ $datepicker-border-shadown-color: rgba(0, 0, 0, .1);
     color: inherit;
   }
 
+  // stylelint-disable selector-no-qualifying-type
   .ui-state-active,
-  a.ui-state-default:hover { // stylelint-disable-line selector-no-qualifying-type
+  a.ui-state-default:hover {
     border: 2px solid $gray;
     padding: 9px 4px;
     text-decoration: none;
     color: $gray;
     font-weight: bold;
   }
+  // stylelint-enable selector-no-qualifying-type
 
   .ui-datepicker-today .ui-state-default {
     border: 2px solid $turquoise;
