@@ -22,7 +22,6 @@ module Support
                 Support::Requests::ContentChangeRequest,
                 Support::Requests::ContentAdviceRequest,
                 Support::Requests::UnpublishContentRequest,
-                Support::Requests::TransitionCheckerRequest,
               ]
         end
         can :create, [Support::Requests::AccountsPermissionsAndTrainingRequest, Support::Requests::RemoveUserRequest] if user.has_permission?("user_managers")

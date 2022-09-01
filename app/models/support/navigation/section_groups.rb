@@ -39,7 +39,6 @@ module Support
           Support::Requests::ContentAdviceRequest,
           Support::Requests::ContentChangeRequest,
           Support::Requests::UnpublishContentRequest,
-          Support::Requests::TransitionCheckerRequest,
         )
       end
 
