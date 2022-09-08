@@ -7,7 +7,7 @@ describe ZendeskTicketWorker do
     end
 
     it "creates a ticket successfully" do
-      stub = stub_zendesk_ticket_creation("some" => "options", "requester" => { "email" => "a@b.com" })
+      stub = stub_zendesk_ticket_creation("some" => "options", "requester" => { "email" => "a@b.com" }, "comment" => nil)
       ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" })
 
       expect(stub).to have_been_made
