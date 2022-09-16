@@ -50,7 +50,7 @@ private
 
     click_on "Suggest a change to a topic"
 
-    expect(page).to have_content("Suggest a change to a topic or the removal of a topic in the GOV.UK taxonomy.")
+    expect(page).to have_content("Suggest a change to a topic or the removal of a topic in the GOV.UK topic taxonomy.")
 
     fill_in "Name of topic you'd like changed", with: details[:title]
 

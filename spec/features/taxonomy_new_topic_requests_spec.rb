@@ -50,13 +50,13 @@ private
 
     click_on "Suggest a new topic"
 
-    expect(page).to have_content("Suggest a new topic for the GOV.UK taxonomy.")
+    expect(page).to have_content("Suggest a new topic for the GOV.UK topic taxonomy.")
 
     fill_in "Preferred name of new topic", with: details[:title]
 
-    fill_in "URL(s) of page(s) you want to tag (provide as many as you can)", with: details[:url]
+    fill_in "URL(s) of page(s) you want to tag to this topic (provide as many as you can)", with: details[:url]
     fill_in "Why do you think this new topic is needed? Please provide any evidence you have", with: details[:details]
-    fill_in "Where should this topic fit in the taxonomy? For example, a sub-topic of Early years curriculum", with: details[:parent]
+    fill_in "Where should this topic fit in the topic taxonomy? For example, a subtopic of Early years curriculum", with: details[:parent]
 
     user_submits_the_request_successfully
   end
