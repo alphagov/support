@@ -16,7 +16,7 @@ module Support
       end
 
       def self.description
-        "Suggest a new topic for the GOV.UK taxonomy."
+        "Suggest a new topic for the GOV.UK topic taxonomy."
       end
     end
   end

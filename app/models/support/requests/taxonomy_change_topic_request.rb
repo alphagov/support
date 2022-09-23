@@ -19,7 +19,7 @@ module Support
       def type_of_change_options
         [
           ["Name of topic", "name_of_topic"],
-          ["Position of topic in the taxonomy (move it up a level, for example)", "position_of_topic"],
+          ["Position in the topic taxonomy (move it up a level, for example)", "position_of_topic"],
           ["Merge or split the topic", "merge_split_topic"],
           ["Remove the topic", "remove_topic"],
           ["Something else", "other"],
@@ -31,7 +31,7 @@ module Support
       end
 
       def self.description
-        "Suggest a change to a topic or the removal of a topic in the GOV.UK taxonomy."
+        "Suggest a change to a topic or the removal of a topic in the GOV.UK topic taxonomy."
       end
     end
   end

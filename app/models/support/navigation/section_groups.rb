@@ -11,7 +11,7 @@ module Support
           Support::Navigation::SectionGroup.new("User access", user_access_requests),
           Support::Navigation::SectionGroup.new("Campaigns", campaign_requests),
           Support::Navigation::SectionGroup.new("Feedback for tools in Beta", feedback_requests),
-          Support::Navigation::SectionGroup.new("Taxonomy requests", taxonomy_requests),
+          Support::Navigation::SectionGroup.new("Topic taxonomy requests", taxonomy_requests),
           Support::Navigation::SectionGroup.new("Other requests", other_requests),
         ]
       end
