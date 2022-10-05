@@ -4,8 +4,7 @@ module Support
   module GDS
     class Campaign
       include ActiveModel::Model
-      attr_accessor :type_of_site,
-                    :has_read_guidance_confirmation,
+      attr_accessor :has_read_guidance_confirmation,
                     :has_read_oasis_guidance_confirmation,
                     :signed_campaign,
                     :start_date,
@@ -19,11 +18,9 @@ module Support
                     :site_title,
                     :site_tagline,
                     :site_metadescription,
-                    :cost_of_campaign,
                     :ga_contact_email
 
-      validates :type_of_site,
-                :signed_campaign,
+      validates :signed_campaign,
                 :start_date,
                 :end_date,
                 :development_start_date,
@@ -35,12 +32,10 @@ module Support
                 :site_title,
                 :site_tagline,
                 :site_metadescription,
-                :cost_of_campaign,
                 :ga_contact_email,
                 presence: true
 
       validates :has_read_guidance_confirmation, :has_read_oasis_guidance_confirmation, acceptance: { allow_nil: false }
-      validates :type_of_site, inclusion: { in: ["Single page campaign platform site", "Multi page site"] }
 
       validates_date :start_date, on_or_after: :today
       validates_date :end_date, after: :start_date
