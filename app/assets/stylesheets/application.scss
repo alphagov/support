@@ -39,6 +39,11 @@ thead {
   white-space: nowrap;
 }
 
+.text-break {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 .feedback-response-count {
   margin-top: - ($default-vertical-margin * 1.5);
   font-size: $font-size-h3;
