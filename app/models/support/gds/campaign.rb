@@ -18,6 +18,7 @@ module Support
                     :site_title,
                     :site_tagline,
                     :site_metadescription,
+                    :cost_of_campaign,
                     :ga_contact_email
 
       validates :signed_campaign,
@@ -32,6 +33,7 @@ module Support
                 :site_title,
                 :site_tagline,
                 :site_metadescription,
+                :cost_of_campaign,
                 :ga_contact_email,
                 presence: true
 

@@ -80,6 +80,11 @@ module Zendesk
           ),
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,
+            field: :cost_of_campaign,
+            label: "Site build budget / costs (and overall campaign cost, if applicable)",
+          ),
+          Zendesk::LabelledSnippet.new(
+            on: @request.campaign,
             field: :ga_contact_email,
             label: "Contact details for Google Analytics leads (Gmail accounts only)",
           ),

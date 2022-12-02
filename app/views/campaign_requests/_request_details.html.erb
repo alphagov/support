@@ -186,6 +186,20 @@
 
     <div class="form-group">
       <span class="form-label">
+        <%= r.label :cost_of_campaign do %>
+          Site build budget / costs (and overall campaign cost, if applicable)<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :cost_of_campaign, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
+    <p class="help-block">
+      If you are applying for the Campaign Platform page, this is free of any build charge
+    </p>
+
+    <div class="form-group">
+      <span class="form-label">
         <%= r.label :ga_contact_email do %>
           Contact details for Google Analytics leads (Gmail accounts only)<abbr title="required">*</abbr>
         <% end %>

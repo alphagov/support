@@ -32,6 +32,7 @@ protected
         site_title
         site_tagline
         site_metadescription
+        cost_of_campaign
         ga_contact_email
       ],
     ).to_h
