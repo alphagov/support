@@ -1,9 +1,9 @@
 require "rails_helper"
 require "volatile_lock"
-require "redis_client"
+require "govuk_redis_client"
 
 describe VolatileLock do
-  let(:redis) { RedisClient.instance.connection }
+  let(:redis) { GovukRedisClient.instance.connection }
 
   def volatile_lock(key, expiration_time = 1.second)
     VolatileLock.new(key, expiration_time)

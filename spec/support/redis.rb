@@ -1,7 +1,7 @@
-require "redis_client"
+require "govuk_redis_client"
 
 RSpec.configure do |config|
   config.before do
-    RedisClient.instance.connection.flushall
+    GovukRedisClient.instance.connection.flushall
   end
 end

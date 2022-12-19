@@ -1,4 +1,4 @@
-require "redis_client"
+require "govuk_redis_client"
 
 class Support::Requests::Anonymous::Paths
   EXPIRATION_TTL = 7.days
@@ -28,6 +28,6 @@ class Support::Requests::Anonymous::Paths
   end
 
   def self.redis
-    RedisClient.instance.connection
+    GovukRedisClient.instance.connection
   end
 end
