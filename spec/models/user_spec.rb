@@ -1,5 +1,5 @@
 require "rails_helper"
-require "redis_client"
+require "govuk_redis_client"
 
 require "gds-sso/lint/user_spec"
 

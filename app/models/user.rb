@@ -1,6 +1,6 @@
 require "gds-sso/user"
 require "json"
-require "redis_client"
+require "govuk_redis_client"
 
 class User < OpenStruct
   class Store
@@ -21,7 +21,7 @@ class User < OpenStruct
       end
 
       def redis
-        RedisClient.instance.connection
+        GovukRedisClient.instance.connection
       end
     end
   end

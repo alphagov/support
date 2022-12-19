@@ -1,4 +1,4 @@
-require "redis_client"
+require "govuk_redis_client"
 
 class VolatileLock
   class FailedToSetExpiration < StandardError; end
@@ -34,7 +34,7 @@ private
   end
 
   def redis
-    RedisClient.instance.connection
+    GovukRedisClient.instance.connection
   end
 
   def hostname
