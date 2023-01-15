@@ -72,6 +72,8 @@ GEM
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
     bindex (0.8.1)
+    bootsnap (1.15.0)
+      msgpack (~> 1.2)
     bootstrap-kaminari-views (0.0.5)
       kaminari (>= 0.13)
       rails (>= 3.1)
@@ -251,6 +253,7 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.1)
     minitest (5.17.0)
+    msgpack (1.6.0)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.2.3)
@@ -504,6 +507,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootsnap
   bootstrap-kaminari-views
   cancancan
   factory_bot_rails
