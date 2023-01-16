@@ -1,6 +1,6 @@
 require "redis"
 
-class RedisClient
+class GovukRedisClient
   include Singleton
 
   attr_reader :connection
