@@ -15,7 +15,7 @@ gem "gretel"
 gem "jc-validates_timeliness"
 gem "jquery-ui-rails"
 gem "kaminari"
-gem "mail", "~> 2.8.0"  # TODO: remove once https://github.com/mikel/mail/issues/1489 is fixed.
+gem "mail"
 gem "plek"
 gem "redis"
 gem "sassc-rails"
