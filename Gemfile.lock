@@ -523,7 +523,6 @@ DEPENDENCIES
   jquery-ui-rails
   kaminari
   listen
-  mail
   plek
   pry-byebug
   rails (= 7.0.4)
