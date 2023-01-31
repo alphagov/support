@@ -16,7 +16,7 @@ module Support
       end
 
       def self.label
-        "Content changes and new content requests"
+        "Request a content change or new content on GOV.UK"
       end
 
       def self.description
