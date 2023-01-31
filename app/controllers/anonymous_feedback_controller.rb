@@ -85,7 +85,7 @@ private
 
   def scope_filters
     @scope_filters ||= ScopeFiltersPresenter.new(
-      paths: paths,
+      paths:,
       path_set_id: saved_paths.try(:id),
       organisation_slug: index_params[:organisation],
       document_type: index_params[:document_type],

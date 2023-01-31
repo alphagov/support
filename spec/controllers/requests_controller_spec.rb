@@ -80,7 +80,7 @@ describe RequestsController, type: :controller do
       params = valid_params_for_test_request.tap { |p| p["test_request"].merge!("a" => "") }
       expect(controller).to receive(:render).with(:new, hash_including(status: :bad_request))
 
-      post :create, params: params
+      post :create, params:
     end
 
     it "submits it to Zendesk" do
@@ -109,7 +109,7 @@ describe RequestsController, type: :controller do
       end
       ticket_request = stub_zendesk_ticket_creation(hash_including("collaborators" => ["ab@c.com", "def@g.com"]))
 
-      post :create, params: params
+      post(:create, params:)
 
       expect(ticket_request).to have_been_made
     end

@@ -11,7 +11,7 @@ module Support
             let(:document_type) { "smart_answer" }
 
             it "is valid" do
-              expect(ExploreByDocumentType.new(document_type: document_type)).to be_valid
+              expect(ExploreByDocumentType.new(document_type:)).to be_valid
             end
           end
 

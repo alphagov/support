@@ -20,7 +20,7 @@ class AnonymousFeedback::ExportRequestsController < AuthorisationController
     if response["ready"]
       filename = response["filename"]
       file = get_csv_file_from_s3(filename)
-      send_data(file, filename: filename)
+      send_data(file, filename:)
     else
       head :not_found
     end
@@ -65,7 +65,7 @@ private
 
   def scope_filters
     @scope_filters ||= ScopeFiltersPresenter.new(
-      paths: paths,
+      paths:,
       path_set_id: saved_paths.try(:id),
       organisation_slug: anonymous_feedback_params[:organisation],
     )

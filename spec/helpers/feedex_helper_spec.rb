@@ -6,11 +6,11 @@ describe FeedexHelper, type: :helper do
   context "#total_responses_header" do
     let(:header) do
       total_responses_header(
-        total_count: total_count,
-        from: from,
-        to: to,
-        results_limited: results_limited,
-        scopes: ScopeFiltersPresenter.new(paths: paths),
+        total_count:,
+        from:,
+        to:,
+        results_limited:,
+        scopes: ScopeFiltersPresenter.new(paths:),
       )
     end
 
