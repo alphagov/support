@@ -24,6 +24,11 @@ module Zendesk
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,
+            field: :subject_area,
+            label: "Subject area",
+          ),
+          Zendesk::LabelledSnippet.new(
+            on: @request,
             field: :url,
             label: "URL of content to be changed",
           ),

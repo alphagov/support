@@ -32,6 +32,9 @@ New law
 [Reason for change request]
 Factual inaccuracy
 
+[Subject area]
+Benefits
+
 [URL of content to be changed]
 http://gov.uk/X
 
@@ -46,6 +49,7 @@ Out of date XX YY",
     user_makes_a_content_change_request(
       title: "Update X",
       reason_for_change: "Factual inaccuracy",
+      subject_area: "Benefits",
       details_of_change: "Out of date XX YY",
       url: "http://gov.uk/X",
       related_urls: "XXXXX",
@@ -83,6 +87,7 @@ private
 
     fill_in "Title of request", with: details[:title] unless details[:title].nil?
     select details[:reason_for_change], from: "What’s the reason for the request?" unless details[:reason_for_change].nil?
+    select details[:subject_area], from: "What’s the subject area?" unless details[:subject_area].nil?
     fill_in "Details of the requested change", with: details[:details_of_change]
     fill_in "URL", with: details[:url]
     fill_in "Does this affect any other URLs (including any existing Welsh translations that need to be updated)? Put each new URL on a new line.", with: details[:related_urls]

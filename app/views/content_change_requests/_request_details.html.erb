@@ -48,6 +48,44 @@
   </span>
 </div>
 
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :subject_area, "What’s the subject area?" %>
+  </span>
+  <p class="help-block hint-block--md-6" id="subject-area-hint">
+    If none of the options below are appropriate, please select other.
+  </p>
+  <span class="form-wrapper">
+    <%= f.select :subject_area,
+      options_for_select([
+        "Benefits",
+        "Births, death, marriages and care",
+        "Business and self-employed",
+        "Childcare and parenting",
+        "Citizenship and living in the UK",
+        "Crime, justice and the law",
+        "Disabled people",
+        "Driving and transport",
+        "Education and learning",
+        "Employing people",
+        "Environment and countryside",
+        "Health",
+        "Housing and local services",
+        "Money and tax",
+        "Passports, travel and living abroad",
+        "Visas and immigration",
+        "Working, jobs and pensions",
+        "Other"
+      ]),
+      { include_blank: true },
+      class: "input-md-6 form-control",
+      aria: {
+        describedby: "subject-area-hint"
+      }
+    %>
+  </span>
+</div>
+
 <fieldset>
   <legend>
     <span>URL affected</span>
