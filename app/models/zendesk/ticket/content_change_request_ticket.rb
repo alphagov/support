@@ -19,6 +19,11 @@ module Zendesk
         [
           Zendesk::LabelledSnippet.new(
             on: @request,
+            field: :reason_for_change,
+            label: "Reason for change request",
+          ),
+          Zendesk::LabelledSnippet.new(
+            on: @request,
             field: :url,
             label: "URL of content to be changed",
           ),

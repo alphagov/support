@@ -5,7 +5,7 @@ module Support
     class ContentChangeRequest < Request
       include WithTimeConstraint
 
-      attr_accessor :title, :details_of_change, :url, :related_urls
+      attr_accessor :title, :reason_for_change, :details_of_change, :url, :related_urls
 
       validates :details_of_change, presence: true
 

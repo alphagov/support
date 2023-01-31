@@ -16,6 +16,7 @@ protected
   def content_change_request_params
     params.require(:support_requests_content_change_request).permit(
       :title,
+      :reason_for_change,
       :details_of_change,
       :url,
       :related_urls,
