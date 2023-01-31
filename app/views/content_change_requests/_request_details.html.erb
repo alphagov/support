@@ -8,8 +8,15 @@
   <span class="form-label">
     <%= f.label :title, "Title of request" %>
   </span>
+  <p class="help-block hint-block--md-6" id="title-hint">
+    Clearly summarise what needs to change - for example, ‘Update phone numbers in Universal Credit guide’ or ‘Create a start page for clean air zones‘.
+  </p>
   <span class="form-wrapper">
-    <%= f.text_field :title, placeholder: "Content change request", class: "input-md-6 form-control" %>
+    <%= f.text_field :title, placeholder: "Content change request", class: "input-md-6 form-control",
+      aria: {
+        describedby: "title-hint"
+      }
+    %>
   </span>
 </div>
 
