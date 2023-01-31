@@ -91,7 +91,7 @@ module Support
 
         def redirect_path
           Rails.application.routes.url_helpers.anonymous_feedback_document_type_path(
-            document_type: document_type,
+            document_type:,
           )
         end
       end

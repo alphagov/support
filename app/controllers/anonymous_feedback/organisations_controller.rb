@@ -19,7 +19,7 @@ class AnonymousFeedback::OrganisationsController < AuthorisationController
 private
 
   def fetch_organisation_summary_from_support_api(ordering)
-    support_api.organisation_summary(params[:slug], ordering: ordering)
+    support_api.organisation_summary(params[:slug], ordering:)
   end
 
   def support_api

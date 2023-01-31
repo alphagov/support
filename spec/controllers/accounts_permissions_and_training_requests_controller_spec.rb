@@ -97,7 +97,7 @@ describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
 
         params = valid_change_user_request_params.tap { |p| p["support_requests_accounts_permissions_and_training_request"].merge!("user_needs" => "editor") }
 
-        post :create, params: params
+        post(:create, params:)
 
         expect(response).to redirect_to("/acknowledge")
         expect(stub_request).to have_been_made

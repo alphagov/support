@@ -4,7 +4,7 @@ module AuthenticationControllerHelpers
     request.env["warden"] = double(
       authenticate!: true,
       authenticated?: true,
-      user: user,
+      user:,
     )
   end
 

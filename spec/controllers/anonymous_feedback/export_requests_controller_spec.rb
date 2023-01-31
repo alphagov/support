@@ -77,7 +77,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
         do_request
 
         expect(response).to redirect_to(anonymous_feedback_index_path(
-                                          path_set_id: path_set_id,
+                                          path_set_id:,
                                           paths: path_prefixes,
                                           from: "2015-05-01",
                                           to: "2015-06-01",
@@ -117,7 +117,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
 
     context "with a ready file" do
       before do
-        stub_support_api_feedback_export_request(1, ready: true, filename: filename)
+        stub_support_api_feedback_export_request(1, ready: true, filename:)
         Fog.mock!
         ENV["AWS_REGION"] = "eu-west-1"
         ENV["AWS_ACCESS_KEY_ID"] = "test"
@@ -145,7 +145,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
         # we need to pretend to do something here, as a nil stub will cause a
         # ActionController::UnknownFormat error because it is falling throug
         # to the default render.  Doing `head :ok` is enough.
-        expect(controller).to receive(:send_data).with("This is a test file.", filename: filename) do
+        expect(controller).to receive(:send_data).with("This is a test file.", filename:) do
           controller.head(:ok)
         end
         allow(controller).to receive(:render)
@@ -155,7 +155,7 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
     end
 
     context "with a pending file" do
-      before { stub_support_api_feedback_export_request(2, ready: false, filename: filename) }
+      before { stub_support_api_feedback_export_request(2, ready: false, filename:) }
 
       it "replies with a 404" do
         get :show, params: { id: 2 }

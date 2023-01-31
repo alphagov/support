@@ -11,12 +11,12 @@ class Support::Requests::Anonymous::Paths
   attr_reader :id, :paths
 
   def save
-    key = self.class.redis_key(id: id)
+    key = self.class.redis_key(id:)
     self.class.redis.setex(key, EXPIRATION_TTL, paths.to_json)
   end
 
   def self.find(id)
-    key = redis_key(id: id)
+    key = redis_key(id:)
     paths = JSON.parse(redis.get(key))
     new(paths, id)
   rescue TypeError

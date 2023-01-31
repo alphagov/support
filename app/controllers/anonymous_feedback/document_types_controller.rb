@@ -19,7 +19,7 @@ class AnonymousFeedback::DocumentTypesController < AuthorisationController
 private
 
   def fetch_document_type_summary_from_support_api(ordering)
-    support_api.document_type_summary(params[:document_type], ordering: ordering)
+    support_api.document_type_summary(params[:document_type], ordering:)
   end
 
   def support_api
