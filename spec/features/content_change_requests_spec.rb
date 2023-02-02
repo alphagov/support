@@ -35,11 +35,8 @@ Factual inaccuracy
 [Subject area]
 Benefits
 
-[URL of content to be changed]
+[URLs to be changed]
 http://gov.uk/X
-
-[Related URLs]
-XXXXX
 
 [Details of what should be added, amended or removed]
 Out of date XX YY",
@@ -52,7 +49,7 @@ Out of date XX YY",
       subject_area: "Benefits",
       details_of_change: "Out of date XX YY",
       url: "http://gov.uk/X",
-      related_urls: "XXXXX",
+      related_urls: "http://gov.uk/welsh",
       needed_by_date: "31-12-#{next_year}",
       not_before_date: "01-12-#{next_year}",
       reason: "New law",
@@ -88,9 +85,8 @@ private
     fill_in "Title of request", with: details[:title] unless details[:title].nil?
     select details[:reason_for_change], from: "What’s the reason for the request?" unless details[:reason_for_change].nil?
     select details[:subject_area], from: "What’s the subject area?" unless details[:subject_area].nil?
-    fill_in "Details of the requested change", with: details[:details_of_change]
-    fill_in "URL", with: details[:url]
-    fill_in "Does this affect any other URLs (including any existing Welsh translations that need to be updated)? Put each new URL on a new line.", with: details[:related_urls]
+    fill_in "Which URLs are affected?", with: details[:url]
+    fill_in "What’s the new or different information?", with: details[:details_of_change]
 
     user_fills_out_time_constraints(details)
 

@@ -88,37 +88,49 @@
 
 <fieldset>
   <legend>
-    <span>URL affected</span>
+    <span>Which URLs are affected?</span>
   </legend>
 
   <div class="form-group">
     <span class="form-label">
-      <%= f.label :url, "URL" %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.text_field :url, placeholder: "https://www.gov.uk/", class: "input-md-6 form-control" %>
-    </span>
-  </div>
-
-  <div class="form-group">
-    <span class="form-label">
       <%= f.label :details_of_change do %>
-        Details of the requested change<abbr title="required">*</abbr>
+        What’s the new or different information? <abbr title="required">*</abbr>
       <% end %>
     </span>
-    <span class="form-wrapper">
-      <%= f.text_area :details_of_change, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 16, cols: 50 %>
-    </span>
-  </div>
+    <div class="help-block hint-block--md-6" id="details-of-change-hint">
+      <p>Make sure you:</p>
+      <ul>
+        <li>give sufficient detail</li>
+        <li>use plain English</li>
+        <li>explain any acronyms, jargon or legal language</li>
+        <li>say which parts of the content are affected - for example, ‘first paragraph of overview’</li>
+        <li>separate different points - for example, by numbering them</li>
+      </ul>
 
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :related_urls do %>
-        Does this affect any other URLs (including any existing Welsh translations that need to be updated)? Put each new URL on a new line.<abbr title="required">*</abbr>
-      <% end %>
-    </span>
+      <p>If you send us wording, we might not use it. If we do, we’ll need to put it in GOV.UK style.</p>
+
+      <p>To ensure your changes are as easy as possible for Content Designers to understand, please following the following format:</p>
+
+      <pre class="well">
+Ch. CHAPTER NAME
+
+[1]
+
+Under #Entry Requirements
+
+[CHANGE]
+
+This is some content that needs to change.
+
+[TO]
+
+This is some content that has changed.
+      </pre>
+    </div>
     <span class="form-wrapper">
-      <%= f.text_area :related_urls, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 4, cols: 50 %>
+      <%= f.text_area :details_of_change, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
+        describedby: "details-of-change-hint"
+      } %>
     </span>
   </div>
 </fieldset>

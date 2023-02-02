@@ -30,12 +30,7 @@ module Zendesk
           Zendesk::LabelledSnippet.new(
             on: @request,
             field: :url,
-            label: "URL of content to be changed",
-          ),
-          Zendesk::LabelledSnippet.new(
-            on: @request,
-            field: :related_urls,
-            label: "Related URLs",
+            label: "URLs to be changed",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,
