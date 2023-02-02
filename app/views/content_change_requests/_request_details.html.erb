@@ -55,7 +55,13 @@
 <%= render partial: "support/time_constraint", locals: { f: f } %>
 
 <div class="alert alert-info alert-block">
-  <p>If your request is urgent, please fill in this form and call <%= @primary_contact_details[:urgent_department_content_change][:phone] %> during office hours, or <%= @primary_contact_details[:urgent_mainstream_content_change][:phone] %> out of hours. (It's ONLY urgent when the public or the government is facing immediate and significant financial, legal or physical risk.)</p>
+  <p><strong>If your request is urgent</strong></p>
+  <p>Submit this form and call:</p>
+  <ul>
+    <li><%= @primary_contact_details[:urgent_department_content_change][:phone] %> between 9am and 6pm</li>
+    <li><%= @primary_contact_details[:urgent_mainstream_content_change][:phone] %> at other times</li>
+  </ul>
+  <p>It's urgent only if the public or the government faces immediate and significant financial, legal or physical risk.</p>
 </div>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
