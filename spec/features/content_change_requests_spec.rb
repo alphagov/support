@@ -39,7 +39,10 @@ Benefits
 http://gov.uk/X
 
 [Details of what should be added, amended or removed]
-Out of date XX YY",
+Out of date XX YY
+
+[Why is this change needed]
+Because of XX YY",
       },
     )
 
@@ -48,6 +51,7 @@ Out of date XX YY",
       reason_for_change: "Factual inaccuracy",
       subject_area: "Benefits",
       details_of_change: "Out of date XX YY",
+      why_is_change_needed: "Because of XX YY",
       url: "http://gov.uk/X",
       related_urls: "http://gov.uk/welsh",
       needed_by_date: "31-12-#{next_year}",
@@ -87,6 +91,7 @@ private
     select details[:subject_area], from: "What’s the subject area?" unless details[:subject_area].nil?
     fill_in "Which URLs are affected?", with: details[:url]
     fill_in "What’s the new or different information?", with: details[:details_of_change]
+    fill_in "Why is this change needed?", with: details[:why_is_change_needed]
 
     user_fills_out_time_constraints(details)
 

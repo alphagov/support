@@ -19,6 +19,7 @@ protected
       :reason_for_change,
       :subject_area,
       :details_of_change,
+      :why_is_change_needed,
       :url,
       :related_urls,
       requester_attributes: %i[email name collaborator_emails],

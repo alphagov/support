@@ -133,6 +133,24 @@ This is some content that has changed.
       } %>
     </span>
   </div>
+
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :why_is_change_needed do %>
+        Why is this change needed?
+      <% end %>
+    </span>
+    <div class="help-block hint-block--md-6" id="why-is-change-needed-hint">
+      <p>Explain why users need new or different information, including any problems with existing content.</p>
+
+      <p>Provide evidence to support the changes, such as user feedback, user research, analytics, call centre feedback or policy change.</p>
+    </div>
+    <span class="form-wrapper">
+      <%= f.text_area :why_is_change_needed, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
+        describedby: "why-is-change-needed-hint"
+      } %>
+    </span>
+  </div>
 </fieldset>
 
 <%= render partial: "support/attachment_instructions" %>
