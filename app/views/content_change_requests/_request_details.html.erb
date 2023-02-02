@@ -86,10 +86,19 @@
   </span>
 </div>
 
-<fieldset>
-  <legend>
-    <span>Which URLs are affected?</span>
-  </legend>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :url, "Which URLs are affected?" %>
+  </span>
+  <p class="help-block hint-block--md-6" id="url-hint">
+    List URLs, one per line.
+  </p>
+  <span class="form-wrapper">
+    <%= f.text_area :url, placeholder: "https://www.gov.uk/", class: "input-md-6 form-control", rows: 4, cols: 50, aria: {
+      describedby: "url-hint"
+    } %>
+  </span>
+</div>
 
   <div class="form-group">
     <span class="form-label">
@@ -107,11 +116,11 @@
         <li>separate different points - for example, by numbering them</li>
       </ul>
 
-      <p>If you send us wording, we might not use it. If we do, we’ll need to put it in GOV.UK style.</p>
+    <p>If you send us wording, we might not use it. If we do, we’ll need to put it in GOV.UK style.</p>
 
-      <p>To ensure your changes are as easy as possible for Content Designers to understand, please following the following format:</p>
+    <p>To ensure your changes are as easy as possible for Content Designers to understand, please following the following format:</p>
 
-      <pre class="well">
+    <pre class="well">
 Ch. CHAPTER NAME
 
 [1]
@@ -125,33 +134,32 @@ This is some content that needs to change.
 [TO]
 
 This is some content that has changed.
-      </pre>
-    </div>
-    <span class="form-wrapper">
-      <%= f.text_area :details_of_change, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
-        describedby: "details-of-change-hint"
-      } %>
-    </span>
+    </pre>
   </div>
+  <span class="form-wrapper">
+    <%= f.text_area :details_of_change, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
+      describedby: "details-of-change-hint"
+    } %>
+  </span>
+</div>
 
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :why_is_change_needed do %>
-        Why is this change needed?
-      <% end %>
-    </span>
-    <div class="help-block hint-block--md-6" id="why-is-change-needed-hint">
-      <p>Explain why users need new or different information, including any problems with existing content.</p>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :why_is_change_needed do %>
+      Why is this change needed?
+    <% end %>
+  </span>
+  <div class="help-block hint-block--md-6" id="why-is-change-needed-hint">
+    <p>Explain why users need new or different information, including any problems with existing content.</p>
 
-      <p>Provide evidence to support the changes, such as user feedback, user research, analytics, call centre feedback or policy change.</p>
-    </div>
-    <span class="form-wrapper">
-      <%= f.text_area :why_is_change_needed, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
-        describedby: "why-is-change-needed-hint"
-      } %>
-    </span>
+    <p>Provide evidence to support the changes, such as user feedback, user research, analytics, call centre feedback or policy change.</p>
   </div>
-</fieldset>
+  <span class="form-wrapper">
+    <%= f.text_area :why_is_change_needed, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
+      describedby: "why-is-change-needed-hint"
+    } %>
+  </span>
+</div>
 
 <%= render partial: "support/attachment_instructions" %>
 
