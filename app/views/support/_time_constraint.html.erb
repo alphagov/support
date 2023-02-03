@@ -6,7 +6,7 @@
 
     <div class="form-group">
       <span class="form-label">
-        <%= r.label :needed_by_date, "MUST be published by" %>
+        <%= r.label :needed_by_date, "Deadline (if you have one)" %>
       </span>
       <span class="form-wrapper">
         <%= r.text_field :needed_by_date, required: false, placeholder: "dd-mm-yyyy", value: r.object.needed_by_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
@@ -15,7 +15,7 @@
 
     <div class="form-group">
       <span class="form-label">
-        <%= r.label :not_before_date, "MUST NOT be published BEFORE" %>
+        <%= r.label :not_before_date, "Must not be published before" %>
       </span>
       <span class="form-wrapper">
         <%= r.text_field :not_before_date, required: false, placeholder: "dd-mm-yyyy", value: r.object.not_before_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
@@ -24,10 +24,15 @@
 
     <div class="form-group">
       <span class="form-label">
-        <%= r.label :time_constraint_reason, "Reason for the above dates" %>
+        <%= r.label :time_constraint_reason, "Reason for deadline" %>
       </span>
+      <div class="help-block hint-block--md-6" id="reason-for-deadline-hint">
+        <p>For example, policy or campaign launch, start of the new tax year.</p>
+      </div>
       <span class="form-wrapper">
-        <%= r.text_area :time_constraint_reason, required: false, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+        <%= r.text_area :time_constraint_reason, required: false, class: "input-md-6 form-control", rows: 6, cols: 50, aria: {
+          describedby: "reason-for-deadline-hint"
+        } %>
       </span>
     </div>
   </fieldset>
