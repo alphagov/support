@@ -84,7 +84,7 @@ module AppActions
 
   def user_submits_the_request_successfully
     click_on "Submit"
-    expect(page).to have_content("You should receive a confirmation email shortly.")
+    expect(page).to have_content("Thanks for sending us your request. We'll review your request and get back to you within 2 working days.")
   end
 end
 
