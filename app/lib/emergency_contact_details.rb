@@ -1,7 +1,7 @@
 class EmergencyContactDetails
   def self.fetch
-    config = JSON.parse(ENV["EMERGENCY_CONTACT_DETAILS"]) ||
-      JSON.parse(File.load(Rails.root.join("config/emergency_contact_details.json")))
+    config_str = ENV["EMERGENCY_CONTACT_DETAILS"] || File.read(Rails.root.join("config/emergency_contact_details.json"))
+    config = JSON.parse(config_str)
     ActiveSupport::HashWithIndifferentAccess.new(config)
   end
 end
