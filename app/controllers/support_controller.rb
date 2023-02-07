@@ -9,14 +9,6 @@ class SupportController < AuthorisationController
     @accessible_sections, @inaccessible_sections = all_sections.partition(&:accessible?)
   end
 
-  def emergency_contact_details
-    emergency_contact_details = EmergencyContactDetails.fetch
-    @primary_contact_details = emergency_contact_details[:primary_contacts]
-    @secondary_contact_details = emergency_contact_details[:secondary_contacts]
-    @verify_contact_details = emergency_contact_details[:verify_contacts]
-    @current_at = Date.parse(emergency_contact_details[:current_at])
-  end
-
   def acknowledge
     respond_to do |format|
       format.html { render :acknowledge }
