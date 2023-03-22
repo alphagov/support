@@ -23,7 +23,7 @@ protected
       :url,
       :related_urls,
       requester_attributes: %i[email name collaborator_emails],
-      time_constraint_attributes: %i[not_before_date needed_by_date time_constraint_reason],
+      time_constraint_attributes: %i[not_before_date needed_by_date time_constraint_reason needed_by_time not_before_time],
     ).to_h
   end
 end

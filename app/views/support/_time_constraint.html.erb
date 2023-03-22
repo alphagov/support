@@ -6,10 +6,19 @@
 
     <div class="form-group">
       <span class="form-label">
-        <%= r.label :needed_by_date, "Deadline (if you have one)" %>
+        <%= r.label :needed_by_date, "Deadline" %>
       </span>
       <span class="form-wrapper">
         <%= r.text_field :needed_by_date, required: false, placeholder: "dd-mm-yyyy", value: r.object.needed_by_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :needed_by_time, "Time this must be published by" %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.time_field :needed_by_time, required: false, placeholder: "HH:MM", value: r.object.not_before_time, class: "input-md-2 form-control" %>
       </span>
     </div>
 
@@ -19,6 +28,15 @@
       </span>
       <span class="form-wrapper">
         <%= r.text_field :not_before_date, required: false, placeholder: "dd-mm-yyyy", value: r.object.not_before_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :not_before_time, "Time this must not be published before" %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.time_field :not_before_time, required: false, placeholder: "HH:MM", value: r.object.not_before_time, class: "input-md-2 form-control" %>
       </span>
     </div>
 

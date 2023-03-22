@@ -55,7 +55,9 @@ Because of XX YY",
       url: "http://gov.uk/X",
       related_urls: "http://gov.uk/welsh",
       needed_by_date: "31-12-#{next_year}",
+      needed_by_time: "13:00",
       not_before_date: "01-12-#{next_year}",
+      not_before_time: "18:00",
       reason: "New law",
     )
 

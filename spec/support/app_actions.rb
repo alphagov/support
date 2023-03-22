@@ -77,8 +77,10 @@ module AppActions
   end
 
   def user_fills_out_time_constraints(details)
-    fill_in "Deadline (if you have one)", with: details[:needed_by_date]
+    fill_in "Deadline", with: details[:needed_by_date]
+    fill_in "Time this must be published by", with: details[:needed_by_time]
     fill_in "Must not be published before", with: details[:not_before_date]
+    fill_in "Time this must not be published before", with: details[:not_before_time]
     fill_in "Reason for deadline", with: details[:reason]
   end
 
