@@ -4,9 +4,11 @@ This app:
 
 - Presents anonymous feedback about pages on GOV.UK in a "feedback explorer". Anonymous feedback is collected via the [Feedback app](https://github.com/alphagov/feedback) and retrieved from the [Support API](https://github.com/alphagov/support-api).
 
-- Exposes [internal APIs](https://github.com/alphagov/gds-api-adapters/blob/master/lib/gds_api/support.rb) to create Zendesk tickets e.g. [via the Feedback app](https://github.com/alphagov/feedback/blob/7e6893c0e80d9c98f6cea27d1bd089621054b177/app/models/contact_ticket.rb#L35). Tickets are created using the [gds_zendesk gem](https://github.com/alphagov/gds_zendesk).
+- Exposes [internal APIs](https://github.com/alphagov/gds-api-adapters/blob/main/lib/gds_api/support.rb) to create Zendesk tickets e.g. [via the Feedback app](https://github.com/alphagov/feedback/blob/7e6893c/app/models/contact_ticket.rb#L35). Tickets are created using the [gds_zendesk gem](https://github.com/alphagov/gds_zendesk).
 
-- Hosts internal forms for publishers to create Zendesk tickets, as well as emergency contact info. Emergency contacts are secret and retrieved from an [environment variable](https://github.com/alphagov/govuk-puppet/blob/941373ab48ae50a9d1929caee73a52390004bf81/modules/govuk/manifests/apps/support.pp#L129) at runtime.
+- Hosts internal forms for publishers to create Zendesk tickets.
+
+- Hosts emergency contact information. This is read from an [environment variable](https://github.com/alphagov/govuk-helm-charts/blob/fb1920b/charts/app-config/values-production.yaml#L2420) which ultimately comes from a secret in AWS Secrets Manager.
 
 ## Nomenclature
 
@@ -38,7 +40,7 @@ Zendesk tickets are raised in the background using a [Sidekiq](http://sidekiq.or
 To start the background worker:
 
 ```
-bundle exec rake jobs:work
+bundle exec sidekiq
 ```
 
 ## Licence
