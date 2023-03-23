@@ -6,13 +6,15 @@
 
 <div class="form-group">
   <span class="form-label">
-    <%= f.label :title, "Title of request" %>
+    <%= f.label :title do %>
+      Title of request <abbr title="required">*</abbr>
+    <% end %>
   </span>
   <p class="help-block hint-block--md-6" id="title-hint">
     Clearly summarise what needs to change - for example, ‘Update phone numbers in Universal Credit guide’ or ‘Create a start page for clean air zones‘.
   </p>
   <span class="form-wrapper">
-    <%= f.text_field :title, placeholder: "Content change request", class: "input-md-6 form-control",
+    <%= f.text_field :title, required: true, placeholder: "Content change request", class: "input-md-6 form-control",
       aria: {
         describedby: "title-hint"
       }
@@ -22,7 +24,9 @@
 
 <div class="form-group">
   <span class="form-label">
-    <%= f.label :reason_for_change, "What’s the reason for the request?" %>
+    <%= f.label :reason_for_change do %>
+      What’s the reason for the request? <abbr title="required">*</abbr>
+    <% end %>
   </span>
   <p class="help-block hint-block--md-6" id="reason-hint">
     If none of the options below are appropriate, please select other.
@@ -43,14 +47,17 @@
       class: "input-md-6 form-control",
       aria: {
         describedby: "reason-hint"
-      }
+      },
+      required: true
     %>
   </span>
 </div>
 
 <div class="form-group">
   <span class="form-label">
-    <%= f.label :subject_area, "What’s the subject area?" %>
+    <%= f.label :subject_area do %>
+    What’s the subject area? <abbr title="required">*</abbr>
+    <% end%>
   </span>
   <p class="help-block hint-block--md-6" id="subject-area-hint">
     If none of the options below are appropriate, please select other.
@@ -81,20 +88,23 @@
       class: "input-md-6 form-control",
       aria: {
         describedby: "subject-area-hint"
-      }
+      },
+      required: true
     %>
   </span>
 </div>
 
 <div class="form-group">
   <span class="form-label">
-    <%= f.label :url, "Which URLs are affected?" %>
+    <%= f.label :url do %>
+      Which URLs are affected? <abbr title="required">*</abbr>
+    <% end %>
   </span>
   <p class="help-block hint-block--md-6" id="url-hint">
     List URLs, one per line.
   </p>
   <span class="form-wrapper">
-    <%= f.text_area :url, placeholder: "https://www.gov.uk/", class: "input-md-6 form-control", rows: 4, cols: 50, aria: {
+    <%= f.text_area :url, placeholder: "https://www.gov.uk/", required: true, class: "input-md-6 form-control", rows: 4, cols: 50, aria: {
       describedby: "url-hint"
     } %>
   </span>
@@ -146,7 +156,7 @@ This is some content that has changed.
 <div class="form-group">
   <span class="form-label">
     <%= f.label :why_is_change_needed do %>
-      Why is this change needed?
+      Why is this change needed? <abbr title="required">*</abbr>
     <% end %>
   </span>
   <div class="help-block hint-block--md-6" id="why-is-change-needed-hint">
@@ -155,7 +165,7 @@ This is some content that has changed.
     <p>Provide evidence to support the changes, such as user feedback, user research, analytics, call centre feedback or policy change.</p>
   </div>
   <span class="form-wrapper">
-    <%= f.text_area :why_is_change_needed, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
+    <%= f.text_area :why_is_change_needed, required: true, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
       describedby: "why-is-change-needed-hint"
     } %>
   </span>
