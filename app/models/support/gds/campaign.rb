@@ -6,6 +6,9 @@ module Support
       include ActiveModel::Model
       attr_accessor :has_read_guidance_confirmation,
                     :has_read_oasis_guidance_confirmation,
+                    :full_responsibility_confirmation,
+                    :accessibility_confirmation,
+                    :cookie_and_privacy_notice_confirmation,
                     :signed_campaign,
                     :start_date,
                     :end_date,

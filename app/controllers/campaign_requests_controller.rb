@@ -21,6 +21,9 @@ protected
         signed_campaign
         has_read_guidance_confirmation
         has_read_oasis_guidance_confirmation
+        full_responsibility_confirmation
+        accessibility_confirmation
+        cookie_and_privacy_notice_confirmation
         start_date
         end_date
         development_start_date

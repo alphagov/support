@@ -19,7 +19,7 @@
       <span class="form-wrapper">
         <%= r.label :has_read_guidance_confirmation, class: "control-label" do %>
           <%= r.check_box :has_read_guidance_confirmation %>
-          <b>Have you read the <%= link_to('GCS guidance on campaign websites', 'https://gcs.civilservice.gov.uk/guidance/campaigns/websites-government-campaigns/') %> and accepted the requirements for a Campaign Platform website?</b>
+          <b>I/We have read the <%= link_to('GCS guidance on campaign websites', 'https://gcs.civilservice.gov.uk/guidance/campaigns/websites-government-campaigns/') %> and accept the requirements for a Campaign Platform website</b>
         <% end %>
       </span>
     </div>
@@ -28,9 +28,37 @@
       <span class="form-wrapper">
         <%= r.label :has_read_oasis_guidance_confirmation, class: "control-label" do %>
           <%= r.check_box :has_read_oasis_guidance_confirmation %>
-          <b>Have you followed the <%= link_to('GCS guidance for OASIS planning', 'https://gcs.civilservice.gov.uk/wp-content/uploads/2015/09/6.3938_CO_GCS-Campaign-Planning_FINAL_A4_111017.pdf') %> and are using the <%= link_to('mandatory GCS OASIS template?', 'https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/') %></b>
+          <b>I/We have followed the <%= link_to('GCS guidance for OASIS planning', 'https://gcs.civilservice.gov.uk/wp-content/uploads/2015/09/6.3938_CO_GCS-Campaign-Planning_FINAL_A4_111017.pdf') %> 
+          and are using the <%= link_to('mandatory GCS OASIS template', 'https://gcs.civilservice.gov.uk/guidance/marketing/delivering-government-campaigns/guide-to-campaign-planning-oasis/') %></b>
         <% end %>
       </span>
+    </div>
+
+    <div class="form-group checkbox">
+    <span class="form-wrapper">
+      <%= r.label :full_responsibility_confirmation, class: "control-label" do %>
+        <%= r.check_box :full_responsibility_confirmation %>
+        <b>I/We will take full responsibility for all aspects of managing and resourcing this campaign site from Discovery stage to site build/content development, to site closure. The site must be regularly reviewed to ensure a high standard of work. GCS reserves the right to close the site if standard of the site drops below expectations.</b>
+      <% end %>
+      </span>
+    </div>
+
+      <div class="form-group checkbox">
+      <span class="form-wrapper">
+        <%= r.label :accessibility_confirmation, class: "control-label" do %>
+          <%= r.check_box :accessibility_confirmation %>
+          <b>I/We will ensure the site meets all <%= link_to('government web accessibility standards', 'https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps') %>, and that it will be tested and the Accessibility Statement completed before final review (if your team doesn't have expertise in accessible content design then appropriate training must be undertaken before the site build.)</b>
+        <% end %>
+      </span>
+    </div>
+
+    <div class="form-group checkbox">
+    <span class="form-wrapper">
+      <%= r.label :cookie_and_privacy_notice_confirmation, class: "control-label" do %>
+        <%= r.check_box :cookie_and_privacy_notice_confirmation %>
+        <b>I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer (NB : GDS will add a basic "boilerplate", however departments will need to identify if additions are needed).</b>
+      <% end %>
+    </span>
     </div>
 
     <div class="form-group">

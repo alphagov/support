@@ -70,6 +70,9 @@ Some comment",
     user_makes_a_campaign_request(
       has_read_guidance: true,
       has_read_oasis_guidance: true,
+      full_responsibility_confirmation: true,
+      accessibility_confirmation: true,
+      cookie_and_privacy_notice_confirmation: true,
       signed_campaign: "John Smith",
       start_date: "01-01-#{next_year}",
       end_date: "01-02-#{next_year}",
@@ -99,8 +102,12 @@ private
 
     expect(page).to have_content("Request GDS support for a new campaign")
 
-    check "Have you read the GCS guidance on campaign websites and accepted the requirements for a Campaign Platform website?" if details[:has_read_guidance]
-    check "Have you followed the GCS guidance for OASIS planning and are using the mandatory GCS OASIS template?" if details[:has_read_oasis_guidance]
+    check "I/We have read the GCS guidance on campaign websites and accept the requirements for a Campaign Platform website" if details[:has_read_guidance]
+    check "I/We have followed the GCS guidance for OASIS planning and are using the mandatory GCS OASIS template" if details[:has_read_oasis_guidance]
+    check "I/We will take full responsibility for all aspects of managing and resourcing this campaign site from Discovery stage to site build/content development, to site closure. The site must be regularly reviewed to ensure a high standard of work. GCS reserves the right to close the site if standard of the site drops below expectations." if details[:full_responsibility_confirmation]
+    check "I/We will ensure the site meets all government web accessibility standards, and that it will be tested and the Accessibility Statement completed before final review (if your team doesn't have expertise in accessible content design then appropriate training must be undertaken before the site build.)" if details[:full_responsibility_confirmation]
+    check "I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer (NB : GDS will add a basic \"boiler plate\", however departments will need to identify if additions are needed)." if details[:full_responsibility_confirmation]
+
     fill_in "Name of the Head of Communications who signed off the campaign website application*", with: details[:signed_campaign]
     fill_in "Start date of campaign site*", with: details[:start_date]
     fill_in "Proposed end date of campaign site*", with: details[:end_date]
