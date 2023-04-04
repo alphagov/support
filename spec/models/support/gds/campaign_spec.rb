@@ -10,8 +10,11 @@ module Support
       subject do
         Campaign.new(
           signed_campaign: "Test Signer",
-          has_read_guidance_confirmation: "1",
-          has_read_oasis_guidance_confirmation: "1",
+          has_read_guidance_confirmation: "Yes",
+          has_read_oasis_guidance_confirmation: "Yes",
+          full_responsibility_confirmation: "Yes",
+          accessibility_confirmation: "Yes",
+          cookie_and_privacy_notice_confirmation: "Yes",
           start_date: as_str(Time.zone.today),
           end_date: as_str(Date.tomorrow),
           development_start_date: as_str(Time.zone.today),
@@ -43,6 +46,9 @@ module Support
 
       it { should validate_acceptance_of(:has_read_guidance_confirmation) }
       it { should validate_acceptance_of(:has_read_oasis_guidance_confirmation) }
+      it { should validate_acceptance_of(:full_responsibility_confirmation) }
+      it { should validate_acceptance_of(:accessibility_confirmation) }
+      it { should validate_acceptance_of(:cookie_and_privacy_notice_confirmation) }
 
       it { should allow_value("example.gov.uk").for(:proposed_url) }
       it { should allow_value("example.campaign.gov.uk").for(:proposed_url) }
