@@ -123,7 +123,7 @@ private
     check "I/We will ensure the site meets all government web accessibility standards, and that it will be tested and the Accessibility Statement completed before final review (if your team doesn't have expertise in accessible content design then appropriate training must be undertaken before the site build.)" if details[:accessibility_confirmation]
     check "I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer (NB : GDS will add a basic \"boilerplate\", however departments will need to identify if additions are needed)." if details[:cookie_and_privacy_notice_confirmation]
 
-    fill_in "Name of the Head of Communications who signed off the campaign website application*", with: details[:signed_campaign]
+    fill_in "Name of the Head of Digital Communications who signed off the campaign website application*", with: details[:signed_campaign]
     fill_in "Start date of campaign site*", with: details[:start_date]
     fill_in "Proposed end date of campaign site*", with: details[:end_date]
     fill_in "Site build to commence on", with: details[:development_start_date]
@@ -136,7 +136,7 @@ private
     fill_in "Site tagline*", with: details[:site_tagline]
     fill_in "Site metadescription (appears in search results)*", with: details[:site_metadescription]
     fill_in "Site build budget / costs (and overall campaign cost, if applicable)*", with: details[:cost_of_campaign]
-    fill_in "Contact details for Google Analytics leads (Gmail accounts only)*", with: details[:ga_contact_email]
+    fill_in "Cabinet Office/No10 only : Contact details for Google Analytics leads (Gmail accounts only)", with: details[:ga_contact_email]
     fill_in "Additional comments", with: details[:additional_comments]
 
     user_submits_the_request_successfully

@@ -64,7 +64,7 @@
     <div class="form-group">
       <span class="form-label control-label">
         <%= r.label :signed_campaign do %>
-          Name of the Head of Communications who signed off the campaign website application<abbr title="required">*</abbr>
+          Name of the Head of Digital Communications who signed off the campaign website application<abbr title="required">*</abbr>
         <% end %>
       </span>
       <span class="form-wrapper">
@@ -145,7 +145,7 @@
       </span>
     </div>
     <p class="help-block">
-      The short campaign title, as appears in (for example) Google Search
+      The short campaign title, as appears in (for example) Google Search. 2-3 words
     </p>
 
     <div class="form-group">
@@ -159,7 +159,7 @@
       </span>
     </div>
     <p class="help-block">
-      Explain what this site is about, as appears in (for example) Google Search
+      Explain what this site is about, as appears in (for example) Google Search. Maximum 7 - 8 words      
     </p>
 
     <div class="form-group">
@@ -186,9 +186,6 @@
         <%= r.text_area :description, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
       </span>
     </div>
-    <p class="help-block">
-      Brief description of the campaign, for internal use only
-    </p>
 
     <div class="form-group">
       <span class="form-label">
@@ -222,24 +219,17 @@
         <%= r.text_field :cost_of_campaign, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
       </span>
     </div>
-    <p class="help-block">
-      If you are applying for the Campaign Platform page, this is free of any build charge
-    </p>
 
     <div class="form-group">
       <span class="form-label">
         <%= r.label :ga_contact_email do %>
-          Contact details for Google Analytics leads (Gmail accounts only)<abbr title="required">*</abbr>
+          Cabinet Office/No10 only : Contact details for Google Analytics leads (Gmail accounts only)
         <% end %>
       </span>
       <span class="form-wrapper">
-        <%= r.text_area :ga_contact_email, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+        <%= r.text_area :ga_contact_email, class: "input-md-6 form-control", rows: 6, cols: 50 %>
       </span>
     </div>
-    <p class="help-block">
-      GCS centralise and coordinate access to Google Analytics, although departments will themselves
-      be responsible for analysing their site’s performance.
-    </p>
   </fieldset>
 <% end %>
 
@@ -256,3 +246,4 @@
 <p class="help-block">
   Please note that in the next stage you will also need to provide an OASIS plan using this template (<%= link_to 'OASIS template from the GCS website', 'https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/' %>). In particular you need to demonstrate how the digital / website element of the campaign integrates into your overall OASIS plan and we will need to see <u>specific digital KPIs</u> in the evaluation section.
 </p>
+
