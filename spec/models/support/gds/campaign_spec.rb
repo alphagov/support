@@ -44,9 +44,6 @@ module Support
       it { should validate_acceptance_of(:has_read_guidance_confirmation) }
       it { should validate_acceptance_of(:has_read_oasis_guidance_confirmation) }
 
-      it { should validate_acceptance_of(:has_read_guidance_confirmation) }
-      it { should validate_acceptance_of(:has_read_oasis_guidance_confirmation) }
-
       it { should allow_value("example.gov.uk").for(:proposed_url) }
       it { should allow_value("example.campaign.gov.uk").for(:proposed_url) }
       it { should_not allow_value("Non Campaign platform").for(:proposed_url) }
