@@ -89,6 +89,31 @@ module Zendesk
             label: "Contact details for Google Analytics leads (Gmail accounts only)",
           ),
           Zendesk::LabelledSnippet.new(on: @request, field: :additional_comments),
+          Zendesk::LabelledSnippet.new(
+            on: @request.campaign,
+            field: :has_read_guidance_confirmation,
+            label: "I/We have read the GCS guidance on campaign websites and accept the requirements for a Campaign Platform website",
+          ),
+          Zendesk::LabelledSnippet.new(
+            on: @request.campaign,
+            field: :has_read_oasis_guidance_confirmation,
+            label: "I/We have followed the GCS guidance for OASIS planning and are using the mandatory GCS OASIS template",
+          ),
+          Zendesk::LabelledSnippet.new(
+            on: @request.campaign,
+            field: :full_responsibility_confirmation,
+            label: "I/We will take full responsibility for all aspects of managing and resourcing this campaign site from Discovery stage to site build/content development, to site closure",
+          ),
+          Zendesk::LabelledSnippet.new(
+            on: @request.campaign,
+            field: :accessibility_confirmation,
+            label: "I/We will ensure the site meets all government web accessibility standards, and that it will be tested and the Accessibility Statement completed before final review",
+          ),
+          Zendesk::LabelledSnippet.new(
+            on: @request.campaign,
+            field: :cookie_and_privacy_notice_confirmation,
+            label: "I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer",
+          ),
         ]
       end
     end
