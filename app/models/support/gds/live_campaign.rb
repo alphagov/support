@@ -8,7 +8,7 @@ module Support
 
       validates :title, :description, presence: true
 
-      validates :proposed_url, format: /(http:\/\/|https:\/\/)?(www.)?([a-zA-Z0-9]+).[a-zA-Z0-9]*.[a-z]{3}.?([a-z]+)?/
+      validates :proposed_url, format: /(http:\/\/|https:\/\/)?(www\.)?([a-zA-Z0-9]+)\.[a-zA-Z0-9]*\.[a-z]{3}\.?([a-z]+)?/
     end
   end
 end
