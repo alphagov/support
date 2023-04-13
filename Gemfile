@@ -21,7 +21,7 @@ gem "sassc-rails"
 gem "select2-rails"
 gem "sprockets-rails"
 gem "uglifier"
-gem "validates_timeliness", "~> 7.0.0.beta1"
+gem "validates_timeliness", "~> 7.0.0.beta2"
 
 group :development do
   gem "listen"
