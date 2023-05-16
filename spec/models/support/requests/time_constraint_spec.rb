@@ -114,6 +114,17 @@ module Support
           should allow_value("2:00pm").for(attribute)
         end
       end
+
+      it "returns the correct error message when 'not before' date is after 'needed by' date" do
+        constraint = Support::Requests::TimeConstraint.new(
+          not_before_date: (Time.zone.today + 2.days).strftime("%d-%m-%Y"),
+          needed_by_date: (Time.zone.today + 1.day).strftime("%d-%m-%Y"),
+        )
+
+        constraint.valid?
+
+        expect(constraint.errors[:not_before_date]).to include("'Must not be published before' date cannot be after Deadline")
+      end
     end
   end
 end

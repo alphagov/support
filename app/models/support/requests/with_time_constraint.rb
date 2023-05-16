@@ -4,7 +4,9 @@ module Support
       def self.included(base)
         base.validate do |request|
           if request.time_constraint && !request.time_constraint.valid?
-            errors.add :base, message: "Time constraint details are invalid."
+            request.time_constraint.errors.each do |error|
+              errors.add(error.attribute, error.message)
+            end
           end
         end
       end
