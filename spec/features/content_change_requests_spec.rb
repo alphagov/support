@@ -92,7 +92,7 @@ private
     select details[:reason_for_change], from: "What’s the reason for the request?" unless details[:reason_for_change].nil?
     select details[:subject_area], from: "What’s the subject area?" unless details[:subject_area].nil?
     fill_in "Which URLs are affected?", with: details[:url]
-    fill_in "What’s the new or different information?", with: details[:details_of_change]
+    fill_in "Tell us about the content that needs to be created, updated or is causing a problem for users?", with: details[:details_of_change]
     fill_in "Why is this change needed?", with: details[:why_is_change_needed]
 
     user_fills_out_time_constraints(details)

@@ -60,7 +60,7 @@
     <% end%>
   </span>
   <p class="help-block hint-block--md-6" id="subject-area-hint">
-    If none of the options below are appropriate, please select other.
+    If your request covers multiple subject areas, choose the one you think most relevant.
   </p>
   <span class="form-wrapper">
     <%= f.select :subject_area,
@@ -101,7 +101,7 @@
     <% end %>
   </span>
   <p class="help-block hint-block--md-6" id="url-hint">
-    List URLs, one per line.
+    List URLs, one per line. Include any Welsh URLs where translations are needed.
   </p>
   <span class="form-wrapper">
     <%= f.text_area :url, placeholder: "https://www.gov.uk/", required: true, class: "input-md-6 form-control", rows: 4, cols: 50, aria: {
@@ -113,12 +113,13 @@
   <div class="form-group">
     <span class="form-label">
       <%= f.label :details_of_change do %>
-        What’s the new or different information? <abbr title="required">*</abbr>
+        Tell us about the content that needs to be created, updated or is causing a problem for users? <abbr title="required">*</abbr>
       <% end %>
     </span>
     <div class="help-block hint-block--md-6" id="details-of-change-hint">
       <p>Make sure you:</p>
       <ul>
+        <li>Include evidence of why this is a problem, for example, user feedback or call centre data</li>
         <li>give sufficient detail</li>
         <li>use plain English</li>
         <li>explain any acronyms, jargon or legal language</li>
@@ -127,24 +128,6 @@
       </ul>
 
     <p>If you send us wording, we might not use it. If we do, we’ll need to put it in GOV.UK style.</p>
-
-    <p>To ensure your changes are as easy as possible for Content Designers to understand, please following the following format:</p>
-
-    <pre class="well">
-Ch. CHAPTER NAME
-
-[1]
-
-Under #Entry Requirements
-
-[CHANGE]
-
-This is some content that needs to change.
-
-[TO]
-
-This is some content that has changed.
-    </pre>
   </div>
   <span class="form-wrapper">
     <%= f.text_area :details_of_change, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
