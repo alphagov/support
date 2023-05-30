@@ -30,6 +30,7 @@ module Support
             { name: "Maslow", id: "maslow" },
             { name: "Service Manual Publisher", id: "service_manual_publisher" },
             { name: "Short URL Manager", id: "short_url_manager" },
+            { name: "Signon", id: "signon" },
             { name: "Specialist Publisher", id: "specialist_publisher" },
             { name: "Travel Advice Publisher", id: "travel_advice_publisher" },
             { name: "Whitehall Publisher", id: "inside_government_publisher", inside_government_related: true },
