@@ -37,11 +37,6 @@ module Zendesk
             field: :details_of_change,
             label: "Details of what should be added, amended or removed",
           ),
-          Zendesk::LabelledSnippet.new(
-            on: @request,
-            field: :why_is_change_needed,
-            label: "Why is this change needed",
-          ),
         ]
       end
     end
