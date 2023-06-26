@@ -29,6 +29,18 @@ module Zendesk
       end
     end
 
+    def not_before_time
+      if value?(:time_constraint) && value?(:not_before_time, @request.time_constraint)
+        @request.time_constraint.not_before_time
+      end
+    end
+
+    def needed_by_time
+      if value?(:time_constraint) && value?(:needed_by_time, @request.time_constraint)
+        @request.time_constraint.needed_by_time
+      end
+    end
+
     def tags
       %w[govt_form]
     end
@@ -49,7 +61,9 @@ module Zendesk
       if value?(:time_constraint)
         [
           Zendesk::LabelledSnippet.new(on: self, field: :needed_by_date, label: "Needed by date"),
+          Zendesk::LabelledSnippet.new(on: self, field: :needed_by_time, label: "Needed by time"),
           Zendesk::LabelledSnippet.new(on: self, field: :not_before_date, label: "Not before date"),
+          Zendesk::LabelledSnippet.new(on: self, field: :not_before_time, label: "Not before time"),
           Zendesk::LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason, label: "Reason for time constraint"),
         ]
       else

@@ -5,7 +5,7 @@ module Support
     class ContentChangeRequest < Request
       include WithTimeConstraint
 
-      attr_accessor :title, :details_of_change, :url, :related_urls
+      attr_accessor :title, :reason_for_change, :subject_area, :details_of_change, :url, :related_urls
 
       validates :details_of_change, presence: true
 
@@ -16,7 +16,7 @@ module Support
       end
 
       def self.label
-        "Content changes and new content requests"
+        "Request a content change or new content on GOV.UK"
       end
 
       def self.description

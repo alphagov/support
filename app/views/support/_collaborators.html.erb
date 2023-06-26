@@ -1,10 +1,15 @@
 <%= f.fields_for :requester do |r| %>
   <div class="form-group">
     <span class="form-label">
-      <%= r.label :collaborator_emails, "Should anybody else be copied in on this request? (comma-separated list of emails)" %>
+      <%= r.label :collaborator_emails, "Who needs a copy of this request?" %>
     </span>
+    <p class="help-block hint-block--md-6" id="collaborators-hint">
+      Separate email addresses with commas.
+    </p>
     <span class="form-wrapper">
-      <%= r.text_field :collaborator_emails, required: false, class: "input-md-6 form-control", value: r.object.collaborator_emails.join(", ") %>
+      <%= r.text_field :collaborator_emails, required: false, class: "input-md-6 form-control", value: r.object.collaborator_emails.join(", "), aria: {
+        describedby: "collaborators-hint"
+      } %>
     </span>
   </div>
 <% end %>

@@ -6,56 +6,150 @@
 
 <div class="form-group">
   <span class="form-label">
-    <%= f.label :title, "Title of request" %>
+    <%= f.label :title do %>
+      Title of request <abbr title="required">*</abbr>
+    <% end %>
   </span>
+  <p class="help-block hint-block--md-6" id="title-hint">
+    Clearly summarise what needs to change - for example, ‘Update phone numbers in Universal Credit guide’ or ‘Create a start page for clean air zones‘.
+  </p>
   <span class="form-wrapper">
-    <%= f.text_field :title, placeholder: "Content change request", class: "input-md-6 form-control" %>
+    <%= f.text_field :title, required: true, placeholder: "Content change request", class: "input-md-6 form-control",
+      aria: {
+        describedby: "title-hint"
+      }
+    %>
   </span>
 </div>
 
-<fieldset>
-  <legend>
-    <span>URL affected</span>
-  </legend>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :reason_for_change do %>
+      What’s the reason for the request? <abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <p class="help-block hint-block--md-6" id="reason-hint">
+    If none of the options below are appropriate, please select other.
+  </p>
+  <span class="form-wrapper">
+    <%= f.select :reason_for_change,
+      options_for_select([
+        "Factual inaccuracy",
+        "Content is causing problems for users",
+        "New information (policy, campaign, service) - for example, service start page needed",
+        "Missing information",
+        "Update - policy or process change",
+        "Uprating - policy or money changes at the new tax year (6 April)",
+        "Service Review",
+        "Other"
+      ], f.object.reason_for_change),
+      { include_blank: true },
+      class: "input-md-6 form-control",
+      aria: {
+        describedby: "reason-hint"
+      },
+      required: true
+    %>
+  </span>
+</div>
 
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :url, "URL" %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.text_field :url, placeholder: "https://www.gov.uk/", class: "input-md-6 form-control" %>
-    </span>
-  </div>
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :subject_area do %>
+    What’s the subject area? <abbr title="required">*</abbr>
+    <% end%>
+  </span>
+  <p class="help-block hint-block--md-6" id="subject-area-hint">
+    If your request covers multiple subject areas, choose the one you think most relevant.
+  </p>
+  <span class="form-wrapper">
+    <%= f.select :subject_area,
+      options_for_select([
+        "Benefits",
+        "Births, death, marriages and care",
+        "Business and self-employed",
+        "Childcare and parenting",
+        "Citizenship and living in the UK",
+        "Crime, justice and the law",
+        "Disabled people",
+        "Driving and transport",
+        "Education and learning",
+        "Employing people",
+        "Environment and countryside",
+        "Health",
+        "Housing and local services",
+        "Money and tax",
+        "Passports, travel and living abroad",
+        "Visas and immigration",
+        "Working, jobs and pensions",
+        "Other"
+      ], f.object.subject_area),
+      { include_blank: true },
+      class: "input-md-6 form-control",
+      aria: {
+        describedby: "subject-area-hint"
+      },
+      required: true
+    %>
+  </span>
+</div>
+
+<div class="form-group">
+  <span class="form-label">
+    <%= f.label :url do %>
+      Which URLs are affected? <abbr title="required">*</abbr>
+    <% end %>
+  </span>
+  <p class="help-block hint-block--md-6" id="url-hint">
+    List URLs, one per line. Include any Welsh URLs where translations are needed.
+  </p>
+  <span class="form-wrapper">
+    <%= f.text_area :url, placeholder: "https://www.gov.uk/", required: true, class: "input-md-6 form-control", rows: 4, cols: 50, aria: {
+      describedby: "url-hint"
+    } %>
+  </span>
+</div>
 
   <div class="form-group">
     <span class="form-label">
       <%= f.label :details_of_change do %>
-        Details of the requested change<abbr title="required">*</abbr>
+        Tell us about the content that needs to be created, updated or is causing a problem for users? <abbr title="required">*</abbr>
       <% end %>
     </span>
-    <span class="form-wrapper">
-      <%= f.text_area :details_of_change, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 16, cols: 50 %>
-    </span>
-  </div>
+    <div class="help-block hint-block--md-6" id="details-of-change-hint">
+      <p>Make sure you:</p>
+      <ul>
+        <li>include evidence of why this is a problem, for example, user feedback or call centre data</li>
+        <li>give sufficient detail</li>
+        <li>use plain English</li>
+        <li>explain any acronyms, jargon or legal language</li>
+        <li>say which parts of the content are affected - for example, ‘first paragraph of overview’</li>
+        <li>separate different points - for example, by numbering them</li>
+      </ul>
 
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :related_urls do %>
-        Does this affect any other URLs (including any existing Welsh translations that need to be updated)? Put each new URL on a new line.<abbr title="required">*</abbr>
-      <% end %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.text_area :related_urls, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 4, cols: 50 %>
-    </span>
+    <p>If you send us wording, we might not use it. If we do, we’ll need to put it in GOV.UK style.</p>
   </div>
-</fieldset>
+  <span class="form-wrapper">
+    <%= f.text_area :details_of_change, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
+      describedby: "details-of-change-hint"
+    } %>
+  </span>
+</div>
+
+  </div>
 
 <%= render partial: "support/attachment_instructions" %>
 
 <%= render partial: "support/time_constraint", locals: { f: f } %>
 
 <div class="alert alert-info alert-block">
-  <p>If your request is urgent, please fill in this form and call <%= @primary_contact_details[:urgent_department_content_change][:phone] %> during office hours, or <%= @primary_contact_details[:urgent_mainstream_content_change][:phone] %> out of hours. (It's ONLY urgent when the public or the government is facing immediate and significant financial, legal or physical risk.)</p>
+  <p><strong>If your request is urgent</strong></p>
+  <p>Submit this form and call:</p>
+  <ul>
+    <li><%= @primary_contact_details[:urgent_department_content_change][:phone] %> between 9am and 6pm</li>
+    <li><%= @primary_contact_details[:urgent_mainstream_content_change][:phone] %> at other times</li>
+  </ul>
+  <p>It's urgent only if the public or the government faces immediate and significant financial, legal or physical risk.</p>
 </div>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>

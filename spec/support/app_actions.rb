@@ -77,14 +77,16 @@ module AppActions
   end
 
   def user_fills_out_time_constraints(details)
-    fill_in "MUST be published by", with: details[:needed_by_date]
-    fill_in "MUST NOT be published BEFORE", with: details[:not_before_date]
-    fill_in "Reason for the above dates", with: details[:reason]
+    fill_in "Deadline", with: details[:needed_by_date]
+    fill_in "Time this must be published by", with: details[:needed_by_time]
+    fill_in "Must not be published before", with: details[:not_before_date]
+    fill_in "Time this must not be published before", with: details[:not_before_time]
+    fill_in "Reason for deadline", with: details[:reason]
   end
 
   def user_submits_the_request_successfully
     click_on "Submit"
-    expect(page).to have_content("You should receive a confirmation email shortly.")
+    expect(page).to have_content("Thanks for sending us your request. We'll review your request and get back to you within 2 working days.")
   end
 end
 

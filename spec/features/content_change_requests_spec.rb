@@ -23,17 +23,26 @@ feature "Content change requests" do
 "[Needed by date]
 31-12-#{next_year}
 
+[Needed by time]
+13:00
+
 [Not before date]
 01-12-#{next_year}
+
+[Not before time]
+18:00
 
 [Reason for time constraint]
 New law
 
-[URL of content to be changed]
-http://gov.uk/X
+[Reason for change request]
+Factual inaccuracy
 
-[Related URLs]
-XXXXX
+[Subject area]
+Benefits
+
+[URLs to be changed]
+http://gov.uk/X
 
 [Details of what should be added, amended or removed]
 Out of date XX YY",
@@ -42,11 +51,15 @@ Out of date XX YY",
 
     user_makes_a_content_change_request(
       title: "Update X",
+      reason_for_change: "Factual inaccuracy",
+      subject_area: "Benefits",
       details_of_change: "Out of date XX YY",
       url: "http://gov.uk/X",
-      related_urls: "XXXXX",
+      related_urls: "http://gov.uk/welsh",
       needed_by_date: "31-12-#{next_year}",
+      needed_by_time: "13:00",
       not_before_date: "01-12-#{next_year}",
+      not_before_time: "18:00",
       reason: "New law",
     )
 
@@ -73,14 +86,15 @@ private
   def user_makes_a_content_change_request(details)
     visit "/"
 
-    click_on "Content changes and new content requests"
+    click_on "Request a content change or new content on GOV.UK"
 
     expect(page).to have_content("You'll get an automated response to confirm we've received your request. We'll then review your request within 2 working days.")
 
     fill_in "Title of request", with: details[:title] unless details[:title].nil?
-    fill_in "Details of the requested change", with: details[:details_of_change]
-    fill_in "URL", with: details[:url]
-    fill_in "Does this affect any other URLs (including any existing Welsh translations that need to be updated)? Put each new URL on a new line.", with: details[:related_urls]
+    select details[:reason_for_change], from: "What’s the reason for the request?" unless details[:reason_for_change].nil?
+    select details[:subject_area], from: "What’s the subject area?" unless details[:subject_area].nil?
+    fill_in "Which URLs are affected?", with: details[:url]
+    fill_in "Tell us about the content that needs to be created, updated or is causing a problem for users?", with: details[:details_of_change]
 
     user_fills_out_time_constraints(details)
 
