@@ -430,6 +430,9 @@ GEM
       sentry-ruby (~> 5.9.0)
     sentry-ruby (5.9.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
+    sentry-sidekiq (5.9.0)
+      sentry-ruby (~> 5.9.0)
+      sidekiq (>= 3.0)
     shoulda (4.0.0)
       shoulda-context (~> 2.0)
       shoulda-matchers (~> 4.0)
@@ -533,6 +536,7 @@ DEPENDENCIES
   rubocop-govuk
   sassc-rails
   select2-rails
+  sentry-sidekiq
   shoulda
   simplecov
   spring
