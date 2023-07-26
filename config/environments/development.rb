@@ -64,4 +64,6 @@ Rails.application.configure do
   config.hosts += [
     "support.dev.gov.uk",
   ]
+
+  ENV["EMERGENCY_CONTACT_DETAILS"] = ENV["EMERGENCY_CONTACT_DETAILS"] || File.read(Rails.root.join("config/emergency_contact_details.json"))
 end
