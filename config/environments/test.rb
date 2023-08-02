@@ -54,4 +54,6 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  ENV["EMERGENCY_CONTACT_DETAILS"] = ENV["EMERGENCY_CONTACT_DETAILS"] || File.read(Rails.root.join("config/emergency_contact_details.json"))
 end
