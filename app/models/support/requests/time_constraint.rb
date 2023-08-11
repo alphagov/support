@@ -4,9 +4,7 @@ module Support
   module Requests
     class TimeConstraint
       include ActiveModel::Model
-      attr_accessor :not_before_date, :not_before_time, :needed_by_date, :needed_by_time, :time_constraint_reason, :is_legal_deadline
-
-      validates :is_legal_deadline, inclusion: %w[yes no], allow_blank: true
+      attr_accessor :not_before_date, :not_before_time, :needed_by_date, :needed_by_time, :time_constraint_reason
 
       validates_date :needed_by_date, allow_blank: true, on_or_after: :today
       validates_date :not_before_date, allow_blank: true, on_or_after: :today
