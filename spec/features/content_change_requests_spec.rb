@@ -66,21 +66,6 @@ Out of date XX YY",
     expect(request).to have_been_made
   end
 
-  scenario "successful 'Depts and Policy' content change request " do
-    request = expect_zendesk_to_receive_ticket(
-      "subject" => "Content change request",
-      "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => %w[govt_form content_amend],
-    )
-
-    user_makes_a_content_change_request(
-      context: "Departments and policy",
-      details_of_change: "Out of date XX YY",
-    )
-
-    expect(request).to have_been_made
-  end
-
 private
 
   def user_makes_a_content_change_request(details)
@@ -91,8 +76,8 @@ private
     expect(page).to have_content("You'll get an automated response to confirm we've received your request. We'll then review your request within 2 working days.")
 
     fill_in "Title of request", with: details[:title] unless details[:title].nil?
-    select details[:reason_for_change], from: "What’s the reason for the request?" unless details[:reason_for_change].nil?
-    select details[:subject_area], from: "What’s the subject area?" unless details[:subject_area].nil?
+    select details[:reason_for_change], from: "What’s the reason for the request?"
+    select details[:subject_area], from: "What’s the subject area?"
     fill_in "Which URLs are affected?", with: details[:url]
     fill_in "Tell us about the content that needs to be created, updated or is causing a problem for users?", with: details[:details_of_change]
 
