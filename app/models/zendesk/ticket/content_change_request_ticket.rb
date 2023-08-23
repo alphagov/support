@@ -1,6 +1,8 @@
 module Zendesk
   module Ticket
     class ContentChangeRequestTicket < Zendesk::ZendeskTicket
+      TICKET_FORM_ID = 7_949_329_694_108
+
       def subject
         if @request.title.present?
           "#{@request.title} - Content change request"

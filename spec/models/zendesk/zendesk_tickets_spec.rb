@@ -49,5 +49,22 @@ describe Zendesk::ZendeskTickets do
         ),
       )
     end
+
+    it "calls ZendeskTicketWorker with ticket_form_id if the constant is defined in the child class" do
+      ticket_with_form_id = instance_double(
+        Zendesk::Ticket::ContentChangeRequestTicket,
+        base_ticket_attr,
+      )
+      allow(ticket_with_form_id).to receive(:class).and_return(Zendesk::Ticket::ContentChangeRequestTicket)
+      stub_const("Zendesk::Ticket::ContentChangeRequestTicket::TICKET_FORM_ID", 123)
+
+      described_class.new.raise_ticket(ticket_with_form_id)
+
+      expect(ZendeskTicketWorker).to have_received(:perform_async).with(
+        hash_including(
+          "ticket_form_id" => 123,
+        ),
+      )
+    end
   end
 end
