@@ -29,17 +29,7 @@ module Zendesk
     protected
 
       def comment_snippets
-        [
-          Zendesk::LabelledSnippet.new(
-            on: @request,
-            field: :reason_for_change,
-            label: "Reason for change request",
-          ),
-          Zendesk::LabelledSnippet.new(
-            on: @request,
-            field: :subject_area,
-            label: "Subject area",
-          ),
+        snippets = [
           Zendesk::LabelledSnippet.new(
             on: @request,
             field: :url,
@@ -51,6 +41,15 @@ module Zendesk
             label: "Details of what should be added, amended or removed",
           ),
         ]
+        if time_constraint_reason
+          snippets << Zendesk::LabelledSnippet.new(
+            on: self,
+            field: :time_constraint_reason,
+            label: "Reason for time constraint",
+          )
+        end
+
+        snippets
       end
     end
   end
