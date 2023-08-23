@@ -1,1 +1,47 @@
 ---
+- !ruby/object:Zendesk::CustomFieldType::DropDown
+  name: "[CR] Reason for the request"
+  id: 7948652819356
+  options:
+    cr_inaccuracy: Factual inaccuracy
+    cr_user_problem: Content is causing problems for users
+    cr_new_info: New information (policy, campaign, service) - for example, service start page needed
+    cr_missing_info: Missing information
+    cr_policy_process_update: Update - policy or process change
+    cr_uprating: Uprating - policy or money changes at the new tax year (6 April)
+    cr_service_review: Service Review
+    cr_reason_other: Other
+- !ruby/object:Zendesk::CustomFieldType::DropDown
+  name: "[CR] Subject Area"
+  id: 7949106580380
+  options:
+    cr_benefits: Benefits
+    cr_births_deaths: Births, death, marriages and care
+    cr_business_selfemployed: Business and self-employed
+    cr_childcare_parenting: Childcare and parenting
+    cr_citizenship: Citizenship and living in the UK
+    cr_crime_justice: Crime, justice and the law
+    cr_disabled_people: Disabled people
+    cr_driving_transport: Driving and transport
+    cr_education_learning: Education and learning
+    cr_employing_people: Employing people
+    cr_environment_countryside: Environment and countryside
+    cr_health: Health
+    cr_housing_local_services: Housing and local services
+    cr_money_tax: Money and tax
+    cr_passports_travel_living_abroad: Passports, travel and living abroad
+    cr_visas_immigration: Visas and immigration
+    cr_working_jobs_pensions: Working, jobs and pensions
+    cr_subject_other: Other
+- !ruby/object:Zendesk::CustomFieldType::DateField
+  name: "[CR] Deadline"
+  id: 7949136091548
+- !ruby/object:Zendesk::CustomFieldType::DateField
+  name: "[CR] Do not publish before"
+  id: 7949152975772
+- !ruby/object:Zendesk::CustomFieldType::Text
+  name: "[CR] Deadline (time)"
+  id: 8250061570844
+- !ruby/object:Zendesk::CustomFieldType::Text
+  name: "[CR] Do not publish before (time)"
+  id: 8250075489052
