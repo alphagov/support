@@ -29,5 +29,25 @@ describe Zendesk::ZendeskTickets do
         "comment" => { "body" => "Biscuits for everyone" },
       )
     end
+
+    it "calls ZendeskTicketWorker with custom_fields if they are defined in the child class" do
+      ticket_with_custom_fields = instance_double(
+        Zendesk::Ticket::ContentChangeRequestTicket,
+        base_ticket_attr.merge(custom_fields:
+        [{ "id" => 1_900_000_744_991, "value" => "2023-08-01" },
+         { "id" => 1_900_000_744_992, "value" => "2023-08-10" }]),
+      )
+
+      described_class.new.raise_ticket(ticket_with_custom_fields)
+
+      expect(ZendeskTicketWorker).to have_received(:perform_async).with(
+        hash_including(
+          "custom_fields" => [
+            { "id" => 1_900_000_744_991, "value" => "2023-08-01" },
+            { "id" => 1_900_000_744_992, "value" => "2023-08-10" },
+          ],
+        ),
+      )
+    end
   end
 end

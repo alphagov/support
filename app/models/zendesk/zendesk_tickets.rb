@@ -9,6 +9,7 @@ module Zendesk
         tags: ticket_to_raise.tags,
         comment: { "body" => ticket_to_raise.comment },
       }
+      ticket_options.merge!(custom_fields: ticket_to_raise.custom_fields) if ticket_to_raise.respond_to?(:custom_fields)
 
       ZendeskTicketWorker.perform_async(ticket_options.stringify_keys)
     end
