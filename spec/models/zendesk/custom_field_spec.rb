@@ -29,4 +29,23 @@ describe Zendesk::CustomField do
       )
     end
   end
+
+  describe "#options_for_name" do
+    it "returns an array of options for a custom field" do
+      options = described_class.options_for_name("Reason for the request")
+
+      expect(options).to eq(["Factual inaccuracy"])
+    end
+
+    it "raises an error given invalid custom field name" do
+      expect { described_class.options_for_name("Not defined list") }.to raise_error(
+        "Unable to find custom field name: Not defined list. " \
+        "Ensure it's defined in config/zendesk/custom_fields_data.yml",
+      )
+    end
+
+    it "raises an error if the custom field doesn't have options defined" do
+      expect { described_class.options_for_name("Deadline") }.to raise_error(NoMethodError)
+    end
+  end
 end

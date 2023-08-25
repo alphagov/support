@@ -10,11 +10,15 @@ module Zendesk
     ).freeze
 
     class << self
-      delegate :set, to: :new
+      delegate :set, :options_for_name, to: :new
     end
 
     def set(id:, input:)
       { "id" => id, "value" => find_by_id(id).prepare_value(input) }
+    end
+
+    def options_for_name(name)
+      find_by_name(name).options.values
     end
 
   private
@@ -24,6 +28,17 @@ module Zendesk
 
       if field.nil?
         raise "Unable to find custom field ID: #{id}. " \
+          "Ensure it's defined in config/zendesk/custom_fields_data.yml"
+      end
+
+      field
+    end
+
+    def find_by_name(name)
+      field = CUSTOM_FIELDS_DATA.select { |f| f.name == name }.first
+
+      if field.nil?
+        raise "Unable to find custom field name: #{name}. " \
           "Ensure it's defined in config/zendesk/custom_fields_data.yml"
       end
 
