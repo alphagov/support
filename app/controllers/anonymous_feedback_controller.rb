@@ -68,7 +68,11 @@ private
     if params[:path].present?
       params[:paths] = [params[:path]]
     elsif params[:paths] && params[:paths].instance_of?(String)
-      params[:paths] = params[:paths].split(",").map(&:strip)
+      params[:paths] = if params[:paths].empty?
+                         ["/"]
+                       else
+                         params[:paths].split(",").map(&:strip)
+                       end
     end
   end
 

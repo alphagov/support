@@ -225,6 +225,19 @@ describe AnonymousFeedbackController, type: :controller do
       end
     end
 
+    it "normalises empty path before talking to the api" do
+      api_request = stub_support_api_anonymous_feedback(
+        hash_including("path_prefixes" => ["/"]),
+        "results" => [],
+        "pages" => 0,
+        "current_page" => 1,
+      )
+
+      get :index, params: { paths: "" }
+
+      expect(api_request).to have_been_made
+    end
+
     it "normalises the path before talking to the api" do
       api_request = stub_support_api_anonymous_feedback(
         hash_including("path_prefixes" => ["/done/apply-carers-allowance"]),
