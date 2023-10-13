@@ -15,12 +15,30 @@ feature "Content change requests" do
 
   scenario "successful mainstream content change request " do
     request = expect_zendesk_to_receive_ticket(
-      "subject" => "Update X - Content change request",
+      "subject" => "Update X",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form content_amend],
       "comment" => {
         "body" =>
-"[URLs to be changed]
+"[Reason for request]
+Factual inaccuracy
+
+[Subject area]
+Benefits
+
+[Deadline date]
+31-12-#{next_year}
+
+[Deadline time]
+13:00
+
+[Do not publish before date]
+01-12-#{next_year}
+
+[Do not publish before time]
+18:00
+
+[URLs to be changed]
 http://gov.uk/X
 
 [Details of what should be added, amended or removed]
