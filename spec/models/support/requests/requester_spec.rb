@@ -18,6 +18,7 @@ module Support
       it { should allow_value("ab@c.com").for(:collaborator_emails) }
       it { should allow_value("ab@c.com, de@f.com").for(:collaborator_emails) }
       it { should_not allow_value("ab, de@f.com").for(:collaborator_emails) }
+      it { should_not allow_value("ab@c.com111").for(:collaborator_emails) }
 
       it "removes all whitespace from the email" do
         expect(Requester.new(email: " ab@c.com").email).to eq("ab@c.com")
