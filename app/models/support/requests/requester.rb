@@ -7,6 +7,8 @@ module Support
       attr_accessor :name
       attr_reader :email
 
+      VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+
       validates :email, presence: true
 
       validates :email, format: { with: /@/ }
@@ -38,7 +40,7 @@ module Support
       def collaborator_emails_are_all_valid
         if collaborator_emails.present?
           collaborator_emails.each do |collaborator_email|
-            unless /@/.match?(collaborator_email)
+            unless VALID_EMAIL_REGEX.match?(collaborator_email)
               errors.add(:collaborator_emails, "#{collaborator_email} is not a valid email")
             end
           end
