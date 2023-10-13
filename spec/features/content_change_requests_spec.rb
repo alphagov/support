@@ -20,25 +20,7 @@ feature "Content change requests" do
       "tags" => %w[govt_form content_amend],
       "comment" => {
         "body" =>
-"[Reason for request]
-Factual inaccuracy
-
-[Subject area]
-Benefits
-
-[Deadline date]
-31-12-#{next_year}
-
-[Deadline time]
-13:00
-
-[Do not publish before date]
-01-12-#{next_year}
-
-[Do not publish before time]
-18:00
-
-[URLs to be changed]
+"[URLs to be changed]
 http://gov.uk/X
 
 [Details of what should be added, amended or removed]
