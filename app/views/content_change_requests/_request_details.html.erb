@@ -33,16 +33,7 @@
   </p>
   <span class="form-wrapper">
     <%= f.select :reason_for_change,
-      options_for_select([
-        "Factual inaccuracy",
-        "Content is causing problems for users",
-        "New information (policy, campaign, service) - for example, service start page needed",
-        "Missing information",
-        "Update - policy or process change",
-        "Uprating - policy or money changes at the new tax year (6 April)",
-        "Service Review",
-        "Other"
-      ], f.object.reason_for_change),
+      options_for_select(f.object.reason_for_change_options, f.object.reason_for_change),
       { include_blank: true },
       class: "input-md-6 form-control",
       aria: {
@@ -64,26 +55,7 @@
   </p>
   <span class="form-wrapper">
     <%= f.select :subject_area,
-      options_for_select([
-        "Benefits",
-        "Births, death, marriages and care",
-        "Business and self-employed",
-        "Childcare and parenting",
-        "Citizenship and living in the UK",
-        "Crime, justice and the law",
-        "Disabled people",
-        "Driving and transport",
-        "Education and learning",
-        "Employing people",
-        "Environment and countryside",
-        "Health",
-        "Housing and local services",
-        "Money and tax",
-        "Passports, travel and living abroad",
-        "Visas and immigration",
-        "Working, jobs and pensions",
-        "Other"
-      ], f.object.subject_area),
+      options_for_select(f.object.subject_area_options, f.object.subject_area),
       { include_blank: true },
       class: "input-md-6 form-control",
       aria: {

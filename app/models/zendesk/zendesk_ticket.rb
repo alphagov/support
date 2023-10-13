@@ -14,7 +14,7 @@ module Zendesk
     def_delegators :@requester, :email, :name, :collaborator_emails
 
     def comment
-      Zendesk::SnippetCollection.new(base_comment_snippets + comment_snippets).to_s
+      Zendesk::SnippetCollection.new(comment_snippets).to_s
     end
 
     def not_before_date
@@ -41,6 +41,12 @@ module Zendesk
       end
     end
 
+    def time_constraint_reason
+      if value?(:time_constraint) && value?(:time_constraint_reason, @request.time_constraint)
+        @request.time_constraint.time_constraint_reason
+      end
+    end
+
     def tags
       %w[govt_form]
     end
@@ -50,25 +56,11 @@ module Zendesk
     end
 
     def to_s
-      Zendesk::SnippetCollection.new(base_attribute_snippets + base_comment_snippets + comment_snippets).to_s
+      Zendesk::SnippetCollection.new(base_attribute_snippets + comment_snippets).to_s
     end
 
     def priority
       "normal"
-    end
-
-    def base_comment_snippets
-      if value?(:time_constraint)
-        [
-          Zendesk::LabelledSnippet.new(on: self, field: :needed_by_date, label: "Needed by date"),
-          Zendesk::LabelledSnippet.new(on: self, field: :needed_by_time, label: "Needed by time"),
-          Zendesk::LabelledSnippet.new(on: self, field: :not_before_date, label: "Not before date"),
-          Zendesk::LabelledSnippet.new(on: self, field: :not_before_time, label: "Not before time"),
-          Zendesk::LabelledSnippet.new(on: @request.time_constraint, field: :time_constraint_reason, label: "Reason for time constraint"),
-        ]
-      else
-        []
-      end
     end
 
     def comment_snippets

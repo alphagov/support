@@ -22,6 +22,22 @@ module Support
       def self.description
         "Request changes to GOV.UK content managed by GDS content designers"
       end
+
+      def self.reason_for_change_options
+        Zendesk::CustomField.options_for_name("[CR] Reason for the request")
+      end
+
+      def reason_for_change_options
+        self.class.reason_for_change_options
+      end
+
+      def self.subject_area_options
+        Zendesk::CustomField.options_for_name("[CR] Subject Area")
+      end
+
+      def subject_area_options
+        self.class.subject_area_options
+      end
     end
   end
 end

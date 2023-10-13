@@ -18,7 +18,7 @@ module Zendesk
     protected
 
       def comment_snippets
-        [
+        optional_comment_snippets + [
           request_label(field: :details),
           request_label(
             field: :urls,
@@ -26,6 +26,14 @@ module Zendesk
           ),
           request_label(field: :contact_number),
         ]
+      end
+
+      def optional_comment_snippets
+        snippets = []
+        snippets << Zendesk::LabelledSnippet.new(on: self, field: :needed_by_date) if needed_by_date
+        snippets << Zendesk::LabelledSnippet.new(on: self, field: :time_constraint_reason, label: "Reason for time constraint") if time_constraint_reason
+
+        snippets
       end
 
       def deadline_date

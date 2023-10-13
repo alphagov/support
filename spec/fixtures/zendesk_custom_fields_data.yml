@@ -1,0 +1,12 @@
+---
+- !ruby/object:Zendesk::CustomFieldType::DateField
+  name: "Deadline"
+  id: 123
+- !ruby/object:Zendesk::CustomFieldType::DropDown
+  name: "Reason for the request"
+  id: 456
+  options:
+    name_tag1: Factual inaccuracy
+- !ruby/object:Zendesk::CustomFieldType::Text
+  name: "URLs"
+  id: 789

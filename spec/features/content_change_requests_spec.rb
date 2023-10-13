@@ -20,33 +20,23 @@ feature "Content change requests" do
       "tags" => %w[govt_form content_amend],
       "comment" => {
         "body" =>
-"[Needed by date]
-31-12-#{next_year}
-
-[Needed by time]
-13:00
-
-[Not before date]
-01-12-#{next_year}
-
-[Not before time]
-18:00
-
-[Reason for time constraint]
-New law
-
-[Reason for change request]
-Factual inaccuracy
-
-[Subject area]
-Benefits
-
-[URLs to be changed]
+"[URLs to be changed]
 http://gov.uk/X
 
 [Details of what should be added, amended or removed]
-Out of date XX YY",
+Out of date XX YY
+
+[Reason for time constraint]
+New law",
       },
+      "custom_fields" =>
+           [{ "id" => 7_948_652_819_356, "value" => "cr_inaccuracy" },
+            { "id" => 7_949_106_580_380, "value" => "cr_benefits" },
+            { "id" => 7_949_136_091_548, "value" => "2024-12-31" },
+            { "id" => 7_949_152_975_772, "value" => "2024-12-01" },
+            { "id" => 8_250_061_570_844, "value" => "13:00" },
+            { "id" => 8_250_075_489_052, "value" => "18:00" }],
+      "ticket_form_id" => 7_949_329_694_108,
     )
 
     user_makes_a_content_change_request(
