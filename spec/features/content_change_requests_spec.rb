@@ -15,7 +15,7 @@ feature "Content change requests" do
 
   scenario "successful mainstream content change request " do
     request = expect_zendesk_to_receive_ticket(
-      "subject" => "Update X - Content change request",
+      "subject" => "Update X",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form content_amend],
       "comment" => {

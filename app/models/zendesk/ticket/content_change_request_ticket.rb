@@ -4,11 +4,7 @@ module Zendesk
       TICKET_FORM_ID = 7_949_329_694_108
 
       def subject
-        if @request.title.present?
-          "#{@request.title} - Content change request"
-        else
-          "Content change request"
-        end
+        @request.title.presence || "Content change request"
       end
 
       def tags

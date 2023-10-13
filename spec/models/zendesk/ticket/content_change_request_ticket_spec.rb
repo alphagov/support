@@ -12,8 +12,8 @@ module Zendesk
         { time_constraint: OpenStruct.new(attributes) }
       end
 
-      it "contains the title in the subject, if one is provided" do
-        expect(ticket(title: "Abc").subject).to eq("Abc - Content change request")
+      it "has the title in the subject, if one is provided" do
+        expect(ticket(title: "Abc").subject).to eq("Abc")
       end
 
       it "has a default subject" do
