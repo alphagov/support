@@ -13,7 +13,7 @@ gem "govuk_admin_template"
 gem "govuk_app_config"
 gem "govuk_sidekiq"
 gem "gretel"
-gem "jquery-ui-rails"
+gem "jquery-ui-rails", github: "jquery-ui-rails/jquery-ui-rails", tag: "v7.0.0" # https://github.com/jquery-ui-rails/jquery-ui-rails/pull/139#issuecomment-1768150544
 gem "kaminari"
 gem "plek"
 gem "redis"
