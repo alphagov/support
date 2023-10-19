@@ -222,6 +222,28 @@
 
     <div class="form-group">
       <span class="form-label">
+        <%= r.label :hmg_code do %>
+          HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :hmg_code, required: false, aria: { required: false }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= r.label :strategic_planning_code do %>
+          Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.text_field :strategic_planning_code, required: false, aria: { required: false }, class: "input-md-6 form-control" %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
         <%= r.label :ga_contact_email do %>
           Cabinet Office/No10 only : Contact details for Google Analytics leads (Gmail accounts only)
         <% end %>

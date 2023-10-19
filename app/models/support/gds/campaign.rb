@@ -22,6 +22,8 @@ module Support
                     :site_tagline,
                     :site_metadescription,
                     :cost_of_campaign,
+                    :hmg_code,
+                    :strategic_planning_code,
                     :ga_contact_email
 
       validates :signed_campaign,
@@ -37,6 +39,8 @@ module Support
                 :site_tagline,
                 :site_metadescription,
                 :cost_of_campaign,
+                :hmg_code,
+                :strategic_planning_code,
                 :ga_contact_email,
                 presence: true
 

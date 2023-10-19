@@ -59,6 +59,12 @@ pensions, campaign, newcampaign
 [Site build budget / costs (and overall campaign cost, if applicable)]
 £1200 and tuppence
 
+[HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)]
+HMGXX-XXX
+
+[Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)]
+CSBXX-XXX
+
 [Contact details for Google Analytics leads (Gmail accounts only)]
 ga.contact@example.com
 
@@ -101,6 +107,8 @@ Yes",
       site_tagline: "A new one about a new thing",
       site_metadescription: "pensions, campaign, newcampaign",
       cost_of_campaign: "£1200 and tuppence",
+      hmg_code: "HMGXX-XXX",
+      strategic_planning_code: "CSBXX-XXX",
       ga_contact_email: "ga.contact@example.com",
       additional_comments: "Some comment",
     )
@@ -136,6 +144,8 @@ private
     fill_in "Site tagline*", with: details[:site_tagline]
     fill_in "Site metadescription (appears in search results)*", with: details[:site_metadescription]
     fill_in "Site build budget / costs (and overall campaign cost, if applicable)*", with: details[:cost_of_campaign]
+    fill_in "HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)", with: details[:hmg_code]
+    fill_in "Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)", with: details[:strategic_planning_code]
     fill_in "Cabinet Office/No10 only : Contact details for Google Analytics leads (Gmail accounts only)", with: details[:ga_contact_email]
     fill_in "Additional comments", with: details[:additional_comments]
 
