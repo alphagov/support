@@ -25,6 +25,8 @@ module Support
           proposed_url: "example.campaign.gov.uk",
           site_metadescription: "tag1, tag2",
           cost_of_campaign: 1200,
+          hmg_code: "HMGXX-XXX",
+          strategic_planning_code: "CSBXX-XXX",
           ga_contact_email: "ga_test@digital.cabinet-office.gov.uk",
         )
       end
@@ -42,6 +44,8 @@ module Support
       it { should validate_presence_of(:site_tagline) }
       it { should validate_presence_of(:site_metadescription) }
       it { should validate_presence_of(:cost_of_campaign) }
+      it { should validate_presence_of(:hmg_code) }
+      it { should validate_presence_of(:strategic_planning_code) }
       it { should validate_presence_of(:ga_contact_email) }
 
       it { should validate_acceptance_of(:has_read_guidance_confirmation) }
