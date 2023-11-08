@@ -12,10 +12,12 @@ module Support
       it { should allow_value("ab @c.com").for(:email) }
       it { should allow_value("ab@c.com ").for(:email) }
       it { should allow_value(" ab@c.com").for(:email) }
+      it { should allow_value("a'b@c.com ").for(:email) }
       it { should_not allow_value("ab").for(:email) }
 
       it { should allow_value("").for(:collaborator_emails) }
       it { should allow_value("ab@c.com").for(:collaborator_emails) }
+      it { should allow_value("a'b@c.com").for(:collaborator_emails) }
       it { should allow_value("ab@c.com, de@f.com").for(:collaborator_emails) }
       it { should_not allow_value("ab, de@f.com").for(:collaborator_emails) }
       it { should_not allow_value("ab@c.com111").for(:collaborator_emails) }
