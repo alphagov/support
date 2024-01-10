@@ -56,7 +56,6 @@ private
 
     expect(page).to have_css("h1", text: "Request a new user account")
 
-    puts page.body
     fill_in "User's name", with: details[:user_name]
     fill_in "User's email", with: details[:user_email]
 
