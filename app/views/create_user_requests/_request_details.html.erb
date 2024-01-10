@@ -1,17 +1,25 @@
 <div id="user_details" %>
   <fieldset>
     <div class="form-group">
-      <%= f.label :user_name, class: "control-label" do %>
-        User's name<abbr title="required">*</abbr>
-      <% end %>
-      <%= f.text_field :user_name, required: true, aria: { required: true }, class: "input-md-6 form-control", autocomplete: "off" %>
+      <span class="form-label">
+        <%= f.label :user_name, class: "control-label" do %>
+          User's name<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= f.text_field :user_name, required: true, aria: { required: true }, class: "input-md-6 form-control", autocomplete: "off" %>
+      </span>
     </div>
 
     <div class="form-group">
-      <%= f.label :user_email do %>
-        User's email address<abbr title="required">*</abbr>
-      <% end %>
-      <%= f.email_field :user_email, required: true, aria: { required: true }, class: "input-md-6 form-control", autocomplete: "off" %>
+      <span class="form-label">
+        <%= f.label :user_email do %>
+          User's email address<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= f.email_field :user_email, required: true, aria: { required: true }, class: "input-md-6 form-control", autocomplete: "off" %>
+      </span>
     </div>
 
     <div class="form-group select">
