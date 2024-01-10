@@ -30,6 +30,11 @@ module Zendesk
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,
+            field: :organisation,
+            label: "Organisation",
+          ),
+          Zendesk::LabelledSnippet.new(
+            on: @request,
             field: :other_apps,
             label: "Other apps",
           ),

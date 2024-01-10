@@ -10,6 +10,16 @@ feature "Create user requests" do
 
   context "Non-Whitehall account" do
     scenario "user creation request" do
+      stub_support_api_organisations_list([
+        {
+          slug: "cabinet-office",
+          web_url: "https://www.gov.uk/government/organisations/cabinet-office",
+          title: "Cabinet Office",
+          acronym: "CO",
+          govuk_status: "live",
+        },
+      ])
+
       zendesk_has_no_user_with_email("bob@gov.uk")
 
       ticket_request = expect_zendesk_to_receive_ticket(
@@ -27,6 +37,9 @@ Bob Fields
 [Requested user's email]
 bob@gov.uk
 
+[Organisation]
+cabinet-office
+
 [Other apps]
 Licensing",
         },
@@ -43,6 +56,7 @@ Licensing",
       user_requests_a_new_user_account(
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
+        organisation: "Cabinet Office (CO)",
         other_apps: "Licensing",
       )
 
@@ -62,6 +76,7 @@ private
 
     fill_in "User's name", with: details[:user_name]
     fill_in "User's email", with: details[:user_email]
+    select details[:organisation], from: "Organisation"
     fill_in "Does the user need access to additional publishing applications?", with: details[:other_apps]
 
     user_submits_the_request_successfully
