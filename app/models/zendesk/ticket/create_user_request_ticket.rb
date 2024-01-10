@@ -28,6 +28,11 @@ module Zendesk
             field: :user_email,
             label: "Requested user's email",
           ),
+          Zendesk::LabelledSnippet.new(
+            on: @request,
+            field: :other_apps,
+            label: "Other apps",
+          ),
         ]
       end
     end

@@ -13,5 +13,19 @@
       <% end %>
       <%= f.email_field :user_email, required: true, aria: { required: true }, class: "input-md-6 form-control", autocomplete: "off" %>
     </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= f.label :other_apps, "Does the user need access to additional publishing applications?" %>
+      </span>
+      <p class="help-block hint-block--md-6" id="other-apps-hint">
+        All users have basic access to Content Data, Feedback Explorer, GovSearch and Support. List the applications and permissions the user needs. If you're not sure which permissions the user needs, explain what tasks they need to be able to do.
+      </p>
+      <span class="form-wrapper">
+        <%= f.text_area :other_apps, class: "input-md-6 form-control", rows: 6, cols: 50, aria: {
+          describedby: "other-apps-hint"
+        } %>
+      </span>
+    </div>
   </fieldset>
 </div>

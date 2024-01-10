@@ -1,7 +1,7 @@
 module Support
   module Requests
     class CreateUserRequest < Request
-      attr_accessor :user_name, :user_email
+      attr_accessor :user_name, :user_email, :other_apps
 
       def self.label
         "Request a new user account"

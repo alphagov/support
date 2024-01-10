@@ -17,6 +17,7 @@ protected
     params.require(:support_requests_create_user_request).permit(
       :user_name,
       :user_email,
+      :other_apps,
     ).to_h
   end
 

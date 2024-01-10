@@ -25,7 +25,10 @@ Create a new user account
 Bob Fields
 
 [Requested user's email]
-bob@gov.uk",
+bob@gov.uk
+
+[Other apps]
+Licensing",
         },
       )
 
@@ -40,6 +43,7 @@ bob@gov.uk",
       user_requests_a_new_user_account(
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
+        other_apps: "Licensing",
       )
 
       expect(ticket_request).to have_been_made
@@ -58,6 +62,7 @@ private
 
     fill_in "User's name", with: details[:user_name]
     fill_in "User's email", with: details[:user_email]
+    fill_in "Does the user need access to additional publishing applications?", with: details[:other_apps]
 
     user_submits_the_request_successfully
   end
