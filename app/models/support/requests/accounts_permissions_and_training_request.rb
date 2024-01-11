@@ -4,8 +4,6 @@ module Support
       attr_accessor :action,
                     :requested_user,
                     :additional_comments,
-                    :mainstream_changes,
-                    :maslow,
                     :other_details,
                     :become_organisation_admin,
                     :become_super_organisation_admin
@@ -50,8 +48,6 @@ module Support
 
       def formatted_user_needs
         needs_list = []
-        needs_list << other_permissions_options.key("mainstream_changes") if mainstream_changes == "1"
-        needs_list << other_permissions_options.key("maslow") if maslow == "1"
         needs_list << other_permissions_options.key("become_organisation_admin") if become_organisation_admin == "1"
         needs_list << other_permissions_options.key("become_super_organisation_admin") if become_super_organisation_admin == "1"
         needs_list << "Other: #{other_details}" if other_details.present?
@@ -64,8 +60,6 @@ module Support
 
       def self.other_permissions_options
         @other_permissions_options ||= {
-          "Request changes to your organisation’s mainstream content" => "mainstream_changes",
-          "Access to Maslow database of user needs" => "maslow",
           "Request permission to be your organisation admin" => "become_organisation_admin",
           "Request permission to be a super organisation admin" => "become_super_organisation_admin",
         }

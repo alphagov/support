@@ -1,24 +1,5 @@
 <div id="user-needs"<%= ' class="has-error"'.html_safe if f.object.errors[:formatted_user_needs].any? %>>
   <div id="other_permissions">
-    <%= f.label :other_permissions, "Other GOV.UK permissions", class: "control-label" %>
-    <div class="form-group checkbox">
-      <span class="form-wrapper">
-        <%= f.label :mainstream_changes, class: "control-label" do %>
-          <%= f.check_box :mainstream_changes %>
-          <%= f.object.other_permissions_options.key('mainstream_changes') %>
-        <% end %>
-      </span>
-    </div>
-
-    <div class="form-group checkbox">
-      <span class="form-wrapper">
-        <%= f.label :maslow, class: "control-label" do %>
-          <%= f.check_box :maslow %>
-          <%= f.object.other_permissions_options.key('maslow') %>
-        <% end %>
-      </span>
-    </div>
-
     <%= f.label :sigon_permissions, "Signon permissions", class: "control-label" %>
     <div class="form-group checkbox">
       <span class="form-wrapper">

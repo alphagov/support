@@ -20,8 +20,6 @@ protected
     params.require(:support_requests_accounts_permissions_and_training_request).permit(
       :action,
       :additional_comments,
-      :mainstream_changes,
-      :maslow,
       :become_organisation_admin,
       :become_super_organisation_admin,
       :other_details,

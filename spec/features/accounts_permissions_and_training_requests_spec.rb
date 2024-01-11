@@ -26,7 +26,7 @@ feature "Accounts, permissions and training requests" do
 Create a new user account
 
 [User needs]
-Request changes to your organisation’s mainstream content
+Request permission to be your organisation admin
 
 [Requested user's name]
 Bob Fields
@@ -49,7 +49,7 @@ XXXX",
 
       user_requests_a_change_to_other_user_accounts(
         action: "Create a new user account",
-        user_needs: ["Request changes to your organisation’s mainstream content"],
+        user_needs: ["Request permission to be your organisation admin"],
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         additional_comments: "XXXX",
@@ -72,7 +72,7 @@ XXXX",
 Change an existing user's account
 
 [User needs]
-Request changes to your organisation’s mainstream content\nAccess to Maslow database of user needs\nRequest permission to be a super organisation admin
+Request permission to be your organisation admin\nRequest permission to be a super organisation admin
 
 [Requested user's name]
 Bob Fields
@@ -87,7 +87,7 @@ XXXX",
 
       user_requests_a_change_to_other_user_accounts(
         action: "Change an existing user's account",
-        user_needs: ["Request changes to your organisation’s mainstream content", "Access to Maslow database of user needs", "Request permission to be a super organisation admin"],
+        user_needs: ["Request permission to be your organisation admin", "Request permission to be a super organisation admin"],
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         additional_comments: "XXXX",
