@@ -4,9 +4,7 @@ module Support
       attr_accessor :action,
                     :requested_user,
                     :additional_comments,
-                    :other_details,
-                    :become_organisation_admin,
-                    :become_super_organisation_admin
+                    :other_details
 
       validate do |request|
         if request.requested_user && !request.requested_user.valid?
@@ -48,25 +46,12 @@ module Support
 
       def formatted_user_needs
         needs_list = []
-        needs_list << other_permissions_options.key("become_organisation_admin") if become_organisation_admin == "1"
-        needs_list << other_permissions_options.key("become_super_organisation_admin") if become_super_organisation_admin == "1"
         needs_list << "Other: #{other_details}" if other_details.present?
         needs_list.reject(&:blank?).compact.join("\n")
       end
 
       def inside_government_related?
         false
-      end
-
-      def self.other_permissions_options
-        @other_permissions_options ||= {
-          "Request permission to be your organisation admin" => "become_organisation_admin",
-          "Request permission to be a super organisation admin" => "become_super_organisation_admin",
-        }
-      end
-
-      def other_permissions_options
-        self.class.other_permissions_options
       end
 
       def self.label

@@ -1,40 +1,5 @@
 <div id="user-needs"<%= ' class="has-error"'.html_safe if f.object.errors[:formatted_user_needs].any? %>>
   <div id="other_permissions">
-    <%= f.label :sigon_permissions, "Signon permissions", class: "control-label" %>
-    <div class="form-group checkbox">
-      <span class="form-wrapper">
-        <%= f.label :become_organisation_admin, class: "control-label" do %>
-          <%= f.check_box :become_organisation_admin %>
-          <%= f.object.other_permissions_options.key('become_organisation_admin') %>
-        <% end %>
-      </span>
-    </div>
-
-    <div class="request-permissions-note">
-      As an organisation admin you can:
-      <ul>
-        <li>grant and revoke permissions for some applications to users in your organisation</li>
-        <li>unsuspend your organisation's accounts</li>
-      </ul>
-    </div>
-
-    <div class="form-group checkbox">
-      <span class="form-wrapper">
-        <%= f.label :become_super_organisation_admin, class: "control-label" do %>
-          <%= f.check_box :become_super_organisation_admin %>
-          <%= f.object.other_permissions_options.key('become_super_organisation_admin') %>
-        <% end %>
-      </span>
-    </div>
-
-    <div class="request-permissions-note">
-      As a super organisation admin you can manage accounts like an organisation admin for both:
-      <ul>
-        <li>your own organisation</li>
-        <li>for all related organisations that are modelled under your organisation</li>
-      </ul>
-    </div>
-
     <div class="form-group">
       <span class="form-label control-label">
         <%= f.label :other_details, "Other, give details" %>

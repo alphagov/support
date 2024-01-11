@@ -26,7 +26,7 @@ feature "Accounts, permissions and training requests" do
 Create a new user account
 
 [User needs]
-Request permission to be your organisation admin
+Other: Some other details
 
 [Requested user's name]
 Bob Fields
@@ -49,7 +49,7 @@ XXXX",
 
       user_requests_a_change_to_other_user_accounts(
         action: "Create a new user account",
-        user_needs: ["Request permission to be your organisation admin"],
+        other_details: "Some other details",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         additional_comments: "XXXX",
@@ -72,7 +72,7 @@ XXXX",
 Change an existing user's account
 
 [User needs]
-Request permission to be your organisation admin\nRequest permission to be a super organisation admin
+Other: Some other details
 
 [Requested user's name]
 Bob Fields
@@ -87,7 +87,7 @@ XXXX",
 
       user_requests_a_change_to_other_user_accounts(
         action: "Change an existing user's account",
-        user_needs: ["Request permission to be your organisation admin", "Request permission to be a super organisation admin"],
+        other_details: "Some other details",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         additional_comments: "XXXX",
@@ -111,9 +111,7 @@ private
     end
 
     within "#other_permissions" do
-      details[:user_needs].each do |user_need|
-        check user_need
-      end
+      fill_in "Other, give details", with: details[:other_details]
     end
 
     within("#user_details") do
