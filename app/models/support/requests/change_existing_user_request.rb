@@ -1,8 +1,7 @@
 module Support
   module Requests
     class ChangeExistingUserRequest < Request
-      attr_accessor :action,
-                    :requested_user,
+      attr_accessor :requested_user,
                     :additional_comments
 
       validate do |request|
@@ -10,8 +9,7 @@ module Support
           errors.add :base, message: "The details of the user in question are either incomplete or invalid."
         end
       end
-      validates :action, :requested_user, presence: true
-      validates :action, inclusion: { in: ->(request) { request.action_options.values } }
+      validates :requested_user, presence: true
 
       def requested_user_attributes=(attr)
         self.requested_user = Support::GDS::RequestedUser.new(attr)
@@ -23,23 +21,16 @@ module Support
         super
       end
 
+      def action
+        "change_user"
+      end
+
       def for_new_user?
-        action == "create_new_user"
+        false
       end
 
       def formatted_action
-        action_options.key(action)
-      end
-
-      def self.action_options
-        @action_options ||= {
-          "Create a new user account" => "create_new_user",
-          "Change an existing user's account" => "change_user",
-        }
-      end
-
-      def action_options
-        self.class.action_options
+        "Change an existing user's account"
       end
 
       def inside_government_related?

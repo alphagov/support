@@ -18,7 +18,6 @@ protected
 
   def create_or_change_user_request_params
     params.require(:support_requests_change_existing_user_request).permit(
-      :action,
       :additional_comments,
       requester_attributes: %i[email name collaborator_emails],
       requested_user_attributes: %i[name email],
