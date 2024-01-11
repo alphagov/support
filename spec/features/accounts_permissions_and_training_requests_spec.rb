@@ -54,39 +54,6 @@ XXXX",
       expect(ticket_request).to have_been_made
       expect(user_creation_request).to have_been_made
     end
-
-    scenario "changing user permissions" do
-      zendesk_has_user(email: "bob@gov.uk", name: "Bob Fields")
-
-      ticket_request = expect_zendesk_to_receive_ticket(
-        "subject" => "Change an existing user's account",
-        "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-        "tags" => %w[govt_form change_user],
-        "comment" => {
-          "body" =>
-"[Action]
-Change an existing user's account
-
-[Requested user's name]
-Bob Fields
-
-[Requested user's email]
-bob@gov.uk
-
-[Additional comments]
-XXXX",
-        },
-      )
-
-      user_requests_a_change_to_other_user_accounts(
-        action: "Change an existing user's account",
-        user_name: "Bob Fields",
-        user_email: "bob@gov.uk",
-        additional_comments: "XXXX",
-      )
-
-      expect(ticket_request).to have_been_made
-    end
   end
 
 private
@@ -97,10 +64,6 @@ private
     click_on "Accounts, permissions and training"
 
     expect(page).to have_css("h1", text: "Accounts, permissions and training")
-
-    within "#action" do
-      choose details[:action]
-    end
 
     within("#user_details") do
       fill_in "Name", with: details[:user_name]
