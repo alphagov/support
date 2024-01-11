@@ -25,48 +25,5 @@
         <%= r.email_field :email, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
       </span>
     </div>
-
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :job, "Job title" %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :job, class: "input-md-6 form-control" %>
-      </span>
-    </div>
-
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :phone, "Phone number" %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :phone, required: false, class: "input-md-6 form-control" %>
-      </span>
-    </div>
-
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :training, "Which GOV.UK training has this user had?" %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.collection_check_boxes :training, Support::GDS::RequestedUser::TRAINING_OPTIONS, :last, :last do |builder| %>
-          <div class="checkbox">
-            <%= builder.label(class: "custom-control-label") do %>
-              <%= builder.check_box(class: "custom-control-input") %>
-              <%= builder.object.first %>
-            <% end %>
-          </div>
-        <% end %>
-      </span>
-    </div>
-
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :other_training, "Other, give details" %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :other_training, required: false, class: "input-md-6 form-control" %>
-      </span>
-    </div>
   </fieldset>
 <% end %>
