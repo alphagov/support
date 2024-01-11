@@ -27,16 +27,14 @@ describe ChangeExistingUserRequestsController, type: :controller do
     zendesk_has_no_user_with_email(@user.email)
   end
 
-  context "submitted user creation request" do
-    it "submits the request to Zendesk" do
-      stub_ticket_creation = stub_zendesk_ticket_creation(
-        hash_including("tags" => %w[govt_form change_user]),
-      )
+  it "submits the request to Zendesk" do
+    stub_ticket_creation = stub_zendesk_ticket_creation(
+      hash_including("tags" => %w[govt_form change_user]),
+    )
 
-      post :create, params: valid_change_user_request_params
+    post :create, params: valid_change_user_request_params
 
-      expect(request).to redirect_to("/acknowledge")
-      expect(stub_ticket_creation).to have_been_made
-    end
+    expect(request).to redirect_to("/acknowledge")
+    expect(stub_ticket_creation).to have_been_made
   end
 end
