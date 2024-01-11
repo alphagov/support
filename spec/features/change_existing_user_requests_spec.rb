@@ -59,7 +59,7 @@ private
       fill_in "Email", with: details[:user_email]
     end
 
-    fill_in "Additional comments", with: details[:additional_comments]
+    fill_in "What do you want to change?", with: details[:additional_comments]
 
     user_submits_the_request_successfully
   end
