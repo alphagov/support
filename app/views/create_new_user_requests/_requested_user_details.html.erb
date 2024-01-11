@@ -25,5 +25,16 @@
         <%= r.email_field :email, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
       </span>
     </div>
+
+    <div class="form-group select">
+      <span class="form-label">
+        <%= r.label :organisation do %>
+          Organisation
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= r.select :organisation, options_for_select(@organisations_list), { include_blank: true }, multiple: false, class: "input-md-7 select2 form-control", type: "organisation" %>
+      </span>
+    </div>
   </fieldset>
 <% end %>

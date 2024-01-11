@@ -2,9 +2,12 @@ require "gds_zendesk/users"
 require "zendesk_api/error"
 
 class CreateNewUserRequestsController < RequestsController
+  include ExploreHelper
+
 protected
 
   def new_request
+    @organisations_list = support_api.organisations_list.to_a.map { |o| organisation_title(o) }
     Support::Requests::CreateNewUserRequest.new
   end
 
@@ -20,7 +23,7 @@ protected
     params.require(:support_requests_create_new_user_request).permit(
       :additional_comments,
       requester_attributes: %i[email name collaborator_emails],
-      requested_user_attributes: %i[name email],
+      requested_user_attributes: %i[name email organisation],
     ).to_h
   end
 
@@ -33,5 +36,14 @@ protected
     GDS_ZENDESK_CLIENT.users.create_or_update_user(requested_user)
   rescue ZendeskAPI::Error::ClientError => e
     exception_notification_for(e)
+  end
+
+private
+
+  def support_api
+    GdsApi::SupportApi.new(
+      Plek.find("support-api"),
+      bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"],
+    )
   end
 end

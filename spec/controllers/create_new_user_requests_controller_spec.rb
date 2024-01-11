@@ -5,6 +5,7 @@ describe CreateNewUserRequestsController, type: :controller do
     {
       "name" => "subject",
       "email" => "subject@digital.cabinet-office.gov.uk",
+      "organisation" => "Cabinet Office (CO)",
     }
   end
 

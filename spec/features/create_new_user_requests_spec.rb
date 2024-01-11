@@ -13,6 +13,16 @@ feature "Create new user requests" do
   end
 
   scenario "user creation request" do
+    stub_support_api_organisations_list([
+      {
+        slug: "cabinet-office",
+        web_url: "https://www.gov.uk/government/organisations/cabinet-office",
+        title: "Cabinet Office",
+        acronym: "CO",
+        govuk_status: "live",
+      },
+    ])
+
     zendesk_has_no_user_with_email("bob@gov.uk")
 
     ticket_request = expect_zendesk_to_receive_ticket(
@@ -29,6 +39,9 @@ Bob Fields
 
 [Requested user's email]
 bob@gov.uk
+
+[Organisation]
+Cabinet Office (CO)
 
 [Additional comments]
 XXXX",
@@ -47,6 +60,7 @@ XXXX",
       action: "Create a new user account",
       user_name: "Bob Fields",
       user_email: "bob@gov.uk",
+      organisation: "Cabinet Office (CO)",
       additional_comments: "XXXX",
     )
 
@@ -66,6 +80,7 @@ private
     within("#user_details") do
       fill_in "Name", with: details[:user_name]
       fill_in "Email", with: details[:user_email]
+      select details[:organisation], from: "Organisation"
     end
 
     fill_in "Does the user need access to additional publishing applications?", with: details[:additional_comments]
