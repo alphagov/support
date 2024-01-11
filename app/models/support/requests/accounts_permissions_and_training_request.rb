@@ -3,8 +3,7 @@ module Support
     class AccountsPermissionsAndTrainingRequest < Request
       attr_accessor :action,
                     :requested_user,
-                    :additional_comments,
-                    :other_details
+                    :additional_comments
 
       validate do |request|
         if request.requested_user && !request.requested_user.valid?
@@ -13,7 +12,6 @@ module Support
       end
       validates :action, :requested_user, presence: true
       validates :action, inclusion: { in: ->(request) { request.action_options.values } }
-      validates :formatted_user_needs, presence: { message: "must select at least one option" }
 
       def requested_user_attributes=(attr)
         self.requested_user = Support::GDS::RequestedUser.new(attr)
@@ -46,7 +44,6 @@ module Support
 
       def formatted_user_needs
         needs_list = []
-        needs_list << "Other: #{other_details}" if other_details.present?
         needs_list.reject(&:blank?).compact.join("\n")
       end
 

@@ -14,7 +14,6 @@ describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
         "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => valid_requested_user_params,
         "action" => "create_new_user",
-        "other_details" => "other_details",
         "additional_comments" => "",
       },
     }
@@ -29,7 +28,6 @@ describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
           "email" => "subject@digital.cabinet-office.gov.uk",
         },
         "action" => "change_user",
-        "other_details" => "other_details",
         "additional_comments" => "",
       },
     }

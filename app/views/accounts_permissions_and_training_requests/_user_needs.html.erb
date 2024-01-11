@@ -1,15 +1,4 @@
 <div id="user-needs"<%= ' class="has-error"'.html_safe if f.object.errors[:formatted_user_needs].any? %>>
-  <div id="other_permissions">
-    <div class="form-group">
-      <span class="form-label control-label">
-        <%= f.label :other_details, "Other, give details" %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.text_field :other_details, class: "input-md-6 form-control" %>
-      </span>
-    </div>
-  </div>
-
   <% if f.object.errors[:formatted_user_needs].any? %>
     <span class="help-block">
       <%= f.object.errors[:formatted_user_needs].to_sentence %>

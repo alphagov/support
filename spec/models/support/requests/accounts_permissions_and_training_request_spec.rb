@@ -50,8 +50,8 @@ module Support
         context "for other permissions" do
           context "when other is filled in" do
             it "returns the text of the other field" do
-              expect(request(other_details: "special permission request").formatted_user_needs)
-                .to eq("Other: special permission request")
+              expect(request({}).formatted_user_needs)
+                .to eq("")
             end
           end
         end

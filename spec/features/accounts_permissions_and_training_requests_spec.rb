@@ -25,9 +25,6 @@ feature "Accounts, permissions and training requests" do
 "[Action]
 Create a new user account
 
-[User needs]
-Other: Some other details
-
 [Requested user's name]
 Bob Fields
 
@@ -49,7 +46,6 @@ XXXX",
 
       user_requests_a_change_to_other_user_accounts(
         action: "Create a new user account",
-        other_details: "Some other details",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         additional_comments: "XXXX",
@@ -71,9 +67,6 @@ XXXX",
 "[Action]
 Change an existing user's account
 
-[User needs]
-Other: Some other details
-
 [Requested user's name]
 Bob Fields
 
@@ -87,7 +80,6 @@ XXXX",
 
       user_requests_a_change_to_other_user_accounts(
         action: "Change an existing user's account",
-        other_details: "Some other details",
         user_name: "Bob Fields",
         user_email: "bob@gov.uk",
         additional_comments: "XXXX",
@@ -108,10 +100,6 @@ private
 
     within "#action" do
       choose details[:action]
-    end
-
-    within "#other_permissions" do
-      fill_in "Other, give details", with: details[:other_details]
     end
 
     within("#user_details") do
