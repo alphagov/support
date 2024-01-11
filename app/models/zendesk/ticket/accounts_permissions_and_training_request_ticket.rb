@@ -19,11 +19,6 @@ module Zendesk
             label: "Action",
           ),
           Zendesk::LabelledSnippet.new(
-            on: @request,
-            field: :formatted_user_needs,
-            label: "User needs",
-          ),
-          Zendesk::LabelledSnippet.new(
             on: @request.requested_user,
             field: :name,
             label: "Requested user's name",

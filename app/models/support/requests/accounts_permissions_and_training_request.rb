@@ -42,11 +42,6 @@ module Support
         self.class.action_options
       end
 
-      def formatted_user_needs
-        needs_list = []
-        needs_list.reject(&:blank?).compact.join("\n")
-      end
-
       def inside_government_related?
         false
       end

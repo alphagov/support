@@ -45,17 +45,6 @@ module Support
         )
         expect(request).to have_at_least(1).error_on(:base)
       end
-
-      describe "formatted_user_needs" do
-        context "for other permissions" do
-          context "when other is filled in" do
-            it "returns the text of the other field" do
-              expect(request({}).formatted_user_needs)
-                .to eq("")
-            end
-          end
-        end
-      end
     end
   end
 end
