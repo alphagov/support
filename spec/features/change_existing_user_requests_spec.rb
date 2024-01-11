@@ -55,8 +55,8 @@ private
     expect(page).to have_css("h1", text: "Change existing user")
 
     within("#user_details") do
-      fill_in "Name", with: details[:user_name]
-      fill_in "Email", with: details[:user_email]
+      fill_in "User's name", with: details[:user_name]
+      fill_in "User's email", with: details[:user_email]
     end
 
     fill_in "What do you want to change?", with: details[:additional_comments]

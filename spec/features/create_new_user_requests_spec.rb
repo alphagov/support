@@ -78,8 +78,8 @@ private
     expect(page).to have_css("h1", text: "Create new user")
 
     within("#user_details") do
-      fill_in "Name", with: details[:user_name]
-      fill_in "Email", with: details[:user_email]
+      fill_in "User's name", with: details[:user_name]
+      fill_in "User's email", with: details[:user_email]
       select details[:organisation], from: "Organisation"
     end
 
