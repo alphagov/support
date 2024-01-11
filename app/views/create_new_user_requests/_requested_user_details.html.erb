@@ -11,7 +11,7 @@
         <% end %>
       </span>
       <span class="form-wrapper">
-        <%= r.text_field :name, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+        <%= r.text_field :name, required: true, aria: { required: true }, class: "form-control" %>
       </span>
     </div>
 
@@ -22,7 +22,7 @@
         <% end %>
       </span>
       <span class="form-wrapper">
-        <%= r.email_field :email, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
+        <%= r.email_field :email, required: true, aria: { required: true }, class: "form-control" %>
       </span>
     </div>
 
@@ -33,7 +33,7 @@
         <% end %>
       </span>
       <span class="form-wrapper">
-        <%= r.select :organisation, options_for_select(@organisations_list), { include_blank: true }, multiple: false, class: "input-md-7 select2 form-control", type: "organisation" %>
+        <%= r.select :organisation, options_for_select(@organisations_list), { include_blank: true }, multiple: false, class: "select2 form-control", type: "organisation" %>
       </span>
     </div>
   </fieldset>

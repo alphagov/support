@@ -1,17 +1,21 @@
-<div id="user_details">
-  <%= render partial: 'requested_user_details', locals: { f: f } %>
-</div>
+<div class="row">
+  <div class="col-md-6">
+    <div id="user_details">
+      <%= render partial: 'requested_user_details', locals: { f: f } %>
+    </div>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :additional_comments, "Does the user need access to additional publishing applications?" %>
-  </span>
-  <p class="help-block hint-block--md-6" id="additional-comments-hint">
-    All users have basic access to Content Data, Feedback Explorer, GovSearch and Support.
-  </p>
-  <span class="form-wrapper">
-    <%= f.text_area :additional_comments, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
+    <div class="form-group">
+      <span class="form-label">
+        <%= f.label :additional_comments, "Does the user need access to additional publishing applications?" %>
+      </span>
+      <p class="help-block hint-block--md-6" id="additional-comments-hint">
+        All users have basic access to Content Data, Feedback Explorer, GovSearch and Support.
+      </p>
+      <span class="form-wrapper">
+        <%= f.text_area :additional_comments, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      </span>
+    </div>
 
-<%= render partial: "support/collaborators", locals: { f: f } %>
+    <%= render partial: "support/collaborators", locals: { f: f } %>
+  </div>
+</div>
