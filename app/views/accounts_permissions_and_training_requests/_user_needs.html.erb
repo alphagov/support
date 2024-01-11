@@ -1,31 +1,4 @@
 <div id="user-needs"<%= ' class="has-error"'.html_safe if f.object.errors[:formatted_user_needs].any? %>>
-  <div id="whitehall">
-    <div class="form-group checkbox">
-      <span class="form-label control-label">
-        <%= f.label :user_needs, "Whitehall user accounts" %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.collection_radio_buttons :user_needs, f.object.whitehall_account_options, :last, :last do |builder| %>
-          <div class="radio">
-            <%= builder.label(class: "custom-control-label") do %>
-              <%= builder.radio_button(class: "custom-control-input") %>
-              <%= builder.object.first %>
-            <% end %>
-          </div>
-        <% end %>
-      </span>
-    </div>
-
-    <div class="request-permissions-note">
-      A managing editor can also:
-      <ul>
-        <li>unpublish and withdraw your organisation’s content</li>
-        <li>request changes to user accounts</li>
-        <li>request new campaigns, organisations and groups</li>
-      </ul>
-    </div>
-  </div>
-
   <div id="other_permissions">
     <%= f.label :other_permissions, "Other GOV.UK permissions", class: "control-label" %>
     <div class="form-group checkbox">

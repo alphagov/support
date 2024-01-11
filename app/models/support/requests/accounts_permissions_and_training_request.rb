@@ -4,7 +4,6 @@ module Support
       attr_accessor :action,
                     :requested_user,
                     :additional_comments,
-                    :user_needs,
                     :mainstream_changes,
                     :maslow,
                     :other_details,
@@ -51,7 +50,6 @@ module Support
 
       def formatted_user_needs
         needs_list = []
-        needs_list << whitehall_account_options.key(user_needs)
         needs_list << other_permissions_options.key("mainstream_changes") if mainstream_changes == "1"
         needs_list << other_permissions_options.key("maslow") if maslow == "1"
         needs_list << other_permissions_options.key("become_organisation_admin") if become_organisation_admin == "1"
@@ -61,19 +59,7 @@ module Support
       end
 
       def inside_government_related?
-        whitehall_account_options.value?(user_needs)
-      end
-
-      def self.whitehall_account_options
-        @whitehall_account_options ||= {
-          "Writer - can create content" => "writer",
-          "Editor - can create, review and publish content" => "editor",
-          "Managing editor - can create, review and publish content, and has admin rights" => "managing_editor",
-        }
-      end
-
-      def whitehall_account_options
-        self.class.whitehall_account_options
+        false
       end
 
       def self.other_permissions_options

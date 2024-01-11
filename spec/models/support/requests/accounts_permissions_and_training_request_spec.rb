@@ -46,26 +46,7 @@ module Support
         expect(request).to have_at_least(1).error_on(:base)
       end
 
-      it "knows if it's related to inside government or not" do
-        expect(request(user_needs: "writer")).to be_inside_government_related
-        expect(request(user_needs: "editor")).to be_inside_government_related
-        expect(request(user_needs: "managing_editor")).to be_inside_government_related
-      end
-
       describe "formatted_user_needs" do
-        context "for a Whitehall user account" do
-          it "returns the long text of the user need" do
-            expect(request(user_needs: "writer").formatted_user_needs)
-              .to eq("Writer - can create content")
-
-            expect(request(user_needs: "editor").formatted_user_needs)
-              .to eq("Editor - can create, review and publish content")
-
-            expect(request(user_needs: "managing_editor").formatted_user_needs)
-              .to eq("Managing editor - can create, review and publish content, and has admin rights")
-          end
-        end
-
         context "when nothing is selected" do
           it "returns an empty string" do
             expect(request(mainstream_changes: "0", maslow: "0").formatted_user_needs).to be_blank
