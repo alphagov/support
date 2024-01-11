@@ -19,7 +19,7 @@ module Support
           CampaignRequest,
           LiveCampaignRequest,
           ContentChangeRequest,
-          AccountsPermissionsAndTrainingRequest,
+          CreateNewUserRequest,
           FoiRequest,
           NamedContact,
           ChangesToPublishingAppsRequest,
@@ -58,7 +58,7 @@ module Support
 
       context "for user managers" do
         subject { create(:user_manager) }
-        let(:requests_specific_to_role) { [AccountsPermissionsAndTrainingRequest, RemoveUserRequest, AnalyticsRequest] }
+        let(:requests_specific_to_role) { [CreateNewUserRequest, RemoveUserRequest, AnalyticsRequest] }
         it_behaves_like "a role"
       end
 
@@ -85,7 +85,7 @@ module Support
             CampaignRequest,
             LiveCampaignRequest,
             ContentChangeRequest,
-            AccountsPermissionsAndTrainingRequest,
+            CreateNewUserRequest,
             FoiRequest,
             NamedContact,
             ChangesToPublishingAppsRequest,

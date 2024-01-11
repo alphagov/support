@@ -1,6 +1,6 @@
 module Support
   module Requests
-    class AccountsPermissionsAndTrainingRequest < Request
+    class CreateNewUserRequest < Request
       attr_accessor :requested_user,
                     :additional_comments
 

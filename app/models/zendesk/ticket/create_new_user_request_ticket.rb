@@ -1,6 +1,6 @@
 module Zendesk
   module Ticket
-    class AccountsPermissionsAndTrainingRequestTicket < Zendesk::ZendeskTicket
+    class CreateNewUserRequestTicket < Zendesk::ZendeskTicket
       def subject
         @request.formatted_action
       end

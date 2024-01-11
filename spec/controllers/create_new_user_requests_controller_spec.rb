@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
+describe CreateNewUserRequestsController, type: :controller do
   def valid_requested_user_params
     {
       "name" => "subject",
@@ -10,7 +10,7 @@ describe AccountsPermissionsAndTrainingRequestsController, type: :controller do
 
   def valid_create_user_request_params
     {
-      "support_requests_accounts_permissions_and_training_request" => {
+      "support_requests_create_new_user_request" => {
         "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => valid_requested_user_params,
         "action" => "create_new_user",
