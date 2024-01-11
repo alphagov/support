@@ -53,10 +53,6 @@ module Support
       def self.description
         "Request a new Whitehall account or change permissions."
       end
-
-      def self.suspension
-        "If your account is suspended, speak to your organisation’s content lead or managing editor to unsuspend your account."
-      end
     end
   end
 end

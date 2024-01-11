@@ -96,7 +96,7 @@ private
 
     click_on "Accounts, permissions and training"
 
-    expect(page).to have_content("Request a new Whitehall account or change permissions.")
+    expect(page).to have_css("h1", text: "Accounts, permissions and training")
 
     within "#action" do
       choose details[:action]
