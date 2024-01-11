@@ -38,11 +38,11 @@ module Support
       end
 
       def self.label
-        "Accounts, permissions and training"
+        "Create new user"
       end
 
       def self.description
-        "Request a new Whitehall account or change permissions."
+        "Request a new user account."
       end
     end
   end

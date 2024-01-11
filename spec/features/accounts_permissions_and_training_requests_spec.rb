@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Accounts, permissions and training requests" do
+feature "Create new user requests" do
   # In order to allow departments to shift responsibilities around
   # As a departmental user manager
   # I want to request GDS tool access or new permissions for other users
@@ -59,9 +59,9 @@ private
   def user_requests_a_change_to_other_user_accounts(details)
     visit "/"
 
-    click_on "Accounts, permissions and training"
+    click_on "Create new user"
 
-    expect(page).to have_css("h1", text: "Accounts, permissions and training")
+    expect(page).to have_css("h1", text: "Create new user")
 
     within("#user_details") do
       fill_in "Name", with: details[:user_name]
