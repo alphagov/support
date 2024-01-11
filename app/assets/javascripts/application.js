@@ -16,5 +16,5 @@
 
 $(document).ready(function () {
   $('.dropdown-toggle').dropdown()
-  $('.select2').select2()
+  $('.select2').select2({ allowClear: true, placeholder: '' })
 })
