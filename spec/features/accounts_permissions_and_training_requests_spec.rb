@@ -12,16 +12,15 @@ feature "Accounts, permissions and training requests" do
     zendesk_has_no_user_with_email(user.email)
   end
 
-  context "Other permissions" do
-    scenario "user creation request" do
-      zendesk_has_no_user_with_email("bob@gov.uk")
+  scenario "user creation request" do
+    zendesk_has_no_user_with_email("bob@gov.uk")
 
-      ticket_request = expect_zendesk_to_receive_ticket(
-        "subject" => "Create a new user account",
-        "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-        "tags" => %w[govt_form create_new_user],
-        "comment" => {
-          "body" =>
+    ticket_request = expect_zendesk_to_receive_ticket(
+      "subject" => "Create a new user account",
+      "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
+      "tags" => %w[govt_form create_new_user],
+      "comment" => {
+        "body" =>
 "[Action]
 Create a new user account
 
@@ -33,27 +32,26 @@ bob@gov.uk
 
 [Additional comments]
 XXXX",
-        },
-      )
+      },
+    )
 
-      user_creation_request = stub_zendesk_user_creation(
-        email: "bob@gov.uk",
-        name: "Bob Fields",
-        details: "Job title: ",
-        phone: nil,
-        verified: true,
-      )
+    user_creation_request = stub_zendesk_user_creation(
+      email: "bob@gov.uk",
+      name: "Bob Fields",
+      details: "Job title: ",
+      phone: nil,
+      verified: true,
+    )
 
-      user_requests_a_change_to_other_user_accounts(
-        action: "Create a new user account",
-        user_name: "Bob Fields",
-        user_email: "bob@gov.uk",
-        additional_comments: "XXXX",
-      )
+    user_requests_a_change_to_other_user_accounts(
+      action: "Create a new user account",
+      user_name: "Bob Fields",
+      user_email: "bob@gov.uk",
+      additional_comments: "XXXX",
+    )
 
-      expect(ticket_request).to have_been_made
-      expect(user_creation_request).to have_been_made
-    end
+    expect(ticket_request).to have_been_made
+    expect(user_creation_request).to have_been_made
   end
 
 private
