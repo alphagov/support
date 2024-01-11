@@ -68,7 +68,7 @@ private
       fill_in "Email", with: details[:user_email]
     end
 
-    fill_in "Additional comments", with: details[:additional_comments]
+    fill_in "Does the user need access to additional publishing applications?", with: details[:additional_comments]
 
     user_submits_the_request_successfully
   end

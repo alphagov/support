@@ -4,8 +4,11 @@
 
 <div class="form-group">
   <span class="form-label">
-    <%= f.label :additional_comments, "Additional comments" %>
+    <%= f.label :additional_comments, "Does the user need access to additional publishing applications?" %>
   </span>
+  <p class="help-block hint-block--md-6" id="additional-comments-hint">
+    All users have basic access to Content Data, Feedback Explorer, GovSearch and Support.
+  </p>
   <span class="form-wrapper">
     <%= f.text_area :additional_comments, class: "input-md-6 form-control", rows: 6, cols: 50 %>
   </span>
