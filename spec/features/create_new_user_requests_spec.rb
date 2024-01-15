@@ -80,7 +80,7 @@ private
     within("#user_details") do
       fill_in "User's name", with: details[:user_name]
       fill_in "User's email", with: details[:user_email]
-      select details[:organisation], from: "Organisation"
+      select details[:organisation], from: "User's organisation"
     end
 
     fill_in "What additional publishing permissions does the user need?", with: details[:additional_comments]
