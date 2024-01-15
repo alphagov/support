@@ -1,29 +1,23 @@
 <%= f.fields_for :requested_user do |r| %>
-  <fieldset>
-    <legend>
-      <span>User details</span>
-    </legend>
+  <div class="form-group">
+    <span class="form-label">
+      <%= r.label :name do %>
+        User's name<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= r.text_field :name, required: true, aria: { required: true }, class: "form-control" %>
+    </span>
+  </div>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :name do %>
-          User's name<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :name, required: true, aria: { required: true }, class: "form-control" %>
-      </span>
-    </div>
-
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :email do %>
-          User's email<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.email_field :email, required: true, aria: { required: true }, class: "form-control" %>
-      </span>
-    </div>
-  </fieldset>
+  <div class="form-group">
+    <span class="form-label">
+      <%= r.label :email do %>
+        User's email<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= r.email_field :email, required: true, aria: { required: true }, class: "form-control" %>
+    </span>
+  </div>
 <% end %>
