@@ -4,3 +4,4 @@
 
 //= link_tree ../images/legacy
 //= link_directory ../javascripts/legacy .js
+//= link_directory ../stylesheets/legacy .css
