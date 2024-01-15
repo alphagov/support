@@ -9,7 +9,7 @@
 <% content_for :favicon do %>
   <% environment_style = GovukAdminTemplate.environment_style %>
   <%= favicon_link_tag environment_style ?
-        "favicon-#{environment_style}.png" : "favicon.png" %>
+        "legacy/favicon-#{environment_style}.png" : "legacy/favicon.png" %>
 <% end %>
 
 <% content_for :navbar_items do %>
