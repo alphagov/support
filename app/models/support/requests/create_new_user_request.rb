@@ -38,7 +38,7 @@ module Support
       end
 
       def self.label
-        "Create new user"
+        "Create a new user"
       end
 
       def self.description

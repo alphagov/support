@@ -73,9 +73,9 @@ private
   def user_requests_a_change_to_other_user_accounts(details)
     visit "/"
 
-    click_on "Create new user"
+    click_on "Create a new user"
 
-    expect(page).to have_css("h1", text: "Create new user")
+    expect(page).to have_css("h1", text: "Create a new user")
 
     within("#user_details") do
       fill_in "User's name", with: details[:user_name]

@@ -38,11 +38,11 @@ module Support
       end
 
       def self.label
-        "Change existing user"
+        "Change an existing user's account"
       end
 
       def self.description
-        "Request a change to an existing user."
+        "Request changes to an existing user's account."
       end
     end
   end

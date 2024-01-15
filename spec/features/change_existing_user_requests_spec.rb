@@ -50,9 +50,9 @@ private
   def user_requests_a_change_to_other_user_accounts(details)
     visit "/"
 
-    click_on "Change existing user"
+    click_on "Change an existing user's account"
 
-    expect(page).to have_css("h1", text: "Change existing user")
+    expect(page).to have_css("h1", text: "Change an existing user's account")
 
     within("#user_details") do
       fill_in "User's name", with: details[:user_name]
