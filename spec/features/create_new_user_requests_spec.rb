@@ -83,7 +83,7 @@ private
       select details[:organisation], from: "Organisation"
     end
 
-    fill_in "Does the user need access to additional publishing applications?", with: details[:additional_comments]
+    fill_in "What additional publishing permissions does the user need?", with: details[:additional_comments]
 
     user_submits_the_request_successfully
   end
