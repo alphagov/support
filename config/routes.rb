@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resource request_class_name.underscore, only: %i[new create]
   end
 
+  get "/accounts_permissions_and_training_request/new" => redirect("/")
+
   resources :foi_requests, only: :create
   resources :named_contacts, only: :create
 
