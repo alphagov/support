@@ -1,0 +1,34 @@
+<%= f.fields_for :requested_user do |r| %>
+  <div class="form-group">
+    <span class="form-label">
+      <%= r.label :name do %>
+        User's name<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= r.text_field :name, required: true, aria: { required: true }, class: "form-control" %>
+    </span>
+  </div>
+
+  <div class="form-group">
+    <span class="form-label">
+      <%= r.label :email do %>
+        User's email<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= r.email_field :email, required: true, aria: { required: true }, class: "form-control" %>
+    </span>
+  </div>
+
+  <div class="form-group select">
+    <span class="form-label">
+      <%= r.label :organisation do %>
+        User's organisation
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= r.select :organisation, options_for_select(@organisations_list), { include_blank: true }, multiple: false, class: "select2 form-control", type: "organisation" %>
+    </span>
+  </div>
+<% end %>

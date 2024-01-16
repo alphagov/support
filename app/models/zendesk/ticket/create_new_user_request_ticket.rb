@@ -1,6 +1,6 @@
 module Zendesk
   module Ticket
-    class AccountsPermissionsAndTrainingRequestTicket < Zendesk::ZendeskTicket
+    class CreateNewUserRequestTicket < Zendesk::ZendeskTicket
       def subject
         @request.formatted_action
       end
@@ -19,11 +19,6 @@ module Zendesk
             label: "Action",
           ),
           Zendesk::LabelledSnippet.new(
-            on: @request,
-            field: :formatted_user_needs,
-            label: "User needs",
-          ),
-          Zendesk::LabelledSnippet.new(
             on: @request.requested_user,
             field: :name,
             label: "Requested user's name",
@@ -35,23 +30,8 @@ module Zendesk
           ),
           Zendesk::LabelledSnippet.new(
             on: @request.requested_user,
-            field: :job,
-            label: "Requested user's job title",
-          ),
-          Zendesk::LabelledSnippet.new(
-            on: @request.requested_user,
-            field: :phone,
-            label: "Requested user's phone number",
-          ),
-          Zendesk::LabelledSnippet.new(
-            on: @request.requested_user,
-            field: :formatted_training,
-            label: "Requested user's training",
-          ),
-          Zendesk::LabelledSnippet.new(
-            on: @request.requested_user,
-            field: :other_training,
-            label: "Requested user's other training",
+            field: :organisation,
+            label: "Organisation",
           ),
           Zendesk::LabelledSnippet.new(on: @request, field: :additional_comments),
         ]

@@ -6,9 +6,9 @@ module Support
       def initialize(current_user = nil)
         @current_user = current_user
         @groups = [
+          Support::Navigation::SectionGroup.new("User access", user_access_requests),
           Support::Navigation::SectionGroup.new("Content request", content_requests),
           Support::Navigation::SectionGroup.new("Technical support", technical_support_requests),
-          Support::Navigation::SectionGroup.new("User access", user_access_requests),
           Support::Navigation::SectionGroup.new("Campaigns", campaign_requests),
           Support::Navigation::SectionGroup.new("Feedback for tools in Beta", feedback_requests),
           Support::Navigation::SectionGroup.new("Topic taxonomy requests", taxonomy_requests),
@@ -51,7 +51,8 @@ module Support
 
       def user_access_requests
         sections_for(
-          Support::Requests::AccountsPermissionsAndTrainingRequest,
+          Support::Requests::CreateNewUserRequest,
+          Support::Requests::ChangeExistingUserRequest,
           Support::Requests::RemoveUserRequest,
         )
       end
