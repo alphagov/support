@@ -8,10 +8,12 @@
 
     <div class="form-group">
       <span class="form-label">
-        <%= f.label :additional_comments, "What do you want to change?" %>
+        <%= f.label :additional_comments do %>
+          What do you want to change?<abbr title="required">*</abbr>
+        <% end %>
       </span>
       <span class="form-wrapper">
-        <%= f.text_area :additional_comments, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+        <%= f.text_area :additional_comments, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
       </span>
     </div>
 

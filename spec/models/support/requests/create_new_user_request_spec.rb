@@ -29,6 +29,11 @@ module Support
         )
         expect(request).to have_at_least(1).error_on(:base)
       end
+
+      it "validates that additional_comments is not blank" do
+        request = request(additional_comments: "")
+        expect(request).to have_at_least(1).error_on(:additional_comments)
+      end
     end
   end
 end

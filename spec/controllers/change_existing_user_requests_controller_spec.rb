@@ -17,7 +17,7 @@ describe ChangeExistingUserRequestsController, type: :controller do
           "email" => "subject@digital.cabinet-office.gov.uk",
         },
         "action" => "change_user",
-        "additional_comments" => "",
+        "additional_comments" => "not-blank",
       },
     }
   end

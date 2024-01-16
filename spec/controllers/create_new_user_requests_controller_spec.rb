@@ -15,7 +15,7 @@ describe CreateNewUserRequestsController, type: :controller do
         "requester_attributes" => valid_requester_params,
         "requested_user_attributes" => valid_requested_user_params,
         "action" => "create_new_user",
-        "additional_comments" => "",
+        "additional_comments" => "not-blank",
       },
     }
   end

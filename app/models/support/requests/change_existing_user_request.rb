@@ -10,6 +10,7 @@ module Support
         end
       end
       validates :requested_user, presence: true
+      validates :additional_comments, presence: true
 
       def requested_user_attributes=(attr)
         self.requested_user = Support::GDS::RequestedUser.new(attr)
