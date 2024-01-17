@@ -28,7 +28,7 @@
       <% end %>
     </span>
     <span class="form-wrapper">
-      <%= r.select :organisation, options_for_select(organisation_options), { include_blank: true }, multiple: false, class: "select2 form-control", type: "organisation" %>
+      <%= r.select :organisation, options_for_select(organisation_options, r.object.organisation), { include_blank: true }, multiple: false, class: "select2 form-control", type: "organisation" %>
     </span>
   </div>
 <% end %>

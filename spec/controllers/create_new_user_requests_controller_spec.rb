@@ -56,6 +56,12 @@ describe CreateNewUserRequestsController, type: :controller do
     expect(response.body).to have_css(".alert", text: /Additional comments can't be blank/)
   end
 
+  it "retains the previously selected organisation if validation fails" do
+    post :create, params: { "support_requests_create_new_user_request" => { "requested_user_attributes" => { "organisation" => "Cabinet Office (CO)" } } }
+
+    expect(response.body).to have_css("select option[selected='selected'][value='Cabinet Office (CO)']")
+  end
+
   it "doesn't expose an error to the user when automatic user creation goes wrong" do
     zendesk_is_unavailable
 
