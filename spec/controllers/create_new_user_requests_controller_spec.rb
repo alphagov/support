@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe CreateNewUserRequestsController, type: :controller do
+  render_views
+
   def valid_requested_user_params
     {
       "name" => "subject",
@@ -23,6 +25,7 @@ describe CreateNewUserRequestsController, type: :controller do
   before do
     login_as create(:user_manager)
     zendesk_has_no_user_with_email(@user.email)
+    stub_support_api_organisations_list
   end
 
   it "submits the request to Zendesk and creates a Zendesk user with the requested user details" do
@@ -43,6 +46,14 @@ describe CreateNewUserRequestsController, type: :controller do
     expect(request).to redirect_to("/acknowledge")
     expect(stub_ticket_creation).to have_been_made
     expect(stub_user_creation).to have_been_made
+  end
+
+  it "re-displays the form with error messages if validation fails" do
+    post :create, params: { "support_requests_create_new_user_request" => { "action" => "create_new_user" } }
+
+    expect(controller).to have_rendered(:new)
+    expect(response.body).to have_css(".alert", text: /The details of the user in question are either incomplete or invalid/)
+    expect(response.body).to have_css(".alert", text: /Additional comments can't be blank/)
   end
 
   it "doesn't expose an error to the user when automatic user creation goes wrong" do

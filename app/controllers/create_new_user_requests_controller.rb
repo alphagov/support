@@ -4,10 +4,11 @@ require "zendesk_api/error"
 class CreateNewUserRequestsController < RequestsController
   include ExploreHelper
 
+  helper_method :organisation_options
+
 protected
 
   def new_request
-    @organisations_list = support_api.organisations_list.to_a.map { |o| organisation_title(o) }
     Support::Requests::CreateNewUserRequest.new
   end
 
@@ -36,6 +37,10 @@ protected
     GDS_ZENDESK_CLIENT.users.create_or_update_user(requested_user)
   rescue ZendeskAPI::Error::ClientError => e
     exception_notification_for(e)
+  end
+
+  def organisation_options
+    @organisation_options ||= support_api.organisations_list.to_a.map { |o| organisation_title(o) }
   end
 
 private
