@@ -37,6 +37,21 @@
 
     <div class="form-group">
       <span class="form-label">
+        <%= f.label :requires_additional_access do %>
+          Does the user need access to additional publishing applications?
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= f.collection_radio_buttons :requires_additional_access, %w[yes no], :to_s, :humanize do |builder| %>
+          <div class="radio">
+            <%= builder.label class: "custom-control-label" do %>
+              <%= builder.radio_button(class: "custom-control-input") %>
+              <%= builder.object.humanize %>
+            <% end %>
+          </div>
+        <% end %>
+      </span>
+      <span class="form-label">
         <%= f.label :additional_comments do %>
           What additional publishing permissions does the user need?<abbr title="required">*</abbr>
         <% end %>

@@ -5,12 +5,25 @@ module Support
         :name,
         :email,
         :organisation,
+        :requires_additional_access,
+      )
+
+      attr_writer(
         :additional_comments,
       )
 
       validates :name, presence: true
       validates :email, presence: true, format: { with: /@/, allow_blank: true }
-      validates :additional_comments, presence: true
+      validates :requires_additional_access, inclusion: { in: %w[yes no] }
+      validates :additional_comments, presence: true, if: :requires_additional_access?
+
+      def requires_additional_access?
+        requires_additional_access == "yes"
+      end
+
+      def additional_comments
+        requires_additional_access? ? @additional_comments : ""
+      end
 
       def action
         "create_new_user"
