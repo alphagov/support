@@ -15,15 +15,10 @@ module Support
       it { should allow_value("ab@c.com").for(:email) }
       it { should_not allow_value("ab").for(:email) }
 
-      it { should allow_value("a comment").for(:additional_comments) }
+      it { should validate_presence_of(:additional_comments) }
 
       it "provides formatted action" do
         expect(request.formatted_action).to eq("Create a new user account")
-      end
-
-      it "validates that additional_comments is not blank" do
-        request = request(additional_comments: "")
-        expect(request).to have_at_least(1).error_on(:additional_comments)
       end
     end
   end
