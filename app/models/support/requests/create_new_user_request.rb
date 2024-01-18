@@ -1,8 +1,10 @@
 module Support
   module Requests
     class CreateNewUserRequest < Request
-      attr_accessor :requested_user,
-                    :additional_comments
+      attr_accessor(
+        :requested_user,
+        :additional_comments,
+      )
 
       validate do |request|
         if request.requested_user && !request.requested_user.valid?
