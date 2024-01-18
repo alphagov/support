@@ -54,21 +54,6 @@ XXXX",
       verified: true,
     )
 
-    user_requests_a_change_to_other_user_accounts(
-      action: "Create a new user account",
-      user_name: "Bob Fields",
-      user_email: "bob@gov.uk",
-      organisation: "Cabinet Office (CO)",
-      additional_comments: "XXXX",
-    )
-
-    expect(ticket_request).to have_been_made
-    expect(user_creation_request).to have_been_made
-  end
-
-private
-
-  def user_requests_a_change_to_other_user_accounts(details)
     visit "/"
 
     click_on "Create a new user"
@@ -76,13 +61,16 @@ private
     expect(page).to have_css("h1", text: "Create a new user")
 
     within("#user_details") do
-      fill_in "User's name", with: details[:user_name]
-      fill_in "User's email", with: details[:user_email]
-      select details[:organisation], from: "User's organisation"
+      fill_in "User's name", with: "Bob Fields"
+      fill_in "User's email", with: "bob@gov.uk"
+      select "Cabinet Office (CO)", from: "User's organisation"
     end
 
-    fill_in "What additional publishing permissions does the user need?", with: details[:additional_comments]
+    fill_in "What additional publishing permissions does the user need?", with: "XXXX"
 
     user_submits_the_request_successfully
+
+    expect(ticket_request).to have_been_made
+    expect(user_creation_request).to have_been_made
   end
 end
