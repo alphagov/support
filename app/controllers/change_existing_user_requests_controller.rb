@@ -23,15 +23,4 @@ protected
       requested_user_attributes: %i[name email],
     ).to_h
   end
-
-  def save_to_zendesk(submitted_request)
-    super
-    create_or_update_user_in_zendesk(submitted_request.requested_user) if submitted_request.for_new_user?
-  end
-
-  def create_or_update_user_in_zendesk(requested_user)
-    GDS_ZENDESK_CLIENT.users.create_or_update_user(requested_user)
-  rescue ZendeskAPI::Error::ClientError => e
-    exception_notification_for(e)
-  end
 end

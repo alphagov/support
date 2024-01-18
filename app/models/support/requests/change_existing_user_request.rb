@@ -28,10 +28,6 @@ module Support
         "change_user"
       end
 
-      def for_new_user?
-        false
-      end
-
       def formatted_action
         "Change an existing user's account"
       end

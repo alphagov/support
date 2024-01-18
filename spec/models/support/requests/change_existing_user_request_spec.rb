@@ -16,12 +16,6 @@ module Support
         expect(request.formatted_action).to eq("Change an existing user's account")
       end
 
-      context "#for_new_user?" do
-        it "is always false" do
-          expect(request.for_new_user?).to be_falsey
-        end
-      end
-
       it "validates that the requested user is valid" do
         request = request(
           requester: double("user", valid?: true),
