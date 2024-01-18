@@ -30,7 +30,7 @@ protected
 
   def save_to_zendesk(submitted_request)
     super
-    create_or_update_user_in_zendesk(submitted_request.requested_user) if submitted_request.for_new_user?
+    create_or_update_user_in_zendesk(submitted_request.requested_user)
   end
 
   def create_or_update_user_in_zendesk(requested_user)

@@ -28,10 +28,6 @@ module Support
         "create_new_user"
       end
 
-      def for_new_user?
-        true
-      end
-
       def formatted_action
         "Create a new user account"
       end
