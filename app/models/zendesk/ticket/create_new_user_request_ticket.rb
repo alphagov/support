@@ -19,17 +19,17 @@ module Zendesk
             label: "Action",
           ),
           Zendesk::LabelledSnippet.new(
-            on: @request.requested_user,
+            on: @request,
             field: :name,
             label: "Requested user's name",
           ),
           Zendesk::LabelledSnippet.new(
-            on: @request.requested_user,
+            on: @request,
             field: :email,
             label: "Requested user's email",
           ),
           Zendesk::LabelledSnippet.new(
-            on: @request.requested_user,
+            on: @request,
             field: :organisation,
             label: "Organisation",
           ),

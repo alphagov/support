@@ -15,7 +15,7 @@ describe CreateNewUserRequestsController, type: :controller do
     {
       "support_requests_create_new_user_request" => {
         "requester_attributes" => valid_requester_params,
-        "requested_user_attributes" => valid_requested_user_params,
+        **valid_requested_user_params,
         "action" => "create_new_user",
         "additional_comments" => "not-blank",
       },
@@ -50,12 +50,12 @@ describe CreateNewUserRequestsController, type: :controller do
     post :create, params: { "support_requests_create_new_user_request" => { "action" => "create_new_user" } }
 
     expect(controller).to have_rendered(:new)
-    expect(response.body).to have_css(".alert", text: /The details of the user in question are either incomplete or invalid/)
+    expect(response.body).to have_css(".alert", text: /Name can't be blank/)
     expect(response.body).to have_css(".alert", text: /Additional comments can't be blank/)
   end
 
   it "retains the previously selected organisation if validation fails" do
-    post :create, params: { "support_requests_create_new_user_request" => { "requested_user_attributes" => { "organisation" => "Cabinet Office (CO)" } } }
+    post :create, params: { "support_requests_create_new_user_request" => { "organisation" => "Cabinet Office (CO)" } }
 
     expect(response.body).to have_css("select option[selected='selected'][value='Cabinet Office (CO)']")
   end

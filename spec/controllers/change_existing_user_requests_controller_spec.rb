@@ -12,10 +12,7 @@ describe ChangeExistingUserRequestsController, type: :controller do
     {
       "support_requests_change_existing_user_request" => {
         "requester_attributes" => valid_requester_params,
-        "requested_user_attributes" => {
-          "name" => "subject",
-          "email" => "subject@digital.cabinet-office.gov.uk",
-        },
+        **valid_requested_user_params,
         "action" => "change_user",
         "additional_comments" => "not-blank",
       },

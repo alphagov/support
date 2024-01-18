@@ -65,7 +65,6 @@ XXXX",
       fill_in "User's email", with: "bob@gov.uk"
       select "Cabinet Office (CO)", from: "User's organisation"
     end
-
     fill_in "What additional publishing permissions does the user need?", with: "XXXX"
 
     user_submits_the_request_successfully
