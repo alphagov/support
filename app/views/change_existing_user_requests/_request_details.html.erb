@@ -2,8 +2,26 @@
 
 <div class="row">
   <div class="col-md-6">
-    <div id="user_details">
-      <%= render partial: 'requested_user_details', locals: { f: f } %>
+    <div class="form-group">
+      <span class="form-label">
+        <%= f.label :name do %>
+          User's name<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= f.text_field :name, required: true, aria: { required: true }, class: "form-control" %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= f.label :email do %>
+          User's email<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= f.email_field :email, required: true, aria: { required: true }, class: "form-control" %>
+      </span>
     </div>
 
     <div class="form-group">

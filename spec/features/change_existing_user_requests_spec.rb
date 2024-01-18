@@ -35,32 +35,19 @@ XXXX",
       },
     )
 
-    user_requests_a_change_to_other_user_accounts(
-      action: "Change an existing user's account",
-      user_name: "Bob Fields",
-      user_email: "bob@gov.uk",
-      additional_comments: "XXXX",
-    )
-
-    expect(ticket_request).to have_been_made
-  end
-
-private
-
-  def user_requests_a_change_to_other_user_accounts(details)
     visit "/"
 
     click_on "Change an existing user's account"
 
     expect(page).to have_css("h1", text: "Change an existing user's account")
 
-    within("#user_details") do
-      fill_in "User's name", with: details[:user_name]
-      fill_in "User's email", with: details[:user_email]
-    end
+    fill_in "User's name", with: "Bob Fields"
+    fill_in "User's email", with: "bob@gov.uk"
 
-    fill_in "What do you want to change?", with: details[:additional_comments]
+    fill_in "What do you want to change?", with: "XXXX"
 
     user_submits_the_request_successfully
+
+    expect(ticket_request).to have_been_made
   end
 end

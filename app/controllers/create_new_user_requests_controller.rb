@@ -22,15 +22,20 @@ protected
 
   def create_or_change_user_request_params
     params.require(:support_requests_create_new_user_request).permit(
+      :name,
+      :email,
+      :organisation,
       :additional_comments,
       requester_attributes: %i[email name collaborator_emails],
-      requested_user_attributes: %i[name email organisation],
     ).to_h
   end
 
   def save_to_zendesk(submitted_request)
     super
-    create_or_update_user_in_zendesk(submitted_request.requested_user) if submitted_request.for_new_user?
+    requested_user = Support::GDS::RequestedUser.new(
+      create_or_change_user_request_params.slice(:name, :email, :organisation),
+    )
+    create_or_update_user_in_zendesk(requested_user)
   end
 
   def create_or_update_user_in_zendesk(requested_user)
