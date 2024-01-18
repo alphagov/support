@@ -1,0 +1,5 @@
+<%= render 'govuk_publishing_components/components/layout_for_admin',
+  product_name: "Support",
+  environment: GovukPublishingComponents::AppHelpers::Environment.current_acceptance_environment,
+  browser_title: yield(:page_title) do %>
+<% end %>
