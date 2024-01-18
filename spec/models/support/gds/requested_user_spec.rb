@@ -13,14 +13,6 @@ module Support
         subject.organisation = "Cabinet Office (CO)"
         expect(subject.organisation).to eq("Cabinet Office (CO)")
       end
-
-      it "responds to #job, because the GDSZendesk::Users#create_or_update_user expects it to" do
-        expect(subject).to respond_to(:job)
-      end
-
-      it "responds to #phone, because the GDSZendesk::Users#create_or_update_user expects it to" do
-        expect(subject).to respond_to(:phone)
-      end
     end
   end
 end

@@ -51,8 +51,6 @@ XXXX",
     user_creation_request = stub_zendesk_user_creation(
       email: "bob@gov.uk",
       name: "Bob Fields",
-      details: "Job title: ",
-      phone: nil,
       verified: true,
     )
 

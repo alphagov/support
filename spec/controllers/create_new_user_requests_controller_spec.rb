@@ -36,8 +36,6 @@ describe CreateNewUserRequestsController, type: :controller do
     stub_user_creation = stub_zendesk_user_creation(
       email: "subject@digital.cabinet-office.gov.uk",
       name: "subject",
-      details: "Job title: ",
-      phone: nil,
       verified: true,
     )
 
