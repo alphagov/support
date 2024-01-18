@@ -8,8 +8,8 @@ module Support
         :additional_comments,
       )
 
-      validates :name, :email, presence: true
-      validates :email, format: { with: /@/ }
+      validates :name, presence: true
+      validates :email, presence: true, format: { with: /@/ }
       validates :additional_comments, presence: true
 
       def action
