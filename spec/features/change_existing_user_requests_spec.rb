@@ -41,10 +41,8 @@ XXXX",
 
     expect(page).to have_css("h1", text: "Change an existing user's account")
 
-    within("#user_details") do
-      fill_in "User's name", with: "Bob Fields"
-      fill_in "User's email", with: "bob@gov.uk"
-    end
+    fill_in "User's name", with: "Bob Fields"
+    fill_in "User's email", with: "bob@gov.uk"
 
     fill_in "What do you want to change?", with: "XXXX"
 

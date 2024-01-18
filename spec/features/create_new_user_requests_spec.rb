@@ -60,11 +60,9 @@ XXXX",
 
     expect(page).to have_css("h1", text: "Create a new user")
 
-    within("#user_details") do
-      fill_in "User's name", with: "Bob Fields"
-      fill_in "User's email", with: "bob@gov.uk"
-      select "Cabinet Office (CO)", from: "User's organisation"
-    end
+    fill_in "User's name", with: "Bob Fields"
+    fill_in "User's email", with: "bob@gov.uk"
+    select "Cabinet Office (CO)", from: "User's organisation"
     fill_in "What additional publishing permissions does the user need?", with: "XXXX"
 
     user_submits_the_request_successfully
