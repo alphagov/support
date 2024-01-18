@@ -2,4 +2,14 @@
   product_name: "Support",
   environment: GovukPublishingComponents::AppHelpers::Environment.current_acceptance_environment,
   browser_title: yield(:page_title) do %>
+
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <%= yield %>
+        </div>
+      </div>
+    </main>
+  </div>
 <% end %>
