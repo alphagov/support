@@ -15,6 +15,10 @@ module Support
       it { should allow_value("ab@c.com").for(:email) }
       it { should_not allow_value("ab").for(:email) }
 
+      it "does not have format error if email is blank" do
+        expect(request(email: "").errors[:email]).not_to include("is invalid")
+      end
+
       it { should validate_presence_of(:additional_comments) }
 
       it "provides formatted action" do

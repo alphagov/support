@@ -9,7 +9,7 @@ module Support
       )
 
       validates :name, presence: true
-      validates :email, presence: true, format: { with: /@/ }
+      validates :email, presence: true, format: { with: /@/, allow_blank: true }
       validates :additional_comments, presence: true
 
       def action
