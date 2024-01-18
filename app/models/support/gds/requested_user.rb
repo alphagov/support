@@ -8,9 +8,6 @@ module Support
 
       validates :name, :email, presence: true
       validates :email, format: { with: /@/ }
-
-      def job; end
-      def phone; end
     end
   end
 end
