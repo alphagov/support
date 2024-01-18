@@ -63,11 +63,19 @@ XXXX",
     fill_in "User's name", with: "Bob Fields"
     fill_in "User's email", with: "bob@gov.uk"
     select "Cabinet Office (CO)", from: "User's organisation"
+    form_group = form_group_with_label("Does the user need access to additional publishing applications?")
+    form_group.choose "Yes"
     fill_in "What additional publishing permissions does the user need?", with: "XXXX"
 
     user_submits_the_request_successfully
 
     expect(ticket_request).to have_been_made
     expect(user_creation_request).to have_been_made
+  end
+
+private
+
+  def form_group_with_label(text)
+    find(".form-group:has(label)", text:)
   end
 end

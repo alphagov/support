@@ -17,6 +17,7 @@ describe CreateNewUserRequestsController, type: :controller do
         "requester_attributes" => valid_requester_params,
         **valid_requested_user_params,
         "action" => "create_new_user",
+        "requires_additional_access" => "yes",
         "additional_comments" => "not-blank",
       },
     }
@@ -47,7 +48,7 @@ describe CreateNewUserRequestsController, type: :controller do
   end
 
   it "re-displays the form with error messages if validation fails" do
-    post :create, params: { "support_requests_create_new_user_request" => { "action" => "create_new_user" } }
+    post :create, params: { "support_requests_create_new_user_request" => { "action" => "create_new_user", "requires_additional_access" => "yes" } }
 
     expect(controller).to have_rendered(:new)
     expect(response.body).to have_css(".alert", text: /Name can't be blank/)

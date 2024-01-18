@@ -25,6 +25,7 @@ protected
       :name,
       :email,
       :organisation,
+      :requires_additional_access,
       :additional_comments,
       requester_attributes: %i[email name collaborator_emails],
     ).to_h
