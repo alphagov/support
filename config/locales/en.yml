@@ -30,4 +30,17 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activemodel:
+    errors:
+      models:
+        support/requests/create_new_user_request:
+          attributes:
+            name:
+              blank: Enter the user's full name
+            email:
+              blank: Enter the user's email address
+              format: Enter an email address in the correct format, like name@department.gov.uk
+            requires_additional_access:
+              inclusion: Select Yes if the user needs access to additional publishing applications, like Whitehall
+            additional_comments:
+              blank: List the applications and permissions the user needs or the tasks they must do
