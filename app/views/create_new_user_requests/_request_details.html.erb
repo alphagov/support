@@ -1,69 +1,29 @@
-<p><%= f.object.class.description %></p>
+<p class="govuk-body-l"><%= f.object.class.description %></p>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="form-group">
-      <span class="form-label">
-        <%= f.label :name do %>
-          User's name<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.text_field :name, required: true, aria: { required: true }, class: "form-control" %>
-      </span>
-    </div>
+<%= f.govuk_text_field :name,
+  label: { text: "User's name" },
+  value: f.object.name
+%>
+<%= f.govuk_email_field :email,
+  label: { text: "User's email" },
+  value: f.object.email
+%>
+<%= f.govuk_collection_select :organisation, organisation_options, :to_s, :to_s,
+  label: { text: "User's organisation" },
+  value: f.object.organisation
+%>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= f.label :email do %>
-          User's email<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.email_field :email, required: true, aria: { required: true }, class: "form-control" %>
-      </span>
-    </div>
+<% legend = -> do %>
+  <legend class="govuk-fieldset__legend govuk-body">
+    Does the user need access to additional publishing applications?
+  </legend>
+<% end %>
 
-    <div class="form-group select">
-      <span class="form-label">
-        <%= f.label :organisation do %>
-          User's organisation
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.select :organisation, options_for_select(organisation_options, f.object.organisation), { include_blank: true }, multiple: false, class: "select2 form-control", type: "organisation" %>
-      </span>
-    </div>
+<%= f.govuk_radio_buttons_fieldset(:requires_additional_access, hint: { text: "All users have basic access to Content Data, Feedback Explorer, GovSearch and Support forms." }, legend:) do %>
+  <%= f.govuk_radio_button :requires_additional_access, "yes", label: { text: "Yes" } do %>
+    <%= f.govuk_text_area :additional_comments, label: { size: "s", text: "List the applications and permissions the user needs." } %>
+  <% end %>
+  <%= f.govuk_radio_button :requires_additional_access, "no", label: { text: "No, the user only needs access to the basic applications." }, link_errors: true %>
+<% end %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= f.label :requires_additional_access do %>
-          Does the user need access to additional publishing applications?
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.collection_radio_buttons :requires_additional_access, %w[yes no], :to_s, :humanize do |builder| %>
-          <div class="radio">
-            <%= builder.label class: "custom-control-label" do %>
-              <%= builder.radio_button(class: "custom-control-input") %>
-              <%= builder.object.humanize %>
-            <% end %>
-          </div>
-        <% end %>
-      </span>
-      <span class="form-label">
-        <%= f.label :additional_comments do %>
-          List the applications and permissions the user needs.<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <p class="help-block hint-block--md-6" id="additional-comments-hint">
-        All users have basic access to Content Data, Feedback Explorer, GovSearch and Support forms.
-      </p>
-      <span class="form-wrapper">
-        <%= f.text_area :additional_comments, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-      </span>
-    </div>
-
-    <%= render partial: "support/collaborators", locals: { f: f } %>
-  </div>
-</div>
+<%= render partial: "collaborators", locals: { f: f } %>

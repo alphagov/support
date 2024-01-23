@@ -63,8 +63,8 @@ XXXX",
     fill_in "User's name", with: "Bob Fields"
     fill_in "User's email", with: "bob@gov.uk"
     select "Cabinet Office (CO)", from: "User's organisation"
-    form_group = form_group_with_label("Does the user need access to additional publishing applications?")
-    form_group.choose "Yes"
+    fieldset = fieldset_with_legend("Does the user need access to additional publishing applications?")
+    fieldset.choose "Yes"
     fill_in "List the applications and permissions the user needs.", with: "XXXX"
 
     user_submits_the_request_successfully
@@ -75,7 +75,7 @@ XXXX",
 
 private
 
-  def form_group_with_label(text)
-    find(".form-group:has(label)", text:)
+  def fieldset_with_legend(text)
+    find("fieldset:has(legend)", text:)
   end
 end

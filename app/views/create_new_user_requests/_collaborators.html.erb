@@ -1,0 +1,7 @@
+<%= f.fields_for :requester do |r| %>
+  <%= r.govuk_text_field :collaborator_emails,
+    label: { text: "Who needs a copy of this request?" },
+    hint: { text: "Separate email addresses with commas." },
+    value: r.object.collaborator_emails.join(", ")
+  %>
+<% end %>
