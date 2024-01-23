@@ -51,8 +51,8 @@ describe CreateNewUserRequestsController, type: :controller do
     post :create, params: { "support_requests_create_new_user_request" => { "action" => "create_new_user", "requires_additional_access" => "yes" } }
 
     expect(controller).to have_rendered(:new)
-    expect(response.body).to have_css(".alert", text: /Name can't be blank/)
-    expect(response.body).to have_css(".alert", text: /Additional comments can't be blank/)
+    expect(response.body).to have_css(".alert", text: error_message_for(:name, :blank))
+    expect(response.body).to have_css(".alert", text: error_message_for(:additional_comments, :blank))
   end
 
   it "retains the previously selected organisation if validation fails" do
@@ -72,5 +72,11 @@ describe CreateNewUserRequestsController, type: :controller do
     post :create, params: valid_create_user_request_params
 
     expect(response).to redirect_to("/acknowledge")
+  end
+
+private
+
+  def error_message_for(attribute_name, validation_type)
+    I18n.t("activemodel.errors.models.support/requests/create_new_user_request.attributes.#{attribute_name}.#{validation_type}")
   end
 end

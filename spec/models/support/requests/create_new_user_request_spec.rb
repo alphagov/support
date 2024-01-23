@@ -25,11 +25,11 @@ module Support
       it { should_not allow_value("invalid").for(:requires_additional_access) }
 
       it "does not allow additional_comments to be blank if requires_additional_access is 'yes'" do
-        expect(request(requires_additional_access: "yes", additional_comments: "").errors[:additional_comments]).to include("can't be blank")
+        expect(request(requires_additional_access: "yes", additional_comments: "").errors[:additional_comments]).to include(error_message_for(:additional_comments, :blank))
       end
 
       it "allows additional_comments to be blank if requires_additional_access is 'no'" do
-        expect(request(requires_additional_access: "no", additional_comments: "").errors[:additional_comments]).not_to include("can't be blank")
+        expect(request(requires_additional_access: "no", additional_comments: "").errors[:additional_comments]).not_to include(error_message_for(:additional_comments, :blank))
       end
 
       it "returns original additional_comments if requires_additional_access is 'yes'" do
@@ -42,6 +42,10 @@ module Support
 
       it "provides formatted action" do
         expect(request.formatted_action).to eq("Create a new user account")
+      end
+
+      def error_message_for(attribute_name, validation_type)
+        I18n.t("activemodel.errors.models.support/requests/create_new_user_request.attributes.#{attribute_name}.#{validation_type}")
       end
     end
   end
