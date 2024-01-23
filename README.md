@@ -45,7 +45,8 @@ bundle exec sidekiq
 
 ## Further documentation
 
-- [An overview of how the Feedback, Support and Support-api applications fit together[(https://docs.google.com/presentation/d/1KNJQsH7Stu1hAe8DL-Zs585Q_yXSleGYiH0G6Sw6rOw/edit#slide=id.g59de842929_0_5) (for internal use only)
+- [An overview of how the Feedback, Support and Support-api applications fit together](https://docs.google.com/presentation/d/1KNJQsH7Stu1hAe8DL-Zs585Q_yXSleGYiH0G6Sw6rOw/edit#slide=id.g59de842929_0_5) (for internal use only)
+- [Zendesk routing](./docs/how-tickets-routed-to-zendesk.md)
 
 ## Licence
 
