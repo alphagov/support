@@ -65,7 +65,7 @@ XXXX",
     select "Cabinet Office (CO)", from: "User's organisation"
     form_group = form_group_with_label("Does the user need access to additional publishing applications?")
     form_group.choose "Yes"
-    fill_in "What additional publishing permissions does the user need?", with: "XXXX"
+    fill_in "List the applications and permissions the user needs.", with: "XXXX"
 
     user_submits_the_request_successfully
 
