@@ -84,8 +84,8 @@ module AppActions
     fill_in "Reason for deadline", with: details[:reason]
   end
 
-  def user_submits_the_request_successfully
-    click_on "Submit"
+  def user_submits_the_request_successfully(button_text: "Submit")
+    click_on button_text
     expect(page).to have_content("Thanks for sending us your request. We'll review your request and get back to you within 2 working days.")
   end
 end

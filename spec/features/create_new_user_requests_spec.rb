@@ -67,7 +67,7 @@ XXXX",
     fieldset.choose "Yes"
     fill_in "List the applications and permissions the user needs.", with: "XXXX"
 
-    user_submits_the_request_successfully
+    user_submits_the_request_successfully(button_text: "Send request")
 
     expect(ticket_request).to have_been_made
     expect(user_creation_request).to have_been_made
