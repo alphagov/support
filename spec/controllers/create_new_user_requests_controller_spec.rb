@@ -51,8 +51,15 @@ describe CreateNewUserRequestsController, type: :controller do
     post :create, params: { "support_requests_create_new_user_request" => { "action" => "create_new_user", "requires_additional_access" => "yes" } }
 
     expect(controller).to have_rendered(:new)
-    expect(response.body).to have_css(".alert", text: error_message_for(:name, :blank))
-    expect(response.body).to have_css(".alert", text: error_message_for(:additional_comments, :blank))
+
+    expect(response.body).to have_css(".govuk-error-summary [role='alert']", text: error_message_for(:name, :blank))
+    expect(response.body).to have_css(".govuk-error-summary [role='alert']", text: error_message_for(:additional_comments, :blank))
+
+    expect(response.body).to have_css(".govuk-error-message", text: error_message_for(:name, :blank))
+    expect(response.body).to have_css("input[name='support_requests_create_new_user_request[name]'].govuk-input--error")
+
+    expect(response.body).to have_css(".govuk-error-message", text: error_message_for(:additional_comments, :blank))
+    expect(response.body).to have_css("textarea[name='support_requests_create_new_user_request[additional_comments]'].govuk-textarea--error")
   end
 
   it "retains the previously selected organisation if validation fails" do

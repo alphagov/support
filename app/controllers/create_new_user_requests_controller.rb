@@ -4,6 +4,8 @@ require "zendesk_api/error"
 class CreateNewUserRequestsController < RequestsController
   include ExploreHelper
 
+  layout "design_system"
+  default_form_builder GOVUKDesignSystemFormBuilder::FormBuilder
   helper_method :organisation_options
 
 protected
@@ -46,7 +48,7 @@ protected
   end
 
   def organisation_options
-    @organisation_options ||= support_api.organisations_list.to_a.map { |o| organisation_title(o) }
+    @organisation_options ||= [""] + support_api.organisations_list.to_a.map { |o| organisation_title(o) }
   end
 
 private
