@@ -65,7 +65,7 @@ XXXX",
     select "Cabinet Office (CO)", from: "User's organisation"
     fieldset = fieldset_with_legend("Does the user need access to additional publishing applications?")
     fieldset.choose "Yes"
-    fill_in "List the applications and permissions the user needs.", with: "XXXX"
+    fill_in "List the applications and permissions the user needs", with: "XXXX"
 
     user_submits_the_request_successfully
 

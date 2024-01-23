@@ -10,6 +10,7 @@
 %>
 <%= f.govuk_collection_select :organisation, organisation_options, :to_s, :to_s,
   label: { text: "User's organisation" },
+  hint: { text: "Select their organisation" },
   value: f.object.organisation
 %>
 
@@ -21,7 +22,7 @@
 
 <%= f.govuk_radio_buttons_fieldset(:requires_additional_access, hint: { text: "All users have basic access to Content Data, Feedback Explorer, GovSearch and Support forms." }, legend:) do %>
   <%= f.govuk_radio_button :requires_additional_access, "yes", label: { text: "Yes" } do %>
-    <%= f.govuk_text_area :additional_comments, label: { size: "s", text: "List the applications and permissions the user needs." } %>
+    <%= f.govuk_text_area :additional_comments, label: { size: "s", text: "List the applications and permissions the user needs" }, hint: { text: "If you’re not sure which permissions the user needs, explain what tasks they need to be able to do." } %>
   <% end %>
   <%= f.govuk_radio_button :requires_additional_access, "no", label: { text: "No, the user only needs access to the basic applications." }, link_errors: true %>
 <% end %>
