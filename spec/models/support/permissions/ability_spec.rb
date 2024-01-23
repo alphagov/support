@@ -5,6 +5,12 @@ module Support
     describe Ability do
       subject { Ability.new(User.new(permissions: user_permissions)) }
 
+      context "for all users" do
+        let(:user_permissions) { [] }
+
+        it { should be_able_to(:create, Support::Requests::ReportAnIssueWithGovukSearchResultsRequest) }
+      end
+
       context "for a user with multiple permissions" do
         let(:user_permissions) { %w[content_requesters campaign_requesters] }
 
