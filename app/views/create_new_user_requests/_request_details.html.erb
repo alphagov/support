@@ -11,7 +11,8 @@
 <%= f.govuk_collection_select :organisation, organisation_options, :to_s, :to_s,
   label: { text: "User's organisation" },
   hint: { text: "Select their organisation" },
-  value: f.object.organisation
+  value: f.object.organisation,
+  data: { module: "autocomplete" }
 %>
 
 <% legend = -> do %>

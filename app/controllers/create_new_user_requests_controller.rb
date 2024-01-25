@@ -48,7 +48,7 @@ protected
   end
 
   def organisation_options
-    @organisation_options ||= [""] + support_api.organisations_list.to_a.map { |o| organisation_title(o) }
+    @organisation_options ||= ["", "None"] + support_api.organisations_list.to_a.map { |o| organisation_title(o) }
   end
 
 private

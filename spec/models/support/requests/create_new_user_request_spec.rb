@@ -24,6 +24,18 @@ module Support
       it { should_not allow_value("").for(:requires_additional_access) }
       it { should_not allow_value("invalid").for(:requires_additional_access) }
 
+      it "maps the organisation 'None' option to the blank option" do
+        expect(request(organisation: "None").organisation).to be_blank
+      end
+
+      it "leaves the organisation blank option unchanged" do
+        expect(request(organisation: "").organisation).to be_blank
+      end
+
+      it "leaves other organisation options unchanged" do
+        expect(request(organisation: "Cabinet Office (CO)").organisation).to eq("Cabinet Office (CO)")
+      end
+
       it "does not allow additional_comments to be blank if requires_additional_access is 'yes'" do
         expect(request(requires_additional_access: "yes", additional_comments: "").errors[:additional_comments]).to include(error_message_for(:additional_comments, :blank))
       end
