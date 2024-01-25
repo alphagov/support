@@ -86,6 +86,10 @@ describe CreateNewUserRequestsController, type: :controller do
     expect(controller.send(:organisation_options).second).to eq("None")
   end
 
+  it "returns no validation errors for alert, because this will be handled by #govuk_error_summary" do
+    expect(controller.send(:validation_errors_for_alert)).to be_blank
+  end
+
 private
 
   def error_message_for(attribute_name, validation_type)

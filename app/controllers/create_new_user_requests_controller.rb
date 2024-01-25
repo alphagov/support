@@ -51,6 +51,8 @@ protected
     @organisation_options ||= ["", "None"] + support_api.organisations_list.to_a.map { |o| organisation_title(o) }
   end
 
+  def validation_errors_for_alert = nil
+
 private
 
   def support_api
