@@ -13,6 +13,12 @@
 
   <div class="govuk-width-container">
     <main class="govuk-main-wrapper" id="main-content" role="main">
+      <% if flash["notice"].present? %>
+        <%= render "govuk_publishing_components/components/success_alert", {
+          message: flash["notice"]
+        } %>
+      <% end %>
+
       <% if flash["alert"].present? %>
         <%= render "govuk_publishing_components/components/error_alert", {
           message: flash["alert"]
