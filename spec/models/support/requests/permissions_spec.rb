@@ -20,7 +20,6 @@ module Support
           LiveCampaignRequest,
           ContentChangeRequest,
           CreateNewUserRequest,
-          FoiRequest,
           NamedContact,
           ChangesToPublishingAppsRequest,
           RemoveUserRequest,
@@ -70,7 +69,7 @@ module Support
 
       context "for API users" do
         subject { create(:api_user) }
-        let(:requests_specific_to_role) { [FoiRequest, NamedContact] }
+        let(:requests_specific_to_role) { [NamedContact] }
         it_behaves_like "a role"
       end
 
@@ -86,7 +85,6 @@ module Support
             LiveCampaignRequest,
             ContentChangeRequest,
             CreateNewUserRequest,
-            FoiRequest,
             NamedContact,
             ChangesToPublishingAppsRequest,
             RemoveUserRequest,
