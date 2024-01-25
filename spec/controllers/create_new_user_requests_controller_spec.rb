@@ -81,6 +81,11 @@ describe CreateNewUserRequestsController, type: :controller do
     expect(response).to redirect_to("/acknowledge")
   end
 
+  it "provides an array of options for the organisation drop-down with a blank option and a 'None' option at the top" do
+    expect(controller.send(:organisation_options).first).to eq("")
+    expect(controller.send(:organisation_options).second).to eq("None")
+  end
+
 private
 
   def error_message_for(attribute_name, validation_type)

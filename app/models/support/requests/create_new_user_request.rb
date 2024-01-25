@@ -4,11 +4,11 @@ module Support
       attr_accessor(
         :name,
         :email,
-        :organisation,
         :requires_additional_access,
       )
 
       attr_writer(
+        :organisation,
         :additional_comments,
       )
 
@@ -16,6 +16,10 @@ module Support
       validates :email, presence: true, format: { with: /@/, allow_blank: true }
       validates :requires_additional_access, inclusion: { in: %w[yes no] }
       validates :additional_comments, presence: true, if: :requires_additional_access?
+
+      def organisation
+        @organisation == "None" ? "" : @organisation
+      end
 
       def requires_additional_access?
         requires_additional_access == "yes"
