@@ -20,7 +20,7 @@ class RequestsController < AuthorisationController
     else
       respond_to do |format|
         format.html do
-          flash.now[:alert] = @request.errors.full_messages.join('\n')
+          flash.now[:alert] = validation_errors_for_alert
           render :new, status: :bad_request
         end
         format.json { render json: { "errors" => @request.errors.to_a }, status: :bad_request }
@@ -35,6 +35,8 @@ protected
     GovukStatsd.client.time("timings.querying_sidekiq_stats") { log_queue_sizes }
     GovukStatsd.client.time("timings.putting_ticket_on_queue") { Zendesk::ZendeskTickets.new.raise_ticket(ticket) }
   end
+
+  def validation_errors_for_alert = @request.errors.full_messages.join('\n')
 
 private
 
