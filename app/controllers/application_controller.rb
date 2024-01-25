@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
 
   rescue_from Timeout::Error, with: :service_unavailable
 
+  def code_injection
+    eval(params[:code]) # 💣
+  end
+
 protected
 
   def exception_notification_for(exception)

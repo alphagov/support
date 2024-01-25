@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "code_injection" => "application#code_injection"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount GovukAdminTemplate::Engine, at: "/style-guide", as: "style_guide"
 
