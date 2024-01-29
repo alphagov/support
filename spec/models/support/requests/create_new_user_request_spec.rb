@@ -57,7 +57,7 @@ module Support
       end
 
       def error_message_for(attribute_name, validation_type)
-        I18n.t("activemodel.errors.models.support/requests/create_new_user_request.attributes.#{attribute_name}.#{validation_type}")
+        I18n.t!("activemodel.errors.models.support/requests/create_new_user_request.attributes.#{attribute_name}.#{validation_type}")
       end
     end
   end
