@@ -15,8 +15,12 @@ module Support
       it { should allow_value("ab@c.com").for(:email) }
       it { should_not allow_value("ab").for(:email) }
 
+      it "should return custom error message when email is invalid" do
+        expect(request(email: "invalid").errors[:email]).to include(error_message_for(:email, :invalid))
+      end
+
       it "does not have format error if email is blank" do
-        expect(request(email: "").errors[:email]).not_to include("is invalid")
+        expect(request(email: "").errors[:email]).not_to include(error_message_for(:email, :invalid))
       end
 
       it { should allow_value("yes").for(:requires_additional_access) }

@@ -39,7 +39,7 @@ en:
               blank: Enter the user's full name
             email:
               blank: Enter the user's email address
-              format: Enter an email address in the correct format, like name@department.gov.uk
+              invalid: Enter an email address in the correct format, like name@department.gov.uk
             requires_additional_access:
               inclusion: Select Yes if the user needs access to additional publishing applications, like Whitehall
             additional_comments:
