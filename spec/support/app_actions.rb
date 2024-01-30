@@ -9,7 +9,9 @@ module AppActions
     stub_support_api_organisations_list
     stub_support_api_document_type_list
 
-    click_on "Feedback explorer"
+    within "nav" do
+      click_on "Feedback explorer"
+    end
     assert page.has_title?("Anonymous Feedback"), page.html
 
     if list_of_urls
@@ -28,7 +30,9 @@ module AppActions
 
     stub_support_api_organisations_list
 
-    click_on "Feedback explorer"
+    within "nav" do
+      click_on "Feedback explorer"
+    end
     assert page.has_title?("Anonymous Feedback"), page.html
 
     select organisation, from: "Organisation"
@@ -42,7 +46,9 @@ module AppActions
 
     stub_support_api_document_type_list
 
-    click_on "Feedback explorer"
+    within "nav" do
+      click_on "Feedback explorer"
+    end
     assert page.has_title?("Anonymous Feedback"), page.html
 
     select document_type, from: "Document Type"

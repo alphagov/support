@@ -14,7 +14,9 @@ feature "Exporting Global CSV of Feedback" do
   scenario "spam is marked to be removed by default" do
     visit "/"
 
-    click_link "Feedback explorer"
+    within "nav" do
+      click_link "Feedback explorer"
+    end
 
     within(".global-export-request") do
       expect(page.find(:css, 'input[name="exclude_spam"]')).to be_checked

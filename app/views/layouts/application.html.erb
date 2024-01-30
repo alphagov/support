@@ -2,14 +2,14 @@
 <% content_for :head do %>
   <%= csrf_meta_tag %>
   <%= csp_meta_tag %>
-  <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "legacy/application", :media => "all" %>
+  <%= javascript_include_tag "legacy/application" %>
 <% end %>
 
 <% content_for :favicon do %>
   <% environment_style = GovukAdminTemplate.environment_style %>
   <%= favicon_link_tag environment_style ?
-        "favicon-#{environment_style}.png" : "favicon.png" %>
+        "legacy/favicon-#{environment_style}.png" : "legacy/favicon.png" %>
 <% end %>
 
 <% content_for :navbar_items do %>

@@ -82,7 +82,9 @@ feature "Reviewing Anonymous Feedback" do
 
         visit "/"
 
-        click_link "Feedback explorer"
+        within "nav" do
+          click_link "Feedback explorer"
+        end
         click_button "Review Anonymous Feedback"
       end
 
@@ -126,7 +128,9 @@ feature "Reviewing Anonymous Feedback" do
 
         visit "/"
 
-        click_link "Feedback explorer"
+        within "nav" do
+          click_link "Feedback explorer"
+        end
         click_button "Review Anonymous Feedback"
 
         check "include_reviewed"
@@ -189,7 +193,9 @@ feature "Reviewing Anonymous Feedback" do
 
         visit "/"
 
-        click_link "Feedback explorer"
+        within "nav" do
+          click_link "Feedback explorer"
+        end
         click_button "Review Anonymous Feedback"
 
         fill_in "from_date", with: "1 Sep 2016"
@@ -244,7 +250,9 @@ feature "Reviewing Anonymous Feedback" do
 
         visit "/"
 
-        click_link "Feedback explorer"
+        within "nav" do
+          click_link "Feedback explorer"
+        end
         click_button "Review Anonymous Feedback"
       end
 
@@ -321,7 +329,9 @@ feature "Reviewing Anonymous Feedback" do
 
       visit "/"
 
-      click_link "Feedback explorer"
+      within "nav" do
+        click_link "Feedback explorer"
+      end
 
       first_stub_request = stub_support_api_problem_reports("", first_unreviewed_problem_report_list_page)
 
@@ -378,7 +388,9 @@ feature "Reviewing Anonymous Feedback" do
 
       visit "/"
 
-      click_link "Feedback explorer"
+      within "nav" do
+        click_link "Feedback explorer"
+      end
       click_button "Review Anonymous Feedback"
 
       fill_in "from_date", with: "1 Sep 2016"

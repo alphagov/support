@@ -1,0 +1,28 @@
+<%= render 'govuk_publishing_components/components/layout_for_admin',
+  product_name: "Support",
+  environment: GovukPublishingComponents::AppHelpers::Environment.current_acceptance_environment,
+  browser_title: yield(:page_title) do %>
+
+  <%= render "govuk_publishing_components/components/skip_link" %>
+
+  <%= render "govuk_publishing_components/components/layout_header", {
+    product_name: "Support",
+    environment: GovukPublishingComponents::AppHelpers::Environment.current_acceptance_environment,
+    navigation_items: navigation_items,
+  }%>
+
+  <div class="govuk-width-container">
+    <main class="govuk-main-wrapper" id="main-content" role="main">
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+          <h1 class="govuk-heading-xl">
+            <%= yield(:header) %>
+          </h1>
+          <%= yield %>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <%= render "govuk_publishing_components/components/layout_footer" %>
+<% end %>

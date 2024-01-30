@@ -1,0 +1,83 @@
+@import "govuk_admin_template";
+@import "calendar";
+@import "select2";
+@import "select2-bootstrap";
+@import "breadcrumbs";
+@import "sortable_table";
+
+$light-green: #dbffdb;
+$danger-colour: #d9534f;
+
+thead {
+  background-color: $gray-lighter;
+}
+
+.new-request-dropdown {
+  display: none;
+}
+
+.js .new-request-dropdown {
+  display: block;
+}
+
+.danger-callout {
+  border-left-color: $danger-colour;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.rounded-callout {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.text-break {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.feedback-response-count {
+  margin-top: - ($default-vertical-margin * 1.5);
+  font-size: $font-size-h3;
+}
+
+.date-filter-form label {
+  font-weight: normal;
+}
+
+.remove-filter {
+  margin-top: 6px;
+}
+
+.request-permissions-note {
+  margin-left: 20px;
+}
+
+.review-anonymous-feedback {
+  .mark-all-spam {
+    text-align: center;
+  }
+
+  .table > tbody > tr > .mark-as-spam-checkbox {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .mark-as-spam-checkbox label {
+    display: block;
+    padding: 12px;
+  }
+
+  .problem-report.reviewed,
+  .problem-report.reviewed .table-header-secondary {
+    background-color: $light-green;
+  }
+}
+
+.hint-block--md-6 {
+  max-width: 555px;
+}
