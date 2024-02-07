@@ -6,7 +6,7 @@ module Zendesk
       end
 
       def tags
-        super + ["technical_fault", fault_context_tag] + inside_government_tag_if_needed
+        super + ["technical_fault", fault_context_tag]
       end
 
     protected

@@ -6,7 +6,7 @@ module Zendesk
       end
 
       def tags
-        super + ["unpublish_content", "inside_government", @request.reason_for_unpublishing]
+        super + ["unpublish_content", @request.reason_for_unpublishing]
       end
 
     protected

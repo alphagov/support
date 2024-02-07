@@ -16,7 +16,7 @@ feature "Unpublish content requests" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Published in error - Unpublish content request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => %w[govt_form unpublish_content inside_government published_in_error],
+      "tags" => %w[govt_form unpublish_content published_in_error],
       "comment" => {
         "body" =>
 "[URL of content to be unpublished]
@@ -43,7 +43,7 @@ Typo in slug name",
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Duplicate of another page - Unpublish content request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
-      "tags" => %w[govt_form unpublish_content inside_government duplicate_publication],
+      "tags" => %w[govt_form unpublish_content duplicate_publication],
       "comment" => {
         "body" =>
 "[URL of content to be unpublished]
