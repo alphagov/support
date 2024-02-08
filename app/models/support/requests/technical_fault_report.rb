@@ -35,6 +35,7 @@ module Support
         "service_manual_publisher" => "Service Manual Publisher",
         "short_url_manager" => "Short URL Manager",
         "signon" => "Signon",
+        "smart_answers" => "Smart Answers",
         "specialist_publisher" => "Specialist Publisher",
         "support" => "Support app",
         "transition" => "Transition",
