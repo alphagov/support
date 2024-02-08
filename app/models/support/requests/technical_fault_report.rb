@@ -22,6 +22,7 @@ module Support
         "specialist_publisher" => "Specialist Publisher",
         "travel_advice_publisher" => "Travel Advice Publisher",
         "whitehall" => "Whitehall",
+        "do_not_know" => "Do not know",
       }.freeze
 
       validates :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened, presence: true
@@ -37,22 +38,13 @@ module Support
       end
 
       def fault_context_attributes=(attr)
-        self.fault_context = if attr[:name] == "do_not_know"
-                               do_not_know_component
-                             else
-                               fault_context_options.detect { |component| component.id == attr["name"] }
-                             end
+        self.fault_context = fault_context_options.detect { |component| component.id == attr["name"] }
       end
 
       def fault_context_options
-        transformed_options = OPTIONS.map do |key, value|
+        OPTIONS.map do |key, value|
           Support::GDS::UserFacingComponent.new({ name: value, id: key })
         end
-        transformed_options + [do_not_know_component]
-      end
-
-      def do_not_know_component
-        Support::GDS::UserFacingComponent.new(name: "Do not know", id: "do_not_know")
       end
 
       def self.label
