@@ -23,7 +23,7 @@ module Support
         "collections_publisher" => "Collections Publisher",
         "contacts_admin" => "Contacts Admin",
         "content_data" => "Content Data",
-        "content_publisher" => "Content Publisher (beta)",
+        "content_publisher" => "Content Publisher",
         "content_tagger" => "Content Tagger",
         "datagovuk" => "data.gov.uk",
         "gov_uk_content" => "GOV.UK: content",
