@@ -40,12 +40,15 @@ module Support
         self.fault_context = if attr[:name] == "do_not_know"
                                do_not_know_component
                              else
-                               Support::GDS::UserFacingComponents.find(attr)
+                               fault_context_options.detect { |component| component.id == attr["name"] }
                              end
       end
 
       def fault_context_options
-        Support::GDS::UserFacingComponents.all + [do_not_know_component]
+        transformed_options = OPTIONS.map do |key, value|
+          Support::GDS::UserFacingComponent.new({ name: value, id: key })
+        end
+        transformed_options + [do_not_know_component]
       end
 
       def do_not_know_component
