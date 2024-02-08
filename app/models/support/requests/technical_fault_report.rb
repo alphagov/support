@@ -5,6 +5,20 @@ module Support
     class TechnicalFaultReport < Request
       attr_accessor :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened
 
+      # Zendesk tickets are created with a generic `technical_fault`
+      # tag as well as a tag of the form `fault_with_*`, where * is a
+      # key from this hash, e.g. `fault_with_collections_publisher`.
+      #
+      # By default, all `technical_fault` tagged tickets are triaged
+      # to `GOV.UK 2nd Line--Alerts and Issues` via this trigger:
+      # https://govuk.zendesk.com/admin/objects-rules/rules/triggers/35985647
+      #
+      # Tickets may be triaged elsewhere if there is another trigger
+      # looking for the `fault_with_*` tag. Therefore, when editing
+      # the following hash, you should always check whether there is
+      # a corresponding trigger to add/remove/edit. Search all triggers:
+      # https://govuk.zendesk.com/admin/objects-rules/rules/triggers/
+      # ("Conditions" -> "Tags" -> "Contains at least one of the following")
       OPTIONS = {
         "collections_publisher" => "Collections Publisher",
         "contacts_admin" => "Contacts Admin",
