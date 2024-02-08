@@ -1,3 +1,5 @@
+require "active_support/core_ext"
+
 module Support
   module Requests
     class TechnicalFaultReport < Request
@@ -26,25 +28,14 @@ module Support
       }.freeze
 
       validates :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened, presence: true
-      validate do |report|
-        if report.fault_context && !report.fault_context.valid?
-          errors.add :base, message: "The source of the fault is not set."
-        end
-      end
-
-      def initialize(opts = {})
-        super
-        self.fault_context ||= Support::GDS::UserFacingComponent.new
-      end
-
-      def fault_context_attributes=(attr)
-        self.fault_context = fault_context_options.detect { |component| component.id == attr["name"] }
-      end
+      validates :fault_context, inclusion: { in: OPTIONS.keys }
 
       def fault_context_options
-        OPTIONS.map do |key, value|
-          Support::GDS::UserFacingComponent.new({ name: value, id: key })
-        end
+        OPTIONS.map { |key, value| [value, key] }
+      end
+
+      def formatted_fault_context
+        OPTIONS[fault_context]
       end
 
       def self.label
