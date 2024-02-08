@@ -38,6 +38,12 @@ module Support
         OPTIONS[fault_context]
       end
 
+      def fault_subject
+        return "Technical fault report" if fault_context == "do_not_know"
+
+        "Technical fault with #{formatted_fault_context}"
+      end
+
       def self.label
         "Report a technical fault to GDS"
       end

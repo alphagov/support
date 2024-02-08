@@ -18,6 +18,18 @@ module Support
           expect(report.formatted_fault_context).to eq "Do not know"
         end
       end
+
+      describe "#fault_subject" do
+        it "returns a subject to be used for the Zendesk ticket" do
+          report = described_class.new(fault_context: "content_data")
+          expect(report.fault_subject).to eq "Technical fault with Content Data"
+        end
+
+        it "returns a special subject if 'Do not know' was selected" do
+          report = described_class.new(fault_context: "do_not_know")
+          expect(report.fault_subject).to eq "Technical fault report"
+        end
+      end
     end
   end
 end
