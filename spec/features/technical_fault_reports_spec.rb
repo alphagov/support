@@ -45,7 +45,7 @@ Should have linked through",
     )
 
     expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_gov_uk_content")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_inside_government_publisher")
+    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_whitehall")
     expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_mainstream_publisher")
     expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_travel_advice_publisher")
     expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_specialist_publisher")

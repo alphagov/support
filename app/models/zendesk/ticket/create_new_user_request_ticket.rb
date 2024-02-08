@@ -6,7 +6,7 @@ module Zendesk
       end
 
       def tags
-        super + [@request.action] + inside_government_tag_if_needed
+        super + [@request.action]
       end
 
     protected

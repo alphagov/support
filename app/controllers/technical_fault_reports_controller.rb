@@ -21,7 +21,7 @@ protected
       :what_happened,
       :what_should_have_happened,
       requester_attributes: %i[email name collaborator_emails],
-      fault_context_attributes: %i[name id inside_government_related],
+      fault_context_attributes: %i[name id],
     ).to_h
   end
 end

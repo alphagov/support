@@ -27,10 +27,6 @@ module Support
         Support::GDS::UserFacingComponents.all + [Support::GDS::UserFacingComponent.new(name: "Do not know", id: "do_not_know")]
       end
 
-      def inside_government_related?
-        fault_context && fault_context.inside_government_related?
-      end
-
       def self.label
         "Report a technical fault to GDS"
       end

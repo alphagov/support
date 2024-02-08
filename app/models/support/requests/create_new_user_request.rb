@@ -20,10 +20,6 @@ module Support
         "Create a new user account"
       end
 
-      def inside_government_related?
-        false
-      end
-
       def self.label
         "Create a new user"
       end

@@ -20,10 +20,6 @@ module Support
         "Change an existing user's account"
       end
 
-      def inside_government_related?
-        false
-      end
-
       def self.label
         "Change an existing user's account"
       end

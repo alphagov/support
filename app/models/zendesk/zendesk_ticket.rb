@@ -51,10 +51,6 @@ module Zendesk
       %w[govt_form]
     end
 
-    def inside_government_tag_if_needed
-      @request.inside_government_related? ? %w[inside_government] : []
-    end
-
     def to_s
       Zendesk::SnippetCollection.new(base_attribute_snippets + comment_snippets).to_s
     end
