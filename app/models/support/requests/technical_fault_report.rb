@@ -39,6 +39,8 @@ module Support
       end
 
       def fault_subject
+        return "Technical fault report" if fault_context == "do_not_know"
+
         "Technical fault with #{formatted_fault_context}"
       end
 

@@ -24,6 +24,11 @@ module Support
           report = described_class.new(fault_context: "content_data")
           expect(report.fault_subject).to eq "Technical fault with Content Data"
         end
+
+        it "returns a special subject if 'Do not know' was selected" do
+          report = described_class.new(fault_context: "do_not_know")
+          expect(report.fault_subject).to eq "Technical fault report"
+        end
       end
     end
   end
