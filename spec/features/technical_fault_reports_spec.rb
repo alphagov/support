@@ -44,25 +44,9 @@ Should have linked through",
       what_should_have_happened: "Should have linked through",
     )
 
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_gov_uk_content")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_whitehall")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_mainstream_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_travel_advice_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_specialist_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_content_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_datagovuk")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_collections_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_contacts_admin")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_content_tagger")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_local_links_manager")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_manuals_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_service_manual_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_short_url_manager")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_signon")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_maslow")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_do_not_know")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_imminence")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_content_data")
+    Support::Requests::TechnicalFaultReport::OPTIONS.each_key do |option|
+      expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_#{option}")
+    end
 
     user_submits_the_request_successfully
     expect(request).to have_been_made
