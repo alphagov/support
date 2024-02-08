@@ -36,6 +36,7 @@ module Support
         "short_url_manager" => "Short URL Manager",
         "signon" => "Signon",
         "specialist_publisher" => "Specialist Publisher",
+        "support" => "Support app",
         "transition" => "Transition",
         "travel_advice_publisher" => "Travel Advice Publisher",
         "whitehall" => "Whitehall",
