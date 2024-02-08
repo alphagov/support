@@ -2,7 +2,7 @@ module Zendesk
   module Ticket
     class TechnicalFaultReportTicket < Zendesk::ZendeskTicket
       def subject
-        "Technical fault report"
+        "Technical fault with #{@request.formatted_fault_context}"
       end
 
       def tags
