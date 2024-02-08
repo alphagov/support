@@ -3,25 +3,23 @@
 </div>
 
 <div id="technical-fault-context">
-  <%= f.fields_for :fault_context do |r| %>
-    <div class="form-group">
-      <span class="form-label control-label">
-        <%= r.label :name do %>
-          What isn't working properly?<abbr title="required">*</abbr>
+  <div class="form-group">
+    <span class="form-label control-label">
+      <%= f.label :fault_context do %>
+        What isn't working properly?<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.collection_radio_buttons :fault_context, f.object.fault_context_options, :last, :last, required: true, aria: { required: true } do |builder| %>
+        <div class="radio">
+          <%= builder.label(class: "custom-control-label") do %>
+            <%= builder.radio_button(class: "custom-control-input") %>
+            <%= builder.object.first %>
         <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.collection_radio_buttons :name, f.object.fault_context_options, :id, :name, required: true, aria: { required: true } do |builder| %>
-          <div class="radio">
-            <%= builder.label(class: "custom-control-label") do %>
-              <%= builder.radio_button(class: "custom-control-input") %>
-              <%= builder.object.name %>
-          <% end %>
-          </div>
-        <% end %>
-      </span>
-    </div>
-  <% end %>
+        </div>
+      <% end %>
+    </span>
+  </div>
 </div>
 
 <div class="form-group">

@@ -44,25 +44,9 @@ Should have linked through",
       what_should_have_happened: "Should have linked through",
     )
 
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_gov_uk_content")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_whitehall")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_mainstream_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_travel_advice_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_specialist_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_content_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_datagovuk")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_collections_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_contacts_admin")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_content_tagger")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_local_links_manager")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_manuals_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_service_manual_publisher")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_short_url_manager")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_signon")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_maslow")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_do_not_know")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_imminence")
-    expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_attributes_name_content_data")
+    Support::Requests::TechnicalFaultReport::OPTIONS.each_key do |option|
+      expect(page).to have_selector(:id, "support_requests_technical_fault_report_fault_context_#{option}")
+    end
 
     user_submits_the_request_successfully
     expect(request).to have_been_made
