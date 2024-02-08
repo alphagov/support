@@ -3,6 +3,27 @@ module Support
     class TechnicalFaultReport < Request
       attr_accessor :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened
 
+      OPTIONS = {
+        "collections_publisher" => "Collections Publisher",
+        "contacts_admin" => "Contacts Admin",
+        "content_data" => "Content Data",
+        "content_publisher" => "Content Publisher (beta)",
+        "content_tagger" => "Content Tagger",
+        "datagovuk" => "data.gov.uk",
+        "gov_uk_content" => "GOV.UK: content",
+        "imminence" => "Imminence",
+        "local_links_manager" => "Local Links Manager",
+        "mainstream_publisher" => "Mainstream Publisher",
+        "manuals_publisher" => "Manuals Publisher",
+        "maslow" => "Maslow",
+        "service_manual_publisher" => "Service Manual Publisher",
+        "short_url_manager" => "Short URL Manager",
+        "signon" => "Signon",
+        "specialist_publisher" => "Specialist Publisher",
+        "travel_advice_publisher" => "Travel Advice Publisher",
+        "whitehall" => "Whitehall",
+      }.freeze
+
       validates :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened, presence: true
       validate do |report|
         if report.fault_context && !report.fault_context.valid?
