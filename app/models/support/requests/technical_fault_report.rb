@@ -26,6 +26,7 @@ module Support
         "content_publisher" => "Content Publisher",
         "content_tagger" => "Content Tagger",
         "datagovuk" => "data.gov.uk",
+        "email_alerts" => "Email alerts",
         "gov_uk_content" => "GOV.UK: content",
         "imminence" => "Imminence",
         "local_links_manager" => "Local Links Manager",
