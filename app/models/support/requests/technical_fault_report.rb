@@ -38,6 +38,10 @@ module Support
         OPTIONS[fault_context]
       end
 
+      def fault_subject
+        "Technical fault with #{formatted_fault_context}"
+      end
+
       def self.label
         "Report a technical fault to GDS"
       end
