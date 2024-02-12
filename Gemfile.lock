@@ -303,6 +303,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.16.2-arm64-darwin)
       racc (~> 1.4)
+    nokogiri (1.16.2-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
     null_logger (0.0.1)
@@ -667,6 +669,8 @@ GEM
       google-protobuf (~> 3.25)
     sass-embedded (1.70.0-arm64-darwin)
       google-protobuf (~> 3.25)
+    sass-embedded (1.70.0-x86_64-darwin)
+      google-protobuf (~> 3.25)
     sass-embedded (1.70.0-x86_64-linux-gnu)
       google-protobuf (~> 3.25)
     sassc (2.4.0)
@@ -759,6 +763,7 @@ GEM
 PLATFORMS
   aarch64-linux
   arm64-darwin
+  x86_64-darwin-23
   x86_64-linux
 
 DEPENDENCIES
