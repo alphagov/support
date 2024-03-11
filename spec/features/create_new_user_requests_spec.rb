@@ -43,6 +43,9 @@ bob@gov.uk
 [Organisation]
 Cabinet Office (CO)
 
+[Access to Whitehall Publisher]
+No, the user does not need to draft or publish content on Whitehall publisher
+
 [Additional comments]
 XXXX",
       },
@@ -63,6 +66,7 @@ XXXX",
     fill_in "User's name", with: "Bob Fields"
     fill_in "User's email", with: "bob@gov.uk"
     select "Cabinet Office (CO)", from: "User's organisation"
+    choose "No, the user does not need to draft or publish content on Whitehall publisher"
     fill_in "List any other publishing applications and permissions the user needs. If you’re not sure what these are, explain what tasks they need to be able to do.", with: "XXXX"
 
     user_submits_the_request_successfully

@@ -25,6 +25,7 @@ protected
       :name,
       :email,
       :organisation,
+      :access_to_whitehall_publisher,
       :additional_comments,
       requester_attributes: %i[email name collaborator_emails],
     ).to_h

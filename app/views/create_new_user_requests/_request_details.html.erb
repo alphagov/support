@@ -37,6 +37,24 @@
 
     <div class="form-group">
       <span class="form-label">
+        <%= f.label :access_to_whitehall_publisher, class: "control-label" do %>
+          Does the user need access to Whitehall Publisher?<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= f.collection_radio_buttons :access_to_whitehall_publisher, f.object.access_to_whitehall_publisher_options, :first, :first, required: true, aria: { required: true } do |builder| %>
+          <div class="radio">
+            <%= builder.label class: "custom-control-label" do %>
+              <%= builder.radio_button(class: "custom-control-input") %>
+              <%= builder.object.last %>
+            <% end %>
+          </div>
+        <% end %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
         <%= f.label :additional_comments do %>
           List any other publishing applications and permissions the user needs. If you’re not sure what these are, explain what tasks they need to be able to do.<abbr title="required">*</abbr>
         <% end %>

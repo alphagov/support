@@ -17,6 +17,7 @@ describe CreateNewUserRequestsController, type: :controller do
         "requester_attributes" => valid_requester_params,
         **valid_requested_user_params,
         "action" => "create_new_user",
+        "access_to_whitehall_publisher" => "not_required",
         "additional_comments" => "not-blank",
       },
     }

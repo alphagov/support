@@ -33,6 +33,11 @@ module Zendesk
             field: :organisation,
             label: "Organisation",
           ),
+          Zendesk::LabelledSnippet.new(
+            on: @request,
+            field: :formatted_access_to_whitehall_publisher_option,
+            label: "Access to Whitehall Publisher",
+          ),
           Zendesk::LabelledSnippet.new(on: @request, field: :additional_comments),
         ]
       end
