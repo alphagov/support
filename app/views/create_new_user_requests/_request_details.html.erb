@@ -74,14 +74,14 @@
     <div class="form-group">
       <span class="form-label">
         <%= f.label :additional_comments do %>
-          List any other publishing applications and permissions the user needs. If you’re not sure what these are, explain what tasks they need to be able to do.<abbr title="required">*</abbr>
+          List any other publishing applications and permissions the user needs. If you’re not sure what these are, explain what tasks they need to be able to do.
         <% end %>
       </span>
       <p class="help-block hint-block--md-6" id="additional-comments-hint">
         All users have basic access to Content Data, Feedback Explorer, GovSearch and Support forms.
       </p>
       <span class="form-wrapper">
-        <%= f.text_area :additional_comments, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+        <%= f.text_area :additional_comments, class: "input-md-6 form-control", rows: 6, cols: 50 %>
       </span>
     </div>
 

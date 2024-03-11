@@ -53,7 +53,7 @@ describe CreateNewUserRequestsController, type: :controller do
 
     expect(controller).to have_rendered(:new)
     expect(response.body).to have_css(".alert", text: /Name can't be blank/)
-    expect(response.body).to have_css(".alert", text: /Additional comments can't be blank/)
+    expect(response.body).to have_css(".alert", text: /Select if the user needs access to Whitehall Publisher/)
   end
 
   it "retains the previously selected organisation if validation fails" do

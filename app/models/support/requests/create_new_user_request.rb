@@ -12,7 +12,6 @@ module Support
 
       validates :name, :email, presence: true
       validates :email, format: { with: /@/ }
-      validates :additional_comments, presence: true
       validates :access_to_whitehall_publisher,
                 inclusion: { in: :access_to_whitehall_publisher_option_keys,
                              allow_blank: false,
@@ -21,6 +20,9 @@ module Support
                 inclusion: { in: :access_to_other_publishing_apps_option_keys,
                              allow_blank: false,
                              message: "Select if the user needs access to other publishing apps" }
+      validates :additional_comments,
+                presence: { message: "List which publishing applications and permissions the user needs" },
+                if: -> { access_to_other_publishing_apps == "required" }
 
       def action
         "create_new_user"
