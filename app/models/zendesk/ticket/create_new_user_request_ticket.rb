@@ -38,6 +38,11 @@ module Zendesk
             field: :formatted_access_to_whitehall_publisher_option,
             label: "Access to Whitehall Publisher",
           ),
+          Zendesk::LabelledSnippet.new(
+            on: @request,
+            field: :formatted_access_to_other_publishing_apps_option,
+            label: "Access to other publishing apps",
+          ),
           Zendesk::LabelledSnippet.new(on: @request, field: :additional_comments),
         ]
       end

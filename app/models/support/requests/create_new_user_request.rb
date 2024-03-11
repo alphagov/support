@@ -6,6 +6,7 @@ module Support
         :email,
         :organisation,
         :access_to_whitehall_publisher,
+        :access_to_other_publishing_apps,
         :additional_comments,
       )
 
@@ -16,6 +17,10 @@ module Support
                 inclusion: { in: :access_to_whitehall_publisher_option_keys,
                              allow_blank: false,
                              message: "Select if the user needs access to Whitehall Publisher" }
+      validates :access_to_other_publishing_apps,
+                inclusion: { in: :access_to_other_publishing_apps_option_keys,
+                             allow_blank: false,
+                             message: "Select if the user needs access to other publishing apps" }
 
       def action
         "create_new_user"
@@ -47,6 +52,21 @@ module Support
 
       def formatted_access_to_whitehall_publisher_option
         access_to_whitehall_publisher_options[access_to_whitehall_publisher]
+      end
+
+      def access_to_other_publishing_apps_options
+        {
+          "not_required" => "No, the user does not need access to any other publishing application",
+          "required" => "Yes, the user needs access to the applications and permissions listed below",
+        }
+      end
+
+      def access_to_other_publishing_apps_option_keys
+        access_to_other_publishing_apps_options.keys
+      end
+
+      def formatted_access_to_other_publishing_apps_option
+        access_to_other_publishing_apps_options[access_to_other_publishing_apps]
       end
     end
   end
