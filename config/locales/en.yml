@@ -30,4 +30,21 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  activemodel:
+    errors:
+      models:
+        support/requests/create_new_user_request:
+          format: '%{message}'
+          attributes:
+            name:
+              blank: Enter a name
+            email:
+              blank: Enter an email address
+              invalid: Enter an email address in the correct format, like name@example.com
+            access_to_whitehall_publisher:
+              inclusion: Select if the user needs access to Whitehall Publisher
+            access_to_other_publishing_apps:
+              inclusion: Select if the user needs access to other publishing apps
+            additional_comments:
+              blank: List which publishing applications and permissions the user needs
+

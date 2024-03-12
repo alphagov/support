@@ -52,7 +52,7 @@ describe CreateNewUserRequestsController, type: :controller do
     post :create, params: { "support_requests_create_new_user_request" => { "action" => "create_new_user" } }
 
     expect(controller).to have_rendered(:new)
-    expect(response.body).to have_css(".alert", text: /Name can't be blank/)
+    expect(response.body).to have_css(".alert", text: /Enter a name/)
     expect(response.body).to have_css(".alert", text: /Select if the user needs access to Whitehall Publisher/)
   end
 
