@@ -27,12 +27,14 @@ module Support
         "content_tagger" => "Content Tagger",
         "datagovuk" => "data.gov.uk",
         "email_alerts" => "Email alerts",
+        "feedback_explorer" => "Feedback explorer",
         "gov_uk_content" => "GOV.UK: content",
         "imminence" => "Imminence",
         "local_links_manager" => "Local Links Manager",
         "mainstream_publisher" => "Mainstream Publisher",
         "manuals_publisher" => "Manuals Publisher",
         "maslow" => "Maslow",
+        "search" => "Search",
         "service_manual_publisher" => "Service Manual Publisher",
         "short_url_manager" => "Short URL Manager",
         "signon" => "Signon",
@@ -42,7 +44,7 @@ module Support
         "transition" => "Transition",
         "travel_advice_publisher" => "Travel Advice Publisher",
         "whitehall" => "Whitehall",
-        "do_not_know" => "Do not know",
+        "do_not_know" => "Other / do not know",
       }.freeze
 
       validates :fault_context, :fault_specifics, :actions_leading_to_problem, :what_happened, :what_should_have_happened, presence: true
