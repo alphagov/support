@@ -15,7 +15,7 @@ module Support
       describe "#formatted_fault_context" do
         it "returns the human readable name for the chosen context" do
           report = described_class.new(fault_context: "do_not_know")
-          expect(report.formatted_fault_context).to eq "Do not know"
+          expect(report.formatted_fault_context).to eq "Other / do not know"
         end
       end
 
