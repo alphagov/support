@@ -8,8 +8,6 @@ Rails.application.routes.draw do
 
   get "/accounts_permissions_and_training_request/new" => redirect("/")
 
-  resources :named_contacts, only: :create
-
   namespace :anonymous_feedback do
     get :explore, to: "explore#new", format: false
     post :explore, to: "explore#create", format: false
