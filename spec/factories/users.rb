@@ -4,7 +4,6 @@ FactoryBot.define do
     sequence(:email) { |n| "person-#{n}@example.com" }
     permissions { %w[signin] }
 
-    factory(:api_user) { permissions { %w[signin api_users] } }
     factory(:user_manager) { permissions { %w[signin user_managers] } }
     factory(:content_requester) { permissions { %w[signin content_requesters] } }
     factory(:campaign_requester) { permissions { %w[signin campaign_requesters] } }
