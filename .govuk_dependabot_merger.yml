@@ -20,6 +20,10 @@ auto_merge:
     allowed_semver_bumps:
       - patch
       - minor
+  - dependency: govuk_publishing_components
+    allowed_semver_bumps:
+      - patch
+      - minor
   - dependency: govuk_test
     allowed_semver_bumps:
       - patch
