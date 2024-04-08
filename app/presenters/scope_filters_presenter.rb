@@ -81,7 +81,7 @@ private
       normalized_path = URI.parse(path_or_url).path
 
       if normalized_path.present?
-        normalized_path.sub!(/^(http(s)?(:)?(\/)+?(:)?)?((\/)?www.)?gov.uk/, "")
+        normalized_path.sub!(/\A(http(s)?(:)?(\/)+?(:)?)?((\/)?www\.)?gov\.uk/, "")
         normalized_path.start_with?("/") ? normalized_path : "/#{normalized_path}"
       else
         "/"
