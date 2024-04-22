@@ -33,7 +33,7 @@ module Support
         def paths_from_urls
           urls = []
           parsed_urls.each do |url|
-            path = URI(url).path.sub(/^(http(s)?(:)?(\/)+?(:)?)?((\/)?www.)?gov.uk/, "")
+            path = URI(url).path.sub(/\A(http(s)?(:)?(\/)+?(:)?)?((\/)?www\.)?gov\.uk/, "")
             urls << (path.start_with?("/") ? path : "/#{path}")
           end
           urls.uniq
