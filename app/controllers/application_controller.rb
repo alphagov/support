@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_support_user!
 
-  protect_from_forgery
+  protect_from_forgery with: :exception
 
   rescue_from Timeout::Error, with: :service_unavailable
 
