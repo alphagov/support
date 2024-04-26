@@ -4,7 +4,7 @@ module ReferrerHelper
   def friendly_referrer(referrer)
     uri = URI.parse(referrer)
     if uri.host
-      if /www\.gov.uk/.match?(uri.host)
+      if /\Awww\.gov.uk/.match?(uri.host)
         uri.path
       else
         uri.host.sub(/www\./, "")
