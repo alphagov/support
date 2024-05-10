@@ -28,4 +28,10 @@ module ApplicationHelper
       link_to section.label, section.link
     end
   end
+
+  def is_a_zip?
+    zipinfo = Whitehall.system_binaries[:zipinfo]
+    _, _, errs = Open3.popen3("#{zipinfo} -1 #{temp_location.shellescape} > /dev/null")
+    errs.read.empty?
+  end
 end
