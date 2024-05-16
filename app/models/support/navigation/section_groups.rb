@@ -67,7 +67,6 @@ module Support
       def feedback_requests
         sections_for(
           Support::Requests::ReportAnIssueWithGovukSearchResultsRequest,
-          Support::Requests::ContentPublisherFeedbackRequest,
           Support::Requests::ContentDataFeedback,
         )
       end
