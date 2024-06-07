@@ -31,6 +31,12 @@ config/zendesk.yml
 # Yarn
 node_modules
 yarn-error.log
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # dartsass-rails
 /app/assets/builds/*
