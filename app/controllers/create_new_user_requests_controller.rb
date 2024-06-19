@@ -47,15 +47,6 @@ protected
   end
 
   def organisation_options
-    @organisation_options ||= support_api.organisations_list.to_a.map { |o| organisation_title(o) }
-  end
-
-private
-
-  def support_api
-    GdsApi::SupportApi.new(
-      Plek.find("support-api"),
-      bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"],
-    )
+    @organisation_options ||= Services.support_api.organisations_list.to_a.map { |o| organisation_title(o) }
   end
 end

@@ -1,5 +1,3 @@
-require "gds_api/support_api"
-
 class AnonymousFeedbackController < RequestsController
   include ExploreHelper
 
@@ -23,8 +21,8 @@ class AnonymousFeedbackController < RequestsController
         # api_response rather than user-supplied params (note it's not
         # currently available on the api_response)
         @filtered_by = scope_filters
-        @organisations_list = parse_organisations(support_api.organisations_list)
-        @document_type_list = parse_doctypes(support_api.document_type_list)
+        @organisations_list = parse_organisations(Services.support_api.organisations_list)
+        @document_type_list = parse_doctypes(Services.support_api.document_type_list)
       end
       format.json { render json: api_response.results }
     end
@@ -136,14 +134,7 @@ private
 
   def fetch_anonymous_feedback_from_support_api
     AnonymousFeedbackApiResponse.new(
-      support_api.anonymous_feedback(api_params).to_hash,
-    )
-  end
-
-  def support_api
-    GdsApi::SupportApi.new(
-      Plek.find("support-api"),
-      bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"],
+      Services.support_api.anonymous_feedback(api_params).to_hash,
     )
   end
 end

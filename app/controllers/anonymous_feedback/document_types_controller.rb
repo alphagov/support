@@ -1,5 +1,3 @@
-require "gds_api/support_api"
-
 class AnonymousFeedback::DocumentTypesController < AuthorisationController
   def show
     authorize! :read, :anonymous_feedback
@@ -19,13 +17,6 @@ class AnonymousFeedback::DocumentTypesController < AuthorisationController
 private
 
   def fetch_document_type_summary_from_support_api(ordering)
-    support_api.document_type_summary(params[:document_type], ordering:)
-  end
-
-  def support_api
-    GdsApi::SupportApi.new(
-      Plek.find("support-api"),
-      bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"],
-    )
+    Services.support_api.document_type_summary(params[:document_type], ordering:)
   end
 end

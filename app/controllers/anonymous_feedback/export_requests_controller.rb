@@ -1,4 +1,3 @@
-require "gds_api/support_api"
 require "csv"
 
 class AnonymousFeedback::ExportRequestsController < AuthorisationController
@@ -7,7 +6,7 @@ class AnonymousFeedback::ExportRequestsController < AuthorisationController
 
     set_path_set_id_param
 
-    support_api.create_feedback_export_request(export_request_params)
+    Services.support_api.create_feedback_export_request(export_request_params)
 
     redirect_to anonymous_feedback_index_path(anonymous_feedback_params),
                 notice: "We are sending your CSV file to #{current_user.email}. If you don't see it in a few minutes, check your spam folder."
@@ -16,7 +15,7 @@ class AnonymousFeedback::ExportRequestsController < AuthorisationController
   def show
     authorize! :read, :anonymous_feedback
 
-    response = support_api.feedback_export_request(params[:id])
+    response = Services.support_api.feedback_export_request(params[:id])
     if response["ready"]
       filename = response["filename"]
       file = get_csv_file_from_s3(filename)
@@ -68,13 +67,6 @@ private
       paths:,
       path_set_id: saved_paths.try(:id),
       organisation_slug: anonymous_feedback_params[:organisation],
-    )
-  end
-
-  def support_api
-    GdsApi::SupportApi.new(
-      Plek.find("support-api"),
-      bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"],
     )
   end
 

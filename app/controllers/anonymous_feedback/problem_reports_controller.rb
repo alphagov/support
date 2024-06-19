@@ -1,5 +1,3 @@
-require "gds_api/support_api"
-
 class AnonymousFeedback::ProblemReportsController < AuthorisationController
   def index
     authorize! :request, :review_feedback
@@ -29,7 +27,7 @@ private
 
   def fetch_problem_reports
     AnonymousFeedbackApiResponse.new(
-      support_api.problem_reports(api_params).to_hash,
+      Services.support_api.problem_reports(api_params).to_hash,
     )
   end
 
@@ -40,13 +38,6 @@ private
       from_date: index_params[:from_date],
       to_date: index_params[:to_date],
     }.select { |_, value| value.present? }
-  end
-
-  def support_api
-    GdsApi::SupportApi.new(
-      Plek.find("support-api"),
-      bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"],
-    )
   end
 
   def index_params
@@ -67,6 +58,6 @@ private
   end
 
   def reviewed_items_successfully?
-    support_api.mark_reviewed_for_spam(review_params).code == 200
+    Services.support_api.mark_reviewed_for_spam(review_params).code == 200
   end
 end
