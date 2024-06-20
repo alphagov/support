@@ -1,5 +1,3 @@
-require "gds_api/support_api"
-
 class AnonymousFeedback::OrganisationsController < AuthorisationController
   def show
     authorize! :read, :anonymous_feedback
@@ -19,13 +17,6 @@ class AnonymousFeedback::OrganisationsController < AuthorisationController
 private
 
   def fetch_organisation_summary_from_support_api(ordering)
-    support_api.organisation_summary(params[:slug], ordering:)
-  end
-
-  def support_api
-    GdsApi::SupportApi.new(
-      Plek.find("support-api"),
-      bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"],
-    )
+    Services.support_api.organisation_summary(params[:slug], ordering:)
   end
 end

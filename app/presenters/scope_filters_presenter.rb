@@ -1,5 +1,3 @@
-require "gds_api/support_api"
-
 class ScopeFiltersPresenter
   attr_reader :organisation_slug, :document_type, :path_set_id
 
@@ -51,7 +49,7 @@ class ScopeFiltersPresenter
   end
 
   def organisation
-    @organisation ||= support_api.organisation(organisation_slug) if organisation_slug.present?
+    @organisation ||= Services.support_api.organisation(organisation_slug) if organisation_slug.present?
   end
 
   def to_s
@@ -98,12 +96,5 @@ private
 
     result = paths_or_urls.compact.map(&:strip).map { |path_or_url| normalize_path(path_or_url) }.uniq
     result.empty? ? ["/"] : result
-  end
-
-  def support_api
-    GdsApi::SupportApi.new(
-      Plek.find("support-api"),
-      bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"],
-    )
   end
 end

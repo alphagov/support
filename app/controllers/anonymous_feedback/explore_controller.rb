@@ -1,5 +1,3 @@
-require "gds_api/support_api"
-
 class AnonymousFeedback::ExploreController < AuthorisationController
   include ExploreHelper
 
@@ -8,9 +6,9 @@ class AnonymousFeedback::ExploreController < AuthorisationController
   def new
     @explore_by_multiple_paths = Support::Requests::Anonymous::ExploreByMultiplePaths.new
     @explore_by_organisation = Support::Requests::Anonymous::ExploreByOrganisation.new(organisation: current_user.organisation_slug)
-    @organisations_list = parse_organisations(support_api.organisations_list)
+    @organisations_list = parse_organisations(Services.support_api.organisations_list)
     @explore_by_document_type = Support::Requests::Anonymous::ExploreByDocumentType.new
-    @document_type_list = parse_doctypes(support_api.document_type_list)
+    @document_type_list = parse_doctypes(Services.support_api.document_type_list)
   end
 
   def create
@@ -37,13 +35,6 @@ class AnonymousFeedback::ExploreController < AuthorisationController
   end
 
 private
-
-  def support_api
-    GdsApi::SupportApi.new(
-      Plek.find("support-api"),
-      bearer_token: ENV["SUPPORT_API_BEARER_TOKEN"],
-    )
-  end
 
   def explore_by_multiple_path_params
     params.require(:support_requests_anonymous_explore_by_multiple_paths).permit(:list_of_urls, :uploaded_list)
