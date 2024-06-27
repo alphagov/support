@@ -5,7 +5,7 @@ feature "Report an issue with GOV.UK search results" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
+    # zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "successful request" do
@@ -13,8 +13,7 @@ feature "Report an issue with GOV.UK search results" do
       "subject" => "Report an issue with GOV.UK search results",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@email.co.uk"),
       "tags" => %w[govt_form site_search],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[What search query did you use?]
 search-query
 
@@ -26,7 +25,6 @@ improve-search-results
 
 [Why is this change necessary?]
 improvement-justification",
-      },
     )
 
     user_reports_issue_with_search_results(

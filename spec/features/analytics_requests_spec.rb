@@ -13,8 +13,7 @@ feature "Analytics requests" do
       "subject" => "Request for analytics",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form analytics],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Google Analytics Access]
 Sarah Jones sarah@example.com some area
 
@@ -26,7 +25,6 @@ Government Digital Service
 
 [Help]
 Need help with cats",
-      },
     )
 
     visit "/"

@@ -25,7 +25,7 @@ describe ChangeExistingUserRequestsController, type: :controller do
   end
 
   it "submits the request to Zendesk" do
-    stub_ticket_creation = stub_zendesk_ticket_creation(
+    stub_ticket_creation = stub_support_api_valid_raise_support_ticket(
       hash_including("tags" => %w[govt_form change_user]),
     )
 

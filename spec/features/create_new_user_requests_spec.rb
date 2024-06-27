@@ -29,8 +29,7 @@ feature "Create new user requests" do
       "subject" => "Create a new user account",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form create_new_user],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Action]
 Create a new user account
 
@@ -51,7 +50,6 @@ Yes, the user needs access to the applications and permissions listed below
 
 [Additional comments]
 XXXX",
-      },
     )
 
     user_creation_request = stub_zendesk_user_creation(

@@ -17,8 +17,7 @@ feature "New taxonomy topic requests" do
       "subject" => "Taxonomy new topic request - \"Abc\"",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form taxonomy_new_topic_request],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Requested topic]
 Abc
 
@@ -30,7 +29,6 @@ People expect to find it here.
 
 [Parent topic]
 Education, training and skills",
-      },
     )
 
     user_makes_a_taxomomy_new_topic_request(

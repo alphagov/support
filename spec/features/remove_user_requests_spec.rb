@@ -18,8 +18,7 @@ feature "Remove user requests" do
       "subject" => "Remove user",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form remove_user],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Not before date]
 31-12-#{next_year}
 
@@ -31,7 +30,6 @@ bob@someagency.gov.uk
 
 [Reason for removal]
 User has left the organisation",
-      },
     )
 
     user_requests_removal_of_another_user(

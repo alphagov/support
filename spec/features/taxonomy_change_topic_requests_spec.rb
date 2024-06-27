@@ -17,8 +17,7 @@ feature "Taxonomy topic change requests" do
       "subject" => "Taxonomy change topic request - \"Abc\"",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form taxonomy_change_topic_request],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Type of change]
 Name of topic
 
@@ -30,7 +29,6 @@ Change the name to \"XYZ\".
 
 [Reasons for changes]
 People expect to find it here.",
-      },
     )
 
     user_makes_a_taxomomy_change_topic_request(

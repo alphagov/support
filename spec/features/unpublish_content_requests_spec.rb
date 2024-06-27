@@ -17,8 +17,7 @@ feature "Unpublish content requests" do
       "subject" => "Published in error - Unpublish content request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form unpublish_content published_in_error],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[URL of content to be unpublished]
 https://www.gov.uk/X
 
@@ -27,7 +26,6 @@ Published in error
 
 [Further explanation]
 Typo in slug name",
-      },
     )
 
     user_makes_a_request_to_unpublish_content(
@@ -44,8 +42,7 @@ Typo in slug name",
       "subject" => "Duplicate of another page - Unpublish content request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form unpublish_content duplicate_publication],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[URL of content to be unpublished]
 https://www.gov.uk/X
 
@@ -60,7 +57,6 @@ https://www.gov.uk/Y
 
 [Automatic redirect?]
 true",
-      },
     )
 
     user_makes_a_request_to_unpublish_content(
