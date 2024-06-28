@@ -22,7 +22,7 @@ gem "redis"
 gem "select2-rails"
 gem "sentry-sidekiq"
 gem "sprockets-rails"
-gem "uglifier"
+gem "terser"
 gem "validates_timeliness", "~> 7.0.0.beta2"
 
 group :development do
