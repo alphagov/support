@@ -1,3 +1,4 @@
+TEST
 # Support
 
 This app:
