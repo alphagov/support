@@ -24,9 +24,15 @@ protected
         full_responsibility_confirmation
         accessibility_confirmation
         cookie_and_privacy_notice_confirmation
-        start_date
-        end_date
-        development_start_date
+        start_day
+        start_month
+        start_year
+        end_day
+        end_month
+        end_year
+        development_start_day
+        development_start_month
+        development_start_year
         performance_review_contact_email
         government_theme
         description

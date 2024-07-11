@@ -31,14 +31,44 @@
     </div>
 
     <%= f.fields_for :time_constraint do |r| %>
-      <div class="form-group">
-        <span class="form-label">
-          <%= r.label :not_before_date, "MUST NOT be removed BEFORE" %>
-        </span>
-        <span class="form-wrapper">
-          <%= r.text_field :not_before_date, required: false, placeholder: "dd-mm-yyyy", value: r.object.not_before_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
-        </span>
+
+      <h4>
+        <%= "MUST NOT be removed BEFORE" %>
+      </h4>
+
+      <div id="date-hint" class="govuk-hint">
+       For example, 27 3 2007
       </div>
+      
+      <div class="form-group">
+
+        <div class="govuk-date-input" id="not-before-date-input">
+          
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <%= r.label :not_before_day, "Day", class: "govuk-label govuk-date-input__label" %>
+              <%= r.text_field :not_before_day, required: false, value: r.object.not_before_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-day" %>
+            </div>
+          </div>
+
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+            <%= r.label :not_before_month, "Month", class: "govuk-label govuk-date-input__label" %>
+            <%= r.text_field :not_before_month, required: false, value: r.object.not_before_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-month" %>
+            </div>
+          </div>
+
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+            <%= r.label :not_before_year, "Year", class: "govuk-label govuk-date-input__label" %>
+            <%= r.text_field :not_before_year, required: false, value: r.object.not_before_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "not-before-year" %>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
     <% end %>
 
     <div class="form-group">
