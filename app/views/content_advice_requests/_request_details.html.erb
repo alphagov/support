@@ -57,11 +57,23 @@
     </legend>
 
     <div class="form-group">
-      <span class="form-label">
-        <%= r.label :needed_by_date, "Is there a date you need to have a response by?" %>
+      <h4>
+        <%= "Is there a date you need to have a response by?" %>
+      </h4>
+
+      <span class="govuk-date-input__item">
+        <%= r.label :needed_by_day, "Day", class: "govuk-label govuk-date-input__label" %>
+        <%= r.text_field :needed_by_day, required: false, value: r.object.needed_by_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-day" %>
       </span>
-      <span class="form-wrapper">
-        <%= r.text_field :needed_by_date, placeholder: "dd-mm-yyyy", value: r.object.needed_by_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+
+      <span class="govuk-date-input__item">
+       <%= r.label :needed_by_month, "Month", class: "govuk-label govuk-date-input__label" %>
+       <%= r.text_field :needed_by_month, required: false, value: r.object.needed_by_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-month" %>
+      </span>
+
+      <span class="govuk-date-input__item">
+       <%= r.label :needed_by_year, "Year", class: "govuk-label govuk-date-input__label" %>
+       <%= r.text_field :needed_by_year, required: false, value: r.object.needed_by_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "needed-by-year" %>
       </span>
     </div>
 

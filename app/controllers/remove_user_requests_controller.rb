@@ -19,7 +19,7 @@ protected
       :user_email,
       :reason_for_removal,
       requester_attributes: %i[email name collaborator_emails],
-      time_constraint_attributes: %i[not_before_date needed_by_date time_constraint_reason],
+      time_constraint_attributes: %i[needed_by_day needed_by_month needed_by_year time_constraint_reason not_before_day not_before_month not_before_year],
     ).to_h
   end
 end
