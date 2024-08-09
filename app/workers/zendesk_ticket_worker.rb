@@ -1,29 +1,29 @@
 class ZendeskTicketWorker
   include Sidekiq::Worker
 
+  sidekiq_retry_in do |exception|
+    case exception
+    when ZendeskTicketError::TicketNameTooLong
+      :kill
+    when GdsApi::HTTPConflict
+      # Discard the job if the support ticket has been created
+      :discard
+    end
+  end
+
   def perform(ticket_options)
-    if GDS_ZENDESK_CLIENT.users.suspended?(ticket_options["requester"]["email"])
-      GovukStatsd.increment("report_a_problem.submission_from_suspended_user")
+    if ticket_options["requester"]["name"] && ticket_options["requester"]["name"].length > 255
+      raise TicketNameTooLong, "Zendesk requester name (#{ticket_options['requester']['name']}) was too long (over 255 characters)"
     else
-      begin
-        if ticket_options["requester"]["name"] && ticket_options["requester"]["name"].length > 255
-          GovukStatsd.increment("report_a_problem.zendesk_ticket_name_too_long")
-        else
-          create_ticket(ticket_options)
-        end
-      rescue ZendeskAPI::Error::NetworkError => e
-        if e.response.status == 409
-          GovukStatsd.increment("exception.409_conflict_response") # if Zendesk has already received the ticket, we should stop trying. All we do is record the error in Grafana.
-        else
-          raise
-        end
-      end
+      create_ticket(ticket_options)
     end
   end
 
 private
 
   def create_ticket(ticket_options)
-    GDS_ZENDESK_CLIENT.ticket.create!(HashWithIndifferentAccess.new(ticket_options))
+    Services.support_api.raise_support_ticket(HashWithIndifferentAccess.new(ticket_options))
   end
+
+  class TicketNameTooLong < StandardError; end
 end

@@ -10,7 +10,6 @@ feature "Campaign requests" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "successful request" do
@@ -18,8 +17,7 @@ feature "Campaign requests" do
       "subject" => "Campaign",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form campaign],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Name of the Head of Digital Communications who signed off the campaign website application]
 John Smith
 
@@ -85,7 +83,6 @@ Yes
 
 [I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer]
 Yes",
-      },
     )
 
     user_makes_a_campaign_request(

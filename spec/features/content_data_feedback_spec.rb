@@ -7,7 +7,6 @@ feature "New Content Data feedback" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "successful request" do
@@ -15,8 +14,7 @@ feature "New Content Data feedback" do
       "subject" => "Content Data feedback",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form content_data_feedback],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Your feedback is about]
 accessibility or usability
 
@@ -25,7 +23,6 @@ I am having trouble reading the screen
 
 [What's the impact on your work if we don't do anything about it?]
 Cannot work",
-      },
     )
 
     user_provides_feedback(
