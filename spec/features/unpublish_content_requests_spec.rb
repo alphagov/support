@@ -9,7 +9,6 @@ feature "Unpublish content requests" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "request to unpublish in case of publishing error" do

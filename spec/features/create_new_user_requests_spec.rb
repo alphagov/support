@@ -9,7 +9,6 @@ feature "Create new user requests" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "user creation request" do

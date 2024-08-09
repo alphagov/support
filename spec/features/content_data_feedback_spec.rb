@@ -7,7 +7,6 @@ feature "New Content Data feedback" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "successful request" do

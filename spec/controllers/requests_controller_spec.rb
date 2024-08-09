@@ -33,7 +33,6 @@ describe RequestsController, type: :controller do
     stub_const("TestRequest", test_request_class)
     stub_const("TestZendeskTicket", test_zendesk_ticket_class)
     login_as user
-    zendesk_has_no_user_with_email(user.email)
 
     prevent_implicit_rendering
   end

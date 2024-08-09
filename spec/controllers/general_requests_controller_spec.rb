@@ -13,7 +13,6 @@ describe GeneralRequestsController, type: :controller do
 
   before do
     login_as create(:user)
-    zendesk_has_no_user_with_email(@user.email)
   end
 
   context "a submitted general request" do

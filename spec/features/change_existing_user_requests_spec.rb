@@ -9,7 +9,6 @@ feature "Change existing user requests" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "changing user permissions" do
