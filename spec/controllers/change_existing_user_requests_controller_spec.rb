@@ -21,7 +21,6 @@ describe ChangeExistingUserRequestsController, type: :controller do
 
   before do
     login_as create(:user_manager)
-    zendesk_has_no_user_with_email(@user.email)
   end
 
   it "submits the request to Zendesk" do

@@ -34,16 +34,9 @@ protected
 
   def save_to_zendesk(submitted_request)
     super
-    requested_user = Support::GDS::RequestedUser.new(
+    Support::GDS::RequestedUser.new(
       create_or_change_user_request_params.slice(:name, :email, :organisation),
     )
-    create_or_update_user_in_zendesk(requested_user)
-  end
-
-  def create_or_update_user_in_zendesk(requested_user)
-    GDS_ZENDESK_CLIENT.users.create_or_update_user(requested_user)
-  rescue ZendeskAPI::Error::ClientError => e
-    exception_notification_for(e)
   end
 
   def organisation_options

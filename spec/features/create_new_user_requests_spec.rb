@@ -22,8 +22,6 @@ feature "Create new user requests" do
       },
     ])
 
-    zendesk_has_no_user_with_email("bob@gov.uk")
-
     ticket_request = expect_zendesk_to_receive_ticket(
       "subject" => "Create a new user account",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
@@ -50,13 +48,6 @@ Yes, the user needs access to the applications and permissions listed below
 [Additional comments]
 XXXX",
     )
-
-    user_creation_request = stub_zendesk_user_creation(
-      email: "bob@gov.uk",
-      name: "Bob Fields",
-      verified: true,
-    )
-
     visit "/"
 
     click_on "Create a new user"
@@ -73,6 +64,5 @@ XXXX",
     user_submits_the_request_successfully
 
     expect(ticket_request).to have_been_made
-    expect(user_creation_request).to have_been_made
   end
 end
