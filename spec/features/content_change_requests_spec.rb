@@ -10,7 +10,6 @@ feature "Content change requests" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "successful mainstream content change request " do
@@ -18,8 +17,7 @@ feature "Content change requests" do
       "subject" => "Update X",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form content_amend],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Reason for request]
 Factual inaccuracy
 
@@ -46,7 +44,6 @@ Out of date XX YY
 
 [Reason for time constraint]
 New law",
-      },
       "custom_fields" =>
            [{ "id" => 7_948_652_819_356, "value" => "cr_inaccuracy" },
             { "id" => 7_949_106_580_380, "value" => "cr_benefits" },

@@ -2,7 +2,7 @@ require "gds_zendesk/test_helpers"
 
 module ZendeskRequestMockingExtensions
   def expect_zendesk_to_receive_ticket(opts)
-    stub_zendesk_ticket_creation_with_body("ticket" => hash_including(opts))
+    stub_support_api_valid_raise_support_ticket(hash_including(opts))
   end
 
   def stub_custom_fields_data(opts = [])

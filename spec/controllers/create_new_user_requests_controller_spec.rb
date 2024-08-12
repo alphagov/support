@@ -32,7 +32,7 @@ describe CreateNewUserRequestsController, type: :controller do
 
   it "submits the request to Zendesk and creates a Zendesk user with the requested user details" do
     zendesk_has_no_user_with_email(valid_requested_user_params["email"])
-    stub_ticket_creation = stub_zendesk_ticket_creation(
+    stub_ticket_creation = stub_support_api_valid_raise_support_ticket(
       hash_including("tags" => %w[govt_form create_new_user]),
     )
     stub_user_creation = stub_zendesk_user_creation(

@@ -33,7 +33,6 @@ describe RequestsController, type: :controller do
     stub_const("TestRequest", test_request_class)
     stub_const("TestZendeskTicket", test_zendesk_ticket_class)
     login_as user
-    zendesk_has_no_user_with_email(user.email)
 
     prevent_implicit_rendering
   end
@@ -84,7 +83,7 @@ describe RequestsController, type: :controller do
     end
 
     it "submits it to Zendesk" do
-      ticket_request = stub_zendesk_ticket_creation(hash_including("tags" => %w[tag_a tag_b]))
+      ticket_request = stub_support_api_valid_raise_support_ticket(hash_including("tags" => %w[tag_a tag_b]))
 
       post :create, params: valid_params_for_test_request
 
@@ -94,7 +93,7 @@ describe RequestsController, type: :controller do
 
     it "reads the signed-in user's details as the requester" do
       requester_details = { "email" => @user[:email], "name" => @user[:name] }
-      ticket_request = stub_zendesk_ticket_creation(
+      ticket_request = stub_support_api_valid_raise_support_ticket(
         hash_including("requester" => hash_including(requester_details)),
       )
 
@@ -107,7 +106,7 @@ describe RequestsController, type: :controller do
       params = valid_params_for_test_request.tap do |p|
         p["test_request"]["requester_attributes"].merge!("collaborator_emails" => "ab@c.com, def@g.com")
       end
-      ticket_request = stub_zendesk_ticket_creation(hash_including("collaborators" => ["ab@c.com", "def@g.com"]))
+      ticket_request = stub_support_api_valid_raise_support_ticket(hash_including("collaborators" => ["ab@c.com", "def@g.com"]))
 
       post(:create, params:)
 

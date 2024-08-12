@@ -10,15 +10,13 @@ feature "Request for content advice" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "successful request" do
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Needed by 12 Jan: Which format - Advice on content",
       "tags" => %w[govt_form dept_content_advice],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Needed by date]
 12-01-#{next_year}
 
@@ -33,7 +31,6 @@ https://www.gov.uk/x, https://www.gov.uk/y
 
 [Contact number]
 0121 111111",
-      },
     )
 
     user_requests_content_advice(
@@ -52,8 +49,7 @@ https://www.gov.uk/x, https://www.gov.uk/y
     request = expect_zendesk_to_receive_ticket(
       "subject" => "Tricky query - Advice on content",
       "tags" => %w[govt_form dept_content_advice],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Details]
 I have a tricky query, here's my content...
 
@@ -62,7 +58,6 @@ https://www.gov.uk/x, https://www.gov.uk/y
 
 [Contact number]
 0121 111111",
-      },
     )
 
     user_requests_content_advice(

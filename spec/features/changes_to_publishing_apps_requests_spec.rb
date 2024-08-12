@@ -9,7 +9,6 @@ feature "New feature requests" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "successful request" do
@@ -17,14 +16,12 @@ feature "New feature requests" do
       "subject" => "Abc",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form new_feature_request],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[User need]
 Information on XYZ
 
 [Feature evidence]
 See here: google.com",
-      },
     )
 
     user_makes_a_new_feature_request(

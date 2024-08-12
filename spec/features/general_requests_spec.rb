@@ -9,7 +9,6 @@ feature "General requests" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "successful request" do
@@ -17,14 +16,12 @@ feature "General requests" do
       "subject" => "Downtime - Govt Agency General Issue",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form govt_agency_general],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Url]
 https://www.gov.uk
 
 [Details]
 The site is down",
-      },
     )
 
     user_makes_a_general_request(

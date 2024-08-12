@@ -26,7 +26,7 @@ describe Zendesk::ZendeskTickets do
         "requester" => { "locale_id" => 1, "email" => "ab@c.com", "name" => "Harry Potter" },
         "collaborators" => [],
         "tags" => %w[govt_form campaign],
-        "comment" => { "body" => "Biscuits for everyone" },
+        "description" => "Biscuits for everyone",
       )
     end
 

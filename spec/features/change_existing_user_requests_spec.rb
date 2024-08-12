@@ -9,7 +9,6 @@ feature "Change existing user requests" do
 
   background do
     login_as user
-    zendesk_has_no_user_with_email(user.email)
   end
 
   scenario "changing user permissions" do
@@ -19,8 +18,7 @@ feature "Change existing user requests" do
       "subject" => "Change an existing user's account",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form change_user],
-      "comment" => {
-        "body" =>
+      "description" =>
 "[Action]
 Change an existing user's account
 
@@ -32,7 +30,6 @@ bob@gov.uk
 
 [Additional comments]
 XXXX",
-      },
     )
 
     visit "/"
