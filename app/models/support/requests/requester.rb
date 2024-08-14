@@ -8,6 +8,7 @@ module Support
       attr_reader :email
 
       VALID_EMAIL_REGEX = /\A[\w+\-.']+@[a-z\d\-.]+\.[a-z]+\z/i
+      ZENDESK_ANONYMOUS_TICKETS_REQUESTER_EMAIL = ENV["ZENDESK_ANONYMOUS_TICKETS_REQUESTER_EMAIL"] || "api-user@example.com"
 
       validates :email, presence: true
 
