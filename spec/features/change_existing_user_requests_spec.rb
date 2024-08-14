@@ -12,8 +12,6 @@ feature "Change existing user requests" do
   end
 
   scenario "changing user permissions" do
-    zendesk_has_user(email: "bob@gov.uk", name: "Bob Fields")
-
     ticket_request = expect_zendesk_to_receive_ticket(
       "subject" => "Change an existing user's account",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
