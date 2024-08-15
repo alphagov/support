@@ -1,6 +1,3 @@
-require "gds_zendesk/users"
-require "zendesk_api/error"
-
 class ChangeExistingUserRequestsController < RequestsController
 protected
 

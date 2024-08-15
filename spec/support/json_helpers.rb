@@ -1,5 +1,3 @@
-require "gds_zendesk/test_helpers"
-
 # rubocop:disable Rails/HttpPositionalArguments
 module JsonHelpers
   def json_response

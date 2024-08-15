@@ -1,5 +1,3 @@
-require "gds_zendesk/test_helpers"
-
 module SupportApiMockingExtensions
   def expect_support_api_to_receive_raise_ticket(opts)
     stub_support_api_valid_raise_support_ticket(hash_including(opts))
@@ -21,10 +19,5 @@ module SupportApiMockingExtensions
 end
 
 RSpec.configure do |c|
-  c.include GDSZendesk::TestHelpers
   c.include SupportApiMockingExtensions
-
-  c.before(:context) do
-    self.valid_zendesk_credentials = ZENDESK_CREDENTIALS
-  end
 end
