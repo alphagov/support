@@ -12,7 +12,7 @@ feature "Technical fault reports" do
   end
 
   scenario "successful report" do
-    request = expect_zendesk_to_receive_ticket(
+    request = expect_support_api_to_receive_raise_ticket(
       "subject" => "Technical fault with GOV.UK: content",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form technical_fault fault_with_gov_uk_content],

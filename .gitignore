@@ -23,8 +23,6 @@ public/assets
 # Ignore Byebug command history file.
 .byebug_history
 
-config/zendesk.yml
-
 # Ignore RSpec state file
 /spec/examples.txt
 

@@ -13,7 +13,7 @@ feature "Request for content advice" do
   end
 
   scenario "successful request" do
-    request = expect_zendesk_to_receive_ticket(
+    request = expect_support_api_to_receive_raise_ticket(
       "subject" => "Needed by 12 Jan: Which format - Advice on content",
       "tags" => %w[govt_form dept_content_advice],
       "description" =>
@@ -46,7 +46,7 @@ https://www.gov.uk/x, https://www.gov.uk/y
   end
 
   scenario "successful request with other reaason" do
-    request = expect_zendesk_to_receive_ticket(
+    request = expect_support_api_to_receive_raise_ticket(
       "subject" => "Tricky query - Advice on content",
       "tags" => %w[govt_form dept_content_advice],
       "description" =>

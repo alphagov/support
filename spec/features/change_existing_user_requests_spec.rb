@@ -12,7 +12,7 @@ feature "Change existing user requests" do
   end
 
   scenario "changing user permissions" do
-    ticket_request = expect_zendesk_to_receive_ticket(
+    ticket_request = expect_support_api_to_receive_raise_ticket(
       "subject" => "Change an existing user's account",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form change_user],

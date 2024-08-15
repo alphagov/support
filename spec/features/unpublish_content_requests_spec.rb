@@ -12,7 +12,7 @@ feature "Unpublish content requests" do
   end
 
   scenario "request to unpublish in case of publishing error" do
-    request = expect_zendesk_to_receive_ticket(
+    request = expect_support_api_to_receive_raise_ticket(
       "subject" => "Published in error - Unpublish content request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form unpublish_content published_in_error],
@@ -37,7 +37,7 @@ Typo in slug name",
   end
 
   scenario "request to unpublish when page is a dupe" do
-    request = expect_zendesk_to_receive_ticket(
+    request = expect_support_api_to_receive_raise_ticket(
       "subject" => "Duplicate of another page - Unpublish content request",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form unpublish_content duplicate_publication],
