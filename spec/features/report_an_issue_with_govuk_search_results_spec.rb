@@ -8,7 +8,7 @@ feature "Report an issue with GOV.UK search results" do
   end
 
   scenario "successful request" do
-    request = expect_zendesk_to_receive_ticket(
+    request = expect_support_api_to_receive_raise_ticket(
       "subject" => "Report an issue with GOV.UK search results",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@email.co.uk"),
       "tags" => %w[govt_form site_search],

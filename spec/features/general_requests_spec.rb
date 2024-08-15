@@ -12,7 +12,7 @@ feature "General requests" do
   end
 
   scenario "successful request" do
-    request = expect_zendesk_to_receive_ticket(
+    request = expect_support_api_to_receive_raise_ticket(
       "subject" => "Downtime - Govt Agency General Issue",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
       "tags" => %w[govt_form govt_agency_general],
