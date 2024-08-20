@@ -78,8 +78,22 @@
           Start date of campaign site<abbr title="required">*</abbr>
         <% end %>
       </span>
-      <span class="form-wrapper">
-        <%= r.text_field :start_date, required: true, aria: { required: true }, placeholder: "dd-mm-yyyy", value: r.object.start_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+
+      <br>
+
+      <span class="govuk-date-input__item">
+       <%= r.label :start_day, "Day", class: "govuk-label govuk-date-input__label" %>
+       <%= r.text_field :start_day, required: false, value: r.object.start_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "start-day" %>
+      </span>
+
+      <span class="govuk-date-input__item">
+       <%= r.label :start_month, "Month", class: "govuk-label govuk-date-input__label" %>
+       <%= r.text_field :start_month, required: false, value: r.object.start_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "start-month" %>
+      </span>
+
+      <span class="govuk-date-input__item">
+       <%= r.label :start_year, "Year", class: "govuk-label govuk-date-input__label" %>
+       <%= r.text_field :start_year, required: false, value: r.object.start_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "start-year" %>
       </span>
       <p class="help-block">
         Once your site is live, you should allow time for testing before driving traffic to it. We advise leaving 1-2 days for no-cost campaigns, and at least a week for paid advertising campaigns.
@@ -92,9 +106,24 @@
           Proposed end date of campaign site<abbr title="required">*</abbr>
         <% end %>
       </span>
-      <span class="form-wrapper">
-        <%= r.text_field :end_date, required: true, aria: { required: true }, placeholder: "dd-mm-yyyy", value: r.object.end_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+
+      <br>
+
+      <span class="govuk-date-input__item">
+       <%= r.label :end_day, "Day", class: "govuk-label govuk-date-input__label" %>
+       <%= r.text_field :end_day, required: false, value: r.object.end_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "end-day" %>
       </span>
+
+      <span class="govuk-date-input__item">
+       <%= r.label :end_month, "Month", class: "govuk-label govuk-date-input__label" %>
+       <%= r.text_field :end_month, required: false, value: r.object.end_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "end-month" %>
+      </span>
+
+      <span class="govuk-date-input__item">
+       <%= r.label :end_year, "Year", class: "govuk-label govuk-date-input__label" %>
+       <%= r.text_field :end_year, required: false, value: r.object.end_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "end-year" %>
+      </span>
+
     </div>
 
     <div class="form-group">
@@ -103,9 +132,24 @@
           Site build to commence on<abbr title="required">*</abbr>
         <% end %>
       </span>
-      <span class="form-wrapper">
-        <%= r.text_field :development_start_date, required: true, aria: { required: true }, placeholder: "dd-mm-yyyy", value: r.object.development_start_date, class: "input-md-2 form-control", data: { module: "calendar", format: "dd-mm-yy", min_date: 0 } %>
+
+      <br>
+
+      <span class="govuk-date-input__item">
+       <%= r.label :development_start_day, "Day", class: "govuk-label govuk-date-input__label" %>
+       <%= r.text_field :development_start_day, required: false, value: r.object.development_start_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "development-start-day" %>
       </span>
+
+      <span class="govuk-date-input__item">
+       <%= r.label :development_start_month, "Month", class: "govuk-label govuk-date-input__label" %>
+       <%= r.text_field :development_start_month, required: false, value: r.object.development_start_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "development-start-month" %>
+      </span>
+
+      <span class="govuk-date-input__item">
+       <%= r.label :development_start_year, "Year", class: "govuk-label govuk-date-input__label" %>
+       <%= r.text_field :development_start_year, required: false, value: r.object.development_start_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "development-start-year" %>
+      </span>
+
     </div>
     <p class="help-block">
       We expect the website to go live within 1 month of approval
