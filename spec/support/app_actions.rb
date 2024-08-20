@@ -83,9 +83,13 @@ module AppActions
   end
 
   def user_fills_out_time_constraints(details)
-    fill_in "Deadline", with: details[:needed_by_date]
+    find("#needed-by-day").set(details[:needed_by_day])
+    find("#needed-by-month").set(details[:needed_by_month])
+    find("#needed-by-year").set(details[:needed_by_year])
     fill_in "Time this must be published by", with: details[:needed_by_time]
-    fill_in "Must not be published before", with: details[:not_before_date]
+    find("#not-before-day").set(details[:not_before_day])
+    find("#not-before-month").set(details[:not_before_month])
+    find("#not-before-year").set(details[:not_before_year])
     fill_in "Time this must not be published before", with: details[:not_before_time]
     fill_in "Reason for deadline", with: details[:reason]
   end

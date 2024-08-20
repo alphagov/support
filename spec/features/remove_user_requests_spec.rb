@@ -35,7 +35,9 @@ User has left the organisation",
       user_name: "Bob",
       user_email: "bob@someagency.gov.uk",
       reason_for_removal: "User has left the organisation",
-      not_before_date: "31-12-#{next_year}",
+      not_before_day: "31",
+      not_before_month: "12",
+      not_before_year: next_year.to_s,
     )
 
     expect(request).to have_been_made
@@ -56,7 +58,9 @@ private
       fill_in "Reason for removal", with: details[:reason_for_removal]
     end
 
-    fill_in "MUST NOT be removed BEFORE", with: details[:not_before_date]
+    find("#not-before-day").set(details[:not_before_day])
+    find("#not-before-month").set(details[:not_before_month])
+    find("#not-before-year").set(details[:not_before_year])
 
     user_submits_the_request_successfully
   end

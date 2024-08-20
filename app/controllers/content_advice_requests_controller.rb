@@ -20,7 +20,7 @@ protected
       :urls,
       :contact_number,
       requester_attributes: %i[email name collaborator_emails],
-      time_constraint_attributes: %i[needed_by_date time_constraint_reason],
+      time_constraint_attributes: %i[needed_by_date needed_by_day needed_by_month needed_by_year time_constraint_reason],
     ).to_h
   end
 end
