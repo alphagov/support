@@ -69,7 +69,7 @@ module Support
       end
 
       def self.description
-        "Report something that is not working with any publishing application, eg Whitehall, finders or specialist publisher. Also use for any urgent technical changes"
+        "Report something that is not working with any publishing application, e.g. Whitehall, finders or specialist publisher. Also use for any urgent technical changes."
       end
     end
   end

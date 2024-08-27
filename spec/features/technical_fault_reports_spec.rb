@@ -56,7 +56,7 @@ private
 
     click_on "Report a technical fault to GDS"
 
-    expect(page).to have_content("Report something that is not working with any publishing application, eg Whitehall, finders or specialist publisher. Also use for any urgent technical changes")
+    expect(page).to have_content("Report something that is not working with any publishing application, e.g. Whitehall, finders or specialist publisher. Also use for any urgent technical changes.")
 
     within "#technical-fault-context" do
       choose details[:location_of_fault]
