@@ -1,5 +1,19 @@
 <p><%= f.object.class.description %></p>
 
+<div class="alert alert-info alert-block">
+  <p>
+    You do not need to submit a request if you're a super organisation admin or organisation admin and you're requesting to:
+    <ul>
+    <li>change an account's permissions for a 'devolved' application, including upgrading an account to 'editor' in Whitehall Publisher</li>
+    <li>reset 2-step verification for an account</li>
+    <li>unsuspend an account</li>
+    <li>resend a signup ('account invitation') email for an account</li>
+    </ul>
+    <br>
+    Find out <%= link_to 'how to manage your organisation’s accounts in the "Introduction and access to Whitehall publisher" guidance', 'https://www.gov.uk/guidance/how-to-publish-on-gov-uk/introduction-and-access-to-whitehall-publisher#manage-your-organisations-accounts' %>.
+  </p>
+</div>
+
 <div class="row">
   <div class="col-md-6">
     <div class="form-group">
