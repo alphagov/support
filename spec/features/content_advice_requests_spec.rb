@@ -37,7 +37,9 @@ https://www.gov.uk/x, https://www.gov.uk/y
       title: "Which format",
       details: "I need help to choose a format, here's my content...",
       urls: "https://www.gov.uk/x, https://www.gov.uk/y",
-      needed_by: "12-01-#{next_year}",
+      needed_by_day: "12",
+      needed_by_month: "01",
+      needed_by_year: next_year.to_s,
       reason_for_deadline: "Ministerial announcement Z",
       contact_number: "0121 111111",
     )
@@ -81,8 +83,9 @@ private
     fill_in "Title of request", with: details[:title]
     fill_in "Please explain what you would like help with", with: details[:details]
     fill_in "Relevant URLs (if applicable)", with: details[:urls]
-
-    fill_in "Is there a date you need to have a response by?", with: details[:needed_by]
+    find("#needed-by-day").set(details[:needed_by_day])
+    find("#needed-by-month").set(details[:needed_by_month])
+    find("#needed-by-year").set(details[:needed_by_year])
     fill_in "Reason for deadline", with: details[:reason_for_deadline]
     fill_in "Contact telephone number (in case we need to call you to discuss the content)",
             with: details[:contact_number]

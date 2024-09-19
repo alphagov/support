@@ -92,9 +92,15 @@ Yes",
       accessibility_confirmation: true,
       cookie_and_privacy_notice_confirmation: true,
       signed_campaign: "John Smith",
-      start_date: "01-01-#{next_year}",
-      end_date: "01-02-#{next_year}",
-      development_start_date: "31-12-2019",
+      start_day: "01",
+      start_month: "01",
+      start_year: next_year.to_s,
+      end_day: "01",
+      end_month: "02",
+      end_year: next_year.to_s,
+      development_start_day: "31",
+      development_start_month: "12",
+      development_start_year: "2019",
       performance_review_contact_email: "john.smith@example.com",
       government_theme: "Example government theme",
       description: "Pensions",
@@ -129,9 +135,15 @@ private
     check "I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer (NB : GDS will add a basic \"boilerplate\", however departments will need to identify if additions are needed)." if details[:cookie_and_privacy_notice_confirmation]
 
     fill_in "Name of the Head of Digital Communications who signed off the campaign website application*", with: details[:signed_campaign]
-    fill_in "Start date of campaign site*", with: details[:start_date]
-    fill_in "Proposed end date of campaign site*", with: details[:end_date]
-    fill_in "Site build to commence on", with: details[:development_start_date]
+    find("#start-day").set(details[:start_day])
+    find("#start-month").set(details[:start_month])
+    find("#start-year").set(details[:start_year])
+    find("#end-day").set(details[:end_day])
+    find("#end-month").set(details[:end_month])
+    find("#end-year").set(details[:end_year])
+    find("#development-start-day").set(details[:development_start_day])
+    find("#development-start-month").set(details[:development_start_month])
+    find("#development-start-year").set(details[:development_start_year])
     fill_in "Contact email/s for website performance review every 6 months*", with: details[:performance_review_contact_email]
     fill_in "Which of the current Government Communications Plan priority themes does this campaign website support and how?*", with: details[:government_theme]
     fill_in "Campaign description*", with: details[:description]
