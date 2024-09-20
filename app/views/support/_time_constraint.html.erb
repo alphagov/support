@@ -5,25 +5,35 @@
     </legend>
 
     <div class="form-group">
-      <span class="form-label">
-        <%= r.label :needed_by_date, "Deadline" %>
-      </span>
-      <br>
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="needed-by-date-hint">
+        <span class="form-label">
+          <%= r.label :needed_by_date, "Deadline" %>
+        </span>
 
-      <span class="govuk-date-input__item">
-       <%= r.label :needed_by_day, "Day", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :needed_by_day, required: false, value: r.object.needed_by_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-day" %>
-      </span>
+        <div id="needed-by-date-hint" class="govuk-hint">
+          For example, 27 3 2007
+        </div>
 
-      <span class="govuk-date-input__item">
-       <%= r.label :needed_by_month, "Month", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :needed_by_month, required: false, value: r.object.needed_by_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-month" %>
-      </span>
-
-      <span class="govuk-date-input__item">
-       <%= r.label :needed_by_year, "Year", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :needed_by_year, required: false, value: r.object.needed_by_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "needed-by-year" %>
-      </span> 
+        <div class="govuk-date-input" id="needed-by-date">
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <%= r.label :needed_by_day, "Day", class: "govuk-label govuk-date-input__label" %>
+              <%= r.text_field :needed_by_day, required: false, value: r.object.needed_by_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-day", inputmode: "numeric" %>
+            </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <%= r.label :needed_by_month, "Month", class: "govuk-label govuk-date-input__label" %>
+            <%= r.text_field :needed_by_month, required: false, value: r.object.needed_by_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-month", inputmode: "numeric" %>
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <%= r.label :needed_by_year, "Year", class: "govuk-label govuk-date-input__label" %>
+            <%= r.text_field :needed_by_year, required: false, value: r.object.needed_by_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "needed-by-year", inputmode: "numeric" %>
+          </div>
+        </div>
+      </fieldset>
     </div>
 
     <div class="form-group">
@@ -36,25 +46,35 @@
     </div>
 
     <div class="form-group">
-      <span class="form-label">
-        <%= r.label :not_before_date, "Must not be published before" %>
-      </span>
-      <br>
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="not-before-date-hint">
+        <span class="form-label">
+          <%= r.label :not_before_date, "Must not be published before" %>
+        </span>
 
-      <span class="govuk-date-input__item">
-        <%= r.label :not_before_day, "Day", class: "govuk-label govuk-date-input__label" %>
-        <%= r.text_field :not_before_day, required: false, value: r.object.not_before_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-day" %>
-      </span>
+        <div id="not-before-date-hint" class="govuk-hint">
+          For example, 27 3 2007
+        </div>
 
-      <span class="govuk-date-input__item">
-       <%= r.label :not_before_month, "Month", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :not_before_month, required: false, value: r.object.not_before_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-month" %>
-      </span>
-
-      <span class="govuk-date-input__item">
-       <%= r.label :not_before_year, "Year", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :not_before_year, required: false, value: r.object.not_before_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "not-before-year" %>
-      </span>
+        <div class="govuk-date-input" id="not-before-date">
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <%= r.label :not_before_day, "Day", class: "govuk-label govuk-date-input__label" %>
+              <%= r.text_field :not_before_day, required: false, value: r.object.not_before_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-day", inputmode: "numeric" %>
+            </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <%= r.label :not_before_month, "Month", class: "govuk-label govuk-date-input__label" %>
+            <%= r.text_field :not_before_month, required: false, value: r.object.not_before_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-month", inputmode: "numeric" %>
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <%= r.label :not_before_year, "Year", class: "govuk-label govuk-date-input__label" %>
+            <%= r.text_field :not_before_year, required: false, value: r.object.not_before_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "not-before-year", inputmode: "numeric" %>
+          </div>
+        </div>
+      </fieldset>
     </div>
 
     <div class="form-group">
