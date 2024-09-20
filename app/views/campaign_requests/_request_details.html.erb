@@ -73,96 +73,115 @@
     </div>
 
     <div class="form-group">
-      <span class="form-label">
-        <%= r.label :start_date do %>
-          Start date of campaign site<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-
-      <br>
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="start-date-hint">
+        <span class="form-label">
+          <%= r.label :start_date do %>
+            Start date of campaign site<abbr title="required">*</abbr>
+          <% end %>
+        </span>
+        
         <div id="start-date-hint" class="govuk-hint">
           For example, 27 3 2007
         </div>
 
-      <span class="govuk-date-input__item">
-       <%= r.label :start_day, "Day", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :start_day, required: false, value: r.object.start_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "start-day" %>
-      </span>
-
-      <span class="govuk-date-input__item">
-       <%= r.label :start_month, "Month", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :start_month, required: false, value: r.object.start_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "start-month" %>
-      </span>
-
-      <span class="govuk-date-input__item">
-       <%= r.label :start_year, "Year", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :start_year, required: false, value: r.object.start_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "start-year" %>
-      </span>
-      <p class="help-block">
-        Once your site is live, you should allow time for testing before driving traffic to it. We advise leaving 1-2 days for no-cost campaigns, and at least a week for paid advertising campaigns.
-      </p>
+        <div class="govuk-date-input" id="start-date">
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <%= r.label :start_day, "Day", class: "govuk-label govuk-date-input__label" %>
+              <%= r.text_field :start_day, required: false, value: r.object.start_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "start-day" %>
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+                <%= r.label :start_month, "Month", class: "govuk-label govuk-date-input__label" %>
+                <%= r.text_field :start_month, required: false, value: r.object.start_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "start-month" %>
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <%= r.label :start_year, "Year", class: "govuk-label govuk-date-input__label" %>
+              <%= r.text_field :start_year, required: false, value: r.object.start_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "start-year" %>
+            </div>
+          </div>
+        </div>
+        <p class="help-block">
+          Once your site is live, you should allow time for testing before driving traffic to it. We advise leaving 1-2 days for no-cost campaigns, and at least a week for paid advertising campaigns.
+        </p>
+      </fieldset>
     </div>
 
     <div class="form-group">
-      <span class="form-label">
-        <%= r.label :end_date do %>
-          Proposed end date of campaign site<abbr title="required">*</abbr>
-        <% end %>
-      </span>
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="end-date-hint">
+        <span class="form-label">
+          <%= r.label :end_date do %>
+            Proposed end date of campaign site<abbr title="required">*</abbr>
+          <% end %>
+        </span>
 
-      <br>
         <div id="start-date-hint" class="govuk-hint">
           For example, 27 3 2007
         </div>
 
-      <span class="govuk-date-input__item">
-       <%= r.label :end_day, "Day", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :end_day, required: false, value: r.object.end_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "end-day" %>
-      </span>
-
-      <span class="govuk-date-input__item">
-       <%= r.label :end_month, "Month", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :end_month, required: false, value: r.object.end_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "end-month" %>
-      </span>
-
-      <span class="govuk-date-input__item">
-       <%= r.label :end_year, "Year", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :end_year, required: false, value: r.object.end_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "end-year" %>
-      </span>
-
+        <div class="govuk-date-input" id="end-date">
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+                <%= r.label :end_day, "Day", class: "govuk-label govuk-date-input__label" %>
+                <%= r.text_field :end_day, required: false, value: r.object.end_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "end-day" %>
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <%= r.label :end_month, "Month", class: "govuk-label govuk-date-input__label" %>
+              <%= r.text_field :end_month, required: false, value: r.object.end_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "end-month" %>
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <%= r.label :end_year, "Year", class: "govuk-label govuk-date-input__label" %>
+              <%= r.text_field :end_year, required: false, value: r.object.end_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "end-year" %>
+            </div>
+          </div>
+        </div>
+      </fieldset>
     </div>
 
     <div class="form-group">
-      <span class="form-label">
-        <%= r.label :development_start_date do %>
-          Site build to commence on<abbr title="required">*</abbr>
-        <% end %>
-      </span>
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="development-start-date-hint">
+        <span class="form-label">
+          <%= r.label :development_start_date do %>
+            Site build to commence on<abbr title="required">*</abbr>
+          <% end %>
+        </span>
 
-      <br>
-        <div id="start-date-hint" class="govuk-hint">
+        <div id="development-start-date-hint" class="govuk-hint">
           For example, 27 3 2007
         </div>
-
-      <span class="govuk-date-input__item">
-       <%= r.label :development_start_day, "Day", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :development_start_day, required: false, value: r.object.development_start_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "development-start-day" %>
-      </span>
-
-      <span class="govuk-date-input__item">
-       <%= r.label :development_start_month, "Month", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :development_start_month, required: false, value: r.object.development_start_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "development-start-month" %>
-      </span>
-
-      <span class="govuk-date-input__item">
-       <%= r.label :development_start_year, "Year", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :development_start_year, required: false, value: r.object.development_start_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "development-start-year" %>
-      </span>
-
+        
+        <div class="govuk-date-input" id="development-start-date">
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <%= r.label :development_start_day, "Day", class: "govuk-label govuk-date-input__label" %>
+              <%= r.text_field :development_start_day, required: false, value: r.object.development_start_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "development-start-day" %>
+            </div>
+          </div>
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <%= r.label :development_start_month, "Month", class: "govuk-label govuk-date-input__label" %>
+              <%= r.text_field :development_start_month, required: false, value: r.object.development_start_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "development-start-month" %>
+            </div>
+           </div>
+           <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <%= r.label :development_start_year, "Year", class: "govuk-label govuk-date-input__label" %>
+              <%= r.text_field :development_start_year, required: false, value: r.object.development_start_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "development-start-year" %>
+            </div>
+          </div>
+        </div>
+        <p class="help-block">
+          We expect the website to go live within 1 month of approval
+        </p>
+      </fieldset>
     </div>
-    <p class="help-block">
-      We expect the website to go live within 1 month of approval
-    </p>
 
     <div class="form-group">
       <span class="form-label">

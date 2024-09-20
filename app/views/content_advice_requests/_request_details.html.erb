@@ -51,33 +51,42 @@
 </fieldset>
 
 <%= f.fields_for :time_constraint do |r| %>
-  <fieldset>
-    <legend>
-      <span>Time constraints</span>
-    </legend>
-
+  <fieldset class="govuk-fieldset" role="group">
     <div class="form-group">
-      <h4>
-        <%= "Is there a date you need to have a response by?" %>
-      </h4>
+      <fieldset class="govuk-fieldset" role="group" aria-describedby="needed-by-date-hint">
+        <legend>
+          <span>Time constraints</span>
+        </legend>
+        <span class="form-label">
+          <%= r.label :needed_by_date do %>
+            Is there a date you need to have a response by?
+          <% end %>
+        </span>
+
         <div id="start-date-hint" class="govuk-hint">
           For example, 27 3 2007
         </div>
 
-      <span class="govuk-date-input__item">
-        <%= r.label :needed_by_day, "Day", class: "govuk-label govuk-date-input__label" %>
-        <%= r.text_field :needed_by_day, required: false, value: r.object.needed_by_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-day" %>
-      </span>
-
-      <span class="govuk-date-input__item">
-       <%= r.label :needed_by_month, "Month", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :needed_by_month, required: false, value: r.object.needed_by_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-month" %>
-      </span>
-
-      <span class="govuk-date-input__item">
-       <%= r.label :needed_by_year, "Year", class: "govuk-label govuk-date-input__label" %>
-       <%= r.text_field :needed_by_year, required: false, value: r.object.needed_by_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "needed-by-year" %>
-      </span>
+        <div class="govuk-date-input" id="needed-by-date">
+          <div class="govuk-date-input__item">
+            <div class="govuk-form-group">
+              <%= r.label :needed_by_day, "Day", class: "govuk-label govuk-date-input__label" %>
+              <%= r.text_field :needed_by_day, required: false, value: r.object.needed_by_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-day" %>
+            </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <%= r.label :needed_by_month, "Month", class: "govuk-label govuk-date-input__label" %>
+            <%= r.text_field :needed_by_month, required: false, value: r.object.needed_by_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-month" %>
+          </div>
+        </div>
+        <div class="govuk-date-input__item">
+          <div class="govuk-form-group">
+            <%= r.label :needed_by_year, "Year", class: "govuk-label govuk-date-input__label" %>
+            <%= r.text_field :needed_by_year, required: false, value: r.object.needed_by_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "needed-by-year" %>
+          </div>
+        </div>
+      </fieldset>
     </div>
 
     <div class="form-group">
