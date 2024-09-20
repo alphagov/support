@@ -11,6 +11,10 @@
       <br>
 
       <span class="govuk-date-input__item">
+        <div id="needed-by-date-hint" class="govuk-hint">
+          For example, 27 3 2007
+        </div>
+
        <%= r.label :needed_by_day, "Day", class: "govuk-label govuk-date-input__label" %>
        <%= r.text_field :needed_by_day, required: false, value: r.object.needed_by_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-day" %>
       </span>
@@ -42,6 +46,10 @@
       <br>
 
       <span class="govuk-date-input__item">
+        <div id="not-before-date-hint" class="govuk-hint">
+          For example, 27 3 2007
+        </div>
+
         <%= r.label :not_before_day, "Day", class: "govuk-label govuk-date-input__label" %>
         <%= r.text_field :not_before_day, required: false, value: r.object.not_before_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-day" %>
       </span>
