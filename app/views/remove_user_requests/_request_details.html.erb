@@ -47,19 +47,19 @@
             <div class="govuk-date-input__item">
               <div class="govuk-form-group">
                 <%= r.label :not_before_day, "Day", class: "govuk-label govuk-date-input__label" %>
-                <%= r.text_field :not_before_day, required: false, value: r.object.not_before_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-day" %>
+                <%= r.text_field :not_before_day, required: false, value: r.object.not_before_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-day", inputmode: "numeric" %>
               </div>
           </div>
           <div class="govuk-date-input__item">
             <div class="govuk-form-group">
               <%= r.label :not_before_month, "Month", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :not_before_month, required: false, value: r.object.not_before_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-month" %>
+              <%= r.text_field :not_before_month, required: false, value: r.object.not_before_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-month", inputmode: "numeric" %>
             </div>
           </div>
           <div class="govuk-date-input__item">
             <div class="govuk-form-group">
               <%= r.label :not_before_year, "Year", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :not_before_year, required: false, value: r.object.not_before_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "not-before-year" %>
+              <%= r.text_field :not_before_year, required: false, value: r.object.not_before_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "not-before-year", inputmode: "numeric" %>
             </div>
           </div>
         </fieldset>

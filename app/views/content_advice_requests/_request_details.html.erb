@@ -71,19 +71,19 @@
           <div class="govuk-date-input__item">
             <div class="govuk-form-group">
               <%= r.label :needed_by_day, "Day", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :needed_by_day, required: false, value: r.object.needed_by_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-day" %>
+              <%= r.text_field :needed_by_day, required: false, value: r.object.needed_by_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-day", inputmode: "numeric" %>
             </div>
         </div>
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <%= r.label :needed_by_month, "Month", class: "govuk-label govuk-date-input__label" %>
-            <%= r.text_field :needed_by_month, required: false, value: r.object.needed_by_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-month" %>
+            <%= r.text_field :needed_by_month, required: false, value: r.object.needed_by_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-month", inputmode: "numeric" %>
           </div>
         </div>
         <div class="govuk-date-input__item">
           <div class="govuk-form-group">
             <%= r.label :needed_by_year, "Year", class: "govuk-label govuk-date-input__label" %>
-            <%= r.text_field :needed_by_year, required: false, value: r.object.needed_by_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "needed-by-year" %>
+            <%= r.text_field :needed_by_year, required: false, value: r.object.needed_by_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "needed-by-year", inputmode: "numeric" %>
           </div>
         </div>
       </fieldset>
