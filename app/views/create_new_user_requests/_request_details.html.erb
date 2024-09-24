@@ -19,6 +19,9 @@
           User's email<abbr title="required">*</abbr>
         <% end %>
       </span>
+      <p class="help-block hint-block--md-6" id="user-email-hint">
+        The new user will be copied into this request.
+      </p>
       <span class="form-wrapper">
         <%= f.email_field :email, required: true, aria: { required: true }, class: "form-control" %>
       </span>
@@ -41,6 +44,13 @@
           Does the user need access to Whitehall Publisher?<abbr title="required">*</abbr>
         <% end %>
       </span>
+      <p class="help-block hint-block--md-6" id="publisher-training-hint">
+        All new publishers using Whitehall Publisher must complete training. New publishers can complete either:
+        <ul>
+          <li>Writing and Publishing on GOV.UK for press officers - if they only need to publish news stories and press releases</li>
+          <li>Writing and Publishing on GOV.UK - for all other publishers</li>
+        </ul>
+      </p>
       <span class="form-wrapper">
         <%= f.collection_radio_buttons :access_to_whitehall_publisher, f.object.access_to_whitehall_publisher_options, :first, :first, required: true, aria: { required: true } do |builder| %>
           <div class="radio">
@@ -85,6 +95,20 @@
       </span>
     </div>
 
-    <%= render partial: "support/collaborators", locals: { f: f } %>
+    <%= f.fields_for :requester do |r| %>
+      <div class="form-group">
+        <span class="form-label">
+          <%= r.label :collaborator_emails, "Who needs a copy of this request?" %>
+        </span>
+        <p class="help-block hint-block--md-6" id="collaborators-hint">
+          The new user will be copied into the request. Separate email addresses with commas.
+        </p>
+        <span class="form-wrapper">
+          <%= r.text_field :collaborator_emails, required: false, class: "input-md-6 form-control", value: r.object.collaborator_emails.join(", "), aria: {
+          describedby: "collaborators-hint"
+          } %>
+        </span>
+      </div>
+<% end %>
   </div>
 </div>
