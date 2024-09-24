@@ -37,9 +37,10 @@ module Support
 
       def access_to_whitehall_publisher_options
         {
-          "not_required" => "No, the user does not need to draft or publish content on Whitehall publisher",
-          "requires_writer_permission" => "Yes, as a writer who can draft content",
-          "requires_editor_permissions" => "Yes, as an editor who can publish content",
+          "not_required" => "No, the user does not need to draft or publish content on Whitehall Publisher",
+          "publishing_training_required_press_officer" => "Yes, they need Writing and Publishing on GOV.UK for press officers training",
+          "publishing_training_required_standard" => "Yes, they need Writing and Publishing on GOV.UK training",
+          "publishing_training_completed" => "They’ve completed training and need a Production account to access Whitehall Publisher",
         }
       end
 

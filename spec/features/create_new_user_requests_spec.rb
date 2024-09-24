@@ -40,7 +40,7 @@ bob@gov.uk
 Cabinet Office (CO)
 
 [Access to Whitehall Publisher]
-No, the user does not need to draft or publish content on Whitehall publisher
+No, the user does not need to draft or publish content on Whitehall Publisher
 
 [Access to other publishing apps]
 Yes, the user needs access to the applications and permissions listed below
@@ -57,7 +57,7 @@ XXXX",
     fill_in "User's name", with: "Bob Fields"
     fill_in "User's email", with: "bob@gov.uk"
     select "Cabinet Office (CO)", from: "User's organisation"
-    choose "No, the user does not need to draft or publish content on Whitehall publisher"
+    choose "No, the user does not need to draft or publish content on Whitehall Publisher"
     choose "Yes, the user needs access to the applications and permissions listed below"
     fill_in "List any other publishing applications and permissions the user needs. If you’re not sure what these are, explain what tasks they need to be able to do.", with: "XXXX"
 
