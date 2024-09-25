@@ -5,15 +5,15 @@ module Support
         :name,
         :email,
         :organisation,
-        :access_to_whitehall_publisher,
+        :whitehall_training,
         :access_to_other_publishing_apps,
         :additional_comments,
       )
 
       validates :name, :email, presence: true
       validates :email, format: { with: /@/ }
-      validates :access_to_whitehall_publisher,
-                inclusion: { in: :access_to_whitehall_publisher_option_keys, allow_blank: false }
+      validates :whitehall_training,
+                inclusion: { in: :whitehall_training_option_keys, allow_blank: false }
       validates :access_to_other_publishing_apps,
                 inclusion: { in: :access_to_other_publishing_apps_option_keys, allow_blank: false }
       validates :additional_comments,
@@ -35,21 +35,21 @@ module Support
         "Request a new user account."
       end
 
-      def access_to_whitehall_publisher_options
+      def whitehall_training_options
         {
           "not_required" => "No, the user does not need to draft or publish content on Whitehall Publisher",
-          "publishing_training_required_press_officer" => "Yes, they need Writing and Publishing on GOV.UK for press officers training",
-          "publishing_training_required_standard" => "Yes, they need Writing and Publishing on GOV.UK training",
-          "publishing_training_completed" => "They’ve completed training and need a Production account to access Whitehall Publisher",
+          "whitehall_training_required_press_officer" => "Yes, they need Writing and Publishing on GOV.UK for press officers training",
+          "whitehall_training_required_standard" => "Yes, they need Writing and Publishing on GOV.UK training",
+          "whitehall_training_completed" => "They’ve completed training and need a Production account to access Whitehall Publisher",
         }
       end
 
-      def access_to_whitehall_publisher_option_keys
-        access_to_whitehall_publisher_options.keys
+      def whitehall_training_option_keys
+        whitehall_training_options.keys
       end
 
-      def formatted_access_to_whitehall_publisher_option
-        access_to_whitehall_publisher_options[access_to_whitehall_publisher]
+      def formatted_whitehall_training_option
+        whitehall_training_options[whitehall_training]
       end
 
       def access_to_other_publishing_apps_options

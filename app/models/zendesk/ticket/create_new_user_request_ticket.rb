@@ -35,7 +35,7 @@ module Zendesk
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,
-            field: :formatted_access_to_whitehall_publisher_option,
+            field: :formatted_whitehall_training_option,
             label: "Access to Whitehall Publisher",
           ),
           Zendesk::LabelledSnippet.new(

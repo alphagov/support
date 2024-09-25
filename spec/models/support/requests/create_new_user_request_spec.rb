@@ -15,8 +15,8 @@ module Support
       it { should allow_value("ab@c.com").for(:email) }
       it { should_not allow_value("ab").for(:email) }
 
-      it { should_not allow_values(nil, "").for(:access_to_whitehall_publisher) }
-      it { should validate_inclusion_of(:access_to_whitehall_publisher).in_array(%w[not_required publishing_training_required_press_officer publishing_training_required_standard publishing_training_completed]).with_message("Select if the user needs access to Whitehall Publisher") }
+      it { should_not allow_values(nil, "").for(:whitehall_training) }
+      it { should validate_inclusion_of(:whitehall_training).in_array(%w[not_required whitehall_training_required_press_officer whitehall_training_required_standard whitehall_training_completed]).with_message("Select if the user needs access to Whitehall Publisher") }
 
       it { should_not allow_values(nil, "").for(:access_to_other_publishing_apps) }
       it { should validate_inclusion_of(:access_to_other_publishing_apps).in_array(%w[not_required required]).with_message("Select if the user needs access to other publishing apps") }
@@ -37,25 +37,25 @@ module Support
         expect(request.formatted_action).to eq("Create a new user account")
       end
 
-      describe "#formatted_access_to_whitehall_publisher_option" do
+      describe "#formatted_whitehall_training_option" do
         it "returns the human readable name for the chosen options" do
-          report = described_class.new(access_to_whitehall_publisher: "not_required")
-          expect(report.formatted_access_to_whitehall_publisher_option).to eq "No, the user does not need to draft or publish content on Whitehall Publisher"
+          report = described_class.new(whitehall_training: "not_required")
+          expect(report.formatted_whitehall_training_option).to eq "No, the user does not need to draft or publish content on Whitehall Publisher"
         end
 
         it "returns the human readable name for the chosen options" do
-          report = described_class.new(access_to_whitehall_publisher: "publishing_training_required_press_officer")
-          expect(report.formatted_access_to_whitehall_publisher_option).to eq "Yes, they need Writing and Publishing on GOV.UK for press officers training"
+          report = described_class.new(whitehall_training: "whitehall_training_required_press_officer")
+          expect(report.formatted_whitehall_training_option).to eq "Yes, they need Writing and Publishing on GOV.UK for press officers training"
         end
 
         it "returns the human readable name for the chosen options" do
-          report = described_class.new(access_to_whitehall_publisher: "publishing_training_required_standard")
-          expect(report.formatted_access_to_whitehall_publisher_option).to eq "Yes, they need Writing and Publishing on GOV.UK training"
+          report = described_class.new(whitehall_training: "whitehall_training_required_standard")
+          expect(report.formatted_whitehall_training_option).to eq "Yes, they need Writing and Publishing on GOV.UK training"
         end
 
         it "returns the human readable name for the chosen options" do
-          report = described_class.new(access_to_whitehall_publisher: "publishing_training_completed")
-          expect(report.formatted_access_to_whitehall_publisher_option).to eq "They’ve completed training and need a Production account to access Whitehall Publisher"
+          report = described_class.new(whitehall_training: "whitehall_training_completed")
+          expect(report.formatted_whitehall_training_option).to eq "They’ve completed training and need a Production account to access Whitehall Publisher"
         end
       end
 

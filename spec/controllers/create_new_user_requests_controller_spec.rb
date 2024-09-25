@@ -17,7 +17,7 @@ describe CreateNewUserRequestsController, type: :controller do
         "requester_attributes" => valid_requester_params,
         **valid_requested_user_params,
         "action" => "create_new_user",
-        "access_to_whitehall_publisher" => "not_required",
+        "whitehall_training" => "not_required",
         "access_to_other_publishing_apps" => "required",
         "additional_comments" => "not-blank",
       },
@@ -45,7 +45,7 @@ describe CreateNewUserRequestsController, type: :controller do
 
     expect(controller).to have_rendered(:new)
     expect(response.body).to have_css(".alert", text: /Enter a name/)
-    expect(response.body).to have_css(".alert", text: /Select if the user needs access to Whitehall Publisher/)
+    expect(response.body).to have_css(".alert", text: /Select if the user needs training or access to Whitehall Publisher/)
   end
 
   it "retains the previously selected organisation if validation fails" do

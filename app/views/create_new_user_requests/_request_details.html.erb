@@ -40,7 +40,7 @@
 
     <div class="form-group">
       <span class="form-label">
-        <%= f.label :access_to_whitehall_publisher, class: "control-label" do %>
+        <%= f.label :whitehall_training, class: "control-label" do %>
           Does the user need training to access Whitehall Publisher?<abbr title="required">*</abbr>
         <% end %>
       </span>
@@ -52,7 +52,7 @@
         </ul>
       </p>
       <span class="form-wrapper">
-        <%= f.collection_radio_buttons :access_to_whitehall_publisher, f.object.access_to_whitehall_publisher_options, :first, :first, required: true, aria: { required: true } do |builder| %>
+        <%= f.collection_radio_buttons :whitehall_training, f.object.whitehall_training_options, :first, :first, required: true, aria: { required: true } do |builder| %>
           <div class="radio">
             <%= builder.label class: "custom-control-label" do %>
               <%= builder.radio_button(class: "custom-control-input") %>
