@@ -53,7 +53,10 @@
       </p>
       <span class="form-wrapper">
         <%= f.collection_radio_buttons :whitehall_training, f.object.whitehall_training_options, :first, :first, required: true, aria: { required: true } do |builder| %>
-          <div class="radio">
+           <% if builder.value == f.object.whitehall_training_options.keys.last %>
+            <p>or</p>
+           <% end %>
+           <div class="radio">
             <%= builder.label class: "custom-control-label" do %>
               <%= builder.radio_button(class: "custom-control-input") %>
               <%= builder.object.last %>
