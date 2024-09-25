@@ -9,6 +9,10 @@ module Zendesk
         super + [@request.action]
       end
 
+      def collaborator_emails
+        super + [@request.email]
+      end
+
     protected
 
       def comment_snippets

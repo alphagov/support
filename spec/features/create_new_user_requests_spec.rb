@@ -25,6 +25,7 @@ feature "Create new user requests" do
     ticket_request = expect_support_api_to_receive_raise_ticket(
       "subject" => "Create a new user account",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
+      "collaborators" => %w[bob@gov.uk],
       "tags" => %w[govt_form create_new_user],
       "description" =>
 "[Action]
