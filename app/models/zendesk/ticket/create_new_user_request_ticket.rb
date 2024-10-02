@@ -13,6 +13,15 @@ module Zendesk
         super + [@request.email]
       end
 
+      def custom_fields
+        fields = [
+          CustomField.set(id: 16_186_374_142_108, input: @request.name),
+          CustomField.set(id: 16_186_377_836_316, input: @request.email),
+        ]
+        fields << CustomField.set(id: 16_186_432_238_236, input: @request.organisation) if @request.organisation
+        fields
+      end
+
     protected
 
       def comment_snippets

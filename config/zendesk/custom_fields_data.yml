@@ -45,3 +45,12 @@
 - !ruby/object:Zendesk::CustomFieldType::Text
   name: "[CR] Do not publish before (time)"
   id: 8250075489052
+- !ruby/object:Zendesk::CustomFieldType::Text
+  name: "[Whitehall training] User's name"
+  id: 16186374142108
+- !ruby/object:Zendesk::CustomFieldType::Text
+  name: "[Whitehall training] User's email"
+  id: 16186377836316
+- !ruby/object:Zendesk::CustomFieldType::Text
+  name: "[Whitehall training] User's organisation"
+  id: 16186432238236

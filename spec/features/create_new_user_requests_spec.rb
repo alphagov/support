@@ -48,6 +48,11 @@ Yes, the user needs access to the applications and permissions listed below
 
 [Additional comments]
 XXXX",
+      "custom_fields" => [
+        { "id" => 16_186_374_142_108, "value" => "Bob Fields" },
+        { "id" => 16_186_377_836_316, "value" => "bob@gov.uk" },
+        { "id" => 16_186_432_238_236, "value" => "Cabinet Office (CO)" },
+      ],
     )
     visit "/"
 
