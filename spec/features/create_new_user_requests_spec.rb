@@ -55,6 +55,7 @@ XXXX",
         { "id" => 16_186_526_602_396, "value" => "whitehall_training_additional_apps_access_yes" },
         { "id" => 16_186_432_238_236, "value" => "Cabinet Office (CO)" },
       ],
+      "ticket_form_id" => 16_186_592_181_660,
     )
     visit "/"
 

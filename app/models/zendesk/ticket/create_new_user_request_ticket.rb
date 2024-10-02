@@ -1,6 +1,8 @@
 module Zendesk
   module Ticket
     class CreateNewUserRequestTicket < Zendesk::ZendeskTicket
+      TICKET_FORM_ID = 16_186_592_181_660
+
       def subject
         @request.formatted_action
       end
