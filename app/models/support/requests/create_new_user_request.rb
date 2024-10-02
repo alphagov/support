@@ -36,12 +36,7 @@ module Support
       end
 
       def whitehall_training_options
-        {
-          "not_required" => "No, the user does not need to draft or publish content on Whitehall Publisher",
-          "whitehall_training_required_press_officer" => "Yes, they need Writing and Publishing on GOV.UK for press officers training",
-          "whitehall_training_required_standard" => "Yes, they need Writing and Publishing on GOV.UK training",
-          "whitehall_training_completed" => "They’ve completed training and need a Production account to access Whitehall Publisher",
-        }
+        Zendesk::CustomField.options_hash("[Whitehall training] Training required?")
       end
 
       def whitehall_training_option_keys

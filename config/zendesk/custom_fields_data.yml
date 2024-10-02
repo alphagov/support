@@ -54,3 +54,11 @@
 - !ruby/object:Zendesk::CustomFieldType::Text
   name: "[Whitehall training] User's organisation"
   id: 16186432238236
+- !ruby/object:Zendesk::CustomFieldType::DropDown
+  name: "[Whitehall training] Training required?"
+  id: 16186461678108
+  options:
+    whitehall_training_required_none: No, the user does not need to draft or publish content on Whitehall Publisher
+    whitehall_training_required_press_officer: Yes, they need Writing and Publishing on GOV.UK for press officers training
+    whitehall_training_required_standard: Yes, they need Writing and Publishing on GOV.UK training
+    whitehall_training_completed: They’ve completed training and need a Production account to access Whitehall Publisher

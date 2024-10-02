@@ -16,7 +16,7 @@ module Support
       it { should_not allow_value("ab").for(:email) }
 
       it { should_not allow_values(nil, "").for(:whitehall_training) }
-      it { should validate_inclusion_of(:whitehall_training).in_array(%w[not_required whitehall_training_required_press_officer whitehall_training_required_standard whitehall_training_completed]).with_message("Select if the user needs access to Whitehall Publisher") }
+      it { should validate_inclusion_of(:whitehall_training).in_array(%w[whitehall_training_required_none whitehall_training_required_press_officer whitehall_training_required_standard whitehall_training_completed]).with_message("Select if the user needs training or access to Whitehall Publisher") }
 
       it { should_not allow_values(nil, "").for(:access_to_other_publishing_apps) }
       it { should validate_inclusion_of(:access_to_other_publishing_apps).in_array(%w[not_required required]).with_message("Select if the user needs access to other publishing apps") }
@@ -39,7 +39,7 @@ module Support
 
       describe "#formatted_whitehall_training_option" do
         it "returns the human readable name for the chosen options" do
-          report = described_class.new(whitehall_training: "not_required")
+          report = described_class.new(whitehall_training: "whitehall_training_required_none")
           expect(report.formatted_whitehall_training_option).to eq "No, the user does not need to draft or publish content on Whitehall Publisher"
         end
 

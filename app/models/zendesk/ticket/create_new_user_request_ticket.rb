@@ -17,6 +17,7 @@ module Zendesk
         fields = [
           CustomField.set(id: 16_186_374_142_108, input: @request.name),
           CustomField.set(id: 16_186_377_836_316, input: @request.email),
+          CustomField.set(id: 16_186_461_678_108, input: @request.formatted_whitehall_training_option),
         ]
         fields << CustomField.set(id: 16_186_432_238_236, input: @request.organisation) if @request.organisation
         fields
