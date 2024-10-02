@@ -40,7 +40,7 @@ bob@gov.uk
 [Organisation]
 Cabinet Office (CO)
 
-[Access to Whitehall Publisher]
+[Training or access to Whitehall Publisher]
 No, the user does not need to draft or publish content on Whitehall Publisher
 
 [Access to other publishing apps]
