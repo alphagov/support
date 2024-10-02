@@ -17,7 +17,7 @@ module Support
       validates :access_to_other_publishing_apps,
                 inclusion: { in: :access_to_other_publishing_apps_option_keys, allow_blank: false }
       validates :additional_comments,
-                presence: true, if: -> { access_to_other_publishing_apps == "required" }
+                presence: true, if: -> { access_to_other_publishing_apps == "whitehall_training_additional_apps_access_yes" }
 
       def action
         "create_new_user"
@@ -48,10 +48,7 @@ module Support
       end
 
       def access_to_other_publishing_apps_options
-        {
-          "not_required" => "No, the user does not need access to any other publishing application",
-          "required" => "Yes, the user needs access to the applications and permissions listed below",
-        }
+        Zendesk::CustomField.options_hash("[Whitehall training] Access to other publishing Apps required?")
       end
 
       def access_to_other_publishing_apps_option_keys
