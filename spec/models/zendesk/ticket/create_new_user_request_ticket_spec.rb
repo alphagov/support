@@ -14,11 +14,13 @@ module Zendesk
             name: "Bob Fields",
             email: "bob@gov.uk",
             formatted_whitehall_training_option: "No, the user does not need to draft or publish content on Whitehall Publisher",
+            formatted_access_to_other_publishing_apps_option: "No, the user does not need access to any other publishing application",
           )
           expect(request_ticket.custom_fields).to eq([
             { "id" => 16_186_374_142_108, "value" => "Bob Fields" },
             { "id" => 16_186_377_836_316, "value" => "bob@gov.uk" },
             { "id" => 16_186_461_678_108, "value" => "whitehall_training_required_none" },
+            { "id" => 16_186_526_602_396, "value" => "whitehall_training_additional_apps_access_no" },
           ])
         end
 
@@ -28,11 +30,13 @@ module Zendesk
             email: "bob@gov.uk",
             organisation: "Cabinet Office (CO)",
             formatted_whitehall_training_option: "No, the user does not need to draft or publish content on Whitehall Publisher",
+            formatted_access_to_other_publishing_apps_option: "No, the user does not need access to any other publishing application",
           )
           expect(request_ticket.custom_fields).to eq([
             { "id" => 16_186_374_142_108, "value" => "Bob Fields" },
             { "id" => 16_186_377_836_316, "value" => "bob@gov.uk" },
             { "id" => 16_186_461_678_108, "value" => "whitehall_training_required_none" },
+            { "id" => 16_186_526_602_396, "value" => "whitehall_training_additional_apps_access_no" },
             { "id" => 16_186_432_238_236, "value" => "Cabinet Office (CO)" },
           ])
         end

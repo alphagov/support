@@ -52,6 +52,7 @@ XXXX",
         { "id" => 16_186_374_142_108, "value" => "Bob Fields" },
         { "id" => 16_186_377_836_316, "value" => "bob@gov.uk" },
         { "id" => 16_186_461_678_108, "value" => "whitehall_training_required_none" },
+        { "id" => 16_186_526_602_396, "value" => "whitehall_training_additional_apps_access_yes" },
         { "id" => 16_186_432_238_236, "value" => "Cabinet Office (CO)" },
       ],
     )

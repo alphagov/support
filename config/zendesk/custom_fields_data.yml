@@ -62,3 +62,9 @@
     whitehall_training_required_press_officer: Yes, they need Writing and Publishing on GOV.UK for press officers training
     whitehall_training_required_standard: Yes, they need Writing and Publishing on GOV.UK training
     whitehall_training_completed: They’ve completed training and need a Production account to access Whitehall Publisher
+- !ruby/object:Zendesk::CustomFieldType::DropDown
+  name: "[Whitehall training] Access to other publishing Apps required?"
+  id: 16186526602396
+  options:
+    whitehall_training_additional_apps_access_no: No, the user does not need access to any other publishing application
+    whitehall_training_additional_apps_access_yes: Yes, the user needs access to the applications and permissions listed below
