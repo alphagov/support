@@ -1,5 +1,5 @@
-class ZendeskTicketWorker
-  include Sidekiq::Worker
+class ZendeskTicketJob
+  include Sidekiq::Job
 
   sidekiq_retry_in do |exception|
     case exception
@@ -27,3 +27,5 @@ private
 
   class TicketNameTooLong < StandardError; end
 end
+
+ZendeskTicketWorker = ZendeskTicketJob ## TODO: Remove once queued jobs at the time of the upgrade are complete

@@ -1,10 +1,10 @@
 require "rails_helper"
 require "gds_api/test_helpers/support_api"
 
-describe ZendeskTicketWorker do
+describe ZendeskTicketJob do
   it "creates a ticket successfully" do
     stub = stub_support_api_valid_raise_support_ticket("some" => "options", "requester" => { "email" => "a@b.com" }, "comment" => nil)
-    ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com" }, "comment" => nil)
+    ZendeskTicketJob.new.perform("some" => "options", "requester" => { "email" => "a@b.com" }, "comment" => nil)
 
     expect(stub).to have_been_made
   end
@@ -14,8 +14,8 @@ describe ZendeskTicketWorker do
     stub = stub_support_api_valid_raise_support_ticket("some" => "options", "requester" => { "email" => "a@b.com", "name" => name })
 
     expect {
-      ZendeskTicketWorker.new.perform("some" => "options", "requester" => { "email" => "a@b.com", "name" => name })
-    }.to raise_error(ZendeskTicketWorker::TicketNameTooLong)
+      ZendeskTicketJob.new.perform("some" => "options", "requester" => { "email" => "a@b.com", "name" => name })
+    }.to raise_error(ZendeskTicketJob::TicketNameTooLong)
     expect(stub).to_not have_been_made
   end
 
@@ -25,7 +25,7 @@ describe ZendeskTicketWorker do
     )
 
     expect {
-      ZendeskTicketWorker.new.perform(
+      ZendeskTicketJob.new.perform(
         "requester" => { "email" => "invalid-email" },
       )
     }.to raise_error(GdsApi::HTTPUnprocessableEntity)
