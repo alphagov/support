@@ -15,20 +15,20 @@ module Support
       it { should allow_value("ab@c.com").for(:email) }
       it { should_not allow_value("ab").for(:email) }
 
-      it { should_not allow_values(nil, "").for(:access_to_whitehall_publisher) }
-      it { should validate_inclusion_of(:access_to_whitehall_publisher).in_array(%w[not_required requires_writer_permission requires_editor_permissions]).with_message("Select if the user needs access to Whitehall Publisher") }
+      it { should_not allow_values(nil, "").for(:whitehall_training) }
+      it { should validate_inclusion_of(:whitehall_training).in_array(%w[whitehall_training_required_none whitehall_training_required_press_officer whitehall_training_required_standard whitehall_training_completed]).with_message("Select if the user needs training or access to Whitehall Publisher") }
 
       it { should_not allow_values(nil, "").for(:access_to_other_publishing_apps) }
-      it { should validate_inclusion_of(:access_to_other_publishing_apps).in_array(%w[not_required required]).with_message("Select if the user needs access to other publishing apps") }
+      it { should validate_inclusion_of(:access_to_other_publishing_apps).in_array(%w[whitehall_training_additional_apps_access_no whitehall_training_additional_apps_access_yes]).with_message("Select if the user needs access to other publishing apps") }
 
       context "when access to other publishing apps is required" do
-        before { subject.access_to_other_publishing_apps = "required" }
+        before { subject.access_to_other_publishing_apps = "whitehall_training_additional_apps_access_yes" }
 
         it { should validate_presence_of(:additional_comments).with_message("List which publishing applications and permissions the user needs") }
       end
 
       context "when access to other publishing apps is not required" do
-        before { subject.access_to_other_publishing_apps = "not_required" }
+        before { subject.access_to_other_publishing_apps = "whitehall_training_additional_apps_access_no" }
 
         it { should_not validate_presence_of(:additional_comments) }
       end
@@ -37,16 +37,31 @@ module Support
         expect(request.formatted_action).to eq("Create a new user account")
       end
 
-      describe "#formatted_access_to_whitehall_publisher_option" do
+      describe "#formatted_whitehall_training_option" do
         it "returns the human readable name for the chosen options" do
-          report = described_class.new(access_to_whitehall_publisher: "not_required")
-          expect(report.formatted_access_to_whitehall_publisher_option).to eq "No, the user does not need to draft or publish content on Whitehall publisher"
+          report = described_class.new(whitehall_training: "whitehall_training_required_none")
+          expect(report.formatted_whitehall_training_option).to eq "No, the user does not need to draft or publish content on Whitehall Publisher"
+        end
+
+        it "returns the human readable name for the chosen options" do
+          report = described_class.new(whitehall_training: "whitehall_training_required_press_officer")
+          expect(report.formatted_whitehall_training_option).to eq "Yes, they need Writing and Publishing on GOV.UK for press officers training"
+        end
+
+        it "returns the human readable name for the chosen options" do
+          report = described_class.new(whitehall_training: "whitehall_training_required_standard")
+          expect(report.formatted_whitehall_training_option).to eq "Yes, they need Writing and Publishing on GOV.UK training"
+        end
+
+        it "returns the human readable name for the chosen options" do
+          report = described_class.new(whitehall_training: "whitehall_training_completed")
+          expect(report.formatted_whitehall_training_option).to eq "They’ve completed training and need a Production account to access Whitehall Publisher"
         end
       end
 
       describe "#formatted_access_to_other_publishing_apps_option" do
         it "returns the human readable name for the chosen options" do
-          report = described_class.new(access_to_other_publishing_apps: "not_required")
+          report = described_class.new(access_to_other_publishing_apps: "whitehall_training_additional_apps_access_no")
           expect(report.formatted_access_to_other_publishing_apps_option).to eq "No, the user does not need access to any other publishing application"
         end
       end

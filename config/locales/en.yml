@@ -41,8 +41,8 @@ en:
             email:
               blank: Enter an email address
               invalid: Enter an email address in the correct format, like name@example.com
-            access_to_whitehall_publisher:
-              inclusion: Select if the user needs access to Whitehall Publisher
+            whitehall_training:
+              inclusion: Select if the user needs training or access to Whitehall Publisher
             access_to_other_publishing_apps:
               inclusion: Select if the user needs access to other publishing apps
             additional_comments:
