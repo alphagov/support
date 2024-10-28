@@ -25,6 +25,7 @@ feature "Create new user requests" do
     ticket_request = expect_support_api_to_receive_raise_ticket(
       "subject" => "Create a new user account",
       "requester" => hash_including("name" => "John Smith", "email" => "john.smith@agency.gov.uk"),
+      "collaborators" => %w[bob@gov.uk],
       "tags" => %w[govt_form create_new_user],
       "description" =>
 "[Action]
@@ -39,14 +40,22 @@ bob@gov.uk
 [Organisation]
 Cabinet Office (CO)
 
-[Access to Whitehall Publisher]
-No, the user does not need to draft or publish content on Whitehall publisher
+[Training or access to Whitehall Publisher]
+No, the user does not need to draft or publish content on Whitehall Publisher
 
 [Access to other publishing apps]
 Yes, the user needs access to the applications and permissions listed below
 
 [Additional comments]
 XXXX",
+      "custom_fields" => [
+        { "id" => 16_186_374_142_108, "value" => "Bob Fields" },
+        { "id" => 16_186_377_836_316, "value" => "bob@gov.uk" },
+        { "id" => 16_186_461_678_108, "value" => "whitehall_training_required_none" },
+        { "id" => 16_186_526_602_396, "value" => "whitehall_training_additional_apps_access_yes" },
+        { "id" => 16_186_432_238_236, "value" => "Cabinet Office (CO)" },
+      ],
+      "ticket_form_id" => 16_186_592_181_660,
     )
     visit "/"
 
@@ -57,7 +66,7 @@ XXXX",
     fill_in "User's name", with: "Bob Fields"
     fill_in "User's email", with: "bob@gov.uk"
     select "Cabinet Office (CO)", from: "User's organisation"
-    choose "No, the user does not need to draft or publish content on Whitehall publisher"
+    choose "No, the user does not need to draft or publish content on Whitehall Publisher"
     choose "Yes, the user needs access to the applications and permissions listed below"
     fill_in "List any other publishing applications and permissions the user needs. If you’re not sure what these are, explain what tasks they need to be able to do.", with: "XXXX"
 

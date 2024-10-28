@@ -1,12 +1,29 @@
 module Zendesk
   module Ticket
     class CreateNewUserRequestTicket < Zendesk::ZendeskTicket
+      TICKET_FORM_ID = 16_186_592_181_660
+
       def subject
         @request.formatted_action
       end
 
       def tags
         super + [@request.action]
+      end
+
+      def collaborator_emails
+        super + [@request.email]
+      end
+
+      def custom_fields
+        fields = [
+          CustomField.set(id: 16_186_374_142_108, input: @request.name),
+          CustomField.set(id: 16_186_377_836_316, input: @request.email),
+          CustomField.set(id: 16_186_461_678_108, input: @request.formatted_whitehall_training_option),
+          CustomField.set(id: 16_186_526_602_396, input: @request.formatted_access_to_other_publishing_apps_option),
+        ]
+        fields << CustomField.set(id: 16_186_432_238_236, input: @request.organisation) if @request.organisation
+        fields
       end
 
     protected
@@ -35,8 +52,8 @@ module Zendesk
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,
-            field: :formatted_access_to_whitehall_publisher_option,
-            label: "Access to Whitehall Publisher",
+            field: :formatted_whitehall_training_option,
+            label: "Training or access to Whitehall Publisher",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,

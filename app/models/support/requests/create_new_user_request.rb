@@ -5,19 +5,19 @@ module Support
         :name,
         :email,
         :organisation,
-        :access_to_whitehall_publisher,
+        :whitehall_training,
         :access_to_other_publishing_apps,
         :additional_comments,
       )
 
       validates :name, :email, presence: true
       validates :email, format: { with: /@/ }
-      validates :access_to_whitehall_publisher,
-                inclusion: { in: :access_to_whitehall_publisher_option_keys, allow_blank: false }
+      validates :whitehall_training,
+                inclusion: { in: :whitehall_training_option_keys, allow_blank: false }
       validates :access_to_other_publishing_apps,
                 inclusion: { in: :access_to_other_publishing_apps_option_keys, allow_blank: false }
       validates :additional_comments,
-                presence: true, if: -> { access_to_other_publishing_apps == "required" }
+                presence: true, if: -> { access_to_other_publishing_apps == "whitehall_training_additional_apps_access_yes" }
 
       def action
         "create_new_user"
@@ -35,27 +35,20 @@ module Support
         "Request a new user account."
       end
 
-      def access_to_whitehall_publisher_options
-        {
-          "not_required" => "No, the user does not need to draft or publish content on Whitehall publisher",
-          "requires_writer_permission" => "Yes, as a writer who can draft content",
-          "requires_editor_permissions" => "Yes, as an editor who can publish content",
-        }
+      def whitehall_training_options
+        Zendesk::CustomField.options_hash("[Whitehall training] Training required?")
       end
 
-      def access_to_whitehall_publisher_option_keys
-        access_to_whitehall_publisher_options.keys
+      def whitehall_training_option_keys
+        whitehall_training_options.keys
       end
 
-      def formatted_access_to_whitehall_publisher_option
-        access_to_whitehall_publisher_options[access_to_whitehall_publisher]
+      def formatted_whitehall_training_option
+        whitehall_training_options[whitehall_training]
       end
 
       def access_to_other_publishing_apps_options
-        {
-          "not_required" => "No, the user does not need access to any other publishing application",
-          "required" => "Yes, the user needs access to the applications and permissions listed below",
-        }
+        Zendesk::CustomField.options_hash("[Whitehall training] Access to other publishing Apps required?")
       end
 
       def access_to_other_publishing_apps_option_keys

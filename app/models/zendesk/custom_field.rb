@@ -1,6 +1,6 @@
 module Zendesk
   class CustomField
-    CUSTOM_FIELDS_DATA = YAML.safe_load_file(
+    CUSTOM_FIELDS_DATA ||= YAML.safe_load_file(
       "config/zendesk/custom_fields_data.yml",
       permitted_classes: [
         Zendesk::CustomFieldType::DateField,
@@ -10,7 +10,7 @@ module Zendesk
     ).freeze
 
     class << self
-      delegate :set, :options_for_name, to: :new
+      delegate :set, :options_for_name, :options_hash, to: :new
     end
 
     def set(id:, input:)
@@ -19,6 +19,10 @@ module Zendesk
 
     def options_for_name(name)
       find_by_name(name).options.values
+    end
+
+    def options_hash(name)
+      find_by_name(name).options
     end
 
   private
