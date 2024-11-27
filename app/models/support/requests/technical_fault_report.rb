@@ -9,16 +9,17 @@ module Support
       # tag as well as a tag of the form `fault_with_*`, where * is a
       # key from this hash, e.g. `fault_with_collections_publisher`.
       #
-      # By default, all `technical_fault` tagged tickets are triaged
-      # to `GOV.UK 2nd Line--Alerts and Issues` via this trigger:
-      # https://govuk.zendesk.com/admin/objects-rules/rules/triggers/35985647
-      #
-      # Tickets may be triaged elsewhere if there is another trigger
+      # Tickets are triaged automatically if there is a trigger
       # looking for the `fault_with_*` tag. Therefore, when editing
       # the following hash, you should always check whether there is
       # a corresponding trigger to add/remove/edit. Search all triggers:
       # https://govuk.zendesk.com/admin/objects-rules/rules/triggers/
       # ("Conditions" -> "Tags" -> "Contains at least one of the following")
+      # You may not have permissions to do so, in which case ask User Support.
+      #
+      # If there is no trigger rule for a given tag, tickets go directly
+      # to user support. We should always have a trigger rule covering all
+      # of the `fault_with_*` tags.
       OPTIONS = {
         "collections_publisher" => "Collections Publisher",
         "contacts_admin" => "Contacts Admin",
