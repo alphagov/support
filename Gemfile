@@ -22,7 +22,7 @@ gem "select2-rails"
 gem "sentry-sidekiq"
 gem "sprockets-rails"
 gem "terser"
-gem "validates_timeliness", "~> 7.0.0.beta2"
+gem "validates_timeliness", "~> 7.0.0"
 
 group :development do
   gem "listen"
