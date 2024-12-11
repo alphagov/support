@@ -191,7 +191,7 @@ GEM
       jquery-rails (~> 4.3)
       plek (>= 2.1)
       rails (>= 6)
-    govuk_app_config (9.15.4)
+    govuk_app_config (9.15.5)
       logstasher (~> 2.1)
       opentelemetry-exporter-otlp (>= 0.25, < 0.30)
       opentelemetry-instrumentation-all (>= 0.39.1, < 0.70.0)
@@ -533,7 +533,7 @@ GEM
       ast (~> 2.4.1)
       racc
     plek (5.2.0)
-    prometheus_exporter (2.1.1)
+    prometheus_exporter (2.2.0)
       webrick
     pry (0.14.2)
       coderay (~> 1.1)
