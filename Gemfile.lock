@@ -739,7 +739,7 @@ GEM
     unicode-emoji (4.0.4)
     uri (0.13.0)
     useragent (0.16.11)
-    validates_timeliness (7.0.0)
+    validates_timeliness (7.1.0)
       activemodel (>= 7.0.0, < 8)
       timeliness (>= 0.3.10, < 1)
     version_gem (1.1.4)
@@ -805,7 +805,7 @@ DEPENDENCIES
   sprockets-rails
   terser
   timecop
-  validates_timeliness (~> 7.0.0)
+  validates_timeliness (~> 7.1.0)
   web-console
   webmock
 
