@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", "7.2.2.1"
+gem "rails", "8.0.1"
 
 gem "aws-sdk-s3"
 gem "bootsnap", require: false
@@ -22,7 +22,7 @@ gem "select2-rails"
 gem "sentry-sidekiq"
 gem "sprockets-rails"
 gem "terser"
-gem "validates_timeliness", "~> 7.1.0"
+gem "validates_timeliness", "~> 8.0.0"
 
 group :development do
   gem "listen"
