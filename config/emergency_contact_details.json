@@ -10,8 +10,8 @@
     "urgent_mainstream_content_change": {
       "phone": "05555 555 555"
     },
-    "urgent_department_content_change": {
-      "phone": "05555 555 555"
+    "content_emergency": {
+      "email": "idasupport@email.uk"
     }
   },
   "secondary_contacts": [
