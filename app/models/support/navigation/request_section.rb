@@ -10,13 +10,8 @@ module Support
         @current_user = current_user
       end
 
-      def label
-        @request_class.label
-      end
-
-      def description
-        @request_class.description
-      end
+      delegate :description, to: :@request_class
+      delegate :label, to: :@request_class
 
       def link
         request_class_name = @request_class.name.split("::").last
