@@ -102,8 +102,9 @@
     <p>If you send us wording, we might not use it. If we do, we’ll need to put it in GOV.UK style.</p>
   </div>
   <span class="form-wrapper">
-    <%= f.text_area :details_of_change, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
-      describedby: "details-of-change-hint"
+    <%= f.text_area :details_of_change, required: true, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
+      describedby: "details-of-change-hint",
+      required: true
     } %>
   </span>
 </div>
