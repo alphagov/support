@@ -6,6 +6,7 @@ gem "aws-sdk-s3"
 gem "bootsnap", require: false
 gem "bootstrap-kaminari-views"
 gem "cancancan"
+gem "csv"
 gem "dartsass-rails"
 gem "gds-api-adapters"
 gem "gds-sso"
