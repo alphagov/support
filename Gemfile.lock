@@ -825,7 +825,7 @@ DEPENDENCIES
   sprockets-rails
   terser
   timecop
-  validates_timeliness (~> 7.1.0)
+  validates_timeliness
   web-console
   webmock
 
