@@ -40,7 +40,7 @@ module Support
       def_delegator self, :label, :formatted_action
 
       def self.description
-        "Request a new user account."
+        "Use this form to request a new user account or training for new and existing users."
       end
 
       def new_or_existing_user_options
