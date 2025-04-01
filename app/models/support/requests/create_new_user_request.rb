@@ -1,6 +1,10 @@
+require "forwardable"
+
 module Support
   module Requests
     class CreateNewUserRequest < Request
+      extend Forwardable
+
       attr_accessor(
         :name,
         :email,
@@ -29,13 +33,11 @@ module Support
         "create_new_user"
       end
 
-      def formatted_action
-        "Create a new user account"
+      def self.label
+        "Create a new user or request training"
       end
 
-      def self.label
-        "Create a new user"
-      end
+      def_delegator self, :label, :formatted_action
 
       def self.description
         "Request a new user account."
