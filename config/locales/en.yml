@@ -41,10 +41,11 @@ en:
             email:
               blank: Enter an email address
               invalid: Enter an email address in the correct format, like name@example.com
+            new_or_existing_user:
+              inclusion: Select if the user is new or existing
             whitehall_training:
               inclusion: Select if the user needs training or access to Whitehall Publisher
             access_to_other_publishing_apps:
               inclusion: Select if the user needs access to other publishing apps
             additional_comments:
               blank: List which publishing applications and permissions the user needs
-

@@ -5,6 +5,7 @@ module Support
         :name,
         :email,
         :organisation,
+        :new_or_existing_user,
         :whitehall_training,
         :access_to_other_publishing_apps,
         :additional_comments,
@@ -12,6 +13,8 @@ module Support
 
       validates :name, :email, presence: true
       validates :email, format: { with: /@/ }
+      validates :new_or_existing_user,
+                inclusion: { in: :new_or_existing_user_option_keys, allow_blank: false }
       validates :whitehall_training,
                 inclusion: { in: :whitehall_training_option_keys, allow_blank: false }
       validates :access_to_other_publishing_apps,
@@ -33,6 +36,18 @@ module Support
 
       def self.description
         "Request a new user account."
+      end
+
+      def new_or_existing_user_options
+        Zendesk::CustomField.options_hash("[Whitehall training] New or existing user?")
+      end
+
+      def new_or_existing_user_option_keys
+        new_or_existing_user_options.keys
+      end
+
+      def formatted_new_or_existing_user_option
+        new_or_existing_user_options[new_or_existing_user]
       end
 
       def whitehall_training_options

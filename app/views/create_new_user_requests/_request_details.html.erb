@@ -20,7 +20,7 @@
         <% end %>
       </span>
       <p class="help-block hint-block--md-6" id="user-email-hint">
-        The new user will be copied into this request.
+        The user will be copied into this request.
       </p>
       <span class="form-wrapper">
         <%= f.email_field :email, required: true, aria: { required: true }, class: "form-control" %>
@@ -35,6 +35,24 @@
       </span>
       <span class="form-wrapper">
         <%= f.select :organisation, options_for_select(organisation_options, f.object.organisation), { include_blank: true }, multiple: false, class: "select2 form-control", type: "organisation" %>
+      </span>
+    </div>
+
+    <div class="form-group">
+      <span class="form-label">
+        <%= f.label :new_or_existing_user, class: "control-label" do %>
+          Are they a new or existing user?<abbr title="required">*</abbr>
+        <% end %>
+      </span>
+      <span class="form-wrapper">
+        <%= f.collection_radio_buttons :new_or_existing_user, f.object.new_or_existing_user_options, :first, :first, required: true, aria: { required: true } do |builder| %>
+           <div class="radio">
+            <%= builder.label class: "custom-control-label" do %>
+              <%= builder.radio_button(class: "custom-control-input") %>
+              <%= builder.object.last %>
+            <% end %>
+          </div>
+        <% end %>
       </span>
     </div>
 
@@ -104,7 +122,7 @@
           <%= r.label :collaborator_emails, "Who needs a copy of this request?" %>
         </span>
         <p class="help-block hint-block--md-6" id="collaborators-hint">
-          The new user will be copied into the request. Separate email addresses with commas.
+          The user will be copied into the request. Separate email addresses with commas.
         </p>
         <span class="form-wrapper">
           <%= r.text_field :collaborator_emails, required: false, class: "input-md-6 form-control", value: r.object.collaborator_emails.join(", "), aria: {
