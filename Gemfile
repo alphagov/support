@@ -1,11 +1,12 @@
 source "https://rubygems.org"
 
-gem "rails", "7.2.2.1"
+gem "rails", "8.0.2"
 
 gem "aws-sdk-s3"
 gem "bootsnap", require: false
 gem "bootstrap-kaminari-views"
 gem "cancancan"
+gem "csv"
 gem "dartsass-rails"
 gem "gds-api-adapters"
 gem "gds-sso"
@@ -22,7 +23,7 @@ gem "select2-rails"
 gem "sentry-sidekiq"
 gem "sprockets-rails"
 gem "terser"
-gem "validates_timeliness", "~> 7.1.0"
+gem "validates_timeliness"
 
 group :development do
   gem "listen"
