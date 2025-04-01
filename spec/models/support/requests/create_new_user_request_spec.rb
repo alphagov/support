@@ -56,7 +56,7 @@ module Support
       end
 
       it "provides formatted action" do
-        expect(request.formatted_action).to eq("Create a new user account")
+        expect(request.formatted_action).to eq("Create a new user or request training")
       end
 
       describe "#formatted_new_or_existing_user_option" do
