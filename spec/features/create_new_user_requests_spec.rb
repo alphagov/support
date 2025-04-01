@@ -49,6 +49,9 @@ No, the user does not need to draft or publish content on Whitehall Publisher
 [Access to other publishing apps]
 Yes, the user needs access to the applications and permissions listed below
 
+[Writing for GOV.UK training]
+No, the user does not need Writing for GOV.UK training
+
 [Additional comments]
 XXXX",
       "custom_fields" => [
@@ -58,6 +61,7 @@ XXXX",
         { "id" => 16_186_461_678_108, "value" => "whitehall_training_required_none" },
         { "id" => 16_186_526_602_396, "value" => "whitehall_training_additional_apps_access_yes" },
         { "id" => 16_186_432_238_236, "value" => "Cabinet Office (CO)" },
+        { "id" => 18_626_967_621_276, "value" => "whitehall_training_writing_for_govuk_required_no" },
       ],
       "ticket_form_id" => 16_186_592_181_660,
     )
@@ -74,6 +78,7 @@ XXXX",
     choose "No, the user does not need to draft or publish content on Whitehall Publisher"
     choose "Yes, the user needs access to the applications and permissions listed below"
     fill_in "List any other publishing applications and permissions the user needs. If you’re not sure what these are, explain what tasks they need to be able to do.", with: "XXXX"
+    choose "No, the user does not need Writing for GOV.UK training"
 
     user_submits_the_request_successfully
 

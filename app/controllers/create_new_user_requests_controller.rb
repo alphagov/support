@@ -25,6 +25,7 @@ protected
       :new_or_existing_user,
       :whitehall_training,
       :access_to_other_publishing_apps,
+      :writing_for_govuk_training,
       :additional_comments,
       requester_attributes: %i[email name collaborator_emails],
     ).to_h
