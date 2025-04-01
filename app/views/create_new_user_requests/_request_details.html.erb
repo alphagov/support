@@ -116,6 +116,27 @@
       </span>
     </div>
 
+    <div class="form-group">
+      <span class="form-label">
+        <%= f.label :writing_for_govuk_training, class: "control-label" do %>
+          Does the user require Writing for GOV.UK training?
+        <% end %>
+      </span>
+      <p class="help-block hint-block--md-6" id="writing-training-hint">
+        New publishers who only have access to Manuals Publisher, Specialist Publisher or Travel Advice Publisher can request Writing for GOV.UK training.
+      </p>
+      <span class="form-wrapper">
+        <%= f.collection_radio_buttons :writing_for_govuk_training, f.object.writing_for_govuk_training_options, :first, :first do |builder| %>
+           <div class="radio">
+            <%= builder.label class: "custom-control-label" do %>
+              <%= builder.radio_button(class: "custom-control-input") %>
+              <%= builder.object.last %>
+            <% end %>
+          </div>
+        <% end %>
+      </span>
+    </div>
+
     <%= f.fields_for :requester do |r| %>
       <div class="form-group">
         <span class="form-label">

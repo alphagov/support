@@ -8,6 +8,7 @@ module Support
         :new_or_existing_user,
         :whitehall_training,
         :access_to_other_publishing_apps,
+        :writing_for_govuk_training,
         :additional_comments,
       )
 
@@ -19,6 +20,8 @@ module Support
                 inclusion: { in: :whitehall_training_option_keys, allow_blank: false }
       validates :access_to_other_publishing_apps,
                 inclusion: { in: :access_to_other_publishing_apps_option_keys, allow_blank: false }
+      validates :writing_for_govuk_training,
+                inclusion: { in: :writing_for_govuk_training_option_keys, allow_blank: true }
       validates :additional_comments,
                 presence: true, if: -> { access_to_other_publishing_apps == "whitehall_training_additional_apps_access_yes" }
 
@@ -72,6 +75,18 @@ module Support
 
       def formatted_access_to_other_publishing_apps_option
         access_to_other_publishing_apps_options[access_to_other_publishing_apps]
+      end
+
+      def writing_for_govuk_training_options
+        Zendesk::CustomField.options_hash("[Whitehall training] Writing for GOV.UK training required?")
+      end
+
+      def writing_for_govuk_training_option_keys
+        writing_for_govuk_training_options.keys
+      end
+
+      def formatted_writing_for_govuk_training_option
+        writing_for_govuk_training_options[writing_for_govuk_training]
       end
     end
   end

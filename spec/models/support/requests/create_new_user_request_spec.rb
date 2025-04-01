@@ -36,6 +36,13 @@ module Support
           .with_message("Select if the user needs access to other publishing apps")
       }
 
+      it {
+        should validate_inclusion_of(:writing_for_govuk_training)
+          .in_array(%w[whitehall_training_writing_for_govuk_required_yes whitehall_training_writing_for_govuk_required_no])
+          .allow_blank
+          .with_message("Select if the user needs Writing for GOV.UK training")
+      }
+
       context "when access to other publishing apps is required" do
         before { subject.access_to_other_publishing_apps = "whitehall_training_additional_apps_access_yes" }
 
@@ -95,6 +102,18 @@ module Support
         it "returns the human readable name for the no access option" do
           request = described_class.new(access_to_other_publishing_apps: "whitehall_training_additional_apps_access_no")
           expect(request.formatted_access_to_other_publishing_apps_option).to eq "No, the user does not need access to any other publishing application"
+        end
+      end
+
+      describe "#formatted_writing_for_govuk_training_option" do
+        it "returns the human readable name for the training required option" do
+          request = described_class.new(writing_for_govuk_training: "whitehall_training_writing_for_govuk_required_yes")
+          expect(request.formatted_writing_for_govuk_training_option).to eq "Yes, they need Writing for GOV.UK training"
+        end
+
+        it "returns the human readable name for the training not required option" do
+          request = described_class.new(writing_for_govuk_training: "whitehall_training_writing_for_govuk_required_no")
+          expect(request.formatted_writing_for_govuk_training_option).to eq "No, the user does not need Writing for GOV.UK training"
         end
       end
     end

@@ -47,5 +47,7 @@ en:
               inclusion: Select if the user needs training or access to Whitehall Publisher
             access_to_other_publishing_apps:
               inclusion: Select if the user needs access to other publishing apps
+            writing_for_govuk_training:
+              inclusion: Select if the user needs Writing for GOV.UK training
             additional_comments:
               blank: List which publishing applications and permissions the user needs
