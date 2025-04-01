@@ -2,7 +2,7 @@ require "forwardable"
 
 module Support
   module Requests
-    class CreateNewUserRequest < Request
+    class CreateNewUserOrTrainingRequest < Request
       extend Forwardable
 
       attr_accessor(
