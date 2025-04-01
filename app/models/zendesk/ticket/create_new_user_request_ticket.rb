@@ -19,6 +19,7 @@ module Zendesk
         fields = [
           CustomField.set(id: 16_186_374_142_108, input: @request.name),
           CustomField.set(id: 16_186_377_836_316, input: @request.email),
+          CustomField.set(id: 18_626_821_668_764, input: @request.formatted_new_or_existing_user_option),
           CustomField.set(id: 16_186_461_678_108, input: @request.formatted_whitehall_training_option),
           CustomField.set(id: 16_186_526_602_396, input: @request.formatted_access_to_other_publishing_apps_option),
         ]
@@ -49,6 +50,11 @@ module Zendesk
             on: @request,
             field: :organisation,
             label: "Organisation",
+          ),
+          Zendesk::LabelledSnippet.new(
+            on: @request,
+            field: :formatted_new_or_existing_user_option,
+            label: "New or existing user",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request,

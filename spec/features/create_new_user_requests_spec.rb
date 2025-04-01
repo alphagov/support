@@ -40,6 +40,9 @@ bob@gov.uk
 [Organisation]
 Cabinet Office (CO)
 
+[New or existing user]
+They’re a new user and do not have a Production account
+
 [Training or access to Whitehall Publisher]
 No, the user does not need to draft or publish content on Whitehall Publisher
 
@@ -51,6 +54,7 @@ XXXX",
       "custom_fields" => [
         { "id" => 16_186_374_142_108, "value" => "Bob Fields" },
         { "id" => 16_186_377_836_316, "value" => "bob@gov.uk" },
+        { "id" => 18_626_821_668_764, "value" => "whitehall_training_new_user" },
         { "id" => 16_186_461_678_108, "value" => "whitehall_training_required_none" },
         { "id" => 16_186_526_602_396, "value" => "whitehall_training_additional_apps_access_yes" },
         { "id" => 16_186_432_238_236, "value" => "Cabinet Office (CO)" },
@@ -66,6 +70,7 @@ XXXX",
     fill_in "User's name", with: "Bob Fields"
     fill_in "User's email", with: "bob@gov.uk"
     select "Cabinet Office (CO)", from: "User's organisation"
+    choose "They’re a new user and do not have a Production account"
     choose "No, the user does not need to draft or publish content on Whitehall Publisher"
     choose "Yes, the user needs access to the applications and permissions listed below"
     fill_in "List any other publishing applications and permissions the user needs. If you’re not sure what these are, explain what tasks they need to be able to do.", with: "XXXX"

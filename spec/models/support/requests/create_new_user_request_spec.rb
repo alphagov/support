@@ -15,6 +15,13 @@ module Support
       it { should allow_value("ab@c.com").for(:email) }
       it { should_not allow_value("ab").for(:email) }
 
+      it { should_not allow_values(nil, "").for(:new_or_existing_user) }
+      it {
+        should validate_inclusion_of(:new_or_existing_user)
+          .in_array(%w[whitehall_training_new_user whitehall_training_existing_user])
+          .with_message("Select if the user is new or existing")
+      }
+
       it { should_not allow_values(nil, "").for(:whitehall_training) }
       it {
         should validate_inclusion_of(:whitehall_training)
@@ -43,6 +50,18 @@ module Support
 
       it "provides formatted action" do
         expect(request.formatted_action).to eq("Create a new user account")
+      end
+
+      describe "#formatted_new_or_existing_user_option" do
+        it "returns the human readable name for the new user option" do
+          request = described_class.new(new_or_existing_user: "whitehall_training_new_user")
+          expect(request.formatted_new_or_existing_user_option).to eq "They’re a new user and do not have a Production account"
+        end
+
+        it "returns the human readable name for the existing user option" do
+          request = described_class.new(new_or_existing_user: "whitehall_training_existing_user")
+          expect(request.formatted_new_or_existing_user_option).to eq "They’re an existing user and already have a Production account"
+        end
       end
 
       describe "#formatted_whitehall_training_option" do

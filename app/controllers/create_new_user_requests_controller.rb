@@ -22,6 +22,7 @@ protected
       :name,
       :email,
       :organisation,
+      :new_or_existing_user,
       :whitehall_training,
       :access_to_other_publishing_apps,
       :additional_comments,
