@@ -51,7 +51,7 @@ module Support
 
       def user_access_requests
         sections_for(
-          Support::Requests::CreateNewUserRequest,
+          Support::Requests::CreateNewUserOrTrainingRequest,
           Support::Requests::ChangeExistingUserRequest,
           Support::Requests::RemoveUserRequest,
         )

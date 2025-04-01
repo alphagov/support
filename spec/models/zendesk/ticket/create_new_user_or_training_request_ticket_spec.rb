@@ -2,10 +2,10 @@ require "rails_helper"
 
 module Zendesk
   module Ticket
-    describe CreateNewUserRequestTicket do
+    describe CreateNewUserOrTrainingRequestTicket do
       def ticket(opts = {})
         defaults = { requester: nil, title: nil, organisation: nil, writing_for_govuk_training: nil }
-        CreateNewUserRequestTicket.new(double(defaults.merge(opts)))
+        CreateNewUserOrTrainingRequestTicket.new(double(defaults.merge(opts)))
       end
 
       describe "#custom_fields" do

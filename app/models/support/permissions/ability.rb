@@ -24,7 +24,7 @@ module Support
                 Support::Requests::UnpublishContentRequest,
               ]
         end
-        can :create, [Support::Requests::CreateNewUserRequest, Requests::ChangeExistingUserRequest, Support::Requests::RemoveUserRequest] if user.has_permission?("user_managers")
+        can :create, [Support::Requests::CreateNewUserOrTrainingRequest, Requests::ChangeExistingUserRequest, Support::Requests::RemoveUserRequest] if user.has_permission?("user_managers")
         can :request, :global_export_request if user.has_permission?("feedex_exporters")
         can :request, :review_feedback if user.has_permission?("feedex_reviewers")
       end
