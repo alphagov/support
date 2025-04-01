@@ -44,13 +44,13 @@
           Does the user need training to access Whitehall Publisher?<abbr title="required">*</abbr>
         <% end %>
       </span>
-      <p class="help-block hint-block--md-6" id="publisher-training-hint">
-        All new publishers using Whitehall Publisher must complete training. New publishers can complete either:
+      <div class="help-block hint-block--md-6" id="publisher-training-hint">
+        <p>All new publishers using Whitehall Publisher must complete training. New publishers can complete either:</p>
         <ul>
           <li>Writing and Publishing on GOV.UK for press officers - if they only need to publish news stories and press releases</li>
           <li>Writing and Publishing on GOV.UK - for all other publishers</li>
         </ul>
-      </p>
+      </div>
       <span class="form-wrapper">
         <%= f.collection_radio_buttons :whitehall_training, f.object.whitehall_training_options, :first, :first, required: true, aria: { required: true } do |builder| %>
            <% if builder.value == f.object.whitehall_training_options.keys.last %>
@@ -112,6 +112,6 @@
           } %>
         </span>
       </div>
-<% end %>
+    <% end %>
   </div>
 </div>
