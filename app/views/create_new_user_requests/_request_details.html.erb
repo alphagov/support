@@ -59,7 +59,7 @@
     <div class="form-group">
       <span class="form-label">
         <%= f.label :whitehall_training, class: "control-label" do %>
-          Does the user need training to access Whitehall Publisher?<abbr title="required">*</abbr>
+          Does the user require any training?<abbr title="required">*</abbr>
         <% end %>
       </span>
       <div class="help-block hint-block--md-6" id="publisher-training-hint">
@@ -68,6 +68,7 @@
           <li>Writing and Publishing on GOV.UK for press officers - if they only need to publish news stories and press releases</li>
           <li>Writing and Publishing on GOV.UK - for all other publishers</li>
         </ul>
+        <p>Existing publishers can request refresher training.</p>
       </div>
       <span class="form-wrapper">
         <%= f.collection_radio_buttons :whitehall_training, f.object.whitehall_training_options, :first, :first, required: true, aria: { required: true } do |builder| %>

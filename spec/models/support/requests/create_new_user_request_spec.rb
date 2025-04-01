@@ -89,7 +89,7 @@ module Support
 
         it "returns the human readable name for the completed training option" do
           request = described_class.new(whitehall_training: "whitehall_training_completed")
-          expect(request.formatted_whitehall_training_option).to eq "They’ve completed training and need a Production account to access Whitehall Publisher"
+          expect(request.formatted_whitehall_training_option).to eq "They’ve completed training and need a Production account (new users only)"
         end
       end
 
