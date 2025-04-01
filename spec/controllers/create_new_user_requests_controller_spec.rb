@@ -45,7 +45,9 @@ describe CreateNewUserRequestsController, type: :controller do
 
     expect(controller).to have_rendered(:new)
     expect(response.body).to have_css(".alert", text: /Enter a name/)
+    expect(response.body).to have_css(".alert", text: /Enter an email address/)
     expect(response.body).to have_css(".alert", text: /Select if the user needs training or access to Whitehall Publisher/)
+    expect(response.body).to have_css(".alert", text: /Select if the user needs access to other publishing apps/)
   end
 
   it "retains the previously selected organisation if validation fails" do
