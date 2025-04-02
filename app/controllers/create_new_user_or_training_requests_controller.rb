@@ -1,4 +1,4 @@
-class CreateNewUserRequestsController < RequestsController
+class CreateNewUserOrTrainingRequestsController < RequestsController
   include ExploreHelper
 
   helper_method :organisation_options
@@ -6,19 +6,19 @@ class CreateNewUserRequestsController < RequestsController
 protected
 
   def new_request
-    Support::Requests::CreateNewUserRequest.new
+    Support::Requests::CreateNewUserOrTrainingRequest.new
   end
 
   def zendesk_ticket_class
-    Zendesk::Ticket::CreateNewUserRequestTicket
+    Zendesk::Ticket::CreateNewUserOrTrainingRequestTicket
   end
 
   def parse_request_from_params
-    Support::Requests::CreateNewUserRequest.new(create_new_user_request_params)
+    Support::Requests::CreateNewUserOrTrainingRequest.new(create_new_user_or_training_request_params)
   end
 
-  def create_new_user_request_params
-    params.require(:support_requests_create_new_user_request).permit(
+  def create_new_user_or_training_request_params
+    params.require(:support_requests_create_new_user_or_training_request).permit(
       :name,
       :email,
       :organisation,
@@ -34,7 +34,7 @@ protected
   def save_to_zendesk(submitted_request)
     super
     Support::GDS::RequestedUser.new(
-      create_new_user_request_params.slice(:name, :email, :organisation),
+      create_new_user_or_training_request_params.slice(:name, :email, :organisation),
     )
   end
 
