@@ -14,10 +14,10 @@ protected
   end
 
   def parse_request_from_params
-    Support::Requests::CreateNewUserRequest.new(create_or_change_user_request_params)
+    Support::Requests::CreateNewUserRequest.new(create_new_user_request_params)
   end
 
-  def create_or_change_user_request_params
+  def create_new_user_request_params
     params.require(:support_requests_create_new_user_request).permit(
       :name,
       :email,
@@ -32,7 +32,7 @@ protected
   def save_to_zendesk(submitted_request)
     super
     Support::GDS::RequestedUser.new(
-      create_or_change_user_request_params.slice(:name, :email, :organisation),
+      create_new_user_request_params.slice(:name, :email, :organisation),
     )
   end
 
