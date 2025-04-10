@@ -55,16 +55,28 @@
   name: "[Whitehall training] User's organisation"
   id: 16186432238236
 - !ruby/object:Zendesk::CustomFieldType::DropDown
+  name: "[Whitehall training] New or existing user?"
+  id: 18626821668764
+  options:
+    whitehall_training_new_user: They’re a new user and do not have a Production account
+    whitehall_training_existing_user: They’re an existing user and already have a Production account
+- !ruby/object:Zendesk::CustomFieldType::DropDown
   name: "[Whitehall training] Training required?"
   id: 16186461678108
   options:
     whitehall_training_required_none: No, the user does not need to draft or publish content on Whitehall Publisher
     whitehall_training_required_press_officer: Yes, they need Writing and Publishing on GOV.UK for press officers training
     whitehall_training_required_standard: Yes, they need Writing and Publishing on GOV.UK training
-    whitehall_training_completed: They’ve completed training and need a Production account to access Whitehall Publisher
+    whitehall_training_completed: They’ve completed training and need a Production account (new users only)
 - !ruby/object:Zendesk::CustomFieldType::DropDown
   name: "[Whitehall training] Access to other publishing Apps required?"
   id: 16186526602396
   options:
     whitehall_training_additional_apps_access_no: No, the user does not need access to any other publishing application
     whitehall_training_additional_apps_access_yes: Yes, the user needs access to the applications and permissions listed below
+- !ruby/object:Zendesk::CustomFieldType::DropDown
+  name: "[Whitehall training] Writing for GOV.UK training required?"
+  id: 18626967621276
+  options:
+    whitehall_training_writing_for_govuk_required_yes: Yes, they need Writing for GOV.UK training
+    whitehall_training_writing_for_govuk_required_no: No, the user does not need Writing for GOV.UK training
