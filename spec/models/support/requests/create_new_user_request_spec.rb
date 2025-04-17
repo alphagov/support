@@ -15,6 +15,13 @@ module Support
       it { should allow_value("ab@c.com").for(:email) }
       it { should_not allow_value("ab").for(:email) }
 
+      it { should_not allow_values(nil, "").for(:new_or_existing_user) }
+      it {
+        should validate_inclusion_of(:new_or_existing_user)
+          .in_array(%w[whitehall_training_new_user whitehall_training_existing_user])
+          .with_message("Select if the user is new or existing")
+      }
+
       it { should_not allow_values(nil, "").for(:whitehall_training) }
       it {
         should validate_inclusion_of(:whitehall_training)
@@ -27,6 +34,13 @@ module Support
         should validate_inclusion_of(:access_to_other_publishing_apps)
           .in_array(%w[whitehall_training_additional_apps_access_no whitehall_training_additional_apps_access_yes])
           .with_message("Select if the user needs access to other publishing apps")
+      }
+
+      it {
+        should validate_inclusion_of(:writing_for_govuk_training)
+          .in_array(%w[whitehall_training_writing_for_govuk_required_yes whitehall_training_writing_for_govuk_required_no])
+          .allow_blank
+          .with_message("Select if the user needs Writing for GOV.UK training")
       }
 
       context "when access to other publishing apps is required" do
@@ -42,7 +56,19 @@ module Support
       end
 
       it "provides formatted action" do
-        expect(request.formatted_action).to eq("Create a new user account")
+        expect(request.formatted_action).to eq("Create a new user or request training")
+      end
+
+      describe "#formatted_new_or_existing_user_option" do
+        it "returns the human readable name for the new user option" do
+          request = described_class.new(new_or_existing_user: "whitehall_training_new_user")
+          expect(request.formatted_new_or_existing_user_option).to eq "They’re a new user and do not have a Production account"
+        end
+
+        it "returns the human readable name for the existing user option" do
+          request = described_class.new(new_or_existing_user: "whitehall_training_existing_user")
+          expect(request.formatted_new_or_existing_user_option).to eq "They’re an existing user and already have a Production account"
+        end
       end
 
       describe "#formatted_whitehall_training_option" do
@@ -63,7 +89,7 @@ module Support
 
         it "returns the human readable name for the completed training option" do
           request = described_class.new(whitehall_training: "whitehall_training_completed")
-          expect(request.formatted_whitehall_training_option).to eq "They’ve completed training and need a Production account to access Whitehall Publisher"
+          expect(request.formatted_whitehall_training_option).to eq "They’ve completed training and need a Production account (new users only)"
         end
       end
 
@@ -76,6 +102,18 @@ module Support
         it "returns the human readable name for the no access option" do
           request = described_class.new(access_to_other_publishing_apps: "whitehall_training_additional_apps_access_no")
           expect(request.formatted_access_to_other_publishing_apps_option).to eq "No, the user does not need access to any other publishing application"
+        end
+      end
+
+      describe "#formatted_writing_for_govuk_training_option" do
+        it "returns the human readable name for the training required option" do
+          request = described_class.new(writing_for_govuk_training: "whitehall_training_writing_for_govuk_required_yes")
+          expect(request.formatted_writing_for_govuk_training_option).to eq "Yes, they need Writing for GOV.UK training"
+        end
+
+        it "returns the human readable name for the training not required option" do
+          request = described_class.new(writing_for_govuk_training: "whitehall_training_writing_for_govuk_required_no")
+          expect(request.formatted_writing_for_govuk_training_option).to eq "No, the user does not need Writing for GOV.UK training"
         end
       end
     end
