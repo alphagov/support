@@ -16,11 +16,11 @@ module Support
       end
 
       def self.label
-        "Request a content change or new content on GOV.UK"
+        "Request a content change or new content on mainstream GOV.UK content"
       end
 
       def self.description
-        "Request changes to GOV.UK content managed by GDS content designers"
+        "Request changes to 'mainstream' GOV.UK content managed by GDS content designers"
       end
 
       def self.reason_for_change_options
