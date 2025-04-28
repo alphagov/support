@@ -17,6 +17,7 @@ describe CreateNewUserRequestsController, type: :controller do
         "requester_attributes" => valid_requester_params,
         **valid_requested_user_params,
         "action" => "create_new_user",
+        "new_or_existing_user" => "whitehall_training_new_user",
         "whitehall_training" => "whitehall_training_required_none",
         "access_to_other_publishing_apps" => "whitehall_training_additional_apps_access_yes",
         "additional_comments" => "not-blank",
@@ -46,6 +47,7 @@ describe CreateNewUserRequestsController, type: :controller do
     expect(controller).to have_rendered(:new)
     expect(response.body).to have_css(".alert", text: /Enter a name/)
     expect(response.body).to have_css(".alert", text: /Enter an email address/)
+    expect(response.body).to have_css(".alert", text: /Select if the user is new or existing/)
     expect(response.body).to have_css(".alert", text: /Select if the user needs training or access to Whitehall Publisher/)
     expect(response.body).to have_css(".alert", text: /Select if the user needs access to other publishing apps/)
   end
