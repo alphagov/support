@@ -80,7 +80,7 @@ private
   def user_makes_a_content_change_request(details)
     visit "/"
 
-    click_on "Request a content change or new content on GOV.UK"
+    click_on "Request a content change or new content on mainstream GOV.UK content"
 
     expect(page).to have_content("You'll get an automated response to confirm we've received your request. We'll then review your request within 2 working days.")
 
