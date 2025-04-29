@@ -33,7 +33,7 @@ en:
   activemodel:
     errors:
       models:
-        support/requests/create_new_user_request:
+        support/requests/create_new_user_or_training_request:
           format: '%{message}'
           attributes:
             name:

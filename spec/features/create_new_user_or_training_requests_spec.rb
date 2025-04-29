@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Create new user requests" do
+feature "Create new user or training requests" do
   # In order to allow departments to shift responsibilities around
   # As a departmental user manager
   # I want to request GDS tool access or new permissions for other users

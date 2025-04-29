@@ -2,7 +2,7 @@ require "rails_helper"
 
 module Support
   module Requests
-    describe CreateNewUserRequest do
+    describe CreateNewUserOrTrainingRequest do
       def request(options = {})
         described_class.new(options).tap(&:valid?)
       end
