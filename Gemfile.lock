@@ -1,9 +1,9 @@
 GIT
   remote: https://github.com/jquery-ui-rails/jquery-ui-rails.git
-  revision: f811a328324b4d937e26ae539cc6bbdfbf7830fd
-  tag: v8.0.0
+  revision: decd03951fecf845076df58728c2ae3fc1ab6d38
+  tag: v8.0.0-release
   specs:
-    jquery-ui-rails (7.0.0)
+    jquery-ui-rails (8.0.0)
       railties (>= 3.2.16)
 
 GEM
