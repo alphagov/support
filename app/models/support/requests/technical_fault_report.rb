@@ -21,7 +21,6 @@ module Support
       # ("Conditions" -> "Tags" -> "Contains at least one of the following")
       OPTIONS = {
         "collections_publisher" => "Collections Publisher",
-        "contacts_admin" => "Contacts Admin",
         "content_data" => "Content Data",
         "content_tagger" => "Content Tagger",
         "datagovuk" => "data.gov.uk",
