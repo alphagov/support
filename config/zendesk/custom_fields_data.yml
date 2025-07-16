@@ -46,6 +46,9 @@
   name: "[CR] Do not publish before (time)"
   id: 8250075489052
 - !ruby/object:Zendesk::CustomFieldType::Text
+  name: "[CR] Which URLs are affected?"
+  id: 19824287274012
+- !ruby/object:Zendesk::CustomFieldType::Text
   name: "[Whitehall training] User's name"
   id: 16186374142108
 - !ruby/object:Zendesk::CustomFieldType::Text
