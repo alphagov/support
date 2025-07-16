@@ -47,6 +47,7 @@ New law",
       "custom_fields" =>
            [{ "id" => 7_948_652_819_356, "value" => "cr_inaccuracy" },
             { "id" => 7_949_106_580_380, "value" => "cr_benefits" },
+            { "id" => 19_824_287_274_012, "value" => "http://gov.uk/X" },
             { "id" => 7_949_136_091_548, "value" => "#{next_year}-12-31" },
             { "id" => 7_949_152_975_772, "value" => "#{next_year}-12-01" },
             { "id" => 8_250_061_570_844, "value" => "13:00" },
