@@ -18,7 +18,17 @@ class RequestsController < AuthorisationController
     if @request.valid?
       save_to_zendesk(@request)
       respond_to do |format|
-        format.html { redirect_to acknowledge_path }
+        format.html do
+          if params[:use_design_system]
+            flash[:success_alert] = {
+              message: "Thank you!",
+              description: "Thanks for sending us your request. We'll review your request and get back to you within 2 working days.",
+            }
+            redirect_to root_path
+          else
+            redirect_to acknowledge_path
+          end
+        end
         format.json { head :created }
       end
     else
