@@ -1,54 +1,48 @@
-<p><%= f.object.class.description %></p>
+<p class="govuk-body"><%= f.object.class.description %></p>
 
-<div class="alert alert-info alert-block">
-  <p>
-    You do not need to submit a request if you're a super organisation admin or organisation admin and you're requesting to:
-    <ul>
-    <li>change an account's permissions for a 'devolved' application, including upgrading an account to 'editor' in Whitehall Publisher</li>
+<%= render "govuk_publishing_components/components/inset_text", {} do %>
+  <p class="govuk-body">
+    You do not need to submit a request if you're a super organisation admin or
+    organisation admin and you're requesting to:
+  </p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>
+      change an account's permissions for a 'devolved' application, including
+      upgrading an account to 'editor' in Whitehall Publisher
+    </li>
     <li>reset 2-step verification for an account</li>
     <li>unsuspend an account</li>
     <li>resend a signup ('account invitation') email for an account</li>
-    </ul>
-    <br>
-    Find out <%= link_to 'how to manage your organisation’s accounts in the "Introduction and access to Whitehall publisher" guidance', 'https://www.gov.uk/guidance/how-to-publish-on-gov-uk/introduction-and-access-to-whitehall-publisher#manage-your-organisations-accounts' %>.
+  </ul>
+  <p class="govuk-body">
+    Find out
+    <%= link_to 'how to manage your organisation’s accounts in the "Introduction and access to Whitehall publisher" guidance',
+      "https://www.gov.uk/guidance/how-to-publish-on-gov-uk/introduction-and-access-to-whitehall-publisher#manage-your-organisations-accounts",
+      class: "govuk-link"
+    %>.
   </p>
-</div>
+<% end %>
 
-<div class="row">
-  <div class="col-md-6">
-    <div class="form-group">
-      <span class="form-label">
-        <%= f.label :name do %>
-          User's name<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.text_field :name, required: true, aria: { required: true }, class: "form-control" %>
-      </span>
-    </div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "User's name (required)" },
+  name: "support_requests_change_existing_user_request[name]",
+  width: 20,
+  error_items: errors_for(@request.errors, :name)
+} %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= f.label :email do %>
-          User's email<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.email_field :email, required: true, aria: { required: true }, class: "form-control" %>
-      </span>
-    </div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "User's email (required)" },
+  name: "support_requests_change_existing_user_request[email]",
+  width: 20,
+  error_items: errors_for(@request.errors, :email)
+} %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= f.label :additional_comments do %>
-          What do you want to change?<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.text_area :additional_comments, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-      </span>
-    </div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "What do you want to change? (required)" },
+  name: "support_requests_change_existing_user_request[additional_comments]",
+  error_items: errors_for(@request.errors, :additional_comments)
+} %>
 
-    <%= render partial: "support/collaborators", locals: { f: f } %>
-  </div>
-</div>
+<%= render partial: "support/collaborators", locals: { f: f } %>
+
+<%= hidden_field_tag "use_design_system", true %>

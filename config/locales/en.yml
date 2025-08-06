@@ -33,6 +33,16 @@ en:
   activemodel:
     errors:
       models:
+        support/requests/change_existing_user_request:
+          format: '%{message}'
+          attributes:
+            name:
+              blank: Enter a name
+            email:
+              blank: Enter an email address
+              invalid: Enter an email address in the correct format, like name@example.com
+            additional_comments:
+              blank: Provide details of what you want to change
         support/requests/create_new_user_or_training_request:
           format: '%{message}'
           attributes:
