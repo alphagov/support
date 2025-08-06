@@ -1,9 +1,13 @@
 require "sidekiq/api"
 
 class RequestsController < AuthorisationController
+  include ErrorsHelper
+
   def new
     @request = new_request
     authorize! :new, @request
+
+    render :new, layout: "design_system" if @use_design_system
   end
 
   def create
@@ -20,8 +24,13 @@ class RequestsController < AuthorisationController
     else
       respond_to do |format|
         format.html do
-          flash.now[:alert] = @request.errors.full_messages.join('\n')
-          render :new, status: :bad_request
+          if params[:use_design_system]
+            @use_design_system = true
+            render :new, status: :bad_request, layout: "design_system"
+          else
+            flash.now[:alert] = @request.errors.full_messages.join('\n')
+            render :new, status: :bad_request
+          end
         end
         format.json { render json: { "errors" => @request.errors.to_a }, status: :bad_request }
       end

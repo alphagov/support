@@ -6,5 +6,11 @@
 <%= form_for @request, url: { action: "create" }, html: { novalidate: false } do |f| %>
   <%= render partial: "request_details", locals: { f: f } %>
 
-  <%= f.submit value: "Submit", class: "btn btn-success" %>
+  <% if @use_design_system %>
+    <%= render "govuk_publishing_components/components/button", {
+      text: "Submit"
+    } %>
+  <% else %>
+    <%= f.submit value: "Submit", class: "btn btn-success" %>
+  <% end %>
 <% end %>
