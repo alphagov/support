@@ -30,8 +30,7 @@ module Support
                     :site_metadescription,
                     :cost_of_campaign,
                     :hmg_code,
-                    :strategic_planning_code,
-                    :ga_contact_email
+                    :strategic_planning_code
 
       validates :signed_campaign,
                 :start_day,
@@ -54,7 +53,6 @@ module Support
                 :cost_of_campaign,
                 :hmg_code,
                 :strategic_planning_code,
-                :ga_contact_email,
                 presence: true
 
       validates :has_read_guidance_confirmation,
@@ -69,7 +67,7 @@ module Support
       validates :proposed_url, format: /((http|https):\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.(campaign\.)?gov.uk?/
 
       VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-      validates :performance_review_contact_email, :ga_contact_email, format: { with: VALID_EMAIL_REGEX }
+      validates :performance_review_contact_email, format: { with: VALID_EMAIL_REGEX }
 
       def start_date
         formatted_date(start_day, start_month, start_year)

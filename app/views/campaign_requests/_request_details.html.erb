@@ -316,17 +316,6 @@
         <%= r.text_field :strategic_planning_code, required: false, aria: { required: false }, class: "input-md-6 form-control" %>
       </span>
     </div>
-
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :ga_contact_email do %>
-          Cabinet Office/No10 only : Contact details for Google Analytics leads (Gmail accounts only)
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_area :ga_contact_email, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-      </span>
-    </div>
   </fieldset>
 <% end %>
 
