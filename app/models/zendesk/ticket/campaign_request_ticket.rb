@@ -93,11 +93,6 @@ module Zendesk
             field: :strategic_planning_code,
             label: "Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)",
           ),
-          Zendesk::LabelledSnippet.new(
-            on: @request.campaign,
-            field: :ga_contact_email,
-            label: "Contact details for Google Analytics leads (Gmail accounts only)",
-          ),
           Zendesk::LabelledSnippet.new(on: @request, field: :additional_comments),
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,

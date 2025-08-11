@@ -44,7 +44,6 @@ protected
         cost_of_campaign
         hmg_code
         strategic_planning_code
-        ga_contact_email
       ],
     ).to_h
   end

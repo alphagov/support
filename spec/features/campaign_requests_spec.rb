@@ -63,9 +63,6 @@ HMGXX-XXX
 [Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)]
 CSBXX-XXX
 
-[Contact details for Google Analytics leads (Gmail accounts only)]
-ga.contact@example.com
-
 [Additional comments]
 Some comment
 
@@ -112,7 +109,6 @@ Yes",
       cost_of_campaign: "£1200 and tuppence",
       hmg_code: "HMGXX-XXX",
       strategic_planning_code: "CSBXX-XXX",
-      ga_contact_email: "ga.contact@example.com",
       additional_comments: "Some comment",
     )
 
@@ -155,7 +151,6 @@ private
     fill_in "Site build budget / costs (and overall campaign cost, if applicable)*", with: details[:cost_of_campaign]
     fill_in "HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)", with: details[:hmg_code]
     fill_in "Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)", with: details[:strategic_planning_code]
-    fill_in "Cabinet Office/No10 only : Contact details for Google Analytics leads (Gmail accounts only)", with: details[:ga_contact_email]
     fill_in "Additional comments", with: details[:additional_comments]
 
     user_submits_the_request_successfully
