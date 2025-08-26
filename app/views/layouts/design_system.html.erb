@@ -1,5 +1,10 @@
 <% content_for :head do %>
   <%= tag.meta name: "govuk:components_gem_version", content: GovukPublishingComponents::VERSION %>
+
+  <% if user_signed_in? %>
+    <%= tag.meta name: "govuk:user-id", content: current_user&.anonymous_user_id %>
+  <% end %>
+
   <%= javascript_include_tag "govuk_publishing_components/load-analytics" %>
 <% end %>
 
