@@ -1,182 +1,110 @@
-<p><%= f.object.class.description %></p>
+<p class="govuk-body"><%= f.object.class.description %></p>
 
-<div class="row">
-  <div class="col-md-6">
-    <fieldset>
-      <legend>
-        <span>User details</span>
-      </legend>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "User's name (required)" },
+  name: name_for(f, %w[name]),
+  width: 20,
+  error_items: errors_for(@request.errors, :name)
+} %>
 
-      <div class="form-group">
-        <span class="form-label">
-          <%= f.label :name do %>
-            User's name<abbr title="required">*</abbr>
-          <% end %>
-        </span>
-        <span class="form-wrapper">
-          <%= f.text_field :name, required: true, aria: { required: true }, class: "form-control" %>
-        </span>
-      </div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "User's email (required)" },
+  hint: "The user will be copied into this request.",
+  name: name_for(f, %w[email]),
+  width: 20,
+  error_items: errors_for(@request.errors, :email)
+} %>
 
-      <div class="form-group">
-        <span class="form-label">
-          <%= f.label :email do %>
-            User's email<abbr title="required">*</abbr>
-          <% end %>
-        </span>
-        <p class="help-block hint-block--md-6" id="user-email-hint">
-          The user will be copied into this request.
-        </p>
-        <span class="form-wrapper">
-          <%= f.email_field :email, required: true, aria: { required: true }, class: "form-control" %>
-        </span>
-      </div>
+<%= render "govuk_publishing_components/components/select", {
+  label: "User's organisation",
+  id: name_for(f, %w[organisation]),
+  options: organisation_options.unshift("").map do |value|
+    {
+      text: value,
+      value: value,
+      selected: f.object.organisation == value
+    }
+  end,
+  error_items: errors_for(@request.errors, :organisation)
+} %>
 
-      <div class="form-group select">
-        <span class="form-label">
-          <%= f.label :organisation do %>
-            User's organisation
-          <% end %>
-        </span>
-        <span class="form-wrapper">
-          <%= f.select :organisation, options_for_select(organisation_options, f.object.organisation), { include_blank: true }, multiple: false, class: "select2 form-control", type: "organisation" %>
-        </span>
-      </div>
+<%= render "govuk_publishing_components/components/radio", {
+  heading: "Are they a new or existing user? (required)",
+  heading_level: 0,
+  name: name_for(f, %w[new_or_existing_user]),
+  items: f.object.new_or_existing_user_options.map do |value, text|
+    {
+      value: value,
+      text: text
+    }
+  end,
+  error_items: errors_for(@request.errors, :new_or_existing_user)
+} %>
 
-      <div class="form-group">
-        <span class="form-label">
-          <%= f.label :new_or_existing_user, class: "control-label" do %>
-            Are they a new or existing user?<abbr title="required">*</abbr>
-          <% end %>
-        </span>
-        <span class="form-wrapper">
-          <%= f.collection_radio_buttons :new_or_existing_user, f.object.new_or_existing_user_options, :first, :first, required: true, aria: { required: true } do |builder| %>
-            <div class="radio">
-              <%= builder.label class: "custom-control-label" do %>
-                <%= builder.radio_button(class: "custom-control-input") %>
-                <%= builder.object.last %>
-              <% end %>
-            </div>
-          <% end %>
-        </span>
-      </div>
-    </fieldset>
+<h2 class="govuk-heading-l">Training and access to Whitehall Publisher</h2>
 
-    <fieldset>
-      <legend>
-        <span>Training and access to Whitehall Publisher</span>
-      </legend>
+<p class="govuk-body">
+  All new publishers using Whitehall Publisher must complete training.
+  New publishers can complete either:
+</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>Writing and Publishing on GOV.UK for press officers - if they only need to publish news stories and press releases</li>
+  <li>Writing and Publishing on GOV.UK - for all other publishers</li>
+</ul>
 
-      <div class="help-block hint-block--md-6" id="publisher-training-hint">
-        <p>All new publishers using Whitehall Publisher must complete training. New publishers can complete either:</p>
-        <ul>
-          <li>Writing and Publishing on GOV.UK for press officers - if they only need to publish news stories and press releases</li>
-          <li>Writing and Publishing on GOV.UK - for all other publishers</li>
-        </ul>
-        <p>Existing publishers can request refresher training.</p>
-      </div>
+<p class="govuk-body">Existing publishers can request refresher training.</p>
 
-      <div class="form-group">
-        <span class="form-label">
-          <%= f.label :whitehall_training, class: "control-label" do %>
-            Does the user require any training?<abbr title="required">*</abbr>
-          <% end %>
-        </span>
-        <span class="form-wrapper">
-          <%= f.collection_radio_buttons :whitehall_training, f.object.whitehall_training_options, :first, :first, required: true, aria: { required: true } do |builder| %>
-            <% if builder.value == f.object.whitehall_training_options.keys.last %>
-              <p>or</p>
-            <% end %>
-            <div class="radio">
-              <%= builder.label class: "custom-control-label" do %>
-                <%= builder.radio_button(class: "custom-control-input") %>
-                <%= builder.object.last %>
-              <% end %>
-            </div>
-          <% end %>
-        </span>
-      </div>
-    </fieldset>
+<%= render "govuk_publishing_components/components/radio", {
+  heading: "Does the user require any training? (required)",
+  heading_level: 0,
+  name: name_for(f, %w[whitehall_training]),
+  items: f.object.whitehall_training_options.map do |value, text|
+    {
+      value: value,
+      text: text
+    }
+  end.insert(-2, :or),
+  error_items: errors_for(@request.errors, :whitehall_training)
+} %>
 
-    <fieldset>
-      <legend>
-        <span>Training and access to other publishing applications</span>
-      </legend>
+<h2 class="govuk-heading-l">Training and access to other publishing applications</h2>
 
-      <div class="form-group">
-        <span class="form-label">
-          <%= f.label :access_to_other_publishing_apps, class: "control-label" do %>
-            Does this user need access to any other publishing applications?<abbr title="required">*</abbr>
-          <% end %>
-        </span>
-        <span class="form-wrapper">
-          <%= f.collection_radio_buttons :access_to_other_publishing_apps, f.object.access_to_other_publishing_apps_options, :first, :first, required: true, aria: { required: true } do |builder| %>
-            <div class="radio">
-              <%= builder.label class: "custom-control-label" do %>
-                <%= builder.radio_button(class: "custom-control-input") %>
-                <%= builder.object.last %>
-              <% end %>
-            </div>
-          <% end %>
-        </span>
-      </div>
+<%= render "govuk_publishing_components/components/radio", {
+  heading: "Does this user need access to any other publishing applications? (required)",
+  heading_level: 0,
+  name: name_for(f, %w[access_to_other_publishing_apps]),
+  items: f.object.access_to_other_publishing_apps_options.map do |value, text|
+    {
+      value: value,
+      text: text
+    }
+  end,
+  error_items: errors_for(@request.errors, :access_to_other_publishing_apps)
+} %>
 
-      <div class="form-group">
-        <span class="form-label">
-          <%= f.label :additional_comments do %>
-            List any other publishing applications and permissions the user needs. If you’re not sure what these are, explain what tasks they need to be able to do.
-          <% end %>
-        </span>
-        <p class="help-block hint-block--md-6" id="additional-comments-hint">
-          All users have basic access to Content Data, Feedback Explorer, GovSearch and Support forms.
-        </p>
-        <span class="form-wrapper">
-          <%= f.text_area :additional_comments, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-        </span>
-      </div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "List any other publishing applications and permissions the user needs. If you’re not sure what these are, explain what tasks they need to be able to do."
+  },
+  name: name_for(f, %w[additional_comments]),
+  hint: "All users have basic access to Content Data, Feedback Explorer, GovSearch and Support forms.",
+  error_items: errors_for(@request.errors, :additional_comments)
+} %>
 
-      <div class="form-group">
-        <span class="form-label">
-          <%= f.label :writing_for_govuk_training, class: "control-label" do %>
-            Does the user require Writing for GOV.UK training?
-          <% end %>
-        </span>
-        <p class="help-block hint-block--md-6" id="writing-training-hint">
-          New publishers who only have access to Manuals Publisher, Specialist Publisher or Travel Advice Publisher can request Writing for GOV.UK training.
-        </p>
-        <span class="form-wrapper">
-          <%= f.collection_radio_buttons :writing_for_govuk_training, f.object.writing_for_govuk_training_options, :first, :first do |builder| %>
-            <div class="radio">
-              <%= builder.label class: "custom-control-label" do %>
-                <%= builder.radio_button(class: "custom-control-input") %>
-                <%= builder.object.last %>
-              <% end %>
-            </div>
-          <% end %>
-        </span>
-      </div>
-    </fieldset>
+<%= render "govuk_publishing_components/components/radio", {
+  heading: "Does the user require Writing for GOV.UK training?",
+  heading_level: 0,
+  name: name_for(f, %w[writing_for_govuk_training]),
+  hint: "New publishers who only have access to Manuals Publisher, Specialist Publisher or Travel Advice Publisher can request Writing for GOV.UK training.",
+  items: f.object.writing_for_govuk_training_options.map do |value, text|
+    {
+      value: value,
+      text: text
+    }
+  end,
+  error_items: errors_for(@request.errors, :writing_for_govuk_training)
+} %>
 
-    <fieldset>
-      <legend>
-        <span>Copy of the request</span>
-      </legend>
+<h2 class="govuk-heading-l">Copy of the request</h2>
 
-      <%= f.fields_for :requester do |r| %>
-        <div class="form-group">
-          <span class="form-label">
-            <%= r.label :collaborator_emails, "Who needs a copy of this request?" %>
-          </span>
-          <p class="help-block hint-block--md-6" id="collaborators-hint">
-            The user will be copied into the request. Separate email addresses with commas.
-          </p>
-          <span class="form-wrapper">
-            <%= r.text_field :collaborator_emails, required: false, class: "input-md-6 form-control", value: r.object.collaborator_emails.join(", "), aria: {
-            describedby: "collaborators-hint"
-            } %>
-          </span>
-        </div>
-      <% end %>
-    </fieldset>
-  </div>
-</div>
+<%= render partial: "support/collaborators", locals: { f: f } %>

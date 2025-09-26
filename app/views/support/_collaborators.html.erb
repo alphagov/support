@@ -4,7 +4,7 @@
       label: { text: "Who needs a copy of this request?" },
       hint: "Separate email addresses with commas.",
       value: r.object.collaborator_emails.join(", "),
-      name: "support_requests_change_existing_user_request[requester_attributes][collaborator_emails]"
+      name: name_for(f, %w[requester_attributes collaborator_emails]),
     } %>
   <% else %>
     <div class="form-group">

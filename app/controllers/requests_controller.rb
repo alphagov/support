@@ -2,6 +2,7 @@ require "sidekiq/api"
 
 class RequestsController < AuthorisationController
   include ErrorsHelper
+  include NameHelper
 
   def new
     @request = new_request
