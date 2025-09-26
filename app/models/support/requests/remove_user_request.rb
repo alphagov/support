@@ -21,7 +21,7 @@ module Support
       end
 
       def self.description
-        "Request to remove user access"
+        "Request to remove user access."
       end
     end
   end
