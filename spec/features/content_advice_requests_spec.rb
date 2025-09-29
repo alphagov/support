@@ -87,7 +87,7 @@ private
     find("#needed-by-month").set(details[:needed_by_month])
     find("#needed-by-year").set(details[:needed_by_year])
     fill_in "Reason for deadline", with: details[:reason_for_deadline]
-    fill_in "Contact telephone number (in case we need to call you to discuss the content)",
+    fill_in "Contact telephone number",
             with: details[:contact_number]
 
     user_submits_the_request_successfully
