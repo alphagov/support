@@ -50,11 +50,11 @@ private
 
     click_on "Remove user"
 
-    expect(page).to have_content("Request to remove user access")
+    expect(page).to have_content("Request to remove user access.")
 
-    within("#user_details") do
-      fill_in "Name", with: details[:user_name]
-      fill_in "Email", with: details[:user_email]
+    within("#new_support_requests_remove_user_request") do
+      fill_in "User's name (required)", with: details[:user_name]
+      fill_in "User's email (required)", with: details[:user_email]
       fill_in "Reason for removal", with: details[:reason_for_removal]
     end
 

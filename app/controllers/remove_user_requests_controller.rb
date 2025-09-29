@@ -1,4 +1,9 @@
 class RemoveUserRequestsController < RequestsController
+  def new
+    @use_design_system = true
+    super
+  end
+
 protected
 
   def new_request

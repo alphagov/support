@@ -1,80 +1,51 @@
-<div class="alert alert-info">
-  <p><%= f.object.class.description %></p>
-</div>
+<p class="govuk-body"><%= f.object.class.description %></p>
 
-<div id="user_details" %>
-  <fieldset>
-    <legend>
-      <span>User details</span>
-    </legend>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "User's name (required)" },
+  name: name_for(f, %w[user_name]),
+  width: 20,
+  error_items: errors_for(@request.errors, :user_name)
+} %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= f.label :user_name, class: "control-label" do %>
-          Name<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.text_field :user_name, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
-      </span>
-    </div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "User's email (required)" },
+  name: name_for(f, %w[user_email]),
+  width: 20,
+  error_items: errors_for(@request.errors, :user_email)
+} %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= f.label :user_email do %>
-          Email<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.email_field :user_email, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
-      </span>
-    </div>
+<%= render "govuk_publishing_components/components/date_input", {
+  legend_text: "MUST NOT be removed BEFORE",
+  hint: "For example, 27 3 2007",
+  items: [
+    {
+      label: "Day",
+      name: name_for(f, %w[time_constraint_attributes not_before_day]),
+      id: "not-before-day",
+      width: 2
+    },
+    {
+      label: "Month",
+      name: name_for(f, %w[time_constraint_attributes not_before_month]),
+      id: "not-before-month",
+      width: 2
+    },
+    {
+      label: "Year",
+      name: name_for(f, %w[time_constraint_attributes not_before_year]),
+      id: "not-before-year",
+      width: 4
+    }
+  ],
+  error_items: errors_for(@request.errors, :not_before_date)
+} %>
 
-    <%= f.fields_for :time_constraint do |r| %>
-      <div class="form-group">
-        <fieldset class="govuk-fieldset" role="group" aria-describedby="not-before-date-hint">
-          <span class="form-label">
-            <%= r.label :not_before_date do %>
-              MUST NOT be removed BEFORE
-            <% end %>
-          </span>
-
-          <div id="not-before-date-hint" class="govuk-hint">
-            For example, 27 3 2007
-          </div>
-
-          <div class="govuk-date-input" id="not-before-date">
-            <div class="govuk-date-input__item">
-              <div class="govuk-form-group">
-                <%= r.label :not_before_day, "Day", class: "govuk-label govuk-date-input__label" %>
-                <%= r.text_field :not_before_day, required: false, value: r.object.not_before_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-day", inputmode: "numeric" %>
-              </div>
-          </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :not_before_month, "Month", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :not_before_month, required: false, value: r.object.not_before_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-month", inputmode: "numeric" %>
-            </div>
-          </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :not_before_year, "Year", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :not_before_year, required: false, value: r.object.not_before_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "not-before-year", inputmode: "numeric" %>
-            </div>
-          </div>
-        </fieldset>
-      </div>
-    <% end %>
-
-    <div class="form-group">
-      <span class="form-label">
-        <%= f.label :reason_for_removal, "Reason for removal" %>
-      </span>
-      <span class="form-wrapper">
-        <%= f.text_area :reason_for_removal, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-      </span>
-    </div>
-  </fieldset>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "Reason for removal"
+  },
+  name: name_for(f, %w[reason_for_removal]),
+  error_items: errors_for(@request.errors, :reason_for_removal)
+} %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
