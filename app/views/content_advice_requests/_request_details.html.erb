@@ -1,103 +1,76 @@
-<div class="alert alert-info">
-  <p><%= f.object.class.description %></p>
-</div>
+<p class="govuk-body"><%= f.object.class.description %></p>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :title, "Title of request" %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_field :title, placeholder: "Advice on content", class: "input-md-6 form-control" %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Title of request" },
+  hint: "For example, \"Advice on content\"",
+  name: name_for(f, %w[title]),
+  error_items: errors_for(@request.errors, :title)
+} %>
 
-<fieldset>
-  <legend>
-    <span>Details of your request</span>
-  </legend>
+<h2 class="govuk-heading-l">Details of your request</h2>
 
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :details do %>
-        Please explain what you would like help with<abbr title="required">*</abbr>
-      <% end %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.text_area :details, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-    </span>
-  </div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "Please explain what you would like help with (required)"
+  },
+  name: name_for(f, %w[details]),
+  error_items: errors_for(@request.errors, :details)
+} %>
 
-  <div class="alert alert-info alert-block">
-    <p>If you have relevant supporting documents, please send them as attachments in reply to the acknowledgement email you will receive shortly.</p>
-  </div>
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "If you have relevant supporting documents, please send them as attachments in reply to the acknowledgement email you will receive shortly."
+} %>
 
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :urls, "Relevant URLs (if applicable)" %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.text_area :urls, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-    </span>
-  </div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "Relevant URLs (if applicable)"
+  },
+  name: name_for(f, %w[urls]),
+  error_items: errors_for(@request.errors, :urls)
+} %>
 
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :contact_number, "Contact telephone number (in case we need to call you to discuss the content)" %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.text_field :contact_number, class: "input-md-6 form-control" %>
-    </span>
-  </div>
-</fieldset>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Contact telephone number" },
+  hint: "In case we need to call you to discuss the content",
+  name: name_for(f, %w[contact_number]),
+  width: 20,
+  error_items: errors_for(@request.errors, :contact_number)
+} %>
 
-<%= f.fields_for :time_constraint do |r| %>
-  <fieldset class="govuk-fieldset" role="group">
-    <div class="form-group">
-      <fieldset class="govuk-fieldset" role="group" aria-describedby="needed-by-date-hint">
-        <legend>
-          <span>Time constraints</span>
-        </legend>
-        <span class="form-label">
-          <%= r.label :needed_by_date do %>
-            Is there a date you need to have a response by?
-          <% end %>
-        </span>
+<h2 class="govuk-heading-l">Time constraints</h2>
 
-        <div id="start-date-hint" class="govuk-hint">
-          For example, 27 3 2007
-        </div>
+<%= render "govuk_publishing_components/components/date_input", {
+  legend_text: "Is there a date you need to have a response by?",
+  hint: "For example, 27 3 2007",
+  items: [
+    {
+      label: "Day",
+      name: name_for(f, %w[time_constraint_attributes needed_by_day]),
+      id: "needed-by-day",
+      width: 2
+    },
+    {
+      label: "Month",
+      name: name_for(f, %w[time_constraint_attributes needed_by_month]),
+      id: "needed-by-month",
+      width: 2
+    },
+    {
+      label: "Year",
+      name: name_for(f, %w[time_constraint_attributes needed_by_year]),
+      id: "needed-by-year",
+      width: 4
+    }
+  ],
+  error_items: errors_for(@request.errors, :time_constraint_attributes)
+} %>
 
-        <div class="govuk-date-input" id="needed-by-date">
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :needed_by_day, "Day", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :needed_by_day, required: false, value: r.object.needed_by_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-day", inputmode: "numeric" %>
-            </div>
-        </div>
-        <div class="govuk-date-input__item">
-          <div class="govuk-form-group">
-            <%= r.label :needed_by_month, "Month", class: "govuk-label govuk-date-input__label" %>
-            <%= r.text_field :needed_by_month, required: false, value: r.object.needed_by_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-month", inputmode: "numeric" %>
-          </div>
-        </div>
-        <div class="govuk-date-input__item">
-          <div class="govuk-form-group">
-            <%= r.label :needed_by_year, "Year", class: "govuk-label govuk-date-input__label" %>
-            <%= r.text_field :needed_by_year, required: false, value: r.object.needed_by_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "needed-by-year", inputmode: "numeric" %>
-          </div>
-        </div>
-      </fieldset>
-    </div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Reason for deadline" },
+  name: name_for(f, %w[time_constraint_attributes time_constraint_reason]),
+  error_items: errors_for(@request.errors, :time_constraint_reason)
+} %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :time_constraint_reason, "Reason for deadline" %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :time_constraint_reason, class: "input-md-6 form-control" %>
-      </span>
-    </div>
-  </fieldset>
-<% end %>
+<h2 class="govuk-heading-l">Copy of the request</h2>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
