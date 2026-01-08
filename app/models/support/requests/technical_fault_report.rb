@@ -23,7 +23,6 @@ module Support
         "collections_publisher" => "Collections Publisher",
         "content_data" => "Content Data",
         "content_tagger" => "Content Tagger",
-        "datagovuk" => "data.gov.uk",
         "email_alerts" => "Email alerts",
         "feedback_explorer" => "Feedback explorer",
         "gov_uk_content" => "GOV.UK: content",
