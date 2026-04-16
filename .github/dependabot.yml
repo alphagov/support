@@ -6,12 +6,31 @@ updates:
       interval: daily
     cooldown:
       default-days: 3
+    groups:
+      test:
+        patterns:
+        - "factory_bot*"
+        - "govuk_test"
+        - "rails-controller-testing"
+        - "rspec-*"
+        - "shoulda"
+        - "simplecov"
+        - "timecop"
+        - "webmock"
+
   - package-ecosystem: npm
     directory: /
     schedule:
       interval: daily
     cooldown:
       default-days: 3
+    groups:
+      lint:
+        patterns:
+          - "standardx"
+          - "stylelint"
+          - "stylelint-*"
+
   - package-ecosystem: github-actions
     directory: /
     schedule:
