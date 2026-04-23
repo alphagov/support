@@ -24,6 +24,7 @@ module Support
         "content_data" => "Content Data",
         "content_tagger" => "Content Tagger",
         "email_alerts" => "Email alerts",
+        "fact_check_manager" => "Fact Check Manager",
         "feedback_explorer" => "Feedback explorer",
         "gov_uk_content" => "GOV.UK: content",
         "local_links_manager" => "Local Links Manager",
