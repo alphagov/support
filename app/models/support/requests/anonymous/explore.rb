@@ -62,12 +62,12 @@ module Support
             uri = URI.parse(path_or_url)
             valid = !uri.path.nil?
             if list_of_urls.present?
-              errors.add(:list_of_urls, "#{path_or_url} is not valid. Must contain only valid URLs") unless valid
+              errors.add(:list_of_urls, "#{path_or_url} is not a URL in the correct format. Enter only URLs and separate them with commas.") unless valid
             else
-              errors.add(:uploaded_list, "#{path_or_url} is not valid. Must contain only valid URLs") unless valid
+              errors.add(:uploaded_list, "#{path_or_url} is not a URL in the correct format. Enter only URLs and separate them with commas.") unless valid
             end
           rescue URI::InvalidURIError
-            errors.add(:base, "#{path_or_url} is not valid. Must contain only valid URLs")
+            errors.add(:base, "\"#{path_or_url}\" is not a URL in the correct format. Enter only URLs and separate them with commas.")
           end
         end
       end

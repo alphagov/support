@@ -30,6 +30,7 @@ class AnonymousFeedback::ExploreController < AuthorisationController
       redirect_to @explore.redirect_path
     else
       new
+      flash.now[:alert] = @explore.errors.full_messages.join('\n')
       render :new, status: :unprocessable_entity
     end
   end

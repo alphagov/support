@@ -8,9 +8,9 @@ module Support
         it { should allow_value("https://www.gov.uk/test").for(:list_of_urls) }
         it { should allow_value("/vat-rates, https://www.gov.uk/bank-holidays, /guidance/").for(:list_of_urls) }
         it { should allow_value(fixture_file_upload(Rails.root.join("spec/fixtures/list_of_urls.csv"), "text/plain")).for(:uploaded_list) }
-        it { should_not allow_value("https:aaaa").for(:list_of_urls).with_message("https:aaaa is not valid. Must contain only valid URLs") }
-        it { should_not allow_value("/vat-rates, https:aaaa, /guidance/").for(:list_of_urls).with_message("https:aaaa is not valid. Must contain only valid URLs") }
-        it { should_not allow_value(fixture_file_upload(Rails.root.join("spec/fixtures/list_of_bad_urls.csv"), "text/plain")).for(:uploaded_list).with_message("https:aaaa is not valid. Must contain only valid URLs") }
+        it { should_not allow_value("https:aaaa").for(:list_of_urls).with_message("https:aaaa is not a URL in the correct format. Enter only URLs and separate them with commas.") }
+        it { should_not allow_value("/vat-rates, https:aaaa, /guidance/").for(:list_of_urls).with_message("https:aaaa is not a URL in the correct format. Enter only URLs and separate them with commas.") }
+        it { should_not allow_value(fixture_file_upload(Rails.root.join("spec/fixtures/list_of_bad_urls.csv"), "text/plain")).for(:uploaded_list).with_message("https:aaaa is not a URL in the correct format. Enter only URLs and separate them with commas.") }
 
         it "raises an error if `uploaded_list` and `list_of_urls` are blank" do
           @explore_by_multiple_paths = ExploreByMultiplePaths.new(uploaded_list: nil, list_of_urls: nil)
