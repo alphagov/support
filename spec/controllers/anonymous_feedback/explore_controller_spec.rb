@@ -26,10 +26,20 @@ describe AnonymousFeedback::ExploreController, type: :controller do
     login_as create(:user, organisation_slug: "cabinet-office")
   end
 
-  it "shows the new form again for invalid requests" do
+  it "shows the new form again with an error message for invalid requests" do
     post :create, params: { support_requests_anonymous_explore_by_multiple_paths: { list_of_urls: "" } }
     expect(response).to have_http_status(422)
     expect(assigns(:explore_by_multiple_paths)).to be_present
+    expect(flash[:alert]).to eq "Please provide a valid list of urls."
+  end
+
+  it "shows the new form again with an error message for invalid url" do
+    post :create, params: { support_requests_anonymous_explore_by_multiple_paths: {
+      uploaded_list: fixture_file_upload(Rails.root.join("spec/fixtures/list_of_bad_urls.csv"), "text/plain"),
+    } }
+    expect(response).to have_http_status(422)
+    expect(assigns(:explore_by_multiple_paths)).to be_present
+    expect(flash[:alert]).to include "is not a URL in the correct format"
   end
 
   it "shows the new form again for invalid organisation requests" do
