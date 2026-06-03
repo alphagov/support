@@ -36,8 +36,8 @@ thead {
 }
 
 .text-break {
+  word-break: normal;
   overflow-wrap: break-word;
-  word-break: break-word;
 }
 
 .feedback-response-count {
