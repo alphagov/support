@@ -27,5 +27,3 @@ private
 
   class TicketNameTooLong < StandardError; end
 end
-
-ZendeskTicketWorker = ZendeskTicketJob ## TODO: Remove once queued jobs at the time of the upgrade are complete
