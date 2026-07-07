@@ -15,6 +15,5 @@ describe ReportAnIssueWithGovukSearchResultsRequestsController, type: :controlle
     expect(controller).to have_rendered(:new)
     expect(response.body).to have_css(".alert", text: /Search query can't be blank/)
     expect(response.body).to have_css(".alert", text: /Results problem can't be blank/)
-    expect(response.body).to have_css(".alert", text: /Change justification can't be blank/)
   end
 end

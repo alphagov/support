@@ -49,11 +49,11 @@
   <div class="form-group">
     <span class="form-label">
       <%= f.label :change_justification do %>
-        Explain why this change is necessary, including the impact on users and the number of users affected.
+        If applicable, explain why this change is necessary. Why are the current search results bad for users?
       <% end %>
     </span>
     <span class="form-wrapper">
-      <%= f.text_area :change_justification, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      <%= f.text_area :change_justification, class: "input-md-6 form-control", rows: 6, cols: 50 %>
     </span>
   </div>
 </div>

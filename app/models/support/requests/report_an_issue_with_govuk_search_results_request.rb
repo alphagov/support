@@ -5,7 +5,6 @@ module Support
 
       validates :search_query, presence: true
       validates :results_problem, presence: true
-      validates :change_justification, presence: true
 
       def self.label
         "Report an issue with GOV.UK search results"

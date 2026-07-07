@@ -45,7 +45,7 @@ private
     fill_in "What search queries are not working well?", with: details[:search_query]
     fill_in "What is the problem with the search results?", with: details[:results_problem]
     fill_in "If applicable, which pages are missing, or showing too high or low in results? If the pages are showing do you think they should be higher, lower, or removed?", with: details[:change_requested]
-    fill_in "Explain why this change is necessary, including the impact on users and the number of users affected.", with: details[:change_justification]
+    fill_in "If applicable, explain why this change is necessary. Why are the current search results bad for users?", with: details[:change_justification]
     user_submits_the_request_successfully
   end
 end
