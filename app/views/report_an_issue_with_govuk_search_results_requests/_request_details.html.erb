@@ -56,4 +56,22 @@
       <%= f.text_area :change_justification, class: "input-md-6 form-control", rows: 6, cols: 50 %>
     </span>
   </div>
+
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :evidence_availability do %>
+        Is there evidence that users are searching for these queries?
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.collection_radio_buttons :evidence_availability, f.object.evidence_availability_options, :last, :last, required: true, aria: { required: true } do |builder| %>
+      <div class="radio">
+        <%= builder.label(class: "custom-control-label") do %>
+          <%= builder.radio_button(class: "custom-control-input") %>
+          <%= builder.object.first %>
+        <% end %>
+      </div>
+      <% end %>
+    </span>
+  </div>
 </div>

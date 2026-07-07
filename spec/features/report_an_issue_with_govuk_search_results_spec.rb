@@ -23,7 +23,10 @@ search-result-problem
 improve-search-results
 
 [Why is this change necessary?]
-improvement-justification",
+improvement-justification
+
+[Is there evidence that users are searching for these queries?]
+Not sure",
     )
 
     user_reports_issue_with_search_results(
@@ -31,6 +34,7 @@ improvement-justification",
       results_problem: "search-result-problem",
       change_requested: "improve-search-results",
       change_justification: "improvement-justification",
+      evidence_availability: "Not sure",
     )
 
     expect(request).to have_been_made
@@ -46,6 +50,7 @@ private
     fill_in "What is the problem with the search results?", with: details[:results_problem]
     fill_in "If applicable, which pages are missing, or showing too high or low in results? If the pages are showing do you think they should be higher, lower, or removed?", with: details[:change_requested]
     fill_in "If applicable, explain why this change is necessary. Why are the current search results bad for users?", with: details[:change_justification]
+    choose details[:evidence_availability]
     user_submits_the_request_successfully
   end
 end
