@@ -13,7 +13,7 @@ module Support
       end
 
       def self.description
-        "Report a problem with specific search results from the new GOV.UK search engine."
+        "Report a problem or request a change to search results on GOV.UK."
       end
     end
   end
