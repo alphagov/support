@@ -10,11 +10,14 @@
   <div class="form-group">
     <span class="form-label">
       <%= f.label :search_query do %>
-        What search query did you use, for example “Universal Credit”?
+        What search queries are not working well?
       <% end %>
     </span>
+    <p class="help-block" id="query-hint">
+      Include the exact words users type into search. You can include more than one query (for example: universal credit payment, UC payment).
+    </p>
     <span class="form-wrapper">
-      <%= f.text_area :search_query, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      <%= f.text_area :search_query, required: true, aria: { required: true, describedby: "query-hint" }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
     </span>
   </div>
 
