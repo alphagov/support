@@ -1,7 +1,7 @@
 module Support
   module Requests
     class ReportAnIssueWithGovukSearchResultsRequest < Request
-      attr_accessor :search_query, :results_problem, :change_requested, :change_justification, :evidence_availability
+      attr_accessor :search_query, :results_problem, :change_requested, :change_justification, :evidence_availability, :evidence_description
 
       validates :search_query, presence: true
       validates :results_problem, presence: true

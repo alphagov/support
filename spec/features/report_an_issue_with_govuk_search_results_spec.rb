@@ -26,7 +26,10 @@ improve-search-results
 improvement-justification
 
 [Is there evidence that users are searching for these queries?]
-Not sure",
+Not sure
+
+[What is the evidence that users are searching for these queries?]
+search-evidence-summary",
     )
 
     user_reports_issue_with_search_results(
@@ -35,6 +38,7 @@ Not sure",
       change_requested: "improve-search-results",
       change_justification: "improvement-justification",
       evidence_availability: "Not sure",
+      evidence_description: "search-evidence-summary",
     )
 
     expect(request).to have_been_made
@@ -51,6 +55,7 @@ private
     fill_in "If applicable, which pages are missing, or showing too high or low in results? If the pages are showing do you think they should be higher, lower, or removed?", with: details[:change_requested]
     fill_in "If applicable, explain why this change is necessary. Why are the current search results bad for users?", with: details[:change_justification]
     choose details[:evidence_availability]
+    fill_in "If applicable, summarise the evidence that users are searching for these queries.", with: details[:evidence_description]
     user_submits_the_request_successfully
   end
 end

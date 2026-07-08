@@ -6,7 +6,7 @@ module Support
       def request(options = {})
         described_class.new(options).tap(&:valid?)
       end
-      
+
       it { should validate_presence_of(:search_query) }
       it { should validate_presence_of(:results_problem) }
 

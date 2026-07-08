@@ -18,6 +18,7 @@ module Zendesk
           Zendesk::LabelledSnippet.new(on: @request, field: :change_requested, label: "Which pages are showing incorrectly and how should they be changed?"),
           Zendesk::LabelledSnippet.new(on: @request, field: :change_justification, label: "Why is this change necessary?"),
           Zendesk::LabelledSnippet.new(on: @request, field: :formatted_evidence_availability, label: "Is there evidence that users are searching for these queries?"),
+          Zendesk::LabelledSnippet.new(on: @request, field: :evidence_description, label: "What is the evidence that users are searching for these queries?"),
         ]
       end
     end
