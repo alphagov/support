@@ -35,11 +35,14 @@
   <div class="form-group">
     <span class="form-label">
       <%= f.label :change_requested do %>
-        What change do you want to make to the search results? Include URLs for any pages you want the search to show.
+        If applicable, which pages are missing, or showing too high or low in results? If the pages are showing do you think they should be higher, lower, or removed?
       <% end %>
     </span>
+    <p class="help-block" id="change-hint">
+      Please include the URLs or pages.
+    </p>
     <span class="form-wrapper">
-      <%= f.text_area :change_requested, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      <%= f.text_area :change_requested, aria: { describedby: "change-hint" }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
     </span>
   </div>
 

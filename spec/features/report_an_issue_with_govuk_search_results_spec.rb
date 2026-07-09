@@ -19,7 +19,7 @@ search-query
 [What is the problem with the search results?]
 search-result-problem
 
-[What change do you want to make to the search results?]
+[Which pages are showing incorrectly and how should they be changed?]
 improve-search-results
 
 [Why is this change necessary?]
@@ -44,7 +44,7 @@ private
     expect(page).to have_content("Report an issue with GOV.UK search results")
     fill_in "What search queries are not working well?", with: details[:search_query]
     fill_in "What is the problem with the search results?", with: details[:results_problem]
-    fill_in "What change do you want to make to the search results? Include URLs for any pages you want the search to show.", with: details[:change_requested]
+    fill_in "If applicable, which pages are missing, or showing too high or low in results? If the pages are showing do you think they should be higher, lower, or removed?", with: details[:change_requested]
     fill_in "Explain why this change is necessary, including the impact on users and the number of users affected.", with: details[:change_justification]
     user_submits_the_request_successfully
   end

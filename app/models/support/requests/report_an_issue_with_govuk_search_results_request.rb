@@ -5,7 +5,6 @@ module Support
 
       validates :search_query, presence: true
       validates :results_problem, presence: true
-      validates :change_requested, presence: true
       validates :change_justification, presence: true
 
       def self.label
