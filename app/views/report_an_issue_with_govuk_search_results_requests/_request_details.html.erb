@@ -13,7 +13,7 @@
         What search queries are not working well?<abbr title="required">*</abbr>
       <% end %>
     </span>
-    <p class="help-block" id="query-hint">
+    <p class="help-block hint-block--md-6" id="query-hint">
       Include the exact words users type into search. You can include more than one query (for example: universal credit payment, UC payment).
     </p>
     <span class="form-wrapper">
@@ -34,7 +34,7 @@
 
   <div class="form-group">
     <span class="form-label">
-      <%= f.label :change_requested do %>
+      <%= f.label :change_requested, class: "hint-block--md-6" do %>
         If applicable, which pages are missing, or showing too high or low in results? If the pages are showing do you think they should be higher, lower, or removed?
       <% end %>
     </span>
@@ -48,7 +48,7 @@
 
   <div class="form-group">
     <span class="form-label">
-      <%= f.label :change_justification do %>
+      <%= f.label :change_justification, class: "hint-block--md-6" do %>
         If applicable, explain why this change is necessary. Why are the current search results bad for users?
       <% end %>
     </span>
