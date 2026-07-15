@@ -19,6 +19,8 @@ protected
       :results_problem,
       :change_requested,
       :change_justification,
+      :evidence_availability,
+      :evidence_description,
     ).to_h
   end
 end

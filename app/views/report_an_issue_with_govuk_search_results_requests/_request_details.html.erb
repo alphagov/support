@@ -1,27 +1,30 @@
-<p>GOV.UK site search learns from how people use it, so search results change and improve over time. A page not appearing high in results today may appear higher in the future. </p>
-<p>In most cases, the search engine will deliver highly relevant results without manual changes. However, there may be occasions where we need to step in to make sure certain pages appear higher or lower in results.</p>
-<p>If you think this is needed, use this form to tell the GOV.UK search team about issues with search results that might stop users finding what they need. For example:</p>
+<p>GOV.UK site search learns from how people use it, so search results change and improve over time. However, there may be occasions where we need to step in to make sure certain pages appear higher or lower in results.</p>
+<p>Use this form to tell the GOV.UK search team about issues with search results that are stopping users finding what they need. For example:</p>
 <ul>
-  <li>Important pages that should appear near the top of search results but are too low</li>
-  <li>Pages not appearing in search results at all</li>
+  <li>pages that should appear at the top of search results but are too low</li>
+  <li>pages not appearing in search results at all</li>
 </ul>
+<p>We’ll review your request and may contact you for more information. Requests are prioritised based on user impact and severity.</p>
 
 <div id="feedback-type">
   <div class="form-group">
     <span class="form-label">
       <%= f.label :search_query do %>
-        What search query did you use, for example “Universal Credit”?
+        What search queries are not working well?<abbr title="required">*</abbr>
       <% end %>
     </span>
+    <p class="help-block hint-block--md-6" id="query-hint">
+      Include the exact words users type into search. You can include more than one query (for example: universal credit payment, UC payment).
+    </p>
     <span class="form-wrapper">
-      <%= f.text_area :search_query, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      <%= f.text_area :search_query, required: true, aria: { required: true, describedby: "query-hint" }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
     </span>
   </div>
 
   <div class="form-group">
     <span class="form-label">
       <%= f.label :results_problem do %>
-        What is the problem with the search results?
+        What is the problem with the search results?<abbr title="required">*</abbr>
       <% end %>
     </span>
     <span class="form-wrapper">
@@ -31,23 +34,55 @@
 
   <div class="form-group">
     <span class="form-label">
-      <%= f.label :change_requested do %>
-        What change do you want to make to the search results? Include URLs for any pages you want the search to show.
+      <%= f.label :change_requested, class: "hint-block--md-6" do %>
+        If applicable, which pages are missing, or showing too high or low in results? If the pages are showing do you think they should be higher, lower, or removed?
       <% end %>
     </span>
+    <p class="help-block" id="change-hint">
+      Please include the URLs or pages.
+    </p>
     <span class="form-wrapper">
-      <%= f.text_area :change_requested, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      <%= f.text_area :change_requested, aria: { describedby: "change-hint" }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
     </span>
   </div>
 
   <div class="form-group">
     <span class="form-label">
-      <%= f.label :change_justification do %>
-        Explain why this change is necessary, including the impact on users and the number of users affected.
+      <%= f.label :change_justification, class: "hint-block--md-6" do %>
+        If applicable, explain why this change is necessary. Why are the current search results bad for users?
       <% end %>
     </span>
     <span class="form-wrapper">
-      <%= f.text_area :change_justification, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+      <%= f.text_area :change_justification, class: "input-md-6 form-control", rows: 6, cols: 50 %>
+    </span>
+  </div>
+
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :evidence_availability do %>
+        Is there evidence that users are searching for these queries?<abbr title="required">*</abbr>
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.collection_radio_buttons :evidence_availability, f.object.evidence_availability_options, :last, :last, required: true, aria: { required: true } do |builder| %>
+      <div class="radio">
+        <%= builder.label(class: "custom-control-label") do %>
+          <%= builder.radio_button(class: "custom-control-input") %>
+          <%= builder.object.first %>
+        <% end %>
+      </div>
+      <% end %>
+    </span>
+  </div>
+
+  <div class="form-group">
+    <span class="form-label">
+      <%= f.label :evidence_description do %>
+        If applicable, summarise the evidence that users are searching for these queries.
+      <% end %>
+    </span>
+    <span class="form-wrapper">
+      <%= f.text_area :evidence_description, class: "input-md-6 form-control", rows: 6, cols: 50 %>
     </span>
   </div>
 </div>
