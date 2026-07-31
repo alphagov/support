@@ -28,12 +28,14 @@
     <h2 id="request-change">Request a change to GOV.UK content</h2>
     <div class="row">
       <div class="col-md-6">
-        <p>Before you contact us, you must first:</p>
+        <p>Before you contact us, you must first <%= link_to "submit a support request", new_content_change_request_path %>.</p>
+        <p>After that, check whether your request counts as an emergency:</p>
         <ul>
-          <li><%= link_to "submit a support request", new_content_change_request_path %></li>
-          <li><%= link_to "read the full guidelines", "https://guidance.publishing.service.gov.uk/accounts-support/make-content-requests/ask-updates-content" %></li>
+          <li><%= link_to "read about what counts as an emergency change for 'mainstream' content", "https://guidance.publishing.service.gov.uk/accounts-support/make-content-requests/ask-updates-content/#if-you-need-emergency-support" %></li>
+          <li><%= link_to "read about what counts as an emergency change for other GOV.UK content", "https://guidance.publishing.service.gov.uk/accounts-support/get-content-advice/get-help-advice/#emergency-support-for-publishing-requests" %></li>
         </ul>
-        <p>The way you contact us and what counts as an emergency depends on whether you are calling within office hours.</p>
+        <p>If your request is not an emergency, you can flag it as 'URGENT' in the title of the request and it will be picked up as soon as possible in office hours.</p>
+        <p>If your request is an emergency, the way you contact us depends on whether you are calling within office hours.</p>
         <p>Both contact methods will put you in contact with a member of the GOV.UK content team.</p>
       </div>
     </div>
