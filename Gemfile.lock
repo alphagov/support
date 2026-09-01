@@ -141,7 +141,7 @@ GEM
       sass-embedded (~> 1.63)
     date (3.5.1)
     diff-lcs (1.6.2)
-    domain_name (0.6.20240107)
+    domain_name (0.6.20260829)
     drb (2.2.3)
     erb (6.0.7)
     erubi (1.13.1)
@@ -160,7 +160,7 @@ GEM
     ffi (1.17.3-aarch64-linux-gnu)
     ffi (1.17.3-arm64-darwin)
     ffi (1.17.3-x86_64-linux-gnu)
-    gds-api-adapters (103.4.0)
+    gds-api-adapters (103.4.4)
       addressable
       link_header
       null_logger
@@ -541,7 +541,7 @@ GEM
     puma (8.0.2)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.2.6)
+    rack (3.2.7)
     rack-protection (4.2.1)
       base64 (>= 0.1.0)
       logger (>= 1.6.0)
