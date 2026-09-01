@@ -31,7 +31,6 @@ module Support
         "local_links_manager" => "Local Links Manager",
         "mainstream_publisher" => "Mainstream Publisher",
         "manuals_publisher" => "Manuals Publisher",
-        "maslow" => "Maslow",
         "places_manager" => "Places Manager (formerly Imminence)",
         "search" => "Search",
         "service_manual_publisher" => "Service Manual Publisher",
