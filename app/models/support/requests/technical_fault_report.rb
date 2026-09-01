@@ -21,6 +21,7 @@ module Support
       # ("Conditions" -> "Tags" -> "Contains at least one of the following")
       OPTIONS = {
         "collections_publisher" => "Collections Publisher",
+        "content_api" => "Content API",
         "content_data" => "Content Data",
         "content_tagger" => "Content Tagger",
         "email_alerts" => "Email alerts",
