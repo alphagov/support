@@ -11,8 +11,13 @@ class RequestsController < AuthorisationController
     render :new, layout: "design_system" if @use_design_system
   end
 
-  def create
+  def build_request
     @request = parse_request_from_params
+  end
+
+  def create
+    build_request
+
     authorize! :create, @request
     set_requester_on(@request)
 
