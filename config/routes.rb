@@ -54,5 +54,7 @@ Rails.application.routes.draw do
     post "/common_info", to: "common_info#create"
 
     get "/review", to: "review#index", as: :review
+
+    post "/submit", to: "submission#create", as: :submission
   end
 end
