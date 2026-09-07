@@ -39,4 +39,20 @@ Rails.application.routes.draw do
     GovukHealthcheck::RailsCache,
     GovukHealthcheck::SidekiqRedis,
   )
+
+  namespace :content_advice, path: "content-advice" do
+    get "/request-type", to: "request_type#new", as: :request_type
+    post "/request-type", to: "request_type#create"
+
+    get "/short-url", to: "short_url#new", as: :short_url
+    post "/short-url", to: "short_url#create"
+
+    get "/organisation-page", to: "organisation_page#new", as: :organisation_page
+    post "/organisation-page", to: "organisation_page#create"
+
+    get "/common_info", to: "common_info#new", as: :common_info
+    post "/common_info", to: "common_info#create"
+
+    get "/review", to: "review#index", as: :review
+  end
 end

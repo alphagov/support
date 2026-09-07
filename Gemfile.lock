@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/DFE-Digital/dfe-wizard.git
+  revision: 58533f9ba6cd4ed6c70e86ebe32e87af1cc6411f
+  tag: v1.0.0
+  specs:
+    dfe-wizard (1.0.0)
+      activemodel (>= 7.1, < 9)
+      activesupport (>= 7.1, < 9)
+      ruby-graphviz (~> 1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -678,6 +688,8 @@ GEM
     rubocop-rspec (3.9.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.81)
+    ruby-graphviz (1.2.5)
+      rexml
     ruby-progressbar (1.13.0)
     rubyzip (3.2.2)
     sass-embedded (1.89.2-aarch64-linux-gnu)
@@ -785,6 +797,7 @@ DEPENDENCIES
   cancancan
   csv
   dartsass-rails
+  dfe-wizard!
   factory_bot_rails
   gds-api-adapters
   gds-sso
