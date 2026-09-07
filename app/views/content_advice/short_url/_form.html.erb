@@ -1,0 +1,26 @@
+<!-- app/views/registration/name/index.html.erb -->
+<% content_for :page_title, 'What would you like to do?' %>
+
+<%= render "govuk_publishing_components/components/input", {
+  label: {
+    text: "From"
+  },
+  name: form.field_name(:from_url),
+  value: @wizard.current_step.from_url
+} %>
+
+<%= render "govuk_publishing_components/components/input", {
+  label: {
+    text: "To"
+  },
+  name: form.field_name(:to_url),
+  value: @wizard.current_step.to_url
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "Reason"
+  },
+  name: form.field_name(:reason),
+  value: @wizard.current_step.reason
+} %>

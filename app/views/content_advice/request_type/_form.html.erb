@@ -1,0 +1,22 @@
+<!-- app/views/registration/name/index.html.erb -->
+<% content_for :page_title, 'What would you like to do?' %>
+
+<%= render "govuk_publishing_components/components/radio", {
+  heading: "What would you like to do?",
+  name: form.field_name(:type),
+  items: [
+    {
+      value: "short_url_request",
+      text: "Ask for a short URL"
+    },
+    {
+      value: "organisation_page",
+      text: "Create a page for an organisation"
+    },
+    {
+      value: "something_else",
+      text: "Something else"
+    }
+  ]
+} %>
+

@@ -1,0 +1,18 @@
+<!-- app/views/registration/name/index.html.erb -->
+<% content_for :page_title, 'What would you like to do?' %>
+
+<%= render "govuk_publishing_components/components/input", {
+  label: {
+    text: "Deadline"
+  },
+  name: form.field_name(:dealine),
+  value: @wizard.current_step.deadline
+} %>
+
+<%= render "govuk_publishing_components/components/input", {
+  label: {
+    text: "CC Email"
+  },
+  name: form.field_name(:cc_email),
+  value: @wizard.current_step.cc_email
+} %>
