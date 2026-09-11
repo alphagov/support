@@ -1,125 +1,92 @@
-<div class="alert alert-info alert-block">
-  <p>You'll get an automated response to confirm we've received your request. We'll then review your request within 2 working days.</p>
+<%= render "govuk_publishing_components/components/notice", {
+  description: sanitize('<p class="govuk-body">You\'ll get an automated response to confirm we\'ve received your request. We\'ll then review your request within 2 working days.</p><p class="govuk-body"><a class="govuk-link" href="https://guidance.publishing.service.gov.uk/accounts-support/make-content-requests/ask-updates-content">How to write a request that will get resolved quickly</a>.</p>'),
+} %>
 
-<p><a href="https://guidance.publishing.service.gov.uk/accounts-support/make-content-requests/ask-updates-content">How to write a request that will get resolved quickly</a>.</p>
-</div>
+<%= render "govuk_publishing_components/components/input", {
+  label: {
+    text: "Title of request (required)"
+  },
+  hint: "Clearly summarise what needs to change - for example, ‘Update phone numbers in Universal Credit guide’ or ‘Create a start page for clean air zones’.",
+  name: name_for(f, %w[title]),
+  value: f.object.title,
+  error_items: errors_for(@request.errors, :title)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :title do %>
-      Title of request <abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <p class="help-block hint-block--md-6" id="title-hint">
-    Clearly summarise what needs to change - for example, ‘Update phone numbers in Universal Credit guide’ or ‘Create a start page for clean air zones‘.
-  </p>
-  <span class="form-wrapper">
-    <%= f.text_field :title, required: true, placeholder: "Content change request", class: "input-md-6 form-control",
-      aria: {
-        describedby: "title-hint"
-      }
-    %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/select", {
+  label: "What’s the reason for the request? (required)",
+  hint: "If none of the options below are appropriate, please select other.",
+  id: name_for(f, %w[reason_for_change]),
+  options: [{ text: "", value: "" }] + f.object.reason_for_change_options.map do |option|
+    {
+      text: option,
+      value: option,
+      selected: f.object.reason_for_change == option
+    }
+  end,
+  error_items: errors_for(@request.errors, :reason_for_change)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :reason_for_change do %>
-      What’s the reason for the request? <abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <p class="help-block hint-block--md-6" id="reason-hint">
-    If none of the options below are appropriate, please select other.
-  </p>
-  <span class="form-wrapper">
-    <%= f.select :reason_for_change,
-      options_for_select(f.object.reason_for_change_options, f.object.reason_for_change),
-      { include_blank: true },
-      class: "input-md-6 form-control",
-      aria: {
-        describedby: "reason-hint"
-      },
-      required: true
-    %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/select", {
+  label: "What’s the subject area? (required)",
+  hint: "If your request covers multiple subject areas, choose the one you think most relevant.",
+  id: name_for(f, %w[subject_area]),
+  options: [{ text: "", value: "" }] + f.object.subject_area_options.map do |option|
+    {
+      text: option,
+      value: option,
+      selected: f.object.subject_area == option
+    }
+  end,
+  error_items: errors_for(@request.errors, :subject_area)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :subject_area do %>
-    What’s the subject area? <abbr title="required">*</abbr>
-    <% end%>
-  </span>
-  <p class="help-block hint-block--md-6" id="subject-area-hint">
-    If your request covers multiple subject areas, choose the one you think most relevant.
-  </p>
-  <span class="form-wrapper">
-    <%= f.select :subject_area,
-      options_for_select(f.object.subject_area_options, f.object.subject_area),
-      { include_blank: true },
-      class: "input-md-6 form-control",
-      aria: {
-        describedby: "subject-area-hint"
-      },
-      required: true
-    %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "Which URLs are affected? (required)"
+  },
+  hint: "List URLs, one per line. Include any Welsh URLs where translations are needed.",
+  name: name_for(f, %w[url]),
+  value: f.object.url,
+  error_items: errors_for(@request.errors, :url)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :url do %>
-      Which URLs are affected? <abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <p class="help-block hint-block--md-6" id="url-hint">
-    List URLs, one per line. Include any Welsh URLs where translations are needed.
-  </p>
-  <span class="form-wrapper">
-    <%= f.text_area :url, placeholder: "https://www.gov.uk/", required: true, class: "input-md-6 form-control", rows: 4, cols: 50, aria: {
-      describedby: "url-hint"
-    } %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "Tell us about the content that needs to be created, updated or is causing a problem for users? (required)"
+  },
+  hint: sanitize(
+    '<p>Make sure you:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>include evidence of why this is a problem, for example, user feedback or call centre data</li>
+      <li>give sufficient detail</li>
+      <li>use plain English</li>
+      <li>explain any acronyms, jargon or legal language</li>
+      <li>say which parts of the content are affected, for example, the first paragraph of the overview</li>
+      <li>separate different points, for example, by numbering them</li>
+    </ul>
+    <p>If you send us wording, we might not use it. If we do, we’ll need to put it in GOV.UK style.</p>'
+  ),
+  name: name_for(f, %w[details_of_change]),
+  value: f.object.details_of_change,
+  error_items: errors_for(@request.errors, :details_of_change)
+} %>
 
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :details_of_change do %>
-        Tell us about the content that needs to be created, updated or is causing a problem for users? <abbr title="required">*</abbr>
-      <% end %>
-    </span>
-    <div class="help-block hint-block--md-6" id="details-of-change-hint">
-      <p>Make sure you:</p>
-      <ul>
-        <li>include evidence of why this is a problem, for example, user feedback or call centre data</li>
-        <li>give sufficient detail</li>
-        <li>use plain English</li>
-        <li>explain any acronyms, jargon or legal language</li>
-        <li>say which parts of the content are affected - for example, ‘first paragraph of overview’</li>
-        <li>separate different points - for example, by numbering them</li>
-      </ul>
-
-    <p>If you send us wording, we might not use it. If we do, we’ll need to put it in GOV.UK style.</p>
-  </div>
-  <span class="form-wrapper">
-    <%= f.text_area :details_of_change, required: true, class: "input-md-6 form-control", rows: 16, cols: 50, aria: {
-      describedby: "details-of-change-hint",
-      required: true
-    } %>
-  </span>
-</div>
-
-  </div>
-
-<%= render partial: "support/attachment_instructions" %>
+<%= render "govuk_publishing_components/components/notice", {
+  description: sanitize(
+    '<p class="govuk-body">If you have relevant supporting documents, or files for us to host, please send them as attachments in reply to the acknowledgement email you will receive shortly.</p>'
+  ),
+} %>
 
 <%= render partial: "support/time_constraint", locals: { f: f } %>
 
-<div class="alert alert-info alert-block">
-  <p><strong>If your request is urgent</strong></p>
-  <p>Submit this form and <%= link_to "use one of our emergency contact methods (opens in new tab)", emergency_contact_details_path, target: "_blank" %>.</p>
-
-  <p>It's urgent only if the public or the government faces immediate and significant financial, legal or physical risk.</p>
-</div>
+<%= render "govuk_publishing_components/components/notice", {
+  description: sanitize(
+    '<p class="govuk-body"><strong>If your request is urgent</strong></p>' \
+    '<p class="govuk-body">Submit this form and ' \
+    "#{link_to 'use one of our emergency contact methods (opens in new tab)', emergency_contact_details_path, target: '_blank'}." \
+    '</p>' \
+    '<p class="govuk-body">It’s urgent only if the public or the government faces immediate and significant financial, legal or physical risk.</p>'
+  ),
+} %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
