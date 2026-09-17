@@ -1,4 +1,5 @@
 require_relative "boot"
+require_relative "../lib/middleware/omni_auth_request_sanitizer"
 
 require "rails"
 # Pick the frameworks you want:
@@ -40,5 +41,7 @@ module Support
     config.assets.prefix = "/assets/support"
 
     config.active_model.i18n_customize_full_message = true
+
+    config.middleware.insert_before OmniAuth::Builder, Middleware::OmniAuthRequestSanitizer
   end
 end
