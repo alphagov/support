@@ -49,7 +49,12 @@ class ScopeFiltersPresenter
   end
 
   def organisation
-    @organisation ||= Services.support_api.organisation(organisation_slug) if organisation_slug.present?
+    return if organisation_slug.blank?
+
+    @organisation ||= Services.support_api.organisation(organisation_slug)
+  rescue GdsApi::HTTPNotFound
+    # Fall back to a title derived from the slug instead of raising mid-render
+    @organisation = { "title" => organisation_slug.tr("-", " ").humanize }
   end
 
   def to_s

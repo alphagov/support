@@ -247,6 +247,12 @@ describe ScopeFiltersPresenter, type: :presenter do
       presenter = described_class.new(organisation_slug: nil)
       expect(presenter.organisation_title).to eq nil
     end
+
+    it "falls back to the humanised slug when suuport-api doesn't know the organisation" do
+      stub_any_support_api_call.to_return(status: 404)
+      presenter = described_class.new(organisation_slug: "office-for-zero-emission-vehicle")
+      expect(presenter.organisation_title).to eq "Office for zero emission vehicle"
+    end
   end
 
   describe "#paths_title" do
@@ -312,6 +318,12 @@ describe ScopeFiltersPresenter, type: :presenter do
     it "is the organisation title when organisation is provided and paths and document_type are blank" do
       presenter = described_class.new(paths: nil, organisation_slug: "department-of-hats", document_type: nil)
       expect(presenter.to_s).to eq "Department of Hats"
+    end
+
+    it "is the humanised slug rather than raising when support-api doen't know the organisation" do
+      stub_any_support_api_call.to_return(status: 404)
+      presenter = described_class.new(paths: nil, organisation_slug: "office-for-zero-emission-vehicle", document_type: nil)
+      expect(presenter.to_s).to eq "Office for zero emission vehicle"
     end
 
     it "is the document type title when document_type is provided and path and organisation are blank" do
