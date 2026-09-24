@@ -19,18 +19,25 @@ module ContentAdvice
   private
 
     def set_wizard
-      state_store = StateStores::ContentAdviceStore.new(
-        repository: DfE::Wizard::Repository::Session.new(
-          session:,
-          key: :content_advice,
-        ),
-      )
+      repository = Repositories::SupportApiRepository.new(draft_request_reference)
+      state_store = StateStores::ContentAdviceStore.new(repository:)
 
       @wizard = ContentAdviceWizard.new(
         current_step: controller_name.to_sym,
         current_step_params: params,
         state_store:,
       )
+    end
+
+    def draft_request_reference
+      ref = session[:support_app_reference]
+
+      if ref.blank?
+        ref = SecureRandom.alphanumeric(16)
+        session[:support_app_reference] = ref
+      end
+
+      session[:support_app_reference]
     end
   end
 end
