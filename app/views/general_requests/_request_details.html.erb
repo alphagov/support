@@ -1,38 +1,26 @@
-<div class="alert alert-info">
-  <p>Please use this path to:</p>
-  <ul>
-    <li>report planned departmental changes that affect GOV.UK and its users</li>
-    <li>report issues that don't fit into other categories</li>
-  </ul>
-</div>
+<p class="govuk-body">Please use this path to:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>report planned departmental changes that affect GOV.UK and its users</li>
+  <li>report issues that don't fit into other categories</li>
+</ul>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :title, "Title of request" %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_field :title, placeholder: "General request", class: "input-md-6 form-control" %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Title of request" },
+  hint: "General request",
+  name: name_for(f, %w[title]),
+  error_items: errors_for(@request.errors, :title)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :details do %>
-      Details<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :details, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Details (required)" },
+  name: name_for(f, %w[details]),
+  error_items: errors_for(@request.errors, :details)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :url, "URL (if applicable)" %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_field :url, class: "input-md-6 form-control" %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "URL (if applicable)" },
+  name: name_for(f, %w[url]),
+  error_items: errors_for(@request.errors, :url)
+} %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
