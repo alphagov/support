@@ -296,9 +296,8 @@ describe ScopeFiltersPresenter, type: :presenter do
         acronym: "DoH",
         govuk_status: "live",
       )
-
-      stub_support_api_anonymous_feedback_doc_type_summary(document_type: "smart_answer")
     end
+
     it 'is "Everything" when paths, organisation and document_type are omitted' do
       presenter = described_class.new(paths: nil, organisation_slug: nil, document_type: nil)
       expect(presenter.to_s).to eq "Everything"
