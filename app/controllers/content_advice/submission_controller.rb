@@ -11,11 +11,14 @@ module ContentAdvice
     end
 
     def request_data
+      repository = Repositories::SupportApiRepository.new(session[:support_app_reference])
+      submitted_data = repository.read
+
       {
-        title: session[:content_advice]["type"].titleize.to_s,
-        details: request_details,
+        title: submitted_data["type"].titleize.to_s,
+        details: request_details(submitted_data),
         requester_attributes: {
-          collaborator_emails: session[:content_advice]["cc_email"],
+          collaborator_emails: submitted_data["cc_email"],
         },
         time_constraint_attributes: {
           needed_by_day: "1",
@@ -26,9 +29,9 @@ module ContentAdvice
       }
     end
 
-    def request_details
+    def request_details(submitted_data)
       details = []
-      session[:content_advice].each do |key, value|
+      submitted_data.each do |key, value|
         details << "[#{key.titleize}]\n"
         details << "#{value}\n"
       end
