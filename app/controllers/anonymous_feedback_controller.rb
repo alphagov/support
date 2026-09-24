@@ -4,6 +4,9 @@ class AnonymousFeedbackController < RequestsController
   def index
     authorize! :read, :anonymous_feedback
 
+    @organisation = find_organisation_for_index
+    return if performed?
+
     return unless validate_required_api_params
 
     api_response = fetch_anonymous_feedback_from_support_api
@@ -91,7 +94,19 @@ private
       path_set_id: saved_paths.try(:id),
       organisation_slug: index_params[:organisation],
       document_type: index_params[:document_type],
+      organisation: @organisation,
     )
+  end
+
+  def find_organisation_for_index
+    slug = index_params[:organisation]
+    return if slug.blank?
+
+    Services.support_api.organisation(slug)
+  rescue GdsApi::HTTPNotFound
+    flash[:warning] = "We couldn't find an organisation with slug '#{slug}'. " \
+      "Please choose an organisation from the list below."
+    redirect_back_or_to anonymous_feedback_explore_path
   end
 
   def present_date_filters(api_response)

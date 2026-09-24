@@ -187,64 +187,17 @@ describe ScopeFiltersPresenter, type: :presenter do
     end
   end
 
-  describe "#organisation" do
-    include GdsApi::TestHelpers::SupportApi
-
-    it "fetches the org from the support api using the supplied slug" do
-      org_request = stub_support_api_organisation(
-        "department-of-hats",
-        slug: "department-of-hats",
-        web_url: "https://www.gov.uk/government/organisations/department-of-hats",
-        title: "Department of Hats",
-        acronym: "DoH",
-        govuk_status: "live",
-      )
-      presenter = described_class.new(organisation_slug: "department-of-hats")
-      presenter.organisation
-      expect(org_request).to have_been_requested
-    end
-
-    it "does not talk to the support api if the organisation slug is not present" do
-      org_request = stub_support_api_organisation(
-        "department-of-hats",
-        slug: "department-of-hats",
-        web_url: "https://www.gov.uk/government/organisations/department-of-hats",
-        title: "Department of Hats",
-        acronym: "DoH",
-        govuk_status: "live",
-      )
-      presenter = described_class.new(organisation_slug: nil)
-      presenter.organisation
-      expect(org_request).not_to have_been_requested
-    end
-
-    it "raises any error from the support API" do
-      stub_any_support_api_call.to_return(status: 500)
-      presenter = described_class.new(organisation_slug: "department-of-hats")
-      expect {
-        presenter.organisation
-      }.to raise_error GdsApi::HTTPErrorResponse
-    end
-  end
-
   describe "#organisation_title" do
-    include GdsApi::TestHelpers::SupportApi
-
-    it "delegates to the org from the support api using the supplied slug" do
-      stub_support_api_organisation(
-        "department-of-hats",
-        slug: "department-of-hats",
-        web_url: "https://www.gov.uk/government/organisations/department-of-hats",
-        title: "Department of Hats",
-        acronym: "DoH",
-        govuk_status: "live",
+    it "is taken from the given organisation" do
+      presenter = described_class.new(
+        organisation_slug: "department-of-hats",
+        organisation: { "title" => "Department of Hats" },
       )
-      presenter = described_class.new(organisation_slug: "department-of-hats")
       expect(presenter.organisation_title).to eq "Department of Hats"
     end
 
-    it "is nil if no organisation_slug was provided" do
-      presenter = described_class.new(organisation_slug: nil)
+    it "is nil if no organisation was provided" do
+      presenter = described_class.new(organisation_slug: nil, organisation: nil)
       expect(presenter.organisation_title).to eq nil
     end
   end
@@ -287,18 +240,8 @@ describe ScopeFiltersPresenter, type: :presenter do
   end
 
   describe "#to_s" do
-    before do
-      stub_support_api_organisation(
-        "department-of-hats",
-        slug: "department-of-hats",
-        web_url: "https://www.gov.uk/government/organisations/department-of-hats",
-        title: "Department of Hats",
-        acronym: "DoH",
-        govuk_status: "live",
-      )
+    let(:organisation) { { "title" => "Department of Hats" } }
 
-      stub_support_api_anonymous_feedback_doc_type_summary(document_type: "smart_answer")
-    end
     it 'is "Everything" when paths, organisation and document_type are omitted' do
       presenter = described_class.new(paths: nil, organisation_slug: nil, document_type: nil)
       expect(presenter.to_s).to eq "Everything"
@@ -310,7 +253,12 @@ describe ScopeFiltersPresenter, type: :presenter do
     end
 
     it "is the organisation title when organisation is provided and paths and document_type are blank" do
-      presenter = described_class.new(paths: nil, organisation_slug: "department-of-hats", document_type: nil)
+      presenter = described_class.new(
+        paths: nil,
+        organisation_slug: "department-of-hats",
+        document_type: nil,
+        organisation:,
+      )
       expect(presenter.to_s).to eq "Department of Hats"
     end
 
@@ -324,17 +272,26 @@ describe ScopeFiltersPresenter, type: :presenter do
         paths: ["/done/buying-a-new-hat"],
         organisation_slug: "department-of-hats",
         document_type: "smart_answer",
+        organisation:,
       )
       expect(presenter.to_s).to eq "Department of Hats on /done/buying-a-new-hat - Document type: smart answer"
     end
 
     it "is the organisation title and paths when 1 path is provided" do
-      presenter = described_class.new(paths: ["/done/buying-a-new-hat"], organisation_slug: "department-of-hats")
+      presenter = described_class.new(
+        paths: ["/done/buying-a-new-hat"],
+        organisation_slug: "department-of-hats",
+        organisation:,
+      )
       expect(presenter.to_s).to eq "Department of Hats on /done/buying-a-new-hat"
     end
 
     it "is the organisation title and paths when 2 paths are provided" do
-      presenter = described_class.new(paths: ["/done/buying-a-new-hat", "/done/selling-an-old-hat"], organisation_slug: "department-of-hats")
+      presenter = described_class.new(
+        paths: ["/done/buying-a-new-hat", "/done/selling-an-old-hat"],
+        organisation_slug: "department-of-hats",
+        organisation:,
+      )
       expect(presenter.to_s).to eq "Department of Hats on /done/buying-a-new-hat and 1 other path"
     end
 
@@ -343,6 +300,7 @@ describe ScopeFiltersPresenter, type: :presenter do
         paths: ["/done/buying-a-new-hat", "/done/selling-an-old-hat", "/done/selling-a-newish-hat"],
         organisation_slug: "department-of-hats",
         document_type: "smart_answer",
+        organisation:,
       )
       expect(presenter.to_s).to eq "Department of Hats on /done/buying-a-new-hat and 2 other paths - Document type: smart answer"
     end

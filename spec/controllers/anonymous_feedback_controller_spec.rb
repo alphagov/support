@@ -296,5 +296,47 @@ describe AnonymousFeedbackController, type: :controller do
 
       expect(response.body).to include "Cabinet Office"
     end
+
+    it "doesn't show an unknown organisation warning" do
+      get :index, params: { organisation: "cabinet-office" }
+
+      expect(response.body).not_to include("find an organisation with slug")
+    end
+  end
+
+  context "when the organisation slug isn't known to support-api" do
+    render_views
+
+    before do
+      stub_support_api_anonymous_feedback(
+        { organisation_slug: "ministry-of-hats" },
+        "current_page" => 1,
+        "pages" => 1,
+        "page_size" => 1,
+        "results" => [],
+      )
+      stub_request(
+        :get,
+        "#{GdsApi::TestHelpers::SupportApi::SUPPORT_API_ENDPOINT}/organisations/ministry-of-hats",
+      ).to_return(status: 404)
+    end
+
+    it "redirects to the explore (i.e. index) page with a warning flash rather than raising" do
+      get :index, params: { organisation: "ministry-of-hats" }
+
+      expect(response).to redirect_to(anonymous_feedback_explore_path)
+      expect(flash[:warning]).to include("find an organisation with slug 'ministry-of-hats'")
+    end
+
+    it "still raises error from the support-api other than not-found" do
+      stub_request(
+        :get,
+        "#{GdsApi::TestHelpers::SupportApi::SUPPORT_API_ENDPOINT}/organisations/ministry-of-hats",
+      ).to_return(status: 500)
+
+      expect {
+        get(:index, params: { organisation: "ministry-of-hats" })
+      }.to raise_error(GdsApi::HTTPErrorResponse)
+    end
   end
 end
