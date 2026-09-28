@@ -110,6 +110,41 @@ describe AnonymousFeedback::ExportRequestsController, type: :controller do
                                         ))
       end
     end
+
+    context "when the organisation slug isn't known to support-api" do
+      let!(:expert_request_stub) do
+        stub_support_api_feedback_export_request_creation(
+          notification_email: "foo.bar@example.gov.uk",
+          path_prefixes: nil,
+          from: "2015-05-01",
+          to: "2015-06-01",
+          organisation: "hm-revenue-customs",
+        )
+      end
+
+      it "doesn't set an unknown organisation warning flash" do
+        stub_request(
+          :get,
+          "#{GdsApi::TestHelpers::SupportApi::SUPPORT_API_ENDPOINT}/organisations/hm-revenue-customs",
+        ).to_return(status: 404)
+
+        post(
+          :create,
+          params: {
+            organisation: "hm-revenue-customs",
+            from: "2015-05-01",
+            to: "2015-06-01",
+          },
+        )
+
+        expect(flash[:warning]).to be_nil
+        expect(response).to redirect_to(anonymous_feedback_index_path(
+                                          organisation: "hm-revenue-customs",
+                                          from: "2015-05-01",
+                                          to: "2015-06-01",
+                                        ))
+      end
+    end
   end
 
   describe "#show" do

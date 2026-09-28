@@ -1,11 +1,12 @@
 class ScopeFiltersPresenter
-  attr_reader :organisation_slug, :document_type, :path_set_id
+  attr_reader :document_type, :path_set_id, :organisation, :organisation_slug
 
-  def initialize(paths: nil, path_set_id: nil, organisation_slug: nil, document_type: nil)
-    @parsed_paths = normalize_paths(paths)
-    @organisation_slug = organisation_slug
+  def initialize(document_type: nil, paths: nil, path_set_id: nil, organisation: nil, organisation_slug: nil)
     @document_type = document_type
+    @parsed_paths = normalize_paths(paths)
     @path_set_id = path_set_id
+    @organisation = organisation
+    @organisation_slug = organisation_slug
   end
 
   def paths
@@ -46,10 +47,6 @@ class ScopeFiltersPresenter
         paths
       end
     end
-  end
-
-  def organisation
-    @organisation ||= Services.support_api.organisation(organisation_slug) if organisation_slug.present?
   end
 
   def to_s
