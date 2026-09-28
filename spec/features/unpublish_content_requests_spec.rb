@@ -69,6 +69,30 @@ true",
     expect(request).to have_been_made
   end
 
+  scenario "retains entered values when validation fails" do
+    visit "/"
+    click_on "Unpublish content"
+
+    urls = "https://www.gov.uk/example"
+    explanation = "This page is no longer needed"
+    redirect_url = "https://www.gov.uk/replacement"
+
+    fill_in "Please give the Whitehall or Content Publisher URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)", with: urls
+    fill_in "Redirects will be automatic unless you give a reason:", with: explanation
+    fill_in "Redirect URL", with: redirect_url
+    check "Redirect to URL automatically?"
+
+    click_on "Submit"
+
+    expect(page).to have_field(
+      "Please give the Whitehall or Content Publisher URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)",
+      with: urls,
+    )
+    expect(page).to have_field("Redirects will be automatic unless you give a reason:", with: explanation)
+    expect(page).to have_field("Redirect URL", with: redirect_url)
+    expect(page).to have_checked_field("Redirect to URL automatically?")
+  end
+
 private
 
   def user_makes_a_request_to_unpublish_content(details)
