@@ -1,57 +1,44 @@
-<div class="alert alert-info">
-  <p>Please make a separate request for each target redirect.</p>
-</div>
+<%= render "govuk_publishing_components/components/notice", {
+  title: "Please make a separate request for each target redirect."
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :urls do %>
-      Please give the Whitehall or Content Publisher URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :urls, required: true, placeholder: "https://whitehall-admin.publishing.service.gov.uk/government/admin/...", aria: { required: true }, class: "input-md-8 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "Please give the Whitehall or Content Publisher URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected) (required)"
+  },
+  name: name_for(f, %w[urls]),
+  rows: 6,
+  error_items: errors_for(@request.errors, :urls)
+} %>
 
-<div class="alert alert-info">
-  <p>You may also wish to send this information in a spreadsheet, by attaching it to the Zendesk confirmation email.
-  </p>
-</div>
+<%= render "govuk_publishing_components/components/notice", {
+  title: "You may also wish to send this information in a spreadsheet, by attaching it to the Zendesk confirmation email."
+} %>
 
-<br/>
+<%= render "govuk_publishing_components/components/radio", {
+  id: "unpublish-reason",
+  heading: "What is the reason for unpublishing? (required)",
+  heading_level: 0,
+  name: name_for(f, %w[reason_for_unpublishing]),
+  items: f.object.reason_for_unpublishing_options.map do |text, value|
+    {
+      value: value,
+      text: text
+    }
+  end,
+  error_items: errors_for(@request.errors, :reason_for_unpublishing)
+} %>
 
-<div id="unpublish-reason">
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :reason_for_unpublishing, class: "control-label" do %>
-        What is the reason for unpublishing?<abbr title="required">*</abbr>
-      <% end %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.collection_radio_buttons :reason_for_unpublishing, f.object.reason_for_unpublishing_options, :last, :last, required: true, aria: { required: true } do |builder| %>
-        <div class="radio">
-          <%= builder.label class: "custom-control-label" do %>
-            <%= builder.radio_button(class: "custom-control-input") %>
-            <%= builder.object.first %>
-          <% end %>
-        </div>
-      <% end %>
-    </span>
-  </div>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "Redirects will be automatic unless you give a reason:"
+  },
+  name: name_for(f, %w[further_explanation]),
+  rows: 6,
+  error_items: errors_for(@request.errors, :further_explanation)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :further_explanation do %>
-      Redirects will be automatic unless you give a reason:<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :further_explanation, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
-
-<div class="alert alert-info">
+<div class="govuk-body">
   <p>If you do give a reason, users will go to a landing page and read your reason, then click on the redirect URL. Note that:
     <ul>
       <li>it is essential to write some text if the redirect is to the National Archives or an external website.</li>
@@ -60,35 +47,36 @@
   </p>
 </div>
 
-<fieldset>
-  <legend>
-    <span>Redirect details (optional if published in error)</span>
-  </legend>
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :redirect_url, "Redirect URL (we need the GOV.UK page for the redirect URL)" %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.text_field :redirect_url, required: false, placeholder: "https://www.gov.uk/government/...", class: "input-md-8 form-control" %>
-    </span>
-  </div>
+<%= render "govuk_publishing_components/components/fieldset", {
+  legend_text: "Redirect details (optional if published in error)",
+  heading_size: "m",
+} do %>
+  <%= render "govuk_publishing_components/components/input", {
+    label: { text: "Redirect URL (we need the GOV.UK page for the redirect URL)" },
+    name: name_for(f, %w[redirect_url]),
+    error_items: errors_for(@request.errors, :redirect_url)
+  } %>
 
-  <div class="form-group checkbox">
-    <span class="form-wrapper">
-      <%= f.label :automatic_redirect, class: "control-label" do %>
-        <%= f.check_box :automatic_redirect, required: false %>
-        Redirect to URL automatically?
-      <% end %>
-    </span>
-  </div>
-</fieldset>
+  <%= render "govuk_publishing_components/components/checkboxes", {
+    name: name_for(f, %w[automatic_redirect]),
+    items: [
+      {
+        label: "Redirect to URL automatically?",
+        value: "1",
+        checked: f.object.automatic_redirect == "1"
+      }
+    ]
+  } %>
+<% end %>
 
-<div class="alert alert-info">
-  <p>This page will be unpublished (it will revert to draft). You will be notified when this is done and it is then your responsibility to delete this page or re-publish it in due course.</p>
-</div>
+<%= render "govuk_publishing_components/components/notice", {
+  title: "This page will be unpublished (it will revert to draft). You will be notified when this is done and it is then your responsibility to delete this page or re-publish it in due course."
+} %>
 
-<div class="alert alert-danger">
-  <p>Pages cannot be recovered once you have deleted them. Please ensure that all requests to GDS to unpublish content have been approved at the correct level in your organisation - if you aren't sure check with your GDS single point of contact.</p>
-</div>
+<%= render "govuk_publishing_components/components/error_alert", {
+  message: "Pages cannot be recovered once you have deleted them. Please ensure that all requests to GDS to unpublish content have been approved at the correct level in your organisation - if you aren't sure check with your GDS single point of contact."
+} %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
+
+<%= hidden_field_tag "use_design_system", true %>
