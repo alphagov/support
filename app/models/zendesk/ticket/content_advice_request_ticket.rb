@@ -3,12 +3,7 @@ module Zendesk
     class ContentAdviceRequestTicket < Zendesk::ZendeskTicket
       def subject
         deadline_prefix = (deadline_date ? "Needed by #{deadline_date}: " : "")
-        title_text = if @request.title.blank?
-                       "Advice on content"
-                     else
-                       "#{@request.title} - Advice on content"
-                     end
-        deadline_prefix + title_text
+        deadline_prefix + @request.title
       end
 
       def tags
