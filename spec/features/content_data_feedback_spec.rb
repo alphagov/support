@@ -34,6 +34,28 @@ Cannot work",
     expect(request).to have_been_made
   end
 
+  scenario "retains entered values when validation fails" do
+    visit "/"
+    click_on "Give feedback on Content Data (Beta)"
+
+    feedback_details = "I am having trouble reading the screen"
+    impact_on_work = "Cannot work"
+
+    fill_in "Tell us a bit more", with: feedback_details
+    fill_in "What's the impact on your work if we don't do anything about it?",
+            with: impact_on_work
+
+    click_on "Submit"
+
+    expect(page).to have_field("Tell us a bit more", with: feedback_details)
+    expect(
+      page,
+    ).to have_field(
+      "What's the impact on your work if we don't do anything about it?",
+      with: impact_on_work,
+    )
+  end
+
 private
 
   def user_provides_feedback(details)

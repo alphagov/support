@@ -1,56 +1,46 @@
-<p class="alert alert-info">
-  Content Data is in beta. It is currently operating in a minimal maintenance mode only,
+<%= render "govuk_publishing_components/components/notice", {
+  title: "Content Data is in beta. It is currently operating in a minimal maintenance mode only,
   so no further product developments are planned. Our capacity for addressing any issues
-  that arise is also limited, so only those with a significant impact can be prioritised.
-</p>
+  that arise is also limited, so only those with a significant impact can be prioritised."
+} %>
+
 <div id="feedback-type">
-  <div class="form-group">
-    <span class="form-label control-label">
-      <%= f.label :feedback_type do %>
-        Your feedback is about<abbr title="required">*</abbr>
-      <% end %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.collection_radio_buttons :feedback_type, f.object.feedback_type_options, :last, :last, required: true, aria: { required: true } do |builder| %>
-        <div class="radio">
-          <%= builder.label class: "custom-control-label" do %>
-            <%= builder.radio_button(class: "custom-control-input") %>
-            <%= builder.object.first %>
-          <% end %>
-        </div>
-      <% end %>
-    </span>
-  </div>
+  <%= render "govuk_publishing_components/components/radio", {
+    heading: "Your feedback is about (required)",
+    heading_level: 0,
+    name: name_for(f, %w[feedback_type]),
+    items: f.object.feedback_type_options.map do |text, value|
+      {
+        text: text,
+        value: value,
+        checked: f.object.feedback_type == value
+      }
+    end,
+    error_items: errors_for(@request.errors, :feedback_type)
+  } %>
 
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :feedback_details do %>
-        Tell us a bit more<abbr title="required">*</abbr>
-      <% end %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.text_area :feedback_details, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-    </span>
-  </div>
+  <%= render "govuk_publishing_components/components/textarea", {
+    label: { text: "Tell us a bit more (required)" },
+    name: name_for(f, %w[feedback_details]),
+    value: f.object.feedback_details,
+    rows: 6,
+    error_items: errors_for(@request.errors, :feedback_details)
+  } %>
 
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :impact_on_work do %>
-        What's the impact on your work if we don't do anything about it?<abbr title="required">*</abbr>
-      <% end %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.text_area :impact_on_work, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-      <span class="help-block">
-        This information will help us prioritise changes and future work
-      </span>
-    </span>
-  </div>
+  <%= render "govuk_publishing_components/components/textarea", {
+    label: { text: "What's the impact on your work if we don't do anything about it? (required)" },
+    hint: "This information will help us prioritise changes and future work",
+    name: name_for(f, %w[impact_on_work]),
+    value: f.object.impact_on_work,
+    rows: 6,
+    error_items: errors_for(@request.errors, :impact_on_work)
+  } %>
 </div>
 
-<p class="alert alert-info">
-  To add screenshots to this feedback, reply to the acknowledgement
-  email you receive and attach them.
-</p>
+<%= render "govuk_publishing_components/components/notice", {
+  title: "To add screenshots to this feedback, reply to the acknowledgement email you receive and attach them."
+} %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
+
+<%= hidden_field_tag "use_design_system", true %>
