@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     resource request_class_name.underscore, only: %i[new create]
   end
 
+  
+  namespace :content_advice do
+    resource :short_url_request, only: %i[new create]
+  end
+
   get "/accounts_permissions_and_training_request/new" => redirect("/")
 
   namespace :anonymous_feedback do

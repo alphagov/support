@@ -1,0 +1,56 @@
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "From URL" },
+  hint: "Provide the full URL, for example, https://www.gov.uk/shiny-url",
+  name: name_for(f, %w[from_url]),
+  value: @request.from_url,
+  error_items: errors_for(@request.errors, :from_url)
+} %>
+
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "To URL" },
+  hint: "Provide the full URL, for example, https://www.gov.uk/guidance/blah/blah/blah",
+  name: name_for(f, %w[to_url]),
+  value: @request.to_url,
+  error_items: errors_for(@request.errors, :to_url)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Reason" },
+  name: name_for(f, %w[reason]),
+  value: @request.reason,
+  error_items: errors_for(@request.errors, :reason)
+} %>
+
+<%= render "govuk_publishing_components/components/radio", {
+  heading: "How do you want to prove your identity?",
+  name: name_for(f, %w[identity_proof]),
+  id_prefix: "conditional-checked",
+  items:
+    [
+      {
+        value: "Government gateway",
+        text: "Use Government Gateway",
+        checked: @request.identity_proof == "Government gateway",
+        conditional: render("govuk_publishing_components/components/input", {
+          name: name_for(f, %w[gov_gateway_number]),
+          label: {
+            text: "Gov Gateway number",
+          },
+          value: @request.gov_gateway_number,
+
+        }),
+      },
+      {
+        value: "Email verification",
+        text: "Email verification",
+        checked: @request.identity_proof == "Email verification",
+        conditional: render("govuk_publishing_components/components/input", {
+          name: name_for(f, %w[email]),
+          label: {
+            text: "Email address",
+          },
+          value: @request.email,
+        }),
+      }
+    ]
+} %>
