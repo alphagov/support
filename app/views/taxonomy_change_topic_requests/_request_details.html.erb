@@ -1,56 +1,44 @@
-<div class="alert alert-info">
-  <p><%= f.object.class.description.html_safe %></p>
-</div>
+<%= render "govuk_publishing_components/components/notice", {
+  title: f.object.class.description.html_safe
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :title do %>
-      Name of topic you'd like changed<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_field :title, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Name of topic you'd like changed (required)" },
+  name: name_for(f, %w[title]),
+  value: f.object.title,
+  error_items: errors_for(@request.errors, :title)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :type_of_change do %>
-      What would you like to change?<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.collection_radio_buttons :type_of_change, f.object.type_of_change_options, :last, :last, required: true, aria: { required: true } do |builder| %>
-      <div class="radio">
-        <%= builder.label(class: "custom-control-label") do %>
-          <%= builder.radio_button(class: "custom-control-input") %>
-          <%= builder.object.first %>
-        <% end %>
-      </div>
-    <% end %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/radio", {
+  heading: "What would you like to change? (required)",
+  heading_level: 0,
+  name: name_for(f, %w[type_of_change]),
+  items: f.object.type_of_change_options.map do |text, value|
+    {
+      text: text,
+      value: value,
+      checked: f.object.type_of_change == value
+    }
+  end,
+  error_items: errors_for(@request.errors, :type_of_change)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :details do %>
-      Please give details of how you'd like the topic changed<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :details, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Please give details of how you'd like the topic changed (required)" },
+  name: name_for(f, %w[details]),
+  value: f.object.details,
+  rows: 6,
+  error_items: errors_for(@request.errors, :details)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :reasons do %>
-      Why do you think this change is needed? Please provide any evidence you have<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :reasons, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Why do you think this change is needed? Please provide any evidence you have (required)" },
+  name: name_for(f, %w[reasons]),
+  value: f.object.reasons,
+  rows: 6,
+  error_items: errors_for(@request.errors, :reasons)
+} %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
+
+<%= hidden_field_tag "use_design_system", true %>
