@@ -1,7 +1,19 @@
 class ContentAdviceRequestsController < RequestsController
+  layout "design_system"
+
   def new
     @use_design_system = true
     super
+  end
+
+  def index
+    @request = new_request
+    authorize! :new, @request
+
+    @content_advice_forms = [
+      Support::Requests::ContentAdvice::ShortUrlRequest,
+      Support::Requests::ContentAdvice::OrganisationRequest,
+    ]
   end
 
 protected

@@ -35,11 +35,13 @@ module Support
       end
 
       def content_requests
-        sections_for(
-          Support::Requests::ContentAdviceRequest,
-          Support::Requests::ContentChangeRequest,
-          Support::Requests::UnpublishContentRequest,
-        )
+        [
+          ParentRequestSection.new(Support::Requests::ContentAdviceRequest, @current_user, "/content_advice_request/index"),
+          sections_for(
+            Support::Requests::ContentChangeRequest,
+            Support::Requests::UnpublishContentRequest,
+          ),
+        ].flatten
       end
 
       def technical_support_requests

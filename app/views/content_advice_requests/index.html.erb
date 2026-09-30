@@ -1,0 +1,17 @@
+<%= content_for :page_title, "Home" %>
+<%= content_for :header, "Content advice requests" %>
+
+<p class="govuk-body-l">
+  Choose one of the following forms to submit a content advice request
+</p>
+
+<div>
+  <% @content_advice_forms.each do |form| %>
+    <div class="app-support-form-list__item">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
+        <%= link_to form.label, form.link, class: "govuk-link" %>
+      </h2>
+      <p class="govuk-body"><%= form.description %></p>
+    </div>
+  <% end %>
+</div>
