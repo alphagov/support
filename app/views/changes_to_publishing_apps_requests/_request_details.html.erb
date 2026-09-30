@@ -1,46 +1,42 @@
-<div class="alert alert-info alert-block">
-  <p>
-    Changes and new features need to be assessed against the GOV.UK roadmap.
-    Give as much detail as you can about the user need and evidence for your
-    request.
-  </p>
-</div>
+<%= render "govuk_publishing_components/components/notice", {
+  title: "Changes and new features need to be assessed against the GOV.UK roadmap. Give as much detail as you can about the user need and evidence for your request."
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :title, "Title of request" %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_field :title, placeholder: "New need request", class: "input-md-6 form-control" %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Title of request" },
+  name: name_for(f, %w[title]),
+  value: f.object.title,
+  hint: "New need request",
+  error_items: errors_for(@request.errors, :title)
+} %>
 
-<fieldset>
-  <legend>
-    <span>Details of the new feature/need</span>
-  </legend>
+<%= render "govuk_publishing_components/components/fieldset", {
+  legend_text: "Details of the new feature/need",
+  heading_size: "m"
+} do %>
+  <%= render "govuk_publishing_components/components/textarea", {
+    label: {
+      text: "What is the product request or technical advice you need? (required)"
+    },
+    name: name_for(f, %w[user_need]),
+    value: f.object.user_need,
+    rows: 6,
+    error_items: errors_for(@request.errors, :user_need)
+  } %>
 
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :user_need do %>
-        What is the product request or technical advice you need?<abbr title="required">*</abbr>
-      <% end %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.text_area :user_need, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-    </span>
-  </div>
-
-  <div class="form-group">
-    <span class="form-label">
-      <%= f.label :feature_evidence, "If this is a request for a new feature, what evidence do you have to support the request?" %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.text_area :feature_evidence, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-    </span>
-  </div>
-</fieldset>
+  <%= render "govuk_publishing_components/components/textarea", {
+    label: {
+      text: "If this is a request for a new feature, what evidence do you have to support the request?"
+    },
+    name: name_for(f, %w[feature_evidence]),
+    value: f.object.feature_evidence,
+    rows: 6,
+    error_items: errors_for(@request.errors, :feature_evidence)
+  } %>
+<% end %>
 
 <%= render partial: "support/attachment_instructions" %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
+
+<%= hidden_field_tag "use_design_system", true %>
