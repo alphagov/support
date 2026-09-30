@@ -44,6 +44,39 @@ search-evidence-summary",
     expect(request).to have_been_made
   end
 
+  scenario "retains entered values when validation fails" do
+    visit "/"
+    click_on "Report an issue with GOV.UK search results"
+
+    search_query = "search-query"
+    change_requested = "improve-search-results"
+    change_justification = "These results make it hard for users to find the right page."
+    evidence_description = "Search analytics show users are entering this query."
+
+    fill_in "What search queries are not working well?", with: search_query
+    fill_in(
+      "If applicable, which pages are missing, or showing too high or low in results? If the pages are showing do you think they should be higher, lower, or removed?",
+      with: change_requested,
+    )
+    fill_in(
+      "If applicable, explain why this change is necessary. Why are the current search results bad for users?",
+      with: change_justification,
+    )
+    choose "No"
+    fill_in(
+      "If applicable, summarise the evidence that users are searching for these queries.",
+      with: evidence_description,
+    )
+
+    click_on "Submit"
+
+    expect(page).to have_field("What search queries are not working well?", with: search_query)
+    expect(page).to have_field("If applicable, which pages are missing, or showing too high or low in results? If the pages are showing do you think they should be higher, lower, or removed?", with: change_requested)
+    expect(page).to have_field("If applicable, explain why this change is necessary. Why are the current search results bad for users?", with: change_justification)
+    expect(page).to have_checked_field("No")
+    expect(page).to have_field("If applicable, summarise the evidence that users are searching for these queries.", with: evidence_description)
+  end
+
 private
 
   def user_reports_issue_with_search_results(details)
