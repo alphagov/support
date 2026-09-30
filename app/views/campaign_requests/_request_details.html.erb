@@ -1,335 +1,319 @@
-<div class="alert alert-info">
-  <p><%= f.object.class.description %></p>
-</div>
+<%= render "govuk_publishing_components/components/notice", {
+  title: f.object.class.description
+} %>
 
-<p>
+<p class="govuk-body">
   Use this for: A single or multi page site on the GOV.UK Campaigns Platform
 </p>
-<p>
+
+<p class="govuk-body">
   Please answer the questions below.
 </p>
 
 <%= f.fields_for :campaign do |r| %>
-  <fieldset>
-    <legend>
-      <span>Campaign details</span>
-    </legend>
+  <%= render "govuk_publishing_components/components/fieldset", {
+    legend_text: "Campaign details",
+    heading_size: "m"
+  } do %>
 
-    <div class="form-group checkbox">
-      <span class="form-wrapper">
-        <%= r.label :has_read_guidance_confirmation, class: "control-label" do %>
-          <%= r.check_box :has_read_guidance_confirmation, {}, "Yes", "No"  %>
-          <b>I/We have read the <%= link_to('GCS guidance on campaign websites', 'https://gcs.civilservice.gov.uk/guidance/campaigns/websites-government-campaigns/') %> and accept the requirements for a Campaign Platform website</b>
-        <% end %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/checkboxes", {
+      name: name_for(r, %w[has_read_guidance_confirmation]),
+      items: [
+        {
+          label: safe_join([
+            "I/We have read the ",
+            link_to(
+              "GCS guidance on campaign websites",
+              "https://www.communications.gov.uk/publication/how-to-set-up-a-government-campaign-website/"
+            ),
+            " and accept the requirements for a Campaign Platform website"
+          ]),
+          value: "Yes",
+          checked: r.object.has_read_guidance_confirmation == "Yes"
+        }
+      ]
+    } %>
 
-    <div class="form-group checkbox">
-      <span class="form-wrapper">
-        <%= r.label :has_read_oasis_guidance_confirmation, class: "control-label" do %>
-          <%= r.check_box :has_read_oasis_guidance_confirmation, {}, "Yes", "No" %>
-          <b>I/We have followed the <%= link_to('GCS guidance for OASIS planning', 'https://gcs.civilservice.gov.uk/wp-content/uploads/2015/09/6.3938_CO_GCS-Campaign-Planning_FINAL_A4_111017.pdf') %> 
-          and are using the <%= link_to('mandatory GCS OASIS template', 'https://gcs.civilservice.gov.uk/guidance/marketing/delivering-government-campaigns/guide-to-campaign-planning-oasis/') %></b>
-        <% end %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/checkboxes", {
+      name: name_for(r, %w[has_read_oasis_guidance_confirmation]),
+      items: [
+        {
+          label: safe_join([
+            "I/We have followed the ",
+            link_to(
+              "GCS guidance for OASIS planning",
+              "https://www.communications.gov.uk/publication/oasis-planning-government-communications/"
+            ),
+            " and are using the ",
+            link_to(
+              "mandatory GCS OASIS template",
+              "https://gcs.civilservice.gov.uk/guidance/marketing/delivering-government-campaigns/guide-to-campaign-planning-oasis/"
+            )
+          ]),
+          value: "Yes",
+          checked: r.object.has_read_oasis_guidance_confirmation == "Yes"
+        }
+      ]
+    } %>
 
-    <div class="form-group checkbox">
-    <span class="form-wrapper">
-      <%= r.label :full_responsibility_confirmation, class: "control-label" do %>
-        <%= r.check_box :full_responsibility_confirmation, {}, "Yes", "No" %>
-        <b>I/We will take full responsibility for all aspects of managing and resourcing this campaign site from Discovery stage to site build/content development, to site closure. The site must be regularly reviewed to ensure a high standard of work. GCS reserves the right to close the site if standard of the site drops below expectations.</b>
-      <% end %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/checkboxes", {
+      name: name_for(r, %w[full_responsibility_confirmation]),
+      items: [
+        {
+          label: "I/We will take full responsibility for all aspects of managing and resourcing this campaign site from Discovery stage to site build/content development, to site closure. The site must be regularly reviewed to ensure a high standard of work. GCS reserves the right to close the site if standard of the site drops below expectations.",
+          value: "Yes",
+          checked: r.object.full_responsibility_confirmation == "Yes"
+        }
+      ]
+    } %>
 
-      <div class="form-group checkbox">
-      <span class="form-wrapper">
-        <%= r.label :accessibility_confirmation, class: "control-label" do %>
-          <%= r.check_box :accessibility_confirmation, {}, "Yes", "No" %>
-          <b>I/We will ensure the site meets all <%= link_to('government web accessibility standards', 'https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps') %>, and that it will be tested and the Accessibility Statement completed before final review (if your team doesn't have expertise in accessible content design then appropriate training must be undertaken before the site build.)</b>
-        <% end %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/checkboxes", {
+      name: name_for(r, %w[accessibility_confirmation]),
+      items: [
+        {
+          label: safe_join([
+            "I/We will ensure the site meets all ",
+            link_to(
+              "government web accessibility standards",
+              "https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps"
+            ),
+            ", and that it will be tested and the Accessibility Statement completed before final review (if your team doesn't have expertise in accessible content design then appropriate training must be undertaken before the site build.)"
+          ]),
+          value: "Yes",
+          checked: r.object.accessibility_confirmation == "Yes"
+        }
+      ]
+    } %>
 
-    <div class="form-group checkbox">
-    <span class="form-wrapper">
-      <%= r.label :cookie_and_privacy_notice_confirmation, class: "control-label" do %>
-        <%= r.check_box :cookie_and_privacy_notice_confirmation, {}, "Yes", "No" %>
-        <b>I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer (NB : GDS will add a basic "boilerplate", however departments will need to identify if additions are needed).</b>
-      <% end %>
-    </span>
-    </div>
+    <%= render "govuk_publishing_components/components/checkboxes", {
+      name: name_for(r, %w[cookie_and_privacy_notice_confirmation]),
+      items: [
+        {
+          label: 'I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer (NB : GDS will add a basic "boilerplate", however departments will need to identify if additions are needed).',
+          value: "Yes",
+          checked: r.object.cookie_and_privacy_notice_confirmation == "Yes"
+        }
+      ]
+    } %>
 
-    <div class="form-group">
-      <span class="form-label control-label">
-        <%= r.label :signed_campaign do %>
-          Name of the Head of Digital Communications who signed off the campaign website application<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :signed_campaign, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/input", {
+      label: {
+        text: "Name of the Head of Digital Communications who signed off the campaign website application (required)"
+      },
+      name: name_for(r, %w[signed_campaign]),
+      value: r.object.signed_campaign,
+      width: 20,
+      error_items: errors_for(r.object.errors, :signed_campaign)
+    } %>
 
-    <div class="form-group">
-      <fieldset class="govuk-fieldset" role="group" aria-describedby="start-date-hint">
-        <span class="form-label">
-          <%= r.label :start_date do %>
-            Start date of campaign site<abbr title="required">*</abbr>
-          <% end %>
-        </span>
-        
-        <div id="start-date-hint" class="govuk-hint">
-          For example, 27 3 2007
-        </div>
+    <%= render "govuk_publishing_components/components/date_input", {
+      legend_text: "Start date of campaign site (required)",
+      hint: "For example, 27 3 2007",
+      items: [
+        {
+          label: "Day",
+          name: name_for(r, %w[start_day]),
+          value: r.object.start_day,
+          id: "start-day",
+          width: 2
+        },
+        {
+          label: "Month",
+          name: name_for(r, %w[start_month]),
+          value: r.object.start_month,
+          id: "start-month",
+          width: 2
+        },
+        {
+          label: "Year",
+          name: name_for(r, %w[start_year]),
+          value: r.object.start_year,
+          id: "start-year",
+          width: 4
+        }
+      ],
+      error_items: errors_for(r.object.errors, :start_date)
+    } %>
 
-        <div class="govuk-date-input" id="start-date">
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :start_day, "Day", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :start_day, required: false, value: r.object.start_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "start-day", inputmode: "numeric" %>
-            </div>
-          </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-                <%= r.label :start_month, "Month", class: "govuk-label govuk-date-input__label" %>
-                <%= r.text_field :start_month, required: false, value: r.object.start_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "start-month", inputmode: "numeric" %>
-            </div>
-          </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :start_year, "Year", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :start_year, required: false, value: r.object.start_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "start-year", inputmode: "numeric" %>
-            </div>
-          </div>
-        </div>
-        <p class="help-block">
-          Once your site is live, you should allow time for testing before driving traffic to it. We advise leaving 1-2 days for no-cost campaigns, and at least a week for paid advertising campaigns.
-        </p>
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <fieldset class="govuk-fieldset" role="group" aria-describedby="end-date-hint">
-        <span class="form-label">
-          <%= r.label :end_date do %>
-            Proposed end date of campaign site<abbr title="required">*</abbr>
-          <% end %>
-        </span>
-
-        <div id="start-date-hint" class="govuk-hint">
-          For example, 27 3 2007
-        </div>
-
-        <div class="govuk-date-input" id="end-date">
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-                <%= r.label :end_day, "Day", class: "govuk-label govuk-date-input__label" %>
-                <%= r.text_field :end_day, required: false, value: r.object.end_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "end-day", inputmode: "numeric" %>
-            </div>
-          </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :end_month, "Month", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :end_month, required: false, value: r.object.end_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "end-month", inputmode: "numeric" %>
-            </div>
-          </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :end_year, "Year", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :end_year, required: false, value: r.object.end_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "end-year", inputmode: "numeric" %>
-            </div>
-          </div>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <fieldset class="govuk-fieldset" role="group" aria-describedby="development-start-date-hint">
-        <span class="form-label">
-          <%= r.label :development_start_date do %>
-            Site build to commence on<abbr title="required">*</abbr>
-          <% end %>
-        </span>
-
-        <div id="development-start-date-hint" class="govuk-hint">
-          For example, 27 3 2007
-        </div>
-        
-        <div class="govuk-date-input" id="development-start-date">
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :development_start_day, "Day", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :development_start_day, required: false, value: r.object.development_start_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "development-start-day", inputmode: "numeric" %>
-            </div>
-          </div>
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :development_start_month, "Month", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :development_start_month, required: false, value: r.object.development_start_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "development-start-month", inputmode: "numeric" %>
-            </div>
-           </div>
-           <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :development_start_year, "Year", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :development_start_year, required: false, value: r.object.development_start_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "development-start-year", inputmode: "numeric" %>
-            </div>
-          </div>
-        </div>
-        <p class="help-block">
-          We expect the website to go live within 1 month of approval
-        </p>
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :performance_review_contact_email do %>
-          Contact email/s for website performance review every 6 months<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :performance_review_contact_email, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
-      </span>
-    </div>
-    <p class="help-block">
-      Every 6 months after your site goes live you will be required to provide performance data
-      for the site based on your digital KPIs.
+    <p class="govuk-body">
+      Once your site is live, you should allow time for testing before driving traffic to it.
+      We advise leaving 1-2 days for no-cost campaigns, and at least a week for paid advertising campaigns.
     </p>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :government_theme do %>
-          Which of the current Government Communications Plan priority themes does this campaign website support and how?<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_area :government_theme, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/date_input", {
+      legend_text: "Proposed end date of campaign site (required)",
+      hint: "For example, 27 3 2007",
+      items: [
+        {
+          label: "Day",
+          name: name_for(r, %w[end_day]),
+          value: r.object.end_day,
+          id: "end-day",
+          width: 2
+        },
+        {
+          label: "Month",
+          name: name_for(r, %w[end_month]),
+          value: r.object.end_month,
+          id: "end-month",
+          width: 2
+        },
+        {
+          label: "Year",
+          name: name_for(r, %w[end_year]),
+          value: r.object.end_year,
+          id: "end-year",
+          width: 4
+        }
+      ],
+      error_items: errors_for(r.object.errors, :end_date)
+    } %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :site_title do %>
-          Site title<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :site_title, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
-      </span>
-    </div>
-    <p class="help-block">
-      The short campaign title, as appears in (for example) Google Search. 2-3 words
+    <%= render "govuk_publishing_components/components/date_input", {
+      legend_text: "Site build to commence on (required)",
+      hint: "For example, 27 3 2007",
+      items: [
+        {
+          label: "Day",
+          name: name_for(r, %w[development_start_day]),
+          value: r.object.development_start_day,
+          id: "development-start-day",
+          width: 2
+        },
+        {
+          label: "Month",
+          name: name_for(r, %w[development_start_month]),
+          value: r.object.development_start_month,
+          id: "development-start-month",
+          width: 2
+        },
+        {
+          label: "Year",
+          name: name_for(r, %w[development_start_year]),
+          value: r.object.development_start_year,
+          id: "development-start-year",
+          width: 4
+        }
+      ],
+      error_items: errors_for(r.object.errors, :development_start_date)
+    } %>
+
+    <p class="govuk-body">
+      We expect the website to go live within 1 month of approval.
     </p>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :site_tagline do %>
-          Site tagline<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :site_tagline, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
-      </span>
-    </div>
-    <p class="help-block">
-      Explain what this site is about, as appears in (for example) Google Search. Maximum 7 - 8 words      
-    </p>
+    <%= render "govuk_publishing_components/components/input", {
+      label: {
+        text: "Contact email/s for website performance review every 6 months (required)"
+      },
+      hint: "Every 6 months after your site goes live you will be required to provide performance data for the site based on your digital KPIs.",
+      name: name_for(r, %w[performance_review_contact_email]),
+      value: r.object.performance_review_contact_email,
+      width: 20,
+      error_items: errors_for(r.object.errors, :performance_review_contact_email)
+    } %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :site_metadescription do %>
-          Site metadescription (appears in search results)<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_area :site_metadescription, required: true, aria: { required: true, describedby: "seoHelpBlock" }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-      </span>
-    </div>
-    <p class="help-block">
-      Approx 20-30 words, as appears in (for example) Google Search
-    </p>
+    <%= render "govuk_publishing_components/components/textarea", {
+      label: {
+        text: "Which of the current Government Communications Plan priority themes does this campaign website support and how? (required)"
+      },
+      name: name_for(r, %w[government_theme]),
+      value: r.object.government_theme,
+      rows: 6,
+      error_items: errors_for(r.object.errors, :government_theme)
+    } %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :description do %>
-          Campaign description<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_area :description, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/input", {
+      label: { text: "Site title (required)" },
+      hint: "The short campaign title, as appears in (for example) Google Search. 2-3 words",
+      name: name_for(r, %w[site_title]),
+      value: r.object.site_title,
+      width: 20,
+      error_items: errors_for(r.object.errors, :site_title)
+    } %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :call_to_action do %>
-          Call to action<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_area :call_to_action, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/input", {
+      label: { text: "Site tagline (required)" },
+      hint: "Explain what this site is about, as appears in (for example) Google Search. Maximum 7-8 words",
+      name: name_for(r, %w[site_tagline]),
+      value: r.object.site_tagline,
+      width: 20,
+      error_items: errors_for(r.object.errors, :site_tagline)
+    } %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :proposed_url do %>
-          Proposed URL (in the form of xxxxx.campaign.gov.uk)<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :proposed_url, required: true, aria: { required: true, describedby: "urlHelpBlock" }, class: "input-md-6 form-control" %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/textarea", {
+      label: { text: "Site metadescription (appears in search results) (required)" },
+      hint: "Approx 20-30 words, as appears in (for example) Google Search",
+      name: name_for(r, %w[site_metadescription]),
+      value: r.object.site_metadescription,
+      rows: 6,
+      error_items: errors_for(r.object.errors, :site_metadescription)
+    } %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :cost_of_campaign do %>
-          Site build budget / costs (and overall campaign cost, if applicable)<abbr title="required">*</abbr>
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :cost_of_campaign, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/textarea", {
+      label: { text: "Campaign description (required)" },
+      name: name_for(r, %w[description]),
+      value: r.object.description,
+      rows: 6,
+      error_items: errors_for(r.object.errors, :description)
+    } %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :hmg_code do %>
-          HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :hmg_code, required: false, aria: { required: false }, class: "input-md-6 form-control" %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/textarea", {
+      label: { text: "Call to action (required)" },
+      name: name_for(r, %w[call_to_action]),
+      value: r.object.call_to_action,
+      rows: 6,
+      error_items: errors_for(r.object.errors, :call_to_action)
+    } %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :strategic_planning_code do %>
-          Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)
-        <% end %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.text_field :strategic_planning_code, required: false, aria: { required: false }, class: "input-md-6 form-control" %>
-      </span>
-    </div>
-  </fieldset>
+    <%= render "govuk_publishing_components/components/input", {
+      label: { text: "Proposed URL (in the form of xxxxx.campaign.gov.uk) (required)" },
+      name: name_for(r, %w[proposed_url]),
+      value: r.object.proposed_url,
+      width: 20,
+      error_items: errors_for(r.object.errors, :proposed_url)
+    } %>
+
+    <%= render "govuk_publishing_components/components/input", {
+      label: { text: "Site build budget / costs (and overall campaign cost, if applicable) (required)" },
+      name: name_for(r, %w[cost_of_campaign]),
+      value: r.object.cost_of_campaign,
+      width: 20,
+      error_items: errors_for(r.object.errors, :cost_of_campaign)
+    } %>
+
+    <%= render "govuk_publishing_components/components/input", {
+      label: { text: "HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)" },
+      name: name_for(r, %w[hmg_code]),
+      value: r.object.hmg_code,
+      width: 20,
+      error_items: errors_for(r.object.errors, :hmg_code)
+    } %>
+
+    <%= render "govuk_publishing_components/components/input", {
+      label: { text: "Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)" },
+      name: name_for(r, %w[strategic_planning_code]),
+      value: r.object.strategic_planning_code,
+      width: 20,
+      error_items: errors_for(r.object.errors, :strategic_planning_code)
+    } %>
+
+  <% end %>
 <% end %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :additional_comments do %>
-      Additional comments<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :additional_comments, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
-<p class="help-block">
-  Please note that in the next stage you will also need to provide an OASIS plan using this template (<%= link_to 'OASIS template from the GCS website', 'https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/' %>). In particular you need to demonstrate how the digital / website element of the campaign integrates into your overall OASIS plan and we will need to see <u>specific digital KPIs</u> in the evaluation section.
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Additional comments (required)" },
+  name: name_for(f, %w[additional_comments]),
+  value: f.object.additional_comments,
+  rows: 6,
+  error_items: errors_for(@request.errors, :additional_comments)
+} %>
+
+<p class="govuk-body">
+  Please note that in the next stage you will also need to provide an OASIS plan using this template
+  (<%= link_to "OASIS template from the GCS website", "https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/" %>).
+  In particular you need to demonstrate how the digital / website element of the campaign integrates
+  into your overall OASIS plan and we will need to see <u>specific digital KPIs</u> in the evaluation section.
 </p>
 
+<%= hidden_field_tag "use_design_system", true %>
