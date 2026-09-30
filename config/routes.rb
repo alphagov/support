@@ -5,10 +5,10 @@ Rails.application.routes.draw do
   Support::Navigation::SectionGroups.new.all_request_class_names.each do |request_class_name|
     resource request_class_name.underscore, only: %i[new create]
   end
-
   
   namespace :content_advice do
     resource :short_url_request, only: %i[new create]
+    resource :organisation_request, only: %i[new create]
   end
 
   get "/accounts_permissions_and_training_request/new" => redirect("/")

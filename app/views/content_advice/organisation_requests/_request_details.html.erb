@@ -1,0 +1,6 @@
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Organisation name" },
+  name: name_for(f, %w[org_name]),
+  value: @request.org_name,
+  error_items: errors_for(@request.errors, :org_name)
+} %>
