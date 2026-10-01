@@ -21,6 +21,13 @@ describe SupportController, type: :controller do
       expect(assigns(:accessible_sections)).to be_empty
       expect(assigns(:inaccessible_sections)).to_not be_empty
     end
+
+    it "lists the new user or training request first" do
+      login_as create(:user_who_can_access_everything)
+      get :landing
+      expect(assigns(:accessible_sections).first.request_class)
+        .to eq(Support::Requests::CreateNewUserOrTrainingRequest)
+    end
   end
 
   context "GET /_status" do
