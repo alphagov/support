@@ -1,49 +1,34 @@
-<div class="alert alert-info">
-  <p><%= f.object.class.description.html_safe %></p>
-</div>
+<%= render "govuk_publishing_components/components/notice", {
+  title: f.object.class.description.html_safe
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :title do %>
-      Preferred name of new topic<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_field :title, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Preferred name of new topic (required)" },
+  name: name_for(f, %w[title]),
+  error_items: errors_for(@request.errors, :title)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :url do %>
-      URL(s) of page(s) you want to tag to this topic (provide as many as you can)<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :url, required: true, placeholder: "https://www.gov.uk/government/...", aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "URL(s) of page(s) you want to tag to this topic (provide as many as you can) (required)" },
+  name: name_for(f, %w[url]),
+  placeholder: "https://www.gov.uk/government/...",
+  rows: 6,
+  error_items: errors_for(@request.errors, :url)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :details do %>
-      Why do you think this new topic is needed? Please provide any evidence you have<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :details, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Why do you think this new topic is needed? Please provide any evidence you have (required)" },
+  name: name_for(f, %w[details]),
+  rows: 6,
+  error_items: errors_for(@request.errors, :details)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :parent do %>
-      Where should this topic fit in the topic taxonomy? For example, a subtopic of Early years curriculum<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_field :parent, required: true, aria: { required: true }, class: "input-md-6 form-control" %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Where should this topic fit in the topic taxonomy? For example, a subtopic of Early years curriculum (required)" },
+  name: name_for(f, %w[parent]),
+  error_items: errors_for(@request.errors, :parent)
+} %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
+
+<%= hidden_field_tag "use_design_system", true %>
