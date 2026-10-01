@@ -76,6 +76,48 @@ New law",
     expect(request).to have_been_made
   end
 
+  scenario "retains entered values when validation fails" do
+    visit "/"
+    click_on "Request a content change or new content on mainstream GOV.UK content"
+
+    title = "Update X"
+    reason_for_change = "Factual inaccuracy"
+    subject_area = "Benefits"
+    url = "http://gov.uk/X"
+    needed_by_day = "31"
+    needed_by_month = "12"
+    needed_by_year = next_year.to_s
+    not_before_day = "01"
+    not_before_month = "12"
+    not_before_year = next_year.to_s
+
+    fill_in "Title of request", with: title
+    select reason_for_change, from: "What’s the reason for the request?"
+    select subject_area, from: "What’s the subject area?"
+    fill_in "Which URLs are affected?", with: url
+
+    find("#needed-by-day").set(needed_by_day)
+    find("#needed-by-month").set(needed_by_month)
+    find("#needed-by-year").set(needed_by_year)
+    find("#not-before-day").set(not_before_day)
+    find("#not-before-month").set(not_before_month)
+    find("#not-before-year").set(not_before_year)
+
+    click_on "Submit"
+
+    expect(page).to have_field("Title of request", with: title)
+    expect(page).to have_select("What’s the reason for the request?", selected: reason_for_change)
+    expect(page).to have_select("What’s the subject area?", selected: subject_area)
+    expect(page).to have_field("Which URLs are affected?", with: url)
+
+    expect(find("#needed-by-day").value).to eq(needed_by_day)
+    expect(find("#needed-by-month").value).to eq(needed_by_month)
+    expect(find("#needed-by-year").value).to eq(needed_by_year)
+    expect(find("#not-before-day").value).to eq(not_before_day)
+    expect(find("#not-before-month").value).to eq(not_before_month)
+    expect(find("#not-before-year").value).to eq(not_before_year)
+  end
+
 private
 
   def user_makes_a_content_change_request(details)
