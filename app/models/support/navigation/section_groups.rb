@@ -3,7 +3,7 @@ module Support
     class SectionGroups
       include Enumerable
 
-      def initialize(current_user = nil)
+      def initialize(current_user)
         @current_user = current_user
         @groups = [
           Support::Navigation::SectionGroup.new("User access", user_access_requests),
@@ -22,10 +22,6 @@ module Support
 
       def all_sections
         @groups.flat_map(&:sections)
-      end
-
-      def all_request_class_names
-        all_sections.map(&:request_class).map { |request_class| request_class.name.split("::").last }
       end
 
     private

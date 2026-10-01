@@ -2,9 +2,22 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount GovukAdminTemplate::Engine, at: "/style-guide", as: "style_guide"
 
-  Support::Navigation::SectionGroups.new.all_request_class_names.each do |request_class_name|
-    resource request_class_name.underscore, only: %i[new create]
-  end
+  resource :analytics_request, only: %i[new create]
+  resource :campaign_request, only: %i[new create]
+  resource :change_existing_user_request, only: %i[new create]
+  resource :changes_to_publishing_apps_request, only: %i[new create]
+  resource :content_advice_request, only: %i[new create]
+  resource :content_change_request, only: %i[new create]
+  resource :content_data_feedback, only: %i[new create]
+  resource :create_new_user_or_training_request, only: %i[new create]
+  resource :general_request, only: %i[new create]
+  resource :live_campaign_request, only: %i[new create]
+  resource :remove_user_request, only: %i[new create]
+  resource :report_an_issue_with_govuk_search_results_request, only: %i[new create]
+  resource :taxonomy_change_topic_request, only: %i[new create]
+  resource :taxonomy_new_topic_request, only: %i[new create]
+  resource :technical_fault_report, only: %i[new create]
+  resource :unpublish_content_request, only: %i[new create]
 
   get "/accounts_permissions_and_training_request/new" => redirect("/")
 
