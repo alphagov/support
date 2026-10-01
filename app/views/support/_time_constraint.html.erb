@@ -1,103 +1,85 @@
 <%= f.fields_for :time_constraint do |r| %>
-  <fieldset>
-    <legend>
-      <span>Are there any time constraints? (Optional)</span>
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+      Are there any time constraints? (Optional)
     </legend>
 
-    <div class="form-group">
-      <fieldset class="govuk-fieldset" role="group" aria-describedby="needed-by-date-hint">
-        <span class="form-label">
-          <%= r.label :needed_by_date, "Deadline" %>
-        </span>
+    <%= render "govuk_publishing_components/components/date_input", {
+      legend_text: "Deadline",
+      hint: "For example, 27 3 2007",
+      items: [
+        {
+          label: "Day",
+          name: name_for(r, %w[needed_by_day]),
+          id: "needed-by-day",
+          width: 2
+        },
+        {
+          label: "Month",
+          name: name_for(r, %w[needed_by_month]),
+          id: "needed-by-month",
+          width: 2
+        },
+        {
+          label: "Year",
+          name: name_for(r, %w[needed_by_year]),
+          id: "needed-by-year",
+          width: 4
+        }
+      ],
+      error_items: errors_for(@request.errors, :needed_by_date)
+    } %>
 
-        <div id="needed-by-date-hint" class="govuk-hint">
-          For example, 27 3 2007
-        </div>
+    <%= render "govuk_publishing_components/components/input", {
+      label: { text: "Time this must be published by" },
+      name: name_for(r, %w[needed_by_time]),
+      type: "time",
+      value: r.object.needed_by_time,
+      width: 10,
+      error_items: errors_for(@request.errors, :needed_by_time)
+    } %>
 
-        <div class="govuk-date-input" id="needed-by-date">
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :needed_by_day, "Day", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :needed_by_day, required: false, value: r.object.needed_by_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-day", inputmode: "numeric" %>
-            </div>
-        </div>
-        <div class="govuk-date-input__item">
-          <div class="govuk-form-group">
-            <%= r.label :needed_by_month, "Month", class: "govuk-label govuk-date-input__label" %>
-            <%= r.text_field :needed_by_month, required: false, value: r.object.needed_by_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "needed-by-month", inputmode: "numeric" %>
-          </div>
-        </div>
-        <div class="govuk-date-input__item">
-          <div class="govuk-form-group">
-            <%= r.label :needed_by_year, "Year", class: "govuk-label govuk-date-input__label" %>
-            <%= r.text_field :needed_by_year, required: false, value: r.object.needed_by_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "needed-by-year", inputmode: "numeric" %>
-          </div>
-        </div>
-      </fieldset>
-    </div>
+    <%= render "govuk_publishing_components/components/date_input", {
+      legend_text: "Must not be published before",
+      hint: "For example, 27 3 2007",
+      items: [
+        {
+          label: "Day",
+          name: name_for(r, %w[not_before_day]),
+          id: "not-before-day",
+          width: 2
+        },
+        {
+          label: "Month",
+          name: name_for(r, %w[not_before_month]),
+          id: "not-before-month",
+          width: 2
+        },
+        {
+          label: "Year",
+          name: name_for(r, %w[not_before_year]),
+          id: "not-before-year",
+          width: 4
+        }
+      ],
+      error_items: errors_for(@request.errors, :not_before_date)
+    } %>
 
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :needed_by_time, "Time this must be published by" %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.time_field :needed_by_time, required: false, placeholder: "HH:MM", value: r.object.not_before_time, class: "input-md-2 form-control" %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/input", {
+      label: { text: "Time this must not be published before" },
+      name: name_for(r, %w[not_before_time]),
+      type: "time",
+      value: r.object.not_before_time,
+      width: 10,
+      error_items: errors_for(@request.errors, :not_before_time)
+    } %>
 
-    <div class="form-group">
-      <fieldset class="govuk-fieldset" role="group" aria-describedby="not-before-date-hint">
-        <span class="form-label">
-          <%= r.label :not_before_date, "Must not be published before" %>
-        </span>
-
-        <div id="not-before-date-hint" class="govuk-hint">
-          For example, 27 3 2007
-        </div>
-
-        <div class="govuk-date-input" id="not-before-date">
-          <div class="govuk-date-input__item">
-            <div class="govuk-form-group">
-              <%= r.label :not_before_day, "Day", class: "govuk-label govuk-date-input__label" %>
-              <%= r.text_field :not_before_day, required: false, value: r.object.not_before_day, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-day", inputmode: "numeric" %>
-            </div>
-        </div>
-        <div class="govuk-date-input__item">
-          <div class="govuk-form-group">
-            <%= r.label :not_before_month, "Month", class: "govuk-label govuk-date-input__label" %>
-            <%= r.text_field :not_before_month, required: false, value: r.object.not_before_month, class: "govuk-input govuk-date-input__input govuk-input--width-2", id: "not-before-month", inputmode: "numeric" %>
-          </div>
-        </div>
-        <div class="govuk-date-input__item">
-          <div class="govuk-form-group">
-            <%= r.label :not_before_year, "Year", class: "govuk-label govuk-date-input__label" %>
-            <%= r.text_field :not_before_year, required: false, value: r.object.not_before_year, class: "govuk-input govuk-date-input__input govuk-input--width-4", id: "not-before-year", inputmode: "numeric" %>
-          </div>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :not_before_time, "Time this must not be published before" %>
-      </span>
-      <span class="form-wrapper">
-        <%= r.time_field :not_before_time, required: false, placeholder: "HH:MM", value: r.object.not_before_time, class: "input-md-2 form-control" %>
-      </span>
-    </div>
-
-    <div class="form-group">
-      <span class="form-label">
-        <%= r.label :time_constraint_reason, "Reason for deadline" %>
-      </span>
-      <div class="help-block hint-block--md-6" id="reason-for-deadline-hint">
-        <p>For example, policy or campaign launch, start of the new tax year.</p>
-      </div>
-      <span class="form-wrapper">
-        <%= r.text_area :time_constraint_reason, required: false, class: "input-md-6 form-control", rows: 6, cols: 50, aria: {
-          describedby: "reason-for-deadline-hint"
-        } %>
-      </span>
-    </div>
+    <%= render "govuk_publishing_components/components/textarea", {
+      label: { text: "Reason for deadline" },
+      hint: "For example, policy or campaign launch, start of the new tax year.",
+      name: name_for(r, %w[time_constraint_reason]),
+      value: r.object.time_constraint_reason,
+      error_items: errors_for(@request.errors, :time_constraint_reason)
+    } %>
   </fieldset>
 <% end %>
