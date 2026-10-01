@@ -1,73 +1,64 @@
-<div class="alert alert-info">
-  <p><%= f.object.class.description %></p>
-</div>
+<%= render "govuk_publishing_components/components/notice", {
+  title: f.object.class.description
+} %>
 
 <div id="technical-fault-context">
-  <div class="form-group">
-    <span class="form-label control-label">
-      <%= f.label :fault_context do %>
-        What isn't working properly?<abbr title="required">*</abbr>
-      <% end %>
-    </span>
-    <span class="form-wrapper">
-      <%= f.collection_radio_buttons :fault_context, f.object.fault_context_options, :last, :last, required: true, aria: { required: true } do |builder| %>
-        <div class="radio">
-          <%= builder.label(class: "custom-control-label") do %>
-            <%= builder.radio_button(class: "custom-control-input") %>
-            <%= builder.object.first %>
-        <% end %>
-        </div>
-      <% end %>
-    </span>
-  </div>
+  <%= render "govuk_publishing_components/components/radio", {
+    heading: "What isn't working properly? (required)",
+    heading_level: 0,
+    name: name_for(f, %w[fault_context]),
+    items: f.object.fault_context_options.map do |text, value|
+      {
+        id: "#{f.object_name}_fault_context_#{value}",
+        value: value,
+        text: text,
+        checked: f.object.fault_context == value
+      }
+    end,
+    error_items: errors_for(@request.errors, :fault_context)
+  } %>
 </div>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :fault_specifics do %>
-      How much is it affecting? (the whole thing, a specific feature or specific URLs)<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :fault_specifics, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "How much is it affecting? (the whole thing, a specific feature or specific URLs) (required)"
+  },
+  name: name_for(f, %w[fault_specifics]),
+  rows: 6,
+  error_items: errors_for(@request.errors, :fault_specifics)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :actions_leading_to_problem do %>
-      What were you trying to do?<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :actions_leading_to_problem, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "What were you trying to do? (required)"
+  },
+  name: name_for(f, %w[actions_leading_to_problem]),
+  rows: 6,
+  error_items: errors_for(@request.errors, :actions_leading_to_problem)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :what_happened do %>
-      What happened?<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :what_happened, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "What happened? (required)"
+  },
+  name: name_for(f, %w[what_happened]),
+  rows: 6,
+  error_items: errors_for(@request.errors, :what_happened)
+} %>
 
-<div class="form-group">
-  <span class="form-label">
-    <%= f.label :what_should_have_happened do %>
-      What should have happened?<abbr title="required">*</abbr>
-    <% end %>
-  </span>
-  <span class="form-wrapper">
-    <%= f.text_area :what_should_have_happened, required: true, aria: { required: true }, class: "input-md-6 form-control", rows: 6, cols: 50 %>
-  </span>
-</div>
+<%= render "govuk_publishing_components/components/textarea", {
+  label: {
+    text: "What should have happened? (required)"
+  },
+  name: name_for(f, %w[what_should_have_happened]),
+  rows: 6,
+  error_items: errors_for(@request.errors, :what_should_have_happened)
+} %>
 
-<div class="alert alert-info alert-block">
-  <p>If you have screenshots please send them as attachments in reply to the acknowledgement email you will receive shortly.</p>
-</div>
+<%= render "govuk_publishing_components/components/notice", {
+  title: "If you have screenshots please send them as attachments in reply to the acknowledgement email you will receive shortly."
+} %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
+
+<%= hidden_field_tag "use_design_system", true %>
