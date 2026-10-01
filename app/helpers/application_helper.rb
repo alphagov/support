@@ -3,10 +3,6 @@ module ApplicationHelper
     Support::Navigation::FeedexSection.new(current_user)
   end
 
-  def emergency_contact_details_section
-    Support::Navigation::EmergencyContactDetailsSection.new(current_user)
-  end
-
   def in_feedex?
     current_page?("/anonymous_feedback/explore")
   end
