@@ -1,17 +1,5 @@
-<li class="dropdown new-request-dropdown">
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">Make new request <b class="caret"></b></a>
-
-  <ul class="dropdown-menu" role="menu">
-    <% section_groups.each_with_index do |section_group, index| %>
-      <li role="presentation" class="dropdown-header"><%= section_group.label %></li>
-      <% section_group.sections.each do |section| %>
-        <%= nav_link_to section, is_active: current_page?(section.link) %>
-      <% end %>
-      <% if index < section_groups.to_a.size - 1 %>
-        <li class="divider"></li>
-      <% end %>
-    <% end %>
-  </ul>
+<li>
+  <%= link_to "Make new request", root_path %>
 </li>
 
 <%= nav_link_to(feedex_section, is_active: in_feedex?, id: "feedex") %>
