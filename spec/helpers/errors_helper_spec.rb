@@ -3,16 +3,16 @@ require "rails_helper"
 describe ErrorsHelper, type: :helper do
   include ErrorsHelper
 
-  describe "#errors_for" do
-    before do
-      @object_with_no_errors = ErrorTestObject.new("title", Time.zone.today)
-      @object_with_errors = ErrorTestObject.new(nil, nil)
-      @object_with_unrelated_errors = ErrorTestObject.new("title", nil)
-      @object_with_no_errors.validate
-      @object_with_errors.validate
-      @object_with_unrelated_errors.validate
-    end
+  before do
+    @object_with_no_errors = ErrorTestObject.new("title", Time.zone.today)
+    @object_with_errors = ErrorTestObject.new(nil, nil)
+    @object_with_unrelated_errors = ErrorTestObject.new("title", nil)
+    @object_with_no_errors.validate
+    @object_with_errors.validate
+    @object_with_unrelated_errors.validate
+  end
 
+  describe "#errors_for" do
     it "returns errors in a govuk_publishing_components error_items format" do
       expect(@object_with_errors.errors[:title].count).to eq(1)
 
@@ -42,6 +42,22 @@ describe ErrorsHelper, type: :helper do
 
       result = errors_for(@object_with_no_errors.errors, :title)
       expect(result).to be_nil
+    end
+  end
+
+  describe "#errors_for_summary" do
+    it "returns nil when there are no errors" do
+      result = errors_for_summary(@object_with_no_errors.errors)
+      expect(result).to be_nil
+    end
+
+    it "returns a correctly formatted list of errors for a govuk_publishing_components error_summary" do
+      result = errors_for_summary(@object_with_errors.errors)
+      expect(result).to eq [
+        { href: "#title", text: "Title can't be blank" },
+        { href: "#date", text: "Date can't be blank" },
+        { href: "#date", text: "Date is invalid" },
+      ]
     end
   end
 end

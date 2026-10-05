@@ -30,6 +30,7 @@
               flash[:success_alert].symbolize_keys
             %>
           <% end %>
+          <%= yield(:error_summary) %>
           <h1 class="govuk-heading-xl">
             <%= yield(:header) %>
           </h1>

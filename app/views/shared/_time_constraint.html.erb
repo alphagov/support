@@ -4,6 +4,7 @@
   <%= render "govuk_publishing_components/components/date_input", {
     legend_text: "What's the deadline?",
     hint: "For example, 27 3 2007",
+    id: "needed_by_date",
     items: [
       {
         label: "Day",
@@ -34,6 +35,7 @@
     label: { text: "What’s the reason for the deadline?" },
     name: name_for(f, %w[time_constraint_attributes time_constraint_reason]),
     value: @request.time_constraint.time_constraint_reason,
+    id: "time_constraint_reason",
     error_items: errors_for(@request.errors, :time_constraint_reason)
   } %>
 <% end %>
