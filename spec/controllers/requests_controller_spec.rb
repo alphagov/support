@@ -87,7 +87,7 @@ describe RequestsController, type: :controller do
 
       post :create, params: valid_params_for_test_request
 
-      expect(response).to redirect_to("/acknowledge")
+      expect(response).to redirect_to(root_path)
       expect(ticket_request).to have_been_made
     end
 

@@ -3,11 +3,6 @@ class CreateNewUserOrTrainingRequestsController < RequestsController
 
   helper_method :organisation_options
 
-  def new
-    @use_design_system = true
-    super
-  end
-
 protected
 
   def new_request

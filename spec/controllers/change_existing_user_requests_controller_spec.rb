@@ -30,7 +30,7 @@ describe ChangeExistingUserRequestsController, type: :controller do
 
     post :create, params: valid_change_user_request_params
 
-    expect(request).to redirect_to("/acknowledge")
+    expect(request).to redirect_to(root_path)
     expect(stub_ticket_creation).to have_been_made
   end
 end
