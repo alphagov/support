@@ -8,3 +8,4 @@
 // which will ensure they are never loaded.
 
 //= require govuk_publishing_components/components/skip-link
+//= require govuk_publishing_components/components/radio

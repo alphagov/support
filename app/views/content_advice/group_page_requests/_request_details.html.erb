@@ -1,0 +1,54 @@
+<% content_for(:error_summary) do %>
+  <%= render "shared/error_summary" %>
+<% end %>
+
+<p class="govuk-body">You need to ask for permission to create a group page.</p>
+
+<p class="govuk-body">Before you make your request, read the <a href="https://guidance.publishing.service.gov.uk/publish-update-retire-content/organisations-people/groups/" target="_blank">guidance on group pages</a> to understand the requirements and check whether a group page will meet your needs.</p>
+
+<p class="govuk-body">After you submit this form, you’ll get a confirmation email. Reply to that email if you have any further questions or want to send over relevant supporting documents. </p>
+
+<h2 class="govuk-heading-l">Details of your request</h2>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "What’s the name of the group? (required)" },
+  name: name_for(f, %w[group_name]),
+  id: "group_name",
+  value: @request.group_name,
+  error_items: errors_for(@request.errors, :group_name)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "What’s the group's purpose? (required)" },
+  name: name_for(f, %w[purpose]),
+  textarea_id: "purpose",
+  value: @request.purpose,
+  error_items: errors_for(@request.errors, :purpose)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "What evidence do you have of a user need for information about the group itself, not just its outputs? (required)" },
+  value: @request.user_needs_evidence,
+  textarea_id: "user_needs_evidence",
+  name: name_for(f, %w[user_needs_evidence]),
+  error_items: errors_for(@request.errors, :user_needs_evidence)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Is there a clear reason for users to contact the group? (required)" },
+  name: name_for(f, %w[contact_reason]),
+  value: @request.contact_reason,
+  textarea_id: "contact_reason",
+  error_items: errors_for(@request.errors, :contact_reason)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Is there any more information you want to share about your request?" },
+  hint: "Leave blank if you have no more information to share.",
+  name: name_for(f, %w[additional_info]),
+  value: @request.additional_info,
+  textarea_id: "additional_info",
+  error_items: errors_for(@request.errors, :additional_info)
+} %>
+
+<%= render partial: "shared/time_constraint", locals: { f: } %>
+<%= render partial: "shared/collaborators", locals: { f: } %>
