@@ -41,6 +41,15 @@ module Support
           expect(subject.errors.full_messages).to include "Time constraint reason can't be blank"
         end
       end
+
+      context "when the requester collaborator emails are not valid" do
+        it "contains a meaningful error message" do
+          subject.requester.collaborator_emails = "1234"
+
+          expect(subject.valid?).to eq false
+          expect(subject.errors.full_messages).to include "Collaborator emails 1234 is not a valid email"
+        end
+      end
     end
   end
 end

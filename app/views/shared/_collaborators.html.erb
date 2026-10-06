@@ -4,6 +4,7 @@
   label: { text: "Who needs a copy of this request?" },
   hint: "Separate email addresses with commas. Leave blank if no one needs a copy.",
   value: @request.requester.collaborator_emails,
+  id: "collaborator_emails",
   name: name_for(f, %w[requester_attributes collaborator_emails]),
-  error_items: errors_for(@request.errors, :requester)
+  error_items: errors_for(@request.errors, :collaborator_emails)
 } %>

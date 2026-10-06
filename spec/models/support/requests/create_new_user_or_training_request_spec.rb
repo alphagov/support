@@ -3,6 +3,11 @@ require "rails_helper"
 module Support
   module Requests
     describe CreateNewUserOrTrainingRequest do
+      subject do
+        described_class.new(
+          requester_attributes: { name: "Test Requester", email: "test@example.com" },
+        )
+      end
       def request(options = {})
         described_class.new(options).tap(&:valid?)
       end
