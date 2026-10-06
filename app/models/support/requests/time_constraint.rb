@@ -5,7 +5,12 @@ module Support
     class TimeConstraint
       include ActiveModel::Model
       include DesignSystemDateHelper
-      attr_accessor :not_before_day, :not_before_month, :not_before_year, :not_before_time, :needed_by_day, :needed_by_month, :needed_by_year, :needed_by_time, :time_constraint_reason
+      attr_accessor :not_before_day, :not_before_month, :not_before_year, :not_before_time, :needed_by_day, :needed_by_month, :needed_by_year, :needed_by_time, :time_constraint_reason, :is_required
+
+      with_options if: :is_required do
+        validates :needed_by_date, presence: true
+        validates :time_constraint_reason, presence: true
+      end
 
       validates_date :needed_by_date, allow_blank: true, on_or_after: :today
       validates_date :not_before_date, allow_blank: true, on_or_after: :today

@@ -5,15 +5,17 @@ module Support
     module ContentAdvice
       class GroupPageRequest < Request
         include WithTimeConstraint
+        include ActiveModel::Validations::Callbacks
 
         attr_accessor :group_name,
                       :purpose,
                       :user_needs_evidence,
                       :contact_reason,
                       :additional_info,
-                      :deadline,
-                      :time_constraint
+                      :time_constraint,
+                      :deadline
 
+        before_validation :set_time_constraint_requirement
         validates :group_name, :purpose, :user_needs_evidence, :contact_reason, :deadline, presence: true
 
         def initialize(attrs = {})
@@ -41,6 +43,12 @@ module Support
 
             "[#{field.to_s.humanize}]\n" + value
           }.join("\n\n")
+        end
+
+        def set_time_constraint_requirement
+          if time_constraint.present?
+            time_constraint.is_required = (deadline == "Yes")
+          end
         end
       end
     end
