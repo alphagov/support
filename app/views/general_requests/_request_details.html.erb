@@ -1,8 +1,10 @@
-<p class="govuk-body">Please use this path to:</p>
-<ul class="govuk-list govuk-list--bullet">
-  <li>report planned departmental changes that affect GOV.UK and its users</li>
-  <li>report issues that don't fit into other categories</li>
-</ul>
+<%= render "govuk_publishing_components/components/inset_text", {} do %>
+  <p class="govuk-body">Please use this path to:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>report planned departmental changes that affect GOV.UK and its users</li>
+    <li>report issues that don't fit into other categories</li>
+  </ul>
+<% end %>
 
 <%= render "govuk_publishing_components/components/input", {
   label: { text: "Title of request" },

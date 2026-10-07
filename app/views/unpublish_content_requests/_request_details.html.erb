@@ -1,5 +1,5 @@
-<%= render "govuk_publishing_components/components/notice", {
-  title: "Please make a separate request for each target redirect."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "Please make a separate request for each target redirect.",
 } %>
 
 <%= render "govuk_publishing_components/components/textarea", {
@@ -12,8 +12,8 @@
   error_items: errors_for(@request.errors, :urls)
 } %>
 
-<%= render "govuk_publishing_components/components/notice", {
-  title: "You may also wish to send this information in a spreadsheet, by attaching it to the Zendesk confirmation email."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "You may also wish to send this information in a spreadsheet, by attaching it to the Zendesk confirmation email."
 } %>
 
 <%= render "govuk_publishing_components/components/radio", {
@@ -73,8 +73,8 @@
   } %>
 <% end %>
 
-<%= render "govuk_publishing_components/components/notice", {
-  title: "This page will be unpublished (it will revert to draft). You will be notified when this is done and it is then your responsibility to delete this page or re-publish it in due course."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "This page will be unpublished (it will revert to draft). You will be notified when this is done and it is then your responsibility to delete this page or re-publish it in due course."
 } %>
 
 <%= render "govuk_publishing_components/components/error_alert", {

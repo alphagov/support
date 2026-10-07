@@ -1,6 +1,15 @@
-<%= render "govuk_publishing_components/components/notice", {
-  description: sanitize('<p class="govuk-body">You\'ll get an automated response to confirm we\'ve received your request. We\'ll then review your request within 2 working days.</p><p class="govuk-body"><a class="govuk-link" href="https://guidance.publishing.service.gov.uk/accounts-support/make-content-requests/ask-updates-content">How to write a request that will get resolved quickly</a>.</p>'),
-} %>
+<%= render "govuk_publishing_components/components/inset_text", {} do %>
+  <p class="govuk-body">
+    You'll get an automated response to confirm we've received your request.
+    We'll then review your request within 2 working days.
+  </p>
+  <p class="govuk-body">
+    <%= link_to "How to write a request that will get resolved quickly",
+      "https://guidance.publishing.service.gov.uk/accounts-support/make-content-requests/ask-updates-content",
+      class: "govuk-link"
+    %>
+  </p>
+<% end %>
 
 <%= render "govuk_publishing_components/components/input", {
   label: {
