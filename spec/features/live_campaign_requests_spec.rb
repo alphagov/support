@@ -44,6 +44,23 @@ This is a reason for choosing specific dates",
     expect(request).to have_been_made
   end
 
+  scenario "retains entered values when validation fails" do
+    visit "/"
+    click_on "Support for live campaign"
+
+    fill_in "Campaign URL", with: "newcampaign.campaign.gov.uk"
+    fill_in "Details of requested support", with: "Pensions"
+    fill_in "Are there any time constraints for this request?", with: "Not before November"
+    fill_in "Reason for the above dates?", with: "Allow time for preparation"
+
+    click_on "Submit"
+
+    expect(page).to have_field("Campaign URL", with: "newcampaign.campaign.gov.uk")
+    expect(page).to have_field("Details of requested support", with: "Pensions")
+    expect(page).to have_field("Are there any time constraints for this request?", with: "Not before November")
+    expect(page).to have_field("Reason for the above dates?", with: "Allow time for preparation")
+  end
+
 private
 
   def user_makes_a_live_campaign_request(details)

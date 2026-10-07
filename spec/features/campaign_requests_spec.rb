@@ -115,6 +115,40 @@ Yes",
     expect(request).to have_been_made
   end
 
+  scenario "retains entered values when validation fails" do
+    visit "/"
+    click_on "Request a new campaign"
+
+    signed_campaign = "Jane Smith"
+    government_theme = "Improve public services"
+    additional_comments = "Please contact me by email"
+
+    fill_in "Name of the Head of Digital Communications who signed off the campaign website application (required)",
+            with: signed_campaign
+    find("#start-day").set("27")
+    fill_in "Which of the current Government Communications Plan priority themes does this campaign website support and how? (required)",
+            with: government_theme
+    fill_in "Additional comments", with: additional_comments
+
+    check "I/We have read the GCS guidance on campaign websites and accept the requirements for a Campaign Platform website"
+
+    click_on "Submit"
+
+    expect(page).to have_field(
+      "Name of the Head of Digital Communications who signed off the campaign website application (required)",
+      with: signed_campaign,
+    )
+    expect(find("#start-day").value).to eq("27")
+    expect(page).to have_field(
+      "Which of the current Government Communications Plan priority themes does this campaign website support and how? (required)",
+      with: government_theme,
+    )
+    expect(page).to have_field("Additional comments", with: additional_comments)
+    expect(page).to have_checked_field(
+      "I/We have read the GCS guidance on campaign websites and accept the requirements for a Campaign Platform website",
+    )
+  end
+
 private
 
   def user_makes_a_campaign_request(details)
@@ -130,7 +164,7 @@ private
     check "I/We will ensure the site meets all government web accessibility standards, and that it will be tested and the Accessibility Statement completed before final review (if your team doesn't have expertise in accessible content design then appropriate training must be undertaken before the site build.)" if details[:accessibility_confirmation]
     check "I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer (NB : GDS will add a basic \"boilerplate\", however departments will need to identify if additions are needed)." if details[:cookie_and_privacy_notice_confirmation]
 
-    fill_in "Name of the Head of Digital Communications who signed off the campaign website application*", with: details[:signed_campaign]
+    fill_in "Name of the Head of Digital Communications who signed off the campaign website application (required)", with: details[:signed_campaign]
     find("#start-day").set(details[:start_day])
     find("#start-month").set(details[:start_month])
     find("#start-year").set(details[:start_year])
@@ -140,15 +174,15 @@ private
     find("#development-start-day").set(details[:development_start_day])
     find("#development-start-month").set(details[:development_start_month])
     find("#development-start-year").set(details[:development_start_year])
-    fill_in "Contact email/s for website performance review every 6 months*", with: details[:performance_review_contact_email]
-    fill_in "Which of the current Government Communications Plan priority themes does this campaign website support and how?*", with: details[:government_theme]
-    fill_in "Campaign description*", with: details[:description]
-    fill_in "Call to action*", with: details[:call_to_action]
-    fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk)*", with: details[:proposed_url]
-    fill_in "Site title*", with: details[:site_title]
-    fill_in "Site tagline*", with: details[:site_tagline]
-    fill_in "Site metadescription (appears in search results)*", with: details[:site_metadescription]
-    fill_in "Site build budget / costs (and overall campaign cost, if applicable)*", with: details[:cost_of_campaign]
+    fill_in "Contact email/s for website performance review every 6 months (required)", with: details[:performance_review_contact_email]
+    fill_in "Which of the current Government Communications Plan priority themes does this campaign website support and how? (required)", with: details[:government_theme]
+    fill_in "Campaign description (required)", with: details[:description]
+    fill_in "Call to action (required)", with: details[:call_to_action]
+    fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk) (required)", with: details[:proposed_url]
+    fill_in "Site title (required)", with: details[:site_title]
+    fill_in "Site tagline (required)", with: details[:site_tagline]
+    fill_in "Site metadescription (appears in search results) (required)", with: details[:site_metadescription]
+    fill_in "Site build budget / costs (and overall campaign cost, if applicable) (required)", with: details[:cost_of_campaign]
     fill_in "HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)", with: details[:hmg_code]
     fill_in "Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)", with: details[:strategic_planning_code]
     fill_in "Additional comments", with: details[:additional_comments]

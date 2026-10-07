@@ -13,7 +13,9 @@ describe ReportAnIssueWithGovukSearchResultsRequestsController, type: :controlle
     } }
 
     expect(controller).to have_rendered(:new)
-    expect(response.body).to have_css(".alert", text: /Search query can't be blank/)
-    expect(response.body).to have_css(".alert", text: /Results problem can't be blank/)
+
+    rendered_page = Capybara.string(response.body)
+    expect(rendered_page).to have_text("Search query can't be blank")
+    expect(rendered_page).to have_text("Results problem can't be blank")
   end
 end

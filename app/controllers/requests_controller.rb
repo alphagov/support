@@ -8,7 +8,7 @@ class RequestsController < AuthorisationController
     @request = new_request
     authorize! :new, @request
 
-    render :new, layout: "design_system" if @use_design_system
+    render :new, layout: "design_system"
   end
 
   def create
@@ -20,28 +20,18 @@ class RequestsController < AuthorisationController
       save_to_zendesk(@request)
       respond_to do |format|
         format.html do
-          if params[:use_design_system]
-            flash[:success_alert] = {
-              message: "Thank you!",
-              description: "Thanks for sending us your request. We'll review your request and get back to you within 2 working days.",
-            }
-            redirect_to root_path
-          else
-            redirect_to acknowledge_path
-          end
+          flash[:success_alert] = {
+            message: "Thank you!",
+            description: "Thanks for sending us your request. We'll review your request and get back to you within 2 working days.",
+          }
+          redirect_to root_path
         end
         format.json { head :created }
       end
     else
       respond_to do |format|
         format.html do
-          if params[:use_design_system]
-            @use_design_system = true
-            render :new, status: :bad_request, layout: "design_system"
-          else
-            flash.now[:alert] = @request.errors.full_messages.join('\n')
-            render :new, status: :bad_request
-          end
+          render :new, status: :bad_request, layout: "design_system"
         end
         format.json { render json: { "errors" => @request.errors.to_a }, status: :bad_request }
       end

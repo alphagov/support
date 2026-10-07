@@ -40,6 +40,37 @@ Education, training and skills",
     expect(request).to have_been_made
   end
 
+  scenario "retains entered values when validation fails" do
+    visit "/"
+    click_on "Suggest a new topic"
+
+    title = "Early years curriculum"
+    url = "https://www.gov.uk/government/example"
+    parent = "Education, training and skills"
+
+    fill_in "Preferred name of new topic", with: title
+    fill_in(
+      "URL(s) of page(s) you want to tag to this topic (provide as many as you can)",
+      with: url,
+    )
+    fill_in(
+      "Where should this topic fit in the topic taxonomy? For example, a subtopic of Early years curriculum",
+      with: parent,
+    )
+
+    click_on "Submit"
+
+    expect(page).to have_field("Preferred name of new topic", with: title)
+    expect(page).to have_field(
+      "URL(s) of page(s) you want to tag to this topic (provide as many as you can)",
+      with: url,
+    )
+    expect(page).to have_field(
+      "Where should this topic fit in the topic taxonomy? For example, a subtopic of Early years curriculum",
+      with: parent,
+    )
+  end
+
 private
 
   def user_makes_a_taxomomy_new_topic_request(details)

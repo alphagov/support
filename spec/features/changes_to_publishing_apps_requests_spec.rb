@@ -33,6 +33,28 @@ See here: google.com",
     expect(request).to have_been_made
   end
 
+  scenario "retains entered values when validation fails" do
+    visit "/"
+    click_on "Changes to publishing applications or technical advice"
+
+    title = "New publishing feature"
+    feature_evidence = "Users have reported this issue."
+
+    fill_in "Title of request", with: title
+    fill_in "If this is a request for a new feature, what evidence do you have to support the request?",
+            with: feature_evidence
+
+    click_on "Submit"
+
+    expect(page).to have_field("Title of request", with: title)
+    expect(
+      page,
+    ).to have_field(
+      "If this is a request for a new feature, what evidence do you have to support the request?",
+      with: feature_evidence,
+    )
+  end
+
 private
 
   def user_makes_a_new_feature_request(details)

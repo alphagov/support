@@ -49,6 +49,30 @@ Should have linked through",
     expect(request).to have_been_made
   end
 
+  scenario "retains entered values when validation fails" do
+    visit "/"
+    click_on "Report a technical fault to GDS"
+
+    within "#technical-fault-context" do
+      choose "GOV.UK: content"
+    end
+
+    fill_in "How much is it affecting? (the whole thing, a specific feature or specific URLs)",
+            with: "Smart answer"
+    fill_in "What were you trying to do?", with: "Clicked on x"
+    fill_in "What happened?", with: "Broken link"
+
+    click_on "Submit"
+
+    expect(page).to have_checked_field("GOV.UK: content")
+    expect(page).to have_field(
+      "How much is it affecting? (the whole thing, a specific feature or specific URLs)",
+      with: "Smart answer",
+    )
+    expect(page).to have_field("What were you trying to do?", with: "Clicked on x")
+    expect(page).to have_field("What happened?", with: "Broken link")
+  end
+
 private
 
   def user_fills_in_a_technical_fault_report(details)

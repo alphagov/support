@@ -37,7 +37,7 @@ describe CreateNewUserOrTrainingRequestsController, type: :controller do
 
     post :create, params: valid_create_new_user_or_training_request_params
 
-    expect(request).to redirect_to("/acknowledge")
+    expect(request).to redirect_to(root_path)
     expect(stub_ticket_creation).to have_been_made
   end
 
@@ -45,11 +45,11 @@ describe CreateNewUserOrTrainingRequestsController, type: :controller do
     post :create, params: { "support_requests_create_new_user_or_training_request" => { "action" => "create_new_user" } }
 
     expect(controller).to have_rendered(:new)
-    expect(response.body).to have_css(".alert", text: /Enter a name/)
-    expect(response.body).to have_css(".alert", text: /Enter an email address/)
-    expect(response.body).to have_css(".alert", text: /Select if the user is new or existing/)
-    expect(response.body).to have_css(".alert", text: /Select if the user needs training or access to Whitehall Publisher/)
-    expect(response.body).to have_css(".alert", text: /Select if the user needs access to other publishing apps/)
+    expect(response.body).to include("Enter a name")
+    expect(response.body).to include("Enter an email address")
+    expect(response.body).to include("Select if the user is new or existing")
+    expect(response.body).to include("Select if the user needs training or access to Whitehall Publisher")
+    expect(response.body).to include("Select if the user needs access to other publishing apps")
   end
 
   it "retains the previously selected organisation if validation fails" do

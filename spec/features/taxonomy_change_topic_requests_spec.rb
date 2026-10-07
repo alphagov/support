@@ -40,6 +40,24 @@ People expect to find it here.",
     expect(request).to have_been_made
   end
 
+  scenario "retains entered values when validation fails" do
+    visit "/"
+    click_on "Suggest a change to a topic"
+
+    title = "Early years curriculum"
+    reasons = "People expect to find this topic here."
+
+    fill_in "Name of topic you'd like changed", with: title
+    choose "Name of topic"
+    fill_in("Why do you think this change is needed? Please provide any evidence you have", with: reasons)
+
+    click_on "Submit"
+
+    expect(page).to have_field("Name of topic you'd like changed", with: title)
+    expect(page).to have_checked_field("Name of topic")
+    expect(page).to have_field("Why do you think this change is needed? Please provide any evidence you have", with: reasons)
+  end
+
 private
 
   def user_makes_a_taxomomy_change_topic_request(details)

@@ -33,6 +33,22 @@ The site is down",
     expect(request).to have_been_made
   end
 
+  scenario "retains entered values when validation fails" do
+    visit "/"
+    click_on "General"
+
+    title = "Planned downtime"
+    url = "https://www.gov.uk"
+
+    fill_in "Title of request", with: title
+    fill_in "URL (if applicable)", with: url
+
+    click_on "Submit"
+
+    expect(page).to have_field("Title of request", with: title)
+    expect(page).to have_field("URL (if applicable)", with: url)
+  end
+
 private
 
   def user_makes_a_general_request(details)
