@@ -8,7 +8,6 @@
 
 <%= render "govuk_publishing_components/components/input", {
   label: { text: "Title of request" },
-  hint: "General request",
   name: name_for(f, %w[title]),
   value: f.object.title,
   error_items: errors_for(@request.errors, :title)

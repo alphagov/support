@@ -61,7 +61,7 @@ module Zendesk
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,
             field: :proposed_url,
-            label: "Proposed URL (in the form of xxxxx.campaign.gov.uk)",
+            label: "Proposed URL",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,
@@ -86,12 +86,12 @@ module Zendesk
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,
             field: :hmg_code,
-            label: "HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)",
+            label: "HMG code: from approved AMC technical cases",
           ),
           Zendesk::LabelledSnippet.new(
             on: @request.campaign,
             field: :strategic_planning_code,
-            label: "Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)",
+            label: "Strategic Planning Code: from strategic planning phase",
           ),
           Zendesk::LabelledSnippet.new(on: @request, field: :additional_comments),
           Zendesk::LabelledSnippet.new(

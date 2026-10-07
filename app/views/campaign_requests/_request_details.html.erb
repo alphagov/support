@@ -264,7 +264,8 @@
     } %>
 
     <%= render "govuk_publishing_components/components/input", {
-      label: { text: "Proposed URL (in the form of xxxxx.campaign.gov.uk) (required)" },
+      label: { text: "Proposed URL (required)" },
+      hint: "In the form of xxxxx.campaign.gov.uk.",
       name: name_for(r, %w[proposed_url]),
       value: r.object.proposed_url,
       width: 20,
@@ -280,7 +281,8 @@
     } %>
 
     <%= render "govuk_publishing_components/components/input", {
-      label: { text: "HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)" },
+      label: { text: "HMG code: from approved AMC technical cases" },
+      hint: "Format: HMGXX-XXX (if not applicable enter n/a).",
       name: name_for(r, %w[hmg_code]),
       value: r.object.hmg_code,
       width: 20,
@@ -288,7 +290,8 @@
     } %>
 
     <%= render "govuk_publishing_components/components/input", {
-      label: { text: "Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)" },
+      label: { text: "Strategic Planning Code: from strategic planning phase" },
+      hint: "Format: CSBXX-XXX (if not applicable enter n/a).",
       name: name_for(r, %w[strategic_planning_code]),
       value: r.object.strategic_planning_code,
       width: 20,
