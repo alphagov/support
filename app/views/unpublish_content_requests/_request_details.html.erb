@@ -1,19 +1,20 @@
-<%= render "govuk_publishing_components/components/notice", {
-  title: "Please make a separate request for each target redirect."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "Please make a separate request for each target redirect.",
 } %>
 
 <%= render "govuk_publishing_components/components/textarea", {
   label: {
-    text: "Please give the Whitehall or Content Publisher URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected) (required)"
+    text: "Whitehall or Content Publisher URL of the page to be unpublished (required)"
   },
+  hint: "You can specify more than one URL, as long as it's clear where each URL should be redirected.",
   name: name_for(f, %w[urls]),
   value: f.object.urls,
   rows: 6,
   error_items: errors_for(@request.errors, :urls)
 } %>
 
-<%= render "govuk_publishing_components/components/notice", {
-  title: "You may also wish to send this information in a spreadsheet, by attaching it to the Zendesk confirmation email."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "You may alternatively send this information in a spreadsheet by attaching it to the Zendesk confirmation email."
 } %>
 
 <%= render "govuk_publishing_components/components/radio", {
@@ -41,21 +42,28 @@
   error_items: errors_for(@request.errors, :further_explanation)
 } %>
 
-<div class="govuk-body">
-  <p>If you do give a reason, users will go to a landing page and read your reason, then click on the redirect URL. Note that:
-    <ul>
-      <li>it is essential to write some text if the redirect is to the National Archives or an external website.</li>
-      <li>you should always give an explanation for users if a page is being deleted with no redirect, and is not likely to be republished.</li>
-    </ul>
-  </p>
-</div>
+<p class="govuk-body">
+  If you do give a reason, users will go to a landing page and read your reason,
+  then click on the redirect URL. Note that:
+</p>
+<ul>
+  <li>
+    it is essential to write some text if the redirect is to the National
+    Archives or an external website;
+  </li>
+  <li>
+    you should always give an explanation for users if a page is being deleted
+    with no redirect, and is not likely to be republished.
+  </li>
+</ul>
 
 <%= render "govuk_publishing_components/components/fieldset", {
   legend_text: "Redirect details (optional if published in error)",
   heading_size: "m",
 } do %>
   <%= render "govuk_publishing_components/components/input", {
-    label: { text: "Redirect URL (we need the GOV.UK page for the redirect URL)" },
+    label: { text: "Redirect URL" },
+    hint: "We need the GOV.UK page for the redirect URL",
     name: name_for(f, %w[redirect_url]),
     value: f.object.redirect_url,
     error_items: errors_for(@request.errors, :redirect_url)
@@ -73,12 +81,12 @@
   } %>
 <% end %>
 
-<%= render "govuk_publishing_components/components/notice", {
-  title: "This page will be unpublished (it will revert to draft). You will be notified when this is done and it is then your responsibility to delete this page or re-publish it in due course."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "This page will be unpublished (it will revert to draft). You will be notified when this is done and it is then your responsibility to delete this page or re-publish it in due course."
 } %>
 
-<%= render "govuk_publishing_components/components/error_alert", {
-  message: "Pages cannot be recovered once you have deleted them. Please ensure that all requests to GDS to unpublish content have been approved at the correct level in your organisation - if you aren't sure check with your GDS single point of contact."
+<%= render "govuk_publishing_components/components/warning_text", {
+  text: "Pages cannot be recovered once you have deleted them. Please ensure that all requests to GDS to unpublish content have been approved at the correct level in your organisation - if you aren't sure check with your GDS single point of contact."
 } %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>

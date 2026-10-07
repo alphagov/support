@@ -4,8 +4,8 @@
   } %>
 <% end %>
 
-<%= render "govuk_publishing_components/components/notice", {
-  title: "Only department/organisation Analytics Single Point of Contact (SPOC) can request access."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "Only department/organisation Analytics Single Point of Contact (SPOC) can request access."
 } %>
 
 <%= render "govuk_publishing_components/components/textarea", {
@@ -26,8 +26,8 @@
   error_items: errors_for(@request.errors, :single_point_of_contact_request_details)
 } %>
 
-<%= render "govuk_publishing_components/components/notice", {
-  title: "GDS no longer provide basic analytic reports - you should contact your department/organisation Analytics Single Point of Contact (SPOC) for analytic reporting."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "GDS no longer provide basic analytic reports - you should contact your department/organisation Analytics Single Point of Contact (SPOC) for analytic reporting."
 } %>
 
 <%= render "govuk_publishing_components/components/textarea", {
@@ -39,8 +39,8 @@
   error_items: errors_for(@request.errors, :report_request_details)
 } %>
 
-<%= render "govuk_publishing_components/components/notice", {
-  title: "Before contacting the GDS performance analytics team please check the GOV.UK Performance Analytics Basecamp community for tips or post your query there for help."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "Before contacting the GDS performance analytics team please check the GOV.UK Performance Analytics Basecamp community for tips or post your query there for help."
 } %>
 
 <%= render "govuk_publishing_components/components/textarea", {

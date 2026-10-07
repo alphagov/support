@@ -1,12 +1,11 @@
-<%= render "govuk_publishing_components/components/notice", {
-  title: "Changes and new features need to be assessed against the GOV.UK roadmap. Give as much detail as you can about the user need and evidence for your request."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "Changes and new features need to be assessed against the GOV.UK roadmap. Give as much detail as you can about the user need and evidence for your request."
 } %>
 
 <%= render "govuk_publishing_components/components/input", {
   label: { text: "Title of request" },
   name: name_for(f, %w[title]),
   value: f.object.title,
-  hint: "New need request",
   error_items: errors_for(@request.errors, :title)
 } %>
 
