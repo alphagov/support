@@ -59,8 +59,8 @@
   error_items: errors_for(@request.errors, :what_should_have_happened)
 } %>
 
-<%= render "govuk_publishing_components/components/notice", {
-  title: "If you have screenshots please send them as attachments in reply to the acknowledgement email you will receive shortly."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "If you have screenshots please send them as attachments in reply to the acknowledgement email you will receive shortly."
 } %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>

@@ -135,10 +135,9 @@
       error_items: errors_for(r.object.errors, :start_date)
     } %>
 
-    <p class="govuk-body">
-      Once your site is live, you should allow time for testing before driving traffic to it.
-      We advise leaving 1-2 days for no-cost campaigns, and at least a week for paid advertising campaigns.
-    </p>
+    <%= render "govuk_publishing_components/components/inset_text", {
+      text: "Once your site is live, you should allow time for testing before driving traffic to it. We advise leaving 1-2 days for no-cost campaigns, and at least a week for paid advertising campaigns."
+    } %>
 
     <%= render "govuk_publishing_components/components/date_input", {
       legend_text: "Proposed end date of campaign site (required)",
@@ -198,9 +197,9 @@
       error_items: errors_for(r.object.errors, :development_start_date)
     } %>
 
-    <p class="govuk-body">
-      We expect the website to go live within 1 month of approval.
-    </p>
+    <%= render "govuk_publishing_components/components/inset_text", {
+      text: "We expect the website to go live within 1 month of approval."
+    } %>
 
     <%= render "govuk_publishing_components/components/input", {
       label: {
