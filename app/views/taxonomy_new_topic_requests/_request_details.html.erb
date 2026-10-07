@@ -1,6 +1,4 @@
-<%= render "govuk_publishing_components/components/notice", {
-  title: f.object.class.description.html_safe
-} %>
+<p class="govuk-body"><%= f.object.class.description %></p>
 
 <%= render "govuk_publishing_components/components/input", {
   label: { text: "Preferred name of new topic (required)" },
