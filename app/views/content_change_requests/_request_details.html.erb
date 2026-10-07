@@ -85,13 +85,19 @@
 <%= render partial: "support/time_constraint", locals: { f: f } %>
 
 <%= render "govuk_publishing_components/components/notice", {
-  description: sanitize(
-    '<p class="govuk-body"><strong>If your request is urgent</strong></p>' \
-    '<p class="govuk-body">Submit this form and ' \
-    "#{link_to 'use one of our emergency contact methods (opens in new tab)', emergency_contact_details_path, class: 'govuk-link', target: '_blank'}." \
-    '</p>' \
-    '<p class="govuk-body">It’s urgent only if the public or the government faces immediate and significant financial, legal or physical risk.</p>'
-  ),
-} %>
+  title: "If your request is urgent"
+} do %>
+  <p class="govuk-body">Submit this form and
+    <%= link_to "use one of our emergency contact methods (opens in new tab)",
+      emergency_contact_details_path,
+      class: "govuk-link",
+      target: "_blank"
+    %>.
+  </p>
+  <p class="govuk-body">
+    It's urgent only if the public or the government faces immediate and
+    significant financial, legal or physical risk.
+  </p>
+<% end %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
