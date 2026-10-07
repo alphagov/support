@@ -19,8 +19,9 @@
 
 <%= render "govuk_publishing_components/components/textarea", {
   label: {
-    text: "How much is it affecting? (the whole thing, a specific feature or specific URLs) (required)"
+    text: "How much is it affecting? (required)"
   },
+  hint: "E.g. the whole thing, a specific feature or specific URLs.",
   name: name_for(f, %w[fault_specifics]),
   value: f.object.fault_specifics,
   rows: 6,

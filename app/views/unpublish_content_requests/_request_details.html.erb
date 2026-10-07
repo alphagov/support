@@ -4,8 +4,9 @@
 
 <%= render "govuk_publishing_components/components/textarea", {
   label: {
-    text: "Please give the Whitehall or Content Publisher URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected) (required)"
+    text: "Whitehall or Content Publisher URL of the page to be unpublished (required)"
   },
+  hint: "You can specify more than one URL, as long as it's clear where each URL should be redirected.",
   name: name_for(f, %w[urls]),
   value: f.object.urls,
   rows: 6,
@@ -55,7 +56,8 @@
   heading_size: "m",
 } do %>
   <%= render "govuk_publishing_components/components/input", {
-    label: { text: "Redirect URL (we need the GOV.UK page for the redirect URL)" },
+    label: { text: "Redirect URL" },
+    hint: "We need the GOV.UK page for the redirect URL",
     name: name_for(f, %w[redirect_url]),
     value: f.object.redirect_url,
     error_items: errors_for(@request.errors, :redirect_url)
