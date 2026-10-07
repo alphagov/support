@@ -42,14 +42,20 @@
   error_items: errors_for(@request.errors, :further_explanation)
 } %>
 
-<div class="govuk-body">
-  <p>If you do give a reason, users will go to a landing page and read your reason, then click on the redirect URL. Note that:
-    <ul>
-      <li>it is essential to write some text if the redirect is to the National Archives or an external website.</li>
-      <li>you should always give an explanation for users if a page is being deleted with no redirect, and is not likely to be republished.</li>
-    </ul>
-  </p>
-</div>
+<p class="govuk-body">
+  If you do give a reason, users will go to a landing page and read your reason,
+  then click on the redirect URL. Note that:
+</p>
+<ul>
+  <li>
+    it is essential to write some text if the redirect is to the National
+    Archives or an external website;
+  </li>
+  <li>
+    you should always give an explanation for users if a page is being deleted
+    with no redirect, and is not likely to be republished.
+  </li>
+</ul>
 
 <%= render "govuk_publishing_components/components/fieldset", {
   legend_text: "Redirect details (optional if published in error)",
