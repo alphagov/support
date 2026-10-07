@@ -4,7 +4,7 @@
 
 <%= render "govuk_publishing_components/components/textarea", {
   label: {
-    text: "Please give the Whitehall or Content Publisher URL of the page you wish to have unpublished (required)"
+    text: "Whitehall or Content Publisher URL of the page to be unpublished (required)"
   },
   hint: "You can specify more than one URL, as long as it's clear where each URL should be redirected.",
   name: name_for(f, %w[urls]),
@@ -14,7 +14,7 @@
 } %>
 
 <%= render "govuk_publishing_components/components/inset_text", {
-  text: "You may also wish to send this information in a spreadsheet, by attaching it to the Zendesk confirmation email."
+  text: "You may alternatively send this information in a spreadsheet by attaching it to the Zendesk confirmation email."
 } %>
 
 <%= render "govuk_publishing_components/components/radio", {
