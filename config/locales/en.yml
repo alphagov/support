@@ -31,6 +31,14 @@
 
 en:
   activemodel:
+    attributes:
+      support/requests/content_advice/organisation_page_request:
+        exempt_from_govuk: "Exemption from GOV.UK"
+        associated_organisations: "Associated or supporting organisations"
+        govuk_lead_name: "Name of the GOV.UK lead"
+        govuk_lead_email: "Email address of the GOV.UK lead"
+        gcs_exemption: "Excemption fron GCS"
+        sis_logo_format: "SIS logo format"
     errors:
       models:
         support/requests/change_existing_user_request:
@@ -61,3 +69,4 @@ en:
               inclusion: Select if the user needs Writing for GOV.UK training
             additional_comments:
               blank: List which publishing applications and permissions the user needs
+
