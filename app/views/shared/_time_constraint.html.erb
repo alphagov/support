@@ -1,0 +1,62 @@
+<h2 class="govuk-heading-l">Time constraints</h2>
+
+<% deadline_fields = capture do %>
+  <%= render "govuk_publishing_components/components/date_input", {
+    legend_text: "What's the deadline?",
+    hint: "For example, 27 3 2007",
+    id: "needed_by_date",
+    items: [
+      {
+        label: "Day",
+        name: name_for(f, %w[time_constraint_attributes needed_by_day]),
+        id: "needed-by-day",
+        value: @request.time_constraint.needed_by_day,
+        width: 2
+      },
+      {
+        label: "Month",
+        name: name_for(f, %w[time_constraint_attributes needed_by_month]),
+        id: "needed-by-month",
+        value: @request.time_constraint.needed_by_month,
+        width: 2
+      },
+      {
+        label: "Year",
+        name: name_for(f, %w[time_constraint_attributes needed_by_year]),
+        id: "needed-by-year",
+        value: @request.time_constraint.needed_by_year,
+        width: 4
+      }
+    ],
+    error_items: errors_for(@request.errors, :needed_by_date)
+  } %>
+
+  <%= render "govuk_publishing_components/components/input", {
+    label: { text: "What’s the reason for the deadline?" },
+    name: name_for(f, %w[time_constraint_attributes time_constraint_reason]),
+    value: @request.time_constraint.time_constraint_reason,
+    id: "time_constraint_reason",
+    error_items: errors_for(@request.errors, :time_constraint_reason)
+  } %>
+<% end %>
+
+<%= render "govuk_publishing_components/components/radio", {
+  heading: "Is there a deadline? (required)",
+  heading_size: "s",
+  name: name_for(f, %w[deadline]),
+  id: "deadline",
+  error_items: errors_for(@request.errors, :deadline),
+  items: [
+    {
+      value: "Yes",
+      text: "Yes",
+      conditional: deadline_fields,
+      checked: @request.deadline == "Yes"
+    },
+    {
+      value: "No",
+      text: "No",
+      checked: @request.deadline == "No"
+    }
+  ]}
+  %>

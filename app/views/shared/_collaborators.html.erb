@@ -1,0 +1,10 @@
+<h2 class="govuk-heading-l">Copy of the request</h2>
+
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Who needs a copy of this request?" },
+  hint: "Separate email addresses with commas. Leave blank if no one needs a copy.",
+  value: @request.requester.collaborator_emails,
+  id: "collaborator_emails",
+  name: name_for(f, %w[requester_attributes collaborator_emails]),
+  error_items: errors_for(@request.errors, :collaborator_emails)
+} %>

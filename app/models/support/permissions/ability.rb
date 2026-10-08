@@ -21,6 +21,7 @@ module Support
                 Support::Requests::ChangesToPublishingAppsRequest,
                 Support::Requests::ContentChangeRequest,
                 Support::Requests::ContentAdviceRequest,
+                Support::Requests::ContentAdvice::GroupPageRequest,
                 Support::Requests::UnpublishContentRequest,
               ]
         end

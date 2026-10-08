@@ -215,6 +215,28 @@ module Support
 
         expect(constraint.errors[:not_before_date]).to include("'Must not be published before' date cannot be after Deadline")
       end
+
+      context "when it is required" do
+        let(:constraint) { Support::Requests::TimeConstraint.new(is_required: true) }
+
+        it "does not allow needed_by_date to be empty" do
+          constraint.needed_by_day = ""
+          constraint.needed_by_month = ""
+          constraint.needed_by_year = ""
+          constraint.time_constraint_reason = "A reason"
+
+          expect(constraint).to be_invalid
+        end
+
+        it "does not allow time_constraint_reason to be empty" do
+          constraint.needed_by_day = 1.day.from_now.strftime("%d")
+          constraint.needed_by_month = 1.day.from_now.strftime("%m")
+          constraint.needed_by_year = 1.day.from_now.strftime("%Y")
+          constraint.time_constraint_reason = ""
+
+          expect(constraint).to be_invalid
+        end
+      end
     end
   end
 end
