@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
   namespace :content_advice do
     resource :group_page_request, only: %i[new create]
+    resource :short_url_request, only: %i[new create]
+    resource :organisation_page_request, only: %i[new create]
   end
 
   get "/healthcheck/live", to: proc { [200, {}, %w[OK]] }

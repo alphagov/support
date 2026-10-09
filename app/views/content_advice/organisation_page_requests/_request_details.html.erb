@@ -1,0 +1,179 @@
+<% content_for(:error_summary) do %>
+  <%= render "shared/error_summary" %>
+<% end %>
+
+<p class="govuk-body">You need to ask the Government Digital Service (GDS) to set up a page for an organisation or sub-organisation.</p>
+
+<p class="govuk-body">Before you make your request, read the <a href="https://guidance.publishing.service.gov.uk/accounts-support/make-content-requests/ask-new-organisation/" target="_blank">guidance on asking for a new organisation page</a> to understand the requirements.</p>
+
+<p class="govuk-body">After you submit this form, you’ll get a confirmation email. Reply to that email if you have any further questions or want to send over relevant supporting documents.</p>
+
+<h2 class="govuk-heading-l">Details of your request</h2>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "What’s the name of the organisation? (required)" },
+  name: name_for(f, %w[organisation_name]),
+  id: "organisation_name",
+  value: @request.organisation_name,
+  error_items: errors_for(@request.errors, :organisation_name)
+} %>
+
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "What’s the organisation’s abbreviation (if it has one)?" },
+  name: name_for(f, %w[organisation_abbreviation]),
+  width: 4,
+  id: "organisation_abbreviation",
+  value: @request.organisation_abbreviation,
+  error_items: errors_for(@request.errors, :organisation_abbreviation)
+} %>
+
+<%= render "govuk_publishing_components/components/radio", {
+  heading: "What sort of logo will the organisation use? (required)",
+  name: name_for(f, %w[logo_type]),
+  id: "logo_type",
+  error_items: errors_for(@request.errors, :logo_type),
+  items: [
+    {
+      value: "Single identity system",
+      text: "Single identity system",
+      checked: @request.sis_logo?,
+      conditional: (render "govuk_publishing_components/components/input", {
+        label: { text: "How should the logo be formatted? (required)" },
+        hint: "For example, stacked or written out in full.",
+        name: name_for(f, %w[sis_logo_format]),
+        id: "sis_logo_format",
+        value: @request.sis_logo_format,
+        error_items: errors_for(@request.errors, :sis_logo_format)
+      }),
+    },
+    {
+      value: "Plain text",
+      text: "Plain text",
+      checked: @request.plain_text_logo?,
+      conditional: (render "govuk_publishing_components/components/input", {
+        label: { text: "How should the logo be formatted? (required)" },
+        hint: "For example, stacked or written out in full.",
+        name: name_for(f, %w[plain_text_logo_format]),
+        id: "plain_text_logo_format",
+        value: @request.plain_text_logo_format,
+        error_items: errors_for(@request.errors, :plain_text_logo_format)
+      }),
+    },
+    {
+      value: "Custom logo",
+      text: "Custom logo",
+      checked: @request.custom_logo?,
+      conditional: (render "govuk_publishing_components/components/input", {
+        label: { text: "Have you got an exemption from the Government Communication Service (GCS) for the custom logo? (required)" },
+        hint: "Find out how to <a class='govuk-link' href='https://www.communications.gov.uk/publication/branding/#logo-and-image-use' target='_blank'>apply for a logo exemption from GCS</a>.".html_safe,
+        name: name_for(f, %w[gcs_exemption]),
+        id: "gcs_exemption",
+        value: @request.gcs_exemption,
+        error_items: errors_for(@request.errors, :gcs_exemption)
+      })
+    }
+  ]
+  }
+%>
+
+
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Who’s the parent or sponsoring organisation? (required)" },
+  hint: "This also sets the brand colour on the page.",
+  name: name_for(f, %w[parent_organisation]),
+  id: "parent_organisation",
+  value: @request.parent_organisation,
+  error_items: errors_for(@request.errors, :parent_organisation)
+} %>
+
+<%= render "govuk_publishing_components/components/radio", {
+  heading: "What’s the organisation type? (required)",
+  name: name_for(f, %w[organisation_type]),
+  id: "organisation_type",
+  error_items: errors_for(@request.errors, :organisation_type),
+  items: @request.org_type_options
+} %>
+
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "What’s the alternative format email address? (required)" },
+  hint: "This is the address where users can submit requests for content in alternative formats. For example, requests for Easy Reads.",
+  name: name_for(f, %w[alternative_format_email]),
+  id: "alternative_format_email",
+  value: @request.alternative_format_email,
+  error_items: errors_for(@request.errors, :alternative_format_email)
+} %>
+
+<% status_hint_text = capture do %>
+  <p>We normally set the status as ‘Coming soon’ so you can add content (such as an ‘About us’ page and contact details) before you change the status to ‘Currently live’.</p>
+  <p>If your organisation has an exemption from publishing on GOV.UK, select ‘Exempt from joining’.</p>
+  <p>If your organisation currently has its own website but is moving onto GOV.UK, select ‘Currently transitioning’.</p>
+<% end %>
+
+<%= render "govuk_publishing_components/components/radio", {
+  heading: "What’s the organisation’s status? (required)",
+  hint: status_hint_text,
+  name: name_for(f, %w[organisation_status]),
+  id: "organisation_status",
+  error_items: errors_for(@request.errors, :organisation_status),
+  items: [
+    {
+      value: "Coming soon",
+      text: "Coming soon",
+      checked: @request.organisation_status == "Coming soon",
+    },
+    {
+      value: "Exempt from joining",
+      text: "Exempt from joining",
+      checked: @request.organisation_status == "Exempt from joining",
+      conditional: (render "govuk_publishing_components/components/input", {
+        label: { text: "Does the organisation have an exemption from GOV.UK? (required)" },
+        hint: "Find out how to <a class='govuk-link' href='https://guidance.publishing.service.gov.uk/accounts-support/make-content-requests/ask-exemption/' target='_blank'>apply for a GOV.UK exemption from GDS</a>.".html_safe,
+        name: name_for(f, %w[exempt_from_govuk]),
+        id: "exempt_from_govuk",
+        value: @request.exempt_from_govuk,
+        error_items: errors_for(@request.errors, :exempt_from_govuk)
+      })
+    },
+    {
+      value: "Currently transitioning",
+      text: "Currently transitioning",
+      checked: @request.organisation_status == "Currently transitioning",
+    },
+  ]
+}
+%>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Are there any other associated or sponsoring organisations? (required)" },
+  name: name_for(f, %w[associated_organisations]),
+  textarea_id: "associated_organisations",
+  value: @request.associated_organisations,
+  error_items: errors_for(@request.errors, :associated_organisations)
+} %>
+
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Who is the GOV.UK lead for the organisation? (required)" },
+  name: name_for(f, %w[govuk_lead_name]),
+  id: "govuk_lead_name",
+  value: @request.govuk_lead_name,
+  error_items: errors_for(@request.errors, :govuk_lead_name)
+} %>
+
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "What is the GOV.UK lead's email address? (required)" },
+  name: name_for(f, %w[govuk_lead_email]),
+  id: "govuk_lead_email",
+  value: @request.govuk_lead_email,
+  error_items: errors_for(@request.errors, :govuk_lead_email)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Is there any more information you want to share about your request?" },
+  hint: "Leave blank if you have no more information to share.",
+  name: name_for(f, %w[additional_info]),
+  value: @request.additional_info,
+  textarea_id: "additional_info",
+  error_items: errors_for(@request.errors, :additional_info)
+} %>
+
+<%= render partial: "shared/time_constraint", locals: { f: } %>
+<%= render partial: "shared/collaborators", locals: { f: } %>

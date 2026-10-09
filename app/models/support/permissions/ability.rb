@@ -22,6 +22,8 @@ module Support
                 Support::Requests::ContentChangeRequest,
                 Support::Requests::ContentAdviceRequest,
                 Support::Requests::ContentAdvice::GroupPageRequest,
+                Support::Requests::ContentAdvice::ShortUrlRequest,
+                Support::Requests::ContentAdvice::OrganisationPageRequest,
                 Support::Requests::UnpublishContentRequest,
               ]
         end
