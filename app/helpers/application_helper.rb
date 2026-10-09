@@ -1,14 +1,6 @@
 module ApplicationHelper
-  def all_section_groups
-    Support::Navigation::SectionGroups.new(current_user)
-  end
-
   def feedex_section
     Support::Navigation::FeedexSection.new(current_user)
-  end
-
-  def emergency_contact_details_section
-    Support::Navigation::EmergencyContactDetailsSection.new(current_user)
   end
 
   def in_feedex?
