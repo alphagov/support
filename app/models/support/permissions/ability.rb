@@ -24,6 +24,7 @@ module Support
                 Support::Requests::ContentAdvice::GroupPageRequest,
                 Support::Requests::ContentAdvice::ShortUrlRequest,
                 Support::Requests::ContentAdvice::OrganisationPageRequest,
+                Support::Requests::ContentAdvice::ContentDesignHelpRequest,
                 Support::Requests::UnpublishContentRequest,
               ]
         end

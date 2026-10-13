@@ -1,0 +1,29 @@
+<% content_for(:error_summary) do %>
+  <%= render "shared/error_summary" %>
+<% end %>
+
+<p class="govuk-body">Before you use this form, check the <a class="govuk-link" href="https://guidance.publishing.service.gov.uk/" target="_blank">GOV.UK content and publishing guidance</a> to see if it can help you.</p>
+
+<p class="govuk-body">If not, use this form to get advice or help from the Government Digital Service (GDS).</p>
+
+<p class="govuk-body">After you submit this form, you’ll get a confirmation email. Reply to that email if you have any further questions or want to send over relevant supporting documents.</p>
+
+<h2 class="govuk-heading-l">Details of your request</h2>
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Title of request (required)" },
+  name: name_for(f, %w[title]),
+  id: "title",
+  value: @request.title,
+  error_items: errors_for(@request.errors, :title)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "What advice or help do you need? (required)" },
+  name: name_for(f, %w[advice_needed]),
+  textarea_id: "advice_needed",
+  value: @request.advice_needed,
+  error_items: errors_for(@request.errors, :advice_needed)
+} %>
+
+<%= render partial: "shared/time_constraint", locals: { f: } %>
+<%= render partial: "shared/collaborators", locals: { f: } %>
