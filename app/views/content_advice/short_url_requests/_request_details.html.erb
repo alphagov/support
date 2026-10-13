@@ -1,0 +1,77 @@
+<% content_for(:error_summary) do %>
+  <%= render "shared/error_summary" %>
+<% end %>
+
+<p class="govuk-body"><%= f.object.class.description %></p>
+
+<p class="govuk-body">You need to ask the Government Digital Service (GDS) to create a short URL. You should ask GDS at least 2 weeks before you need the short URL.</p>
+
+<p class="govuk-body">Before you make your request, read the <a href="https://guidance.publishing.service.gov.uk/accounts-support/make-content-requests/ask-short-url/" target="_blank">guidance on asking for a short URL</a> and the <a href="https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/plan-manage-content/follow-url-standards/" target="_blank">URL standards</a> to understand the requirements.</p>
+
+<p class="govuk-body">After you submit this form, you’ll get a confirmation email. Reply to that email if you have any further questions or want to send over relevant supporting documents.</p>
+
+<h2 class="govuk-heading-l">Details of your request</h2>
+
+<%= render "govuk_publishing_components/components/input", {
+  label: { text: "Title of request (required)" },
+  hint: "For example, “Short URL for Universal Credit”.",
+  name: name_for(f, %w[title]),
+  id: "title",
+  value: @request.title,
+  error_items: errors_for(@request.errors, :title)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "What short URL do you want? (required)" },
+  name: name_for(f, %w[destination_page]),
+  hint: "Explain the destination page for the short URL and include any suggestions you have for the short URL itself.",
+  textarea_id: "destination_page",
+  value: @request.destination_page,
+  error_items: errors_for(@request.errors, :destination_page)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Why do you want a short URL? (required)" },
+  name: name_for(f, %w[reason]),
+  hint: "Explain any identified user needs here.",
+  textarea_id: "reason",
+  value: @request.reason,
+  error_items: errors_for(@request.errors, :reason)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "How will you use the short URL? (required)" },
+  name: name_for(f, %w[usage]),
+  hint: "Explain the channels you’ll be using and the number of users who will be targeted.",
+  textarea_id: "usage",
+  value: @request.usage,
+  error_items: errors_for(@request.errors, :usage)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "What’s the main message of the marketing and communications that will use the short URL? (required)" },
+  name: name_for(f, %w[marketing_message]),
+  textarea_id: "marketing_message",
+  value: @request.marketing_message,
+  error_items: errors_for(@request.errors, :marketing_message)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Which government organisations will use the short URL? (required)" },
+  name: name_for(f, %w[organisations_using_url]),
+  textarea_id: "organisations_using_url",
+  value: @request.organisations_using_url,
+  error_items: errors_for(@request.errors, :organisations_using_url)
+} %>
+
+<%= render "govuk_publishing_components/components/textarea", {
+  label: { text: "Is there any more information you want to share about your request?" },
+  hint: "Leave blank if you have no more information to share.",
+  name: name_for(f, %w[additional_info]),
+  value: @request.additional_info,
+  textarea_id: "additional_info",
+  error_items: errors_for(@request.errors, :additional_info)
+} %>
+
+<%= render partial: "shared/time_constraint", locals: { f: } %>
+<%= render partial: "shared/collaborators", locals: { f: } %>
