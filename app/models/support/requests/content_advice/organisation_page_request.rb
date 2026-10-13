@@ -5,7 +5,6 @@ module Support
     module ContentAdvice
       class OrganisationPageRequest < Request
         include WithTimeConstraint
-        include ActiveModel::Validations::Callbacks
 
         LOGO_TYPES = ["Single identity system", "Plain text", "Custom logo"].freeze
         ORG_STATUSES = ["Coming soon", "Exempt from joining", "Currently transitioning"].freeze
@@ -52,8 +51,6 @@ module Support
         validates :govuk_lead_email, format: { with: Support::Requests::Requester::VALID_EMAIL_REGEX }, if: -> { govuk_lead_email.present? }
         validates :exempt_from_govuk, presence: true, if: :exempt_from_joining?
 
-        before_validation :set_time_constraint_requirement
-
         def initialize(attrs = {})
           self.time_constraint = TimeConstraint.new
           super
@@ -98,12 +95,6 @@ module Support
 
         def logo_format
           sis_logo_format.presence || plain_text_logo_format.presence
-        end
-
-        def set_time_constraint_requirement
-          if time_constraint.present?
-            time_constraint.is_required = (deadline == "Yes")
-          end
         end
 
         def sis_logo?
