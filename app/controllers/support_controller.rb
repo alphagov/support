@@ -4,9 +4,8 @@ class SupportController < AuthorisationController
   skip_before_action :authenticate_support_user!, only: [:queue_status]
 
   def landing
-    all_sections = Support::Navigation::SectionGroups.new(current_user).all_sections +
-      [Support::Navigation::FeedexSection.new(current_user), Support::Navigation::EmergencyContactDetailsSection.new(current_user)]
-    @accessible_sections, @inaccessible_sections = all_sections.partition(&:accessible?)
+    @accessible_sections, @inaccessible_sections =
+      Support::Navigation::Sections.new(current_user).partition(&:accessible?)
 
     render :landing, layout: "design_system"
   end
