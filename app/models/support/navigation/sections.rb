@@ -36,7 +36,7 @@ module Support
     private
 
       def request_sections(current_user)
-        ORDERED_REQUEST_FORMS.map do |request_class|
+        self.class::ORDERED_REQUEST_FORMS.map do |request_class|
           Support::Navigation::RequestSection.new(request_class, current_user)
         end
       end
