@@ -3,10 +3,11 @@ module Support
     class Sections
       include Enumerable
 
-      ORDERED_REQUEST_FORMS = [
+      ORDERED_INDEX_ITEMS = [
         Support::Requests::CreateNewUserOrTrainingRequest,
         Support::Requests::ChangeExistingUserRequest,
         Support::Requests::RemoveUserRequest,
+        Support::Navigation::ContentAdviceRequestSection,
         Support::Requests::ContentAdviceRequest,
         Support::Requests::ContentChangeRequest,
         Support::Requests::UnpublishContentRequest,
@@ -20,13 +21,12 @@ module Support
         Support::Requests::TaxonomyChangeTopicRequest,
         Support::Requests::AnalyticsRequest,
         Support::Requests::GeneralRequest,
+        Support::Navigation::FeedexSection,
+        Support::Navigation::EmergencyContactDetailsSection,
       ].freeze
 
       def initialize(current_user)
-        @sections = request_sections(current_user) + [
-          Support::Navigation::FeedexSection.new(current_user),
-          Support::Navigation::EmergencyContactDetailsSection.new(current_user),
-        ]
+        @sections = build_sections(current_user)
       end
 
       def each(&block)
@@ -35,9 +35,13 @@ module Support
 
     private
 
-      def request_sections(current_user)
-        self.class::ORDERED_REQUEST_FORMS.map do |request_class|
-          Support::Navigation::RequestSection.new(request_class, current_user)
+      def build_sections(current_user)
+        self.class::ORDERED_INDEX_ITEMS.map do |item_class|
+          if item_class.module_parents.include? Support::Requests
+            Support::Navigation::RequestSection.new(item_class, current_user)
+          elsif item_class.module_parents.include? Support::Navigation
+            item_class.new(current_user)
+          end
         end
       end
     end

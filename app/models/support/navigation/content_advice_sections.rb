@@ -3,7 +3,7 @@ module Support
     class ContentAdviceSections < Sections
       include Enumerable
 
-      ORDERED_REQUEST_FORMS = [
+      ORDERED_INDEX_ITEMS = [
         Support::Requests::ContentAdvice::ContentDesignHelpRequest,
         Support::Requests::ContentAdvice::OrganisationPageRequest,
         Support::Requests::ContentAdvice::GroupPageRequest,
@@ -12,7 +12,7 @@ module Support
 
       def initialize(current_user)
         super
-        @sections = request_sections(current_user)
+        @sections = build_sections(current_user)
       end
     end
   end
