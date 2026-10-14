@@ -15,7 +15,6 @@ module Support
         requests_anyone_can_make + [
           :anonymous_feedback,
           UnpublishContentRequest,
-          ContentAdviceRequest,
           CampaignRequest,
           LiveCampaignRequest,
           ContentChangeRequest,
@@ -50,7 +49,7 @@ module Support
 
       context "for content requesters" do
         subject { create(:content_requester) }
-        let(:requests_specific_to_role) { [ChangesToPublishingAppsRequest, ContentChangeRequest, ContentAdviceRequest, UnpublishContentRequest, AnalyticsRequest] }
+        let(:requests_specific_to_role) { [ChangesToPublishingAppsRequest, ContentChangeRequest, UnpublishContentRequest, AnalyticsRequest] }
         it_behaves_like "a role"
       end
 
@@ -72,7 +71,6 @@ module Support
           [
             :anonymous_feedback,
             UnpublishContentRequest,
-            ContentAdviceRequest,
             AnalyticsRequest,
             CampaignRequest,
             LiveCampaignRequest,
