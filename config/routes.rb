@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resource :campaign_request, only: %i[new create]
   resource :change_existing_user_request, only: %i[new create]
   resource :changes_to_publishing_apps_request, only: %i[new create]
-  resource :content_advice_request, only: %i[new create]
   resource :content_change_request, only: %i[new create]
   resource :content_data_feedback, only: %i[new create]
   resource :create_new_user_or_training_request, only: %i[new create]
@@ -20,6 +19,7 @@ Rails.application.routes.draw do
   resource :unpublish_content_request, only: %i[new create]
 
   get "/accounts_permissions_and_training_request/new" => redirect("/")
+  get "/content_advice_request/new" => redirect("/content_advice")
 
   namespace :anonymous_feedback do
     get :explore, to: "explore#new", format: false
