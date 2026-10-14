@@ -8,7 +8,6 @@ module Support
         Support::Requests::ChangeExistingUserRequest,
         Support::Requests::RemoveUserRequest,
         Support::Navigation::ContentAdviceRequestSection,
-        Support::Requests::ContentAdviceRequest,
         Support::Requests::ContentChangeRequest,
         Support::Requests::UnpublishContentRequest,
         Support::Requests::ChangesToPublishingAppsRequest,
