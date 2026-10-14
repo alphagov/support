@@ -57,7 +57,7 @@ Should have linked through",
       choose "GOV.UK: content"
     end
 
-    fill_in "How much is it affecting? (the whole thing, a specific feature or specific URLs)",
+    fill_in "How much is it affecting?",
             with: "Smart answer"
     fill_in "What were you trying to do?", with: "Clicked on x"
     fill_in "What happened?", with: "Broken link"
@@ -66,7 +66,7 @@ Should have linked through",
 
     expect(page).to have_checked_field("GOV.UK: content")
     expect(page).to have_field(
-      "How much is it affecting? (the whole thing, a specific feature or specific URLs)",
+      "How much is it affecting?",
       with: "Smart answer",
     )
     expect(page).to have_field("What were you trying to do?", with: "Clicked on x")
@@ -86,7 +86,7 @@ private
       choose details[:location_of_fault]
     end
 
-    fill_in "How much is it affecting? (the whole thing, a specific feature or specific URLs)",
+    fill_in "How much is it affecting?",
             with: details[:what_is_broken]
 
     fill_in "What were you trying to do?",

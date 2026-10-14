@@ -77,7 +77,7 @@ true",
     explanation = "This page is no longer needed"
     redirect_url = "https://www.gov.uk/replacement"
 
-    fill_in "Please give the Whitehall or Content Publisher URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)", with: urls
+    fill_in "Whitehall or Content Publisher URL of the page to be unpublished", with: urls
     fill_in "Redirects will be automatic unless you give a reason:", with: explanation
     fill_in "Redirect URL", with: redirect_url
     check "Redirect to URL automatically?"
@@ -85,7 +85,7 @@ true",
     click_on "Submit"
 
     expect(page).to have_field(
-      "Please give the Whitehall or Content Publisher URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)",
+      "Whitehall or Content Publisher URL of the page to be unpublished",
       with: urls,
     )
     expect(page).to have_field("Redirects will be automatic unless you give a reason:", with: explanation)
@@ -102,7 +102,7 @@ private
 
     expect(page).to have_content("Please make a separate request for each target redirect.")
 
-    fill_in "Please give the Whitehall or Content Publisher URL of the page you wish to have unpublished (you can specify more than one URL, as long as it's clear where each URL should be redirected)", with: details[:url]
+    fill_in "Whitehall or Content Publisher URL of the page to be unpublished", with: details[:url]
 
     within "#unpublish-reason" do
       choose details[:reason]

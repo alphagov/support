@@ -42,7 +42,7 @@ Pensions
 [Call to action]
 Join us in this campaign for pensions
 
-[Proposed URL (in the form of xxxxx.campaign.gov.uk)]
+[Proposed URL]
 newcampaign.campaign.gov.uk
 
 [Site title]
@@ -57,10 +57,10 @@ pensions, campaign, newcampaign
 [Site build budget / costs (and overall campaign cost, if applicable)]
 £1200 and tuppence
 
-[HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)]
+[HMG code: from approved AMC technical cases]
 HMGXX-XXX
 
-[Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)]
+[Strategic Planning Code: from strategic planning phase]
 CSBXX-XXX
 
 [Additional comments]
@@ -161,8 +161,8 @@ private
     check "I/We have read the GCS guidance on campaign websites and accept the requirements for a Campaign Platform website" if details[:has_read_guidance]
     check "I/We have followed the GCS guidance for OASIS planning and are using the mandatory GCS OASIS template" if details[:has_read_oasis_guidance]
     check "I/We will take full responsibility for all aspects of managing and resourcing this campaign site from Discovery stage to site build/content development, to site closure. The site must be regularly reviewed to ensure a high standard of work. GCS reserves the right to close the site if standard of the site drops below expectations." if details[:full_responsibility_confirmation]
-    check "I/We will ensure the site meets all government web accessibility standards, and that it will be tested and the Accessibility Statement completed before final review (if your team doesn't have expertise in accessible content design then appropriate training must be undertaken before the site build.)" if details[:accessibility_confirmation]
-    check "I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer (NB : GDS will add a basic \"boilerplate\", however departments will need to identify if additions are needed)." if details[:cookie_and_privacy_notice_confirmation]
+    check "I/We will ensure the site meets all government web accessibility standards, and that it will be tested and the Accessibility Statement completed before final review (if your team doesn't have expertise in accessible content design then appropriate training must be undertaken before the site build)." if details[:accessibility_confirmation]
+    check "I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer (NB: GDS will add a basic \"boilerplate\", however departments will need to identify if additions are needed)." if details[:cookie_and_privacy_notice_confirmation]
 
     fill_in "Name of the Head of Digital Communications who signed off the campaign website application (required)", with: details[:signed_campaign]
     find("#start-day").set(details[:start_day])
@@ -178,13 +178,13 @@ private
     fill_in "Which of the current Government Communications Plan priority themes does this campaign website support and how? (required)", with: details[:government_theme]
     fill_in "Campaign description (required)", with: details[:description]
     fill_in "Call to action (required)", with: details[:call_to_action]
-    fill_in "Proposed URL (in the form of xxxxx.campaign.gov.uk) (required)", with: details[:proposed_url]
+    fill_in "Proposed URL (required)", with: details[:proposed_url]
     fill_in "Site title (required)", with: details[:site_title]
     fill_in "Site tagline (required)", with: details[:site_tagline]
     fill_in "Site metadescription (appears in search results) (required)", with: details[:site_metadescription]
     fill_in "Site build budget / costs (and overall campaign cost, if applicable) (required)", with: details[:cost_of_campaign]
-    fill_in "HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)", with: details[:hmg_code]
-    fill_in "Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)", with: details[:strategic_planning_code]
+    fill_in "HMG code: from approved AMC technical cases", with: details[:hmg_code]
+    fill_in "Strategic Planning Code: from strategic planning phase", with: details[:strategic_planning_code]
     fill_in "Additional comments", with: details[:additional_comments]
 
     user_submits_the_request_successfully

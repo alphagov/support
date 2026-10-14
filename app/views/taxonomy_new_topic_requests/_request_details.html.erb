@@ -1,6 +1,4 @@
-<%= render "govuk_publishing_components/components/notice", {
-  title: f.object.class.description.html_safe
-} %>
+<p class="govuk-body"><%= f.object.class.description %></p>
 
 <%= render "govuk_publishing_components/components/input", {
   label: { text: "Preferred name of new topic (required)" },
@@ -13,7 +11,6 @@
   label: { text: "URL(s) of page(s) you want to tag to this topic (provide as many as you can) (required)" },
   name: name_for(f, %w[url]),
   value: f.object.url,
-  hint: "https://www.gov.uk/government/...",
   rows: 6,
   error_items: errors_for(@request.errors, :url)
 } %>

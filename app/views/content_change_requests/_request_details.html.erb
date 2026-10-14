@@ -1,6 +1,15 @@
-<%= render "govuk_publishing_components/components/notice", {
-  description: sanitize('<p class="govuk-body">You\'ll get an automated response to confirm we\'ve received your request. We\'ll then review your request within 2 working days.</p><p class="govuk-body"><a class="govuk-link" href="https://guidance.publishing.service.gov.uk/accounts-support/make-content-requests/ask-updates-content">How to write a request that will get resolved quickly</a>.</p>'),
-} %>
+<%= render "govuk_publishing_components/components/inset_text", {} do %>
+  <p class="govuk-body">
+    You'll get an automated response to confirm we've received your request.
+    We'll then review your request within 2 working days.
+  </p>
+  <p class="govuk-body">
+    <%= link_to "How to write a request that will get resolved quickly",
+      "https://guidance.publishing.service.gov.uk/accounts-support/make-content-requests/ask-updates-content",
+      class: "govuk-link"
+    %>
+  </p>
+<% end %>
 
 <%= render "govuk_publishing_components/components/input", {
   label: {
@@ -56,7 +65,7 @@
   },
   hint: sanitize(
     '<p>Make sure you:</p>
-    <ul class="govuk-list govuk-list--bullet">
+    <ul class="govuk-list govuk-list--bullet govuk-hint">
       <li>include evidence of why this is a problem, for example, user feedback or call centre data</li>
       <li>give sufficient detail</li>
       <li>use plain English</li>
@@ -76,13 +85,19 @@
 <%= render partial: "support/time_constraint", locals: { f: f } %>
 
 <%= render "govuk_publishing_components/components/notice", {
-  description: sanitize(
-    '<p class="govuk-body"><strong>If your request is urgent</strong></p>' \
-    '<p class="govuk-body">Submit this form and ' \
-    "#{link_to 'use one of our emergency contact methods (opens in new tab)', emergency_contact_details_path, target: '_blank'}." \
-    '</p>' \
-    '<p class="govuk-body">It’s urgent only if the public or the government faces immediate and significant financial, legal or physical risk.</p>'
-  ),
-} %>
+  title: "If your request is urgent"
+} do %>
+  <p class="govuk-body">Submit this form and
+    <%= link_to "use one of our emergency contact methods (opens in new tab)",
+      emergency_contact_details_path,
+      class: "govuk-link",
+      target: "_blank"
+    %>.
+  </p>
+  <p class="govuk-body">
+    It's urgent only if the public or the government faces immediate and
+    significant financial, legal or physical risk.
+  </p>
+<% end %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>

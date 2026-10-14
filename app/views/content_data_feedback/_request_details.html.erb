@@ -29,7 +29,7 @@
 
   <%= render "govuk_publishing_components/components/textarea", {
     label: { text: "What's the impact on your work if we don't do anything about it? (required)" },
-    hint: "This information will help us prioritise changes and future work",
+    hint: "This information will help us prioritise changes and future work.",
     name: name_for(f, %w[impact_on_work]),
     value: f.object.impact_on_work,
     rows: 6,
@@ -37,8 +37,8 @@
   } %>
 </div>
 
-<%= render "govuk_publishing_components/components/notice", {
-  title: "To add screenshots to this feedback, reply to the acknowledgement email you receive and attach them."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "To add screenshots to this feedback, reply to the acknowledgement email you receive and attach them."
 } %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>

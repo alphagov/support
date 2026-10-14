@@ -1,13 +1,7 @@
-<%= render "govuk_publishing_components/components/notice", {
-  title: f.object.class.description
-} %>
+<p class="govuk-body"><%= f.object.class.description %></p>
 
 <p class="govuk-body">
-  Use this for: A single or multi page site on the GOV.UK Campaigns Platform
-</p>
-
-<p class="govuk-body">
-  Please answer the questions below.
+  Use this for a single or multi page site on the GOV.UK Campaigns Platform.
 </p>
 
 <%= f.fields_for :campaign do |r| %>
@@ -22,9 +16,9 @@
         {
           label: safe_join([
             "I/We have read the ",
-            link_to(
-              "GCS guidance on campaign websites",
-              "https://www.communications.gov.uk/publication/how-to-set-up-a-government-campaign-website/"
+            link_to("GCS guidance on campaign websites",
+              "https://www.communications.gov.uk/publication/how-to-set-up-a-government-campaign-website/",
+              class: "govuk-link"
             ),
             " and accept the requirements for a Campaign Platform website"
           ]),
@@ -40,14 +34,14 @@
         {
           label: safe_join([
             "I/We have followed the ",
-            link_to(
-              "GCS guidance for OASIS planning",
-              "https://www.communications.gov.uk/publication/oasis-planning-government-communications/"
+            link_to("GCS guidance for OASIS planning",
+              "https://www.communications.gov.uk/publication/oasis-planning-government-communications/",
+              class: "govuk-link"
             ),
             " and are using the ",
-            link_to(
-              "mandatory GCS OASIS template",
-              "https://gcs.civilservice.gov.uk/guidance/marketing/delivering-government-campaigns/guide-to-campaign-planning-oasis/"
+            link_to("mandatory GCS OASIS template",
+              "https://gcs.civilservice.gov.uk/guidance/marketing/delivering-government-campaigns/guide-to-campaign-planning-oasis/",
+              class: "govuk-link"
             )
           ]),
           value: "Yes",
@@ -73,11 +67,11 @@
         {
           label: safe_join([
             "I/We will ensure the site meets all ",
-            link_to(
-              "government web accessibility standards",
-              "https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps"
+            link_to("government web accessibility standards",
+              "https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps",
+              class: "govuk-link"
             ),
-            ", and that it will be tested and the Accessibility Statement completed before final review (if your team doesn't have expertise in accessible content design then appropriate training must be undertaken before the site build.)"
+            ", and that it will be tested and the Accessibility Statement completed before final review (if your team doesn't have expertise in accessible content design then appropriate training must be undertaken before the site build)."
           ]),
           value: "Yes",
           checked: r.object.accessibility_confirmation == "Yes"
@@ -89,7 +83,7 @@
       name: name_for(r, %w[cookie_and_privacy_notice_confirmation]),
       items: [
         {
-          label: 'I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer (NB : GDS will add a basic "boilerplate", however departments will need to identify if additions are needed).',
+          label: 'I/We agree to take responsibility to maintain and up-date the Cookie Notice and Privacy Notice as necessary, with our Data Protection Officer (NB: GDS will add a basic "boilerplate", however departments will need to identify if additions are needed).',
           value: "Yes",
           checked: r.object.cookie_and_privacy_notice_confirmation == "Yes"
         }
@@ -135,10 +129,9 @@
       error_items: errors_for(r.object.errors, :start_date)
     } %>
 
-    <p class="govuk-body">
-      Once your site is live, you should allow time for testing before driving traffic to it.
-      We advise leaving 1-2 days for no-cost campaigns, and at least a week for paid advertising campaigns.
-    </p>
+    <%= render "govuk_publishing_components/components/inset_text", {
+      text: "Once your site is live, you should allow time for testing before driving traffic to it. We advise leaving 1-2 days for no-cost campaigns, and at least a week for paid advertising campaigns."
+    } %>
 
     <%= render "govuk_publishing_components/components/date_input", {
       legend_text: "Proposed end date of campaign site (required)",
@@ -198,9 +191,9 @@
       error_items: errors_for(r.object.errors, :development_start_date)
     } %>
 
-    <p class="govuk-body">
-      We expect the website to go live within 1 month of approval.
-    </p>
+    <%= render "govuk_publishing_components/components/inset_text", {
+      text: "We expect the website to go live within 1 month of approval."
+    } %>
 
     <%= render "govuk_publishing_components/components/input", {
       label: {
@@ -225,7 +218,7 @@
 
     <%= render "govuk_publishing_components/components/input", {
       label: { text: "Site title (required)" },
-      hint: "The short campaign title, as appears in (for example) Google Search. 2-3 words",
+      hint: "The short campaign title, as appears in (for example) Google Search. 2-3 words.",
       name: name_for(r, %w[site_title]),
       value: r.object.site_title,
       width: 20,
@@ -234,7 +227,7 @@
 
     <%= render "govuk_publishing_components/components/input", {
       label: { text: "Site tagline (required)" },
-      hint: "Explain what this site is about, as appears in (for example) Google Search. Maximum 7-8 words",
+      hint: "Explain what this site is about, as appears in (for example) Google Search. Maximum 7-8 words.",
       name: name_for(r, %w[site_tagline]),
       value: r.object.site_tagline,
       width: 20,
@@ -243,7 +236,7 @@
 
     <%= render "govuk_publishing_components/components/textarea", {
       label: { text: "Site metadescription (appears in search results) (required)" },
-      hint: "Approx 20-30 words, as appears in (for example) Google Search",
+      hint: "Approx 20-30 words, as appears in (for example) Google Search.",
       name: name_for(r, %w[site_metadescription]),
       value: r.object.site_metadescription,
       rows: 6,
@@ -267,7 +260,8 @@
     } %>
 
     <%= render "govuk_publishing_components/components/input", {
-      label: { text: "Proposed URL (in the form of xxxxx.campaign.gov.uk) (required)" },
+      label: { text: "Proposed URL (required)" },
+      hint: "In the form of xxxxx.campaign.gov.uk.",
       name: name_for(r, %w[proposed_url]),
       value: r.object.proposed_url,
       width: 20,
@@ -283,7 +277,8 @@
     } %>
 
     <%= render "govuk_publishing_components/components/input", {
-      label: { text: "HMG code: from approved AMC technical cases. Format: HMGXX-XXX (If not applicable enter n/a)" },
+      label: { text: "HMG code: from approved AMC technical cases" },
+      hint: "Format: HMGXX-XXX (if not applicable enter n/a).",
       name: name_for(r, %w[hmg_code]),
       value: r.object.hmg_code,
       width: 20,
@@ -291,7 +286,8 @@
     } %>
 
     <%= render "govuk_publishing_components/components/input", {
-      label: { text: "Strategic Planning Code: from strategic planning phase. Format: CSBXX-XXX (If not applicable enter n/a)" },
+      label: { text: "Strategic Planning Code: from strategic planning phase" },
+      hint: "Format: CSBXX-XXX (if not applicable enter n/a).",
       name: name_for(r, %w[strategic_planning_code]),
       value: r.object.strategic_planning_code,
       width: 20,
@@ -310,8 +306,11 @@
 } %>
 
 <p class="govuk-body">
-  Please note that in the next stage you will also need to provide an OASIS plan using this template
-  (<%= link_to "OASIS template from the GCS website", "https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/" %>).
+  Please note that in the next stage you will also need to provide an OASIS plan using this template:
+  <%= link_to "OASIS template from the GCS website",
+     "https://gcs.civilservice.gov.uk/guidance/campaigns/strategy-planning-templates/",
+     class: "govuk-link"
+  %>.
   In particular you need to demonstrate how the digital / website element of the campaign integrates
   into your overall OASIS plan and we will need to see <u>specific digital KPIs</u> in the evaluation section.
 </p>

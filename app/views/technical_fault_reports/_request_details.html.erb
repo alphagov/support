@@ -1,6 +1,4 @@
-<%= render "govuk_publishing_components/components/notice", {
-  title: f.object.class.description
-} %>
+<p class="govuk-body"><%= f.object.class.description %></p>
 
 <div id="technical-fault-context">
   <%= render "govuk_publishing_components/components/radio", {
@@ -21,8 +19,9 @@
 
 <%= render "govuk_publishing_components/components/textarea", {
   label: {
-    text: "How much is it affecting? (the whole thing, a specific feature or specific URLs) (required)"
+    text: "How much is it affecting? (required)"
   },
+  hint: "E.g. the whole thing, a specific feature or specific URLs.",
   name: name_for(f, %w[fault_specifics]),
   value: f.object.fault_specifics,
   rows: 6,
@@ -59,8 +58,8 @@
   error_items: errors_for(@request.errors, :what_should_have_happened)
 } %>
 
-<%= render "govuk_publishing_components/components/notice", {
-  title: "If you have screenshots please send them as attachments in reply to the acknowledgement email you will receive shortly."
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "If you have screenshots please send them as attachments in reply to the acknowledgement email you will receive shortly."
 } %>
 
 <%= render partial: "support/collaborators", locals: { f: f } %>
