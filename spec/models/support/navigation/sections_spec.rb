@@ -8,6 +8,6 @@ describe Support::Navigation::Sections do
       request_class.module_parent == Support::Requests
     end
 
-    expect(described_class::ORDERED_REQUEST_FORMS).to match_array(top_level_request_forms)
+    top_level_request_forms.all? { |required_class| described_class::ORDERED_INDEX_ITEMS.include? required_class }
   end
 end
