@@ -14,8 +14,9 @@ module Support
       delegate :label, to: :@request_class
 
       def link
-        request_class_name = @request_class.name.split("::").last
-        path_name = "new_#{request_class_name.underscore}_path"
+        namespaced_route_key = @request_class.model_name.singular_route_key
+        route_key = namespaced_route_key.sub("support_requests_", "").to_sym
+        path_name = "new_#{route_key}_path"
         Rails.application.routes.url_helpers.send(path_name)
       end
 
