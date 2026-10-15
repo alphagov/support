@@ -28,6 +28,7 @@
 
 <%= render "govuk_publishing_components/components/radio", {
   heading: "What sort of logo will the organisation use? (required)",
+  heading_level: 0,
   name: name_for(f, %w[logo_type]),
   id: "logo_type",
   error_items: errors_for(@request.errors, :logo_type),
@@ -36,11 +37,11 @@
       value: "Single identity system",
       text: "Single identity system",
       checked: @request.sis_logo?,
-      conditional: (render "govuk_publishing_components/components/input", {
+      conditional: (render "govuk_publishing_components/components/textarea", {
         label: { text: "How should the logo be formatted? (required)" },
         hint: "For example, stacked or written out in full.",
         name: name_for(f, %w[sis_logo_format]),
-        id: "sis_logo_format",
+        textarea_id: "sis_logo_format",
         value: @request.sis_logo_format,
         error_items: errors_for(@request.errors, :sis_logo_format)
       }),
@@ -49,11 +50,11 @@
       value: "Plain text",
       text: "Plain text",
       checked: @request.plain_text_logo?,
-      conditional: (render "govuk_publishing_components/components/input", {
+      conditional: (render "govuk_publishing_components/components/textarea", {
         label: { text: "How should the logo be formatted? (required)" },
         hint: "For example, stacked or written out in full.",
         name: name_for(f, %w[plain_text_logo_format]),
-        id: "plain_text_logo_format",
+        textarea_id: "plain_text_logo_format",
         value: @request.plain_text_logo_format,
         error_items: errors_for(@request.errors, :plain_text_logo_format)
       }),
@@ -87,6 +88,7 @@
 
 <%= render "govuk_publishing_components/components/radio", {
   heading: "What’s the organisation type? (required)",
+  heading_level: 0,
   name: name_for(f, %w[organisation_type]),
   id: "organisation_type",
   error_items: errors_for(@request.errors, :organisation_type),
@@ -110,6 +112,7 @@
 
 <%= render "govuk_publishing_components/components/radio", {
   heading: "What’s the organisation’s status? (required)",
+  heading_level: 0,
   hint: status_hint_text,
   name: name_for(f, %w[organisation_status]),
   id: "organisation_status",
