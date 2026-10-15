@@ -42,7 +42,7 @@
 
 <%= render "govuk_publishing_components/components/radio", {
   heading: "Is there a deadline? (required)",
-  heading_size: "s",
+  heading_level: 0,
   name: name_for(f, %w[deadline]),
   id: "deadline",
   error_items: errors_for(@request.errors, :deadline),

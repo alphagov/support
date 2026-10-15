@@ -28,6 +28,7 @@
 
 <%= render "govuk_publishing_components/components/radio", {
   heading: "What sort of logo will the organisation use? (required)",
+  heading_level: 0,
   name: name_for(f, %w[logo_type]),
   id: "logo_type",
   error_items: errors_for(@request.errors, :logo_type),
@@ -87,6 +88,7 @@
 
 <%= render "govuk_publishing_components/components/radio", {
   heading: "What’s the organisation type? (required)",
+  heading_level: 0,
   name: name_for(f, %w[organisation_type]),
   id: "organisation_type",
   error_items: errors_for(@request.errors, :organisation_type),
@@ -110,6 +112,7 @@
 
 <%= render "govuk_publishing_components/components/radio", {
   heading: "What’s the organisation’s status? (required)",
+  heading_level: 0,
   hint: status_hint_text,
   name: name_for(f, %w[organisation_status]),
   id: "organisation_status",
