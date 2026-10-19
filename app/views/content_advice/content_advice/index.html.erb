@@ -1,0 +1,8 @@
+<%= content_for :page_title, "Content advice and help" %>
+<%= content_for :header, "Content advice and help" %>
+
+<p class="govuk-body-l">
+  Request help with content design and publishing, including requests for new organisation pages, group pages and short URLs.
+</p>
+
+<%= render partial: "shared/form_listing", locals: { accessible_sections: @accessible_sections, inaccessible_sections: @inaccessible_sections }%>

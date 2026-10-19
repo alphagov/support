@@ -48,6 +48,7 @@ Rails.application.routes.draw do
   root to: "support#landing"
 
   namespace :content_advice do
+    root to: "content_advice#index"
     resource :group_page_request, only: %i[new create]
     resource :short_url_request, only: %i[new create]
     resource :organisation_page_request, only: %i[new create]

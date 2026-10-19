@@ -1,0 +1,27 @@
+<div>
+  <% accessible_sections.each do |section| %>
+    <div class="app-support-form-list__item">
+      <h2 class="govuk-heading-m govuk-!-margin-bottom-1">
+        <%= link_to section.label, section.link, class: "govuk-link" %>
+      </h2>
+      <p class="govuk-body"><%= section.description %></p>
+    </div>
+  <% end %>
+</div>
+
+<% unless inaccessible_sections.empty? %>
+  <hr class="govuk-section-break govuk-section-break--xl govuk-section-break--visible">
+
+  <%= render "govuk_publishing_components/components/details", {
+    title: "You don't have access to the following forms"
+  } do %>
+    <div>
+      <% inaccessible_sections.each do |section| %>
+        <div class="app-support-form-list__item">
+          <h2 class="govuk-heading-m govuk-!-margin-bottom-1"><%= section.label %></h4>
+            <p class="govuk-body"><%= section.description %></p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>
