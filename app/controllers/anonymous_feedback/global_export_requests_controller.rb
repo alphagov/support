@@ -2,9 +2,14 @@ class AnonymousFeedback::GlobalExportRequestsController < AuthorisationControlle
   def create
     authorize! :request, :global_export_request
 
+    
     Services.support_api.create_global_export_request(export_request_params)
     redirect_to anonymous_feedback_explore_path,
-                notice: "We are sending your CSV file to #{current_user.email}. If you don't see it in a few minutes, check your spam folder."
+                flash: {
+                  success_alert: {
+                    message: "We are sending your CSV file to #{current_user.email}. If you don't see it in a few minutes, check your spam folder."
+                  }
+                } 
   end
 
 private
