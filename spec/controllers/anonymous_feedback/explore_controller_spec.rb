@@ -54,6 +54,14 @@ describe AnonymousFeedback::ExploreController, type: :controller do
     expect(assigns(:explore_by_document_type)).to be_present
   end
 
+  it "shows the new form again with an error message for invalid requests" do
+    post :create, params: { support_requests_anonymous_explore_by_multiple_paths: { list_of_urls: "" } }
+
+    expect(response).to have_http_status(422)
+    expect(assigns(:explore_by_multiple_paths)).to be_present
+    expect(flash[:alert]).to eq "Please provide a valid list of urls."
+  end
+
   context "#new" do
     before do
       get :new

@@ -3,6 +3,8 @@ class AnonymousFeedback::ExploreController < AuthorisationController
 
   authorize_resource class: Support::Requests::Anonymous::Explore
 
+  layout "design_system"
+
   def new
     @explore_by_multiple_paths = Support::Requests::Anonymous::ExploreByMultiplePaths.new
     @explore_by_organisation = Support::Requests::Anonymous::ExploreByOrganisation.new(organisation: current_user.organisation_slug)
