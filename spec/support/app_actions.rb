@@ -18,8 +18,8 @@ module AppActions
       fill_in "URL(s)", with: list_of_urls
       click_on "Explore by URL"
     elsif uploaded_list
-      attach_file("Upload list of URLs", uploaded_list)
-      click_on "Upload list of urls"
+      attach_file("URLs as a file", uploaded_list)
+      click_on "Upload"
     end
 
     expect(page).to have_content("Feedback for")

@@ -46,7 +46,7 @@ describe AnonymousFeedback::GlobalExportRequestsController, type: :controller do
 
     it "sets the flash" do
       post :create, params: { from_date: "1 Aug 2016", to_date: "8 Aug 2016", exclude_spam: "1" }
-      expect(flash[:notice]).to include "foo.bar@example.gov.uk"
+      expect(flash[:success_alert][:message]).to include "foo.bar@example.gov.uk"
     end
 
     it "redirects to the feedback explore page" do
