@@ -3,138 +3,150 @@
 
 <% breadcrumb :feedex %>
 
-<div class="row">
-  <p class="lead col-md-8">
-    At the bottom of every page on GOV.UK we ask, “is there anything wrong with this page?”. Users can leave comments on what they were doing and what went wrong. <%= can?(:request, :review_feedback) ? 'Feedback is anonymous.' : 'Feedback is anonymous and we’ve not removed spam.' %>
-  </p>
-</div>
+<%= render "govuk_publishing_components/components/inset_text", {
+  text: "At the bottom of every page on GOV.UK we ask, “is there anything wrong with this page?”. Users can leave comments on what they were doing and what went wrong. #{can?(:request, :review_feedback) ? 'Feedback is anonymous.' : 'Feedback is anonymous and we’ve not removed spam.'}"
+} %>
 
-<div class="row">
-  <div class="col-md-8">
-    <h2 class="add-bottom-margin">By URL</h2>
-    <%= form_for @explore_by_multiple_paths, url: { action: "create" }, html: {class: "well"} do |f| %>
-      <div class="form-group">
-        <span class="form-label">
-          <%= f.label :list_of_urls do %>
-            URL(s)<abbr title="required">*</abbr>
-          <% end %>
-        </span>
-        <span class="form-wrapper">
-          <%= f.text_field :list_of_urls, required: true, aria: { required: true }, class: "input-md-7 form-control" %>
-        </span>
-      </div>
-
-      <p class="help-block add-bottom-margin">
-        For example a page like <code>/vat-rates</code> or <code>https://www.gov.uk/bank-holidays</code>, or a partial path like <code>/guidance/</code>
+<div class="govuk-!-margin-bottom-8">
+  <h2 class="govuk-heading-l">By URL</h2>
+  <%= form_for @explore_by_multiple_paths, url: { action: "create" } do |f| %>
+    <%= render "govuk_publishing_components/components/input", {
+      label: { text: "URL(s) (required)" },
+      name: name_for(f, %w[list_of_urls]),
+      value: f.object.list_of_urls,
+      required: true,
+      hint: sanitize(
+        'For example a page like /vat-rates or https://www.gov.uk/bank-holidays, or a partial path like /guidance/
         <br/>
-        You can also search by a comma separated list: <code>/vat-rates, https://www.gov.uk/bank-holidays, /guidance/</code>
+        You can also search by a comma separated list: /vat-rates, https://www.gov.uk/bank-holidays, /guidance/
         <br/>
-        For longer lists, please upload a file with the comma separated list (see below in "Upload a URL List").
-      </p>
+        For longer lists, please upload a file with the comma separated list (see below in "Upload a URL List").'
+      ),
+      error_message: error_for(@explore.errors, :base)
+    } %>
 
-      <%= f.submit value: "Explore by URL", class: "btn btn-success" %>
-    <% end %>
-  </div>
-
-  <div class="col-md-8">
-    <h2 class="add-bottom-margin">Upload a URL List</h2>
-    <%= form_for @explore_by_multiple_paths, url: { action: "create" }, html: { class: "well", multipart: true } do |f| %>
-      <fieldset>
-        <div class="form-group">
-          <span class="form-label">
-            <%= f.label :uploaded_list do %>
-              Upload list of URLs<abbr title="required">*</abbr>
-            <% end %>
-          </span>
-          <span class="form-wrapper">
-            <%= f.file_field :uploaded_list, required: true, type: "file", aria: { required: true }, class: "input-md-7 form-control" %>
-          </span>
-        </div>
-      </fieldset>
-
-      <p class="help-block add-bottom-margin">
-        The contents of the file should be a comma separated list:
-        <code>/vat-rates, https://www.gov.uk/bank-holidays, /guidance/</code>
-      </p>
-
-      <%= f.submit value: "Upload list of urls", class: "btn btn-success" %>
-    <% end %>
-  </div>
-
-  <div class="col-md-8">
-    <h2>By organisation</h2>
-    <%= form_for @explore_by_organisation, url: { action: "create" }, html: { class: "well" } do |f| %>
-      <div class="form-group select">
-        <span class="form-label">
-          <%= f.label :organisation do %>
-            Organisation<abbr title="required">*</abbr>
-          <% end %>
-        </span>
-        <span class="form-wrapper">
-          <%= f.select :organisation, options_for_select(@organisations_list), { include_blank: true }, required: true, aria: { required: true }, multiple: false, class: "input-md-7 select2 form-control", type: "organisation" %>
-        </span>
-      </div>
-
-      <%= f.submit value: "Explore by organisation", class: "btn btn-success" %>
-    <% end %>
-  </div>
-
-  <div class="col-md-8">
-    <h2>By document type</h2>
-    <%= form_for @explore_by_document_type, url: { action: "create" }, html: { class: "well" } do |f| %>
-      <div class="form-group">
-        <span class="form-label">
-          <%= f.label :document_type do %>
-            Document Type<abbr title="required">*</abbr>
-          <% end %>
-        </span>
-        <span class="form-wrapper">
-          <%= f.select :document_type, options_for_select(@document_type_list), { include_blank: true }, required: true, aria: { required: true }, multiple: false, class: "input-md-7 select2 form-control", type: "organisation" %>
-        </span>
-      </div>
-
-      <%= f.submit value: "Explore by document type", class: "btn btn-success" %>
-    <% end %>
-  </div>
-
-  <% if can? :request, :global_export_request %>
-    <div class="col-md-8 global-export-request">
-      <h2>Total quantity by day</h2>
-      <%= form_tag anonymous_feedback_global_export_requests_path, class: 'well formtastic' do %>
-        <div class="string input required form-group">
-          <span class="form-label">
-            <label for="from-date" class="control-label">Start date</label>
-          </span>
-          <span class="form-wrapper">
-            <input type="text" name="from_date" id="from-date" class="input-sm form-control add-right-margin" data-module="calendar" data-max-date="0" value="<%= params[:from_date]%>"/>
-          </span>
-        </div>
-
-        <div class="string input required form-group">
-          <span class="form-label">
-            <label for="to-date" class="control-label">End date</label>
-          </span>
-          <span class="form-wrapper">
-            <input type="text" name="to_date" id="to-date" class="form-control input-sm" data-module="calendar" data-max-date="0" value="<%= params[:to_date]%>"/>
-          </span>
-        </div>
-
-        <div class="form-group">
-          <%= check_box_tag 'exclude_spam', 1, true %>
-          <%= label_tag 'exclude_spam', 'Exclude requests marked as spam' %>
-        </div>
-
-        <input type="submit" value="Export as CSV" class="btn btn-success" />
-      <% end %>
-    </div>
-  <% end %>
-
-  <% if can? :request, :review_feedback %>
-    <div class="col-md-8">
-    <h2>Review Anonymous Feedback for Spam</h2>
-    <%= form_tag anonymous_feedback_problem_reports_path, method: :get, class: 'well formtastic' do %>
-      <input type="submit" value="Review Anonymous Feedback" class="btn btn-success" />
-    <% end %>
-    </div>
+    <%= render "govuk_publishing_components/components/button", {
+      text: "Explore by URL"
+    } %>
   <% end %>
 </div>
+
+<div class="govuk-!-margin-bottom-8">
+  <h2 class="govuk-heading-l">Upload a URL List</h2>
+  <%= form_for @explore_by_multiple_paths,
+              url: { action: "create" },
+              html: { multipart: true } do |f| %>
+    <%= render "govuk_publishing_components/components/file_upload", {
+      label: { text: "Upload list of URLs (required)" },
+      name: name_for(f, %w[uploaded_list]),
+      hint: sanitize(
+        'The contents of the file should be a comma separated list:
+        /vat-rates, https://www.gov.uk/bank-holidays, /guidance/'
+      ),
+      error_message: error_for(@explore.errors, :uploaded_list)
+    } %>
+
+    <%= render "govuk_publishing_components/components/button", {
+      text: "Upload list of urls"
+    } %>
+  <% end %>
+</div>
+
+<div class="govuk-!-margin-bottom-8">
+  <h2 class="govuk-heading-l">By organisation</h2>
+  <%= form_for @explore_by_organisation, url: { action: "create" } do |f| %>
+    <%= render "govuk_publishing_components/components/select", {
+      label: "Organisation (required)",
+      id: name_for(f, %w[organisation]),
+      name: name_for(f, %w[organisation]),
+      options: [{ text: "", value: "" }] + @organisations_list.map do |text, value|
+        {
+          text: text,
+          value: value,
+          selected: f.object.organisation == value
+        }
+      end,
+      error_message: errors_for(f.object.errors, :organisation)
+    } %>
+
+    <%= render "govuk_publishing_components/components/button", {
+      text: "Explore by organisation"
+    } %>
+  <% end %>
+</div>
+
+<div class="govuk-!-margin-bottom-8">
+  <h2 class="govuk-heading-l">By document type</h2>
+  <%= form_for @explore_by_document_type, url: { action: "create" } do |f| %>
+    <%= render "govuk_publishing_components/components/select", {
+      label: "Document Type (required)",
+      id: name_for(f, %w[document_type]),
+      name: name_for(f, %w[document_type]),
+      options: [{ text: "", value: "" }] + @document_type_list.map { |title, value|
+        {
+          text: title,
+          value: value,
+          selected: f.object.document_type == value
+        }
+      },
+      error_message: errors_for(f.object.errors, :document_type)
+    } %>
+
+    <%= render "govuk_publishing_components/components/button", {
+      text: "Explore by document type"
+    } %>
+  <% end %>
+</div>
+
+<% if can? :request, :global_export_request %>
+  <div class="global-export-request govuk-!-margin-bottom-8">
+    <h2 class="govuk-heading-l">Total quantity by day</h2>
+
+    <%= form_tag anonymous_feedback_global_export_requests_path do %>
+      <%= render "govuk_publishing_components/components/input", {
+        label: { text: "Start date" },
+        id: "from-date",
+        name: "from_date",
+        value: params[:from_date],
+        width: 10,
+        data: { module: "calendar", max_date: "0" }
+      } %>
+
+      <%= render "govuk_publishing_components/components/input", {
+        label: { text: "End date" },
+        id: "to-date",
+        name: "to_date",
+        value: params[:to_date],
+        width: 10,
+        data: { module: "calendar", max_date: "0" }
+      } %>
+
+      <%= render "govuk_publishing_components/components/checkboxes", {
+        name: "exclude_spam",
+        items: [
+          {
+            label: "Exclude requests marked as spam",
+            value: 1,
+            checked: true
+          }
+        ]
+      } %>
+
+      <%= render "govuk_publishing_components/components/button", {
+        text: "Export as CSV"
+      } %>
+    <% end %>
+  </div>
+<% end %>
+
+<% if can? :request, :review_feedback %>
+  <div class="govuk-!-margin-bottom-8">
+    <h2 class="govuk-heading-l">Review Anonymous Feedback for Spam</h2>
+
+    <%= form_tag anonymous_feedback_problem_reports_path, method: :get do %>
+      <%= render "govuk_publishing_components/components/button", {
+        text: "Review Anonymous Feedback"
+      } %>
+    <% end %>
+  </div>
+<% end %>
