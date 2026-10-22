@@ -26,8 +26,3 @@ crumb :anonymous_feedback_by_filter do |filter|
   link "Feedback for “#{filter}”"
   parent :feedex
 end
-
-crumb :emergency_contact_details do
-  link "Emergency contact details", emergency_contact_details_path
-  parent :root
-end
