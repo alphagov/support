@@ -27,6 +27,11 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
 
+  # Like Whitehall's, Publisher's and Places Manager's DISABLE_SECURE_COOKIES:
+  # for govuk-preview-app, which serves local previews over plain HTTP, where
+  # browsers never send a secure cookie back.
+  config.ssl_options = { secure_cookies: false } if ENV["DISABLE_SECURE_COOKIES"]
+
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
