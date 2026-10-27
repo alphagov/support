@@ -1,5 +1,6 @@
 require "sidekiq/api"
 class SupportController < AuthorisationController
+  layout "design_system", only: :emergency_contact_details
   skip_authorization_check
   skip_before_action :authenticate_support_user!, only: [:queue_status]
 
