@@ -8,6 +8,7 @@ module Support
       def initialize(user)
         can :read, :anonymous_feedback
         can :read, Support::Navigation::EmergencyContactDetailsSection
+        can :read, Support::Navigation::ContentAdviceRequestSection
         can :create, Support::Requests::AnalyticsRequest
         can :create, [Support::Requests::GeneralRequest, Support::Requests::TechnicalFaultReport, Support::Requests::Anonymous::Explore]
         can :create, [Support::Requests::TaxonomyNewTopicRequest, Support::Requests::TaxonomyChangeTopicRequest]
@@ -20,7 +21,6 @@ module Support
               [
                 Support::Requests::ChangesToPublishingAppsRequest,
                 Support::Requests::ContentChangeRequest,
-                Support::Requests::ContentAdviceRequest,
                 Support::Requests::ContentAdvice::GroupPageRequest,
                 Support::Requests::ContentAdvice::ShortUrlRequest,
                 Support::Requests::ContentAdvice::OrganisationPageRequest,

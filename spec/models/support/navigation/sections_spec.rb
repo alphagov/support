@@ -8,6 +8,6 @@ describe Support::Navigation::Sections do
       request_class.module_parent == Support::Requests
     end
 
-    expect(described_class::ORDERED_REQUEST_FORMS).to match_array(top_level_request_forms)
+    expect(described_class::ORDERED_INDEX_ITEMS).to include(*top_level_request_forms)
   end
 end
