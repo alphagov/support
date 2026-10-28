@@ -60,6 +60,32 @@ describe ErrorsHelper, type: :helper do
       ]
     end
   end
+
+  describe "#error_for" do
+    it "returns the full message of the first error for the attribute" do
+      result = error_for(@object_with_errors.errors, :date)
+      expect(result).to eq("Date can't be blank")
+    end
+
+    it "returns a single string rather than an error_items array" do
+      result = error_for(@object_with_errors.errors, :title)
+      expect(result).to eq("Title can't be blank")
+    end
+
+    it "returns nil when there are unrelated errors" do
+      result = error_for(@object_with_unrelated_errors.errors, :title)
+      expect(result).to be_nil
+    end
+
+    it "returns nil when there are no errors" do
+      result = error_for(@object_with_no_errors.errors, :title)
+      expect(result).to be_nil
+    end
+
+    it "returns nil when errors is nil" do
+      expect(error_for(nil, :title)).to be_nil
+    end
+  end
 end
 
 class ErrorTestObject
