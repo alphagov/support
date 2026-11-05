@@ -30,6 +30,11 @@
               flash[:success_alert].symbolize_keys
             %>
           <% end %>
+          <% if flash[:alert].present? %>
+            <%= render "govuk_publishing_components/components/error_alert", {
+              message: flash[:alert],
+            } %>
+          <% end %>
           <%= yield(:error_summary) %>
           <h1 class="govuk-heading-xl">
             <%= yield(:header) %>
