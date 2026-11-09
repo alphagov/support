@@ -22,4 +22,18 @@ feature "Exporting Global CSV of Feedback" do
       expect(page.find(:css, 'input[name="exclude_spam"]')).to be_checked
     end
   end
+
+  context "when the user does not have the feedex_exporters permission" do
+    let(:user) { create :user }
+
+    scenario "the export form is not shown" do
+      visit "/"
+
+      within "nav" do
+        click_link "Feedback explorer"
+      end
+
+      expect(page).not_to have_css(".global-export-request")
+    end
+  end
 end
