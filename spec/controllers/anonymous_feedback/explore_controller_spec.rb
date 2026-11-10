@@ -26,32 +26,114 @@ describe AnonymousFeedback::ExploreController, type: :controller do
     login_as create(:user, organisation_slug: "cabinet-office")
   end
 
-  it "shows the new form again with an error message for invalid requests" do
-    post :create, params: { support_requests_anonymous_explore_by_multiple_paths: { list_of_urls: "" } }
-    expect(response).to have_http_status(422)
-    expect(assigns(:explore_by_multiple_paths)).to be_present
-    expect(flash[:alert]).to eq "Please provide a valid list of urls."
-  end
+  context "when the form is submitted with errors" do
+    render_views
 
-  it "shows the new form again with an error message for invalid url" do
-    post :create, params: { support_requests_anonymous_explore_by_multiple_paths: {
-      uploaded_list: fixture_file_upload(Rails.root.join("spec/fixtures/list_of_bad_urls.csv"), "text/plain"),
-    } }
-    expect(response).to have_http_status(422)
-    expect(assigns(:explore_by_multiple_paths)).to be_present
-    expect(flash[:alert]).to include "is not a URL in the correct format"
-  end
+    let(:rendered_page) { Capybara.string(response.body) }
 
-  it "shows the new form again for invalid organisation requests" do
-    post :create, params: { support_requests_anonymous_explore_by_organisation: { organisation: "" } }
-    expect(response).to have_http_status(422)
-    expect(assigns(:explore_by_document_type)).to be_present
-  end
+    context "when the list of urls is empty" do
+      before do
+        post :create, params: { support_requests_anonymous_explore_by_multiple_paths: { list_of_urls: "" } }
+      end
 
-  it "shows the new form again for invalid document type requests" do
-    post :create, params: { support_requests_anonymous_explore_by_document_type: { document_type: "" } }
-    expect(response).to have_http_status(422)
-    expect(assigns(:explore_by_document_type)).to be_present
+      it "returns a 422 response" do
+        expect(response).to have_http_status(422)
+      end
+
+      it "sets the flash alert" do
+        expect(flash[:alert]).to eq "Please provide a valid list of urls."
+      end
+
+      it "renders an error against the url text field" do
+        expect(rendered_page).to have_css(".govuk-form-group--error input[name='support_requests_anonymous_explore_by_multiple_paths[list_of_urls]']")
+      end
+
+      it "renders an error against no other field" do
+        expect(rendered_page).to have_css(".govuk-form-group--error", count: 1)
+      end
+    end
+
+    context "when a url is invalid" do
+      before do
+        post :create, params: { support_requests_anonymous_explore_by_multiple_paths: {
+          uploaded_list: fixture_file_upload(Rails.root.join("spec/fixtures/list_of_bad_urls.csv"), "text/plain"),
+        } }
+      end
+
+      it "returns a 422 response" do
+        expect(response).to have_http_status(422)
+      end
+
+      it "sets the flash alert" do
+        expect(flash[:alert]).to include "is not a URL in the correct format"
+      end
+
+      it "renders an error against the file upload" do
+        expect(rendered_page).to have_css(".govuk-form-group--error input[type='file']")
+      end
+
+      it "renders an error against no other field" do
+        expect(rendered_page).to have_css(".govuk-form-group--error", count: 1)
+      end
+    end
+
+    context "when no file is uploaded" do
+      before do
+        post :create, params: { support_requests_anonymous_explore_by_multiple_paths: { uploaded_list: "" } }
+      end
+
+      it "returns a 422 response" do
+        expect(response).to have_http_status(422)
+      end
+
+      it "sets the flash alert" do
+        expect(flash[:alert]).to eq "Please provide a valid list of urls."
+      end
+
+      it "renders an error against the file upload" do
+        expect(rendered_page).to have_css(".govuk-form-group--error input[type='file']")
+      end
+
+      it "renders an error against no other field" do
+        expect(rendered_page).to have_css(".govuk-form-group--error", count: 1)
+      end
+    end
+
+    context "when no organisation is provided" do
+      before do
+        post :create, params: { support_requests_anonymous_explore_by_organisation: { organisation: "" } }
+      end
+
+      it "returns a 422 response" do
+        expect(response).to have_http_status(422)
+      end
+
+      it "renders an error against the organisation select" do
+        expect(rendered_page).to have_css(".govuk-form-group--error select[name='support_requests_anonymous_explore_by_organisation[organisation]']")
+      end
+
+      it "renders an error against no other field" do
+        expect(rendered_page).to have_css(".govuk-form-group--error", count: 1)
+      end
+    end
+
+    context "when no document type is provided" do
+      before do
+        post :create, params: { support_requests_anonymous_explore_by_document_type: { document_type: "" } }
+      end
+
+      it "returns a 422 response" do
+        expect(response).to have_http_status(422)
+      end
+
+      it "renders an error against the document type select" do
+        expect(rendered_page).to have_css(".govuk-form-group--error select[name='support_requests_anonymous_explore_by_document_type[document_type]']")
+      end
+
+      it "renders an error against no other field" do
+        expect(rendered_page).to have_css(".govuk-form-group--error", count: 1)
+      end
+    end
   end
 
   context "#new" do
