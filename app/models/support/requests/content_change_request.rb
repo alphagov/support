@@ -7,7 +7,7 @@ module Support
 
       attr_accessor :title, :reason_for_change, :subject_area, :details_of_change, :url, :related_urls
 
-      validates :details_of_change, presence: true
+      validates :title, :reason_for_change, :subject_area, :details_of_change, :url, presence: true
 
       def initialize(attrs = {})
         self.time_constraint = TimeConstraint.new

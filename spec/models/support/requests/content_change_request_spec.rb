@@ -5,10 +5,12 @@ module Support
     describe ContentChangeRequest do
       it { should validate_presence_of(:requester) }
       it { should validate_presence_of(:details_of_change) }
+      it { should validate_presence_of(:reason_for_change) }
+      it { should validate_presence_of(:title) }
+      it { should validate_presence_of(:url) }
+      it { should validate_presence_of(:subject_area) }
 
       it { should allow_value("xxxx").for(:title) }
-      it { should allow_value(nil).for(:title) }
-
       it { should allow_value("https://www.gov.uk").for(:url) }
       it { should allow_value("https://www.gov.uk/A\nhttps://www.gov.uk/A").for(:related_urls) }
 
