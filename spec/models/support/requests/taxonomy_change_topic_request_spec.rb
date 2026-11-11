@@ -10,6 +10,7 @@ module Support
       it { should validate_presence_of(:title) }
       it { should validate_presence_of(:details) }
       it { should validate_presence_of(:reasons) }
+      it { should validate_presence_of(:type_of_change) }
 
       it { should allow_value("XXX").for(:title) }
 
