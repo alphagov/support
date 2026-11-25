@@ -8,7 +8,7 @@ module Support
       attr_accessor :user_name, :user_email, :reason_for_removal
 
       validates :user_name, :user_email, presence: true
-      validates :user_email, format: { with: /@/ }
+      validates :user_email, format: { with: Requester::VALID_EMAIL_REGEX }
 
       def initialize(attributes = {})
         self.time_constraint = TimeConstraint.new

@@ -9,6 +9,7 @@ module Support
 
       it { should allow_value("ab@c.com").for(:user_email) }
       it { should_not allow_value("ab").for(:user_email) }
+      it { should_not allow_value("Ab <ab@c.com>").for(:user_email) }
 
       it { should allow_value("was fired").for(:reason_for_removal) }
 

@@ -19,6 +19,7 @@ module Support
 
       it { should allow_value("ab@c.com").for(:email) }
       it { should_not allow_value("ab").for(:email) }
+      it { should_not allow_value("Ab <ab@c.com>").for(:email) }
 
       it { should allow_value("a comment").for(:additional_comments) }
 
