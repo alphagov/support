@@ -76,6 +76,8 @@ module Support
       it { should allow_value("MyCampaign.campaign.gov.uk").for(:proposed_url) }
       it { should allow_value("example.campaign.gov.uk/").for(:proposed_url) }
       it { should_not allow_value("www.example.com").for(:proposed_url) }
+      it { should_not allow_value("example.campaign.gov.u").for(:proposed_url) }
+      it { should_not allow_value("example.campaign.gov-uk").for(:proposed_url) }
 
       it "should not allow 'start date' values to be random characters " do
         constraint = Campaign.new(
