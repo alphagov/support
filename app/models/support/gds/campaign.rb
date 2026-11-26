@@ -24,13 +24,13 @@ module Support
                     :government_theme,
                     :description,
                     :call_to_action,
-                    :proposed_url,
                     :site_title,
                     :site_tagline,
                     :site_metadescription,
                     :cost_of_campaign,
                     :hmg_code,
                     :strategic_planning_code
+      attr_reader :proposed_url
 
       validates :signed_campaign,
                 :start_day,
@@ -70,6 +70,10 @@ module Support
 
       VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
       validates :performance_review_contact_email, format: { with: VALID_EMAIL_REGEX }
+
+      def proposed_url=(new_proposed_url)
+        @proposed_url = new_proposed_url&.strip
+      end
 
       def start_date
         formatted_date(start_day, start_month, start_year)
