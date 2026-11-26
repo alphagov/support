@@ -65,7 +65,7 @@ module Support
       validates_date :end_date, after: :start_date
       validates_date :development_start_date, on_or_before: :start_date
 
-      VALID_URL_REGEX = /((http|https):\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.(campaign\.)?gov\.uk/
+      VALID_URL_REGEX = /\A((http|https):\/\/)?[a-z0-9]+([-.]{1}[a-z0-9]+)*\.(campaign\.)?gov\.uk\/?\z/i
       validates :proposed_url, format: { with: VALID_URL_REGEX }
 
       VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
