@@ -6,7 +6,7 @@ class User < OpenStruct
   class Store
     class << self
       def write(uid, attributes)
-        redis.setex prefixed_key(uid), 1.day, attributes.to_json
+        redis.setex prefixed_key(uid), 1.day, attributes.transform_keys(&:to_s).to_json
       end
 
       def fetch(uid)
@@ -67,7 +67,7 @@ class User < OpenStruct
   def update_attribute(key, value)
     if uid
       old_attributes = Store.fetch(uid) || {}
-      new_attributes = old_attributes.merge(key => value)
+      new_attributes = old_attributes.merge(key.to_s => value)
       Store.write(new_attributes["uid"], new_attributes)
     end
     send("#{key}=", value)
