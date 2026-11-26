@@ -17,7 +17,7 @@ module Support
       )
 
       validates :name, :email, presence: true
-      validates :email, format: { with: /@/ }
+      validates :email, format: { with: Requester::VALID_EMAIL_REGEX }
       validates :new_or_existing_user,
                 inclusion: { in: :new_or_existing_user_option_keys, allow_blank: false }
       validates :whitehall_training,

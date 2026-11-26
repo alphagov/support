@@ -19,9 +19,8 @@ module Support
 
       it { should validate_presence_of(:title) }
       it { should validate_presence_of(:description) }
-      it { should allow_value("example.campaign.gov.uk").for(:proposed_url) }
-      it { should_not allow_value("http:/wwwexamplecom").for(:proposed_url) }
-      it { should !allow_value("text").for(:proposed_url) }
+
+      it_behaves_like "a campaign URL validation"
     end
   end
 end

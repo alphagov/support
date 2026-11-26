@@ -9,7 +9,7 @@ module Support
       )
 
       validates :name, :email, presence: true
-      validates :email, format: { with: /@/ }
+      validates :email, format: { with: Requester::VALID_EMAIL_REGEX }
       validates :additional_comments, presence: true
 
       def action
